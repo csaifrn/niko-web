@@ -1,33 +1,11 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import './App.css'
+import React from 'react'
+import { Title, Wrapper } from './Index'
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <div className="App">
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src="/vite.svg" className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Niko Web</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          Contador {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Clique nas logos para saber melhor sobre as tecnologias.
-      </p>
-    </div>
+    <Wrapper>
+       <Title>Niko Web</Title>     
+    </Wrapper>
   )
 }
 

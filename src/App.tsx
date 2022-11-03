@@ -1,5 +1,5 @@
 import React from 'react'
-import { Menu, MenuImg, Title, Wrapper } from './Index'
+import { Menu, MenuImg, Title, Wrapper } from './components/index'
 
 function App() {
   return (

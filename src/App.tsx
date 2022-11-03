@@ -1,10 +1,13 @@
 import React from 'react'
-import { Title, Wrapper } from './Index'
+import { Menu, MenuImg, Title, Wrapper } from './Index'
 
 function App() {
   return (
     <Wrapper>
-       <Title>Niko Web</Title>     
+      <Menu>
+        <MenuImg src='/menu.svg'/>
+        <Title href='#'>NikoWeb</Title>     
+      </Menu>
     </Wrapper>
   )
 }

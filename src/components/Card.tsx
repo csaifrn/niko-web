@@ -5,14 +5,14 @@ import {CardContainer2} from "./CardStyle";
 const Card = () => {
     return(
         <div>
-            <CardContainer>
-                <img src="./icons.png"></img>
-            </CardContainer>
+        <CardContainer>
+            <img src="./icons.png"></img>
+        </CardContainer>
 
-            <CardContainer2>
-                <img src="./iconsdigtalizar.png"></img>
-            </CardContainer2>
-        </div>
+        <CardContainer2>
+            <img src="./iconsdigtalizar.png"></img>
+        </CardContainer2>
+    </div>
     )
 }
 

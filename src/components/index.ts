@@ -28,4 +28,13 @@ const Wrapper = styled.section`
   height: 100vh;
 `;
 
-export {Card, Title, Wrapper, MenuImg, Menu};
+const Main = styled.section`
+  margin: 2em;
+  display: grid;
+  grid-template-columns: auto auto;
+  justify-itens: center;
+  justify-content: center;
+  grid-gap: 5em;
+`;
+
+export {Card, Title, Wrapper, MenuImg, Menu, Main};

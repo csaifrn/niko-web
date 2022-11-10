@@ -32,9 +32,10 @@ const Main = styled.section`
   margin: 2em;
   display: grid;
   grid-template-columns: auto auto;
-  justify-itens: center;
+  justify-items: center;
   justify-content: center;
-  grid-gap: 5em;
+  grid-gap: 1.25em;
 `;
 
-export {Card, Title, Wrapper, MenuImg, Menu, Main};
+
+export { Card, Title, Wrapper, MenuImg, Menu, Main };

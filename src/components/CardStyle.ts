@@ -12,26 +12,14 @@ const CardContainer = styled.a`
   border-radius: 20px;
   display: flex;
   font-family: 'Rubik';
-  :hover{
-    filter: grayscale(0.3);
-  }
 
 `;
 
-const CardContainer2 = styled.div`
-    width: 9.6875em;
-    height: 8.375em;
-    background-color: #00D25B;
-    border-radius: 20px;
-    overflow: hidden;
-
-`;
-
-const FigureIconCard = styled.figure`
+const FigureIconCard = styled.figure<ColorProps>`
     display: flex;
     width: 10em;
     height: 100%;
-    background-color: red;
+    background-color: ${(props) => props.backgroundColor};
     align-items: center;
     justify-content: center;
 `;
@@ -62,8 +50,7 @@ const TextBoxCard = styled.div`
   font-size: 7px;
   background-color: #191C24;
   width: 100%;
-  border-radius: 0 18px 18px 0;
 `;
 
 
-export {CardContainer , CardContainer2, FigureIconCard, NumberCard, TextBoxCard, DataStrongCard, ImgIconCard };
+export {CardContainer , FigureIconCard, NumberCard, TextBoxCard, DataStrongCard, ImgIconCard };

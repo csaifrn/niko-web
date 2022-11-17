@@ -1,6 +1,6 @@
 
-import { CardContainer, CardContainer2 } from './components/CardStyle';
-import { Card , Menu, MenuImg, Title, Wrapper, Main } from './components/index';
+import { CardContainer, CardContainer2 , TextBox} from './components/CardStyle';
+import { Card , Menu, MenuImg, Title, Wrapper, Main , } from './components/index';
 
 
 
@@ -13,18 +13,17 @@ function App(): JSX.Element {
         <Title href='#'>NikoWeb</Title>     
       </Menu>
       <Main>
-        <CardContainer2>
-            <img src="./iconsdigtalizar.png"></img>
-        </CardContainer2>
+        
         <CardContainer>
-            <img src="./icons.png"></img>
+
+          <img src="./icons.png"></img>
+
+          <TextBox>
+             Digitalizados 
+          </TextBox>
+
         </CardContainer>
-        <CardContainer>
-            <img src="./icons.png"></img>
-        </CardContainer>
-        <CardContainer>
-            <img src="./icons.png"></img>
-        </CardContainer>
+
       </Main>
 
     </Wrapper>

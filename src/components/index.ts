@@ -29,7 +29,7 @@ const Wrapper = styled.section`
 `;
 
 const Main = styled.section`
-  margin: 2em;
+  margin: 2em 0;
   display: grid;
   grid-template-columns: auto auto;
   justify-itens: center;

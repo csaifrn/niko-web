@@ -15,19 +15,19 @@ function App(): JSX.Element {
       <Main>
         <Card
           color='#F32D2D'
-          srcImgIcon='./iconsFolder.svg'
+          srcImgIcon='./IconsFolder.svg'
         />
         <Card
           color='#e68f1e'
-          srcImgIcon='./iconsClean.svg'
+          srcImgIcon='./IconsClean.svg'
         />
         <Card
           color= '#F7D62B'
-          srcImgIcon='./iconsBookmark.svg'
+          srcImgIcon='./IconsBookmark.svg'
         />
         <Card
           color= '#00D25B'
-          srcImgIcon='./iconsScanner.svg'
+          srcImgIcon='./IconsScanner.svg'
         />
         <Card
           color= '#2D94F3'

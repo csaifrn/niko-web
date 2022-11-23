@@ -4,11 +4,12 @@ import {CardContainer, DataStrongCard, FigureIconCard, ImgIconCard, NumberCard, 
 interface CardProps {
     color: string;
     srcImgIcon: string;
+    link: string;
 }
 
 const Card = ( Props : CardProps ) => {
     return(
-        <CardContainer href='#'>
+        <CardContainer href={Props.link}>
             
             <FigureIconCard backgroundColor={Props.color}>
               <ImgIconCard  src={Props.srcImgIcon}>

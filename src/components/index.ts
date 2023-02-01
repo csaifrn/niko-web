@@ -11,6 +11,12 @@ const Title = styled.a`
 `;
 
 const MenuImg = styled.img`
+
+`;
+
+const MenuLeft = styled.div`
+  display: flex;
+  gap: 0.5em;
 `;
 
 // Create a Wrapper component that'll render a <section> tag with some styles
@@ -20,6 +26,7 @@ const Menu = styled.nav`
   height: 2em;
   background: #191C24;
   align-items: center;
+  justify-content: space-between;
   gap: 20px;
 `;
 
@@ -37,9 +44,23 @@ const Main = styled.section`
   grid-gap: 1.25em;
 `;
 
+const Footer = styled.section`
+  display: flex;
+  padding: 1em;
+  height: 2em;
+  background: #191C24;
+  align-items: center;
+  gap: 20px;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  line-height: 100px;
+  left:0;
+`;
+
 const spanLinear = styled.span`
   color: linear-gradient(to right, rgba(255,0,0,0), rgba(255,0,0,1));
 
 `;
 
-export { Card, Title, Wrapper, MenuImg, Menu, Main, spanLinear };
+export { Card, Title, Wrapper, MenuImg, Menu, MenuLeft, Main, Footer, spanLinear };

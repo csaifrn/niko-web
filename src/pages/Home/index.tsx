@@ -1,13 +1,18 @@
-import { Card , Menu, MenuImg, Title, Wrapper, Main, spanLinear } from '../../components/index';
+import { Card , Menu, MenuImg, MenuLeft, Title, Wrapper, Main, Footer, spanLinear } from '../../components/index';
 
 
 const Home = () => {
   return (
-    <Wrapper>
+  <Wrapper>
     <Menu>
-      <MenuImg src='/menuSide.svg'/>
-      <Title href='#'>NikoWeb</Title>    
+      <MenuImg src='/menu.svg'/>
+      <MenuImg src='/Logo_Niko.svg'/>
+      <MenuLeft>
+        <MenuImg src='/Lupa.svg'/>
+        <MenuImg src='/Conta.svg'/>
+      </MenuLeft>
     </Menu>
+
     <Main>
       <Card
         link='#'
@@ -21,25 +26,27 @@ const Home = () => {
       />
       <Card
         link='#'
-        color= '#F7D62B'
+        color= '#FCDE42'
         srcImgIcon='./IconsBookmark.svg'
       />
       <Card
         link='#'
-        color= '#00D25B'
+        color= '#2D94F3'
         srcImgIcon='./IconsScanner.svg'
       />
       <Card
         link='#'
-        color= '#2D94F3'
+        color= '#9C2DF3'
         srcImgIcon='./IconsUpload.svg'
       />
       <Card
         link='#'
-        color= '#9C2DF3'
+        color= '#43DB6D'
         srcImgIcon='./IconsArquiv.svg'
       />
     </Main>
+
+    <Footer></Footer>
 
   </Wrapper>
   );

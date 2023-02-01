@@ -1,7 +1,17 @@
-import { Card , Menu, MenuImg, MenuLeft, Title, Wrapper, Main, Footer, spanLinear } from '../../components/index';
+import { Card , Menu, MenuImg, MenuLeft, Title, Wrapper, Main, Footer, spanLinear, Btn } from '../../components/index';
+import useFirebaseAuth from '../../config/useAuth';
 
 
 const Home = () => {
+
+  //const {user, loading, logOut} = useFirebaseAuth();
+
+  //if (loading){
+  //  return <p>Loading please wait.......</p>
+  //}
+
+  // <Btn onClick={logOut}>Log Out</Btn>
+
   return (
   <Wrapper>
     <Menu>
@@ -44,7 +54,9 @@ const Home = () => {
         color= '#43DB6D'
         srcImgIcon='./IconsArquiv.svg'
       />
+     
     </Main>
+
 
     <Footer></Footer>
 

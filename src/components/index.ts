@@ -33,6 +33,7 @@ const Menu = styled.nav`
 const Wrapper = styled.section`
   background-color: #0A090E;
   height: 100vh;
+  width: 100vw;
 `;
 
 const Main = styled.section`
@@ -45,16 +46,11 @@ const Main = styled.section`
 `;
 
 const Footer = styled.section`
-  display: flex;
-  padding: 1em;
-  height: 2em;
+  height: 4em;
   background: #191C24;
-  align-items: center;
-  gap: 20px;
   position: absolute;
   bottom: 0;
   width: 100%;
-  line-height: 100px;
   left:0;
 `;
 
@@ -63,4 +59,17 @@ const spanLinear = styled.span`
 
 `;
 
-export { Card, Title, Wrapper, MenuImg, Menu, MenuLeft, Main, Footer, spanLinear };
+const Btn = styled.button`
+  padding: 0.5em;
+  width: 40%;
+  background-color: #F3802D;
+  border-radius: 0.5em;
+  border: 1px solid #F3802D;
+  color: white;
+  font-weight: bold;
+  :hover {
+    border: 1px solid #B1B1B1;
+  }
+`;
+
+export { Card, Title, Wrapper, MenuImg, Menu, MenuLeft, Main, Footer, spanLinear, Btn };

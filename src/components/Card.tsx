@@ -22,12 +22,12 @@ const Card = ( Props : CardProps ) => {
                 <p>RECEBIDOS</p>
               </DataStrongCard>
               <DataStrongCard>
-                <NumberCard backgroundColor='#FCDE42'>84</NumberCard>
+                <NumberCard backgroundColor='#FCDE42'>10</NumberCard>
                 <p>ANDAMENTO</p>
               </DataStrongCard>
               <DataStrongCard>
                 <NumberCard backgroundColor='#00D25B'>9</NumberCard>
-                <p>CONCLUIDOS</p>
+                <p>CONCLUÍDOS</p>
               </DataStrongCard>
             </TextBoxCard>
             

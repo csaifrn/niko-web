@@ -1,5 +1,7 @@
-import { Card , Menu, MenuImg, MenuLeft, Title, Wrapper, Main, Footer, spanLinear, Btn } from '../../components/index';
+import { Wrapper, Main, FooterHome} from './styles';
 import useFirebaseAuth from '../../config/useAuth';
+import { Card } from '../../components/Card'
+import { Menu } from '../../components/Menu';
 
 
 const Home = () => {
@@ -14,15 +16,7 @@ const Home = () => {
 
   return (
   <Wrapper>
-    <Menu>
-      <MenuImg src='/menu.svg'/>
-      <MenuImg src='/Logo_Niko.svg'/>
-      <MenuLeft>
-        <MenuImg src='/Lupa.svg'/>
-        <MenuImg src='/Conta.svg'/>
-      </MenuLeft>
-    </Menu>
-
+    <Menu></Menu>
     <Main>
       <Card
         link='#'
@@ -58,7 +52,7 @@ const Home = () => {
     </Main>
 
 
-    <Footer></Footer>
+    <FooterHome/>
 
   </Wrapper>
   );

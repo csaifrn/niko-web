@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import Card from "./Card";
+
 
 // Create a Title component that'll render an <h1> tag with some styles
 const Title = styled.a`
@@ -10,25 +10,7 @@ const Title = styled.a`
   color: white;
 `;
 
-const MenuImg = styled.img`
 
-`;
-
-const MenuLeft = styled.div`
-  display: flex;
-  gap: 0.5em;
-`;
-
-// Create a Wrapper component that'll render a <section> tag with some styles
-const Menu = styled.nav`
-  display: flex;
-  padding: 1em;
-  height: 2em;
-  background: #191C24;
-  align-items: center;
-  justify-content: space-between;
-  gap: 20px;
-`;
 
 const Wrapper = styled.section`
   background-color: #0A090E;
@@ -72,4 +54,4 @@ const Btn = styled.button`
   }
 `;
 
-export { Card, Title, Wrapper, MenuImg, Menu, MenuLeft, Main, Footer, spanLinear, Btn };
+export { Title, Wrapper, Main, Footer, spanLinear, Btn };

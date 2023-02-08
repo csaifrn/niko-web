@@ -1,2 +1,2 @@
 # niko-web
-Guardiã dos Documentos - Aplicativo de Gerência de Digitalização
+Guardião dos Documentos - Aplicativo de Gerência de Digitalização

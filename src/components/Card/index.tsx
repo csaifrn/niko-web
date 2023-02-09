@@ -1,5 +1,5 @@
 import React from 'react';
-import {CardContainer, DataStrongCard, FigureIconCard, ImgIconCard, NumberCard, TextBoxCard} from "./CardStyle";
+import {CardContainer, DataStrongCard, FigureIconCard, ImgIconCard, NumberCard, TextBoxCard} from "./styles";
 
 interface CardProps {
     color: string;
@@ -7,7 +7,7 @@ interface CardProps {
     link: string;
 }
 
-const Card = ( Props : CardProps ) => {
+export const Card = ( Props : CardProps ) => {
     return(
         <CardContainer href={Props.link}>
             
@@ -34,5 +34,3 @@ const Card = ( Props : CardProps ) => {
         </CardContainer>
     )
 }
-
-export default Card;

@@ -4,6 +4,7 @@ import Login from "./pages/Login";
 
 import initMyFirebase from "./config/firebase-config";
 import Splash from "./pages/Splash";
+import Arquivamento from "./pages/Etapas/Arquivamento";
 
 initMyFirebase();
 
@@ -16,6 +17,7 @@ const App = () => {
         <Route path="/splash" element={<Splash />} />
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/Arquivamento" element={<Arquivamento />} />
       </Routes>
     </Suspense>
   );

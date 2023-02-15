@@ -12,10 +12,11 @@ const Title = styled.a`
 
 
 
-const Wrapper = styled.section`
+const Wrapper = styled.div`
   background-color: #0A090E;
   height: 100vh;
   width: 100vw;
+
 `;
 
 const Main = styled.section`
@@ -25,15 +26,18 @@ const Main = styled.section`
   justify-items: center;
   justify-content: center;
   grid-gap: 1.25em;
+  min-height: 360px;
+  min-height: 640px;
 `;
 
-const Footer = styled.section`
-  height: 4em;
+const Footer = styled.footer`
+  display: none;
   background: #191C24;
-  position: absolute;
-  bottom: 0;
+  position: fixed;
   width: 100%;
-  left:0;
+  bottom: 0;
+  left: 0;
+
 `;
 
 const spanLinear = styled.span`

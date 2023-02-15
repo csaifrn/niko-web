@@ -16,7 +16,7 @@ const Home = () => {
 
   return (
   <Wrapper>
-    <Menu></Menu>
+    <Menu area='/'></Menu>
     <Main>
       <Card
         link='#'
@@ -44,7 +44,7 @@ const Home = () => {
         srcImgIcon='./IconsUpload.svg'
       />
       <Card
-        link='#'
+        link='/Arquivamento'
         color= '#43DB6D'
         srcImgIcon='./IconsArquiv.svg'
       />
@@ -52,7 +52,8 @@ const Home = () => {
     </Main>
 
 
-    <FooterHome/>
+    <FooterHome>
+    </FooterHome>
 
   </Wrapper>
   );

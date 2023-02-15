@@ -1,38 +1,45 @@
-import React, { useEffect, useRef } from "react";
-import LinkMenuBurger from "../LinkMenuBurger";
-import * as S from "./styles"
+import React, { useEffect, useRef } from 'react';
+import LinkMenuBurger from '../LinkMenuBurger';
+import * as S from './styles';
 
-interface MenuBurgerprops {
-  open: boolean
-  area: string
-  handleOutisideClick: any
+interface MenuBurgerProps {
+  area: string;
+  onClose: () => void;
 }
 
-const MenuBurger = (props: MenuBurgerprops) => {
-
-  const ref = useRef<HTMLElement>(document.querySelector("menu"));
+const MenuBurger = (props: MenuBurgerProps) => {
+  const menuRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const handleClick = (event: MouseEvent) => {
-      if (ref.current && !ref.current.contains(event.target as Node)) {
-        props.handleOutisideClick();
+    const handleClickOutside = (event: MouseEvent) => {
+      if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
+        props.onClose();
       }
     };
 
-    document.addEventListener('click', handleClick);
-
+    document.addEventListener('mousedown', handleClickOutside);
     return () => {
-      document.removeEventListener('click', handleClick);
+      document.removeEventListener('mousedown', handleClickOutside);
     };
-  }, [props.handleOutisideClick]);
+  }, [menuRef]);
+
+  const handleMenuClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    event.stopPropagation();
+    props.onClose();
+  };
 
   return (
-    <S.StyledMenu open={props.open} id="menu">
-      <LinkMenuBurger path='/' nome='Inicio' area={props.area}/>
-      <LinkMenuBurger path='/Arquivamento' nome='Arquivamento' area={props.area}/>
-    </S.StyledMenu>
-  )
+    <S.areaClick open={true} ref={menuRef}>
+        <S.FecharMenu onClick={handleMenuClick}><S.MenuImg src="/Vector.svg" /></S.FecharMenu>
+        <S.StyledMenu open={true} id="menu" >
+          
+          <LinkMenuBurger path="/" nome="Inicio" area={props.area} />
+          <LinkMenuBurger path="/Arquivamento" nome="Arquivamento" area={props.area} />
+        </S.StyledMenu>
+    </S.areaClick>
 
-}
+
+  );
+};
 
 export default MenuBurger;

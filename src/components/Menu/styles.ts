@@ -27,7 +27,7 @@ interface BurgerProps {
 
 const ButtonBurger = styled.a<BurgerProps>`
   cursor: pointer;
-  z-index: 100;
+  z-index: 0;
   
   &:focus {
     outline: none;
@@ -35,13 +35,7 @@ const ButtonBurger = styled.a<BurgerProps>`
 
   img {
     transition: 2s;
-    :first-child {
-      transform: ${({ open }) => open ? 'rotate(45deg)' : 'rotate(0)'};
-      display: ${({ open }) => open ? 'none' : 'block'};
-    }
-    :nth-child(2) {
-      display: ${({ open }) => open ? 'blcok' : 'none'};
-      
+
     }
   }
 `;

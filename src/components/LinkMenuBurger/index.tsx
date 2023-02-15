@@ -5,23 +5,22 @@ interface LinkMenuProps {
   nome: string,
   path: string,
   area: string,
-  
 }
 
 const LinkMenuBurger = (props : LinkMenuProps) => {
-  const [open, setOpen] = React.useState(true);
+  const [Linkopen, setLinkOpen] = React.useState(true);
 
   useEffect(() => {
     if (props.area == props.path) {
-      setOpen(true)
+      setLinkOpen(true)
     }
     else {
-      setOpen(false)
+      setLinkOpen(false)
     }
   })
 
   return(
-    <S.LinkMenu href={props.path} open={open}>
+    <S.LinkMenu href={props.path} open={Linkopen}>
       {props.nome}
     </S.LinkMenu>
   );

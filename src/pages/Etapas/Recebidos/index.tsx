@@ -5,13 +5,13 @@ import * as Style from '../../../global/index'
 // import { Container } from './styles';
 
 const Recebidos = () => {
-  return(
+  return (
     <>
-    <Style.Wrapper>
-      <Menu area='/Recebidos'></Menu>
-      <p>Recebidos</p>
-      <Style.Footer></Style.Footer>
-    </Style.Wrapper>
+      <Style.Wrapper>
+        <Menu area='/Recebidos'></Menu>
+        <p>Recebidos</p>
+        <Style.Footer></Style.Footer>
+      </Style.Wrapper>
     </>
   )
 }

@@ -1,9 +1,7 @@
 import { StyleHTMLAttributes } from "react";
 import styled from "styled-components";
 
-const MenuImg = styled.img`
-
-`;
+const MenuImg = styled.img``;
 
 const MenuLeft = styled.div`
   display: flex;
@@ -15,7 +13,7 @@ const MenuArea = styled.nav`
   display: flex;
   padding: 1em;
   height: 2em;
-  background: #191C24;
+  background: #191c24;
   align-items: center;
   justify-content: space-between;
   gap: 20px;
@@ -28,23 +26,20 @@ interface BurgerProps {
 const ButtonBurger = styled.a<BurgerProps>`
   cursor: pointer;
   z-index: 0;
-  
+
   &:focus {
     outline: none;
   }
 
   img {
     transition: 2s;
-
-    }
   }
 `;
 
 const areaClick = styled.div`
   width: 100%;
   height: 100%;
-`
-
+`;
 
 const StyledMenu = styled.nav<BurgerProps>`
   display: flex;
@@ -55,9 +50,9 @@ const StyledMenu = styled.nav<BurgerProps>`
   z-index: 99;
   flex-direction: column;
   justify-content: right;
-  background: #191C24;
-  display: ${({ open }) => open ? 'flex' : 'none'};
-  transform: ${({ open }) => open ? 'translateX(0)' : 'translateX(-100%)'};
+  background: #191c24;
+  display: ${({ open }) => (open ? "flex" : "none")};
+  transform: ${({ open }) => (open ? "translateX(0)" : "translateX(-100%)")};
   text-align: left;
   position: absolute;
   gap: 1em;
@@ -67,7 +62,11 @@ const StyledMenu = styled.nav<BurgerProps>`
   height: calc(100% - 4em);
   @media (max-width: 576px) {
     width: 70%;
-  } 
-`
+  }
+`;
 
-export { MenuImg, MenuArea, MenuLeft, ButtonBurger, StyledMenu }
+const ContainerA = styled.div`
+  width: 74px;
+`;
+
+export { MenuImg, MenuArea, MenuLeft, ButtonBurger, StyledMenu, ContainerA };

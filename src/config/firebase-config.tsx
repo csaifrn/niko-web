@@ -1,7 +1,9 @@
 import { getApps, initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
-import { getAnalytics} from "firebase/analytics";
-import { getPerformance} from "firebase/performance";
+import { getAnalytics } from "firebase/analytics";
+import { getPerformance } from "firebase/performance";
+import { getDatabase } from "firebase/database";
+
 
 const firebaseConfig = {
   apiKey: "AIzaSyCgpCfqBuBLzGY38hWz8divtyMo29tZnXY",
@@ -13,17 +15,18 @@ const firebaseConfig = {
   measurementId: "G-2010JYNQ0V"
 };
 
-
+const app = initializeApp(firebaseConfig);
+export const database = getDatabase(app);
 
 const initMyFirebase = () => {
 
-  if(!getApps().length) {
+  if (!getApps().length) {
 
-    const app = initializeApp(firebaseConfig);
+
 
     const auth = getAuth(app);
-    
-    if(typeof window !== "undefined"){
+
+    if (typeof window !== "undefined") {
       const analytics = getAnalytics(app);
       const performance = getPerformance(app);
     }

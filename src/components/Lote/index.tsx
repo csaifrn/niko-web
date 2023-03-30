@@ -1,3 +1,4 @@
+import { Envolvidos, PA } from "../../pages/Etapas/Recebidos"
 import * as S from "./styles"
 
 const Lote = (props: any) => {

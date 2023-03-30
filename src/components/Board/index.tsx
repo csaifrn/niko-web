@@ -41,6 +41,10 @@ export const Board = () => {
         }
     }
 
+    function uuidv4() {
+        throw new Error('Function not implemented.');
+    }
+
     return (
         <>
             <>
@@ -80,7 +84,6 @@ export const Board = () => {
                                                     >
                                                         {(provided, snapshot) => (
                                                             <div
-
                                                                 ref={provided.innerRef}
                                                                 {...provided.draggableProps}
                                                                 {...provided.dragHandleProps}

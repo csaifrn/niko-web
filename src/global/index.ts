@@ -14,6 +14,7 @@ const Wrapper = styled.div`
   background-color: #0a090e;
   height: 100vh;
   width: 100vw;
+  overflow: hidden;
 `;
 
 const Main = styled.section`

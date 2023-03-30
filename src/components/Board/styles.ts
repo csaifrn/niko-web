@@ -6,8 +6,9 @@ const kanban = styled.div`
   align-items: center;
   justify-content: start;
   gap: 1em;
-  padding: 0 1em 2em 1em;
-  scroll-behavior: smooth;
+  margin: 0 1em 2em 1em;
+  padding: 1em;
+  scroll-behavior: auto;
   scrollbar-width: thin;
   overflow-x: scroll;
   &::-webkit-scrollbar {
@@ -28,14 +29,16 @@ const kanban = styled.div`
     margin: 0em 2em;
   }
 
-  @media screen and (min-width: 1360px) {
+  @media screen and (min-width: 1366px) {
     justify-content: center;
   }
 `;
 
 const kanbanSection = styled.div`
-  min-width: 300px;
+
+  min-width: 250px;
   gap: 1em;
+  height: 60vh;
   padding: 1em;
   color: white;
   background-color: #191c24;
@@ -55,7 +58,7 @@ const kanbanSection = styled.div`
     border-radius: 20px;
   }
   @media screen and (min-width: 1360px) {
-    width: 400px;
+    width: 100px;
   }
 `;
 

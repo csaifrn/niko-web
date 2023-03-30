@@ -2,6 +2,7 @@ import { Wrapper, Main, FooterHome } from './styles';
 import useFirebaseAuth from '../../config/useAuth';
 import { Card } from '../../components/Card'
 import { Menu } from '../../components/Menu';
+import Lote from '../../components/Lote';
 
 
 const Home = () => {
@@ -48,12 +49,7 @@ const Home = () => {
           color='#43DB6D'
           srcImgIcon='./IconsArquiv.svg'
         />
-
       </Main>
-
-
-      <FooterHome>
-      </FooterHome>
 
     </Wrapper>
   );

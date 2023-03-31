@@ -12,7 +12,8 @@ const kanban = styled.div`
   scrollbar-width: thin;
   overflow-x: scroll;
   &::-webkit-scrollbar {
-    width: 0.6em;
+    width: 0.3em;
+    height: 0.5em;
   }
 
   &::-webkit-scrollbar-track {
@@ -78,12 +79,18 @@ const kanbanSectionContent = styled.div`
   }
 
   &::-webkit-scrollbar-track {
-    background: #191c24;
+    background: transparent;
   }
 
   &::-webkit-scrollbar-thumb {
-    background-color: #2a2e38;
+    background-color: transparent;
     border-radius: 20px;
+  }
+  @media screen and (min-width: 1360px) {
+    &::-webkit-scrollbar-thumb {
+      background-color: #2a2e38;
+      border-radius: 20px;
+    }
   }
 `;
 

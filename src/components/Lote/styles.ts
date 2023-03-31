@@ -18,8 +18,7 @@ const LoteEdit = styled.div`
   background-color: #393e4b;
   border-radius: 5px;
   color: white;
-  display: flex;
-  flex-direction: column;
+  max-width: 300px;
   filter: drop-shadow(0px 4px 1px rgba(0, 0, 0, 0.25));
 `;
 

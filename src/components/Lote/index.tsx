@@ -4,11 +4,10 @@ import { Envolvidos, PA } from "../../pages/Etapas/Recebidos"
 import * as S from "./styles"
 
 const Lote = (props: any) => {
-    console.log(props.pa)
     return (
         <>
             {props.edit == true && (
-                <S.Lote className='Lote'>
+                <S.LoteEdit className='Lote'>
                     <S.LoteArea >
                         <S.Content >
 
@@ -42,7 +41,7 @@ const Lote = (props: any) => {
                         </S.Content>
 
                     </S.LoteArea>
-                </S.Lote>
+                </S.LoteEdit>
 
             )}
             {props.edit == null && (

@@ -46,6 +46,7 @@ const Recebidos = () => {
 
   function writeLoteData(LoteId: string, title: string, pas: PA[], envolvidos: [] | null) {
     const db = getDatabase();
+    console.log(LoteId, title, pas, envolvidos)
     console.log('Lote Criado!')
     set(ref(db, 'Lotes/' + LoteId), {
       title: title,

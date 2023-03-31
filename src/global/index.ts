@@ -19,6 +19,7 @@ const Wrapper = styled.div`
   height: 100vh;
   width: 100vw;
   overflow: hidden;
+  min-height: 550px;
 `;
 
 const pasDiv = styled.div<paDiv>`

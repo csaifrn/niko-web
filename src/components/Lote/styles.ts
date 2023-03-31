@@ -11,6 +11,18 @@ const Lote = styled.div`
   filter: drop-shadow(0px 4px 1px rgba(0, 0, 0, 0.25));
 `;
 
+const LoteEdit = styled.div`
+  font-family: "Rubik";
+
+  padding: 0.8em;
+  background-color: #393e4b;
+  border-radius: 5px;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  filter: drop-shadow(0px 4px 1px rgba(0, 0, 0, 0.25));
+`;
+
 const LoteArea = styled.div`
   display: flex;
   flex-direction: column;
@@ -44,8 +56,7 @@ const Envolvido = styled.div`
 
 const Pa = styled.div`
   display: flex;
-  margin-left: 10px;
-  align-items: center;
+  flex-wrap: wrap;
   gap: 0.5em;
 `;
 
@@ -61,4 +72,22 @@ const PaTextDiv = styled.div`
     margin-bottom: "0";
   }
 `;
-export { Lote, LoteArea, Content, Prioridade, Envolvido, Pa, PaTextDiv };
+
+const fotoEnv = styled.img`
+  width: 32px;
+  height: 32px;
+  margin-left: -10px;
+  border-radius: 100%;
+`;
+
+export {
+  Lote,
+  LoteArea,
+  Content,
+  Prioridade,
+  Envolvido,
+  Pa,
+  PaTextDiv,
+  fotoEnv,
+  LoteEdit,
+};

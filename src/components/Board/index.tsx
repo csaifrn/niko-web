@@ -41,10 +41,6 @@ export const Board = () => {
         }
     }
 
-    function uuidv4() {
-        throw new Error('Function not implemented.');
-    }
-
     return (
         <>
             <>
@@ -84,6 +80,7 @@ export const Board = () => {
                                                     >
                                                         {(provided, snapshot) => (
                                                             <div
+
                                                                 ref={provided.innerRef}
                                                                 {...provided.draggableProps}
                                                                 {...provided.dragHandleProps}
@@ -92,7 +89,7 @@ export const Board = () => {
                                                                     opacity: snapshot.isDragging ? "0.5" : "1"
                                                                 }}
                                                             >
-                                                                <Lote task={task} prioridade={prioridade}>
+                                                                <Lote task={task} value={task.title} pa={task.pa} envolvidos={task.envolvidos} prioridade={prioridade}>
                                                                 </Lote>
                                                             </div>
                                                         )}

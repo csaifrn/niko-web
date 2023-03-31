@@ -7,7 +7,7 @@ const mockData = [
     number: "340",
     tasks: [
       {
-        id: uuidv4(),
+        id: "1",
         title: "Lote 01",
         pa: [
           {
@@ -23,11 +23,11 @@ const mockData = [
         ],
       },
       {
-        id: uuidv4(),
+        id: "2",
         title: "Lote 02",
       },
       {
-        id: uuidv4(),
+        id: "3",
         title: "Lote 12",
       },
     ],
@@ -38,15 +38,15 @@ const mockData = [
     number: "10",
     tasks: [
       {
-        id: uuidv4(),
+        id: "5",
         title: "Lote 01",
       },
       {
-        id: uuidv4(),
+        id: "6",
         title: "Lote 02",
       },
       {
-        id: uuidv4(),
+        id: "7",
         title: "Lote 12",
       },
     ],
@@ -57,7 +57,7 @@ const mockData = [
     number: "4",
     tasks: [
       {
-        id: uuidv4(),
+        id: "8",
         title: "Lote 15",
         pa: [
           {
@@ -81,15 +81,15 @@ const mockData = [
         ],
       },
       {
-        id: uuidv4(),
+        id: "9",
         title: "Lote 314",
       },
       {
-        id: uuidv4(),
+        id: "10",
         title: "Lote 15",
       },
       {
-        id: uuidv4(),
+        id: "11",
         title: "Lote 314",
       },
     ],
@@ -100,7 +100,7 @@ const mockData = [
     number: "243",
     tasks: [
       {
-        id: uuidv4(),
+        id: "12",
         title: "Lote 300",
       },
     ],

@@ -89,7 +89,7 @@ export const Board = () => {
                                                                     opacity: snapshot.isDragging ? "0.5" : "1"
                                                                 }}
                                                             >
-                                                                <Lote task={task} value={task.title} pa={task.pa} envolvidos={task.envolvidos} prioridade={prioridade}>
+                                                                <Lote task={task} value={task.title} categoria={task.categoria} envolvidos={task.envolvidos} prioridade={prioridade}>
                                                                 </Lote>
                                                             </div>
                                                         )}

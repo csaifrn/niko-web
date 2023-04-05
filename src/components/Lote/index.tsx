@@ -1,6 +1,6 @@
 import { uuidv4 } from "@firebase/util";
 import React from "react";
-import { Envolvidos, PA } from "../../pages/Etapas/Recebidos"
+import { Envolvidos, Categoria } from "../../pages/Etapas/Recebidos"
 import * as S from "./styles"
 
 const Lote = (props: any) => {
@@ -13,9 +13,9 @@ const Lote = (props: any) => {
 
                             <h3>{props.value}</h3>
                             {
-                                props.pa && props.pa.map((pa: any, index: number) => (
+                                props.categoria && props.categoria.map((categoria: any, index: number) => (
                                     <React.Fragment key={uuidv4()}>
-                                        {pa.nome === props.prioridade && (
+                                        {categoria.nome === props.prioridade && (
                                             <S.Prioridade>
                                                 <p>Prioridade</p>
                                             </S.Prioridade>
@@ -27,11 +27,11 @@ const Lote = (props: any) => {
                         <S.Content>
                             <S.Pa>
                                 {
-                                    props.pa && props.pa.map((pa: any, index: number) => (
+                                    props.categoria && props.categoria.map((categoria: any, index: number) => (
                                         <React.Fragment key={uuidv4()}>
                                             {index >= 0 && (
                                                 <S.PaTextDiv style={{ borderRadius: "5px" }}>
-                                                    <p style={{ padding: "0 0.5em" }}>{pa.nome}</p>
+                                                    <p style={{ padding: "0 0.5em" }}>{categoria.nome}</p>
                                                 </S.PaTextDiv>
                                             )}
                                         </React.Fragment>
@@ -51,9 +51,9 @@ const Lote = (props: any) => {
 
                             <h3>{props.value}</h3>
                             {
-                                props.pa && props.pa.map((pa: any, index: number) => (
+                                props.categoria && props.categoria.map((categoria: any, index: number) => (
                                     <React.Fragment key={uuidv4()}>
-                                        {pa.nome === props.prioridade && (
+                                        {categoria.nome === props.prioridade && (
                                             <S.Prioridade>
                                                 <p>Prioridade</p>
                                             </S.Prioridade>
@@ -74,7 +74,7 @@ const Lote = (props: any) => {
                             </S.Envolvido>
                             <S.Pa>
                                 {
-                                    props.pa && props.pa.map((pa: any, index: number) => (
+                                    props.categoria && props.categoria.map((categoria: any, index: number) => (
                                         <React.Fragment key={uuidv4()}>
                                             {index >= 1 && (
                                                 <S.PaTextDiv style={{ borderRadius: "100%", width: "2em" }}>
@@ -84,7 +84,7 @@ const Lote = (props: any) => {
                                             )}
                                             {index == 0 && (
                                                 <S.PaTextDiv style={{ borderRadius: "5px" }}>
-                                                    <p style={{ padding: "0 0.5em" }}>{pa.nome}</p>
+                                                    <p style={{ padding: "0 0.5em" }}>{categoria.nome}</p>
                                                 </S.PaTextDiv>
                                             )}
                                         </React.Fragment>

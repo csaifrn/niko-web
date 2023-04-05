@@ -9,7 +9,7 @@ const mockData = [
       {
         id: "1",
         title: "Lote 01",
-        pa: [
+        categoria: [
           {
             nome: "Espinheiros",
             id: 1,
@@ -59,7 +59,7 @@ const mockData = [
       {
         id: "8",
         title: "Lote 15",
-        pa: [
+        categoria: [
           {
             nome: "Maisa",
             id: 1,

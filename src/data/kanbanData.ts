@@ -8,27 +8,33 @@ const mockData = [
     tasks: [
       {
         id: "1",
-        title: "Lote 01",
+        title: "Lote 11",
         categoria: [
           {
-            nome: "Espinheiros",
+            nome: "Administrativo",
             id: 1,
-          },
-        ],
-        envolvidos: [
-          {
-            envolvidoId: uuidv4(),
-            foto: "https://i.pinimg.com/474x/38/a7/f1/38a7f176c4783fd6f91a572057f5e2e8--figure-painting-the-high.jpg",
           },
         ],
       },
       {
         id: "2",
-        title: "Lote 02",
+        title: "Lote 10",
+        categoria: [
+          {
+            nome: "Administrativo",
+            id: 1,
+          },
+        ],
       },
       {
         id: "3",
-        title: "Lote 12",
+        title: "Lote 09",
+        categoria: [
+          {
+            nome: "Administrativo",
+            id: 1,
+          },
+        ],
       },
     ],
   },
@@ -39,15 +45,51 @@ const mockData = [
     tasks: [
       {
         id: "5",
-        title: "Lote 01",
+        title: "Lote 08",
+        categoria: [
+          {
+            nome: "RH",
+            id: 2,
+          },
+        ],
+        envolvidos: [
+          {
+            envolvidoId: uuidv4(),
+            foto: "https://i.pinimg.com/474x/38/a7/f1/38a7f176c4783fd6f91a572057f5e2e8--figure-painting-the-high.jpg",
+          },
+        ],
       },
       {
         id: "6",
-        title: "Lote 02",
+        title: "Lote 07",
+        categoria: [
+          {
+            nome: "RH",
+            id: 2,
+          },
+        ],
+        envolvidos: [
+          {
+            envolvidoId: uuidv4(),
+            foto: "https://lh3.googleusercontent.com/a/AEdFTp4rZn-tIHMtcekPx2eo7A21IruNxrGHBlQfzpkh=s96-c",
+          },
+        ],
       },
       {
         id: "7",
-        title: "Lote 12",
+        title: "Lote 06",
+        categoria: [
+          {
+            nome: "RH",
+            id: 2,
+          },
+        ],
+        envolvidos: [
+          {
+            envolvidoId: uuidv4(),
+            foto: "https://lh3.googleusercontent.com/a/AEdFTp4rZn-tIHMtcekPx2eo7A21IruNxrGHBlQfzpkh=s96-c",
+          },
+        ],
       },
     ],
   },
@@ -58,14 +100,14 @@ const mockData = [
     tasks: [
       {
         id: "8",
-        title: "Lote 15",
+        title: "Lote 05",
         categoria: [
           {
-            nome: "Maisa",
-            id: 1,
+            nome: "Jurídico",
+            id: 3,
           },
           {
-            nome: "Espinheiros",
+            nome: "Administrativo",
             id: 1,
           },
         ],
@@ -82,15 +124,51 @@ const mockData = [
       },
       {
         id: "9",
-        title: "Lote 314",
+        title: "Lote 04",
+        categoria: [
+          {
+            nome: "Jurídico",
+            id: 3,
+          },
+        ],
+        envolvidos: [
+          {
+            envolvidoId: uuidv4(),
+            foto: "https://i.pinimg.com/474x/38/a7/f1/38a7f176c4783fd6f91a572057f5e2e8--figure-painting-the-high.jpg",
+          },
+        ],
       },
       {
         id: "10",
-        title: "Lote 15",
+        title: "Lote 03",
+        categoria: [
+          {
+            nome: "Jurídico",
+            id: 3,
+          },
+        ],
+        envolvidos: [
+          {
+            envolvidoId: uuidv4(),
+            foto: "https://lh3.googleusercontent.com/a/AEdFTp4rZn-tIHMtcekPx2eo7A21IruNxrGHBlQfzpkh=s96-c",
+          },
+        ],
       },
       {
         id: "11",
-        title: "Lote 314",
+        title: "Lote 02",
+        categoria: [
+          {
+            nome: "Jurídico",
+            id: 3,
+          },
+        ],
+        envolvidos: [
+          {
+            envolvidoId: uuidv4(),
+            foto: "https://i.pinimg.com/474x/38/a7/f1/38a7f176c4783fd6f91a572057f5e2e8--figure-painting-the-high.jpg",
+          },
+        ],
       },
     ],
   },
@@ -101,7 +179,23 @@ const mockData = [
     tasks: [
       {
         id: "12",
-        title: "Lote 300",
+        title: "Lote 01",
+        categoria: [
+          {
+            nome: "Financeiro",
+            id: 4,
+          },
+        ],
+        envolvidos: [
+          {
+            envolvidoId: uuidv4(),
+            foto: "https://i.pinimg.com/474x/38/a7/f1/38a7f176c4783fd6f91a572057f5e2e8--figure-painting-the-high.jpg",
+          },
+          {
+            envolvidoId: uuidv4(),
+            foto: "https://lh3.googleusercontent.com/a/AEdFTp4rZn-tIHMtcekPx2eo7A21IruNxrGHBlQfzpkh=s96-c",
+          },
+        ],
       },
     ],
   },

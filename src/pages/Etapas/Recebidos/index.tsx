@@ -64,8 +64,8 @@ const Recebidos = () => {
           </Lote>
           <h1 style={{ color: 'white', margin: '0.5em 0' }}>Recebidos</h1>
           <h3 style={{ color: 'white', marginBottom: '0.5em' }}>Adicionar Lote</h3>
-          <div>
-            <div>
+          <div >
+            <div style={{ marginBottom: '0.5em' }}>
               <S.btnPrioridade onClick={() => {
                 setCategoriaDetails(currentCategorias => [...currentCategorias, {
                   id: uuidv4(),

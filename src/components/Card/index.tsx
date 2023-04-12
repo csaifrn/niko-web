@@ -6,7 +6,7 @@ interface CardProps {
     srcImgIcon: string;
     link: string;
 }
-
+//
 export const Card = ( Props : CardProps ) => {
     return(
         <CardContainer href={Props.link}>

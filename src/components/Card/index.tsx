@@ -6,7 +6,7 @@ interface CardProps {
     srcImgIcon: string;
     link: string;
 }
-
+//
 export const Card = ( Props : CardProps ) => {
     return(
         <CardContainer href={Props.link}>
@@ -18,21 +18,20 @@ export const Card = ( Props : CardProps ) => {
 
             <TextBoxCard>
               <DataStrongCard>
-                <NumberCard backgroundColor='#FC6342'>12</NumberCard>
-                <p>RECEBIDOS</p>
+                <NumberCard backgroundColor='#43DB6D'>12</NumberCard>
+                <p>DISPONÍVEIS</p>
               </DataStrongCard>
               <DataStrongCard>
                 <NumberCard backgroundColor='#FCDE42'>10</NumberCard>
                 <p>ANDAMENTO</p>
               </DataStrongCard>
               <DataStrongCard>
-                <NumberCard backgroundColor='#00D25B'>9</NumberCard>
-                <p>CONCLUÍDOS</p>
+                <NumberCard backgroundColor='#F32D2D'>9</NumberCard>
+                <p>EM PAUSA</p>
               </DataStrongCard>
             </TextBoxCard>
             
         </CardContainer>
     )
 }
-
 // teste

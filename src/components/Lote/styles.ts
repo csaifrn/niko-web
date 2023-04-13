@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 const Lote = styled.div`
   font-family: "Rubik";
-
+  position: relative;
   padding: 0.8em;
   background-color: #393e4b;
   border-radius: 5px;

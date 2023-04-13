@@ -3,11 +3,14 @@ import * as S from "./styles"
 import mockData from '../../data/kanbanData';
 import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd'
 import Lote from '../Lote';
+import ModalLote from '../Modal_Lote';
 
 export const Board = () => {
 
     const [data, setData] = useState(mockData)
     const [prioridade, setPrioridade] = useState("");
+    const [open, setOpen] = useState(false);
+    const [task, setTask] = useState();
 
     const getPrioridade = useRef<HTMLInputElement>(null);
 
@@ -88,9 +91,11 @@ export const Board = () => {
                                                                     ...provided.draggableProps.style,
                                                                     opacity: snapshot.isDragging ? "0.5" : "1"
                                                                 }}
+                                                                onClick={() => {setTask(task); setOpen(true)}}
                                                             >
-                                                                <Lote task={task} value={task.title} categoria={task.categoria} envolvidos={task.envolvidos} prioridade={prioridade}>
+                                                                <Lote task={task} value={task.title} categoria={task.categoria} envolvidos={task.envolvidos} prioridade={prioridade} >
                                                                 </Lote>
+                                                                
                                                             </div>
                                                         )}
 
@@ -107,6 +112,7 @@ export const Board = () => {
                     }
                 </S.kanban>
             </DragDropContext >
+            {open && <ModalLote task={task} onClose={ ()  => { setOpen(false)}}/>}
 
         </>
     )

@@ -17,6 +17,20 @@ const areaClick = styled.div`
   margin: auto auto;
 `;
 
+const Close = styled.div`
+  height: 2em;
+  width: auto;
+  background-color: #191c24;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  p{
+    color: "white";
+    margin-bottom: "0";
+  }
+`;
+
 const blur = styled.div`
   background-color: rgb(0,0,0, 0.5);
   position: fixed;
@@ -37,7 +51,7 @@ const Categoria = styled.div`
   gap: 0.5em;
 `;
 
-const CategoriaTextDiv = styled.div`
+const NomeCategoriaTextDiv = styled.div`
   height: 2em;
   width: auto;
   background-color: #191c24;
@@ -45,10 +59,24 @@ const CategoriaTextDiv = styled.div`
   justify-content: center;
   align-items: center;
 
-  p {
+  p{
     color: "white";
     margin-bottom: "0";
   }
 `;
 
-export { areaClick, Categoria, CategoriaTextDiv, blur };
+const CategoriaTextDiv = styled.div`
+  height: 2em;
+  display: flex;
+  p{
+    color: "white";
+    margin-bottom: "0";
+  }
+`;
+
+const Text = styled.p `
+  padding: "0 0.5em";
+  align-content: left;
+`
+
+export { areaClick, Close, Categoria, CategoriaTextDiv, NomeCategoriaTextDiv, blur , Text  };

@@ -196,24 +196,77 @@ const mockData = [
             foto: "https://lh3.googleusercontent.com/a/AEdFTp4rZn-tIHMtcekPx2eo7A21IruNxrGHBlQfzpkh=s96-c",
           },
         ],
-        catalogacao: [
+
+
+        etapas: [
           {
-            id: uuidv4(),
-            title: "Catalogação",
-            start: "04/12/2023",
-            end: "04/12/2023",
-            envolvidos: [
+
+            recepçao: [
               {
-                envolvidoId: uuidv4(),
-                foto: "https://i.pinimg.com/474x/38/a7/f1/38a7f176c4783fd6f91a572057f5e2e8--figure-painting-the-high.jpg",
-              },
-              {
-                envolvidoId: uuidv4(),
-                foto: "https://lh3.googleusercontent.com/a/AEdFTp4rZn-tIHMtcekPx2eo7A21IruNxrGHBlQfzpkh=s96-c",
+                id: uuidv4(),
+                title: "Recepção",
+                icone: "/Recebimento_Icon.svg",
+                time: "/time.svg",
+                account:"/Account.svg" ,
+                start: "02/04/2023",
+                end: "02/04/2023",
+                envolvidos: [
+                  {
+                    envolvidoId: uuidv4(),
+                    foto: "https://i.pinimg.com/474x/38/a7/f1/38a7f176c4783fd6f91a572057f5e2e8--figure-painting-the-high.jpg",
+                  },
+                  {
+                    envolvidoId: uuidv4(),
+                    foto: "https://lh3.googleusercontent.com/a/AEdFTp4rZn-tIHMtcekPx2eo7A21IruNxrGHBlQfzpkh=s96-c",
+                  },
+                ],
               },
             ],
-          },
-        ],
+
+            preparo: [
+              {
+                id: uuidv4(),
+                title: "Preparo",
+                icone: "/Preparo_Icon.svg",
+                time: "/time.svg",
+                account:"/Account.svg",
+                start: "03/04/2023",
+                end: "03/04/2023",
+                envolvidos: [
+                  {
+                    envolvidoId: uuidv4(),
+                    foto: "https://i.pinimg.com/474x/38/a7/f1/38a7f176c4783fd6f91a572057f5e2e8--figure-painting-the-high.jpg",
+                  },
+                  {
+                    envolvidoId: uuidv4(),
+                    foto: "https://lh3.googleusercontent.com/a/AEdFTp4rZn-tIHMtcekPx2eo7A21IruNxrGHBlQfzpkh=s96-c",
+                  },
+                ],
+              },
+            ],
+
+            catalogacao: [
+              {
+                id: uuidv4(),
+                title: "Catalogação",
+                start: "04/04/2023",
+                end: "04/04/2023",
+                envolvidos: [
+                  {
+                    envolvidoId: uuidv4(),
+                    foto: "https://i.pinimg.com/474x/38/a7/f1/38a7f176c4783fd6f91a572057f5e2e8--figure-painting-the-high.jpg",
+                  },
+                  {
+                    envolvidoId: uuidv4(),
+                    foto: "https://lh3.googleusercontent.com/a/AEdFTp4rZn-tIHMtcekPx2eo7A21IruNxrGHBlQfzpkh=s96-c",
+                  },
+                ],
+              },
+            ],
+
+          }
+        ]
+
       },
     ],
   },
@@ -223,10 +276,11 @@ export default mockData;
 
 const DataS = [
   {
-    arquivamento: mockData,
-    catalogacao: mockData,
-    digitalizacao: mockData,
+    recepçao: mockData,
     preparo: mockData,
+    catalogacao: mockData,        
+    digitalizacao: mockData,
     upload: mockData,
+    arquivamento: mockData,
   },
 ];

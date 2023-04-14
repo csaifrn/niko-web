@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import * as S from "./styles";
+import { Content } from "../Lote/styles";
 
 export const ModalLote = (props: any) => {
   const blurRef = useRef(null);
@@ -17,47 +18,127 @@ export const ModalLote = (props: any) => {
         }}
       >
         <S.areaClick>
-          <S.CategoriaTextDiv
+          <S.Close
             style={{ borderRadius: "5px", marginBottom: "0.5em", width: "2em" }}
             onClick={() => props.onClose()}
           >
             <p style={{ padding: "0 0.5em" }}>X</p>
-          </S.CategoriaTextDiv>
+          </S.Close>
           <h1 style={{ marginBottom: "0.5em" }}>{props.task.title}</h1>
           <S.Categoria>
             {props.task.categoria &&
               props.task.categoria.map((categoria: any, index: number) => (
                 <React.Fragment key={categoria.id}>
                   {index >= 0 && (
-                    <S.CategoriaTextDiv style={{ borderRadius: "5px" }}>
+                    <S.NomeCategoriaTextDiv style={{ borderRadius: "5px" }}>
                       <p style={{ padding: "0 0.5em" }}>{categoria.nome}</p>
-                    </S.CategoriaTextDiv>
+                    </S.NomeCategoriaTextDiv>
                   )}
                 </React.Fragment>
               ))}
           </S.Categoria>
-          {props.task.catalogacao &&
-            props.task.catalogacao.map((cat: any, index: number) => (
-              <React.Fragment key={cat.id}>
-                <h2>{cat.title}</h2>
-                <S.CategoriaTextDiv style={{ borderRadius: "5px" }}>
-                  <p style={{ padding: "0 0.5em" }}>{cat.start}</p>
-                </S.CategoriaTextDiv>
-                <S.CategoriaTextDiv style={{ borderRadius: "5px" }}>
-                  <p style={{ padding: "0 0.5em" }}>{cat.end}</p>
-                </S.CategoriaTextDiv>
-                {cat.envolvidos &&
-                  cat.envolvidos.map((user: any, index: number) => (
-                    <React.Fragment key={user.envolvidoId}>
-                      <img
-                        src={user.foto}
-                        alt=""
-                        style={{ height: "32px", width: "32px" }}
-                      />
-                    </React.Fragment>
-                  ))}
-              </React.Fragment>
-            ))}
+          
+          {/* RECEPÇÃO */}
+          {props.task.etapas &&
+              props.task.etapas.map((etapa: any, index: number) => (
+                
+                <React.Fragment key={etapa.id} >
+                  {etapa.recepçao &&
+                    etapa.recepçao.map((recep: any, index: number) => (
+
+                      <React.Fragment key={recep.id}>
+                        <h2 style={{ marginTop: "2em"}}>{recep.title}</h2>
+                        <S.CategoriaTextDiv>
+                          <img
+                            src={recep.icone}
+                            alt=""
+                          />                         
+                        </S.CategoriaTextDiv>
+                        <S.CategoriaTextDiv>
+                          <img
+                            src={recep.time}
+                            alt=""
+                          />                         
+                        </S.CategoriaTextDiv>
+                        <S.CategoriaTextDiv>
+                          <img
+                            src={recep.account}
+                            alt=""
+                          />                         
+                        </S.CategoriaTextDiv>                         
+                        <S.CategoriaTextDiv style={{ borderRadius: "5px"}}>
+                          <S.Text>{recep.start}</S.Text>
+                        </S.CategoriaTextDiv>
+                        <S.CategoriaTextDiv style={{ borderRadius: "5px" }}>
+                          <S.Text>{recep.end}</S.Text>
+                        </S.CategoriaTextDiv>
+                        {recep.envolvidos &&
+                          recep.envolvidos.map((user: any, index: number) => (
+                            <React.Fragment key={user.envolvidoId}>
+                              <img
+                                src={user.foto}
+                                alt="usuario envolvido na etapa"
+                                style={{ height: "32px", width: "32px" , borderRadius: "50px"}}
+                              />
+                            </React.Fragment>
+                          ))}
+                      </React.Fragment>
+                    ))}
+                </React.Fragment>
+
+              ))
+          }
+
+          {/* PREPARO */}
+          {props.task.etapas &&
+              props.task.etapas.map((etapa: any, index: number) => (
+                
+                <React.Fragment key={etapa.id}>
+                  {etapa.preparo &&
+                    etapa.preparo.map((prep: any, index: number) => (
+                      <React.Fragment key={prep.id}>
+                        <h2 style={{ marginTop: "2em"}}>{prep.title}</h2>
+                        <S.CategoriaTextDiv>
+                          <img
+                            src={prep.icone}
+                            alt=""
+                          />                         
+                        </S.CategoriaTextDiv>
+                        <S.CategoriaTextDiv>
+                          <img
+                            src={prep.time}
+                            alt=""
+                          />                         
+                        </S.CategoriaTextDiv>
+                        <S.CategoriaTextDiv>
+                          <img
+                            src={prep.account}
+                            alt=""
+                          />                         
+                        </S.CategoriaTextDiv>  
+                        <S.CategoriaTextDiv style={{ borderRadius: "5px" }}>
+                          <S.Text>{prep.start}</S.Text>
+                        </S.CategoriaTextDiv>
+                        <S.CategoriaTextDiv style={{ borderRadius: "5px" }}>
+                          <S.Text>{prep.end}</S.Text>
+                        </S.CategoriaTextDiv>
+                        {prep.envolvidos &&
+                          prep.envolvidos.map((user: any, index: number) => (
+                            <React.Fragment key={user.envolvidoId}>
+                              <img
+                                src={user.foto}
+                                alt="usuario envolvido na etapa"
+                                style={{ height: "32px", width: "32px" , borderRadius: "50px"}}
+                              />
+                            </React.Fragment>
+                          ))}
+                      </React.Fragment>
+                    ))}
+                </React.Fragment>
+
+              ))
+          }
+
         </S.areaClick>
       </S.blur>
     </>

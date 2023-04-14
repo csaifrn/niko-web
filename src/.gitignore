@@ -1,4 +1,6 @@
 # lock files
+package-lock.yaml
+yarn.lock
 package-lock.json
 
 # Logs

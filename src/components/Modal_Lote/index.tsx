@@ -3,6 +3,7 @@ import * as S from "./styles";
 
 export const ModalLote = (props: any) => {
   const blurRef = useRef(null);
+  console.log(props.task.catalogacao);
 
   return (
     <>
@@ -35,6 +36,28 @@ export const ModalLote = (props: any) => {
                 </React.Fragment>
               ))}
           </S.Categoria>
+          {props.task.catalogacao &&
+            props.task.catalogacao.map((cat: any, index: number) => (
+              <React.Fragment key={cat.id}>
+                <h2>{cat.title}</h2>
+                <S.CategoriaTextDiv style={{ borderRadius: "5px" }}>
+                  <p style={{ padding: "0 0.5em" }}>{cat.start}</p>
+                </S.CategoriaTextDiv>
+                <S.CategoriaTextDiv style={{ borderRadius: "5px" }}>
+                  <p style={{ padding: "0 0.5em" }}>{cat.end}</p>
+                </S.CategoriaTextDiv>
+                {cat.envolvidos &&
+                  cat.envolvidos.map((user: any, index: number) => (
+                    <React.Fragment key={user.envolvidoId}>
+                      <img
+                        src={user.foto}
+                        alt=""
+                        style={{ height: "32px", width: "32px" }}
+                      />
+                    </React.Fragment>
+                  ))}
+              </React.Fragment>
+            ))}
         </S.areaClick>
       </S.blur>
     </>

@@ -65,7 +65,7 @@ export const Board = () => {
                                         {...provided.droppableProps}
                                         ref={provided.innerRef}
                                     >
-                                        <div style={{ display: 'flex', gap: '2em' }}>
+                                        <div style={{ display: 'flex', gap: '2em' , marginLeft: "1em"}}>
                                             <div className="kanbanSectionTititle">
                                                 {section.title}
                                             </div>

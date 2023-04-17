@@ -208,8 +208,8 @@ const mockData = [
                 icone: "/Recebimento_Icon.svg",
                 time: "/time.svg",
                 account:"/Account.svg" ,
-                start: "02/04/2023",
-                end: "02/04/2023",
+                start: "02/04/2023 - 13:12",
+                end: "02/04/2023 - 15:00",
                 envolvidos: [
                   {
                     envolvidoId: uuidv4(),
@@ -230,8 +230,8 @@ const mockData = [
                 icone: "/Preparo_Icon.svg",
                 time: "/time.svg",
                 account:"/Account.svg",
-                start: "03/04/2023",
-                end: "03/04/2023",
+                start: "03/04/2023 - 13:10",
+                end: "03/04/2023 - 16:00",
                 envolvidos: [
                   {
                     envolvidoId: uuidv4(),
@@ -249,8 +249,33 @@ const mockData = [
               {
                 id: uuidv4(),
                 title: "Catalogação",
-                start: "04/04/2023",
-                end: "04/04/2023",
+                icone: "/Catalogacao_icon.svg",
+                time: "/time.svg",
+                account:"/Account.svg",
+                start: "04/04/2023 - 13:15",
+                end: "04/04/2023 - 15:32",
+                envolvidos: [
+                  {
+                    envolvidoId: uuidv4(),
+                    foto: "https://i.pinimg.com/474x/38/a7/f1/38a7f176c4783fd6f91a572057f5e2e8--figure-painting-the-high.jpg",
+                  },
+                  {
+                    envolvidoId: uuidv4(),
+                    foto: "https://lh3.googleusercontent.com/a/AEdFTp4rZn-tIHMtcekPx2eo7A21IruNxrGHBlQfzpkh=s96-c",
+                  },
+                ],
+              },
+            ],
+
+            digitalizacao: [
+              {
+                id: uuidv4(),
+                title: "Digitalização",
+                icone: "/Digitalizacao_icon.svg",
+                time: "/time.svg",
+                account:"/Account.svg",
+                start: "05/04/2023 - 13:05",
+                end: "05/04/2023 - 17:00",
                 envolvidos: [
                   {
                     envolvidoId: uuidv4(),

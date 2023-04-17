@@ -15,6 +15,7 @@ const areaClick = styled.div`
   left: 0;
   right: 0;
   margin: auto auto;
+  overflow-y: scroll;
 `;
 
 const Close = styled.div`
@@ -74,9 +75,55 @@ const CategoriaTextDiv = styled.div`
   }
 `;
 
+const EtapaIconDiv = styled.div`
+  height: 2em;
+  margin-top: 5em;  
+  display: flex;
+  align-items:center;
+  gap:2em;
+  h2{
+    color: "white";
+    margin-bottom: "0";
+  }
+`;
+
+const TimeDiv = styled.div`
+  height: 2em;
+  display: flex;
+  align-items: center;
+  margin-top: 3em;
+  margin-left: 0.8em;  
+  flex-wrap: wrap;
+  gap: 3em;
+  p{
+    color: "white";
+    margin-bottom: "0";
+  }
+`;
+
+const EnvolvidosDiv = styled.div`
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;  
+  margin-top: 1.5em;
+  margin-left: 0.8em;
+  gap: 3em;
+  p{
+    color: "white";
+    margin-bottom: "0";
+  }
+`;
+
+const UsuariosDiv = styled.div`
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;  
+  gap: 1em;
+`;
+
 const Text = styled.p `
   padding: "0 0.5em";
   align-content: left;
 `
 
-export { areaClick, Close, Categoria, CategoriaTextDiv, NomeCategoriaTextDiv, blur , Text  };
+export { areaClick, Close, Categoria,NomeCategoriaTextDiv ,CategoriaTextDiv , EtapaIconDiv, TimeDiv, EnvolvidosDiv, UsuariosDiv, blur , Text  };

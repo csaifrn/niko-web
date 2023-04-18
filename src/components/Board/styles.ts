@@ -30,7 +30,7 @@ const kanban = styled.div`
     margin: 0em 2em;
   }
 
-  @media screen and (min-width: 1366px) {
+  @media screen and (min-width: 1008px) {
     justify-content: center;
   }
 `;
@@ -58,7 +58,7 @@ const kanbanSection = styled.div`
     background-color: #2a2e38;
     border-radius: 20px;
   }
-  @media screen and (min-width: 1360px) {
+  @media screen and (min-width: 1008px) {
     width: 100px;
   }
 `;
@@ -86,7 +86,7 @@ const kanbanSectionContent = styled.div`
     background-color: transparent;
     border-radius: 20px;
   }
-  @media screen and (min-width: 1360px) {
+  @media screen and (min-width: 1008px) {
     &::-webkit-scrollbar-thumb {
       background-color: #2a2e38;
       border-radius: 20px;

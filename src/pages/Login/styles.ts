@@ -18,7 +18,7 @@ export const itemsContainer = styled.div`
   justify-content: center;
   align-items: center;
   background-color: #191C24;
-  padding: 4em 4em;
+  padding: 3em;
   border-radius: 2em;
   gap: 2em;
 `;

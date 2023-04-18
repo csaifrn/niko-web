@@ -18,12 +18,13 @@ export const ModalLote = (props: any) => {
         }}
       >
         <S.areaClick>
-          <S.Close
-            style={{ borderRadius: "5px", marginBottom: "0.5em", width: "2em" }}
-            onClick={() => props.onClose()}
-          >
-            <p style={{ padding: "0 0.5em" }}>X</p>
-          </S.Close>
+
+          <S.CloseDiv>
+            <S.Exit onClick={() => props.onClose()}>
+              <p style={{ padding: "0 0.5em" }}>X</p>
+            </S.Exit>
+          </S.CloseDiv>
+
           <h1 style={{ marginBottom: "0.5em" }}>{props.task.title}</h1>
           <S.Categoria>
             {props.task.categoria &&
@@ -38,6 +39,7 @@ export const ModalLote = (props: any) => {
               ))}
           </S.Categoria>
           
+          
           {/* RECEPÇÃO */}
           {props.task.etapas &&
               props.task.etapas.map((etapa: any, index: number) => (
@@ -50,28 +52,32 @@ export const ModalLote = (props: any) => {
                         <S.EtapaIconDiv>
                           <img
                             src={recep.icone}
-                            alt=""
+                            alt="ícone de recepção"
+                            height={44}
+                            width={44}
                           />
-                          <h2 style={{ marginTop: "2em"}}>{recep.title}</h2>
+                          <h2>{recep.title}</h2>
                         </S.EtapaIconDiv>
 
                         <S.TimeDiv>
                           <img
                             src={recep.time}
-                            alt=""
+                            alt="relógio"
                           />
-                          <S.CategoriaTextDiv style={{ borderRadius: "5px"}}>
-                            <S.Text>{recep.start}</S.Text>
-                          </S.CategoriaTextDiv>
-                          <S.CategoriaTextDiv style={{ borderRadius: "5px" }}>
-                            <S.Text>{recep.end}</S.Text>
-                          </S.CategoriaTextDiv>
+                          <S.StartEnd>
+                            <S.CategoriaTextDiv style={{ borderRadius: "5px"}}>
+                              <S.Text>{recep.start}</S.Text>
+                            </S.CategoriaTextDiv>
+                            <S.CategoriaTextDiv style={{ borderRadius: "5px" }}>
+                              <S.Text>{recep.end}</S.Text>
+                            </S.CategoriaTextDiv>
+                          </S.StartEnd>
                         </S.TimeDiv>
 
                         <S.EnvolvidosDiv>
                           <img
                             src={recep.account}
-                            alt=""
+                            alt="ícone de conta"
                           />
                           <S.UsuariosDiv>
                             {recep.envolvidos &&
@@ -106,28 +112,32 @@ export const ModalLote = (props: any) => {
                         <S.EtapaIconDiv>
                           <img
                             src={prep.icone}
-                            alt=""
+                            alt="ícone de preparo"
+                            height={44}
+                            width={44}
                           />     
-                          <h2 style={{ marginTop: "2em"}}>{prep.title}</h2>                                              
+                          <h2>{prep.title}</h2>                                              
                         </S.EtapaIconDiv>
 
                         <S.TimeDiv>
                           <img
                             src={prep.time}
-                            alt=""
+                            alt="relogio"
                           />
-                          <S.CategoriaTextDiv style={{ borderRadius: "5px" }}>
-                            <S.Text>{prep.start}</S.Text>
-                          </S.CategoriaTextDiv>
-                          <S.CategoriaTextDiv style={{ borderRadius: "5px" }}>
-                            <S.Text>{prep.end}</S.Text>
-                          </S.CategoriaTextDiv>                                                
+                          <S.StartEnd>
+                            <S.CategoriaTextDiv style={{ borderRadius: "5px"}}>
+                              <S.Text>{prep.start}</S.Text>
+                            </S.CategoriaTextDiv>
+                            <S.CategoriaTextDiv style={{ borderRadius: "5px" }}>
+                              <S.Text>{prep.end}</S.Text>
+                            </S.CategoriaTextDiv>
+                          </S.StartEnd>                                                
                         </S.TimeDiv>
 
                         <S.EnvolvidosDiv>
                           <img
                             src={prep.account}
-                            alt=""
+                            alt="ícone de conta"
                           />
                           <S.UsuariosDiv>
                             {prep.envolvidos &&
@@ -142,7 +152,6 @@ export const ModalLote = (props: any) => {
                               ))}
                           </S.UsuariosDiv>                 
                         </S.EnvolvidosDiv>  
-
                       </React.Fragment>
                     ))}
                 </React.Fragment>
@@ -162,28 +171,32 @@ export const ModalLote = (props: any) => {
                         <S.EtapaIconDiv>
                           <img
                             src={catalog.icone}
-                            alt=""
+                            alt="catalogação icone"
+                            height={44}
+                            width={44}
                           />     
-                          <h2 style={{ marginTop: "2em"}}>{catalog.title}</h2>                                              
+                          <h2>{catalog.title}</h2>                                              
                         </S.EtapaIconDiv>
 
                         <S.TimeDiv>
                           <img
                             src={catalog.time}
-                            alt=""
+                            alt="relogio"
                           />
-                          <S.CategoriaTextDiv style={{ borderRadius: "5px" }}>
-                            <S.Text>{catalog.start}</S.Text>
-                          </S.CategoriaTextDiv>
-                          <S.CategoriaTextDiv style={{ borderRadius: "5px" }}>
-                            <S.Text>{catalog.end}</S.Text>
-                          </S.CategoriaTextDiv>                                                
+                          <S.StartEnd>
+                            <S.CategoriaTextDiv style={{ borderRadius: "5px"}}>
+                              <S.Text>{catalog.start}</S.Text>
+                            </S.CategoriaTextDiv>
+                            <S.CategoriaTextDiv style={{ borderRadius: "5px" }}>
+                              <S.Text>{catalog.end}</S.Text>
+                            </S.CategoriaTextDiv>
+                          </S.StartEnd>                                               
                         </S.TimeDiv>
 
                         <S.EnvolvidosDiv>
                           <img
                             src={catalog.account}
-                            alt=""
+                            alt="ícone de conta"
                           />
                           <S.UsuariosDiv>
                             {catalog.envolvidos &&
@@ -219,7 +232,7 @@ export const ModalLote = (props: any) => {
                             src={digital.icone}
                             alt=""
                           />     
-                          <h2 style={{ marginTop: "2em"}}>{digital.title}</h2>                                              
+                          <h2>{digital.title}</h2>                                              
                         </S.EtapaIconDiv>
 
                         <S.TimeDiv>
@@ -227,18 +240,20 @@ export const ModalLote = (props: any) => {
                             src={digital.time}
                             alt=""
                           />
-                          <S.CategoriaTextDiv style={{ borderRadius: "5px" }}>
-                            <S.Text>{digital.start}</S.Text>
-                          </S.CategoriaTextDiv>
-                          <S.CategoriaTextDiv style={{ borderRadius: "5px" }}>
-                            <S.Text>{digital.end}</S.Text>
-                          </S.CategoriaTextDiv>                                                
+                          <S.StartEnd>
+                            <S.CategoriaTextDiv style={{ borderRadius: "5px"}}>
+                              <S.Text>{digital.start}</S.Text>
+                            </S.CategoriaTextDiv>
+                            <S.CategoriaTextDiv style={{ borderRadius: "5px" }}>
+                              <S.Text>{digital.end}</S.Text>
+                            </S.CategoriaTextDiv>
+                          </S.StartEnd>                                                
                         </S.TimeDiv>
 
                         <S.EnvolvidosDiv>
                           <img
                             src={digital.account}
-                            alt=""
+                            alt="ícone de conta"
                           />
                           <S.UsuariosDiv>
                             {digital.envolvidos &&

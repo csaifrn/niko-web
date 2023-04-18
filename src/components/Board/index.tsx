@@ -65,11 +65,46 @@ export const Board = () => {
                                         {...provided.droppableProps}
                                         ref={provided.innerRef}
                                     >
-                                        <div style={{ display: 'flex', gap: '2em' , marginLeft: "1em"}}>
-                                            <div className="kanbanSectionTititle">
-                                                {section.title}
-                                            </div>
-                                            <p>{section.tasks ? section.tasks.length : 0}</p>
+                                        <div
+                                            style={{ display: "flex", gap: "1em", marginLeft: "1em" }}
+                                        >
+                                            <h3 className="kanbanSectionTititle">{section.title}</h3>
+                                            {section.title == "Disponíveis" && (
+                                            <h3
+                                                style={{
+                                                color: "#43DB6D",
+                                                }}
+                                            >
+                                                {section.tasks ? section.tasks.length : 0}
+                                            </h3>
+                                            )}
+                                            {section.title == "Em pausa" && (
+                                            <h3
+                                                style={{
+                                                color: "#FCDE42",
+                                                }}
+                                            >
+                                                {section.tasks ? section.tasks.length : 0}
+                                            </h3>
+                                            )}
+                                            {section.title == "Em andamento" && (
+                                            <h3
+                                                style={{
+                                                color: "#F32D2D",
+                                                }}
+                                            >
+                                                {section.tasks ? section.tasks.length : 0}
+                                            </h3>
+                                            )}
+                                            {section.title == "Concluídos" && (
+                                            <h3
+                                                style={{
+                                                color: "#43DB6D",
+                                                }}
+                                            >
+                                                {section.tasks ? section.tasks.length : 0}
+                                            </h3>
+                                            )}
                                         </div>
 
                                         <S.kanbanSectionContent>
@@ -112,7 +147,7 @@ export const Board = () => {
                     }
                 </S.kanban>
             </DragDropContext >
-            {open && <ModalLote task={task} onClose={ ()  => { setOpen(false)}}/>}
+            {open && <ModalLote task={task} prioridade={prioridade} onClose={ ()  => { setOpen(false)}}/>}
 
         </>
     )

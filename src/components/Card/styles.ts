@@ -12,6 +12,7 @@ const CardContainer = styled.a`
   border-radius: 20px;
   display: flex;
   font-family: 'Rubik';
+  font-size: 16px;
   &:hover {
     filter: brightness(0.9);
   }

@@ -3,11 +3,14 @@ import * as S from "./styles"
 import mockData from '../../data/kanbanData';
 import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd'
 import Lote from '../Lote';
+import ModalLote from '../Modal_Lote';
 
 export const Board = () => {
 
     const [data, setData] = useState(mockData)
     const [prioridade, setPrioridade] = useState("");
+    const [open, setOpen] = useState(false);
+    const [task, setTask] = useState();
 
     const getPrioridade = useRef<HTMLInputElement>(null);
 
@@ -62,11 +65,46 @@ export const Board = () => {
                                         {...provided.droppableProps}
                                         ref={provided.innerRef}
                                     >
-                                        <div style={{ display: 'flex', gap: '2em' }}>
-                                            <div className="kanbanSectionTititle">
-                                                {section.title}
-                                            </div>
-                                            <p>{section.tasks ? section.tasks.length : 0}</p>
+                                        <div
+                                            style={{ display: "flex", gap: "1em", marginLeft: "1em" }}
+                                        >
+                                            <h3 className="kanbanSectionTititle">{section.title}</h3>
+                                            {section.title == "Disponíveis" && (
+                                            <h3
+                                                style={{
+                                                color: "#43DB6D",
+                                                }}
+                                            >
+                                                {section.tasks ? section.tasks.length : 0}
+                                            </h3>
+                                            )}
+                                            {section.title == "Em pausa" && (
+                                            <h3
+                                                style={{
+                                                color: "#FCDE42",
+                                                }}
+                                            >
+                                                {section.tasks ? section.tasks.length : 0}
+                                            </h3>
+                                            )}
+                                            {section.title == "Em andamento" && (
+                                            <h3
+                                                style={{
+                                                color: "#F32D2D",
+                                                }}
+                                            >
+                                                {section.tasks ? section.tasks.length : 0}
+                                            </h3>
+                                            )}
+                                            {section.title == "Concluídos" && (
+                                            <h3
+                                                style={{
+                                                color: "#43DB6D",
+                                                }}
+                                            >
+                                                {section.tasks ? section.tasks.length : 0}
+                                            </h3>
+                                            )}
                                         </div>
 
                                         <S.kanbanSectionContent>
@@ -88,9 +126,11 @@ export const Board = () => {
                                                                     ...provided.draggableProps.style,
                                                                     opacity: snapshot.isDragging ? "0.5" : "1"
                                                                 }}
+                                                                onClick={() => {setTask(task); setOpen(true)}}
                                                             >
-                                                                <Lote task={task} value={task.title} categoria={task.categoria} envolvidos={task.envolvidos} prioridade={prioridade}>
+                                                                <Lote task={task} value={task.title} categoria={task.categoria} envolvidos={task.envolvidos} prioridade={prioridade} >
                                                                 </Lote>
+                                                                
                                                             </div>
                                                         )}
 
@@ -107,6 +147,7 @@ export const Board = () => {
                     }
                 </S.kanban>
             </DragDropContext >
+            {open && <ModalLote task={task} prioridade={prioridade} onClose={ ()  => { setOpen(false)}}/>}
 
         </>
     )

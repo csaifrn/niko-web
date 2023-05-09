@@ -63,15 +63,34 @@ const Lote = (props: any) => {
                             }
                         </S.Content>
                         <S.Content >
-                            <S.Envolvido style={{ display: 'flex', marginLeft: '10px' }}>
-                                {
-                                    props.envolvidos && props.envolvidos.map((envolvidos: any) => (
-                                        <React.Fragment key={uuidv4()}>
-                                            <img src={envolvidos.foto} width={32} height={32} style={{ marginLeft: '-10px', borderRadius: "100%" }}></img>
-                                        </React.Fragment>
-                                    ))
-                                }
+
+                            <S.Envolvido style={{ display: "flex", marginLeft: "10px" }}>
+                                {props.envolvidos &&
+                                props.envolvidos.map((envolvidos: any, index: number) => (
+                                    <React.Fragment key={uuidv4()}>
+                                    {index <= 2 && (
+                                        <img
+                                        src={envolvidos.foto}
+                                        width={24}
+                                        height={24}
+                                        style={{ marginLeft: "-10px", borderRadius: "100%" }}
+                                        ></img>
+                                    )}
+                                    {index >= 3 && (
+                                        <S.PaTextDiv
+                                        style={{
+                                            borderRadius: "100%",
+                                            width: "24px",
+                                            marginLeft: "-10px",
+                                        }}
+                                        >
+                                        <p>+{index - 2}</p>
+                                        </S.PaTextDiv>
+                                    )}
+                                    </React.Fragment>
+                                ))}
                             </S.Envolvido>
+
                             <S.Pa>
                                 {
                                     props.categoria && props.categoria.map((categoria: any, index: number) => (

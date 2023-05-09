@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 const Lote = styled.div`
   font-family: "Rubik";
-
+  position: relative;
   padding: 0.8em;
   background-color: #393e4b;
   border-radius: 5px;
@@ -34,7 +34,7 @@ const Content = styled.div`
 `;
 
 const Prioridade = styled.div`
-  height: 2em;
+  height: 24px;
   background-color: #dd3b3b;
   border-radius: 5px;
   display: flex;
@@ -60,7 +60,7 @@ const Pa = styled.div`
 `;
 
 const PaTextDiv = styled.div`
-  height: 2em;
+  height: 24px;
   background-color: #191c24;
   display: flex;
   justify-content: center;

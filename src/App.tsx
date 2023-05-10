@@ -11,7 +11,7 @@ import Preparo from "./pages/Etapas/Preparo";
 import Catalogacao from "./pages/Etapas/Catalogacao";
 import Digitalizacao from "./pages/Etapas/Digitalizacao";
 import Upload from "./pages/Etapas/Upload";
-
+import LoteDetails from "./components/LoteDetails";
 
 initMyFirebase();
 
@@ -19,7 +19,7 @@ const Home = lazy(() => import("./pages/Home"));
 
 const App = () => {
   return (
-    <Suspense fallback={<Splash/>}>
+    <Suspense fallback={<Splash />}>
       <Routes>
         <Route path="/splash" element={<Splash />} />
         <Route path="/" element={<Home />} />
@@ -30,6 +30,7 @@ const App = () => {
         <Route path="/Catalogacao" element={<Catalogacao />} />
         <Route path="/Digitalizacao" element={<Digitalizacao />} />
         <Route path="/Upload" element={<Upload />} />
+        <Route path={`/Lote/:id`} element={<LoteDetails />} />
       </Routes>
     </Suspense>
   );

@@ -1,12 +1,11 @@
-import { Wrapper, Main, FooterHome } from './styles';
-import useFirebaseAuth from '../../config/useAuth';
-import { Card } from '../../components/Card'
-import { Menu } from '../../components/Menu';
-import Lote from '../../components/Lote';
-
+import { Wrapper, Main, FooterHome } from "./styles";
+import useFirebaseAuth from "../../config/useAuth";
+import { Card } from "../../components/Card";
+import { Menu } from "../../components/Menu";
+import Lote from "../../components/Lote";
+import MenuCoord from "../../components/MenuCoord";
 
 const Home = () => {
-
   //const {user, loading, logOut} = useFirebaseAuth();
 
   //if (loading){
@@ -17,40 +16,31 @@ const Home = () => {
 
   return (
     <Wrapper>
-      <Menu area='/'></Menu>
+      <Menu area="/"></Menu>
       <Main>
         <Card
-          link='/Recebidos'
-          color='#F32D2D'
-          srcImgIcon='./IconsFolder.svg'
+          link="/Recebidos"
+          color="#F32D2D"
+          srcImgIcon="./IconsFolder.svg"
+        />
+        <Card link="/Preparo" color="#F3802D" srcImgIcon="./IconsClean.svg" />
+        <Card
+          link="/Catalogacao"
+          color="#FCDE42"
+          srcImgIcon="./IconsBookmark.svg"
         />
         <Card
-          link='/Preparo'
-          color='#F3802D'
-          srcImgIcon='./IconsClean.svg'
+          link="/Digitalizacao"
+          color="#2D94F3"
+          srcImgIcon="./IconsScanner.svg"
         />
+        <Card link="/Upload" color="#9C2DF3" srcImgIcon="./IconsUpload.svg" />
         <Card
-          link='/Catalogacao'
-          color='#FCDE42'
-          srcImgIcon='./IconsBookmark.svg'
-        />
-        <Card
-          link='/Digitalizacao'
-          color='#2D94F3'
-          srcImgIcon='./IconsScanner.svg'
-        />
-        <Card
-          link='/Upload'
-          color='#9C2DF3'
-          srcImgIcon='./IconsUpload.svg'
-        />
-        <Card
-          link='/Arquivamento'
-          color='#43DB6D'
-          srcImgIcon='./IconsArquiv.svg'
+          link="/Arquivamento"
+          color="#43DB6D"
+          srcImgIcon="./IconsArquiv.svg"
         />
       </Main>
-
     </Wrapper>
   );
 };

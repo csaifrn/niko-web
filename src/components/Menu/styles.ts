@@ -11,7 +11,7 @@ const MenuLeft = styled.div`
 // Create a Wrapper component that'll render a <section> tag with some styles
 const MenuArea = styled.nav`
   display: flex;
-  padding: 1em;
+  padding: 1.5em 3em;
   height: 2em;
   background: #191c24;
   align-items: center;

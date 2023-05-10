@@ -1,7 +1,7 @@
-import React, { useState, useEffect, useRef } from 'react';
-import LinkMenuBurger from '../LinkMenuBurger';
-import MenuBurger from '../MenuBurger';
-import * as S from "./styles"
+import React, { useState, useEffect, useRef } from "react";
+import LinkMenuBurger from "../LinkMenuBurger";
+import MenuBurger from "../MenuBurger";
+import * as S from "./styles";
 
 interface MenuProps {
   area: string;
@@ -16,14 +16,14 @@ export const Menu = (props: MenuProps) => {
 
   return (
     <S.MenuArea>
-      <S.ContainerA>
+      {/* <S.ContainerA>
         <S.ButtonBurger open={open} onClick={handleClickButton}>
           <S.MenuImg src="/menu.svg" />
         </S.ButtonBurger>
-        {open && <MenuBurger area={props.area} onClose={() => setOpen(false)} />}
-      </S.ContainerA>
+        {open && <MenuBurger area={props.area} onClose={() => setOpen(false)} />} 
+      </S.ContainerA> */}
       <S.ContainerA>
-        <a href="/">
+        <a href="/Fase">
           <S.MenuImg src="/Logo_Niko.svg" />
         </a>
       </S.ContainerA>

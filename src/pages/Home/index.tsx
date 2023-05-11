@@ -19,24 +19,24 @@ const Home = () => {
       <Menu area="/"></Menu>
       <Main>
         <Card
-          link="/Recebidos"
+          link="Board/Recebidos"
           color="#F32D2D"
           srcImgIcon="./IconsFolder.svg"
         />
-        <Card link="/Preparo" color="#F3802D" srcImgIcon="./IconsClean.svg" />
+        <Card link="Board/Preparo" color="#F3802D" srcImgIcon="./IconsClean.svg" />
         <Card
-          link="/Catalogacao"
+          link="Board/Catalogacao"
           color="#FCDE42"
           srcImgIcon="./IconsBookmark.svg"
         />
         <Card
-          link="/Digitalizacao"
+          link="Board/Digitalizacao"
           color="#2D94F3"
           srcImgIcon="./IconsScanner.svg"
         />
-        <Card link="/Upload" color="#9C2DF3" srcImgIcon="./IconsUpload.svg" />
+        <Card link="Board/Upload" color="#9C2DF3" srcImgIcon="./IconsUpload.svg" />
         <Card
-          link="/Arquivamento"
+          link="Board/Arquivamento"
           color="#43DB6D"
           srcImgIcon="./IconsArquiv.svg"
         />

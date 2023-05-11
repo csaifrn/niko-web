@@ -26,11 +26,11 @@ const App = () => {
         <Route path="/splash" element={<Splash />} />
         <Route path="/Fase" element={<Home />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/Arquivamento" element={<Arquivamento />} />
-        <Route path="/Recebidos" element={<Recebidos />} />
-        <Route path="/Preparo" element={<Preparo />} />
-        <Route path="/Catalogacao" element={<Catalogacao />} />
-        <Route path="/Digitalizacao" element={<Digitalizacao />} />
+        <Route path="/Board/Arquivamento" element={<Arquivamento />} />
+        <Route path="/Board/Recebidos" element={<Recebidos />} />
+        <Route path="/Board/Preparo" element={<Preparo />} />
+        <Route path="/Board/Catalogacao" element={<Catalogacao />} />
+        <Route path="/Board/Digitalizacao" element={<Digitalizacao />} />
         <Route path="/Upload" element={<Upload />} />
         <Route path={`/Lote/:id`} element={<LoteDetails />} />
       </Routes>

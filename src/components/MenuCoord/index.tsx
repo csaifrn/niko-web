@@ -8,13 +8,14 @@ interface MenuProps {
 export const MenuCoord = (props: MenuProps) => {
   const pathname = window.location.pathname;
   console.log(pathname);
-
+  console.log(pathname.search("Board"));
+  console.log(pathname === "/Fase");
   return (
     <S.MenuArea>
       <S.link href="/Fase">
         <S.MenuImg
           src={
-            pathname === "/Fase"
+            pathname === "/Fase" || pathname.search("Board") >= 0
               ? "/IconMenu/SquaresFour/fillicon.png"
               : "/IconMenu/SquaresFour/regularicon.png"
           }
@@ -22,7 +23,10 @@ export const MenuCoord = (props: MenuProps) => {
         {pathname === "/Fase" && (
           <S.textIcon style={{ color: "#F3802D" }}>Fases</S.textIcon>
         )}
-        {pathname !== "/Fase" && <S.textIcon>Fases</S.textIcon>}
+        {pathname.search("Board") >= 0 && (
+          <S.textIcon style={{ color: "#F3802D" }}>Fases</S.textIcon>
+        )}
+        {pathname !== "/Fase" && pathname.search("Board") < 0 && <S.textIcon>Fases</S.textIcon>}
       </S.link>
       <S.link href="/Operadores">
         <S.MenuImg

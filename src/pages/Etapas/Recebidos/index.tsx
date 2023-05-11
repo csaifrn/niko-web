@@ -23,8 +23,12 @@ export interface Task {
   envolvidos: Envolvidos[] | null
 }
 
+interface RecepProps {
+  etapa: string;
+}
 
-const Recebidos = () => {
+
+const Recebidos = (props: RecepProps) => {
 
   const [CategoriaDetails, setCategoriaDetails] = useState<Categoria[]>([{
     id: uuidv4(),
@@ -40,7 +44,6 @@ const Recebidos = () => {
       nome: "Categoria"
     }],
     envolvidos: null,
-
   })
 
 
@@ -58,6 +61,12 @@ const Recebidos = () => {
   return (
     <>
       <Style.Wrapper>
+        <Menu area='/Recebidos'></Menu>
+        <>
+          <div style={{ margin: "0em 3em 0em 3em", display: "flex", justifyContent: "flex-end", gap: "0.5em" }}>
+            <img src={`/icon-page/${props.etapa}.png`}/>
+          </div>
+        </>
         <div style={{ margin: '2em' }}>
           <Lote task={task} value={task.title} categoria={task.categoria} envolvidos={task.envolvidos} prioridade={"Maisa"} edit={true}>
           </Lote>

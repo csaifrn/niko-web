@@ -10,7 +10,7 @@ const Arquivamento = () => {
     <>
       <Style.Wrapper>
         <p>Arquivamento</p>
-        <Board />
+        <Board etapa='arquivamento' />
         <Style.Footer></Style.Footer>
       </Style.Wrapper>
     </>

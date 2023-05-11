@@ -11,7 +11,7 @@ const Catalogacao = () => {
     <>
       <Style.Wrapper>
         <p>Catalogação</p>
-        <Board />
+        <Board etapa='catalogacao'/>
         <Style.Footer></Style.Footer>
       </Style.Wrapper>
     </>

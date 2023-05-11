@@ -10,7 +10,7 @@ const Preparo = () => {
     <>
       <Style.Wrapper>
         <p>Preparo</p>
-        <Board/>
+        <Board etapa='digitalizacao'/>
         <Style.Footer></Style.Footer>
       </Style.Wrapper>
     </>

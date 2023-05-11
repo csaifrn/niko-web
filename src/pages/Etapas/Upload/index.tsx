@@ -10,7 +10,7 @@ const Upload = () => {
     <>
       <Style.Wrapper>
         <p>Upload</p>
-        <Board />
+        <Board etapa='upload'/>
         <Style.Footer></Style.Footer>
       </Style.Wrapper>
     </>

@@ -10,7 +10,7 @@ const Digitalizacao = () => {
     <>
       <Style.Wrapper>
         <p>Digitalização</p>
-        <Board />
+        <Board etapa='digitalizacao'/>
         <Style.Footer></Style.Footer>
       </Style.Wrapper>
     </>

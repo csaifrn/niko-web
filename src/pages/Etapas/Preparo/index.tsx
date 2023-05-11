@@ -9,7 +9,6 @@ const Preparo = () => {
   return (
     <>
       <Style.Wrapper>
-        <Menu area='/Preparo'></Menu>
         <p>Preparo</p>
         <Board etapa='digitalizacao'/>
         <Style.Footer></Style.Footer>

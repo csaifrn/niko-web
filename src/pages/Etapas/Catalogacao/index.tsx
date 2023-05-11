@@ -10,7 +10,6 @@ const Catalogacao = () => {
   return (
     <>
       <Style.Wrapper>
-        <Menu area='/Catalogacao'></Menu>
         <p>Catalogação</p>
         <Board etapa='catalogacao'/>
         <Style.Footer></Style.Footer>

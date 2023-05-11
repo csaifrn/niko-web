@@ -9,10 +9,8 @@ const Upload = () => {
   return (
     <>
       <Style.Wrapper>
-        <Menu area='/Upload'></Menu>
         <p>Upload</p>
         <Board etapa='upload'/>
-
         <Style.Footer></Style.Footer>
       </Style.Wrapper>
     </>

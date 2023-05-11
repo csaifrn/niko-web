@@ -9,7 +9,6 @@ const Digitalizacao = () => {
   return (
     <>
       <Style.Wrapper>
-        <Menu area='/Digitalizacao'></Menu>
         <p>Digitalização</p>
         <Board etapa='digitalizacao'/>
         <Style.Footer></Style.Footer>

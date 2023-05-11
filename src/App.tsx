@@ -1,4 +1,4 @@
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useParams } from "react-router-dom";
 import { Suspense, lazy } from "react";
 import Login from "./pages/Login";
 
@@ -13,6 +13,8 @@ import Digitalizacao from "./pages/Etapas/Digitalizacao";
 import Upload from "./pages/Etapas/Upload";
 import LoteDetails from "./components/LoteDetails";
 import MenuCoord from "./components/MenuCoord";
+import Operador from "./pages/Coordenador/Operador";
+import { Menu } from "./components/Menu";
 
 initMyFirebase();
 
@@ -21,6 +23,7 @@ const Home = lazy(() => import("./pages/Home"));
 const App = () => {
   return (
     <Suspense fallback={<Splash />}>
+      <Menu area="/"></Menu>
       <MenuCoord area="/" />
       <Routes>
         <Route path="/splash" element={<Splash />} />
@@ -31,6 +34,7 @@ const App = () => {
         <Route path="/Board/Preparo" element={<Preparo />} />
         <Route path="/Board/Catalogacao" element={<Catalogacao />} />
         <Route path="/Board/Digitalizacao" element={<Digitalizacao />} />
+        <Route path="/Operadores" element={<Operador />} />
         <Route path="/Board/Upload" element={<Upload />} />
         <Route path={`/Lote/:id`} element={<LoteDetails />} />
       </Routes>

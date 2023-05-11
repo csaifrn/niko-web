@@ -9,7 +9,6 @@ const Arquivamento = () => {
   return (
     <>
       <Style.Wrapper>
-        <Menu area='/Arquivamento'></Menu>
         <p>Arquivamento</p>
         <Board etapa='arquivamento' />
         <Style.Footer></Style.Footer>

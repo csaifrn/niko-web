@@ -1,7 +1,7 @@
 import { Wrapper, Main, FooterHome } from "./styles";
 import useFirebaseAuth from "../../config/useAuth";
 import { Card } from "../../components/Card";
-import { Menu } from "../../components/Menu";
+
 import Lote from "../../components/Lote";
 import MenuCoord from "../../components/MenuCoord";
 
@@ -16,7 +16,6 @@ const Home = () => {
 
   return (
     <Wrapper>
-      <Menu area="/"></Menu>
       <Main>
         <Card
           link="Board/Recebidos"

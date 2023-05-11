@@ -58,7 +58,6 @@ const Recebidos = () => {
   return (
     <>
       <Style.Wrapper>
-        <Menu area='/Recebidos'></Menu>
         <div style={{ margin: '2em' }}>
           <Lote task={task} value={task.title} categoria={task.categoria} envolvidos={task.envolvidos} prioridade={"Maisa"} edit={true}>
           </Lote>

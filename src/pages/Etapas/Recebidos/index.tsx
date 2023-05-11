@@ -61,7 +61,6 @@ const Recebidos = (props: RecepProps) => {
   return (
     <>
       <Style.Wrapper>
-        <Menu area='/Recebidos'></Menu>
         <>
           <div style={{ margin: "0em 3em 0em 3em", display: "flex", justifyContent: "flex-end", gap: "0.5em" }}>
             <img src={`/icon-page/${props.etapa}.png`}/>

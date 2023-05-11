@@ -9,7 +9,7 @@ export const LoteDetails = () => {
   const [data, setData] = useState(mockData);
 
   const blurRef = useRef(null);
-
+  
   const id = useParams();
 
   const navigate = useNavigate();
@@ -18,17 +18,31 @@ export const LoteDetails = () => {
     section.tasks.filter((task: any) => task.id === id.id)
   );
   const task = filterTask.filter((task: any) => task.length !== 0)[0][0];
+  console.log(task)
 
   return (
     <>
       <S.areaClick>
+
+        {/* BOTÃO DE FECHAR */}
         <S.CloseDiv>
           <S.Exit onClick={() => navigate(-1)}>
             <p style={{ padding: "0 0.5em" }}>X</p>
           </S.Exit>
         </S.CloseDiv>
 
+        {/* TÍTULO DO LOTE */}
         <h1 style={{ marginBottom: "0.5em" }}>{task.title}</h1>
+
+        {/* PROTOCOLO */}
+        {/*<S.Protocolo>
+            <S.ProtocoloTextDiv style={{ borderRadius: "5px" }}> 
+              <p style={{ padding: "0 0.5em" }}>{task.protocolo}</p> 
+            </S.ProtocoloTextDiv>
+          </S.Protocolo>
+        */}
+
+        {/* CATEGORIAS */}
         <S.Categoria>
           {task.categoria &&
             task.categoria.map((categoria: any, index: number) => (
@@ -41,6 +55,22 @@ export const LoteDetails = () => {
               </React.Fragment>
             ))}
         </S.Categoria>
+        
+        {/* FASE DO LOTE */}
+        <>
+          <div style={{ margin: "2em 0em 0em 0em", display: "flex", justifyContent: "flex-start", gap: "0.5em" }}>
+            <img src={`/icon-page/${task.fase[0].nome}.png`}/>
+          </div>
+        </>
+
+        {/* USUÁRIO */}
+        <h1>Detalhamento por fase</h1>
+
+        {/* OBSERVAÇÃO */}
+        <S.Observações></S.Observações>
+
+        {/* OBSERVAÇÃO */}
+        <S.VoltarFase></S.VoltarFase>
 
         {/* RECEPÇÃO */}
         {task.etapas &&

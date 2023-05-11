@@ -6,7 +6,6 @@ const areaClick = styled.div`
   width: 60%;
   height: 70%;
   padding: 2em;
-  background: #393e4b;
   transition: transform 0.9s ease-in-out;
   filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
   position: absolute;
@@ -14,8 +13,9 @@ const areaClick = styled.div`
   bottom: 0;
   left: 0;
   right: 0;
-  margin: auto auto;
+  margin: 1em;
   overflow-y: scroll;
+  font-family: 'Rubik', Helvetica, sans-serif;
   &::-webkit-scrollbar {
     width: 0.8em;
     height: 0.5em;
@@ -58,20 +58,6 @@ const Exit = styled.div`
   }
 `;
 
-const blur = styled.div`
-  background-color: rgb(0,0,0, 0.5);
-  position: fixed;
-  color: white;
-  z-index: 999999;
-  width: 100vw;
-  height: 100vh;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  margin: auto auto;
-`;
-
 const Categoria = styled.div`
   display: flex;
   flex-wrap: wrap;
@@ -100,7 +86,7 @@ const NomeCategoriaTextDiv = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-
+  background-color: #393E4B;
   p{
     color: "white";
     margin-bottom: "0";
@@ -171,5 +157,52 @@ const Text = styled.p `
   padding: "0 0.5em";
   align-content: left;
 `
+const Protocolo = styled.div`
+  height: 2em;
+  display: flex;
+  align-items:center;
+  p{
+    color: "white";
+    margin-bottom: "0";
+  }
+`;
 
-export { areaClick, Exit,CloseDiv, Categoria ,Prioridade ,NomeCategoriaTextDiv ,CategoriaTextDiv , EtapaIconDiv, TimeDiv, StartEnd, EnvolvidosDiv, UsuariosDiv, blur , Text  };
+const ProtocoloTextDiv = styled.div`
+  height: 2em;
+  display: flex;
+  align-items:center;
+  p{
+    color: "white";
+    margin-bottom: "0";
+  }
+`;
+
+const Observações = styled.div`
+  display: flex;
+  align-items:center;
+  background-color: #393E4B;
+  height: 10em;
+  width: 30em;
+  border-radius: 5px;
+  margin-top: 3em;
+  p{
+    color: "white";
+    margin-bottom: "0";
+  }
+`;
+
+const VoltarFase = styled.div`
+  display: flex;
+  align-items:center;
+  background-color: #393E4B;
+  height: 5em;
+  width: 30em;
+  border-radius: 5px;
+  margin-top:2em;
+  p{
+    color: "white";
+    margin-bottom: "0";
+  }
+`;
+
+export { areaClick, Exit,CloseDiv, Categoria ,Prioridade ,NomeCategoriaTextDiv ,CategoriaTextDiv , EtapaIconDiv, TimeDiv, StartEnd, EnvolvidosDiv, UsuariosDiv,Text, Protocolo, ProtocoloTextDiv, Observações, VoltarFase };

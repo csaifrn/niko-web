@@ -11,7 +11,7 @@ const Upload = () => {
       <Style.Wrapper>
         <Menu area='/Upload'></Menu>
         <p>Upload</p>
-        <Board />
+        <Board etapa='upload'/>
 
         <Style.Footer></Style.Footer>
       </Style.Wrapper>

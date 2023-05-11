@@ -11,7 +11,7 @@ const Digitalizacao = () => {
       <Style.Wrapper>
         <Menu area='/Digitalizacao'></Menu>
         <p>Digitalização</p>
-        <Board />
+        <Board etapa='digitalizacao'/>
         <Style.Footer></Style.Footer>
       </Style.Wrapper>
     </>

@@ -11,7 +11,7 @@ const Preparo = () => {
       <Style.Wrapper>
         <Menu area='/Preparo'></Menu>
         <p>Preparo</p>
-        <Board/>
+        <Board etapa='digitalizacao'/>
         <Style.Footer></Style.Footer>
       </Style.Wrapper>
     </>

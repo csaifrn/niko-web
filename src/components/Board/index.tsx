@@ -6,7 +6,11 @@ import Lote from "../Lote";
 import { LoteDetails } from "../LoteDetails";
 import { Link, Route, Routes } from "react-router-dom";
 
-export const Board = () => {
+interface BoardProps {
+  etapa: string;
+}
+
+export const Board = (props: BoardProps) => {
   const [data, setData] = useState(mockData);
   const [prioridade, setPrioridade] = useState("");
   const [open, setOpen] = useState(false);
@@ -51,18 +55,8 @@ export const Board = () => {
   return (
     <>
       <>
-        <div
-          style={{ margin: "0em 1em 1em 1em", display: "flex", gap: "0.5em" }}
-        >
-          <S.inputPrioridade
-            type="text"
-            className="form-control"
-            placeholder="Prioridade"
-            aria-label="Username"
-            aria-describedby="basic-addon1"
-            ref={getPrioridade}
-          />
-          <S.btnPrioridade onClick={handlePrioridade}>Enviar</S.btnPrioridade>
+        <div style={{ margin: "0em 3em 3em 3em", display: "flex", justifyContent: "flex-end", gap: "0.5em" }}>
+          <img src={`/icon-page/${props.etapa}.png`}/>
         </div>
       </>
       <DragDropContext onDragEnd={onDragEnd}>

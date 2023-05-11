@@ -31,7 +31,7 @@ const App = () => {
         <Route path="/Board/Preparo" element={<Preparo />} />
         <Route path="/Board/Catalogacao" element={<Catalogacao />} />
         <Route path="/Board/Digitalizacao" element={<Digitalizacao />} />
-        <Route path="/Upload" element={<Upload />} />
+        <Route path="/Board/Upload" element={<Upload />} />
         <Route path={`/Lote/:id`} element={<LoteDetails />} />
       </Routes>
     </Suspense>

@@ -11,7 +11,7 @@ const Arquivamento = () => {
       <Style.Wrapper>
         <Menu area='/Arquivamento'></Menu>
         <p>Arquivamento</p>
-        <Board />
+        <Board etapa='arquivamento' />
         <Style.Footer></Style.Footer>
       </Style.Wrapper>
     </>

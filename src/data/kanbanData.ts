@@ -209,7 +209,7 @@ const mockData = [
         ],
         fase: [
           {
-            nome: "catalogacao",
+            nome: "upload",
             id: 1,
           },
         ],
@@ -224,7 +224,7 @@ const mockData = [
           },
         ],
 
-        etapas: [
+        fases: [
           {
             id: 1,
 
@@ -232,11 +232,10 @@ const mockData = [
               {
                 id: uuidv4(),
                 title: "Recepção",
-                icone: "/Recebimento_Icon.svg",
-                time: "/time.svg",
-                account:"/Account.svg" ,
-                start: "02/04/2023 - 13:12",
-                end: "02/04/2023 - 15:00",
+                icone: "/icon-page/recebidos.png",
+                time_finish: "/time_finish.svg",
+                start: "02/04/2023 ",
+                start_hour:"13:12",
                 envolvidos: [
                   {
                     envolvidoId: uuidv4(),
@@ -254,11 +253,13 @@ const mockData = [
               {
                 id: uuidv4(),
                 title: "Preparo",
-                icone: "/Preparo_Icon.svg",
-                time: "/time.svg",
-                account:"/Account.svg",
-                start: "03/04/2023 - 13:10",
-                end: "03/04/2023 - 16:00",
+                icone: "/icon-page/preparo.png",
+                time_begin: "/time_begin.svg",
+                start: "03/04/2023",
+                start_hour:"13:10",
+                end: "03/04/2023",
+                end_hour:"16:00",
+                time_finish: "/time_finish.svg",
                 envolvidos: [
                   {
                     envolvidoId: uuidv4(),
@@ -276,9 +277,10 @@ const mockData = [
               {
                 id: uuidv4(),
                 title: "Catalogação",
-                icone: "/Catalogacao_icon.svg",
+                icone: "/icon-page/catalogacao.png",
                 time: "/time.svg",
                 account:"/Account.svg",
+                time_begin: "/time_begin.svg",
                 start: "04/04/2023 - 13:15",
                 end: "04/04/2023 - 15:32",
                 envolvidos: [
@@ -298,7 +300,7 @@ const mockData = [
               {
                 id: uuidv4(),
                 title: "Digitalização",
-                icone: "/Digitalizacao_icon.svg",
+                icone: "/icon-page/digitalizacao.png",
                 time: "/time.svg",
                 account:"/Account.svg",
                 start: "05/04/2023 - 13:05",

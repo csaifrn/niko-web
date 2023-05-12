@@ -62,221 +62,264 @@ export const LoteDetails = () => {
             <img src={`/icon-page/${task.fase[0].nome}.png`}/>
           </div>
         </>
-
-        {/* USUÁRIO */}
-        <h1>Detalhamento por fase</h1>
-
+        
         {/* OBSERVAÇÃO */}
-        <S.Observações></S.Observações>
+        <S.Observações>Observações</S.Observações>
 
-        {/* OBSERVAÇÃO */}
-        <S.VoltarFase></S.VoltarFase>
+        {/* VOLTAR FASE */}
+        <S.Botao>
+          <img src={`/voltar.svg`}/>
+          Voltar Fase
+          
+        </S.Botao>
 
-        {/* RECEPÇÃO */}
-        {task.etapas &&
-          task.etapas.map((etapa: any, index: number) => (
-            <React.Fragment key={etapa.id}>
-              {etapa.recepçao &&
-                etapa.recepçao.map((recep: any, index: number) => (
-                  <React.Fragment key={recep.id}>
-                    <S.EtapaIconDiv>
-                      <img
-                        src={recep.icone}
-                        alt="ícone de recepção"
-                        height={44}
-                        width={44}
-                      />
-                      <h2>{recep.title}</h2>
-                    </S.EtapaIconDiv>
+        {/* AVANÇAR FASE */}
+        <S.Botao>
+          <img src={`/avancar.svg`}/>
+          Avançar Fase
+        </S.Botao>
 
-                    <S.TimeDiv>
-                      <img src={recep.time} alt="relógio" />
-                      <S.StartEnd>
-                        <S.CategoriaTextDiv style={{ borderRadius: "5px" }}>
-                          <S.Text>{recep.start}</S.Text>
-                        </S.CategoriaTextDiv>
-                        <S.CategoriaTextDiv style={{ borderRadius: "5px" }}>
-                          <S.Text>{recep.end}</S.Text>
-                        </S.CategoriaTextDiv>
-                      </S.StartEnd>
-                    </S.TimeDiv>
+        {/* ATRIBUIR À ALGUÉM */}
+        <S.Botao>
+          <img src={`/atribuir.svg`}/>
+          Atribuir à alguém
+        </S.Botao>
 
-                    <S.EnvolvidosDiv>
-                      <img src={recep.account} alt="ícone de conta" />
-                      <S.UsuariosDiv>
-                        {recep.envolvidos &&
-                          recep.envolvidos.map((user: any, index: number) => (
-                            <React.Fragment key={user.envolvidoId}>
-                              <img
-                                src={user.foto}
-                                alt="usuario envolvido na etapa"
-                                style={{
-                                  height: "32px",
-                                  width: "32px",
-                                  borderRadius: "50px",
-                                }}
-                              />
-                            </React.Fragment>
-                          ))}
-                      </S.UsuariosDiv>
-                    </S.EnvolvidosDiv>
-                  </React.Fragment>
-                ))}
-            </React.Fragment>
-          ))}
+        {/* DELETAR LOTE */}
+        <S.Botao className="excluir">
+          <img src={`/trash.svg`}/>
+          Deletar Lote
+        </S.Botao>        
 
-        {/* PREPARO */}
-        {task.etapas &&
-          task.etapas.map((etapa: any, index: number) => (
-            <React.Fragment key={etapa.id}>
-              {etapa.preparo &&
-                etapa.preparo.map((prep: any, index: number) => (
-                  <React.Fragment key={prep.id}>
-                    <S.EtapaIconDiv>
-                      <img
-                        src={prep.icone}
-                        alt="ícone de preparo"
-                        height={44}
-                        width={44}
-                      />
-                      <h2>{prep.title}</h2>
-                    </S.EtapaIconDiv>
+        {/* DETALHAMENTO POR FASE */}
+        <S.DetalFase>
+          <h1>Detalhamento por fase</h1>
+          <S.Fase>
+            {/* RECEPÇÃO */}
+            {task.fases &&
+              task.fases.map((fase: any, index: number) => (
+                <React.Fragment key={fase.id}>
+                  {fase.recepçao &&
+                    fase.recepçao.map((recep: any, index: number) => (
+                      <React.Fragment key={recep.id}>
+                        <S.FaseIconDiv>
+                          <img src={recep.icone}alt="ícone de recepção" height={25}width={25}/>
+                          <h2>{recep.title}</h2>
+                        </S.FaseIconDiv>
 
-                    <S.TimeDiv>
-                      <img src={prep.time} alt="relogio" />
-                      <S.StartEnd>
-                        <S.CategoriaTextDiv style={{ borderRadius: "5px" }}>
-                          <S.Text>{prep.start}</S.Text>
-                        </S.CategoriaTextDiv>
-                        <S.CategoriaTextDiv style={{ borderRadius: "5px" }}>
-                          <S.Text>{prep.end}</S.Text>
-                        </S.CategoriaTextDiv>
-                      </S.StartEnd>
-                    </S.TimeDiv>
+                        <S.TimeFinishDiv>
+                          <img src={recep.time_finish} alt="ícone de check" />
+                          <S.End>
+                            <S.CategoriaTextDiv style={{ borderRadius: "5px"}}>
+                              <S.Text>{recep.start}</S.Text>
+                            </S.CategoriaTextDiv>
+                            <S.CategoriaTextDiv style={{ borderRadius: "5px" }}>
+                              <S.Text style={{ color:"#00D25B" }}>{recep.start_hour}</S.Text>
+                            </S.CategoriaTextDiv>
+                          </S.End>
+                        </S.TimeFinishDiv>
 
-                    <S.EnvolvidosDiv>
-                      <img src={prep.account} alt="ícone de conta" />
-                      <S.UsuariosDiv>
-                        {prep.envolvidos &&
-                          prep.envolvidos.map((user: any, index: number) => (
-                            <React.Fragment key={user.envolvidoId}>
-                              <img
-                                src={user.foto}
-                                alt="usuario envolvido na etapa"
-                                style={{
-                                  height: "32px",
-                                  width: "32px",
-                                  borderRadius: "50px",
-                                }}
-                              />
-                            </React.Fragment>
-                          ))}
-                      </S.UsuariosDiv>
-                    </S.EnvolvidosDiv>
-                  </React.Fragment>
-                ))}
-            </React.Fragment>
-          ))}
+                        <S.EnvolvidosDiv>
+                          <S.UsuariosDiv>
+                            {recep.envolvidos &&
+                              recep.envolvidos.map((user: any, index: number) => (
+                                <React.Fragment key={user.envolvidoId}>
+                                  <img
+                                    src={user.foto}
+                                    alt="usuario envolvido na fase"
+                                    style={{
+                                      height: "32px",
+                                      width: "32px",
+                                      borderRadius: "50px",
+                                    }}
+                                  />
+                                </React.Fragment>
+                              ))}
+                          </S.UsuariosDiv>
+                        </S.EnvolvidosDiv>
+                      </React.Fragment>
+                    ))}
+                </React.Fragment>
+              ))}
+          </S.Fase>
 
-        {/* CATALOGAÇÃO */}
-        {task.etapas &&
-          task.etapas.map((etapa: any, index: number) => (
-            <React.Fragment key={etapa.id}>
-              {etapa.catalogacao &&
-                etapa.catalogacao.map((catalog: any, index: number) => (
-                  <React.Fragment key={catalog.id}>
-                    <S.EtapaIconDiv>
-                      <img
-                        src={catalog.icone}
-                        alt="catalogação icone"
-                        height={44}
-                        width={44}
-                      />
-                      <h2>{catalog.title}</h2>
-                    </S.EtapaIconDiv>
+          <S.Fase>                            
+            {/* PREPARO */}
+            {task.fases &&
+              task.fases.map((fase: any, index: number) => (
+                <React.Fragment key={fase.id}>
+                  {fase.preparo &&
+                    fase.preparo.map((prep: any, index: number) => (
+                      <React.Fragment key={prep.id}>
+                        <S.FaseIconDiv>
+                          <img
+                            src={prep.icone}
+                            alt="ícone de preparo"
+                            height={22}
+                            width={22}
+                          />
+                          <h2>{prep.title}</h2>
+                        </S.FaseIconDiv>
 
-                    <S.TimeDiv>
-                      <img src={catalog.time} alt="relogio" />
-                      <S.StartEnd>
-                        <S.CategoriaTextDiv style={{ borderRadius: "5px" }}>
-                          <S.Text>{catalog.start}</S.Text>
-                        </S.CategoriaTextDiv>
-                        <S.CategoriaTextDiv style={{ borderRadius: "5px" }}>
-                          <S.Text>{catalog.end}</S.Text>
-                        </S.CategoriaTextDiv>
-                      </S.StartEnd>
-                    </S.TimeDiv>
+                        <S.TimeFinishDiv>
+                          <img src={prep.time_begin} alt="seta para direita" />
+                          <S.Start>
+                            <S.CategoriaTextDiv>
+                              <S.Text>{prep.start}</S.Text>
+                            </S.CategoriaTextDiv>
+                            <S.CategoriaTextDiv>
+                              <S.Text style={{ color:"#FCDE42" }}>{prep.start_hour}</S.Text>
+                            </S.CategoriaTextDiv>
+                          </S.Start>
+                        </S.TimeFinishDiv>
 
-                    <S.EnvolvidosDiv>
-                      <img src={catalog.account} alt="ícone de conta" />
-                      <S.UsuariosDiv>
-                        {catalog.envolvidos &&
-                          catalog.envolvidos.map((user: any, index: number) => (
-                            <React.Fragment key={user.envolvidoId}>
-                              <img
-                                src={user.foto}
-                                alt="usuario envolvido na etapa"
-                                style={{
-                                  height: "32px",
-                                  width: "32px",
-                                  borderRadius: "50px",
-                                }}
-                              />
-                            </React.Fragment>
-                          ))}
-                      </S.UsuariosDiv>
-                    </S.EnvolvidosDiv>
-                  </React.Fragment>
-                ))}
-            </React.Fragment>
-          ))}
-        {/* DIGITALIZAÇÃO */}
-        {task.etapas &&
-          task.etapas.map((etapa: any, index: number) => (
-            <React.Fragment key={etapa.id}>
-              {etapa.digitalizacao &&
-                etapa.digitalizacao.map((digital: any, index: number) => (
-                  <React.Fragment key={digital.id}>
-                    <S.EtapaIconDiv>
-                      <img src={digital.icone} alt="" />
-                      <h2>{digital.title}</h2>
-                    </S.EtapaIconDiv>
+                        
+                        <S.TimeFinishDiv>
+                          <img src={prep.time_finish} alt="icone de check" />
+                          <S.End>
+                            <S.CategoriaTextDiv>
+                              <S.Text>{prep.end}</S.Text>
+                            </S.CategoriaTextDiv>
+                            <S.CategoriaTextDiv>
+                              <S.Text style={{ color:"#00D25B" }}>{prep.end_hour}</S.Text>
+                            </S.CategoriaTextDiv>
+                          </S.End>
+                        </S.TimeFinishDiv>
 
-                    <S.TimeDiv>
-                      <img src={digital.time} alt="" />
-                      <S.StartEnd>
-                        <S.CategoriaTextDiv style={{ borderRadius: "5px" }}>
-                          <S.Text>{digital.start}</S.Text>
-                        </S.CategoriaTextDiv>
-                        <S.CategoriaTextDiv style={{ borderRadius: "5px" }}>
-                          <S.Text>{digital.end}</S.Text>
-                        </S.CategoriaTextDiv>
-                      </S.StartEnd>
-                    </S.TimeDiv>
+                        <S.EnvolvidosDiv>
+                          <S.UsuariosDiv>
+                            {prep.envolvidos &&
+                              prep.envolvidos.map((user: any, index: number) => (
+                                <React.Fragment key={user.envolvidoId}>
+                                  <img
+                                    src={user.foto}
+                                    alt="usuario envolvido na fase"
+                                    style={{
+                                      height: "32px",
+                                      width: "32px",
+                                      borderRadius: "50px",
+                                    }}
+                                  />
+                                </React.Fragment>
+                              ))}
+                          </S.UsuariosDiv>
+                        </S.EnvolvidosDiv>
+                      </React.Fragment>
+                    ))}
+                </React.Fragment>
+              ))}
+          </S.Fase>
 
-                    <S.EnvolvidosDiv>
-                      <img src={digital.account} alt="ícone de conta" />
-                      <S.UsuariosDiv>
-                        {digital.envolvidos &&
-                          digital.envolvidos.map((user: any, index: number) => (
-                            <React.Fragment key={user.envolvidoId}>
-                              <img
-                                src={user.foto}
-                                alt="usuario envolvido na etapa"
-                                style={{
-                                  height: "32px",
-                                  width: "32px",
-                                  borderRadius: "50px",
-                                }}
-                              />
-                            </React.Fragment>
-                          ))}
-                      </S.UsuariosDiv>
-                    </S.EnvolvidosDiv>
-                  </React.Fragment>
-                ))}
-            </React.Fragment>
-          ))}
+          <S.Fase>                          
+            {/* CATALOGAÇÃO */}
+            {task.fases &&
+              task.fases.map((fase: any, index: number) => (
+                <React.Fragment key={fase.id}>
+                  {fase.catalogacao &&
+                    fase.catalogacao.map((catalog: any, index: number) => (
+                      <React.Fragment key={catalog.id}>
+                        <S.FaseIconDiv>
+                          <img
+                            src={catalog.icone}
+                            alt="catalogação icone"
+                            height={22}
+                            width={22}
+                          />
+                          <h2>{catalog.title}</h2>
+                        </S.FaseIconDiv>
+
+                        <S.TimeFinishDiv>
+                          <img src={catalog.time_begin} alt="seta para direita" />
+                          <S.Start>
+                            <S.CategoriaTextDiv style={{ borderRadius: "5px" }}>
+                              <S.Text>{catalog.start}</S.Text>
+                            </S.CategoriaTextDiv>
+                            <S.CategoriaTextDiv style={{ borderRadius: "5px" }}>
+                              <S.Text>{catalog.end}</S.Text>
+                            </S.CategoriaTextDiv>
+                          </S.Start>
+                        </S.TimeFinishDiv>
+
+                        <S.EnvolvidosDiv>
+                          <img src={catalog.account} alt="ícone de conta" />
+                          <S.UsuariosDiv>
+                            {catalog.envolvidos &&
+                              catalog.envolvidos.map((user: any, index: number) => (
+                                <React.Fragment key={user.envolvidoId}>
+                                  <img
+                                    src={user.foto}
+                                    alt="usuario envolvido na fase"
+                                    style={{
+                                      height: "32px",
+                                      width: "32px",
+                                      borderRadius: "50px",
+                                    }}
+                                  />
+                                </React.Fragment>
+                              ))}
+                          </S.UsuariosDiv>
+                        </S.EnvolvidosDiv>
+                      </React.Fragment>
+                    ))}
+                </React.Fragment>
+              ))}
+          </S.Fase>
+
+          <S.Fase>
+            {/* DIGITALIZAÇÃO */}
+            {task.fases &&
+              task.fases.map((fase: any, index: number) => (
+                <React.Fragment key={fase.id}>
+                  {fase.digitalizacao &&
+                    fase.digitalizacao.map((digital: any, index: number) => (
+                      <React.Fragment key={digital.id}>
+                        <S.FaseIconDiv>
+                          <img
+                            src={digital.icone}
+                            alt="icone da digitalização"
+                            height={22}
+                            width={22}
+                          />
+                          <h2>{digital.title}</h2>
+                        </S.FaseIconDiv>
+
+                        <S.TimeFinishDiv>
+                          <img src={digital.time_finish} alt="" />
+                          <S.Start>
+                            <S.CategoriaTextDiv style={{ borderRadius: "5px" }}>
+                              <S.Text>{digital.start}</S.Text>
+                            </S.CategoriaTextDiv>
+                            <S.CategoriaTextDiv style={{ borderRadius: "5px" }}>
+                              <S.Text>{digital.end}</S.Text>
+                            </S.CategoriaTextDiv>
+                          </S.Start>
+                        </S.TimeFinishDiv>
+
+                        <S.EnvolvidosDiv>
+                          <img src={digital.account} alt="ícone de conta" />
+                          <S.UsuariosDiv>
+                            {digital.envolvidos &&
+                              digital.envolvidos.map((user: any, index: number) => (
+                                <React.Fragment key={user.envolvidoId}>
+                                  <img
+                                    src={user.foto}
+                                    alt="usuario envolvido na fase"
+                                    style={{
+                                      height: "32px",
+                                      width: "32px",
+                                      borderRadius: "50px",
+                                    }}
+                                  />
+                                </React.Fragment>
+                              ))}
+                          </S.UsuariosDiv>
+                        </S.EnvolvidosDiv>
+                      </React.Fragment>
+                    ))}
+                </React.Fragment>
+              ))}
+          </S.Fase>
+        </S.DetalFase>
       </S.areaClick>
     </>
   );

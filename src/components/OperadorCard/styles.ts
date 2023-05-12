@@ -89,7 +89,7 @@ const Fase = styled.div`
 
 const Icon = styled.img`
   height: 28px;
-  widht: 28px;
+  width: 28px;
 `;
 
 const TotalFase = styled.p`

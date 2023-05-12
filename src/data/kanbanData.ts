@@ -1,10 +1,12 @@
 import { v4 as uuidv4 } from "uuid";
 
 const mockData = [
+  //DISPONÍVEIS
   {
     id: uuidv4(),
     title: "Disponíveis",
     tasks: [
+      //LOTE 11
       {
         id: "1",
         title: "Lote 11",
@@ -15,6 +17,7 @@ const mockData = [
           },
         ],
       },
+      //LOTE 10
       {
         id: "2",
         title: "Lote 10",
@@ -25,6 +28,7 @@ const mockData = [
           },
         ],
       },
+      //LOTE 09
       {
         id: "3",
         title: "Lote 09",
@@ -37,11 +41,12 @@ const mockData = [
       },
     ],
   },
-  
+  //EM ANDAMENTO
   {
     id: uuidv4(),
     title: "Em andamento",
     tasks: [
+      //LOTE 05
       {
         id: "8",
         title: "Lote 05",
@@ -74,6 +79,7 @@ const mockData = [
           },
         ],
       },
+      //LOTE 04
       {
         id: "9",
         title: "Lote 04",
@@ -90,6 +96,7 @@ const mockData = [
           },
         ],
       },
+      //LOTE 03
       {
         id: "10",
         title: "Lote 03",
@@ -106,6 +113,7 @@ const mockData = [
           },
         ],
       },
+      //LOTE 02
       {
         id: "11",
         title: "Lote 02",
@@ -124,11 +132,13 @@ const mockData = [
       },
     ],
   },
+  //EM PAUSA
   {
     id: uuidv4(),
     title: "Em pausa",
     number: "10",
     tasks: [
+      //LOTE 08
       {
         id: "5",
         title: "Lote 08",
@@ -145,6 +155,7 @@ const mockData = [
           },
         ],
       },
+      //LOTE 07
       {
         id: "6",
         title: "Lote 07",
@@ -161,6 +172,7 @@ const mockData = [
           },
         ],
       },
+      //LOTE 06
       {
         id: "7",
         title: "Lote 06",
@@ -179,17 +191,26 @@ const mockData = [
       },
     ],
   },
+  // CONCLUÍDOS
   {
     id: uuidv4(),
     title: "Concluídos",
     tasks: [
+      //LOTE 01
       {
         id: "12",
         title: "Lote 01",
+        protocolo: "000209",
         categoria: [
           {
             nome: "Financeiro",
             id: 4,
+          },
+        ],
+        fase: [
+          {
+            nome: "catalogacao",
+            id: 1,
           },
         ],
         envolvidos: [
@@ -202,7 +223,6 @@ const mockData = [
             foto: "https://lh3.googleusercontent.com/a/AEdFTp4rZn-tIHMtcekPx2eo7A21IruNxrGHBlQfzpkh=s96-c",
           },
         ],
-
 
         etapas: [
           {

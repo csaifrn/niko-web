@@ -36,7 +36,7 @@ const App = () => {
         <Route path="/Board/Digitalizacao" element={<Digitalizacao />} />
         <Route path="/Operadores" element={<Operador />} />
         <Route path="/Board/Upload" element={<Upload />} />
-        <Route path={`/Lote/:id`} element={<LoteDetails />} />
+        <Route path={`/Lote/:id`} element={<LoteDetails/>} />
       </Routes>
     </Suspense>
   );

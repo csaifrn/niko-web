@@ -45,11 +45,11 @@ interface IFooter {
 }
 
 const Footer = styled.div<IFooter>`
+border-top: 1px solid transparent;
   width: 100%;
   height: 0px; 
   display: flex;
   flex-direction: column;
-  align-items: center;
   transition: all 0.3s ease-in-out;
   overflow: hidden; 
   span {
@@ -59,11 +59,61 @@ const Footer = styled.div<IFooter>`
   .accodion {
     padding: 2em;
   }
+  .padding {
+    padding: 0em 2em 2em 2em;
+  }
 
   &.show {
+    border-top: 1px solid #4A5565;
     height: ${({ setHeight }) => setHeight}px;
   }
 `;
 
+const DataUser = styled.div`
+  display:flex;
+  justify-content: space-between;
+  gap: 3em;
 
-export {CardArea,dataUser,dataLote, textLote, Footer, totalArea};
+`;
+
+const SideUser = styled.div`
+  display:flex;
+  flex-direction: column;
+  gap: 1em;
+`;
+
+const Fase = styled.div`
+  display:flex;
+  gap: 1em;
+`;
+
+const Icon = styled.img`
+  height: 28px;
+  width: 28px;
+`;
+
+const TotalFase = styled.p`
+  color: white;
+  
+`;
+
+const PerecentageFase = styled.p`
+  color: #C3C3C3;
+  font-size: 10px
+`;
+
+const ButtonAtribuir = styled.button`
+  height: 44px;
+  width: 100%;
+  border: none;
+  border-radius: 5px;
+  background-color: #191C24;
+  color: white;
+  display: flex;
+  align-items: center;
+  padding: 0em 1em;
+  gap: 1em;
+  font-family: "Rubik";
+`;
+
+export {CardArea,dataUser,dataLote, textLote, Footer, totalArea, SideUser, DataUser, Icon, TotalFase, PerecentageFase, Fase, ButtonAtribuir};

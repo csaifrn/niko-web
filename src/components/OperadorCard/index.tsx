@@ -38,13 +38,65 @@ const OperadorCard = (user: any) => {
                             setHeight={accodionHeight}
                             ref={ref}
                             >
-                            <div className="accodion" ref={ref}>
-                                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eos,
-                                facilis. Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                                Eos, facilis. Lorem, ipsum dolor sit amet consectetur adipisicing
-                                elit. Eos, facilis. Lorem, ipsum dolor sit amet consectetur
-                                adipisicing elit. Eos, facilis.
-                            </div>
+                            <S.DataUser className="accodion" ref={ref}>
+                                <S.SideUser>
+                                    <S.Fase>
+                                        <S.Icon src="/icon-page/recebidos.png"></S.Icon>
+                                        <div>
+                                            <S.TotalFase>42 Lotes</S.TotalFase>
+                                            <S.PerecentageFase>20%</S.PerecentageFase>
+                                        </div>
+                                    </S.Fase>
+                                    <S.Fase>
+                                        <S.Icon src="/icon-page/preparo.png"></S.Icon>
+                                        <div>
+                                            <S.TotalFase>42 Lotes</S.TotalFase>
+                                            <S.PerecentageFase>20%</S.PerecentageFase>
+                                        </div>
+                                    </S.Fase>
+                                    <S.Fase>
+                                        <S.Icon src="/icon-page/catalogacao.png"></S.Icon>
+                                        <div>
+                                            <S.TotalFase>42 Lotes</S.TotalFase>
+                                            <S.PerecentageFase>20%</S.PerecentageFase>
+                                        </div>
+                                    </S.Fase>
+                                </S.SideUser>
+                                <S.SideUser>
+                                <S.Fase>
+                                        <S.Icon src="/icon-page/digitalizacao.png"></S.Icon>
+                                        <div>
+                                            <S.TotalFase>42 Lotes</S.TotalFase>
+                                            <S.PerecentageFase>20%</S.PerecentageFase>
+                                        </div>
+                                    </S.Fase>
+                                    <S.Fase>
+                                        <S.Icon src="/icon-page/upload.png"></S.Icon>
+                                        <div>
+                                            <S.TotalFase>42 Lotes</S.TotalFase>
+                                            <S.PerecentageFase>20%</S.PerecentageFase>
+                                        </div>
+                                    </S.Fase>
+                                    <S.Fase>
+                                        <S.Icon src="/icon-page/arquivamento.png"></S.Icon>
+                                        <div>
+                                            <S.TotalFase>42 Lotes</S.TotalFase>
+                                            <S.PerecentageFase>20%</S.PerecentageFase>
+                                        </div>
+                                    </S.Fase>
+                                </S.SideUser>
+                                
+                            </S.DataUser>
+                            {
+                                    User.fase === "" &&
+                                    <div className="padding">
+                                        <S.ButtonAtribuir >
+                                            <S.Icon src="upIcon.svg" height={18} width={18}/>
+                                            <p>Atribuir lote</p>
+                                        </S.ButtonAtribuir>
+                                    </div>
+                                    
+                            }
                 </S.Footer>
             </S.totalArea>
         </>

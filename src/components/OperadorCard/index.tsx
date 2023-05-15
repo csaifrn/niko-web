@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import * as S from "./styles";
-import AtribuirModal from "../AtribuirModal";
+import { AtribuirModal } from "../AtribuirModal";
 
 const OperadorCard = (user: any) => {
   const [expanded, setExpanded] = useState(false);

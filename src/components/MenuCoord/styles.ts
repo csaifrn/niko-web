@@ -10,6 +10,7 @@ const MenuLeft = styled.div`
 
 // Create a Wrapper component that'll render a <section> tag with some styles
 const MenuArea = styled.div`
+  z-index: 999999999999;
   position: fixed;
   display: flex;
   bottom: 0;
@@ -24,7 +25,7 @@ const MenuArea = styled.div`
 
 const textIcon = styled.p`
   color: white;
-  font-wheight: bold;
+  font-weight: bold;
 `;
 
 const link = styled.a`

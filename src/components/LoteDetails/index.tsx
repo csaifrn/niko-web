@@ -64,7 +64,11 @@ export const LoteDetails = () => {
         </>
         
         {/* OBSERVAÇÃO */}
-        <S.Observações>Observações</S.Observações>
+        <S.Observações>
+          Observações
+          <S.ObsDiv> Teste </S.ObsDiv>
+          <S.ObsDiv> <p> Lote possui 2 processos que já foram digitalizados previamente</p> </S.ObsDiv>
+        </S.Observações>
 
         {/* VOLTAR FASE */}
         <S.Botao>
@@ -85,7 +89,7 @@ export const LoteDetails = () => {
         </S.Botao>
 
         {/* DELETAR LOTE */}
-        <S.Botao className="excluir">
+        <S.Botao style={{ backgroundColor:"#F32D2D" }}>
           <img src={`/trash.svg`}/>
           Deletar Lote
         </S.Botao>        

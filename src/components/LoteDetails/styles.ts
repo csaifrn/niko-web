@@ -37,8 +37,8 @@ const CloseDiv = styled.div`
 const Exit = styled.div`
   height: 2em;
   width: 2em;  
-  background-color: #191c24;
-  border-radius: 5px;
+  background-color: #393E4B;
+  border-radius: 3px;
   margin-bottom: 0.5em;
   display: flex;
   justify-content:center;
@@ -59,7 +59,7 @@ const Categoria = styled.div`
 const Prioridade = styled.div`
   height: 24px;
   background-color: #f32d2d;
-  border-radius: 5px;
+  border-radius: 3px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -136,18 +136,6 @@ const Time = styled.div`
   gap:1em;
 `;
 
-const Start = styled.div`
-  display: flex;
-  flex-wrap:wrap;
-  align-items: center;
-`;
-
-const End = styled.div`
-  display: flex;
-  flex-wrap:wrap;
-  align-items: center;
-`;
-
 const EnvolvidosDiv = styled.div`
   display: flex;
   align-items: center;
@@ -187,28 +175,42 @@ const ProtocoloTextDiv = styled.div`
 const Observações = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 16px;
+  justify-content: start;
+  align-items: start;
   gap: 10px;
   width: calc(100%-6em);
-  height: 10em;
   background: #393E4B;
   border-radius: 5px;
   flex: none;
   order: 0;
   flex-grow: 0;
   margin-top:2em;
+  padding: 2em;
 `;
 
+const ObsDiv = styled.div`
+  background-color:#191C24;
+  border-radius: 5px;
+  width: calc(100%);
+  height: 48px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex: none;
+  order: 1;
+  flex-grow: 0;
+`;
+
+
 const Botao = styled.div`
+  background-color: #393E4B;
   display: flex;
   align-items:center;
-  background-color: #393E4B;
+  gap: 1em;
   height: 5em;
   width:calc(100%-6em);
   border-radius: 5px;
-  margin-top:2em;
+  margin-top: 2em;
   p{
     color: "white";
     margin-bottom: "0";
@@ -244,4 +246,4 @@ const Fase = styled.div`
   margin-top: 2em;
 `;
 
-export { areaClick, Exit,CloseDiv, Categoria ,Prioridade ,NomeCategoriaTextDiv ,TextDiv , FaseIconDiv, TimeBeginDiv, TimeFinishDiv, Time, Start, End, EnvolvidosDiv,Text, Protocolo, ProtocoloTextDiv, Observações, Botao, DetalFase, Fase };
+export { areaClick, Exit,CloseDiv, Categoria ,Prioridade ,NomeCategoriaTextDiv ,TextDiv , FaseIconDiv, TimeBeginDiv, TimeFinishDiv, Time, EnvolvidosDiv,Text, Protocolo, ProtocoloTextDiv, Observações, ObsDiv, Botao, DetalFase, Fase };

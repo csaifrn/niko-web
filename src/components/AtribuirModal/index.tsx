@@ -7,7 +7,7 @@ interface AtribuirModalProps {
   close: () => void;
 }
 
-export const AtribuirModal = (props: AtribuirModalProps) => {
+const AtribuirModal = (props: AtribuirModalProps) => {
   const lotes = [
     {
       id: 1,
@@ -108,3 +108,5 @@ export const AtribuirModal = (props: AtribuirModalProps) => {
     </S.ModalArea>
   );
 };
+
+export default { AtribuirModal };

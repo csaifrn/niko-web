@@ -6,14 +6,17 @@ const OperadorCard = (user: any) => {
   const [expanded, setExpanded] = useState(false);
   const [modal, setModal] = useState(false);
   const [accodionHeight, setAccodionHeight] = useState(0);
-  const ref = useRef(null);
+  const ref = useRef<HTMLDivElement>(null);
 
   const open = () => setExpanded(!expanded);
 
   useEffect(() => {
-    const getHeight = ref.current.scrollHeight;
-    setAccodionHeight(getHeight);
+    if (ref.current) {
+      const getHeight = ref.current.scrollHeight;
+      setAccodionHeight(getHeight);
+    }
   }, [expanded]);
+
   const handleAtribuir = () => {
     setModal(!modal);
   };

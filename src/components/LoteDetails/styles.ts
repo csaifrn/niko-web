@@ -85,10 +85,10 @@ const NomeCategoriaTextDiv = styled.div`
   }
 `;
 
-const CategoriaTextDiv = styled.div`
+const TextDiv = styled.div`
   height: 2em;
   display: flex;
-  margin-left:1em;
+  margin-left:0em;
   align-items:center;
   p{
     color: "white";
@@ -101,8 +101,19 @@ const FaseIconDiv = styled.div`
   margin-top: 1em;  
   display: flex;
   align-items:center;
-  gap:2em;
+  gap:1em;
   h2{
+    color: "white";
+    margin-bottom: "0";
+  }
+`;
+
+const TimeBeginDiv = styled.div`
+  margin-top: 0.5em;
+  display: flex;
+  align-items: center;
+  gap: 1em;
+  p{
     color: "white";
     margin-bottom: "0";
   }
@@ -111,12 +122,18 @@ const FaseIconDiv = styled.div`
 const TimeFinishDiv = styled.div`
   margin-top: 0.5em;
   display: flex;
-  align-content: center;
-  gap: 1.3em;
+  align-items: center;
+  gap: 1em;
   p{
     color: "white";
     margin-bottom: "0";
   }
+`;
+
+const Time = styled.div`
+  display:flex;
+  align-items: center;
+  gap:1em;
 `;
 
 const Start = styled.div`
@@ -135,19 +152,12 @@ const EnvolvidosDiv = styled.div`
   display: flex;
   align-items: center;
   flex-wrap: wrap;  
-  gap: 3em;
+  gap: 0.5em;
   margin-top:0.5em;
   p{
     color: "white";
     margin-bottom: "0";
   }
-`;
-
-const UsuariosDiv = styled.div`
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;  
-  gap: 1em;
 `;
 
 const Text = styled.p `
@@ -226,7 +236,6 @@ const Fase = styled.div`
   padding: 16px;
   gap: 16px;
   width: calc(100%-6em);
-  height: 16em;
   background: #393E4B;
   border-radius: 8px;
   flex: none;
@@ -235,4 +244,4 @@ const Fase = styled.div`
   margin-top: 2em;
 `;
 
-export { areaClick, Exit,CloseDiv, Categoria ,Prioridade ,NomeCategoriaTextDiv ,CategoriaTextDiv , FaseIconDiv, TimeFinishDiv, Start, End, EnvolvidosDiv, UsuariosDiv,Text, Protocolo, ProtocoloTextDiv, Observações, Botao, DetalFase, Fase };
+export { areaClick, Exit,CloseDiv, Categoria ,Prioridade ,NomeCategoriaTextDiv ,TextDiv , FaseIconDiv, TimeBeginDiv, TimeFinishDiv, Time, Start, End, EnvolvidosDiv,Text, Protocolo, ProtocoloTextDiv, Observações, Botao, DetalFase, Fase };

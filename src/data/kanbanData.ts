@@ -207,7 +207,7 @@ const mockData = [
             id: 4,
           },
         ],
-        fase: [
+        fase_atual: [
           {
             nome: "upload",
             id: 1,
@@ -234,8 +234,8 @@ const mockData = [
                 title: "Recepção",
                 icone: "/icon-page/recebidos.png",
                 time_finish: "/time_finish.svg",
-                start: "02/04/2023 ",
-                start_hour:"13:12",
+                end: "02/04/2023 ",
+                end_hour:"13:12",
                 envolvidos: [
                   {
                     envolvidoId: uuidv4(),
@@ -260,6 +260,8 @@ const mockData = [
                 end: "03/04/2023",
                 end_hour:"16:00",
                 time_finish: "/time_finish.svg",
+                time_icon:"/clock.svg",
+                time: "2:48 horas",
                 envolvidos: [
                   {
                     envolvidoId: uuidv4(),
@@ -278,11 +280,14 @@ const mockData = [
                 id: uuidv4(),
                 title: "Catalogação",
                 icone: "/icon-page/catalogacao.png",
-                time: "/time.svg",
-                account:"/Account.svg",
                 time_begin: "/time_begin.svg",
-                start: "04/04/2023 - 13:15",
-                end: "04/04/2023 - 15:32",
+                start: "04/04/2023",
+                start_hour:"13:19",
+                end: "04/04/2023",
+                end_hour:"17:00",
+                time_finish: "/time_finish.svg",
+                time_icon:"/clock.svg",
+                time: "3:41 horas",
                 envolvidos: [
                   {
                     envolvidoId: uuidv4(),
@@ -301,10 +306,14 @@ const mockData = [
                 id: uuidv4(),
                 title: "Digitalização",
                 icone: "/icon-page/digitalizacao.png",
-                time: "/time.svg",
-                account:"/Account.svg",
-                start: "05/04/2023 - 13:05",
-                end: "05/04/2023 - 17:00",
+                time_begin: "/time_begin.svg",
+                start: "05/04/2023",
+                start_hour:"13:20",
+                end: "05/04/2023",
+                end_hour:"17:00",
+                time_finish: "/time_finish.svg",
+                time_icon:"/clock.svg",
+                time: "3:40 horas",
                 envolvidos: [
                   {
                     envolvidoId: uuidv4(),

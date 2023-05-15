@@ -59,7 +59,7 @@ export const LoteDetails = () => {
         {/* FASE DO LOTE */}
         <>
           <div style={{ margin: "2em 0em 0em 0em", display: "flex", justifyContent: "flex-start", gap: "0.5em" }}>
-            <img src={`/icon-page/${task.fase[0].nome}.png`}/>
+            <img src={`/icon-page/${task.fase_atual[0].nome}.png`}/>
           </div>
         </>
         
@@ -70,7 +70,6 @@ export const LoteDetails = () => {
         <S.Botao>
           <img src={`/voltar.svg`}/>
           Voltar Fase
-          
         </S.Botao>
 
         {/* AVANÇAR FASE */}
@@ -93,7 +92,7 @@ export const LoteDetails = () => {
 
         {/* DETALHAMENTO POR FASE */}
         <S.DetalFase>
-          <h1>Detalhamento por fase</h1>
+          <h2>Detalhamento por fase</h2>
           <S.Fase>
             {/* RECEPÇÃO */}
             {task.fases &&
@@ -102,40 +101,33 @@ export const LoteDetails = () => {
                   {fase.recepçao &&
                     fase.recepçao.map((recep: any, index: number) => (
                       <React.Fragment key={recep.id}>
+
                         <S.FaseIconDiv>
                           <img src={recep.icone}alt="ícone de recepção" height={25}width={25}/>
                           <h2>{recep.title}</h2>
                         </S.FaseIconDiv>
 
                         <S.TimeFinishDiv>
-                          <img src={recep.time_finish} alt="ícone de check" />
-                          <S.End>
-                            <S.CategoriaTextDiv style={{ borderRadius: "5px"}}>
-                              <S.Text>{recep.start}</S.Text>
-                            </S.CategoriaTextDiv>
-                            <S.CategoriaTextDiv style={{ borderRadius: "5px" }}>
-                              <S.Text style={{ color:"#00D25B" }}>{recep.start_hour}</S.Text>
-                            </S.CategoriaTextDiv>
-                          </S.End>
+                          <img src={recep.time_finish} alt="icone de check" />
+                          {recep.end}
+                          <S.Text style={{ color:"#00D25B" }}>{recep.end_hour}</S.Text>
                         </S.TimeFinishDiv>
 
                         <S.EnvolvidosDiv>
-                          <S.UsuariosDiv>
-                            {recep.envolvidos &&
-                              recep.envolvidos.map((user: any, index: number) => (
-                                <React.Fragment key={user.envolvidoId}>
-                                  <img
-                                    src={user.foto}
-                                    alt="usuario envolvido na fase"
-                                    style={{
-                                      height: "32px",
-                                      width: "32px",
-                                      borderRadius: "50px",
-                                    }}
-                                  />
-                                </React.Fragment>
-                              ))}
-                          </S.UsuariosDiv>
+                          {recep.envolvidos &&
+                            recep.envolvidos.map((user: any, index: number) => (
+                              <React.Fragment key={user.envolvidoId}>
+                                <img
+                                  src={user.foto}
+                                  alt="usuario envolvido na fase"
+                                  style={{
+                                    height: "32px",
+                                    width: "32px",
+                                    borderRadius: "50px",
+                                  }}
+                                />
+                              </React.Fragment>
+                            ))}
                         </S.EnvolvidosDiv>
                       </React.Fragment>
                     ))}
@@ -152,58 +144,46 @@ export const LoteDetails = () => {
                     fase.preparo.map((prep: any, index: number) => (
                       <React.Fragment key={prep.id}>
                         <S.FaseIconDiv>
-                          <img
-                            src={prep.icone}
-                            alt="ícone de preparo"
-                            height={22}
-                            width={22}
-                          />
+                          <img src={prep.icone} alt="ícone de preparo" height={22} width={22}/>
                           <h2>{prep.title}</h2>
                         </S.FaseIconDiv>
 
-                        <S.TimeFinishDiv>
-                          <img src={prep.time_begin} alt="seta para direita" />
-                          <S.Start>
-                            <S.CategoriaTextDiv>
-                              <S.Text>{prep.start}</S.Text>
-                            </S.CategoriaTextDiv>
-                            <S.CategoriaTextDiv>
-                              <S.Text style={{ color:"#FCDE42" }}>{prep.start_hour}</S.Text>
-                            </S.CategoriaTextDiv>
-                          </S.Start>
-                        </S.TimeFinishDiv>
-
+                        <S.TimeBeginDiv>
+                            <img src={prep.time_begin} alt="seta para direita" />
+                            {prep.start}
+                            <S.Text style={{ color:"#FCDE42" }}>{prep.start_hour}</S.Text>
+                        </S.TimeBeginDiv>
                         
                         <S.TimeFinishDiv>
                           <img src={prep.time_finish} alt="icone de check" />
-                          <S.End>
-                            <S.CategoriaTextDiv>
-                              <S.Text>{prep.end}</S.Text>
-                            </S.CategoriaTextDiv>
-                            <S.CategoriaTextDiv>
-                              <S.Text style={{ color:"#00D25B" }}>{prep.end_hour}</S.Text>
-                            </S.CategoriaTextDiv>
-                          </S.End>
+                          {prep.end}
+                          <S.Text style={{ color:"#00D25B" }}>{prep.end_hour}</S.Text>
                         </S.TimeFinishDiv>
 
+                        <S.Time>
+                          <img src={prep.time_icon} alt="icone de relógio"/>
+                          {prep.time}
+                        </S.Time>
+
                         <S.EnvolvidosDiv>
-                          <S.UsuariosDiv>
-                            {prep.envolvidos &&
-                              prep.envolvidos.map((user: any, index: number) => (
-                                <React.Fragment key={user.envolvidoId}>
-                                  <img
-                                    src={user.foto}
-                                    alt="usuario envolvido na fase"
-                                    style={{
-                                      height: "32px",
-                                      width: "32px",
-                                      borderRadius: "50px",
-                                    }}
-                                  />
-                                </React.Fragment>
-                              ))}
-                          </S.UsuariosDiv>
+                          {prep.envolvidos &&
+                            prep.envolvidos.map((user: any, index: number) => (
+                              <React.Fragment key={user.envolvidoId}>
+                                <img
+                                  src={user.foto}
+                                  alt="usuario envolvido na fase"
+                                  style={{
+                                    height: "32px",
+                                    width: "32px",
+                                    borderRadius: "50px",
+                                  }}
+                                />
+                              </React.Fragment>
+                            ))}
                         </S.EnvolvidosDiv>
+
+
+                        
                       </React.Fragment>
                     ))}
                 </React.Fragment>
@@ -219,45 +199,42 @@ export const LoteDetails = () => {
                     fase.catalogacao.map((catalog: any, index: number) => (
                       <React.Fragment key={catalog.id}>
                         <S.FaseIconDiv>
-                          <img
-                            src={catalog.icone}
-                            alt="catalogação icone"
-                            height={22}
-                            width={22}
-                          />
+                          <img src={catalog.icone} alt="ícone de preparo" height={22} width={22}/>
                           <h2>{catalog.title}</h2>
                         </S.FaseIconDiv>
 
+                        <S.TimeBeginDiv>
+                            <img src={catalog.time_begin} alt="seta para direita" />
+                            {catalog.start}
+                            <S.Text style={{ color:"#FCDE42" }}>{catalog.start_hour}</S.Text>
+                        </S.TimeBeginDiv>
+                        
                         <S.TimeFinishDiv>
-                          <img src={catalog.time_begin} alt="seta para direita" />
-                          <S.Start>
-                            <S.CategoriaTextDiv style={{ borderRadius: "5px" }}>
-                              <S.Text>{catalog.start}</S.Text>
-                            </S.CategoriaTextDiv>
-                            <S.CategoriaTextDiv style={{ borderRadius: "5px" }}>
-                              <S.Text>{catalog.end}</S.Text>
-                            </S.CategoriaTextDiv>
-                          </S.Start>
+                          <img src={catalog.time_finish} alt="icone de check" />
+                          {catalog.end}
+                          <S.Text style={{ color:"#00D25B" }}>{catalog.end_hour}</S.Text>
                         </S.TimeFinishDiv>
 
+                        <S.Time>
+                          <img src={catalog.time_icon} alt="icone de relógio"/>
+                          {catalog.time}
+                        </S.Time>
+
                         <S.EnvolvidosDiv>
-                          <img src={catalog.account} alt="ícone de conta" />
-                          <S.UsuariosDiv>
-                            {catalog.envolvidos &&
-                              catalog.envolvidos.map((user: any, index: number) => (
-                                <React.Fragment key={user.envolvidoId}>
-                                  <img
-                                    src={user.foto}
-                                    alt="usuario envolvido na fase"
-                                    style={{
-                                      height: "32px",
-                                      width: "32px",
-                                      borderRadius: "50px",
-                                    }}
-                                  />
-                                </React.Fragment>
-                              ))}
-                          </S.UsuariosDiv>
+                          {catalog.envolvidos &&
+                            catalog.envolvidos.map((user: any, index: number) => (
+                              <React.Fragment key={user.envolvidoId}>
+                                <img
+                                  src={user.foto}
+                                  alt="usuario envolvido na fase"
+                                  style={{
+                                    height: "32px",
+                                    width: "32px",
+                                    borderRadius: "50px",
+                                  }}
+                                />
+                              </React.Fragment>
+                            ))}
                         </S.EnvolvidosDiv>
                       </React.Fragment>
                     ))}
@@ -274,45 +251,42 @@ export const LoteDetails = () => {
                     fase.digitalizacao.map((digital: any, index: number) => (
                       <React.Fragment key={digital.id}>
                         <S.FaseIconDiv>
-                          <img
-                            src={digital.icone}
-                            alt="icone da digitalização"
-                            height={22}
-                            width={22}
-                          />
+                          <img src={digital.icone} alt="ícone de preparo" height={22} width={22}/>
                           <h2>{digital.title}</h2>
                         </S.FaseIconDiv>
 
+                        <S.TimeBeginDiv>
+                            <img src={digital.time_begin} alt="seta para direita" />
+                            {digital.start}
+                            <S.Text style={{ color:"#FCDE42" }}>{digital.start_hour}</S.Text>
+                        </S.TimeBeginDiv>
+                        
                         <S.TimeFinishDiv>
-                          <img src={digital.time_finish} alt="" />
-                          <S.Start>
-                            <S.CategoriaTextDiv style={{ borderRadius: "5px" }}>
-                              <S.Text>{digital.start}</S.Text>
-                            </S.CategoriaTextDiv>
-                            <S.CategoriaTextDiv style={{ borderRadius: "5px" }}>
-                              <S.Text>{digital.end}</S.Text>
-                            </S.CategoriaTextDiv>
-                          </S.Start>
+                          <img src={digital.time_finish} alt="icone de check" />
+                          {digital.end}
+                          <S.Text style={{ color:"#00D25B" }}>{digital.end_hour}</S.Text>
                         </S.TimeFinishDiv>
 
+                        <S.Time>
+                          <img src={digital.time_icon} alt="icone de relógio"/>
+                          {digital.time}
+                        </S.Time>
+
                         <S.EnvolvidosDiv>
-                          <img src={digital.account} alt="ícone de conta" />
-                          <S.UsuariosDiv>
-                            {digital.envolvidos &&
-                              digital.envolvidos.map((user: any, index: number) => (
-                                <React.Fragment key={user.envolvidoId}>
-                                  <img
-                                    src={user.foto}
-                                    alt="usuario envolvido na fase"
-                                    style={{
-                                      height: "32px",
-                                      width: "32px",
-                                      borderRadius: "50px",
-                                    }}
-                                  />
-                                </React.Fragment>
-                              ))}
-                          </S.UsuariosDiv>
+                          {digital.envolvidos &&
+                            digital.envolvidos.map((user: any, index: number) => (
+                              <React.Fragment key={user.envolvidoId}>
+                                <img
+                                  src={user.foto}
+                                  alt="usuario envolvido na fase"
+                                  style={{
+                                    height: "32px",
+                                    width: "32px",
+                                    borderRadius: "50px",
+                                  }}
+                                />
+                              </React.Fragment>
+                            ))}
                         </S.EnvolvidosDiv>
                       </React.Fragment>
                     ))}

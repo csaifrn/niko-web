@@ -2,56 +2,62 @@ import { StyleHTMLAttributes } from "react";
 import styled from "styled-components";
 
 const totalArea = styled.div`
-    background-color: #393E4B;
-    align-items:center;
-    color: white;
-    font-family: "Rubik";
-    border-radius: 5px;
+  background-color: #393e4b;
+  align-items: center;
+  color: white;
+  font-family: "Rubik";
+  border-radius: 5px;
 `;
 
-
 const CardArea = styled.div`
-    display:flex;
-    padding: 2em;   
-    background-color: #393E4B;
-    align-items:center;
-    justify-content: space-between;
-    color: white;
-    font-family: "Rubik";
-    border-radius: 5px;
+  display: flex;
+  background-color: #393e4b;
+  align-items: center;
+  justify-content: space-between;
+  color: white;
+  font-family: "Rubik";
+  border-radius: 5px;
+`;
+const CardA = styled.div`
+  display: flex;
+  flex-direction: column;
+  padding: 2em;
+  background-color: #393e4b;
+  gap: 2em;
+  font-family: "Rubik";
 `;
 
 const dataUser = styled.div`
-display: flex; 
-align-items: center;
-gap: 1em;
-`
+  display: flex;
+  align-items: center;
+  gap: 1em;
+`;
 const dataLote = styled.div`
-display: flex; 
-align-items: center;
-gap: 1em;
-`
+  display: flex;
+  align-items: center;
+  gap: 1em;
+`;
 const textLote = styled.p`
-display: flex; 
-align-items: center;
-height: 32px;
-padding: 0em 1em;
-color: white;
-background-color: #191C24; 
-border-radius: 5px;
+  display: flex;
+  align-items: center;
+  height: 32px;
+  padding: 0em 1em;
+  color: white;
+  background-color: #191c24;
+  border-radius: 5px;
 `;
 interface IFooter {
-    setHeight: number;
+  setHeight: number;
 }
 
 const Footer = styled.div<IFooter>`
-border-top: 1px solid transparent;
+  border-top: 1px solid transparent;
   width: 100%;
-  height: 0px; 
+  height: 0px;
   display: flex;
   flex-direction: column;
   transition: all 0.3s ease-in-out;
-  overflow: hidden; 
+  overflow: hidden;
   span {
     padding: 12px 0;
   }
@@ -64,26 +70,25 @@ border-top: 1px solid transparent;
   }
 
   &.show {
-    border-top: 1px solid #4A5565;
+    border-top: 1px solid #4a5565;
     height: ${({ setHeight }) => setHeight}px;
   }
 `;
 
 const DataUser = styled.div`
-  display:flex;
+  display: flex;
   justify-content: space-between;
   gap: 3em;
-
 `;
 
 const SideUser = styled.div`
-  display:flex;
+  display: flex;
   flex-direction: column;
   gap: 1em;
 `;
 
 const Fase = styled.div`
-  display:flex;
+  display: flex;
   gap: 1em;
 `;
 
@@ -94,12 +99,11 @@ const Icon = styled.img`
 
 const TotalFase = styled.p`
   color: white;
-  
 `;
 
 const PerecentageFase = styled.p`
-  color: #C3C3C3;
-  font-size: 10px
+  color: #c3c3c3;
+  font-size: 10px;
 `;
 
 const ButtonAtribuir = styled.button`
@@ -107,7 +111,7 @@ const ButtonAtribuir = styled.button`
   width: 100%;
   border: none;
   border-radius: 5px;
-  background-color: #191C24;
+  background-color: #191c24;
   color: white;
   display: flex;
   align-items: center;
@@ -116,4 +120,19 @@ const ButtonAtribuir = styled.button`
   font-family: "Rubik";
 `;
 
-export {CardArea,dataUser,dataLote, textLote, Footer, totalArea, SideUser, DataUser, Icon, TotalFase, PerecentageFase, Fase, ButtonAtribuir};
+export {
+  CardArea,
+  dataUser,
+  dataLote,
+  textLote,
+  Footer,
+  totalArea,
+  SideUser,
+  DataUser,
+  Icon,
+  TotalFase,
+  PerecentageFase,
+  Fase,
+  ButtonAtribuir,
+  CardA,
+};

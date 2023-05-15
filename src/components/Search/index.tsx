@@ -4,9 +4,14 @@ import * as S from "./styles";
 type SearchProps = {
   searchTerm: string;
   handleSearchChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  black?: boolean;
 };
 
-const Search = ({ searchTerm, handleSearchChange }: SearchProps): JSX.Element => {
+const Search = ({
+  searchTerm,
+  handleSearchChange,
+  black,
+}: SearchProps): JSX.Element => {
   return (
     <>
       <S.SearchDiv style={{ display: "flex", position: "relative" }}>
@@ -16,6 +21,7 @@ const Search = ({ searchTerm, handleSearchChange }: SearchProps): JSX.Element =>
           value={searchTerm}
           onChange={handleSearchChange}
           placeholder="Pesquisa"
+          style={{ backgroundColor: "#191C24" }}
         />
       </S.SearchDiv>
     </>

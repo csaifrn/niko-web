@@ -15,7 +15,9 @@ export const MenuCoord = (props: MenuProps) => {
       <S.link href="/Fase">
         <S.MenuImg
           src={
-            pathname === "/Fase" || pathname.search("Board") >= 0
+            pathname === "/Fase" ||
+            pathname.search("Board") >= 0 ||
+            pathname.search("Lote") >= 0
               ? "/IconMenu/SquaresFour/fillicon.png"
               : "/IconMenu/SquaresFour/regularicon.png"
           }
@@ -26,7 +28,12 @@ export const MenuCoord = (props: MenuProps) => {
         {pathname.search("Board") >= 0 && (
           <S.textIcon style={{ color: "#F3802D" }}>Fases</S.textIcon>
         )}
-        {pathname !== "/Fase" && pathname.search("Board") < 0 && <S.textIcon>Fases</S.textIcon>}
+        {pathname.search("Lote") >= 0 && (
+          <S.textIcon style={{ color: "#F3802D" }}>Fases</S.textIcon>
+        )}
+        {pathname !== "/Fase" &&
+          pathname.search("Board") < 0 &&
+          pathname.search("Lote") < 0 && <S.textIcon>Fases</S.textIcon>}
       </S.link>
       <S.link href="/Operadores">
         <S.MenuImg

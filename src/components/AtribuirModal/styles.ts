@@ -15,4 +15,41 @@ const ModalArea = styled.div`
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 `;
 
-export { ModalArea };
+const ModalContent = styled.div`
+  display: flex;
+  gap: 1em;
+  flex-direction: column;
+`;
+
+const NameClose = styled.div`
+ display: flex;
+ justify-content: space-between;
+`;
+
+const ChooseLote = styled.div`
+  width: 100%;
+  height: 40vh;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  overflow: auto;
+  scroll-behavior: auto;
+`;
+
+const Lote = styled.div`
+  padding: 1.5em 2em;
+  border-radius: 5px;
+  cursor: pointer;
+`;
+
+const AtribuirButton = styled.button`
+  height: 44px;
+  border-radius: 5px;
+  background-color: #43DB6D;
+  border: none;
+  color: white;
+  font-family: "Rubik";
+`;
+
+export { ModalArea, ModalContent, NameClose, ChooseLote, Lote, AtribuirButton };

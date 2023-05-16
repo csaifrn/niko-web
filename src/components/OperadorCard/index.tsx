@@ -73,7 +73,7 @@ const OperadorCard = (user: any) => {
           {User.fase === "" && (
             <div className="padding">
               <S.ButtonAtribuir onClick={handleAtribuir}>
-                <S.Icon src="upIcon.svg" height={12} width={12} />
+                <S.Icon src="upIcon.svg"/>
                 <p>Atribuir lote</p>
               </S.ButtonAtribuir>
             </div>

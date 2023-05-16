@@ -11,23 +11,38 @@ export const AtribuirModal = (props: AtribuirModalProps) => {
   const lotes = [
     {
       id: 1,
+      protocol: "000102",
       title: "Lote 102",
     },
     {
       id: 2,
+      protocol: "000201",
       title: "Lote 201",
     },
     {
       id: 3,
+      protocol: "000829",
       title: "Lote 829",
     },
     {
       id: 4,
+      protocol: "001024",
       title: "Lote 1024",
+    },
+    {
+      id: 5,
+      protocol: "002987",
+      title: "Lote 2987",
+    },
+    {
+      id: 6,
+      protocol: "000001",
+      title: "Lote 01",
     },
   ];
 
   const [selectedLotes, setSelectedLotes] = useState<number[]>([]);
+  const [searchTerm, setSearchTerm] = useState<string>("");
 
   const handleLoteClick = (loteId: number) => {
     if (selectedLotes.includes(loteId)) {
@@ -37,74 +52,63 @@ export const AtribuirModal = (props: AtribuirModalProps) => {
     }
   };
 
+  const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchTerm(event.target.value);
+  };
+
+  const filteredLotes = lotes.filter(
+    (lote) =>
+      lote.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      lote.protocol.includes(searchTerm)
+  );
+
   return (
     <S.ModalArea>
-      <div
-        style={{
-          display: "flex",
-          gap: "1em",
-          flexDirection: "column",
-        }}
-      >
-        <div style={{ display: "flex", justifyContent: "space-between" }}>
+      <S.ModalContent>
+        <S.NameClose>
           <h2>Atribuir Lote</h2>
           <img
             onClick={props.close}
             src="close.svg"
             alt=""
+            height={18}
+            width={18}
             style={{
-              padding: "5px 1px",
+              padding: "5px 5px",
               backgroundColor: "#090E09",
               borderRadius: "5px",
             }}
           />
-        </div>
-
-        <div></div>
-        <Search searchTerm="" handleSearchChange={() => {}} />
-        <div
-          style={{
-            width: "100%",
-            height: "40vh",
-            borderRadius: "5px",
-            display: "flex",
-            flexDirection: "column",
-            gap: "1em",
-            overflow: "auto",
-            scrollBehavior: "auto",
-          }}
-        >
-          {lotes.map((lote: any) => (
-            <div
+        </S.NameClose>
+        <Search searchTerm={searchTerm} handleSearchChange={handleSearchChange} />
+        <S.ChooseLote>
+          {filteredLotes.map((lote: any) => (
+            <S.Lote
               key={lote.id}
-              onClick={() => handleLoteClick(lote.id)}
+              onClick={() => handleLoteClick(lote.id
+              )}
               style={{
-                padding: "1.5em 2em",
-                backgroundColor: selectedLotes.includes(lote.id)
-                  ? "#FFFFFF" // cor branca se estiver selecionado
-                  : "#090E09", // cor verde padrão
-                borderRadius: "5px",
-                cursor: "pointer",
+              backgroundColor: selectedLotes.includes(lote.id)
+              ? "#090E09"
+              : "#2D303B",
               }}
-            >
-              <p style={{ color: "#44e180" }}>{lote.title}</p>
-            </div>
-          ))}
-        </div>
-        <button
-          style={{
-            height: "44px",
-            borderRadius: "5px",
-            backgroundColor: "#44e180",
-            border: "none",
-            color: "white",
-            fontFamily: "Rubik",
-          }}
-          onClick={props.close}
-        >
+              >
+                <p
+                style={{
+                color: selectedLotes.includes(lote.id)
+                ? "#43DB6D"
+                : "#838383",
+                }}
+                >
+                {lote.title}
+                </p>
+            </S.Lote>
+            ))}
+          </S.ChooseLote>
+        <S.AtribuirButton onClick={props.close}>
           Atribuir para {props.nameUser}
-        </button>
-      </div>
+        </S.AtribuirButton>
+      </S.ModalContent>
     </S.ModalArea>
   );
 };

@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import * as S from "./styles";
 import { AtribuirModal } from "../AtribuirModal";
+import { DataFase } from "../DataFase";
 
 const OperadorCard = (user: any) => {
   const [expanded, setExpanded] = useState(false);
@@ -84,54 +85,7 @@ const OperadorCard = (user: any) => {
           setHeight={accodionHeight}
           ref={ref}
         >
-          <S.DataUser className="accodion" ref={ref}>
-            <S.SideUser>
-              <S.Fase>
-                <S.Icon src="/icon-page/recebidos.png"></S.Icon>
-                <div>
-                  <S.TotalFase>42 Lotes</S.TotalFase>
-                  <S.PerecentageFase>20%</S.PerecentageFase>
-                </div>
-              </S.Fase>
-              <S.Fase>
-                <S.Icon src="/icon-page/preparo.png"></S.Icon>
-                <div>
-                  <S.TotalFase>42 Lotes</S.TotalFase>
-                  <S.PerecentageFase>20%</S.PerecentageFase>
-                </div>
-              </S.Fase>
-              <S.Fase>
-                <S.Icon src="/icon-page/catalogacao.png"></S.Icon>
-                <div>
-                  <S.TotalFase>42 Lotes</S.TotalFase>
-                  <S.PerecentageFase>20%</S.PerecentageFase>
-                </div>
-              </S.Fase>
-            </S.SideUser>
-            <S.SideUser>
-              <S.Fase>
-                <S.Icon src="/icon-page/digitalizacao.png"></S.Icon>
-                <div>
-                  <S.TotalFase>42 Lotes</S.TotalFase>
-                  <S.PerecentageFase>20%</S.PerecentageFase>
-                </div>
-              </S.Fase>
-              <S.Fase>
-                <S.Icon src="/icon-page/upload.png"></S.Icon>
-                <div>
-                  <S.TotalFase>42 Lotes</S.TotalFase>
-                  <S.PerecentageFase>20%</S.PerecentageFase>
-                </div>
-              </S.Fase>
-              <S.Fase>
-                <S.Icon src="/icon-page/arquivamento.png"></S.Icon>
-                <div>
-                  <S.TotalFase>42 Lotes</S.TotalFase>
-                  <S.PerecentageFase>20%</S.PerecentageFase>
-                </div>
-              </S.Fase>
-            </S.SideUser>
-          </S.DataUser>
+          <DataFase recepcao={30} preparo={2} catalogacao={12} digitalizacao={23} upload={1} arquivados={23}/>
         </S.Footer>
       </S.totalArea>
       {modal && (

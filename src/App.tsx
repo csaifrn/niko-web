@@ -14,6 +14,7 @@ import Upload from "./pages/Etapas/Upload";
 import LoteDetails from "./components/LoteDetails";
 import MenuCoord from "./components/MenuCoord";
 import Operador from "./pages/Coordenador/Operador";
+import Categoria from "./pages/Coordenador/Categoria";
 import { Menu } from "./components/Menu";
 
 initMyFirebase();
@@ -35,6 +36,7 @@ const App = () => {
         <Route path="/Board/Catalogacao" element={<Catalogacao />} />
         <Route path="/Board/Digitalizacao" element={<Digitalizacao />} />
         <Route path="/Operadores" element={<Operador />} />
+        <Route path="/Categorias" element={<Categoria />} />
         <Route path="/Board/Upload" element={<Upload />} />
         <Route path={`/Lote/:id`} element={<LoteDetails/>} />
       </Routes>

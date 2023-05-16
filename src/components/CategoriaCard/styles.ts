@@ -17,11 +17,12 @@ const CardArea = styled.div`
   color: white;
   font-family: "Rubik";
   border-radius: 5px;
+  overflow: hidden;
 `;
 const CardA = styled.div`
   display: flex;
   flex-direction: column;
-  padding: 1.5em 2em; 
+  padding: 1.5em 2em;
   background-color: #393e4b;
   gap: 2em;
   font-family: "Rubik";

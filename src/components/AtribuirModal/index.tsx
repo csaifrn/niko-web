@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import * as S from "./styles";
 import Search from "../Search";
 
@@ -63,8 +63,10 @@ export const AtribuirModal = (props: AtribuirModalProps) => {
   );
 
   return (
-    <S.ModalArea>
-      <S.ModalContent>
+    <>
+    <S.ModalBackdrop >
+    <S.ModalArea >
+      <S.ModalContent id="modal-content">
         <S.NameClose>
           <h2>Atribuir Lote</h2>
           <img
@@ -110,6 +112,9 @@ export const AtribuirModal = (props: AtribuirModalProps) => {
         </S.AtribuirButton>
       </S.ModalContent>
     </S.ModalArea>
+    </S.ModalBackdrop>
+    </>
+
   );
 };
 

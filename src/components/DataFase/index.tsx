@@ -4,11 +4,13 @@ interface IDataFaseProps {
   catalogacao: number,
   digitalizacao: number,
   upload: number,
-  arquivados: number
+  arquivados: number,
 }
+import { useState } from "react";
 import * as S from "./styles";
 
 export const DataFase = (Props : IDataFaseProps) => {
+
 
   const total = Props.recepcao + Props.preparo + Props.catalogacao + Props.digitalizacao + Props.upload + Props.arquivados;
 
@@ -19,7 +21,12 @@ export const DataFase = (Props : IDataFaseProps) => {
 
   return (
     <>
+    <div style={{padding: '2em 2em 0 2em', display: 'flex', gap: '1em', alignItems: 'center' }}>
+      <h1 style={{color: '#F3802D'}}>{total}</h1>
+      <h2> Lotes</h2>
+    </div>
     <S.DataUser>
+      
     <S.SideUser>
       <S.Fase>
         <S.Icon src="/icon-page/recebidos.png"></S.Icon>
@@ -67,7 +74,6 @@ export const DataFase = (Props : IDataFaseProps) => {
       </S.Fase>
     </S.SideUser>
     </S.DataUser>
-
     </>
 
 

@@ -4,7 +4,7 @@ import styled from "styled-components";
 const ModalArea = styled.div`
   position: fixed;
   width: 60%;
-  top: calc(10% - 2em);
+  top: calc(30% - 2em);
   left: calc(20% - 2em);
   padding: 2em;
   background-color: #393e4b;
@@ -24,6 +24,7 @@ const ModalContent = styled.div`
 const NameClose = styled.div`
  display: flex;
  justify-content: space-between;
+ align-items: center;
 `;
 
 const ChooseLote = styled.div`
@@ -43,10 +44,19 @@ const Lote = styled.div`
   cursor: pointer;
 `;
 
-const AtribuirButton = styled.button`
+const Recused = styled.button`
   height: 44px;
   border-radius: 5px;
-  background-color: #43DB6D;
+  background-color: #191C24;
+  border: none;
+  color: white;
+  font-family: "Rubik";
+`;
+
+const Delete = styled.button`
+  height: 44px;
+  border-radius: 5px;
+  background-color: #F32D2D;
   border: none;
   color: white;
   font-family: "Rubik";
@@ -62,4 +72,4 @@ const ModalBackdrop = styled.div`
   background-color: rgba(25, 28, 36, 0.5);;
 `;
 
-export { ModalArea, ModalContent, NameClose, ChooseLote, Lote, AtribuirButton, ModalBackdrop};
+export { ModalArea, ModalContent, NameClose, ChooseLote, Lote, Recused, Delete, ModalBackdrop };

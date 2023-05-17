@@ -201,6 +201,19 @@ const mockData = [
         id: "12",
         title: "Lote 01",
         protocolo: "000209",
+        estante: "23-A",
+        observacao: [
+          {
+            titulo: "Há erro na digitalização de 3 processos",
+            pendencia: true,
+            ObsId: uuidv4(),
+          },
+          {
+            titulo: "Lote possui 2 processos que já foram digitalizados previamente",
+            pendencia: false,
+            ObsId: uuidv4()
+          },
+        ], 
         categoria: [
           {
             nome: "Financeiro",
@@ -227,7 +240,6 @@ const mockData = [
         fases: [
           {
             id: 1,
-
             recepçao: [
               {
                 id: uuidv4(),

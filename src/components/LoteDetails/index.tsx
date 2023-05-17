@@ -34,13 +34,17 @@ export const LoteDetails = () => {
         {/* TÍTULO DO LOTE */}
         <h1 style={{ marginBottom: "0.5em" }}>{task.title}</h1>
 
-        {/* PROTOCOLO */}
-        {/*<S.Protocolo>
-            <S.ProtocoloTextDiv style={{ borderRadius: "5px" }}> 
-              <p style={{ padding: "0 0.5em" }}>{task.protocolo}</p> 
-            </S.ProtocoloTextDiv>
+        <S.DetalhesLote>
+          {/* PROTOCOLO */}
+          <S.Protocolo>
+              <S.ProtocoloTextDiv> 
+                <p style={{ padding: "0 0.5em" }}>{task.protocolo}</p> 
+              </S.ProtocoloTextDiv>
           </S.Protocolo>
-        */}
+          
+          {/* ESTANTE */}
+          <S.Estante>{task.estante}</S.Estante>
+        </S.DetalhesLote>
 
         {/* CATEGORIAS */}
         <S.Categoria>
@@ -63,35 +67,63 @@ export const LoteDetails = () => {
           </div>
         </>
         
-        {/* OBSERVAÇÃO */}
+        {/* OBSERVAÇÕES */}
         <S.Observações>
-          Observações
-          <S.ObsDiv> Teste </S.ObsDiv>
-          <S.ObsDiv> <p> Lote possui 2 processos que já foram digitalizados previamente</p> </S.ObsDiv>
+          <h3>Observações</h3>
+          {task.observacao.map((obs: any, index: number) => (
+            <S.ObsDiv key = {obs.ObsId}>
+              {obs.pendencia && <img src={"/warning.svg"} alt="ícone de alerta"/>}
+              {obs.titulo}
+            </S.ObsDiv>
+          ))}
         </S.Observações>
 
         {/* VOLTAR FASE */}
-        <S.Botao>
-          <img src={`/voltar.svg`}/>
-          Voltar Fase
-        </S.Botao>
+
+        <S.BotaoMudarFase>
+          <S.VoltarAvancar>
+            <img src={`/voltar.svg`}/>
+            <h3>Voltar Fase</h3>
+          </S.VoltarAvancar>
+
+          <S.EscolherFase>
+            <S.OptionFases value="maca">Recepção</S.OptionFases>
+            <S.OptionFases value="laranja">Preparo</S.OptionFases>
+            <S.OptionFases value="banana">Catalogação</S.OptionFases>
+            <S.OptionFases value="uva">Digitalização</S.OptionFases>
+            <S.OptionFases value="uva">Upload</S.OptionFases>
+            <S.OptionFases value="uva">Arquivamento</S.OptionFases>
+          </S.EscolherFase>
+        </S.BotaoMudarFase>
 
         {/* AVANÇAR FASE */}
-        <S.Botao>
-          <img src={`/avancar.svg`}/>
-          Avançar Fase
-        </S.Botao>
+
+        <S.BotaoMudarFase>
+          <S.VoltarAvancar>
+            <img src={`/avancar.svg`}/>
+            <h3>Avançar Fase</h3>
+          </S.VoltarAvancar>
+
+          <S.EscolherFase>
+            <S.OptionFases className="fase" value="recepção">Recepção</S.OptionFases>
+            <S.OptionFases className="fase" value="preparo">Preparo</S.OptionFases>
+            <S.OptionFases className="fase" value="catalogação">Catalogação</S.OptionFases>
+            <S.OptionFases className="fase" value="digitalização">Digitalização</S.OptionFases>
+            <S.OptionFases className="fase" value="upload">Upload</S.OptionFases>
+            <S.OptionFases className="fase" value="arquivamento">Arquivamento</S.OptionFases>
+          </S.EscolherFase>
+        </S.BotaoMudarFase>
 
         {/* ATRIBUIR À ALGUÉM */}
         <S.Botao>
           <img src={`/atribuir.svg`}/>
-          Atribuir à alguém
+          <h3>Atribuir à alguém</h3>
         </S.Botao>
 
         {/* DELETAR LOTE */}
         <S.Botao style={{ backgroundColor:"#F32D2D" }}>
           <img src={`/trash.svg`}/>
-          Deletar Lote
+          <h3>Deletar lote</h3>
         </S.Botao>        
 
         {/* DETALHAMENTO POR FASE */}

@@ -43,10 +43,46 @@ const Exit = styled.div`
   display: flex;
   justify-content:center;
   align-items:center;
+`;
+
+const DetalhesLote = styled.div`
+  display: flex;
+  gap: 0.5em;
+`;
+
+const Protocolo = styled.div`
+  height: 2em;
+  display: flex;
+  align-items:center;
   p{
     color: "white";
     margin-bottom: "0";
-   
+  }
+`;
+
+const ProtocoloTextDiv = styled.div`
+  height: 2em;
+  display: flex;
+  align-items:center;
+  background-color: #393E4B;
+  border-radius: 3px;
+  p{
+    color: "white";
+    margin-bottom: "0";
+  }
+`;
+
+const Estante = styled.div`
+  height: 2em;
+  width: 4em;
+  display: flex;
+  align-items:center;
+  justify-content: center;
+  background-color: #393E4B;
+  border-radius: 3px;
+  p{
+    color: "white";
+    margin-bottom: "0";
   }
 `;
 
@@ -54,6 +90,21 @@ const Categoria = styled.div`
   display: flex;
   flex-wrap: wrap;
   gap: 0.5em;
+`;
+
+const NomeCategoriaTextDiv = styled.div`
+  height: 2em;
+  width: auto;
+  background-color: #191c24;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #393E4B;
+  margin-top: 1em;
+  p{
+    color: "white";
+    margin-bottom: "0";
+  }
 `;
 
 const Prioridade = styled.div`
@@ -68,20 +119,6 @@ const Prioridade = styled.div`
     color: white;
     margin-bottom: 0;
     padding: 0 0.5em;
-  }
-`;
-
-const NomeCategoriaTextDiv = styled.div`
-  height: 2em;
-  width: auto;
-  background-color: #191c24;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: #393E4B;
-  p{
-    color: "white";
-    margin-bottom: "0";
   }
 `;
 
@@ -101,11 +138,26 @@ const FaseIconDiv = styled.div`
   margin-top: 1em;  
   display: flex;
   align-items:center;
-  gap:1em;
+  gap: 1em;
   h2{
     color: "white";
     margin-bottom: "0";
   }
+`;
+
+const Fase = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 16px;
+  gap: 16px;
+  width: calc(100%-6em);
+  background: #393E4B;
+  border-radius: 8px;
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+  margin-top: 2em;
 `;
 
 const TimeBeginDiv = styled.div`
@@ -152,25 +204,6 @@ const Text = styled.p `
   padding: "0 0.5em";
   align-content: left;
 `
-const Protocolo = styled.div`
-  height: 2em;
-  display: flex;
-  align-items:center;
-  p{
-    color: "white";
-    margin-bottom: "0";
-  }
-`;
-
-const ProtocoloTextDiv = styled.div`
-  height: 2em;
-  display: flex;
-  align-items:center;
-  p{
-    color: "white";
-    margin-bottom: "0";
-  }
-`;
 
 const Observações = styled.div`
   display: flex;
@@ -191,8 +224,8 @@ const Observações = styled.div`
 const ObsDiv = styled.div`
   background-color:#191C24;
   border-radius: 5px;
-  width: calc(100%);
-  height: 48px;
+  gap: 1em;
+  padding:1em;
   display:flex;
   align-items:center;
   justify-content:center;
@@ -201,29 +234,61 @@ const ObsDiv = styled.div`
   flex-grow: 0;
 `;
 
+const BotaoMudarFase = styled.div`
+  display:flex;
+
+`;
+
+const VoltarAvancar = styled.div`
+  background-color: #393E4B;
+  display: flex;
+  align-items:center;
+  gap: 1em;
+  padding: 2em;
+  width:calc(50%);
+  border-radius: 5px 0px 0px 5px;
+  margin-top: 1.5em;
+  p{
+    color: "white";
+    margin-bottom: "0";
+  }
+`;
+
+const EscolherFase = styled.select`
+  background-color: #393E4B;
+  width:calc(50%);
+  display:flex;
+  padding: 2em;
+  margin-top: 1.5em;
+  border-radius: 0px 5px 5px 0px;
+  color:white;
+  font-family: 'Rubik', Helvetica, sans-serif;
+`;
+
+const OptionFases = styled.option`
+  background-color: #393E4B;
+  width:calc(50%);
+  display:flex;
+  padding: 2em;
+  margin-top: 1.5em;
+  border-radius: 0px 5px 5px 0px;
+  fase:hover{
+    background-color:#191C24;
+  }
+`;
 
 const Botao = styled.div`
   background-color: #393E4B;
   display: flex;
   align-items:center;
   gap: 1em;
-  height: 5em;
+  padding: 2em;
   width:calc(100%-6em);
   border-radius: 5px;
-  margin-top: 2em;
+  margin-top: 1.5em;
   p{
     color: "white";
     margin-bottom: "0";
-  }
-  .excluir{
-    display: flex;
-    align-items:center;
-    background-color: #393E4B;
-    height: 5em;
-    width:calc(100%-6em);
-    border-radius: 5px;
-    margin-top:2em;
-    background-color:red;
   }
 `;
 
@@ -231,19 +296,5 @@ const DetalFase = styled.div`
   margin-top: 2em;
 `;
 
-const Fase = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  padding: 16px;
-  gap: 16px;
-  width: calc(100%-6em);
-  background: #393E4B;
-  border-radius: 8px;
-  flex: none;
-  order: 0;
-  flex-grow: 0;
-  margin-top: 2em;
-`;
 
-export { areaClick, Exit,CloseDiv, Categoria ,Prioridade ,NomeCategoriaTextDiv ,TextDiv , FaseIconDiv, TimeBeginDiv, TimeFinishDiv, Time, EnvolvidosDiv,Text, Protocolo, ProtocoloTextDiv, Observações, ObsDiv, Botao, DetalFase, Fase };
+export { areaClick, Exit,CloseDiv, DetalhesLote, Protocolo, Estante, Categoria ,Prioridade ,NomeCategoriaTextDiv ,TextDiv , FaseIconDiv, TimeBeginDiv, TimeFinishDiv, Time, EnvolvidosDiv,Text, ProtocoloTextDiv, Observações, ObsDiv,BotaoMudarFase, VoltarAvancar, EscolherFase, OptionFases, Botao, DetalFase, Fase };

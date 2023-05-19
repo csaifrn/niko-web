@@ -53,7 +53,9 @@ const CategoriaCard = (Categoria: any) => {
             </S.CabecarioCategoria>
             <S.BarOut>
               <S.BarInner percentage={percentage}></S.BarInner>
+              
             </S.BarOut>
+            <p>{percentage}%</p>
           </S.CategoriaClick>
         </S.CardA>
 

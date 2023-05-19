@@ -94,6 +94,22 @@ const Fase = styled.div`
   gap: 1em;
 `;
 
+const CategoriaClick = styled.div`
+  background-color: #393E4B;
+  font-family: "Rubik";
+  color: #fff;
+  display: grid;
+  gap: 1em; 
+  border-radius: 5px;
+`;
+
+const CabecarioCategoria = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 24px;
+`;
+
 const Icon = styled.img`
   height: 18px;
   width: 18px;
@@ -108,6 +124,22 @@ const PerecentageFase = styled.p`
   font-size: 10px;
 `;
 
+const Prioridade = styled.div`
+  height: 24px;
+  background-color: #dd3b3b;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  p {
+    color: white;
+    margin-bottom: 0;
+    padding: 0 0.5em;
+  }
+`;
+
+
 const ButtonAtribuir = styled.button`
   height: 44px;
   width: 100%;
@@ -120,6 +152,32 @@ const ButtonAtribuir = styled.button`
   padding: 0em 1em;
   gap: 1em;
   font-family: "Rubik";
+`;
+
+const BarOut = styled.div`
+  background-color: #191C24;
+  width: 100%;
+  height: 1.5em;
+  border-radius: 5px;
+  overflow: hidden;
+`;
+
+interface IBar {
+  percentage: number
+}
+
+const BarInner = styled.div<IBar>`
+ background-color: #00D25B;
+ width: ${({ percentage }) => percentage}%;
+ height: 1.5em;
+`;
+
+const BtnsDiv = styled.div`
+  padding: 0 2em 2em 2em;
+  display: flex; 
+  flex-direction: column; 
+  gap: 1em; 
+  align-items: center;
 `;
 
 export {
@@ -137,4 +195,10 @@ export {
   Fase,
   ButtonAtribuir,
   CardA,
+  CategoriaClick,
+  CabecarioCategoria,
+  Prioridade,
+  BarOut,
+  BarInner,
+  BtnsDiv,
 };

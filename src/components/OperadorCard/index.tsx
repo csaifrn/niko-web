@@ -85,7 +85,7 @@ const OperadorCard = (user: any) => {
           setHeight={accodionHeight}
           ref={ref}
         >
-          <DataFase recepcao={30} preparo={2} catalogacao={12} digitalizacao={23} upload={1} arquivados={23}/>
+          <DataFase recepcao={30} preparo={2} catalogacao={12} digitalizacao={23} upload={1} arquivados={23} percentageCallback={() => {}}/>
         </S.Footer>
       </S.totalArea>
       {modal && (

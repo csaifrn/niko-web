@@ -5,8 +5,9 @@ interface IDataFaseProps {
   digitalizacao: number,
   upload: number,
   arquivados: number,
+  percentageCallback: (valor: number) => void | null;
 }
-import { useState } from "react";
+import { useEffect } from "react";
 import * as S from "./styles";
 
 export const DataFase = (Props : IDataFaseProps) => {
@@ -18,6 +19,13 @@ export const DataFase = (Props : IDataFaseProps) => {
     return (fase/total*100).toFixed(1)
   }
 
+  const calPercentageNumber = (fase: number) => {
+    return Math.round( (fase/total*100) * 1e2 ) / 1e2
+  }
+  
+  useEffect(() => {
+    Props.percentageCallback(calPercentageNumber(Props.arquivados))
+  }, []);
 
   return (
     <>

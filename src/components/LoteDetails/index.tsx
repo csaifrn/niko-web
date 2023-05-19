@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import * as S from "./styles";
-import { Content } from "../Lote/styles";
+import { Content, LoteEdit } from "../Lote/styles";
 import mockData from "../../data/kanbanData";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
@@ -31,8 +31,15 @@ export const LoteDetails = () => {
           </S.Exit>
         </S.CloseDiv>
 
-        {/* TÍTULO DO LOTE */}
-        <h1 style={{ marginBottom: "0.5em" }}>{task.title}</h1>
+        <S.LoteEditConfig>
+          {/* TÍTULO DO LOTE */}
+          <S.TituloLote style={{ marginBottom: "0.5em" }}>{task.title}</S.TituloLote>
+          <S.EditConfig>
+            <S.Edit> <S.Icons src={`/pen.svg`} ></S.Icons> </S.Edit>
+            <S.Config> <S.Icons src={`/config.svg`} ></S.Icons> </S.Config>
+          </S.EditConfig>
+        </S.LoteEditConfig>
+
 
         <S.DetalhesLote>
           {/* PROTOCOLO */}
@@ -44,6 +51,18 @@ export const LoteDetails = () => {
           
           {/* ESTANTE */}
           <S.Estante>{task.estante}</S.Estante>
+
+          {/* ARQUIVOS FÍSICOS */}
+          <S.ArquivFisicos> 
+            <img src={`/arquivos_fisicos.svg`}/>
+            {task.arquivos_fisicos}
+          </S.ArquivFisicos>
+
+          {/* ARQUIVOS DIGITAIS */}
+          <S.ArquivDigitais> 
+            <img src={`/arquivos_digitais.svg`}/>
+            {task.arquivos_digitais}
+          </S.ArquivDigitais>
         </S.DetalhesLote>
 
         {/* CATEGORIAS */}

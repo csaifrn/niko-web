@@ -202,6 +202,8 @@ const mockData = [
         title: "Lote 01",
         protocolo: "000209",
         estante: "23-A",
+        arquivos_fisicos: "32",
+        arquivos_digitais: "23",
         observacao: [
           {
             titulo: "Há erro na digitalização de 3 processos",

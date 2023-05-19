@@ -6,7 +6,7 @@ const areaClick = styled.div`
   padding: 2em;
   transition: transform 0.9s ease-in-out;
   filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
-  margin: 1em;
+  margin: 0.5em 0em 10em 0em;
   font-family: 'Rubik', Helvetica, sans-serif;
   &::-webkit-scrollbar {
     width: 0.8em;
@@ -28,6 +28,13 @@ const areaClick = styled.div`
   }
 
 `;
+const Icons = styled.img`
+
+`
+
+const TituloLote = styled.h1`
+
+`
 
 const CloseDiv = styled.div`
   display: flex;
@@ -45,19 +52,46 @@ const Exit = styled.div`
   align-items:center;
 `;
 
+const LoteEditConfig = styled.div`
+  display:flex;
+  justify-content:space-between;
+  padding: 1em 0em 0em 0em;
+`;
+
+const EditConfig = styled.div`
+  display:flex;
+  gap:0.5em;
+`;
+
+const Edit = styled.div`
+  height: 2em;
+  width: 2em;  
+  background-color: #393E4B;
+  border-radius: 3px;
+  margin-bottom: 0.5em;
+  display: flex;
+  justify-content:center;
+  align-items:center;
+`;
+
+const Config = styled.div`
+  height: 2em;
+  width: 2em;  
+  background-color: #393E4B;
+  border-radius: 3px;
+  margin-bottom: 0.5em;
+  display: flex;
+  justify-content:center;
+  align-items:center;
+`;
+
 const DetalhesLote = styled.div`
   display: flex;
   gap: 0.5em;
+  padding: 1em 0em 0em 0em;
 `;
 
 const Protocolo = styled.div`
-  height: 2em;
-  display: flex;
-  align-items:center;
-  p{
-    color: "white";
-    margin-bottom: "0";
-  }
 `;
 
 const ProtocoloTextDiv = styled.div`
@@ -74,7 +108,7 @@ const ProtocoloTextDiv = styled.div`
 
 const Estante = styled.div`
   height: 2em;
-  width: 4em;
+  width: 3.5em;
   display: flex;
   align-items:center;
   justify-content: center;
@@ -86,10 +120,33 @@ const Estante = styled.div`
   }
 `;
 
+const ArquivFisicos = styled.div`
+  background-color: #393E4B;
+  height: 2em;
+  width: 4em;
+  display: flex;
+  align-items:center;
+  justify-content: center;
+  gap: 0.5em;
+  border-radius: 3px;
+`;
+
+const ArquivDigitais = styled.div`
+  background-color: #393E4B;
+  height: 2em;
+  width: 4em;
+  display: flex;
+  align-items:center;
+  justify-content: center;
+  gap: 0.5em;
+  border-radius: 3px;
+`;
+
 const Categoria = styled.div`
   display: flex;
   flex-wrap: wrap;
   gap: 0.5em;
+  padding: 1em 0em 0em 0em;
 `;
 
 const NomeCategoriaTextDiv = styled.div`
@@ -165,10 +222,9 @@ const TimeBeginDiv = styled.div`
   display: flex;
   align-items: center;
   gap: 1em;
-  p{
-    color: "white";
-    margin-bottom: "0";
-  }
+  font-style:normal;
+  line-height: 14px;
+  font-weight: 400;
 `;
 
 const TimeFinishDiv = styled.div`
@@ -176,16 +232,18 @@ const TimeFinishDiv = styled.div`
   display: flex;
   align-items: center;
   gap: 1em;
-  p{
-    color: "white";
-    margin-bottom: "0";
-  }
+  font-style:normal;
+  line-height: 14px;
+  font-weight: 400;
 `;
 
 const Time = styled.div`
   display:flex;
   align-items: center;
   gap:1em;
+  font-style:normal;
+  line-height: 14px;
+  font-weight: 400;
 `;
 
 const EnvolvidosDiv = styled.div`
@@ -194,10 +252,6 @@ const EnvolvidosDiv = styled.div`
   flex-wrap: wrap;  
   gap: 0.5em;
   margin-top:0.5em;
-  p{
-    color: "white";
-    margin-bottom: "0";
-  }
 `;
 
 const Text = styled.p `
@@ -297,4 +351,4 @@ const DetalFase = styled.div`
 `;
 
 
-export { areaClick, Exit,CloseDiv, DetalhesLote, Protocolo, Estante, Categoria ,Prioridade ,NomeCategoriaTextDiv ,TextDiv , FaseIconDiv, TimeBeginDiv, TimeFinishDiv, Time, EnvolvidosDiv,Text, ProtocoloTextDiv, Observações, ObsDiv,BotaoMudarFase, VoltarAvancar, EscolherFase, OptionFases, Botao, DetalFase, Fase };
+export { areaClick,Icons, TituloLote, Exit,CloseDiv, DetalhesLote, Edit, Config, LoteEditConfig, EditConfig, Protocolo, Estante, ArquivFisicos, ArquivDigitais, Categoria ,Prioridade ,NomeCategoriaTextDiv ,TextDiv , FaseIconDiv, TimeBeginDiv, TimeFinishDiv, Time, EnvolvidosDiv,Text, ProtocoloTextDiv, Observações, ObsDiv,BotaoMudarFase, VoltarAvancar, EscolherFase, OptionFases, Botao, DetalFase, Fase };

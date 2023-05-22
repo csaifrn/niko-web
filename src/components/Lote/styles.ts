@@ -25,18 +25,21 @@ const LoteEdit = styled.div`
 const LoteArea = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 0.5em;
+  gap: 1em;
 `;
 
 const Content = styled.div`
   display: flex;
   justify-content: space-between;
+  align-left {
+    justify-self: left;
+  }
 `;
 
 const Prioridade = styled.div`
   height: 24px;
   background-color: #dd3b3b;
-  border-radius: 5px;
+  border-radius: 3px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -79,6 +82,23 @@ const fotoEnv = styled.img`
   border-radius: 100%;
 `;
 
+const Btn = styled.button`
+  padding: 0.5em;
+  width: 100%;
+  height: 44px;
+  background-color: #43DB6D;
+  border-radius: 5px;
+  border: none;
+  color: white;
+  font-weight: bold;
+  :hover {
+  }
+  p {
+    font-family: "Rubik";
+    color: #191C24;
+  }
+`;
+
 export {
   Lote,
   LoteArea,
@@ -89,4 +109,5 @@ export {
   PaTextDiv,
   fotoEnv,
   LoteEdit,
+  Btn,
 };

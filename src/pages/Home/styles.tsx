@@ -45,13 +45,14 @@ const Btn = styled.button`
   padding: 0.5em;
   width: 40%;
   background-color: #F3802D;
-  border-radius: 0.5em;
+  border-radius: 5px;
   border: 1px solid #F3802D;
   color: white;
   font-weight: bold;
   :hover {
     border: 1px solid #B1B1B1;
   }
+
 `;
 
 export { Title, Wrapper, Main, FooterHome, spanLinear, Btn };

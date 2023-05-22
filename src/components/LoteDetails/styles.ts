@@ -171,7 +171,6 @@ const Prioridade = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-
   p {
     color: white;
     margin-bottom: 0;
@@ -188,6 +187,114 @@ const TextDiv = styled.div`
     color: "white";
     margin-bottom: "0";
   }
+`;
+
+const Text = styled.p `
+  padding: "0 0.5em";
+  align-content: left;
+`
+
+const FaseEnvolvAtual = styled.div `
+  display:flex;
+  justify-content: flex-start;
+  gap:0.5em;
+  padding: 2em 0em 0em 0em;
+`
+
+const ObsBotoes = styled.div `
+  padding: 2em 0em 0em 0em;
+  display:flex;
+  flex-direction: column;
+  gap:2em;
+`
+
+const Observações = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: start;
+  gap: 10px;
+  width: calc(100%-6em);
+  background: #393E4B;
+  border-radius: 5px;
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+  padding: 2em;
+`;
+
+const ObsDivBlack = styled.div`
+  background-color:#191C24;
+  border-radius: 5px;
+  gap: 1em;
+  padding:1em;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex: none;
+  order: 1;
+  flex-grow: 0;
+`;
+
+const BotaoMudarFase = styled.div`
+  display:flex;
+`;
+
+const VoltarAvancar = styled.div`
+  background-color: #393E4B;
+  display: flex;
+  align-items:center;
+  gap: 1em;
+  padding: 0em 2em ;
+  height:44px;
+  width:calc(50%);
+  border-radius: 5px 0px 0px 5px;
+  p{
+    color: "white";
+    margin-bottom: "0";
+  }
+`;
+
+const EscolherFase = styled.select`
+  background-color: #393E4B;
+  width:calc(50%);
+  display:flex;
+  padding: 0em 2em ;
+  height:44px;
+  border:none;
+  border-radius: 0px 5px 5px 0px;
+  border-left: 1px solid #FFF;
+  color:white;
+  font-family: 'Rubik', Helvetica, sans-serif;
+`;
+
+const OptionFases = styled.option`
+  background-color: #393E4B;
+  width:calc(50%);
+  display:flex;
+  padding: 2em;
+  border-radius: 0px 5px 5px 0px;
+  fase:hover{
+    background-color:#191C24;
+  }
+`;
+
+const Botao = styled.div`
+  background-color: #393E4B;
+  display: flex;
+  align-items:center;
+  gap: 1em;
+  padding: 0em 2em ;
+  height:44px;
+  width:calc(100%-6em);
+  border-radius: 5px;
+`;
+
+const DetalFase = styled.div`
+  padding: 2em 0em 0em 0em;
+  display:flex;
+  flex-direction: column;
+  gap: 2em;
 `;
 
 const FaseIconDiv = styled.div`
@@ -214,7 +321,6 @@ const Fase = styled.div`
   flex: none;
   order: 0;
   flex-grow: 0;
-  margin-top: 2em;
 `;
 
 const TimeBeginDiv = styled.div`
@@ -254,101 +360,4 @@ const EnvolvidosDiv = styled.div`
   margin-top:0.5em;
 `;
 
-const Text = styled.p `
-  padding: "0 0.5em";
-  align-content: left;
-`
-
-const Observações = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: start;
-  align-items: start;
-  gap: 10px;
-  width: calc(100%-6em);
-  background: #393E4B;
-  border-radius: 5px;
-  flex: none;
-  order: 0;
-  flex-grow: 0;
-  margin-top:2em;
-  padding: 2em;
-`;
-
-const ObsDiv = styled.div`
-  background-color:#191C24;
-  border-radius: 5px;
-  gap: 1em;
-  padding:1em;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  flex: none;
-  order: 1;
-  flex-grow: 0;
-`;
-
-const BotaoMudarFase = styled.div`
-  display:flex;
-
-`;
-
-const VoltarAvancar = styled.div`
-  background-color: #393E4B;
-  display: flex;
-  align-items:center;
-  gap: 1em;
-  padding: 2em;
-  width:calc(50%);
-  border-radius: 5px 0px 0px 5px;
-  margin-top: 1.5em;
-  p{
-    color: "white";
-    margin-bottom: "0";
-  }
-`;
-
-const EscolherFase = styled.select`
-  background-color: #393E4B;
-  width:calc(50%);
-  display:flex;
-  padding: 2em;
-  margin-top: 1.5em;
-  border-radius: 0px 5px 5px 0px;
-  color:white;
-  font-family: 'Rubik', Helvetica, sans-serif;
-`;
-
-const OptionFases = styled.option`
-  background-color: #393E4B;
-  width:calc(50%);
-  display:flex;
-  padding: 2em;
-  margin-top: 1.5em;
-  border-radius: 0px 5px 5px 0px;
-  fase:hover{
-    background-color:#191C24;
-  }
-`;
-
-const Botao = styled.div`
-  background-color: #393E4B;
-  display: flex;
-  align-items:center;
-  gap: 1em;
-  padding: 2em;
-  width:calc(100%-6em);
-  border-radius: 5px;
-  margin-top: 1.5em;
-  p{
-    color: "white";
-    margin-bottom: "0";
-  }
-`;
-
-const DetalFase = styled.div`
-  margin-top: 2em;
-`;
-
-
-export { areaClick,Icons, TituloLote, Exit,CloseDiv, DetalhesLote, Edit, Config, LoteEditConfig, EditConfig, Protocolo, Estante, ArquivFisicos, ArquivDigitais, Categoria ,Prioridade ,NomeCategoriaTextDiv ,TextDiv , FaseIconDiv, TimeBeginDiv, TimeFinishDiv, Time, EnvolvidosDiv,Text, ProtocoloTextDiv, Observações, ObsDiv,BotaoMudarFase, VoltarAvancar, EscolherFase, OptionFases, Botao, DetalFase, Fase };
+export { areaClick,Icons, TituloLote, Exit,CloseDiv, DetalhesLote, Edit, Config, LoteEditConfig, EditConfig, Protocolo, Estante, ArquivFisicos, ArquivDigitais, Categoria ,Prioridade ,NomeCategoriaTextDiv ,TextDiv , FaseIconDiv, TimeBeginDiv, TimeFinishDiv, Time, EnvolvidosDiv,Text, ProtocoloTextDiv, FaseEnvolvAtual, ObsBotoes, Observações, ObsDivBlack,BotaoMudarFase, VoltarAvancar, EscolherFase, OptionFases, Botao, DetalFase, Fase };

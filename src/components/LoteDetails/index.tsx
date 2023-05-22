@@ -80,70 +80,71 @@ export const LoteDetails = () => {
         </S.Categoria>
         
         {/* FASE DO LOTE */}
-        <>
-          <div style={{ margin: "2em 0em 0em 0em", display: "flex", justifyContent: "flex-start", gap: "0.5em" }}>
-            <img src={`/icon-page/${task.fase_atual[0].nome}.png`}/>
-          </div>
-        </>
-        
-        {/* OBSERVAÇÕES */}
-        <S.Observações>
-          <h3>Observações</h3>
-          {task.observacao.map((obs: any, index: number) => (
-            <S.ObsDiv key = {obs.ObsId}>
-              {obs.pendencia && <img src={"/warning.svg"} alt="ícone de alerta"/>}
-              {obs.titulo}
-            </S.ObsDiv>
-          ))}
-        </S.Observações>
+        <S.FaseEnvolvAtual>
+          <S.Icons src={`/icon-page/${task.fase_atual[0].nome}.png`}/>
+        </S.FaseEnvolvAtual>
 
-        {/* VOLTAR FASE */}
+        <S.ObsBotoes>
+          {/* OBSERVAÇÕES */}
+          <S.Observações>
+            <p>Observações</p>
+            {task.observacao.map((obs: any, index: number) => (
+              <S.ObsDivBlack key = {obs.ObsId}>
+                {obs.pendencia && <img src={"/warning.svg"} alt="ícone de alerta"/>}
+                {obs.titulo}
+              </S.ObsDivBlack>
+            ))}
+          </S.Observações>
 
-        <S.BotaoMudarFase>
-          <S.VoltarAvancar>
-            <img src={`/voltar.svg`}/>
-            <h3>Voltar Fase</h3>
-          </S.VoltarAvancar>
+          {/* VOLTAR FASE */}
 
-          <S.EscolherFase>
-            <S.OptionFases value="maca">Recepção</S.OptionFases>
-            <S.OptionFases value="laranja">Preparo</S.OptionFases>
-            <S.OptionFases value="banana">Catalogação</S.OptionFases>
-            <S.OptionFases value="uva">Digitalização</S.OptionFases>
-            <S.OptionFases value="uva">Upload</S.OptionFases>
-            <S.OptionFases value="uva">Arquivamento</S.OptionFases>
-          </S.EscolherFase>
-        </S.BotaoMudarFase>
+          <S.BotaoMudarFase>
+            <S.VoltarAvancar>
+              <img src={`/voltar.svg`}/>
+              <p>Voltar Fase</p>
+            </S.VoltarAvancar>
 
-        {/* AVANÇAR FASE */}
+            <S.EscolherFase>
+              <S.OptionFases value="maca">Recepção</S.OptionFases>
+              <S.OptionFases value="laranja">Preparo</S.OptionFases>
+              <S.OptionFases value="banana">Catalogação</S.OptionFases>
+              <S.OptionFases value="uva">Digitalização</S.OptionFases>
+              <S.OptionFases value="uva">Upload</S.OptionFases>
+              <S.OptionFases value="uva">Arquivamento</S.OptionFases>
+            </S.EscolherFase>
+          </S.BotaoMudarFase>
 
-        <S.BotaoMudarFase>
-          <S.VoltarAvancar>
-            <img src={`/avancar.svg`}/>
-            <h3>Avançar Fase</h3>
-          </S.VoltarAvancar>
+          {/* AVANÇAR FASE */}
 
-          <S.EscolherFase>
-            <S.OptionFases className="fase" value="recepção">Recepção</S.OptionFases>
-            <S.OptionFases className="fase" value="preparo">Preparo</S.OptionFases>
-            <S.OptionFases className="fase" value="catalogação">Catalogação</S.OptionFases>
-            <S.OptionFases className="fase" value="digitalização">Digitalização</S.OptionFases>
-            <S.OptionFases className="fase" value="upload">Upload</S.OptionFases>
-            <S.OptionFases className="fase" value="arquivamento">Arquivamento</S.OptionFases>
-          </S.EscolherFase>
-        </S.BotaoMudarFase>
+          <S.BotaoMudarFase>
+            <S.VoltarAvancar>
+              <img src={`/avancar.svg`}/>
+              <p>Avançar Fase</p>
+            </S.VoltarAvancar>
 
-        {/* ATRIBUIR À ALGUÉM */}
-        <S.Botao>
-          <img src={`/atribuir.svg`}/>
-          <h3>Atribuir à alguém</h3>
-        </S.Botao>
+            <S.EscolherFase>
+              <S.OptionFases className="fase" value="recepção">Recepção</S.OptionFases>
+              <S.OptionFases className="fase" value="preparo">Preparo</S.OptionFases>
+              <S.OptionFases className="fase" value="catalogação">Catalogação</S.OptionFases>
+              <S.OptionFases className="fase" value="digitalização">Digitalização</S.OptionFases>
+              <S.OptionFases className="fase" value="upload">Upload</S.OptionFases>
+              <S.OptionFases className="fase" value="arquivamento">Arquivamento</S.OptionFases>
+            </S.EscolherFase>
+          </S.BotaoMudarFase>
 
-        {/* DELETAR LOTE */}
-        <S.Botao style={{ backgroundColor:"#F32D2D" }}>
-          <img src={`/trash.svg`}/>
-          <h3>Deletar lote</h3>
-        </S.Botao>        
+          {/* ATRIBUIR À ALGUÉM */}
+          <S.Botao>
+            <img src={`/atribuir.svg`}/>
+            <p>Atribuir à alguém</p>
+          </S.Botao>
+
+          {/* DELETAR LOTE */}
+          <S.Botao style={{ backgroundColor:"#F32D2D" }}>
+            <img src={`/trash.svg`}/>
+            <p>Deletar lote</p>
+          </S.Botao>
+        </S.ObsBotoes>
+                
 
         {/* DETALHAMENTO POR FASE */}
         <S.DetalFase>

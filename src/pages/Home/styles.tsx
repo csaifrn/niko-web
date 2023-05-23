@@ -10,8 +10,6 @@ const Title = styled.a`
   color: white;
 `;
 
-
-
 const Wrapper = styled.section`
   background-color: #0A090E;
   height: 100vh;

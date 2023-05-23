@@ -1,7 +1,6 @@
 import { Wrapper, Main, FooterHome } from "./styles";
 import useFirebaseAuth from "../../config/useAuth";
 import { Card } from "../../components/Card";
-
 import Lote from "../../components/Lote";
 import MenuCoord from "../../components/MenuCoord";
 

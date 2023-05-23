@@ -6,7 +6,7 @@ const areaClick = styled.div`
   padding: 2em;
   transition: transform 0.9s ease-in-out;
   filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
-  margin: 0.5em 0em 10em 0em;
+  margin: 0em 0em 8em 0em;
   font-family: 'Rubik', Helvetica, sans-serif;
   &::-webkit-scrollbar {
     width: 0.8em;
@@ -26,7 +26,6 @@ const areaClick = styled.div`
     background-color: transparent;
     margin: 0em;
   }
-
 `;
 const Icons = styled.img`
 
@@ -46,7 +45,6 @@ const Exit = styled.div`
   width: 2em;  
   background-color: #393E4B;
   border-radius: 3px;
-  margin-bottom: 0.5em;
   display: flex;
   justify-content:center;
   align-items:center;
@@ -55,7 +53,7 @@ const Exit = styled.div`
 const LoteEditConfig = styled.div`
   display:flex;
   justify-content:space-between;
-  padding: 1em 0em 0em 0em;
+  padding: 2em 0em 0em 0em;
 `;
 
 const EditConfig = styled.div`
@@ -88,22 +86,15 @@ const Config = styled.div`
 const DetalhesLote = styled.div`
   display: flex;
   gap: 0.5em;
-  padding: 1em 0em 0em 0em;
+  padding: 1.5em 0em 0em 0em;
 `;
 
 const Protocolo = styled.div`
-`;
-
-const ProtocoloTextDiv = styled.div`
   height: 2em;
   display: flex;
   align-items:center;
   background-color: #393E4B;
   border-radius: 3px;
-  p{
-    color: "white";
-    margin-bottom: "0";
-  }
 `;
 
 const Estante = styled.div`
@@ -114,10 +105,6 @@ const Estante = styled.div`
   justify-content: center;
   background-color: #393E4B;
   border-radius: 3px;
-  p{
-    color: "white";
-    margin-bottom: "0";
-  }
 `;
 
 const ArquivFisicos = styled.div`
@@ -142,51 +129,39 @@ const ArquivDigitais = styled.div`
   border-radius: 3px;
 `;
 
-const Categoria = styled.div`
+const CategoriaPrioridade = styled.div`
   display: flex;
   flex-wrap: wrap;
   gap: 0.5em;
-  padding: 1em 0em 0em 0em;
+  padding: 2em 0em 0em 0em;
 `;
 
-const NomeCategoriaTextDiv = styled.div`
-  height: 2em;
-  width: auto;
-  background-color: #191c24;
+const Categoria = styled.div`
+  width: 72px;
+  height: 24px;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  align-items:center;
+  justify-content:center;
   background-color: #393E4B;
-  margin-top: 1em;
-  p{
-    color: "white";
-    margin-bottom: "0";
-  }
+  border-radius: 3px;
 `;
 
 const Prioridade = styled.div`
+  width: 72px;
   height: 24px;
   background-color: #f32d2d;
-  border-radius: 3px;
+  height: 2em;
   display: flex;
-  justify-content: center;
-  align-items: center;
-  p {
-    color: white;
-    margin-bottom: 0;
-    padding: 0 0.5em;
-  }
-`;
+  align-items:center;
+  justify-content:center;
+  border-radius: 3px;
+  `;
 
 const TextDiv = styled.div`
   height: 2em;
   display: flex;
   margin-left:0em;
   align-items:center;
-  p{
-    color: "white";
-    margin-bottom: "0";
-  }
 `;
 
 const Text = styled.p `
@@ -202,7 +177,7 @@ const FaseEnvolvAtual = styled.div `
 `
 
 const ObsBotoes = styled.div `
-  padding: 2em 0em 0em 0em;
+  padding: 3em 0em 0em 0em;
   display:flex;
   flex-direction: column;
   gap:2em;
@@ -291,7 +266,7 @@ const Botao = styled.div`
 `;
 
 const DetalFase = styled.div`
-  padding: 2em 0em 0em 0em;
+  padding: 3em 0em 0em 0em;
   display:flex;
   flex-direction: column;
   gap: 2em;
@@ -360,4 +335,4 @@ const EnvolvidosDiv = styled.div`
   margin-top:0.5em;
 `;
 
-export { areaClick,Icons, TituloLote, Exit,CloseDiv, DetalhesLote, Edit, Config, LoteEditConfig, EditConfig, Protocolo, Estante, ArquivFisicos, ArquivDigitais, Categoria ,Prioridade ,NomeCategoriaTextDiv ,TextDiv , FaseIconDiv, TimeBeginDiv, TimeFinishDiv, Time, EnvolvidosDiv,Text, ProtocoloTextDiv, FaseEnvolvAtual, ObsBotoes, Observações, ObsDivBlack,BotaoMudarFase, VoltarAvancar, EscolherFase, OptionFases, Botao, DetalFase, Fase };
+export { areaClick,Icons, TituloLote, Exit,CloseDiv, DetalhesLote, Edit, Config, LoteEditConfig, EditConfig, Protocolo, Estante, ArquivFisicos, ArquivDigitais, CategoriaPrioridade ,Prioridade ,Categoria ,TextDiv , FaseIconDiv, TimeBeginDiv, TimeFinishDiv, Time, EnvolvidosDiv,Text, FaseEnvolvAtual, ObsBotoes, Observações, ObsDivBlack,BotaoMudarFase, VoltarAvancar, EscolherFase, OptionFases, Botao, DetalFase, Fase };

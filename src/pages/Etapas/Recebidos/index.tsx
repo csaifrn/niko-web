@@ -27,7 +27,6 @@ interface RecepProps {
   etapa: string;
 }
 
-
 const Recebidos = (props: RecepProps) => {
 
   // const [CategoriaDetails, setCategoriaDetails] = useState<Categoria[]>([{
@@ -94,9 +93,6 @@ const Recebidos = (props: RecepProps) => {
           <Lote task={task} value={task.title} categoria={task.categoria} envolvidos={{}} prioridade={"Maisa"} edit={true} >
           </Lote>
         </S.LoteArea>
-
-          
-
 
           {/* 
           <h1 style={{ color: 'white', margin: '0.5em 0' }}>Recebidos</h1>

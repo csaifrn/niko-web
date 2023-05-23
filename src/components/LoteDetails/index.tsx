@@ -4,9 +4,16 @@ import { Content, LoteEdit } from "../Lote/styles";
 import mockData from "../../data/kanbanData";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import { AtribuirModal } from "../AtribuirModal";
 
-export const LoteDetails = () => {
+export const LoteDetails = (user: any) => {
   const [data, setData] = useState(mockData);
+
+  const [modal , setModal] = useState(false);
+
+  const handleAtribuirAlguem = () => {
+    setModal(!modal);
+  };
 
   const blurRef = useRef(null);
   
@@ -20,6 +27,7 @@ export const LoteDetails = () => {
   const task = filterTask.filter((task: any) => task.length !== 0)[0][0];
   console.log(task)
 
+  const User: any = user.User;
   return (
     <>
       <S.areaClick>
@@ -33,7 +41,7 @@ export const LoteDetails = () => {
 
         <S.LoteEditConfig>
           {/* TÍTULO DO LOTE */}
-          <S.TituloLote style={{ marginBottom: "0.5em" }}>{task.title}</S.TituloLote>
+          <S.TituloLote>{task.title}</S.TituloLote>
           <S.EditConfig>
             <S.Edit> <S.Icons src={`/pen.svg`} ></S.Icons> </S.Edit>
             <S.Config> <S.Icons src={`/config.svg`} ></S.Icons> </S.Config>
@@ -43,11 +51,9 @@ export const LoteDetails = () => {
 
         <S.DetalhesLote>
           {/* PROTOCOLO */}
-          <S.Protocolo>
-              <S.ProtocoloTextDiv> 
-                <p style={{ padding: "0 0.5em" }}>{task.protocolo}</p> 
-              </S.ProtocoloTextDiv>
-          </S.Protocolo>
+            <S.Protocolo> 
+              <p style={{ padding: "0 0.5em" }}>{task.protocolo}</p> 
+            </S.Protocolo>
           
           {/* ESTANTE */}
           <S.Estante>{task.estante}</S.Estante>
@@ -65,19 +71,21 @@ export const LoteDetails = () => {
           </S.ArquivDigitais>
         </S.DetalhesLote>
 
-        {/* CATEGORIAS */}
-        <S.Categoria>
+        <S.CategoriaPrioridade>
           {task.categoria &&
             task.categoria.map((categoria: any, index: number) => (
               <React.Fragment key={categoria.id}>
+                {/* PRIORIDADE */}
+                {categoria.nome == "Financeiro" && <S.Prioridade><p>Prioridade</p></S.Prioridade>}
+                {/* CATEGORIAS */}
                 {index >= 0 && (
-                  <S.NomeCategoriaTextDiv style={{ borderRadius: "5px" }}>
-                    <p style={{ padding: "0 0.5em" }}>{categoria.nome}</p>
-                  </S.NomeCategoriaTextDiv>
+                <S.Categoria>
+                  <p>{categoria.nome}</p>
+                </S.Categoria>
                 )}
               </React.Fragment>
             ))}
-        </S.Categoria>
+        </S.CategoriaPrioridade>
         
         {/* FASE DO LOTE */}
         <S.FaseEnvolvAtual>
@@ -133,16 +141,24 @@ export const LoteDetails = () => {
           </S.BotaoMudarFase>
 
           {/* ATRIBUIR À ALGUÉM */}
-          <S.Botao>
-            <img src={`/atribuir.svg`}/>
+          <S.Botao  onClick={handleAtribuirAlguem}>
+            <img  src={`/atribuir.svg`}/>
             <p>Atribuir à alguém</p>
           </S.Botao>
+
+          {modal && (
+          <AtribuirModal
+            nameUser={User.name}
+            close={handleAtribuirAlguem}
+          ></AtribuirModal>
+      )}
 
           {/* DELETAR LOTE */}
           <S.Botao style={{ backgroundColor:"#F32D2D" }}>
             <img src={`/trash.svg`}/>
             <p>Deletar lote</p>
           </S.Botao>
+
         </S.ObsBotoes>
                 
 

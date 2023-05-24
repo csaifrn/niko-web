@@ -14,7 +14,7 @@ const Upload = () => {
       <Style.Wrapper>
 
         <p>Upload</p>
-        <Board etapa='upload'/>
+        <Board fase='upload'/>
         <Style.Footer></Style.Footer>
       </Style.Wrapper>
     </>

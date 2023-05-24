@@ -7,7 +7,7 @@ import { LoteDetails } from "../LoteDetails";
 import { Link, Route, Routes } from "react-router-dom";
 
 interface BoardProps {
-  etapa: string;
+  fase: string;
 }
 
 export const Board = (props: BoardProps) => {
@@ -56,7 +56,7 @@ export const Board = (props: BoardProps) => {
     <>
       <>
         <div style={{ margin: "0em 3em 0em 3em", display: "flex", justifyContent: "flex-end", gap: "0.5em" }}>
-          <img src={`/icon-page/${props.etapa}.png`}/>
+          <img src={`/icon-page/${props.fase}.png`}/>
         </div>
       </>
       <DragDropContext onDragEnd={onDragEnd}>
@@ -71,42 +71,42 @@ export const Board = (props: BoardProps) => {
                   <div
                     style={{ display: "flex", gap: "1em", marginLeft: "1em" }}
                   >
-                    <h3 className="kanbanSectionTititle">{section.title}</h3>
+                    <h2 className="kanbanSectionTititle">{section.title}</h2>
                     {section.title == "Disponíveis" && (
-                      <h3
+                      <h2
                         style={{
                           color: "#43DB6D",
                         }}
                       >
                         {section.tasks ? section.tasks.length : 0}
-                      </h3>
+                      </h2>
                     )}
                     {section.title == "Em pausa" && (
-                      <h3
+                      <h2
                         style={{
                           color: "#FCDE42",
                         }}
                       >
                         {section.tasks ? section.tasks.length : 0}
-                      </h3>
+                      </h2>
                     )}
                     {section.title == "Em andamento" && (
-                      <h3
+                      <h2
                         style={{
                           color: "#F32D2D",
                         }}
                       >
                         {section.tasks ? section.tasks.length : 0}
-                      </h3>
+                      </h2>
                     )}
                     {section.title == "Concluídos" && (
-                      <h3
+                      <h2
                         style={{
                           color: "#43DB6D",
                         }}
                       >
                         {section.tasks ? section.tasks.length : 0}
-                      </h3>
+                      </h2>
                     )}
                   </div>
 

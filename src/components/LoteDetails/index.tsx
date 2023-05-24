@@ -6,9 +6,16 @@ import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import Menu from "../Menu";
 import MenuCoord from "../MenuCoord";
+import { AtribuirModal } from "../AtribuirModal";
 
-export const LoteDetails = () => {
+export const LoteDetails = (user: any) => {
   const [data, setData] = useState(mockData);
+
+  const [modal , setModal] = useState(false);
+
+  const handleAtribuirAlguem = () => {
+    setModal(!modal);
+  };
 
   const blurRef = useRef(null);
   
@@ -22,6 +29,7 @@ export const LoteDetails = () => {
   const task = filterTask.filter((task: any) => task.length !== 0)[0][0];
   console.log(task)
 
+  const User: any = user.User;
   return (
     <>
       <Menu area="/"></Menu>
@@ -37,7 +45,7 @@ export const LoteDetails = () => {
 
         <S.LoteEditConfig>
           {/* TÍTULO DO LOTE */}
-          <S.TituloLote style={{ marginBottom: "0.5em" }}>{task.title}</S.TituloLote>
+          <S.TituloLote>{task.title}</S.TituloLote>
           <S.EditConfig>
             <S.Edit> <S.Icons src={`/pen.svg`} ></S.Icons> </S.Edit>
             <S.Config> <S.Icons src={`/config.svg`} ></S.Icons> </S.Config>
@@ -47,11 +55,9 @@ export const LoteDetails = () => {
 
         <S.DetalhesLote>
           {/* PROTOCOLO */}
-          <S.Protocolo>
-              <S.ProtocoloTextDiv> 
-                <p style={{ padding: "0 0.5em" }}>{task.protocolo}</p> 
-              </S.ProtocoloTextDiv>
-          </S.Protocolo>
+            <S.Protocolo> 
+              <p style={{ padding: "0 0.5em" }}>{task.protocolo}</p> 
+            </S.Protocolo>
           
           {/* ESTANTE */}
           <S.Estante>{task.estante}</S.Estante>
@@ -69,85 +75,96 @@ export const LoteDetails = () => {
           </S.ArquivDigitais>
         </S.DetalhesLote>
 
-        {/* CATEGORIAS */}
-        <S.Categoria>
+        <S.CategoriaPrioridade>
           {task.categoria &&
             task.categoria.map((categoria: any, index: number) => (
               <React.Fragment key={categoria.id}>
+                {/* PRIORIDADE */}
+                {categoria.nome == "Financeiro" && <S.Prioridade><p>Prioridade</p></S.Prioridade>}
+                {/* CATEGORIAS */}
                 {index >= 0 && (
-                  <S.NomeCategoriaTextDiv style={{ borderRadius: "5px" }}>
-                    <p style={{ padding: "0 0.5em" }}>{categoria.nome}</p>
-                  </S.NomeCategoriaTextDiv>
+                <S.Categoria>
+                  <p>{categoria.nome}</p>
+                </S.Categoria>
                 )}
               </React.Fragment>
             ))}
-        </S.Categoria>
+        </S.CategoriaPrioridade>
         
         {/* FASE DO LOTE */}
-        <>
-          <div style={{ margin: "2em 0em 0em 0em", display: "flex", justifyContent: "flex-start", gap: "0.5em" }}>
-            <img src={`/icon-page/${task.fase_atual[0].nome}.png`}/>
-          </div>
-        </>
-        
-        {/* OBSERVAÇÕES */}
-        <S.Observações>
-          <h3>Observações</h3>
-          {task.observacao.map((obs: any, index: number) => (
-            <S.ObsDiv key = {obs.ObsId}>
-              {obs.pendencia && <img src={"/warning.svg"} alt="ícone de alerta"/>}
-              {obs.titulo}
-            </S.ObsDiv>
-          ))}
-        </S.Observações>
+        <S.FaseEnvolvAtual>
+          <S.Icons src={`/icon-page/${task.fase_atual[0].nome}.png`}/>
+        </S.FaseEnvolvAtual>
 
-        {/* VOLTAR FASE */}
+        <S.ObsBotoes>
+          {/* OBSERVAÇÕES */}
+          <S.Observações>
+            <p>Observações</p>
+            {task.observacao.map((obs: any, index: number) => (
+              <S.ObsDivBlack key = {obs.ObsId}>
+                {obs.pendencia && <img src={"/warning.svg"} alt="ícone de alerta"/>}
+                {obs.titulo}
+              </S.ObsDivBlack>
+            ))}
+          </S.Observações>
 
-        <S.BotaoMudarFase>
-          <S.VoltarAvancar>
-            <img src={`/voltar.svg`}/>
-            <h3>Voltar Fase</h3>
-          </S.VoltarAvancar>
+          {/* VOLTAR FASE */}
 
-          <S.EscolherFase>
-            <S.OptionFases value="maca">Recepção</S.OptionFases>
-            <S.OptionFases value="laranja">Preparo</S.OptionFases>
-            <S.OptionFases value="banana">Catalogação</S.OptionFases>
-            <S.OptionFases value="uva">Digitalização</S.OptionFases>
-            <S.OptionFases value="uva">Upload</S.OptionFases>
-            <S.OptionFases value="uva">Arquivamento</S.OptionFases>
-          </S.EscolherFase>
-        </S.BotaoMudarFase>
+          <S.BotaoMudarFase>
+            <S.VoltarAvancar>
+              <img src={`/voltar.svg`}/>
+              <p>Voltar Fase</p>
+            </S.VoltarAvancar>
 
-        {/* AVANÇAR FASE */}
+            <S.EscolherFase>
+              <S.OptionFases value="maca">Recepção</S.OptionFases>
+              <S.OptionFases value="laranja">Preparo</S.OptionFases>
+              <S.OptionFases value="banana">Catalogação</S.OptionFases>
+              <S.OptionFases value="uva">Digitalização</S.OptionFases>
+              <S.OptionFases value="uva">Upload</S.OptionFases>
+              <S.OptionFases value="uva">Arquivamento</S.OptionFases>
+            </S.EscolherFase>
+          </S.BotaoMudarFase>
 
-        <S.BotaoMudarFase>
-          <S.VoltarAvancar>
-            <img src={`/avancar.svg`}/>
-            <h3>Avançar Fase</h3>
-          </S.VoltarAvancar>
+          {/* AVANÇAR FASE */}
 
-          <S.EscolherFase>
-            <S.OptionFases className="fase" value="recepção">Recepção</S.OptionFases>
-            <S.OptionFases className="fase" value="preparo">Preparo</S.OptionFases>
-            <S.OptionFases className="fase" value="catalogação">Catalogação</S.OptionFases>
-            <S.OptionFases className="fase" value="digitalização">Digitalização</S.OptionFases>
-            <S.OptionFases className="fase" value="upload">Upload</S.OptionFases>
-            <S.OptionFases className="fase" value="arquivamento">Arquivamento</S.OptionFases>
-          </S.EscolherFase>
-        </S.BotaoMudarFase>
+          <S.BotaoMudarFase>
+            <S.VoltarAvancar>
+              <img src={`/avancar.svg`}/>
+              <p>Avançar Fase</p>
+            </S.VoltarAvancar>
 
-        {/* ATRIBUIR À ALGUÉM */}
-        <S.Botao>
-          <img src={`/atribuir.svg`}/>
-          <h3>Atribuir à alguém</h3>
-        </S.Botao>
+            <S.EscolherFase>
+              <S.OptionFases className="fase" value="recepção">Recepção</S.OptionFases>
+              <S.OptionFases className="fase" value="preparo">Preparo</S.OptionFases>
+              <S.OptionFases className="fase" value="catalogação">Catalogação</S.OptionFases>
+              <S.OptionFases className="fase" value="digitalização">Digitalização</S.OptionFases>
+              <S.OptionFases className="fase" value="upload">Upload</S.OptionFases>
+              <S.OptionFases className="fase" value="arquivamento">Arquivamento</S.OptionFases>
+            </S.EscolherFase>
+          </S.BotaoMudarFase>
 
-        {/* DELETAR LOTE */}
-        <S.Botao style={{ backgroundColor:"#F32D2D" }}>
-          <img src={`/trash.svg`}/>
-          <h3>Deletar lote</h3>
-        </S.Botao>        
+          {/* ATRIBUIR À ALGUÉM */}
+          <S.Botao  onClick={handleAtribuirAlguem}>
+            <img  src={`/atribuir.svg`}/>
+            <p>Atribuir à alguém</p>
+          </S.Botao>
+
+          {modal && (
+          <AtribuirModal
+            nameUser={User.name}
+            close={handleAtribuirAlguem}
+          ></AtribuirModal>
+      )}
+
+          {/* DELETAR LOTE */}
+          <S.Botao style={{ backgroundColor:"#F32D2D" }}>
+            <img src={`/trash.svg`}/>
+            <p>Deletar lote</p>
+          </S.Botao>
+
+        </S.ObsBotoes>
+                
 
         {/* DETALHAMENTO POR FASE */}
         <S.DetalFase>

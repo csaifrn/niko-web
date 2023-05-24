@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react';
 import { Menu } from '../../../components/Menu';
 import * as Style from '../../../global/index';
-import * as S from "../../../components/Board/styles"
+import * as S from "./styles"
 import { getDatabase, ref, set } from "firebase/database";
 import { uuidv4 } from '@firebase/util';
 import produce, { current } from 'immer';
@@ -28,36 +28,46 @@ interface RecepProps {
   etapa: string;
 }
 
-
 const Recebidos = (props: RecepProps) => {
 
-  const [CategoriaDetails, setCategoriaDetails] = useState<Categoria[]>([{
-    id: uuidv4(),
-    nome: "Xxx"
-  }])
-  const [title, setTitleDetails] = useState<string>("")
+  // const [CategoriaDetails, setCategoriaDetails] = useState<Categoria[]>([{
+  //   id: uuidv4(),
+  //   nome: "Xxx"
+  // }])
+  // const [title, setTitleDetails] = useState<string>("")
 
-  const [task, setTaskDetails] = useState({
-    id: uuidv4(),
-    title: 'Lote X',
-    categoria: [{
-      id: uuidv4(),
-      nome: "Categoria"
-    }],
-    envolvidos: null,
-  })
-
-
-  function writeLoteData(LoteId: string, title: string, categorias: Categoria[], envolvidos: [] | null) {
-    const db = getDatabase();
-    console.log(LoteId, title, categorias, envolvidos)
-    console.log('Lote Criado!')
-    set(ref(db, 'Lotes/' + LoteId), {
-      title: title,
-      categoria: categorias,
-      envolvidos: envolvidos
-    });
+  const task = {
+    id: "2",
+    title: "Lote 10",
+    categoria: [
+      {
+        nome: "Administrativo",
+        id: 1,
+      },
+    ],
   }
+
+  // const [task, setTaskDetails] = useState({
+  //   id: uuidv4(),
+  //   title: 'Lote X',
+  //   categoria: [{
+  //     id: uuidv4(),
+  //     nome: "Categoria"
+  //   }],
+  //   envolvidos: null,
+  // })
+
+
+  // function writeLoteData(LoteId: string, title: string, categorias: Categoria[], envolvidos: [] | null) {
+  //   const db = getDatabase();
+  //   console.log(LoteId, title, categorias, envolvidos)
+  //   console.log('Lote Criado!')
+  //   set(ref(db, 'Lotes/' + LoteId), {
+  //     title: title,
+  //     categoria: categorias,
+  //     envolvidos: envolvidos
+  //   });
+  // }
 
   return (
     <>
@@ -65,13 +75,29 @@ const Recebidos = (props: RecepProps) => {
         <Menu area="/"></Menu>
         <MenuCoord area="/" />
         <>
-          <div style={{ margin: "0em 3em 0em 3em", display: "flex", justifyContent: "flex-end", gap: "0.5em" }}>
+        
+          <div style={{ margin: "1em 3em 0em 3em", display: "flex", justifyContent: "flex-end", gap: "0.5em" }}>
             <img src={`/icon-page/${props.etapa}.png`}/>
           </div>
         </>
-        <div style={{ margin: '2em' }}>
-          <Lote task={task} value={task.title} categoria={task.categoria} envolvidos={task.envolvidos} prioridade={"Maisa"} edit={true}>
+        
+        <div style={{ margin: '2em', display: 'flex', flexDirection: 'column', gap: '1em' }}>
+        <S.Btn onClick={() => {}}><p>Adicionar Caixa</p></S.Btn>
+        
+        <S.LoteArea>
+          <Lote task={task} value={task.title} categoria={task.categoria} envolvidos={{}} prioridade={"Maisa"} edit={true} >
           </Lote>
+          <Lote task={task} value={task.title} categoria={task.categoria} envolvidos={{}} prioridade={"Maisa"} edit={true} >
+          </Lote>
+          <Lote task={task} value={task.title} categoria={task.categoria} envolvidos={{}} prioridade={"Maisa"} edit={true} >
+          </Lote>
+          <Lote task={task} value={task.title} categoria={task.categoria} envolvidos={{}} prioridade={"Maisa"} edit={true} >
+          </Lote>
+          <Lote task={task} value={task.title} categoria={task.categoria} envolvidos={{}} prioridade={"Maisa"} edit={true} >
+          </Lote>
+        </S.LoteArea>
+
+          {/* 
           <h1 style={{ color: 'white', margin: '0.5em 0' }}>Recebidos</h1>
           <h3 style={{ color: 'white', marginBottom: '0.5em' }}>Adicionar Lote</h3>
           <div >
@@ -119,10 +145,9 @@ const Recebidos = (props: RecepProps) => {
           </div>
           <S.inputPrioridade type="text" className="form-control" placeholder="Title" aria-label="Username" aria-describedby="basic-addon1" onChange={e => { setTitleDetails(e.target.value); task.title = e.target.value }} style={{ marginBottom: "0.5em" }} />
           <br />
-          <S.btnPrioridade onClick={() => {
-            writeLoteData(uuidv4(), title, CategoriaDetails, null)
-          }}>Adicionar Lote</S.btnPrioridade>
-          <Style.Footer></Style.Footer>
+          
+          <Style.Footer></Style.Footer> */}
+
         </div>
       </Style.Wrapper>
     </>

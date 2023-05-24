@@ -14,7 +14,7 @@ const Preparo = () => {
       <Style.Wrapper>
 
         <p>Preparo</p>
-        <Board etapa='digitalizacao'/>
+        <Board fase='preparo'/>
         <Style.Footer></Style.Footer>
       </Style.Wrapper>
     </>

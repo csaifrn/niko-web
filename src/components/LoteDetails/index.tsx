@@ -4,12 +4,17 @@ import { Content, LoteEdit } from "../Lote/styles";
 import mockData from "../../data/kanbanData";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import { AtribuirModal } from "../AtribuirModal";
+import { AtribuirAlguemModal } from "../AtribuirAlguemModal";
+import { EditModal } from "../EditModal";
 
 export const LoteDetails = (user: any) => {
   const [data, setData] = useState(mockData);
-
+  const [edit_modal , setEditModal] = useState(false);
   const [modal , setModal] = useState(false);
+
+  const handleEdit = () => {
+    setEditModal(!edit_modal);
+  };
 
   const handleAtribuirAlguem = () => {
     setModal(!modal);
@@ -35,16 +40,23 @@ export const LoteDetails = (user: any) => {
         {/* BOTÃO DE FECHAR */}
         <S.CloseDiv>
           <S.Exit onClick={() => navigate(-1)}>
-            <p style={{ padding: "0 0.5em" }}>X</p>
+            <img 
+              src= "/close.svg"
+              alt=""
+              height={18}
+              width={18}
+            />
           </S.Exit>
         </S.CloseDiv>
 
         <S.LoteEditConfig>
-          {/* TÍTULO DO LOTE */}
+          {/* TÍTULO */}
           <S.TituloLote>{task.title}</S.TituloLote>
           <S.EditConfig>
-            <S.Edit> <S.Icons src={`/pen.svg`} ></S.Icons> </S.Edit>
-            <S.Config> <S.Icons src={`/config.svg`} ></S.Icons> </S.Config>
+            {/* EDITAR */}
+            <S.Edit onClick={handleEdit}> <S.Icons src={`/pen.svg`} ></S.Icons> </S.Edit>
+            {/* CONFIGURAÇÕES */}
+            <S.Config onClick={handleAtribuirAlguem}> <S.Icons src={`/config.svg`} ></S.Icons> </S.Config>
           </S.EditConfig>
         </S.LoteEditConfig>
 
@@ -141,17 +153,10 @@ export const LoteDetails = (user: any) => {
           </S.BotaoMudarFase>
 
           {/* ATRIBUIR À ALGUÉM */}
-          <S.Botao  onClick={handleAtribuirAlguem}>
+          <S.Botao onClick={handleAtribuirAlguem}>
             <img  src={`/atribuir.svg`}/>
             <p>Atribuir à alguém</p>
           </S.Botao>
-
-          {modal && (
-          <AtribuirModal
-            nameUser={User.name}
-            close={handleAtribuirAlguem}
-          ></AtribuirModal>
-      )}
 
           {/* DELETAR LOTE */}
           <S.Botao style={{ backgroundColor:"#F32D2D" }}>
@@ -366,7 +371,20 @@ export const LoteDetails = (user: any) => {
               ))}
           </S.Fase>
         </S.DetalFase>
+        
       </S.areaClick>
+  
+      {modal && (
+          <AtribuirAlguemModal
+            close={handleAtribuirAlguem}
+          ></AtribuirAlguemModal>
+      )}
+
+      {edit_modal && (
+          <EditModal
+            close={handleEdit}
+          ></EditModal>
+      )}
     </>
   );
 };

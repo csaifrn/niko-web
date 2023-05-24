@@ -15,7 +15,7 @@ const Search = ({
   return (
     <>
       <S.SearchDiv style={{ display: "flex", position: "relative" }}>
-        <S.ImgSearch src="search.svg" />
+        <S.ImgSearch src="/search.svg" />
         <S.InputSearch
           type="text"
           value={searchTerm}

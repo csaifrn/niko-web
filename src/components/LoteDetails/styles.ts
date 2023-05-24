@@ -38,6 +38,8 @@ const TituloLote = styled.h1`
 const CloseDiv = styled.div`
   display: flex;
   justify-content:flex-end;
+  padding: "5px 5px";
+  border-radius: "5px";
 `
 
 const Exit = styled.div`

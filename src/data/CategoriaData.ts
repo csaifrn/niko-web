@@ -1,7 +1,7 @@
 const CategoriaData = [
   {
     id: 1,
-    name: "Educativo",
+    name: "Financeiro",
     percentage: 50,
   },
   {
@@ -11,12 +11,12 @@ const CategoriaData = [
   },
   {
     id: 3,
-    name: "Fechados",
+    name: "RH",
     percentage: 0,
   },
   {
     id: 4,
-    name: "Pedro Lucas",
+    name: "Jurídico",
     percentage: 12,
   }
 ]

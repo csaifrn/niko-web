@@ -1,28 +1,57 @@
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
-import { useState } from "react";
+// import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import axios from 'axios';
 import * as S from "./styles"
+import { useSignIn } from "react-auth-kit";
+
+
 const Login = () =>{
 
     const [resgisterEmail, setRegisterEmail] = useState("")
     const [resgisterPassword, setRegisterPassword] = useState("")
+    const signIn = useSignIn()
+
+    const user = { email: resgisterEmail, password: resgisterPassword  };
   
-    const auth = getAuth();
+    // const auth = getAuth();
   
     const navigate = useNavigate();
   
     const handleSignUp = async () => {
-      try{
-        const user = await signInWithEmailAndPassword(auth, resgisterEmail, resgisterPassword)
-        console.log("Created", user)
-        if(user != null)
-        {
-            navigate('/');
-        }
-      } catch (err) {
+    //   try{
+    //     const user = await signInWithEmailAndPassword(auth, resgisterEmail, resgisterPassword)
+    //     console.log("Created", user)
+    //     if(user != null)
+    //     {
+    //         navigate('/');
+    //     }
+    //   } catch (err) {
+    //     console.log(err)
+    //   }
+    try {
+        axios.post('http://localhost:3333/auth/sign-in', user)
+        .then((response: any) => {
+            const token = response.data.token
+            const role = [123, 231]
+
+            signIn({
+                token: token,
+                expiresIn: 3600,
+                tokenType: "Bearer",
+                authState: { email: user.email},
+            })
+            
+            navigate('/Fase');
+        })
+        
+
+    }catch (err) {
         console.log(err)
-      }
-      
+    }
+
+        
+
     }
 
     return (

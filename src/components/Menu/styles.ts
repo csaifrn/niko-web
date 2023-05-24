@@ -5,7 +5,7 @@ const MenuImg = styled.img``;
 
 const MenuLeft = styled.div`
   display: flex;
-  gap: 0.5em;
+  gap: 1em;
 `;
 
 // Create a Wrapper component that'll render a <section> tag with some styles

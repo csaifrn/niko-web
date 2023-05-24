@@ -4,6 +4,8 @@ import { Content, LoteEdit } from "../Lote/styles";
 import mockData from "../../data/kanbanData";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import Menu from "../Menu";
+import MenuCoord from "../MenuCoord";
 
 export const LoteDetails = () => {
   const [data, setData] = useState(mockData);
@@ -22,6 +24,8 @@ export const LoteDetails = () => {
 
   return (
     <>
+      <Menu area="/"></Menu>
+      <MenuCoord area="/" />
       <S.areaClick>
 
         {/* BOTÃO DE FECHAR */}

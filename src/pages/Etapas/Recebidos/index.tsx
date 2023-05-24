@@ -6,6 +6,7 @@ import { getDatabase, ref, set } from "firebase/database";
 import { uuidv4 } from '@firebase/util';
 import produce, { current } from 'immer';
 import Lote from '../../../components/Lote/index';
+import MenuCoord from '../../../components/MenuCoord';
 
 export interface Categoria {
   id: string
@@ -61,6 +62,8 @@ const Recebidos = (props: RecepProps) => {
   return (
     <>
       <Style.Wrapper>
+        <Menu area="/"></Menu>
+        <MenuCoord area="/" />
         <>
           <div style={{ margin: "0em 3em 0em 3em", display: "flex", justifyContent: "flex-end", gap: "0.5em" }}>
             <img src={`/icon-page/${props.etapa}.png`}/>

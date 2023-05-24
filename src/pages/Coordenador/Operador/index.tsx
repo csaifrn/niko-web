@@ -3,6 +3,8 @@ import OperadorCard from "../../../components/OperadorCard";
 import Users from "../../../data/UserData";
 import * as S from "./styles";
 import Search from "../../../components/Search";
+import Menu from "../../../components/Menu";
+import MenuCoord from "../../../components/MenuCoord";
 
 type User = {
   id: number;
@@ -44,7 +46,10 @@ const Operador = (): JSX.Element => {
 
   return (
     <>
+      <Menu area="/"></Menu>
+      <MenuCoord area="/" />
       <S.CardsArea>
+
         <Search
           searchTerm={searchTerm}
           handleSearchChange={handleSearchChange}

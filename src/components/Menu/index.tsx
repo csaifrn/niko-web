@@ -2,6 +2,8 @@ import React, { useState, useEffect, useRef } from "react";
 import LinkMenuBurger from "../LinkMenuBurger";
 import MenuBurger from "../MenuBurger";
 import * as S from "./styles";
+import { useSignOut } from "react-auth-kit";
+import { useNavigate } from "react-router-dom";
 
 interface MenuProps {
   area: string;
@@ -9,6 +11,8 @@ interface MenuProps {
 
 export const Menu = (props: MenuProps) => {
   const [open, setOpen] = useState(false);
+  const signOut = useSignOut()
+  const navigate = useNavigate()
 
   const handleClickButton = () => {
     setOpen(!open);
@@ -29,7 +33,7 @@ export const Menu = (props: MenuProps) => {
       </S.ContainerA>
       <S.MenuLeft>
         <S.MenuImg src="/Lupa.svg" />
-        <S.MenuImg src="/Conta.svg" />
+        <S.MenuImg src="/user.png" height={32} width={32} onClick={() => {signOut()}}/>
       </S.MenuLeft>
     </S.MenuArea>
   );

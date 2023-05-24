@@ -4,6 +4,7 @@ import { Card } from "../../components/Card";
 
 import Lote from "../../components/Lote";
 import MenuCoord from "../../components/MenuCoord";
+import Menu from "../../components/Menu";
 
 const Home = () => {
   //const {user, loading, logOut} = useFirebaseAuth();
@@ -16,6 +17,8 @@ const Home = () => {
 
   return (
     <Wrapper>
+      <Menu area="/"></Menu>
+      <MenuCoord area="/" />
       <Main>
         <Card
           link="Board/Recebidos"

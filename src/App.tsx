@@ -30,6 +30,7 @@ const App = () => {
         <Route path="/splash" element={<RequireAuth loginPath={'/login'}><Splash /></RequireAuth>} />
         <Route path="/Fase" element={<RequireAuth loginPath={'/login'}><Home /></RequireAuth>} />
         <Route path="/login" element={<Login />} />
+        <Route path="/" element={<Login />}/>
         <Route path="/Board/Arquivamento" element={<RequireAuth loginPath={'/login'}><Arquivamento /></RequireAuth>} />
         <Route path="/Board/Recebidos" element={<RequireAuth loginPath={'/login'}><Recebidos etapa='recebidos' /></RequireAuth>} />
         <Route path="/Board/Preparo" element={<RequireAuth loginPath={'/login'}><Preparo /></RequireAuth>} />

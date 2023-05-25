@@ -34,12 +34,13 @@ const Login = () =>{
         .then((response: any) => {
             const token = response.data.token
             const role = [123, 231]
+            const user = response.data.user
 
             signIn({
                 token: token,
                 expiresIn: 3600,
                 tokenType: "Bearer",
-                authState: { email: user.email},
+                authState: { user  },
             })
             
             navigate('/Fase');

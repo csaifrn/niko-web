@@ -92,6 +92,16 @@ const Recebidos = (props: RecepProps) => {
           </Lote>
           <Lote task={task} value={task.title} categoria={task.categoria} envolvidos={{}} prioridade={"Maisa"} edit={true} >
           </Lote>
+          <Lote task={task} value={task.title} categoria={task.categoria} envolvidos={{}} prioridade={"Maisa"} edit={true} >
+          </Lote>
+          <Lote task={task} value={task.title} categoria={task.categoria} envolvidos={{}} prioridade={"Maisa"} edit={true} >
+          </Lote>
+          <Lote task={task} value={task.title} categoria={task.categoria} envolvidos={{}} prioridade={"Maisa"} edit={true} >
+          </Lote>
+          <Lote task={task} value={task.title} categoria={task.categoria} envolvidos={{}} prioridade={"Maisa"} edit={true} >
+          </Lote>
+          <Lote task={task} value={task.title} categoria={task.categoria} envolvidos={{}} prioridade={"Maisa"} edit={true} >
+          </Lote>
         </S.LoteArea>
 
           {/* 

@@ -19,6 +19,7 @@ const LoteEdit = styled.div`
   border-radius: 5px;
   color: white;
   max-width: 300px;
+  min-width: 250px;
   filter: drop-shadow(0px 4px 1px rgba(0, 0, 0, 0.25));
 `;
 

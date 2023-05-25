@@ -5,6 +5,7 @@ import styled from "styled-components";
 
 const LoteArea = styled.section`
   width: calc(100% -2em);
+  height: 50vh;
   background-color: #191C24;
   display: flex;
   flex-direction: column;
@@ -15,6 +16,13 @@ const LoteArea = styled.section`
   overflow-y: scroll;
   scroll-behavior: auto;
   scrollbar-width: thin;
+  @media screen and (min-width: 415px) {
+  flex-wrap: wrap;
+}
+@media screen and (min-width: 1400px) {
+  justify-content: flex-start;
+  flex-wrap: wrap;
+}
 `;
 
 const FooterHome = styled.footer`

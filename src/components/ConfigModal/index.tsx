@@ -1,15 +1,15 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, {useState } from "react";
 import * as S from "./style";
 import Search from "../Search";
 import CategoriaData from "../../data/CategoriaData";
 import mockData from "../../data/kanbanData";
 import { kanban } from "../Board/styles";
 
-interface EditModalProps {
+interface ConfigModalProps {
   close: () => void;
 }
 
-export const EditModal = (props: EditModalProps) => {
+export const ConfigModal = (props: ConfigModalProps) => {
 
   const [selectedCategoriaData, setCategoriaData] = useState<number[]>([]);
   const [searchTerm, setSearchTerm] = useState<string>("");

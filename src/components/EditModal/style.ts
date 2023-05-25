@@ -3,9 +3,8 @@ import styled from 'styled-components';
 export const ModalArea = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
-  padding: 16px;
+  padding: 2em;
   gap: 1em;
   font-family: 'Rubik';
   color: white;
@@ -15,6 +14,9 @@ export const ModalArea = styled.div`
   background-color: #393e4b;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 5px;
+  overflow-y: scroll;
+  scroll-behavior: auto;
+  scrollbar-width: thin;
 `;
 
 export const ModalContent = styled.div`
@@ -28,25 +30,59 @@ export const NameClose = styled.div`
   justify-content: space-between;
 `;
 
+export const TituloDiv = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+`;
+
+export const Titulo = styled.input`
+  padding: 1.5em 2em;
+  border-radius: 5px;
+  color: white;
+  border: none;
+  font-family: 'Rubik';
+`;
+
+export const LocalDiv = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+`;
+
+export const Local = styled.input`
+  padding: 1.5em 2em;
+  border-radius: 5px;
+  color: white;
+  border: none;
+  font-family: 'Rubik';
+`;
+
+export const Categorias = styled.div``;
+
+export const Categoria = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 1em;
+  padding: 1.5em 2em;
+  border-radius: 5px;
+  cursor: pointer;
+`;
+
 export const ChooseUser = styled.div`
   width: 100%;
-  height: 40vh;
+  height: 20vh;
   border-radius: 5px;
   display: flex;
   flex-direction: column;
   gap: 1em;
   overflow: auto;
   scroll-behavior: auto;
-  padding: 1em 0em 0em 0em;
-`;
-
-export const Categoria = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 1em;
-  padding: 1em 2em;
-  border-radius: 5px;
-  cursor: pointer;
+  padding: 0;
+  margin: 1em 0;
+  overflow-y: scroll;
+  scroll-behavior: auto;
+  scrollbar-width: thin;
 `;
 
 export const AtribuirButton = styled.button`
@@ -56,6 +92,8 @@ export const AtribuirButton = styled.button`
   border: none;
   color: white;
   font-family: 'Rubik';
+  bottom: 0;
+  left: 0;
 `;
 
 export const ModalBackdrop = styled.div`

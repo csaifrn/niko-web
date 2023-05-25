@@ -236,7 +236,7 @@ const EscolherFase = styled.select`
   height: 44px;
   border: none;
   border-radius: 0px 5px 5px 0px;
-  border-left: 1px solid #fff;
+  border-left: 1px solid #888c99;
   color: white;
   font-family: 'Rubik', Helvetica, sans-serif;
 `;

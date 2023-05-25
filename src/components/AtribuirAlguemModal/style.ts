@@ -25,6 +25,8 @@ const NameClose = styled.div`
   justify-content: space-between;
 `;
 
+const Fechar = styled.button``;
+
 const ChooseUser = styled.div`
   width: 100%;
   height: 40vh;
@@ -67,4 +69,4 @@ const ModalBackdrop = styled.div`
   background-color: rgba(25, 28, 36, 0.5);
 `;
 
-export { ModalArea, ModalContent, NameClose, ChooseUser, User, NameFotoUser, AtribuirButton, ModalBackdrop };
+export { ModalArea, ModalContent, NameClose, Fechar, ChooseUser, User, NameFotoUser, AtribuirButton, ModalBackdrop };

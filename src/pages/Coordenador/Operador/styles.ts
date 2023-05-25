@@ -1,4 +1,3 @@
-import { StyleHTMLAttributes } from 'react';
 import styled from 'styled-components';
 
 const CardsArea = styled.div`

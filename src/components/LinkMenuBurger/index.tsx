@@ -16,7 +16,7 @@ const LinkMenuBurger = (props: LinkMenuProps) => {
     } else {
       setLinkOpen(false);
     }
-  });
+  }, [props.area, props.path]);
 
   return (
     <S.LinkMenu href={props.path} open={Linkopen}>

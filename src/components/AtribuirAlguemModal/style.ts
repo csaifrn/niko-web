@@ -1,5 +1,4 @@
-import { StyleHTMLAttributes } from "react";
-import styled from "styled-components";
+import styled from 'styled-components';
 
 const ModalArea = styled.div`
   position: fixed;
@@ -10,7 +9,7 @@ const ModalArea = styled.div`
   background-color: #393e4b;
   align-items: center;
   color: white;
-  font-family: "Rubik";
+  font-family: 'Rubik';
   border-radius: 5px;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 `;
@@ -22,8 +21,8 @@ const ModalContent = styled.div`
 `;
 
 const NameClose = styled.div`
- display: flex;
- justify-content: space-between;
+  display: flex;
+  justify-content: space-between;
 `;
 
 const ChooseUser = styled.div`
@@ -44,7 +43,7 @@ const User = styled.div`
 `;
 
 const NameFotoUser = styled.div`
-  display:flex;
+  display: flex;
   align-items: center;
   gap: 1em;
 `;
@@ -52,10 +51,10 @@ const NameFotoUser = styled.div`
 const AtribuirButton = styled.button`
   height: 44px;
   border-radius: 5px;
-  background-color: #43DB6D;
+  background-color: #43db6d;
   border: none;
   color: white;
-  font-family: "Rubik";
+  font-family: 'Rubik';
 `;
 
 const ModalBackdrop = styled.div`
@@ -65,7 +64,7 @@ const ModalBackdrop = styled.div`
   top: 0;
   left: 0;
   z-index: 1040;
-  background-color: rgba(25, 28, 36, 0.5);;
+  background-color: rgba(25, 28, 36, 0.5);
 `;
 
-export { ModalArea, ModalContent, NameClose, ChooseUser, User, NameFotoUser, AtribuirButton, ModalBackdrop};
+export { ModalArea, ModalContent, NameClose, ChooseUser, User, NameFotoUser, AtribuirButton, ModalBackdrop };

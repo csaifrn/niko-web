@@ -1,5 +1,4 @@
-import { StyleHTMLAttributes } from "react";
-import styled from "styled-components";
+import styled from 'styled-components';
 
 const MenuImg = styled.img``;
 
@@ -33,9 +32,9 @@ const link = styled.a`
   flex-direction: column;
   align-items: center;
   justify-items: center;
-  tex-align: center;
+  text-align: center;
   text-decoration: none;
-  font-family: "Rubik";
+  font-family: 'Rubik';
 `;
 
 export { MenuImg, MenuArea, MenuLeft, textIcon, link };

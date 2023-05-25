@@ -1,25 +1,24 @@
-import { StyleHTMLAttributes } from "react";
-import styled from "styled-components";
+import styled from 'styled-components';
 
 const SearchDiv = styled.div`
-    display: flex;
-    position: relative;
+  display: flex;
+  position: relative;
 `;
 
 const InputSearch = styled.input`
-    height: 44px;
-    padding: 0 4.2em;
-    border-radius: 5px; 
-    background-color: rgb(57, 62, 75); 
-    color: #fff;
-    border: none;
-    width:100%;
+  height: 44px;
+  padding: 0 4.2em;
+  border-radius: 5px;
+  background-color: rgb(57, 62, 75);
+  color: #fff;
+  border: none;
+  width: 100%;
 `;
 
 const ImgSearch = styled.img`
-    position: absolute;
-    top: 10px;
-    left: 16px;
+  position: absolute;
+  top: 10px;
+  left: 16px;
 `;
 
-export { InputSearch, ImgSearch, SearchDiv};
+export { InputSearch, ImgSearch, SearchDiv };

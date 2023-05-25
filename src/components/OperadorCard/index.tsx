@@ -1,7 +1,7 @@
-import { useEffect, useRef, useState } from "react";
-import * as S from "./styles";
-import { AtribuirModal } from "../AtribuirModal";
-import { DataFase } from "../DataFase";
+import { useEffect, useRef, useState } from 'react';
+import * as S from './styles';
+import { AtribuirModal } from '../AtribuirModal';
+import { DataFase } from '../DataFase';
 
 const OperadorCard = (user: any) => {
   const [expanded, setExpanded] = useState(false);
@@ -27,7 +27,7 @@ const OperadorCard = (user: any) => {
     <>
       <S.totalArea>
         <S.CardA>
-          {User.fase !== "" && (
+          {User.fase !== '' && (
             <S.CardArea onClick={open}>
               <S.dataUser>
                 <img
@@ -36,27 +36,22 @@ const OperadorCard = (user: any) => {
                   width={28}
                   height={28}
                   style={{
-                    objectFit: "cover",
-                    borderRadius: "100%",
-                    border: "1px solid #43DB6D",
+                    objectFit: 'cover',
+                    borderRadius: '100%',
+                    border: '1px solid #43DB6D',
                   }}
                 />
-                <p style={{ color: "#43DB6D" }}>{User.name}</p>
+                <p style={{ color: '#43DB6D' }}>{User.name}</p>
               </S.dataUser>
               <S.dataLote>
-                <img
-                  src={`/icon-page/${User.fase}.png`}
-                  height={28}
-                  width={28}
-                  alt=""
-                />
+                <img src={`/icon-page/${User.fase}.png`} height={28} width={28} alt="" />
                 <div>
                   <S.textLote>{User.lote}</S.textLote>
                 </div>
               </S.dataLote>
             </S.CardArea>
           )}
-          {User.fase === "" && (
+          {User.fase === '' && (
             <S.CardArea onClick={open}>
               <S.dataUser>
                 <img
@@ -64,36 +59,37 @@ const OperadorCard = (user: any) => {
                   alt=""
                   width={28}
                   height={28}
-                  style={{ objectFit: "cover", borderRadius: "100%" }}
+                  style={{ objectFit: 'cover', borderRadius: '100%' }}
                 />
                 <p>{User.name}</p>
               </S.dataUser>
             </S.CardArea>
           )}
-          {User.fase === "" && (
+          {User.fase === '' && (
             <div className="padding">
               <S.ButtonAtribuir onClick={handleAtribuir}>
-                <S.Icon src="upIcon.svg"/>
+                <S.Icon src="upIcon.svg" />
                 <p>Atribuir lote</p>
               </S.ButtonAtribuir>
             </div>
           )}
         </S.CardA>
 
-        <S.Footer
-          className={expanded ? "show" : ""}
-          setHeight={accodionHeight}
-          ref={ref}
-        >
-          <DataFase recepcao={30} preparo={2} catalogacao={12} digitalizacao={23} upload={1} arquivados={23} percentageCallback={() => {}}/>
+        <S.Footer className={expanded ? 'show' : ''} setHeight={accodionHeight} ref={ref}>
+          <DataFase
+            recepcao={30}
+            preparo={2}
+            catalogacao={12}
+            digitalizacao={23}
+            upload={1}
+            arquivados={23}
+            percentageCallback={() => {
+              console.log();
+            }}
+          />
         </S.Footer>
       </S.totalArea>
-      {modal && (
-        <AtribuirModal
-          nameUser={User.name}
-          close={handleAtribuir}
-        ></AtribuirModal>
-      )}
+      {modal && <AtribuirModal nameUser={User.name} close={handleAtribuir}></AtribuirModal>}
     </>
   );
 };

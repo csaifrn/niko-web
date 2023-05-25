@@ -1,11 +1,10 @@
-import { StyleHTMLAttributes } from "react";
-import styled from "styled-components";
+import styled from 'styled-components';
 
 const totalArea = styled.div`
   background-color: #393e4b;
   align-items: center;
   color: white;
-  font-family: "Rubik";
+  font-family: 'Rubik';
   border-radius: 5px;
 `;
 
@@ -15,7 +14,7 @@ const CardArea = styled.div`
   align-items: center;
   justify-content: space-between;
   color: white;
-  font-family: "Rubik";
+  font-family: 'Rubik';
   border-radius: 5px;
   overflow: hidden;
 `;
@@ -25,7 +24,7 @@ const CardA = styled.div`
   padding: 1.5em 2em;
   background-color: #393e4b;
   gap: 2em;
-  font-family: "Rubik";
+  font-family: 'Rubik';
   border-radius: 5px;
 `;
 
@@ -95,11 +94,11 @@ const Fase = styled.div`
 `;
 
 const CategoriaClick = styled.div`
-  background-color: #393E4B;
-  font-family: "Rubik";
+  background-color: #393e4b;
+  font-family: 'Rubik';
   color: #fff;
   display: grid;
-  gap: 1em; 
+  gap: 1em;
   border-radius: 5px;
 `;
 
@@ -139,7 +138,6 @@ const Prioridade = styled.div`
   }
 `;
 
-
 const ButtonAtribuir = styled.button`
   height: 44px;
   width: 100%;
@@ -151,11 +149,11 @@ const ButtonAtribuir = styled.button`
   align-items: center;
   padding: 0em 1em;
   gap: 1em;
-  font-family: "Rubik";
+  font-family: 'Rubik';
 `;
 
 const BarOut = styled.div`
-  background-color: #191C24;
+  background-color: #191c24;
   width: 100%;
   height: 1.5em;
   border-radius: 5px;
@@ -163,20 +161,20 @@ const BarOut = styled.div`
 `;
 
 interface IBar {
-  percentage: number
+  percentage: number;
 }
 
 const BarInner = styled.div<IBar>`
- background-color: #00D25B;
- width: ${({ percentage }) => percentage}%;
- height: 1.5em;
+  background-color: #00d25b;
+  width: ${({ percentage }) => percentage}%;
+  height: 1.5em;
 `;
 
 const BtnsDiv = styled.div`
   padding: 0 2em 2em 2em;
-  display: flex; 
-  flex-direction: column; 
-  gap: 1em; 
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
   align-items: center;
 `;
 

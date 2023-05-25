@@ -1,8 +1,7 @@
-import { StyleHTMLAttributes } from "react";
-import styled from "styled-components";
+import styled from 'styled-components';
 
 const Lote = styled.div`
-  font-family: "Rubik";
+  font-family: 'Rubik';
   position: relative;
   padding: 0.8em;
   background-color: #393e4b;
@@ -12,14 +11,14 @@ const Lote = styled.div`
 `;
 
 const LoteEdit = styled.div`
-  font-family: "Rubik";
+  font-family: 'Rubik';
 
   padding: 0.8em;
   background-color: #393e4b;
   border-radius: 5px;
   color: white;
-  max-width: 300px;
-  min-width: 250px;
+  max-width: 400px;
+  min-width: 230px;
   filter: drop-shadow(0px 4px 1px rgba(0, 0, 0, 0.25));
 `;
 
@@ -71,8 +70,8 @@ const PaTextDiv = styled.div`
   align-items: center;
 
   p {
-    color: "white";
-    margin-bottom: "0";
+    color: 'white';
+    margin-bottom: '0';
   }
 `;
 
@@ -87,7 +86,7 @@ const Btn = styled.button`
   padding: 0.5em;
   width: 100%;
   height: 44px;
-  background-color: #43DB6D;
+  background-color: #43db6d;
   border-radius: 5px;
   border: none;
   color: white;
@@ -95,20 +94,9 @@ const Btn = styled.button`
   :hover {
   }
   p {
-    font-family: "Rubik";
-    color: #191C24;
+    font-family: 'Rubik';
+    color: #191c24;
   }
 `;
 
-export {
-  Lote,
-  LoteArea,
-  Content,
-  Prioridade,
-  Envolvido,
-  Pa,
-  PaTextDiv,
-  fotoEnv,
-  LoteEdit,
-  Btn,
-};
+export { Lote, LoteArea, Content, Prioridade, Envolvido, Pa, PaTextDiv, fotoEnv, LoteEdit, Btn };

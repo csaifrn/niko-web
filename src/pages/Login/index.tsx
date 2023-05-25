@@ -1,62 +1,59 @@
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import * as S from "./styles"
-const Login = () =>{
+import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import * as S from './styles';
+const Login = () => {
+  const [resgisterEmail, setRegisterEmail] = useState('');
+  const [resgisterPassword, setRegisterPassword] = useState('');
 
-    const [resgisterEmail, setRegisterEmail] = useState("")
-    const [resgisterPassword, setRegisterPassword] = useState("")
-  
-    const auth = getAuth();
-  
-    const navigate = useNavigate();
-  
-    const handleSignUp = async () => {
-      try{
-        const user = await signInWithEmailAndPassword(auth, resgisterEmail, resgisterPassword)
-        console.log("Created", user)
-        if(user != null)
-        {
-            navigate('/');
-        }
-      } catch (err) {
-        console.log(err)
+  const auth = getAuth();
+
+  const navigate = useNavigate();
+
+  const handleSignUp = async () => {
+    try {
+      const user = await signInWithEmailAndPassword(auth, resgisterEmail, resgisterPassword);
+      console.log('Created', user);
+      if (user != null) {
+        navigate('/');
       }
-      
+    } catch (err) {
+      console.log(err);
     }
+  };
 
-    return (
-        <>
-
-            <S.backgroundContainer>
-            <S.itemsContainer>
-                <S.logo alt="Logo" src="Logo_Niko.svg"></S.logo>
-                <S.formLogin>
-                    <S.dataArea>
-                        <S.labelLogin>
-                            Email
-                        </S.labelLogin>
-                        <S.inputLogin placeholder="Email" onChange={event => {setRegisterEmail(event.target.value)}}>
-
-                        </S.inputLogin>
-
-                    </S.dataArea>
-                    <S.dataArea>
-                        <S.labelLogin>
-                            Senha
-                        </S.labelLogin>
-                        <S.inputLogin type="password" placeholder="Senha" onChange={event => {setRegisterPassword(event.target.value)}}>
-
-                        </S.inputLogin>
-                        <S.dangerText>Esqueceu a senha?</S.dangerText>
-                    </S.dataArea>
-                    
-                </S.formLogin>
-                <S.btnLogin onClick={handleSignUp}>Entrar</S.btnLogin>
-            </S.itemsContainer>
-        </S.backgroundContainer>
-        </>
-    )
-}
+  return (
+    <>
+      <S.backgroundContainer>
+        <S.itemsContainer>
+          <S.logo alt="Logo" src="Logo_Niko.svg"></S.logo>
+          <S.formLogin>
+            <S.dataArea>
+              <S.labelLogin>Email</S.labelLogin>
+              <S.inputLogin
+                placeholder="Email"
+                onChange={(event) => {
+                  setRegisterEmail(event.target.value);
+                }}
+              ></S.inputLogin>
+            </S.dataArea>
+            <S.dataArea>
+              <S.labelLogin>Senha</S.labelLogin>
+              <S.inputLogin
+                type="password"
+                placeholder="Senha"
+                onChange={(event) => {
+                  setRegisterPassword(event.target.value);
+                }}
+              ></S.inputLogin>
+              <S.dangerText>Esqueceu a senha?</S.dangerText>
+            </S.dataArea>
+          </S.formLogin>
+          <S.btnLogin onClick={handleSignUp}>Entrar</S.btnLogin>
+        </S.itemsContainer>
+      </S.backgroundContainer>
+    </>
+  );
+};
 
 export default Login;

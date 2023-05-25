@@ -1,18 +1,19 @@
-import React, { useState, useEffect, useRef } from "react";
-import LinkMenuBurger from "../LinkMenuBurger";
-import MenuBurger from "../MenuBurger";
-import * as S from "./styles";
+import React from 'react';
+// import LinkMenuBurger from "../LinkMenuBurger";
+// import MenuBurger from "../MenuBurger";
+import * as S from './styles';
 
 interface MenuProps {
   area: string;
 }
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars, no-unused-vars
 export const Menu = (props: MenuProps) => {
-  const [open, setOpen] = useState(false);
+  // const [open, setOpen] = useState(false);
 
-  const handleClickButton = () => {
-    setOpen(!open);
-  };
+  // const handleClickButton = () => {
+  //   setOpen(!open);
+  // };
 
   return (
     <S.MenuArea>

@@ -1,5 +1,4 @@
-import { StyleHTMLAttributes } from "react";
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const ModalArea = styled.div`
   display: flex;
@@ -8,12 +7,12 @@ export const ModalArea = styled.div`
   align-items: center;
   padding: 16px;
   gap: 1em;
-  font-family: "Rubik";
+  font-family: 'Rubik';
   color: white;
   position: fixed;
   width: 285px;
   height: 510px;
-  background-color: #393E4B;
+  background-color: #393e4b;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 5px;
 `;
@@ -38,11 +37,11 @@ export const ChooseUser = styled.div`
   gap: 1em;
   overflow: auto;
   scroll-behavior: auto;
-  padding: 1em 0em 0em 0em
+  padding: 1em 0em 0em 0em;
 `;
 
 export const Categoria = styled.div`
-  display:flex;
+  display: flex;
   align-items: center;
   gap: 1em;
   padding: 1em 2em;
@@ -53,10 +52,10 @@ export const Categoria = styled.div`
 export const AtribuirButton = styled.button`
   height: 44px;
   border-radius: 5px;
-  background-color: #43DB6D;
+  background-color: #43db6d;
   border: none;
   color: white;
-  font-family: "Rubik";
+  font-family: 'Rubik';
 `;
 
 export const ModalBackdrop = styled.div`
@@ -70,5 +69,5 @@ export const ModalBackdrop = styled.div`
   top: 0;
   left: 0;
   z-index: 999999999999999999;
-  background-color: rgba(25, 28, 36, 0.5);;
+  background-color: rgba(25, 28, 36, 0.5);
 `;

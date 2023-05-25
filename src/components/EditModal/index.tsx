@@ -36,6 +36,8 @@ export const EditModal = (props: EditModalProps) => {
     mockData.title.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
+  console.log("DADO", mockData)
+
   return (
     <>
     <S.ModalBackdrop >
@@ -57,46 +59,66 @@ export const EditModal = (props: EditModalProps) => {
           />
         </S.NameClose>
 
-        {/* TITULO 
-        <div>
-          {filteredTitulo.map((title: any) => (
-            <S.Categoria
-              key={title.id}
+        {/* TITULO */}
+        <S.TituloDiv>
+            <p>Título</p>
+            <S.Titulo 
+              key={mockData[3].id} 
+              style={{backgroundColor: "#2D303B"}}
+              type="text" 
+              name="nome" 
+              placeholder= {mockData[3].tasks[0].title}
             >
-            </S.Categoria>
-            ))}
-        </div>
-        */}
+            </S.Titulo>
+        </S.TituloDiv>
+        
         {/* LOCAL */}
+        <S.LocalDiv>
+            <p>Local</p>
+            <S.Local 
+              key={mockData[3].id} 
+              style={{backgroundColor: "#2D303B"}}
+              type="text" 
+              name="nome" 
+              placeholder= {mockData[3].tasks[0].estante}
+            >
+            </S.Local>
+        </S.LocalDiv>
 
         {/* CATEGORIAS */}
-        <p>Categorias</p>
-        <Search searchTerm={searchTerm} handleSearchChange={handleSearchChange} />
-        <S.ChooseUser>
-          {filteredCategorias.map((categ: any) => (
-            <S.Categoria
-              key={categ.id}
-              onClick={() => handleLoteClick(categ.id
-              )}
-              style={{
-              backgroundColor: selectedCategoriaData.includes(categ.id)
-              ? "#090E09"
-              : "#2D303B",
-              }}
-            >
-              <p
-              style={{
-              color: selectedCategoriaData.includes(categ.id)
-              ? "#43DB6D"
-              : "#838383",
-              }}
-              >
-              {categ.name}
-              </p>
 
-            </S.Categoria>
-            ))}
+        <S.Categorias>
+          <p style={{marginBottom: "1em"}}>Categorias</p>
+          <Search 
+            searchTerm={searchTerm} 
+            handleSearchChange={handleSearchChange} 
+          />
+          <S.ChooseUser>
+            {filteredCategorias.map((categ: any) => (
+              <S.Categoria
+                key={categ.id}
+                onClick={() => handleLoteClick(categ.id
+                )}
+                style={{
+                backgroundColor: selectedCategoriaData.includes(categ.id)
+                ? "#090E09"
+                : "#2D303B",
+                }}
+              >
+                <p
+                style={{
+                color: selectedCategoriaData.includes(categ.id)
+                ? "#43DB6D"
+                : "#838383",
+                }}
+                >
+                {categ.name}
+                </p>
+
+              </S.Categoria>
+              ))}
           </S.ChooseUser>
+        </S.Categorias>
         <S.AtribuirButton onClick={props.close}>
           Salvar
         </S.AtribuirButton>

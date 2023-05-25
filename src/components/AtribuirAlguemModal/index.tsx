@@ -36,18 +36,21 @@ export const AtribuirAlguemModal = (props: AtribuirAlguemModalProps) => {
       <S.ModalContent id="modal-content">
         <S.NameClose>
           <h2>Atribuir para</h2>
-          <img
-            onClick={props.close}
-            src="/close.svg"
-            alt=""
-            height={18}
-            width={18}
-            style={{
-              padding: "5px 5px",
-              backgroundColor: "#090E09",
-              borderRadius: "5px",
-            }}
-          />
+
+          <button onClick={props.close} style={{width:"auto" , backgroundColor:"transparent" , border:"none" }}>
+            <img
+                src="/close.svg"
+                height={18}
+                width={18}
+                style={{
+                  padding: "5px 5px",
+                  backgroundColor: "#090E09",
+                  borderRadius: "5px",
+                }}
+              />
+          </button>
+
+
         </S.NameClose>
         <Search searchTerm={searchTerm} handleSearchChange={handleSearchChange} />
         <S.ChooseUser>

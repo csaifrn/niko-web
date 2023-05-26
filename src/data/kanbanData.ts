@@ -176,6 +176,7 @@ const mockData = [
       {
         id: '7',
         title: 'Lote 06',
+        estante: '23-A',
         categoria: [
           {
             nome: 'RH',

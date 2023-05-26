@@ -51,7 +51,7 @@ const Btn = styled.button`
   font-weight: bold;
   :hover {
   }
-  @media screen and (min-width: 1000px) {
+  @media screen and (min-width: 700px) {
     width: 20%;
   }
   p {

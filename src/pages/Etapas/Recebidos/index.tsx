@@ -1,6 +1,8 @@
 import * as Style from '../../../global/index';
 import * as S from './styles';
 import Lote from '../../../components/Lote/index';
+import { useState } from 'react';
+import { CreateModal } from '../../../components/CriarLote';
 
 export interface Categoria {
   id: string;
@@ -23,6 +25,8 @@ interface RecepProps {
 }
 
 const Recebidos = (props: RecepProps) => {
+  const [openCriarModal, setOpenCriarModal] = useState(false);
+
   // const [CategoriaDetails, setCategoriaDetails] = useState<Categoria[]>([{
   //   id: uuidv4(),
   //   nome: "Xxx"
@@ -73,7 +77,7 @@ const Recebidos = (props: RecepProps) => {
         <div style={{ margin: '2em', display: 'flex', flexDirection: 'column', gap: '1em' }}>
           <S.Btn
             onClick={() => {
-              console.log('');
+              setOpenCriarModal(!openCriarModal);
             }}
           >
             <p>Adicionar Caixa</p>
@@ -214,6 +218,13 @@ const Recebidos = (props: RecepProps) => {
           <Style.Footer></Style.Footer> */}
         </div>
       </Style.Wrapper>
+      {openCriarModal && (
+        <CreateModal
+          close={() => {
+            setOpenCriarModal(!openCriarModal);
+          }}
+        />
+      )}
     </>
   );
 };

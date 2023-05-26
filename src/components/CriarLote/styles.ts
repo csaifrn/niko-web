@@ -1,74 +1,112 @@
 import styled from 'styled-components';
 
-const ModalArea = styled.div`
-  position: fixed;
-  width: 60%;
-  top: calc(30% - 2em);
-  left: calc(20% - 2em);
-  padding: 2em;
-  background-color: #393e4b;
+export const ModalArea = styled.div`
+  display: flex;
+  flex-direction: column;
   align-items: center;
-  color: white;
+  padding: 2em;
+  gap: 1em;
   font-family: 'Rubik';
-  border-radius: 5px;
+  color: white;
+  position: fixed;
+  width: 285px;
+  background-color: #393e4b;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 5px;
+  overflow-y: scroll;
+  scroll-behavior: auto;
+  scrollbar-width: thin;
 `;
 
-const ModalContent = styled.div`
+export const ModalContent = styled.div`
   display: flex;
-  gap: 1em;
+  gap: 2em;
   flex-direction: column;
 `;
 
-const NameClose = styled.div`
+export const NameClose = styled.div`
   display: flex;
   justify-content: space-between;
-  align-items: center;
 `;
 
-const ChooseLote = styled.div`
+export const TituloDiv = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+`;
+
+export const Titulo = styled.input`
+  height: 44px;
+  padding: 0 2em;
+  border-radius: 5px;
+  color: white;
+  border: none;
+  font-family: 'Rubik';
+`;
+
+export const LocalDiv = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+`;
+
+export const Local = styled.input`
+  height: 44px;
+  padding: 0 2em;
+  border-radius: 5px;
+  color: white;
+  border: none;
+  font-family: 'Rubik';
+`;
+
+export const Categorias = styled.div``;
+
+export const Categoria = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 1em;
+  padding: 1.5em 2em;
+  border-radius: 5px;
+  cursor: pointer;
+`;
+
+export const ChooseUser = styled.div`
   width: 100%;
-  height: 40vh;
+  height: 20vh;
   border-radius: 5px;
   display: flex;
   flex-direction: column;
   gap: 1em;
   overflow: auto;
   scroll-behavior: auto;
+  padding: 0;
+  margin: 1em 0;
+  overflow-y: scroll;
+  scroll-behavior: auto;
+  scrollbar-width: thin;
 `;
 
-const Lote = styled.div`
-  padding: 1.5em 2em;
-  border-radius: 5px;
-  cursor: pointer;
-`;
-
-const Recused = styled.button`
+export const AtribuirButton = styled.button`
   height: 44px;
   border-radius: 5px;
-  background-color: #191c24;
+  background-color: #43db6d;
   border: none;
   color: white;
   font-family: 'Rubik';
+  bottom: 0;
+  left: 0;
 `;
 
-const Delete = styled.button`
-  height: 44px;
-  border-radius: 5px;
-  background-color: #f32d2d;
-  border: none;
-  color: white;
-  font-family: 'Rubik';
-`;
-
-const ModalBackdrop = styled.div`
+export const ModalBackdrop = styled.div`
   position: fixed;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   width: 100%;
   height: 100%;
   top: 0;
   left: 0;
-  z-index: 1040;
+  z-index: 999999999999999999;
   background-color: rgba(25, 28, 36, 0.5);
 `;
-
-export { ModalArea, ModalContent, NameClose, ChooseLote, Lote, Recused, Delete, ModalBackdrop };

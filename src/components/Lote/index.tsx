@@ -9,7 +9,7 @@ const Lote = (props: any) => {
         <S.LoteEdit className="Lote">
           <S.LoteArea>
             <S.Content>
-              <h1>{props.value}</h1>
+              <h2>{props.value}</h2>
               {props.categoria &&
                 props.categoria.map((categoria: any) => (
                   <React.Fragment key={uuidv4()}>
@@ -64,7 +64,7 @@ const Lote = (props: any) => {
         <S.Lote className="Lote">
           <S.LoteArea>
             <S.Content>
-              <h1>{props.value}</h1>
+              <h2>{props.value}</h2>
               {props.categoria &&
                 props.categoria.map((categoria: any) => (
                   <React.Fragment key={uuidv4()}>

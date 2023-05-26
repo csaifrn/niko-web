@@ -7,40 +7,40 @@ interface AtribuirModalProps {
   close: () => void;
 }
 
-export const AtribuirModal = (props: AtribuirModalProps) => {
-  const lotes = [
-    {
-      id: 1,
-      protocol: '000102',
-      title: 'Lote 102',
-    },
-    {
-      id: 2,
-      protocol: '000201',
-      title: 'Lote 201',
-    },
-    {
-      id: 3,
-      protocol: '000829',
-      title: 'Lote 829',
-    },
-    {
-      id: 4,
-      protocol: '001024',
-      title: 'Lote 1024',
-    },
-    {
-      id: 5,
-      protocol: '002987',
-      title: 'Lote 2987',
-    },
-    {
-      id: 6,
-      protocol: '000001',
-      title: 'Lote 01',
-    },
-  ];
+export const lotes = [
+  {
+    id: 1,
+    protocol: '000102',
+    title: 'Lote 102',
+  },
+  {
+    id: 2,
+    protocol: '000201',
+    title: 'Lote 201',
+  },
+  {
+    id: 3,
+    protocol: '000829',
+    title: 'Lote 829',
+  },
+  {
+    id: 4,
+    protocol: '001024',
+    title: 'Lote 1024',
+  },
+  {
+    id: 5,
+    protocol: '002987',
+    title: 'Lote 2987',
+  },
+  {
+    id: 6,
+    protocol: '000001',
+    title: 'Lote 01',
+  },
+];
 
+export const AtribuirModal = (props: AtribuirModalProps) => {
   const [selectedLotes, setSelectedLotes] = useState<number[]>([]);
   const [searchTerm, setSearchTerm] = useState<string>('');
 

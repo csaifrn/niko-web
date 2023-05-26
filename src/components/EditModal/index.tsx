@@ -77,7 +77,7 @@ export const EditModal = (props: EditModalProps) => {
                 style={{ backgroundColor: '#2D303B' }}
                 type="text"
                 name="nome"
-                placeholder={mockData[3].tasks[0].estante}
+                placeholder={'23-A'}
               ></S.Local>
             </S.LocalDiv>
 

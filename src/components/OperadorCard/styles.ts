@@ -1,11 +1,10 @@
-import { StyleHTMLAttributes } from "react";
-import styled from "styled-components";
+import styled from 'styled-components';
 
 const totalArea = styled.div`
   background-color: #393e4b;
   align-items: center;
   color: white;
-  font-family: "Rubik";
+  font-family: 'Rubik';
   border-radius: 5px;
 `;
 
@@ -15,16 +14,16 @@ const CardArea = styled.div`
   align-items: center;
   justify-content: space-between;
   color: white;
-  font-family: "Rubik";
+  font-family: 'Rubik';
   border-radius: 5px;
 `;
 const CardA = styled.div`
   display: flex;
   flex-direction: column;
-  padding: 1.5em 2em; 
+  padding: 1.5em 2em;
   background-color: #393e4b;
   gap: 2em;
-  font-family: "Rubik";
+  font-family: 'Rubik';
   border-radius: 5px;
 `;
 
@@ -118,7 +117,7 @@ const ButtonAtribuir = styled.button`
   align-items: center;
   padding: 0em 1em;
   gap: 1em;
-  font-family: "Rubik";
+  font-family: 'Rubik';
 `;
 
 export {

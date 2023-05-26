@@ -1,7 +1,7 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 const kanban = styled.div`
-  font-family: "Rubik";
+  font-family: 'Rubik';
   display: flex;
   align-items: center;
   justify-content: start;
@@ -36,7 +36,6 @@ const kanban = styled.div`
 `;
 
 const kanbanSection = styled.div`
-
   min-width: 250px;
   gap: 1em;
   height: 60vh;
@@ -116,10 +115,4 @@ const inputPrioridade = styled.input`
   }
 `;
 
-export {
-  kanban,
-  kanbanSection,
-  kanbanSectionContent,
-  btnPrioridade,
-  inputPrioridade,
-};
+export { kanban, kanbanSection, kanbanSectionContent, btnPrioridade, inputPrioridade };

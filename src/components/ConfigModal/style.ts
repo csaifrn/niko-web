@@ -2,22 +2,22 @@ import { StyleHTMLAttributes } from "react";
 import styled from "styled-components";
 
 export const ModalArea = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 2em;
-  gap: 1em;
   font-family: "Rubik";
   color: white;
-  position: fixed ;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 16px;
+  gap: 10px;
+
+  position: relative;
   width: 285px;
-  height: 510px;
-  background-color: #393E4B;
+  height: 136px;
+
+  background: #393E4B;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 5px;
-  overflow-y: scroll;
-  scroll-behavior: auto;
-  scrollbar-width: thin;
 `;
 
 export const ModalContent = styled.div`
@@ -29,6 +29,7 @@ export const ModalContent = styled.div`
 export const NameClose = styled.div`
   display: flex;
   justify-content: space-between;
+  gap: 3em;
 `;
 
 export const TituloDiv = styled.div`
@@ -58,7 +59,6 @@ export const Local = styled.input`
   border: none;
   font-family: "Rubik";
 `;
-
 
 export const Categorias = styled.div`
 `;
@@ -113,11 +113,57 @@ export const ModalBackdrop = styled.div`
   background-color: rgba(25, 28, 36, 0.5);;
 `;
 
-export const Switch = styled.input`
-  width: 43.2px;
-  height: 24px;
-  /* Inside auto layout */
-  flex: none;
-  order: 1;
-  flex-grow: 0;
+export const Compartilhamento = styled.div`
+  display:flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top:0.5em;
+`;
+
+export const Prioridade = styled.div`
+  display:flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top:0.5em;
+`;
+
+export const SwitchButton = styled.label`
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+`;
+
+export const Slider = styled.span`
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #0A090E;
+  border-radius: 34px;
+  cursor: pointer;
+
+  &:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    border-radius: 50%;
+    transition: 0.4s;
+  }
+`;
+
+export const Input = styled.input.attrs({ type: 'checkbox' })`
+  display: none;
+  &:checked + ${Slider} {
+    background-color: #43DB6D
+  }
+
+  &:checked + ${Slider}:before {
+    transform: translateX(26px);
+  }
 `;

@@ -1,29 +1,28 @@
 import styled from 'styled-components';
 
 const ModalArea = styled.div`
-  position: fixed;
-  width: 60%;
-  top: calc(30% - 2em);
-  left: calc(20% - 2em);
-  padding: 2em;
-  background-color: #393e4b;
-  align-items: center;
+  width: 75vw;
+  padding:2em;
+  position: relative;
+  background: #393E4B;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 5px;
   color: white;
   font-family: 'Rubik';
-  border-radius: 5px;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 `;
 
 const ModalContent = styled.div`
   display: flex;
   gap: 1em;
   flex-direction: column;
+
 `;
 
 const NameClose = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 2em;
 `;
 
 const ChooseLote = styled.div`
@@ -50,15 +49,24 @@ const Recused = styled.button`
   border: none;
   color: white;
   font-family: 'Rubik';
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 0 2em;
 `;
 
-const Delete = styled.button`
+const Avancar = styled.button`
   height: 44px;
   border-radius: 5px;
-  background-color: #f32d2d;
+  background-color: #FCDE42;
   border: none;
-  color: white;
+  color: #191C24;
   font-family: 'Rubik';
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 0 2em;
+  gap: 1em;
 `;
 
 const ModalBackdrop = styled.div`
@@ -69,6 +77,10 @@ const ModalBackdrop = styled.div`
   left: 0;
   z-index: 1040;
   background-color: rgba(25, 28, 36, 0.5);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 `;
 
-export { ModalArea, ModalContent, NameClose, ChooseLote, Lote, Recused, Delete, ModalBackdrop };
+export { ModalArea, ModalContent, NameClose, ChooseLote, Lote, Recused, Avancar, ModalBackdrop };

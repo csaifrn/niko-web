@@ -1,9 +1,7 @@
 import React, {useState } from "react";
 import * as S from "./style";
-import Search from "../Search";
 import CategoriaData from "../../data/CategoriaData";
 import mockData from "../../data/kanbanData";
-import { kanban } from "../Board/styles";
 
 interface ConfigModalProps {
   close: () => void;
@@ -36,100 +34,57 @@ export const ConfigModal = (props: ConfigModalProps) => {
     mockData.title.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
-  console.log("DADO", mockData)
+  //Função para ativar e desativar o switch
+  const [checked, setChecked] = useState(false);
+
+  const handleChange = () => {
+    setChecked(!checked);
+  };
+
+  const [Pchecked, setPChecked] = useState(false);
+
+  const handlePChange = () => {
+    setPChecked(!Pchecked);
+  };
 
   return (
     <>
     <S.ModalBackdrop >
-    <S.ModalArea >
-      <S.ModalContent id="modal-content">
-        <S.NameClose>
-          <h2>Editar Lote</h2>
-          <img
-            onClick={props.close}
-            src="/close.svg"
-            alt=""
-            height={18}
-            width={18}
-            style={{
-              padding: "5px 5px",
-              backgroundColor: "#090E09",
-              borderRadius: "5px",
-            }}
-          />
-        </S.NameClose>
+      <S.ModalArea >
+        <S.ModalContent id="modal-content">
+          <S.NameClose>
+            <h2>Configurações do lote</h2>
+            <img
+              onClick={props.close}
+              src="/close.svg"
+              alt=""
+              height={18}
+              width={18}
+              style={{
+                padding: "5px 5px",
+                backgroundColor: "#090E09",
+                borderRadius: "5px",
+              }}
+            />
+          </S.NameClose>
 
-        {/* TITULO */}
-        <S.TituloDiv>
-            <p>Título</p>
-            <S.Titulo 
-              key={mockData[3].id} 
-              style={{backgroundColor: "#2D303B"}}
-              type="text" 
-              name="nome" 
-              placeholder= {mockData[3].tasks[0].title}
-            >
-            </S.Titulo>
-        </S.TituloDiv>
-        
-        {/* LOCAL */}
-        <S.LocalDiv>
-            <p>Local</p>
-            <S.Local 
-              key={mockData[3].id} 
-              style={{backgroundColor: "#2D303B"}}
-              type="text" 
-              name="nome" 
-              placeholder={mockData[3].tasks[0].estante}
-            >
-            </S.Local>
-        </S.LocalDiv>
+          <S.Compartilhamento>
+            <p>Compartilhamento</p>
+            <S.SwitchButton>
+              <S.Input checked={checked} onChange={handleChange} />
+              <S.Slider />
+            </S.SwitchButton>
+          </S.Compartilhamento>
 
-        <h2>Exemplo de Botão Switch</h2>
-        <label className="switch">
-          <S.Switch type="checkbox"/>
-          <span className="slider round"></span>
-        </label>
-
-        {/* CATEGORIAS */}
-
-        <S.Categorias>
-          <p style={{marginBottom: "1em"}}>Categorias</p>
-          <Search 
-            searchTerm={searchTerm} 
-            handleSearchChange={handleSearchChange} 
-          />
-          <S.ChooseUser>
-            {filteredCategorias.map((categ: any) => (
-              <S.Categoria
-                key={categ.id}
-                onClick={() => handleLoteClick(categ.id
-                )}
-                style={{
-                backgroundColor: selectedCategoriaData.includes(categ.id)
-                ? "#090E09"
-                : "#2D303B",
-                }}
-              >
-                <p
-                style={{
-                color: selectedCategoriaData.includes(categ.id)
-                ? "#43DB6D"
-                : "#838383",
-                }}
-                >
-                {categ.name}
-                </p>
-
-              </S.Categoria>
-              ))}
-          </S.ChooseUser>
-        </S.Categorias>
-        <S.AtribuirButton onClick={props.close}>
-          Salvar
-        </S.AtribuirButton>
-      </S.ModalContent>
-    </S.ModalArea>
+          <S.Prioridade>
+            <p>Prioridade</p>
+            <S.SwitchButton>
+              <S.Input checked={Pchecked} onChange={handlePChange}/>
+              <S.Slider />
+            </S.SwitchButton>
+          </S.Prioridade>
+        </S.ModalContent>
+      </S.ModalArea>
     </S.ModalBackdrop>
     </>
 

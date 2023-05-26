@@ -1,8 +1,8 @@
-import React, { useState } from "react";
-import OperadorCard from "../../../components/OperadorCard";
-import Users from "../../../data/UserData";
-import * as S from "./styles";
-import Search from "../../../components/Search";
+import React, { useState } from 'react';
+import OperadorCard from '../../../components/OperadorCard';
+import Users from '../../../data/UserData';
+import * as S from './styles';
+import Search from '../../../components/Search';
 
 type User = {
   id: number;
@@ -12,15 +12,13 @@ type User = {
 };
 
 const removeDiacritics = (str: string): string => {
-  return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+  return str.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
 };
 
 const Operador = (): JSX.Element => {
-  const [searchTerm, setSearchTerm] = useState<string>("");
+  const [searchTerm, setSearchTerm] = useState<string>('');
 
-  const handleSearchChange = (
-    event: React.ChangeEvent<HTMLInputElement>
-  ): void => {
+  const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
     setSearchTerm(event.target.value);
   };
 
@@ -36,21 +34,16 @@ const Operador = (): JSX.Element => {
     return nameA.localeCompare(nameB);
   });
 
-  const sortedAndFilteredUsers: User[] = sortedUsers.sort(
-    (a: User, b: User) => {
-      return a.lote !== "" ? -1 : b.lote === "" ? 1 : 0;
-    }
-  );
+  const sortedAndFilteredUsers: User[] = sortedUsers.sort((a: User, b: User) => {
+    return a.lote !== '' ? -1 : b.lote === '' ? 1 : 0;
+  });
 
   return (
     <>
       <S.CardsArea>
-        <Search
-          searchTerm={searchTerm}
-          handleSearchChange={handleSearchChange}
-        />
+        <Search searchTerm={searchTerm} handleSearchChange={handleSearchChange} />
 
-        {sortedAndFilteredUsers.map((user: User, index: number) => (
+        {sortedAndFilteredUsers.map((user: User) => (
           <OperadorCard User={user} key={user.id} />
         ))}
       </S.CardsArea>

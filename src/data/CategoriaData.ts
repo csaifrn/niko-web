@@ -1,24 +1,24 @@
 const CategoriaData = [
   {
     id: 1,
-    name: "Financeiro",
+    name: 'Financeiro',
     percentage: 50,
   },
   {
     id: 2,
-    name: "Administrativo",
+    name: 'Administrativo',
     percentage: 90,
   },
   {
     id: 3,
-    name: "RH",
+    name: 'RH',
     percentage: 0,
   },
   {
     id: 4,
-    name: "Jurídico",
+    name: 'Jurídico',
     percentage: 12,
-  }
-]
+  },
+];
 
 export default CategoriaData;

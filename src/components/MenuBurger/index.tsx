@@ -30,15 +30,14 @@ const MenuBurger = (props: MenuBurgerProps) => {
 
   return (
     <S.areaClick open={true} ref={menuRef}>
-        <S.FecharMenu onClick={handleMenuClick}><S.MenuImg src="/Vector.svg" /></S.FecharMenu>
-        <S.StyledMenu open={true} id="menu" >
-          
-          <LinkMenuBurger path="/" nome="Inicio" area={props.area} />
-          <LinkMenuBurger path="/Arquivamento" nome="Arquivamento" area={props.area} />
-        </S.StyledMenu>
+      <S.FecharMenu onClick={handleMenuClick}>
+        <S.MenuImg src="/Vector.svg" />
+      </S.FecharMenu>
+      <S.StyledMenu open={true} id="menu">
+        <LinkMenuBurger path="/" nome="Inicio" area={props.area} />
+        <LinkMenuBurger path="/Arquivamento" nome="Arquivamento" area={props.area} />
+      </S.StyledMenu>
     </S.areaClick>
-
-
   );
 };
 

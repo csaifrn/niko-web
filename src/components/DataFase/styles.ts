@@ -1,5 +1,4 @@
-import { StyleHTMLAttributes } from "react";
-import styled from "styled-components";
+import styled from 'styled-components';
 
 const DataUser = styled.div`
   display: flex;
@@ -33,4 +32,4 @@ const PerecentageFase = styled.p`
   font-size: 10px;
 `;
 
-export {Fase, SideUser, Icon, TotalFase, PerecentageFase, DataUser}
+export { Fase, SideUser, Icon, TotalFase, PerecentageFase, DataUser };

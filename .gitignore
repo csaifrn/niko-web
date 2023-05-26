@@ -16,11 +16,14 @@ lerna-debug.log*
 
 # libs
 node_modules
+.prettierrc.js
+.eslintrc.js
 
 # build dir
 build
 dist
 dist-ssr
+dist/
 
 # Editor directories and files
 .vscode/*

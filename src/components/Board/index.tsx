@@ -1,40 +1,22 @@
-import { useRef, useState } from "react";
-import * as S from "./styles";
-import mockData from "../../data/kanbanData";
-import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
-import Lote from "../Lote";
-import { LoteDetails } from "../LoteDetails";
-import { Link, Route, Routes } from "react-router-dom";
-
+import { useState } from 'react';
+import * as S from './styles';
+import mockData from '../../data/kanbanData';
+import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd';
+import Lote from '../Lote';
 interface BoardProps {
   fase: string;
 }
 
 export const Board = (props: BoardProps) => {
   const [data, setData] = useState(mockData);
-  const [prioridade, setPrioridade] = useState("");
-  const [open, setOpen] = useState(false);
-  const [task, setTask] = useState();
-
-  const getPrioridade = useRef<HTMLInputElement>(null);
-
-  function handlePrioridade() {
-    if (getPrioridade.current !== null && getPrioridade.current !== undefined) {
-      setPrioridade(getPrioridade.current.value.toString());
-    }
-  }
 
   const onDragEnd = (result: any) => {
     if (!result.destination) return;
     const { source, destination } = result;
     if (source.droppableId !== destination.droppableId) {
-      console.log("Funcionando!");
-      const ColunmIndexSource = data.findIndex(
-        (e) => e.id === source.droppableId
-      );
-      const ColunmIndexDestination = data.findIndex(
-        (e) => e.id === destination.droppableId
-      );
+      console.log('Funcionando!');
+      const ColunmIndexSource = data.findIndex((e) => e.id === source.droppableId);
+      const ColunmIndexDestination = data.findIndex((e) => e.id === destination.droppableId);
 
       const ColumnSource = data[ColunmIndexSource];
       const ColumnDestination = data[ColunmIndexDestination];
@@ -55,8 +37,8 @@ export const Board = (props: BoardProps) => {
   return (
     <>
       <>
-        <div style={{ margin: "0em 3em 0em 3em", display: "flex", justifyContent: "flex-end", gap: "0.5em" }}>
-          <img src={`/icon-page/${props.fase}.png`}/>
+        <div style={{ margin: '0em 3em 0em 3em', display: 'flex', justifyContent: 'flex-end', gap: '0.5em' }}>
+          <img src={`/icon-page/${props.fase}.png`} alt={`icone da fase ${props.fase}`} />
         </div>
       </>
       <DragDropContext onDragEnd={onDragEnd}>
@@ -64,45 +46,40 @@ export const Board = (props: BoardProps) => {
           {data.map((section: any) => (
             <Droppable key={section.id} droppableId={section.id}>
               {(provided) => (
-                <S.kanbanSection
-                  {...provided.droppableProps}
-                  ref={provided.innerRef}
-                >
-                  <div
-                    style={{ display: "flex", gap: "1em", marginLeft: "1em" }}
-                  >
+                <S.kanbanSection {...provided.droppableProps} ref={provided.innerRef}>
+                  <div style={{ display: 'flex', gap: '1em', marginLeft: '1em' }}>
                     <h2 className="kanbanSectionTititle">{section.title}</h2>
-                    {section.title == "Disponíveis" && (
+                    {section.title == 'Disponíveis' && (
                       <h2
                         style={{
-                          color: "#43DB6D",
+                          color: '#43DB6D',
                         }}
                       >
                         {section.tasks ? section.tasks.length : 0}
                       </h2>
                     )}
-                    {section.title == "Em pausa" && (
+                    {section.title == 'Em pausa' && (
                       <h2
                         style={{
-                          color: "#FCDE42",
+                          color: '#FCDE42',
                         }}
                       >
                         {section.tasks ? section.tasks.length : 0}
                       </h2>
                     )}
-                    {section.title == "Em andamento" && (
+                    {section.title == 'Em andamento' && (
                       <h2
                         style={{
-                          color: "#F32D2D",
+                          color: '#F32D2D',
                         }}
                       >
                         {section.tasks ? section.tasks.length : 0}
                       </h2>
                     )}
-                    {section.title == "Concluídos" && (
+                    {section.title == 'Concluídos' && (
                       <h2
                         style={{
-                          color: "#43DB6D",
+                          color: '#43DB6D',
                         }}
                       >
                         {section.tasks ? section.tasks.length : 0}
@@ -112,11 +89,7 @@ export const Board = (props: BoardProps) => {
 
                   <S.kanbanSectionContent>
                     {section.tasks.map((task: any, index: any) => (
-                      <Draggable
-                        key={task.id}
-                        draggableId={task.id}
-                        index={index}
-                      >
+                      <Draggable key={task.id} draggableId={task.id} index={index}>
                         {(provided, snapshot) => (
                           <div
                             ref={provided.innerRef}
@@ -124,19 +97,15 @@ export const Board = (props: BoardProps) => {
                             {...provided.dragHandleProps}
                             style={{
                               ...provided.draggableProps.style,
-                              opacity: snapshot.isDragging ? "0.5" : "1",
+                              opacity: snapshot.isDragging ? '0.5' : '1',
                             }}
                           >
-                            <a
-                              href={`/Lote/${task.id}`}
-                              style={{ textDecoration: "none" }}
-                            >
+                            <a href={`/Lote/${task.id}`} style={{ textDecoration: 'none' }}>
                               <Lote
                                 task={task}
                                 value={task.title}
                                 categoria={task.categoria}
                                 envolvidos={task.envolvidos}
-                                prioridade={prioridade}
                               ></Lote>
                             </a>
                           </div>

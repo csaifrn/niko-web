@@ -1,11 +1,8 @@
-import React, { useState } from "react";
-import OperadorCard from "../../../components/OperadorCard";
-import Categorias from "../../../data/CategoriaData";
-import * as S from "./styles";
-import Search from "../../../components/Search";
-import CategoriaData from "../../../data/CategoriaData";
-import CategoriaCard from "../../../components/CategoriaCard";
-
+import React, { useState } from 'react';
+import * as S from './styles';
+import Search from '../../../components/Search';
+import CategoriaData from '../../../data/CategoriaData';
+import CategoriaCard from '../../../components/CategoriaCard';
 
 type Categoria = {
   id: number;
@@ -14,15 +11,13 @@ type Categoria = {
 };
 
 const removeDiacritics = (str: string): string => {
-  return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+  return str.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
 };
 
 const Categoria = () => {
-  const [searchTerm, setSearchTerm] = useState<string>("");
+  const [searchTerm, setSearchTerm] = useState<string>('');
 
-  const handleSearchChange = (
-    event: React.ChangeEvent<HTMLInputElement>
-  ): void => {
+  const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
     setSearchTerm(event.target.value);
   };
 
@@ -38,22 +33,17 @@ const Categoria = () => {
     return nameA.localeCompare(nameB);
   });
 
-  const sortedAndFilteredCategorias: Categoria[] = sortedCategorias.sort(
-    (a: Categoria, b: Categoria) => {
-      return a.name.localeCompare(b.name);
-    }
-  );
+  const sortedAndFilteredCategorias: Categoria[] = sortedCategorias.sort((a: Categoria, b: Categoria) => {
+    return a.name.localeCompare(b.name);
+  });
 
   return (
     <>
       <S.CardsArea>
-        <Search
-          searchTerm={searchTerm}
-          handleSearchChange={handleSearchChange}
-        />
+        <Search searchTerm={searchTerm} handleSearchChange={handleSearchChange} />
 
-        {sortedAndFilteredCategorias.map((categoria: Categoria, index: number) => (
-          <CategoriaCard key={categoria.id} categoria={categoria}/>
+        {sortedAndFilteredCategorias.map((categoria: Categoria) => (
+          <CategoriaCard key={categoria.id} categoria={categoria} />
         ))}
       </S.CardsArea>
     </>

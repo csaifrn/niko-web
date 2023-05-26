@@ -1,22 +1,47 @@
-import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
+// import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 import * as S from './styles';
+import { useSignIn } from 'react-auth-kit';
+
 const Login = () => {
   const [resgisterEmail, setRegisterEmail] = useState('');
   const [resgisterPassword, setRegisterPassword] = useState('');
+  const signIn = useSignIn();
 
-  const auth = getAuth();
+  const user = { email: resgisterEmail, password: resgisterPassword };
+
+  // const auth = getAuth();
 
   const navigate = useNavigate();
 
   const handleSignUp = async () => {
+    //   try{
+    //     const user = await signInWithEmailAndPassword(auth, resgisterEmail, resgisterPassword)
+    //     console.log("Created", user)
+    //     if(user != null)
+    //     {
+    //         navigate('/');
+    //     }
+    //   } catch (err) {
+    //     console.log(err)
+    //   }
     try {
-      const user = await signInWithEmailAndPassword(auth, resgisterEmail, resgisterPassword);
-      console.log('Created', user);
-      if (user != null) {
-        navigate('/');
-      }
+      axios.post('http://localhost:3333/auth/sign-in', user).then((response: any) => {
+        const token = response.data.token;
+        // const role = [123, 231];
+        const user = response.data.user;
+
+        signIn({
+          token: token,
+          expiresIn: 3600,
+          tokenType: 'Bearer',
+          authState: { user },
+        });
+
+        navigate('/Fase');
+      });
     } catch (err) {
       console.log(err);
     }

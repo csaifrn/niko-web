@@ -3,6 +3,8 @@ import * as S from './styles';
 import Lote from '../../../components/Lote/index';
 import { useState } from 'react';
 import { CreateModal } from '../../../components/CriarLote';
+import MenuCoord from '../../../components/MenuCoord';
+import Menu from '../../../components/Menu';
 
 export interface Categoria {
   id: string;
@@ -68,6 +70,8 @@ const Recebidos = (props: RecepProps) => {
   return (
     <>
       <Style.Wrapper>
+        <Menu area="/"></Menu>
+        <MenuCoord />
         <>
           <div style={{ margin: '1em 3em 0em 3em', display: 'flex', justifyContent: 'flex-end', gap: '0.5em' }}>
             <img src={`/icon-page/${props.etapa}.png`} alt={`icone da etapa ${props.etapa}`} />

@@ -2,11 +2,13 @@ import React, { useState } from 'react';
 import * as S from './styles';
 import mockData from '../../data/kanbanData';
 import { useParams, useNavigate } from 'react-router-dom';
+import Menu from '../Menu';
+import MenuCoord from '../MenuCoord';
 import { AtribuirAlguemModal } from '../AtribuirAlguemModal';
-import { EditModal } from '../EditModal';
+import { AvancarModal } from '../AvancarModal';
 import { ConfigModal } from '../ConfigModal';
 import { DeletarLoteModal } from '../DeletarLoteModal';
-import { AvancarModal } from '../AvancarModal';
+import { EditModal } from '../EditModal';
 import { VoltarModal } from '../VoltarModal';
 
 export const LoteDetails = () => {
@@ -52,6 +54,8 @@ export const LoteDetails = () => {
 
   return (
     <>
+      <Menu area="/"></Menu>
+      <MenuCoord />
       <S.areaClick>
         {/* BOTÃO DE FECHAR */}
         <S.CloseDiv>
@@ -203,9 +207,7 @@ export const LoteDetails = () => {
           </S.Botao>
 
           {/* DELETAR LOTE */}
-          <S.Botao 
-            onClick={handleDelete}
-            style={{ backgroundColor: '#F32D2D' }}>
+          <S.Botao onClick={handleDelete} style={{ backgroundColor: '#F32D2D' }}>
             <img src={`/trash.svg`} alt="Deletar Lote" />
             <p>Deletar lote</p>
           </S.Botao>

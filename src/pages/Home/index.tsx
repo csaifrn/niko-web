@@ -1,6 +1,7 @@
 import { Wrapper, Main } from './styles';
-
 import { Card } from '../../components/Card';
+import MenuCoord from '../../components/MenuCoord';
+import Menu from '../../components/Menu';
 
 const Home = () => {
   //const {user, loading, logOut} = useFirebaseAuth();
@@ -13,6 +14,8 @@ const Home = () => {
 
   return (
     <Wrapper>
+      <Menu area="/"></Menu>
+      <MenuCoord />
       <Main>
         <Card link="Board/Recebidos" color="#F32D2D" srcImgIcon="./IconsFolder.svg" />
         <Card link="Board/Preparo" color="#F3802D" srcImgIcon="./IconsClean.svg" />

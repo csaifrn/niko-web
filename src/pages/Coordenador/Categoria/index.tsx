@@ -3,6 +3,8 @@ import * as S from './styles';
 import Search from '../../../components/Search';
 import CategoriaData from '../../../data/CategoriaData';
 import CategoriaCard from '../../../components/CategoriaCard';
+import Menu from '../../../components/Menu';
+import MenuCoord from '../../../components/MenuCoord';
 
 type Categoria = {
   id: number;
@@ -39,6 +41,8 @@ const Categoria = () => {
 
   return (
     <>
+      <Menu area="/"></Menu>
+      <MenuCoord />
       <S.CardsArea>
         <Search searchTerm={searchTerm} handleSearchChange={handleSearchChange} />
 

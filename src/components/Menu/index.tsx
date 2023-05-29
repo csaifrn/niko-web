@@ -104,7 +104,6 @@ export const Menu = (props: MenuProps) => {
               }}
             >
               <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: '0.5em' }}>
-                <img src="LogOut.svg" width={16} alt="Log-Out" />
                 <p>Sair</p>{' '}
               </div>
             </button>

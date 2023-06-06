@@ -2,6 +2,7 @@ import { Wrapper, Main } from './styles';
 import { Card } from '../../components/Card';
 import MenuCoord from '../../components/MenuCoord';
 import Menu from '../../components/Menu';
+import { useAuthUser } from 'react-auth-kit';
 
 const Home = () => {
   //const {user, loading, logOut} = useFirebaseAuth();

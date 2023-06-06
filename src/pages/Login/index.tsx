@@ -1,5 +1,5 @@
 // import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import * as S from './styles';
@@ -32,12 +32,13 @@ const Login = () => {
         const token = response.data.token;
         // const role = [123, 231];
         const user = response.data.user;
+        const role = ['Coordenador'];
 
         signIn({
           token: token,
           expiresIn: 3600,
           tokenType: 'Bearer',
-          authState: { user },
+          authState: { user, role },
         });
 
         navigate('/Fase');

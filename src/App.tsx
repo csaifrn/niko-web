@@ -14,6 +14,8 @@ import Operador from './pages/Coordenador/Operador';
 import Categoria from './pages/Coordenador/Categoria';
 import { RequireAuth } from 'react-auth-kit';
 import Auth from './config/Auth';
+import Erro404 from './pages/Erros/404';
+import Unauthorized from './pages/Erros/Unauthorized';
 
 const Home = lazy(() => import('./pages/Home'));
 
@@ -32,24 +34,8 @@ const App = () => {
         />
         <Route path="/login" element={<Login />} />
         <Route path="/" element={<Login />} />
-        <Route
-          path="/unauthorized"
-          element={
-            <div
-              style={{
-                height: '100vh',
-                width: '100vw',
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-              }}
-            >
-              <a href="/login" style={{ color: 'white' }}>
-                Não Autorizado
-              </a>
-            </div>
-          }
-        />
+        <Route path="*" element={<Erro404 />} />
+        <Route path="/unauthorized" element={<Unauthorized />} />
         <Route element={<Auth allowedRoles={['Coordenador']} />}>
           <Route path="/Fase" element={<Home />} />
           <Route

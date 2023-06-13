@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 interface paDiv {
   children?: JSX.Element | JSX.Element[];
@@ -6,7 +6,7 @@ interface paDiv {
 
 // Create a Title component that'll render an <h1> tag with some styles
 const Title = styled.a`
-  font-family: "Rubik";
+  font-family: 'Rubik';
   text-decoration: none;
   font-size: 1.5em;
   text-align: center;
@@ -14,7 +14,7 @@ const Title = styled.a`
 `;
 
 const Wrapper = styled.div`
-  font-family: "Rubik";
+  font-family: 'Rubik';
   background-color: #0a090e;
   height: 100vh;
   width: 100vw;
@@ -22,8 +22,20 @@ const Wrapper = styled.div`
   min-height: 550px;
 `;
 
+const AlignCenter = styled.div`
+  font-family: 'Rubik';
+  background-color: #0a090e;
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 2em;
+`;
+
 const pasDiv = styled.div<paDiv>`
-  font-family: "Rubik";
+  font-family: 'Rubik';
 `;
 
 const Main = styled.section`
@@ -63,4 +75,4 @@ const Btn = styled.button`
   }
 `;
 
-export { Title, Wrapper, Main, Footer, spanLinear, Btn, pasDiv };
+export { Title, AlignCenter, Wrapper, Main, Footer, spanLinear, Btn, pasDiv };

@@ -1,11 +1,11 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 interface LinkMenuProps {
   open: boolean;
 }
 
 const LinkMenu = styled.a<LinkMenuProps>`
-  font-family: "Rubik";
+  font-family: 'Rubik';
   border-right: 5px solid transparent;
   border-radius: 1em 0em 0em 1em;
   font-size: 1.5rem;
@@ -14,7 +14,7 @@ const LinkMenu = styled.a<LinkMenuProps>`
   text-decoration: none;
   transition: color 0.3s linear;
   z-index: 99999999;
-  background-color: ${({ open }) => (open ? "#0E0F13" : "transparent")};
+  background-color: ${({ open }) => (open ? '#0E0F13' : 'transparent')};
 
   @media (max-width: 576px) {
     font-size: 1.5rem;

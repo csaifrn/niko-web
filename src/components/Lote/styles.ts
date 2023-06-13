@@ -1,8 +1,7 @@
-import { StyleHTMLAttributes } from "react";
-import styled from "styled-components";
+import styled from 'styled-components';
 
 const Lote = styled.div`
-  font-family: "Rubik";
+  font-family: 'Rubik';
   position: relative;
   padding: 0.8em;
   background-color: #393e4b;
@@ -12,31 +11,35 @@ const Lote = styled.div`
 `;
 
 const LoteEdit = styled.div`
-  font-family: "Rubik";
+  font-family: 'Rubik';
 
   padding: 0.8em;
   background-color: #393e4b;
   border-radius: 5px;
   color: white;
-  max-width: 300px;
+  max-width: 400px;
+  min-width: 230px;
   filter: drop-shadow(0px 4px 1px rgba(0, 0, 0, 0.25));
 `;
 
 const LoteArea = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 0.5em;
+  gap: 1em;
 `;
 
 const Content = styled.div`
   display: flex;
   justify-content: space-between;
+  align-left {
+    justify-self: left;
+  }
 `;
 
 const Prioridade = styled.div`
   height: 24px;
   background-color: #dd3b3b;
-  border-radius: 5px;
+  border-radius: 3px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -67,8 +70,8 @@ const PaTextDiv = styled.div`
   align-items: center;
 
   p {
-    color: "white";
-    margin-bottom: "0";
+    color: 'white';
+    margin-bottom: '0';
   }
 `;
 
@@ -79,14 +82,21 @@ const fotoEnv = styled.img`
   border-radius: 100%;
 `;
 
-export {
-  Lote,
-  LoteArea,
-  Content,
-  Prioridade,
-  Envolvido,
-  Pa,
-  PaTextDiv,
-  fotoEnv,
-  LoteEdit,
-};
+const Btn = styled.button`
+  padding: 0.5em;
+  width: 100%;
+  height: 44px;
+  background-color: #43db6d;
+  border-radius: 5px;
+  border: none;
+  color: white;
+  font-weight: bold;
+  :hover {
+  }
+  p {
+    font-family: 'Rubik';
+    color: #191c24;
+  }
+`;
+
+export { Lote, LoteArea, Content, Prioridade, Envolvido, Pa, PaTextDiv, fotoEnv, LoteEdit, Btn };

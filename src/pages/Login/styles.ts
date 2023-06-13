@@ -1,13 +1,12 @@
-import styled from "styled-components";
-import media from "styled-media-query";
+import styled from 'styled-components';
 
 export const backgroundContainer = styled.main`
-  width: 100VW;
+  width: 100vw;
   height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #0A090E;
+  background-color: #0a090e;
   color: white;
   font-family: 'Rubik';
 `;
@@ -17,7 +16,7 @@ export const itemsContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: #191C24;
+  background-color: #191c24;
   padding: 3em;
   border-radius: 2em;
   gap: 2em;
@@ -41,12 +40,12 @@ export const dataArea = styled.div`
 
 export const inputLogin = styled.input`
   padding: 0.5em;
-  background-color: #393E4B;
+  background-color: #393e4b;
   border-radius: 0.5em;
-  border: 1px solid #393E4B;
+  border: 1px solid #393e4b;
   color: white;
   :hover {
-    border: 1px solid #B1B1B1;
+    border: 1px solid #b1b1b1;
   }
 `;
 
@@ -55,7 +54,7 @@ export const labelLogin = styled.label`
 `;
 
 export const dangerText = styled.a`
-  color: #E76464;
+  color: #e76464;
   font-size: 10px;
   :hover {
     color: white;
@@ -65,12 +64,12 @@ export const dangerText = styled.a`
 export const btnLogin = styled.button`
   padding: 0.5em;
   width: 40%;
-  background-color: #F3802D;
+  background-color: #f3802d;
   border-radius: 0.5em;
-  border: 1px solid #F3802D;
+  border: 1px solid #f3802d;
   color: white;
   font-weight: bold;
   :hover {
-    border: 1px solid #B1B1B1;
+    border: 1px solid #b1b1b1;
   }
 `;

@@ -1,5 +1,4 @@
-import styled from "styled-components";
-
+import styled from 'styled-components';
 
 // Create a Title component that'll render an <h1> tag with some styles
 const Title = styled.a`
@@ -10,10 +9,8 @@ const Title = styled.a`
   color: white;
 `;
 
-
-
 const Wrapper = styled.section`
-  background-color: #0A090E;
+  background-color: #0a090e;
   height: 100vh;
   width: 100vw;
 `;
@@ -29,28 +26,27 @@ const Main = styled.section`
 
 const FooterHome = styled.footer`
   height: 4em;
-  background: #191C24;
+  background: #191c24;
   position: absolute;
   bottom: 0;
   width: 100%;
-  left:0;
+  left: 0;
 `;
 
 const spanLinear = styled.span`
-  color: linear-gradient(to right, rgba(255,0,0,0), rgba(255,0,0,1));
-
+  color: linear-gradient(to right, rgba(255, 0, 0, 0), rgba(255, 0, 0, 1));
 `;
 
 const Btn = styled.button`
   padding: 0.5em;
   width: 40%;
-  background-color: #F3802D;
-  border-radius: 0.5em;
-  border: 1px solid #F3802D;
+  background-color: #f3802d;
+  border-radius: 5px;
+  border: 1px solid #f3802d;
   color: white;
   font-weight: bold;
   :hover {
-    border: 1px solid #B1B1B1;
+    border: 1px solid #b1b1b1;
   }
 `;
 

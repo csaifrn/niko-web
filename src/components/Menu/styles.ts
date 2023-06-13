@@ -1,17 +1,16 @@
-import { StyleHTMLAttributes } from "react";
-import styled from "styled-components";
+import styled from 'styled-components';
 
 const MenuImg = styled.img``;
 
 const MenuLeft = styled.div`
   display: flex;
-  gap: 0.5em;
+  gap: 1em;
 `;
 
 // Create a Wrapper component that'll render a <section> tag with some styles
 const MenuArea = styled.nav`
   display: flex;
-  padding: 1em;
+  padding: 1.5em 3em;
   height: 2em;
   background: #191c24;
   align-items: center;
@@ -36,10 +35,10 @@ const ButtonBurger = styled.a<BurgerProps>`
   }
 `;
 
-const areaClick = styled.div`
-  width: 100%;
-  height: 100%;
-`;
+// const areaClick = styled.div`
+//   width: 100%;
+//   height: 100%;
+// `;
 
 const StyledMenu = styled.nav<BurgerProps>`
   display: flex;
@@ -51,8 +50,8 @@ const StyledMenu = styled.nav<BurgerProps>`
   flex-direction: column;
   justify-content: right;
   background: #191c24;
-  display: ${({ open }) => (open ? "flex" : "none")};
-  transform: ${({ open }) => (open ? "translateX(0)" : "translateX(-100%)")};
+  display: ${({ open }) => (open ? 'flex' : 'none')};
+  transform: ${({ open }) => (open ? 'translateX(0)' : 'translateX(-100%)')};
   text-align: left;
   position: absolute;
   gap: 1em;

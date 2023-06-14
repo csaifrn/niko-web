@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const areaClick = styled.div`
+export const areaClick = styled.div`
   color: white;
   z-index: 9999990;
   padding: 2em;
@@ -27,18 +27,18 @@ const areaClick = styled.div`
     margin: 0em;
   }
 `;
-const Icons = styled.img``;
+export const Icons = styled.img``;
 
-const TituloLote = styled.h1``;
+export const TituloLote = styled.h1``;
 
-const CloseDiv = styled.div`
+export const CloseDiv = styled.div`
   display: flex;
   justify-content: flex-end;
   padding: '5px 5px';
   border-radius: '5px';
 `;
 
-const Exit = styled.div`
+export const Exit = styled.div`
   height: 2em;
   width: 2em;
   background-color: #393e4b;
@@ -48,18 +48,18 @@ const Exit = styled.div`
   align-items: center;
 `;
 
-const LoteEditConfig = styled.div`
+export const LoteEditConfig = styled.div`
   display: flex;
   justify-content: space-between;
   padding: 2em 0em 0em 0em;
 `;
 
-const EditConfig = styled.div`
+export const EditConfig = styled.div`
   display: flex;
   gap: 0.5em;
 `;
 
-const Edit = styled.div`
+export const Edit = styled.div`
   height: 2em;
   width: 2em;
   background-color: #393e4b;
@@ -70,7 +70,7 @@ const Edit = styled.div`
   align-items: center;
 `;
 
-const Config = styled.div`
+export const Config = styled.div`
   height: 2em;
   width: 2em;
   background-color: #393e4b;
@@ -81,13 +81,13 @@ const Config = styled.div`
   align-items: center;
 `;
 
-const DetalhesLote = styled.div`
+export const DetalhesLote = styled.div`
   display: flex;
   gap: 0.5em;
   padding: 1.5em 0em 0em 0em;
 `;
 
-const Protocolo = styled.div`
+export const Protocolo = styled.div`
   height: 2em;
   display: flex;
   align-items: center;
@@ -95,7 +95,7 @@ const Protocolo = styled.div`
   border-radius: 3px;
 `;
 
-const Estante = styled.div`
+export const Estante = styled.div`
   height: 2em;
   width: 3.5em;
   display: flex;
@@ -105,7 +105,7 @@ const Estante = styled.div`
   border-radius: 3px;
 `;
 
-const ArquivFisicos = styled.div`
+export const ArquivFisicos = styled.div`
   background-color: #393e4b;
   height: 2em;
   width: 4em;
@@ -116,7 +116,7 @@ const ArquivFisicos = styled.div`
   border-radius: 3px;
 `;
 
-const ArquivDigitais = styled.div`
+export const ArquivDigitais = styled.div`
   background-color: #393e4b;
   height: 2em;
   width: 4em;
@@ -127,14 +127,14 @@ const ArquivDigitais = styled.div`
   border-radius: 3px;
 `;
 
-const CategoriaPrioridade = styled.div`
+export const CategoriaPrioridade = styled.div`
   display: flex;
   flex-wrap: wrap;
   gap: 0.5em;
   padding: 2em 0em 0em 0em;
 `;
 
-const Categoria = styled.div`
+export const Categoria = styled.div`
   width: 72px;
   height: 24px;
   display: flex;
@@ -144,7 +144,7 @@ const Categoria = styled.div`
   border-radius: 3px;
 `;
 
-const Prioridade = styled.div`
+export const Prioridade = styled.div`
   width: 72px;
   height: 24px;
   background-color: #f32d2d;
@@ -155,65 +155,72 @@ const Prioridade = styled.div`
   border-radius: 3px;
 `;
 
-const TextDiv = styled.div`
+export const TextDiv = styled.div`
   height: 2em;
   display: flex;
   margin-left: 0em;
   align-items: center;
 `;
 
-const Text = styled.p`
+export const Text = styled.p`
   padding: '0 0.5em';
   align-content: left;
 `;
 
-const FaseEnvolvAtual = styled.div`
+export const FaseEnvolvAtual = styled.div`
   display: flex;
   justify-content: flex-start;
   gap: 0.5em;
   padding: 2em 0em 0em 0em;
 `;
 
-const ObsBotoes = styled.div`
+export const ObsBotoes = styled.div`
   padding: 3em 0em 0em 0em;
   display: flex;
   flex-direction: column;
   gap: 2em;
 `;
 
-const Observações = styled.div`
+export const Pendencias = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: start;
-  align-items: start;
   gap: 10px;
-  width: calc(100%-6em);
   background: #393e4b;
   border-radius: 5px;
-  flex: none;
   order: 0;
   flex-grow: 0;
   padding: 2em;
 `;
 
-const ObsDivBlack = styled.div`
+export const Observações = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background: #393e4b;
+  border-radius: 5px;
+  order: 0;
+  flex-grow: 0;
+  padding: 2em;
+`;
+
+export const ObsDivBlack = styled.div`
   background-color: #191c24;
   border-radius: 5px;
   gap: 1em;
   padding: 1em;
+  width: calc(100%-2em);
   display: flex;
   align-items: center;
   justify-content: center;
-  flex: none;
   order: 1;
   flex-grow: 0;
 `;
 
-const BotaoMudarFase = styled.div`
+export const BotaoMudarFase = styled.div`
   display: flex;
 `;
 
-const VoltarAvancar = styled.div`
+export const VoltarAvancar = styled.div`
   background-color: #393e4b;
   display: flex;
   align-items: center;
@@ -228,7 +235,7 @@ const VoltarAvancar = styled.div`
   }
 `;
 
-const EscolherFase = styled.select`
+export const EscolherFase = styled.select`
   background-color: #393e4b;
   width: calc(50%);
   display: flex;
@@ -241,7 +248,7 @@ const EscolherFase = styled.select`
   font-family: 'Rubik', Helvetica, sans-serif;
 `;
 
-const OptionFases = styled.option`
+export const OptionFases = styled.option`
   background-color: #393e4b;
   width: calc(50%);
   display: flex;
@@ -251,7 +258,7 @@ const OptionFases = styled.option`
   }
 `;
 
-const Botao = styled.div`
+export const Botao = styled.div`
   background-color: #393e4b;
   display: flex;
   align-items: center;
@@ -262,14 +269,14 @@ const Botao = styled.div`
   border-radius: 5px;
 `;
 
-const DetalFase = styled.div`
+export const DetalFase = styled.div`
   padding: 3em 0em 0em 0em;
   display: flex;
   flex-direction: column;
   gap: 2em;
 `;
 
-const FaseIconDiv = styled.div`
+export const FaseIconDiv = styled.div`
   height: 2em;
   margin-top: 1em;
   display: flex;
@@ -281,7 +288,7 @@ const FaseIconDiv = styled.div`
   }
 `;
 
-const Fase = styled.div`
+export const Fase = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -295,7 +302,7 @@ const Fase = styled.div`
   flex-grow: 0;
 `;
 
-const TimeBeginDiv = styled.div`
+export const TimeBeginDiv = styled.div`
   margin-top: 0.5em;
   display: flex;
   align-items: center;
@@ -305,7 +312,7 @@ const TimeBeginDiv = styled.div`
   font-weight: 400;
 `;
 
-const TimeFinishDiv = styled.div`
+export const TimeFinishDiv = styled.div`
   margin-top: 0.5em;
   display: flex;
   align-items: center;
@@ -315,7 +322,7 @@ const TimeFinishDiv = styled.div`
   font-weight: 400;
 `;
 
-const Time = styled.div`
+export const Time = styled.div`
   display: flex;
   align-items: center;
   gap: 1em;
@@ -324,48 +331,10 @@ const Time = styled.div`
   font-weight: 400;
 `;
 
-const EnvolvidosDiv = styled.div`
+export const EnvolvidosDiv = styled.div`
   display: flex;
   align-items: center;
   flex-wrap: wrap;
   gap: 0.5em;
   margin-top: 0.5em;
 `;
-
-export {
-  areaClick,
-  Icons,
-  TituloLote,
-  Exit,
-  CloseDiv,
-  DetalhesLote,
-  Edit,
-  Config,
-  LoteEditConfig,
-  EditConfig,
-  Protocolo,
-  Estante,
-  ArquivFisicos,
-  ArquivDigitais,
-  CategoriaPrioridade,
-  Prioridade,
-  Categoria,
-  TextDiv,
-  FaseIconDiv,
-  TimeBeginDiv,
-  TimeFinishDiv,
-  Time,
-  EnvolvidosDiv,
-  Text,
-  FaseEnvolvAtual,
-  ObsBotoes,
-  Observações,
-  ObsDivBlack,
-  BotaoMudarFase,
-  VoltarAvancar,
-  EscolherFase,
-  OptionFases,
-  Botao,
-  DetalFase,
-  Fase,
-};

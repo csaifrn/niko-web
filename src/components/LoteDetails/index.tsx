@@ -87,9 +87,6 @@ export const LoteDetails = () => {
             <p style={{ padding: '0 0.5em' }}>{task.protocolo}</p>
           </S.Protocolo>
 
-          {/* ESTANTE */}
-          <S.Estante>{task.estante}</S.Estante>
-
           {/* ARQUIVOS FÍSICOS */}
           <S.ArquivFisicos>
             <img src={`/arquivos_fisicos.svg`} alt="arquivos fisicos" />
@@ -129,15 +126,22 @@ export const LoteDetails = () => {
         </S.FaseEnvolvAtual>
 
         <S.ObsBotoes>
+
+          {/* PENDÊNCIAS */}
+          <S.Pendencias>
+            <p>Pendências</p>
+            {task.pendencias.map((pend: any) => (
+              <S.ObsDivBlack key={pend.PendId}>
+                {pend.pendencia && <img src={'/warning.svg'} alt="ícone de alerta" />}
+                {pend.titulo}
+              </S.ObsDivBlack>
+            ))}
+          </S.Pendencias>
+
           {/* OBSERVAÇÕES */}
           <S.Observações>
             <p>Observações</p>
-            {task.observacao.map((obs: any) => (
-              <S.ObsDivBlack key={obs.ObsId}>
-                {obs.pendencia && <img src={'/warning.svg'} alt="ícone de alerta" />}
-                {obs.titulo}
-              </S.ObsDivBlack>
-            ))}
+
           </S.Observações>
 
           {/* VOLTAR FASE */}

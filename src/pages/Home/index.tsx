@@ -20,10 +20,10 @@ const Home = () => {
       <Main>
         <Card link="Board/Recebidos" color="#F32D2D" srcImgIcon="./IconsFolder.svg" />
         <Card link="Board/Preparo" color="#F3802D" srcImgIcon="./IconsClean.svg" />
-        <Card link="Board/Catalogacao" color="#FCDE42" srcImgIcon="./IconsBookmark.svg" />
+        <Card link="Board/Catalogacao" color="#F3CC00" srcImgIcon="./IconsBookmark.svg" />
         <Card link="Board/Digitalizacao" color="#2D94F3" srcImgIcon="./IconsScanner.svg" />
         <Card link="Board/Upload" color="#9C2DF3" srcImgIcon="./IconsUpload.svg" />
-        <Card link="Board/Arquivamento" color="#43DB6D" srcImgIcon="./IconsArquiv.svg" />
+        <Card link="Board/Arquivamento" color="#43DB6D" srcImgIcon="./IconsArquivamento.svg" />
       </Main>
     </Wrapper>
   );

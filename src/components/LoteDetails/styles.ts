@@ -5,9 +5,12 @@ export const areaClick = styled.div`
   z-index: 9999990;
   padding: 2em;
   transition: transform 0.9s ease-in-out;
-  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+  display:flex;
+  flex-direction: column;
+  gap: 24px;
   margin: 0em 0em 8em 0em;
   font-family: 'Rubik', Helvetica, sans-serif;
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
   &::-webkit-scrollbar {
     width: 0.8em;
     height: 0.5em;
@@ -48,10 +51,16 @@ export const Exit = styled.div`
   align-items: center;
 `;
 
+export const LoteInfos = styled.div`
+  display:flex;
+  flex-direction:column;
+  gap: 16px;
+`;
+
+
 export const LoteEditConfig = styled.div`
   display: flex;
   justify-content: space-between;
-  padding: 2em 0em 0em 0em;
 `;
 
 export const EditConfig = styled.div`
@@ -84,7 +93,6 @@ export const Config = styled.div`
 export const DetalhesLote = styled.div`
   display: flex;
   gap: 0.5em;
-  padding: 1.5em 0em 0em 0em;
 `;
 
 export const Protocolo = styled.div`
@@ -131,7 +139,6 @@ export const CategoriaPrioridade = styled.div`
   display: flex;
   flex-wrap: wrap;
   gap: 0.5em;
-  padding: 2em 0em 0em 0em;
 `;
 
 export const Categoria = styled.div`
@@ -171,14 +178,12 @@ export const FaseEnvolvAtual = styled.div`
   display: flex;
   justify-content: flex-start;
   gap: 0.5em;
-  padding: 2em 0em 0em 0em;
 `;
 
-export const ObsBotoes = styled.div`
-  padding: 3em 0em 0em 0em;
+export const PendObsBotoes = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 2em;
+  gap: 16px;
 `;
 
 export const Pendencias = styled.div`
@@ -189,7 +194,7 @@ export const Pendencias = styled.div`
   border-radius: 5px;
   order: 0;
   flex-grow: 0;
-  padding: 2em;
+  padding: 16px;
 `;
 
 export const Observações = styled.div`
@@ -200,14 +205,25 @@ export const Observações = styled.div`
   border-radius: 5px;
   order: 0;
   flex-grow: 0;
-  padding: 2em;
+  padding: 16px;
+`;
+
+export const PendDivBlack = styled.div`
+  background-color: #191c24;
+  border-radius: 5px;
+  gap: 10px;
+  padding: 10px;
+  width: calc(100%-2em);
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
 `;
 
 export const ObsDivBlack = styled.div`
   background-color: #191c24;
   border-radius: 5px;
-  gap: 1em;
-  padding: 1em;
+  gap: 10px;
+  padding: 10px;
   width: calc(100%-2em);
   display: flex;
   align-items: center;
@@ -224,10 +240,10 @@ export const VoltarAvancar = styled.div`
   background-color: #393e4b;
   display: flex;
   align-items: center;
-  gap: 1em;
-  padding: 0em 2em;
+  gap: 10px;
+  padding: 0em 15px;
   height: 44px;
-  width: calc(50%);
+  width: calc(40%);
   border-radius: 5px 0px 0px 5px;
   p {
     color: 'white';
@@ -263,17 +279,16 @@ export const Botao = styled.div`
   display: flex;
   align-items: center;
   gap: 1em;
-  padding: 0em 2em;
+  padding: 0em 15px;
   height: 44px;
   width: calc(100%-6em);
   border-radius: 5px;
 `;
 
 export const DetalFase = styled.div`
-  padding: 3em 0em 0em 0em;
   display: flex;
   flex-direction: column;
-  gap: 2em;
+  gap: 16px;
 `;
 
 export const FaseIconDiv = styled.div`

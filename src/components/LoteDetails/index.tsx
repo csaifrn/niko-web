@@ -64,83 +64,94 @@ export const LoteDetails = () => {
           </S.Exit>
         </S.CloseDiv>
 
-        <S.LoteEditConfig>
-          {/* TÍTULO */}
-          <S.TituloLote>{task.title}</S.TituloLote>
-          <S.EditConfig>
-            {/* EDITAR */}
-            <S.Edit onClick={handleEdit}>
-              {' '}
-              <S.Icons src={`/pen.svg`}></S.Icons>{' '}
-            </S.Edit>
-            {/* CONFIGURAÇÕES */}
-            <S.Config onClick={handleConfig}>
-              {' '}
-              <S.Icons src={`/config.svg`}></S.Icons>{' '}
-            </S.Config>
-          </S.EditConfig>
-        </S.LoteEditConfig>
+        <S.LoteInfos>
+          <S.LoteEditConfig>
+            {/* TÍTULO */}
+            <S.TituloLote>{task.title}</S.TituloLote>
+            <S.EditConfig>
+              {/* EDITAR */}
+              <S.Edit onClick={handleEdit}>
+                {' '}
+                <S.Icons src={`/pen.svg`}></S.Icons>{' '}
+              </S.Edit>
+              {/* CONFIGURAÇÕES */}
+              <S.Config onClick={handleConfig}>
+                {' '}
+                <S.Icons src={`/config.svg`}></S.Icons>{' '}
+              </S.Config>
+            </S.EditConfig>
+          </S.LoteEditConfig>
 
-        <S.DetalhesLote>
-          {/* PROTOCOLO */}
-          <S.Protocolo>
-            <p style={{ padding: '0 0.5em' }}>{task.protocolo}</p>
-          </S.Protocolo>
+          <S.DetalhesLote>
+            {/* PROTOCOLO */}
+            <S.Protocolo>
+              <p style={{ padding: '0 0.5em' }}>{task.protocolo}</p>
+            </S.Protocolo>
 
-          {/* ARQUIVOS FÍSICOS */}
-          <S.ArquivFisicos>
-            <img src={`/arquivos_fisicos.svg`} alt="arquivos fisicos" />
-            {task.arquivos_fisicos}
-          </S.ArquivFisicos>
+            {/* ARQUIVOS FÍSICOS */}
+            <S.ArquivFisicos>
+              <img src={`/arquivos_fisicos.svg`} alt="arquivos fisicos" />
+              {task.arquivos_fisicos}
+            </S.ArquivFisicos>
 
-          {/* ARQUIVOS DIGITAIS */}
-          <S.ArquivDigitais>
-            <img src={`/arquivos_digitais.svg`} alt="arquivos digitais" />
-            {task.arquivos_digitais}
-          </S.ArquivDigitais>
-        </S.DetalhesLote>
+            {/* ARQUIVOS DIGITAIS */}
+            <S.ArquivDigitais>
+              <img src={`/arquivos_digitais.svg`} alt="arquivos digitais" />
+              {task.arquivos_digitais}
+            </S.ArquivDigitais>
+          </S.DetalhesLote>
 
-        <S.CategoriaPrioridade>
-          {task.categoria &&
-            task.categoria.map((categoria: any, index: number) => (
-              <React.Fragment key={categoria.id}>
-                {/* PRIORIDADE */}
-                {categoria.nome == 'Financeiro' && (
-                  <S.Prioridade>
-                    <p>Prioridade</p>
-                  </S.Prioridade>
-                )}
-                {/* CATEGORIAS */}
-                {index >= 0 && (
-                  <S.Categoria>
-                    <p>{categoria.nome}</p>
-                  </S.Categoria>
-                )}
-              </React.Fragment>
-            ))}
-        </S.CategoriaPrioridade>
+          <S.CategoriaPrioridade>
+            {task.categoria &&
+              task.categoria.map((categoria: any, index: number) => (
+                <React.Fragment key={categoria.id}>
+                  {/* PRIORIDADE */}
+                  {categoria.nome == 'Financeiro' && (
+                    <S.Prioridade>
+                      <p>Prioridade</p>
+                    </S.Prioridade>
+                  )}
+                  {/* CATEGORIAS */}
+                  {index >= 0 && (
+                    <>
+                    <S.Categoria>
+                      <p>{categoria.nome}</p>
+                    </S.Categoria>
+                    </>
+                  )}
+                  
+                </React.Fragment>
+              ))}
+          </S.CategoriaPrioridade>
 
-        {/* FASE DO LOTE */}
-        <S.FaseEnvolvAtual>
-          <S.Icons src={`/icon-page/${task.fase_atual[0].nome}.png`} />
-        </S.FaseEnvolvAtual>
+          {/* FASE DO LOTE */}
+          <S.FaseEnvolvAtual>
+            <S.Icons src={`/icon-page/${task.fase_atual[0].nome}.png`} />
+          </S.FaseEnvolvAtual>
 
-        <S.ObsBotoes>
+          </S.LoteInfos>
+
+        <S.PendObsBotoes>
 
           {/* PENDÊNCIAS */}
           <S.Pendencias>
             <p>Pendências</p>
             {task.pendencias.map((pend: any) => (
-              <S.ObsDivBlack key={pend.PendId}>
+              <S.PendDivBlack key={pend.PendId}>
                 {pend.pendencia && <img src={'/warning.svg'} alt="ícone de alerta" />}
                 {pend.titulo}
-              </S.ObsDivBlack>
+              </S.PendDivBlack>
             ))}
           </S.Pendencias>
 
           {/* OBSERVAÇÕES */}
           <S.Observações>
             <p>Observações</p>
+            {task.observacoes.map((obs: any) => (
+              <S.ObsDivBlack>
+                {obs.titulo}
+              </S.ObsDivBlack>
+            ))}
 
           </S.Observações>
 
@@ -215,7 +226,7 @@ export const LoteDetails = () => {
             <img src={`/trash.svg`} alt="Deletar Lote" />
             <p>Deletar lote</p>
           </S.Botao>
-        </S.ObsBotoes>
+        </S.PendObsBotoes>
 
         {/* DETALHAMENTO POR FASE */}
         <S.DetalFase>
@@ -322,7 +333,7 @@ export const LoteDetails = () => {
                     fase.catalogacao.map((catalog: any) => (
                       <React.Fragment key={catalog.id}>
                         <S.FaseIconDiv>
-                          <img src={catalog.icone} alt="ícone de preparo" height={22} width={22} />
+                          <img src={catalog.icone} alt="ícone de catalogação" height={22} width={22} />
                           <h2>{catalog.title}</h2>
                         </S.FaseIconDiv>
 
@@ -374,7 +385,7 @@ export const LoteDetails = () => {
                     fase.digitalizacao.map((digital: any) => (
                       <React.Fragment key={digital.id}>
                         <S.FaseIconDiv>
-                          <img src={digital.icone} alt="ícone de preparo" height={22} width={22} />
+                          <img src={digital.icone} alt="ícone de digitalização" height={22} width={22} />
                           <h2>{digital.title}</h2>
                         </S.FaseIconDiv>
 

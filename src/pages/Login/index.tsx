@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import * as S from './styles';
 import { useSignIn } from 'react-auth-kit';
+import axiosInstance from '../../api/axiosInstance';
 
 const Login = () => {
   const [resgisterEmail, setRegisterEmail] = useState('');
@@ -28,9 +29,8 @@ const Login = () => {
     //     console.log(err)
     //   }
     try {
-      axios.post('http://localhost:3333/auth/sign-in', user).then((response: any) => {
+      axiosInstance.post('/auth/sign-in', user).then((response: any) => {
         const token = response.data.token;
-        // const role = [123, 231];
         const user = response.data.user;
         const role = ['Coordenador'];
 

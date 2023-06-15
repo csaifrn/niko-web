@@ -247,7 +247,7 @@ const mockData = [
               {
                 id: uuidv4(),
                 title: 'Recepção',
-                icone: '/icon-page/recebidos.png',
+                icone: '/icon-page/recepcao_icon.svg',
                 time_finish: '/time_finish.svg',
                 end: '02/04/2023 ',
                 end_hour: '13:12',
@@ -268,7 +268,7 @@ const mockData = [
               {
                 id: uuidv4(),
                 title: 'Preparo',
-                icone: '/icon-page/preparo.png',
+                icone: '/icon-page/preparo_icon.svg',
                 time_begin: '/time_begin.svg',
                 start: '03/04/2023',
                 start_hour: '13:10',
@@ -294,7 +294,7 @@ const mockData = [
               {
                 id: uuidv4(),
                 title: 'Catalogação',
-                icone: '/icon-page/catalogacao.png',
+                icone: '/icon-page/catalog_icon.svg',
                 time_begin: '/time_begin.svg',
                 start: '04/04/2023',
                 start_hour: '13:19',

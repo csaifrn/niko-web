@@ -9,10 +9,7 @@ const Projetos = () => {
     <Wrapper>
       <Menu area="/"></Menu>
       <Main style={{ margin: '16px' }}>
-        <CardProjeto srcImgIcon="Incra.png" link="/Fase" />
-        <CardProjeto srcImgIcon="Incra.png" link="/Fase" />
-        <CardProjeto srcImgIcon="Incra.png" link="/Fase" />
-        <CardProjeto srcImgIcon="Incra.png" link="/Fase" />
+        <CardProjeto srcImgIcon="Incra.png" link="/Fase" title="+ Incra" />
       </Main>
     </Wrapper>
   );

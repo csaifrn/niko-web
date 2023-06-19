@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import * as S from './styles';
 import React from 'react';
+import { v4 as uuidv4 } from 'uuid';
 
 interface User {
   id: number;
@@ -12,8 +13,8 @@ interface User {
 }
 
 interface UserMembro {
-  id: number;
-  id_Projeto: number;
+  id: string;
+  id_Projeto: string;
   email: string;
   roleProjeto: string;
   creator: boolean;
@@ -23,7 +24,7 @@ interface MembrosModalProps {
   users: User[];
   close: () => void;
   membros: UserMembro[];
-  id_projeto: number;
+  id_projeto: string;
 }
 
 export const MembrosModal = (props: MembrosModalProps) => {
@@ -80,7 +81,7 @@ export const MembrosModal = (props: MembrosModalProps) => {
       const newUser = { ...foundUser, roleProjeto: projetoMembro ? projetoMembro.roleProjeto : selectedRole };
       setSelectedUsers((prevUsers) => [...prevUsers, newUser]);
       const dataUser = {
-        id: projetoMembros.length + 1,
+        id: uuidv4(),
         id_Projeto: props.id_projeto,
         email: newUser.email,
         roleProjeto: selectedRole,
@@ -136,7 +137,7 @@ export const MembrosModal = (props: MembrosModalProps) => {
             <form action="">
               <h3>Email</h3>
               <div style={{ display: 'flex', height: '44px', gap: '2em', padding: '1em 0em' }}>
-                <div style={{ display: 'flex', borderRadius: '5px', overflow: 'hidden' }}>
+                <div style={{ display: 'flex', borderRadius: '5px', height: '44px' }}>
                   <input
                     type="text"
                     ref={emailRef}
@@ -196,9 +197,9 @@ export const MembrosModal = (props: MembrosModalProps) => {
                   <img src="VectorSend.svg" alt="" style={{ marginLeft: '0.25em' }} />
                 </button>
               </div>
-              {showError && <p style={{ color: 'red' }}>{errorMessage}</p>}
+              {showError && <p style={{ color: 'red', padding: '2em 0 0 0' }}>{errorMessage}</p>}
             </form>
-            <S.ChooseLote>
+            <S.ChooseLote style={{ marginTop: '2em' }}>
               {selectedUsers.map((user: any) => {
                 const projetoMembro = projetoMembros.find((membro) => membro.email === user.email);
                 const roleProjeto = projetoMembro ? projetoMembro.roleProjeto : '';

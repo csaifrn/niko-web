@@ -26,7 +26,7 @@ const Projetos = () => {
 
         <Main style={{ margin: '16px 0' }}>
           {Projeto.map((projeto) => {
-            return <CardProjeto projeto={projeto} />;
+            return <CardProjeto projeto={projeto} key={projeto.id} />;
           })}
         </Main>
       </div>

@@ -41,7 +41,7 @@ const Login = () => {
           authState: { user, role, email: resgisterEmail },
         });
 
-        navigate('/Fase');
+        navigate('/Projetos');
       });
     } catch (err) {
       console.log(err);

@@ -131,7 +131,7 @@ const CreateProjeto = (props: MembrosModalProps) => {
 
   return (
     <>
-      <Menu area="/"></Menu>
+      <Menu area="/Projetos"></Menu>
       <div style={{ fontFamily: 'Rubik', padding: '2em', display: 'grid', gap: '2em', color: '#fff' }}>
         <h1 style={{}}>Criar projeto</h1>
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-evenly', gap: '2em' }}>

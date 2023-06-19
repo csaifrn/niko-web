@@ -1,37 +1,42 @@
 import { useEffect, useRef, useState } from 'react';
 import * as S from './styles';
+import React from 'react';
+
+interface User {
+  id: number;
+  name: string;
+  url: string;
+  email: string;
+  lote: string;
+  fase: string;
+}
+
+interface UserMembro {
+  id: number;
+  id_Projeto: number;
+  email: string;
+  roleProjeto: string;
+  creator: boolean;
+}
 
 interface MembrosModalProps {
-  users: any[];
+  users: User[];
   close: () => void;
+  membros: UserMembro[];
+  id_projeto: number;
 }
 
 export const MembrosModal = (props: MembrosModalProps) => {
-  const [projetoMembros, setProjetoMembros] = useState([
-    {
-      email: 'melquiades.sousa@gmail.com',
-      roleProjeto: 'Cliente',
-      creator: false,
-    },
-    {
-      email: 'pedro@email.com.br',
-      roleProjeto: 'Coordenador',
-      creator: true,
-    },
-    {
-      email: 'luis.gustavo@gmail.com',
-      roleProjeto: 'Operador',
-      creator: false,
-    },
-  ]);
+  const [projetoMembros, setProjetoMembros] = useState<UserMembro[]>(props.membros);
 
-  const role = ['Coordenador', 'Operador', 'Cliente'];
+  const role = ['Coordenador', 'Operador'];
+
   const emailRef = useRef<HTMLInputElement>(null);
 
-  const [selectedUsers, setSelectedUsers] = useState<any[]>([]);
+  const [selectedUsers, setSelectedUsers] = useState<User[]>([]);
   const [selectedRole, setSelectedRole] = useState<string>('');
-  const [newUserRole, setNewUserRole] = useState<string>('');
   const [isRoleSelected, setIsRoleSelected] = useState(false);
+
   const [showError, setShowError] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
 
@@ -59,7 +64,6 @@ export const MembrosModal = (props: MembrosModalProps) => {
       return;
     } else {
       setShowError(false);
-      setErrorMessage('');
     }
 
     let foundUser: any = null;
@@ -75,7 +79,13 @@ export const MembrosModal = (props: MembrosModalProps) => {
       const projetoMembro = projetoMembros.find((membro) => membro.email === foundUser.email);
       const newUser = { ...foundUser, roleProjeto: projetoMembro ? projetoMembro.roleProjeto : selectedRole };
       setSelectedUsers((prevUsers) => [...prevUsers, newUser]);
-      const dataUser = { email: newUser.email, roleProjeto: selectedRole, creator: false };
+      const dataUser = {
+        id: projetoMembros.length + 1,
+        id_Projeto: props.id_projeto,
+        email: newUser.email,
+        roleProjeto: selectedRole,
+        creator: false,
+      };
       setProjetoMembros((prevUsers) => [...prevUsers, dataUser]);
     }
   };
@@ -94,10 +104,6 @@ export const MembrosModal = (props: MembrosModalProps) => {
     const selectedValue = event.target.value;
     setSelectedRole(selectedValue);
     setIsRoleSelected(selectedValue !== '');
-  };
-
-  const handleNewUserRoleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setNewUserRole(event.target.value);
   };
 
   const handleDeleteUser = (email: string) => {

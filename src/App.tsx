@@ -17,6 +17,8 @@ import Auth from './config/Auth';
 import Erro404 from './pages/Erros/404';
 import Unauthorized from './pages/Erros/Unauthorized';
 import Projetos from './pages/Projeto/HomeUser';
+import CreateProjeto from './pages/Projeto/CreateProjeto';
+import Users from './data/UserData';
 
 const Home = lazy(() => import('./pages/Home'));
 
@@ -42,6 +44,14 @@ const App = () => {
           element={
             <RequireAuth loginPath={'/login'}>
               <Projetos />
+            </RequireAuth>
+          }
+        />
+        <Route
+          path="/CriarProjeto"
+          element={
+            <RequireAuth loginPath={'/login'}>
+              <CreateProjeto users={Users} />
             </RequireAuth>
           }
         />

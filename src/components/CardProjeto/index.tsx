@@ -3,18 +3,26 @@ import { CardContainer } from './styles';
 import { useNavigate } from 'react-router-dom';
 import Users from '../../data/UserData';
 import { MembrosModal } from '../MembrosModal';
+import { Membros, Projeto } from '../../data/ProjetoData';
+
+interface Projeto {
+  id: number;
+  url: string;
+  name: string;
+}
 
 interface CardProps {
-  srcImgIcon: string;
-  link: string;
-  title: string;
+  projeto: Projeto;
 }
-//
+
 export const CardProjeto = (Props: CardProps) => {
   const [DropDown, setDropDown] = useState(false);
   const [ModalMembro, setModalMembro] = useState(false);
-  const navigate = useNavigate();
+
   const users = Users;
+  const projeto = Props.projeto;
+  const membros = Membros.filter((membro) => membro.id_Projeto === projeto.id);
+
   return (
     <>
       <div
@@ -40,13 +48,15 @@ export const CardProjeto = (Props: CardProps) => {
             borderRadius: '5px',
           }}
         >
-          <img
-            src={Props.srcImgIcon}
-            alt="Incra"
-            width={'100%'}
-            height={'100%'}
-            style={{ borderRadius: '5px 5px 0 0 ' }}
-          />
+          <div style={{ display: 'flex' }}>
+            <img
+              src={projeto.url}
+              alt="Incra"
+              width={'100%'}
+              height={'150px'}
+              style={{ borderRadius: '5px 5px 0 0 ', objectFit: 'cover' }}
+            />
+          </div>
 
           <div
             style={{
@@ -58,7 +68,7 @@ export const CardProjeto = (Props: CardProps) => {
               borderRadius: '0 0 5px 5px ',
             }}
           >
-            <h1 style={{ fontSize: '24px' }}>{Props.title}</h1>
+            <h1 style={{ fontSize: '24px' }}>{projeto.name}</h1>
             <div style={{ position: 'relative' }}>
               <button
                 onClick={(event) => {
@@ -106,7 +116,14 @@ export const CardProjeto = (Props: CardProps) => {
                     borderBottom: 'solid 1px #4a5565',
                   }}
                 >
-                  <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: '0.5em' }}>
+                  <div
+                    style={{
+                      display: 'flex',
+                      flexDirection: 'row',
+                      alignItems: 'center',
+                      gap: '0.5em',
+                    }}
+                  >
                     <p>Membros</p>{' '}
                   </div>
                 </button>
@@ -142,6 +159,8 @@ export const CardProjeto = (Props: CardProps) => {
             setModalMembro(!ModalMembro);
           }}
           users={users}
+          membros={membros}
+          id_projeto={projeto.id}
         />
       )}
     </>

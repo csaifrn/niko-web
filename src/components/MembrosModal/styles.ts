@@ -2,6 +2,9 @@ import styled from 'styled-components';
 
 const ModalArea = styled.div`
   padding: 2em;
+  width: 80%;
+  min-width: 300px;
+  max-width: 400px;
   background-color: #393e4b;
   align-items: center;
   color: white;
@@ -32,17 +35,16 @@ const NameClose = styled.div`
 
 const ChooseLote = styled.div`
   width: 100%;
-  height: 40vh;
+  max-height: 20vh;
   border-radius: 5px;
   display: flex;
   flex-direction: column;
   gap: 1em;
   overflow: auto;
-  overflow-y: scroll;
   scroll-behavior: auto;
   scrollbar-width: thin;
   ::-webkit-scrollbar {
-    width: 11px;
+    width: 8px;
   }
   webkit-scrollbar-track {
     background: #fff;

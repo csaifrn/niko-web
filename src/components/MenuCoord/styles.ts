@@ -15,7 +15,8 @@ const MenuArea = styled.div`
   bottom: 0;
   left: 0;
   padding: 1.5em 3em;
-  width: calc(100vw - 6em);
+  width: 100vw;
+  height: 80px;
   background: #191c24;
   align-items: center;
   justify-content: space-between;

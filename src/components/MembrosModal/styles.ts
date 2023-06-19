@@ -1,9 +1,13 @@
 import styled from 'styled-components';
 
 const ModalArea = styled.div`
+  position: fixed;
   padding: 2em;
-  width: 80%;
-  min-width: 300px;
+  width: 90vw;
+  height: 80vh;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   max-width: 400px;
   background-color: #393e4b;
   align-items: center;
@@ -35,7 +39,7 @@ const NameClose = styled.div`
 
 const ChooseLote = styled.div`
   width: 100%;
-  max-height: 20vh;
+  max-height: 50vh;
   border-radius: 5px;
   display: flex;
   flex-direction: column;

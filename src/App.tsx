@@ -37,7 +37,7 @@ const App = () => {
         />
         <Route path="/login" element={<Login />} />
         <Route path="/" element={<Login />} />
-        <Route path="*" element={<Erro404 />} />
+
         <Route path="/unauthorized" element={<Unauthorized />} />
         <Route
           path="/Projetos"
@@ -56,9 +56,9 @@ const App = () => {
           }
         />
         <Route element={<Auth allowedRoles={['Coordenador']} />}>
-          <Route path="/Fase" element={<Home />} />
+          <Route path="/Fase/:id" element={<Home />} />
           <Route
-            path="/Board/Arquivamento"
+            path="Fase/:id/Board/Arquivamento"
             element={
               <RequireAuth loginPath={'/login'}>
                 <Arquivamento />
@@ -66,7 +66,7 @@ const App = () => {
             }
           />
           <Route
-            path="/Board/Recebidos"
+            path="Fase/:id/Board/Recebidos"
             element={
               <RequireAuth loginPath={'/login'}>
                 <Recebidos etapa="recebidos" />
@@ -74,7 +74,7 @@ const App = () => {
             }
           />
           <Route
-            path="/Board/Preparo"
+            path="Fase/:id/Board/Preparo"
             element={
               <RequireAuth loginPath={'/login'}>
                 <Preparo />
@@ -82,7 +82,7 @@ const App = () => {
             }
           />
           <Route
-            path="/Board/Catalogacao"
+            path="Fase/:id/Board/Catalogacao"
             element={
               <RequireAuth loginPath={'/login'}>
                 <Catalogacao />
@@ -90,7 +90,7 @@ const App = () => {
             }
           />
           <Route
-            path="/Board/Digitalizacao"
+            path="Fase/:id/Board/Digitalizacao"
             element={
               <RequireAuth loginPath={'/login'}>
                 <Digitalizacao />
@@ -98,7 +98,7 @@ const App = () => {
             }
           />
           <Route
-            path="/Operadores"
+            path="/Operadores/:id"
             element={
               <RequireAuth loginPath={'/login'}>
                 <Operador />
@@ -106,7 +106,7 @@ const App = () => {
             }
           />
           <Route
-            path="/Categorias"
+            path="/Categorias/:id"
             element={
               <RequireAuth loginPath={'/login'}>
                 <Categoria />
@@ -114,7 +114,7 @@ const App = () => {
             }
           />
           <Route
-            path="/Board/Upload"
+            path="Fase/:id/Board/Upload"
             element={
               <RequireAuth loginPath={'/login'}>
                 <Upload />
@@ -130,6 +130,7 @@ const App = () => {
             }
           />
         </Route>
+        <Route path="*" element={<Erro404 />} />
         {/* <Route
           path="/Fase"
           element={

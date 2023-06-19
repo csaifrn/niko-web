@@ -1,5 +1,7 @@
 import React from 'react';
 import * as S from './styles';
+import { useParams } from 'react-router-dom';
+import { Projeto } from '../../data/ProjetoData';
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars, no-unused-vars
 interface MenuProps {
@@ -7,49 +9,57 @@ interface MenuProps {
 }
 
 export const MenuCoord = () => {
+  let { id } = useParams();
   const pathname = window.location.pathname;
-  console.log(pathname);
-  console.log(pathname.search('Board'));
-  console.log(pathname === '/Fase');
   return (
     <S.MenuArea>
-      <S.link href="/Fase">
+      <S.link href={`/Fase/${id}`}>
         <S.MenuImg
           src={
-            pathname === '/Fase' || pathname.search('Board') >= 0 || pathname.search('Lote') >= 0
+            pathname === `/Fase/${id}` || pathname.search('Board') >= 0 || pathname.search('Lote') >= 0
               ? '/IconMenu/SquaresFour/fillicon.png'
               : '/IconMenu/SquaresFour/regularicon.png'
           }
         />
-        {pathname === '/Fase' && <S.textIcon style={{ color: '#F3802D' }}>Fases</S.textIcon>}
+        {pathname === `/Fase/${id}` && <S.textIcon style={{ color: '#F3802D' }}>Fases</S.textIcon>}
         {pathname.search('Board') >= 0 && <S.textIcon style={{ color: '#F3802D' }}>Fases</S.textIcon>}
         {pathname.search('Lote') >= 0 && <S.textIcon style={{ color: '#F3802D' }}>Fases</S.textIcon>}
-        {pathname !== '/Fase' && pathname.search('Board') < 0 && pathname.search('Lote') < 0 && (
+        {pathname !== `/Fase/${id}` && pathname.search('Board') < 0 && pathname.search('Lote') < 0 && (
           <S.textIcon>Fases</S.textIcon>
         )}
       </S.link>
-      <S.link href="/Operadores">
+      <S.link href={`/Operadores/${id}`}>
         <S.MenuImg
           src={
-            pathname === '/Operadores' ? '/IconMenu/UsersThree/fillicon.png' : '/IconMenu/UsersThree/regularicon.png'
+            pathname === `/Operadores/${id}`
+              ? '/IconMenu/UsersThree/fillicon.png'
+              : '/IconMenu/UsersThree/regularicon.png'
           }
         />
-        {pathname === '/Operadores' && <S.textIcon style={{ color: '#F3802D' }}>Operadores</S.textIcon>}
-        {pathname !== '/Operadores' && <S.textIcon>Operadores</S.textIcon>}
+        {pathname === `/Operadores/${id}` && <S.textIcon style={{ color: '#F3802D' }}>Operadores</S.textIcon>}
+        {pathname !== `/Operadores/${id}` && <S.textIcon>Operadores</S.textIcon>}
       </S.link>
-      <S.link href="/Dashboard">
+      <S.link href={`/Dashboard/${id}`}>
         <S.MenuImg
-          src={pathname === '/Dashboard' ? '/IconMenu/ChartDonut/fillicon.png' : '/IconMenu/ChartDonut/regularicon.png'}
+          src={
+            pathname === `/Dashboard/${id}`
+              ? '/IconMenu/ChartDonut/fillicon.png'
+              : '/IconMenu/ChartDonut/regularicon.png'
+          }
         />
-        {pathname === '/Dashboard' && <S.textIcon style={{ color: '#F3802D' }}>Dashboard</S.textIcon>}
-        {pathname !== '/Dashboard' && <S.textIcon>Dashboard</S.textIcon>}
+        {pathname === `/Dashboard/${id}` && <S.textIcon style={{ color: '#F3802D' }}>Dashboard</S.textIcon>}
+        {pathname !== `/Dashboard/${id}` && <S.textIcon>Dashboard</S.textIcon>}
       </S.link>
-      <S.link href="/Categorias">
+      <S.link href={`/Categorias/${id}`}>
         <S.MenuImg
-          src={pathname === '/Categorias' ? '/IconMenu/TagSimple/fillicon.png' : '/IconMenu/TagSimple/regularicon.png'}
+          src={
+            pathname === `/Categorias/${id}`
+              ? '/IconMenu/TagSimple/fillicon.png'
+              : '/IconMenu/TagSimple/regularicon.png'
+          }
         />
-        {pathname === '/Categorias' && <S.textIcon style={{ color: '#F3802D' }}>Categorias</S.textIcon>}
-        {pathname !== '/Categorias' && <S.textIcon>Categorias</S.textIcon>}
+        {pathname === `/Categorias/${id}` && <S.textIcon style={{ color: '#F3802D' }}>Categorias</S.textIcon>}
+        {pathname !== `/Categorias/${id}` && <S.textIcon>Categorias</S.textIcon>}
       </S.link>
     </S.MenuArea>
   );

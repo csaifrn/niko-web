@@ -6,7 +6,7 @@ import { MembrosModal } from '../MembrosModal';
 import { Membros, Projeto } from '../../data/ProjetoData';
 
 interface Projeto {
-  id: number;
+  id: string;
   url: string;
   name: string;
 }
@@ -23,6 +23,8 @@ export const CardProjeto = (Props: CardProps) => {
   const projeto = Props.projeto;
   const membros = Membros.filter((membro) => membro.id_Projeto === projeto.id);
 
+  console.log(projeto);
+
   return (
     <>
       <div
@@ -36,7 +38,7 @@ export const CardProjeto = (Props: CardProps) => {
         }}
       >
         <a
-          href="/Fase"
+          href={`/Fase/${Props.projeto.id}`}
           style={{
             textDecoration: 'none',
             color: 'white',

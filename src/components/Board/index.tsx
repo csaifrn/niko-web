@@ -1,13 +1,35 @@
 import { useState } from 'react';
 import * as S from './styles';
-import mockData from '../../data/kanbanData';
 import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd';
+
 import Lote from '../Lote';
+import mockData from '../../data/kanbanData';
+
+
+interface Fase {
+  id: string;
+  titulo: string;
+}
+
 interface BoardProps {
-  fase: string;
+  titulo: string;
+  fase: Fase
 }
 
 export const Board = (props: BoardProps) => {
+
+  // const fase = props.fase
+  // const etapas = EtapaData.filter((Etapa) => Etapa.id_fase === fase.id)
+  // const [newData, setNewData] = useState<any[]>([])
+
+  // useEffect(() => {
+  //   for (let index = 0; index < etapas.length; index++) {
+  //     const element = etapas[index];
+  //     const Items = { id: element.id, title: element.titulo, tasks: LoteData.filter((lote) => lote.id_etapa === element.id)}  
+  //     setNewData((dataItens) => [...dataItens, Items]);
+  //   }
+  // }, [])
+  
   const [data, setData] = useState(mockData);
 
   const onDragEnd = (result: any) => {

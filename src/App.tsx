@@ -13,14 +13,12 @@ import LoteDetails from './components/LoteDetails';
 import Operador from './pages/Coordenador/Operador';
 import Categoria from './pages/Coordenador/Categoria';
 import { RequireAuth } from 'react-auth-kit';
-import Auth from './config/Auth';
 import Erro404 from './pages/Erros/404';
 import Unauthorized from './pages/Erros/Unauthorized';
 
 const Home = lazy(() => import('./pages/Home'));
 
 const App = () => {
-  const alow = ['Operador'];
   return (
     <Suspense fallback={<Splash />}>
       <Routes>
@@ -36,7 +34,7 @@ const App = () => {
         <Route path="/" element={<Login />} />
         <Route path="*" element={<Erro404 />} />
         <Route path="/unauthorized" element={<Unauthorized />} />
-        <Route element={<Auth allowedRoles={['Coordenador']} />}>
+        {/* <Route element={<Auth allowedRoles={['Coordenador']} />}> */}
           <Route path="/Fase" element={<Home />} />
           <Route
             path="/Board/Arquivamento"
@@ -57,9 +55,9 @@ const App = () => {
           <Route
             path="/Board/Preparo"
             element={
-              <RequireAuth loginPath={'/login'}>
+              // <RequireAuth loginPath={'/login'}>
                 <Preparo />
-              </RequireAuth>
+              // </RequireAuth>
             }
           />
           <Route
@@ -110,7 +108,7 @@ const App = () => {
               </RequireAuth>
             }
           />
-        </Route>
+        {/* </Route> */}
         {/* <Route
           path="/Fase"
           element={

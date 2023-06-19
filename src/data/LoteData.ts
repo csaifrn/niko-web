@@ -4,11 +4,11 @@ import EtapaData from '../data/EtapaData';
 export const LoteData = [
     //LOTE 1
     {
-        id_lote: 1,
+        id: 1,
         titulo: 'Lote',
         numero: 1,
         protocolo: '0001',
-        id_etapa: EtapaData[1].id,
+        id_etapa: EtapaData[0].id,
         prioridade: 0,
         pendencias: [
         ],
@@ -31,7 +31,7 @@ export const LoteData = [
     },
     //LOTE 2
     {
-        id_lote: 2,
+        id: 2,
         titulo: 'Lote',
         numero: 2,
         protocolo: '0002',
@@ -66,7 +66,7 @@ export const LoteData = [
     },
     //LOTE 3
     {
-        id_lote: 3,
+        id: 3,
         titulo: 'Lote',
         numero: 3,
         protocolo: '0001',
@@ -93,7 +93,7 @@ export const LoteData = [
     },
     //LOTE 4
     {
-        id_lote: 4,
+        id: 4,
         titulo: 'Lote',
         numero: 4,
         protocolo: '0004' ,//´000${'2'}´
@@ -120,7 +120,7 @@ export const LoteData = [
     },
     //LOTE 5
     {
-        id_lote: 5,
+        id: 5,
         titulo: 'Lote',
         numero: 5,
         protocolo: '0005',

@@ -6,7 +6,7 @@ const kanban = styled.div`
   align-items: center;
   justify-content: start;
   gap: 1em;
-  margin: 0 1em 2em 1em;
+  margin: 0 2em 2em 2em;
   padding: 1em;
   scroll-behavior: auto;
   scrollbar-width: thin;

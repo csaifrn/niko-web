@@ -3,6 +3,7 @@ import Board from '../../../components/Board';
 import { Menu } from '../../../components/Menu';
 import * as Style from '../../../global/index';
 import MenuCoord from '../../../components/MenuCoord';
+import FaseData from '../../../data/FaseData';
 
 // import { Container } from './styles';
 
@@ -13,7 +14,7 @@ const Arquivamento = () => {
       <MenuCoord />
       <Style.Wrapper>
         <p>Arquivamento</p>
-        <Board fase="arquivamento" />
+        <Board fase={FaseData[4]} titulo='arquivamento' />
         <Style.Footer></Style.Footer>
       </Style.Wrapper>
     </>

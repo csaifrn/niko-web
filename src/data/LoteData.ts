@@ -69,7 +69,7 @@ export const LoteData = [
         id: 3,
         titulo: 'Lote',
         numero: 3,
-        protocolo: '0001',
+        protocolo: '0003',
         id_etapa: EtapaData[1].id,
         prioridade: 0,
         pendencias: [
@@ -118,25 +118,22 @@ export const LoteData = [
             }
         ]
     },
+
     //LOTE 5
     {
         id: 5,
         titulo: 'Lote',
         numero: 5,
-        protocolo: '0005',
-        id_etapa: EtapaData[1].id,
-        prioridade: true,
+        protocolo: '0005' ,//´000${'2'}´
+        id_etapa: [EtapaData[2].id, EtapaData[3].id],
+        prioridade: 0,
+        pendencias: [
+        ],
+        observacoes: [
+        ],
         categorias: [
-          {
-            nome: 'Administrativo',
-            id: 1,
-          },
         ],
         tipologias: [
-            {
-              nome: 'Crédito',
-              id: 1,
-            },
         ],
         envolvidos: [
             {
@@ -147,8 +144,63 @@ export const LoteData = [
                 envolvidoId: 2,
                 foto: 'https://lh3.googleusercontent.com/a/AEdFTp4rZn-tIHMtcekPx2eo7A21IruNxrGHBlQfzpkh=s96-c',
             }
-        ]   
+        ]
     },
 
+    //LOTE 6
+    {
+        id: 6,
+        titulo: 'Lote',
+        numero: 6,
+        protocolo: '0006' ,//´000${'2'}´
+        id_etapa: [EtapaData[2].id, EtapaData[3].id],
+        prioridade: 0,
+        pendencias: [
+        ],
+        observacoes: [
+        ],
+        categorias: [
+        ],
+        tipologias: [
+        ],
+        envolvidos: [
+            {
+                envolvidoId: 1,
+                foto: 'https://i.pinimg.com/474x/38/a7/f1/38a7f176c4783fd6f91a572057f5e2e8--figure-painting-the-high.jpg',
+            },
+            {
+                envolvidoId: 2,
+                foto: 'https://lh3.googleusercontent.com/a/AEdFTp4rZn-tIHMtcekPx2eo7A21IruNxrGHBlQfzpkh=s96-c',
+            }
+        ]
+    },
+
+    //LOTE 7
+    {
+        id: 7,
+        titulo: 'Lote',
+        numero: 7,
+        protocolo: '0007' ,
+        id_etapa: [EtapaData[2].id, EtapaData[3].id],
+        prioridade: 0,
+        pendencias: [
+        ],
+        observacoes: [
+        ],
+        categorias: [
+        ],
+        tipologias: [
+        ],
+        envolvidos: [
+            {
+                envolvidoId: 1,
+                foto: 'https://i.pinimg.com/474x/38/a7/f1/38a7f176c4783fd6f91a572057f5e2e8--figure-painting-the-high.jpg',
+            },
+            {
+                envolvidoId: 2,
+                foto: 'https://lh3.googleusercontent.com/a/AEdFTp4rZn-tIHMtcekPx2eo7A21IruNxrGHBlQfzpkh=s96-c',
+            }
+        ]
+    },
 
 ]

@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { ChangeEvent, useEffect, useRef, useState } from 'react';
 import Menu from '../../../components/Menu';
 import * as S from '../../../components/MembrosModal/styles';
 import { Membros, Projeto } from '../../../data/ProjetoData';
@@ -64,6 +64,14 @@ const CreateProjeto = (props: MembrosModalProps) => {
     }
     setSelectedUsers(foundUsers);
   }, [props.users]);
+
+  const [file, setFile] = useState<File>();
+
+  const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files) {
+      setFile(e.target.files[0]);
+    }
+  };
 
   const handleEnviar = () => {
     const emailValue = emailRef.current?.value;
@@ -190,7 +198,7 @@ const CreateProjeto = (props: MembrosModalProps) => {
               >
                 <img src="Img.svg" alt="Imagem" height={32} width={32} />
               </label>
-              <input type="file" accept="image/*" id="imagem" style={{ display: 'none' }} />
+              <input type="file" accept="image/*" id="imagem" style={{ display: 'none' }} onChange={handleFileChange} />
               <label htmlFor="nome">
                 <h2>Nome</h2>
               </label>

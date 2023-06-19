@@ -16,6 +16,9 @@ import { RequireAuth } from 'react-auth-kit';
 import Auth from './config/Auth';
 import Erro404 from './pages/Erros/404';
 import Unauthorized from './pages/Erros/Unauthorized';
+import Projetos from './pages/Projeto/HomeUser';
+import CreateProjeto from './pages/Projeto/CreateProjeto';
+import Users from './data/UserData';
 
 const Home = lazy(() => import('./pages/Home'));
 
@@ -36,6 +39,22 @@ const App = () => {
         <Route path="/" element={<Login />} />
         <Route path="*" element={<Erro404 />} />
         <Route path="/unauthorized" element={<Unauthorized />} />
+        <Route
+          path="/Projetos"
+          element={
+            <RequireAuth loginPath={'/login'}>
+              <Projetos />
+            </RequireAuth>
+          }
+        />
+        <Route
+          path="/CriarProjeto"
+          element={
+            <RequireAuth loginPath={'/login'}>
+              <CreateProjeto users={Users} />
+            </RequireAuth>
+          }
+        />
         <Route element={<Auth allowedRoles={['Coordenador']} />}>
           <Route path="/Fase" element={<Home />} />
           <Route

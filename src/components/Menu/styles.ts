@@ -7,15 +7,14 @@ const MenuLeft = styled.div`
   gap: 1em;
 `;
 
-// Create a Wrapper component that'll render a <section> tag with some styles
 const MenuArea = styled.nav`
   display: flex;
-  padding: 1.5em 3em;
-  height: 2em;
+  padding: 2em;
   background: #191c24;
   align-items: center;
   justify-content: space-between;
   gap: 20px;
+  height: 80px;
 `;
 
 interface BurgerProps {
@@ -34,11 +33,6 @@ const ButtonBurger = styled.a<BurgerProps>`
     transition: 2s;
   }
 `;
-
-// const areaClick = styled.div`
-//   width: 100%;
-//   height: 100%;
-// `;
 
 const StyledMenu = styled.nav<BurgerProps>`
   display: flex;

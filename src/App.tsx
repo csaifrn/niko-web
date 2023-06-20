@@ -18,6 +18,7 @@ import Unauthorized from './pages/Erros/Unauthorized';
 import Projetos from './pages/Projeto/HomeUser';
 import CreateProjeto from './pages/Projeto/CreateProjeto';
 import Users from './data/UserData';
+import Auth from './config/Auth';
 
 const Home = lazy(() => import('./pages/Home'));
 

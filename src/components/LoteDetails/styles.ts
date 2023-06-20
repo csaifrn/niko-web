@@ -30,6 +30,11 @@ export const areaClick = styled.div`
     margin: 0em;
   }
 `;
+
+export const Teste = styled.h1`
+  color:white;
+`;
+
 export const Icons = styled.img``;
 
 export const TituloLote = styled.h1``;

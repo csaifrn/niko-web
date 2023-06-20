@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import * as S from './styles';
-import mockData from '../../data/kanbanData';
 import { useParams, useNavigate } from 'react-router-dom';
 import Menu from '../Menu';
 import MenuCoord from '../MenuCoord';
@@ -10,9 +9,10 @@ import { ConfigModal } from '../ConfigModal';
 import { DeletarLoteModal } from '../DeletarLoteModal';
 import { EditModal } from '../EditModal';
 import { VoltarModal } from '../VoltarModal';
+import { LoteData } from '../../data/LoteData';
 
 export const LoteDetails = () => {
-  const [data] = useState(mockData);
+  const [lote , setLote] = useState(LoteData);
   const [edit_modal, setEditModal] = useState(false);
   const [config_modal, setConfigModal] = useState(false);
   const [modal, setModal] = useState(false);
@@ -44,13 +44,11 @@ export const LoteDetails = () => {
     setModal(!modal);
   };
 
-  const id = useParams();
+  let { id } = useParams();
 
   const navigate = useNavigate();
 
-  const filterTask = data.map((section: any) => section.tasks.filter((task: any) => task.id === id.id));
-  const task = filterTask.filter((task: any) => task.length !== 0)[0][0];
-  console.log(task);
+  const task = lote.filter((task) => task.id == id)[0];
 
   return (
     <>
@@ -67,7 +65,7 @@ export const LoteDetails = () => {
         <S.LoteInfos>
           <S.LoteEditConfig>
             {/* TÍTULO */}
-            <S.TituloLote>{task.title}</S.TituloLote>
+            <S.TituloLote>{`${task.titulo} ${task.numero} `}</S.TituloLote>
             <S.EditConfig>
               {/* EDITAR */}
               <S.Edit onClick={handleEdit}>
@@ -91,19 +89,19 @@ export const LoteDetails = () => {
             {/* ARQUIVOS FÍSICOS */}
             <S.ArquivFisicos>
               <img src={`/arquivos_fisicos.svg`} alt="arquivos fisicos" />
-              {task.arquivos_fisicos}
+              {21}
             </S.ArquivFisicos>
 
             {/* ARQUIVOS DIGITAIS */}
             <S.ArquivDigitais>
               <img src={`/arquivos_digitais.svg`} alt="arquivos digitais" />
-              {task.arquivos_digitais}
+              {22}
             </S.ArquivDigitais>
           </S.DetalhesLote>
 
           <S.CategoriaPrioridade>
-            {task.categoria &&
-              task.categoria.map((categoria: any, index: number) => (
+            {task.categorias &&
+              task.categorias.map((categoria: any, index: number) => (
                 <React.Fragment key={categoria.id}>
                   {/* PRIORIDADE */}
                   {categoria.nome == 'Financeiro' && (
@@ -126,7 +124,7 @@ export const LoteDetails = () => {
 
           {/* FASE DO LOTE */}
           <S.FaseEnvolvAtual>
-            <S.Icons src={`/icon-page/${task.fase_atual[0].nome}.png`} />
+            <S.Icons src={`/icon-page/${task.fase_atual}.png`} />
           </S.FaseEnvolvAtual>
 
           </S.LoteInfos>
@@ -160,27 +158,27 @@ export const LoteDetails = () => {
           <S.BotaoMudarFase>
             <S.VoltarAvancar onClick={handleVoltar}>
               <img src={`/voltar.svg`} alt="voltar" />
-              <p>Voltar Fase</p>
+              Voltar Fase
             </S.VoltarAvancar>
 
             <S.EscolherFase className="custom-select">
               <S.OptionFases className="fase" value="recepção">
-                <p>Recepção</p>
+                Recepção
               </S.OptionFases>
               <S.OptionFases className="fase" value="preparo">
-                <p>Preparo</p>
+                Preparo
               </S.OptionFases>
               <S.OptionFases className="fase" value="catalogação">
-                <p>Catalogação</p>
+                Catalogação
               </S.OptionFases>
               <S.OptionFases className="fase" value="digitalização">
-                <p>Digitalização</p>
+                Digitalização
               </S.OptionFases>
               <S.OptionFases className="fase" value="upload">
-                <p>Upload</p>
+                Upload
               </S.OptionFases>
               <S.OptionFases className="fase" value="arquivamento">
-                <p>Arquivamento</p>
+                Arquivamento
               </S.OptionFases>
             </S.EscolherFase>
           </S.BotaoMudarFase>
@@ -195,22 +193,22 @@ export const LoteDetails = () => {
 
             <S.EscolherFase>
               <S.OptionFases className="fase" value="recepção">
-                <p>Recepção</p>
+                Recepção
               </S.OptionFases>
               <S.OptionFases className="fase" value="preparo">
-                <p>Preparo</p>
+                Preparo
               </S.OptionFases>
               <S.OptionFases className="fase" value="catalogação">
-                <p>Catalogação</p>
+                Catalogação
               </S.OptionFases>
               <S.OptionFases className="fase" value="digitalização">
-                <p>Digitalização</p>
+                Digitalização
               </S.OptionFases>
               <S.OptionFases className="fase" value="upload">
-                <p>Upload</p>
+                Upload
               </S.OptionFases>
               <S.OptionFases className="fase" value="arquivamento">
-                <p>Arquivamento</p>
+                Arquivamento
               </S.OptionFases>
             </S.EscolherFase>
           </S.BotaoMudarFase>
@@ -229,51 +227,11 @@ export const LoteDetails = () => {
         </S.PendObsBotoes>
 
         {/* DETALHAMENTO POR FASE */}
-        <S.DetalFase>
+        {/* <S.DetalFase>
           <h2>Detalhamento por fase</h2>
-          <S.Fase>
-            {/* RECEPÇÃO */}
-            {task.fases &&
-              task.fases.map((fase: any) => (
-                <React.Fragment key={fase.id}>
-                  {fase.recepçao &&
-                    fase.recepçao.map((recep: any) => (
-                      <React.Fragment key={recep.id}>
-                        <S.FaseIconDiv>
-                          <img src={recep.icone} alt="ícone de recepção" height={25} width={25} />
-                          <h2>{recep.title}</h2>
-                        </S.FaseIconDiv>
-
-                        <S.TimeFinishDiv>
-                          <img src={recep.time_finish} alt="icone de check" />
-                          {recep.end}
-                          <S.Text style={{ color: '#00D25B' }}>{recep.end_hour}</S.Text>
-                        </S.TimeFinishDiv>
-
-                        <S.EnvolvidosDiv>
-                          {recep.envolvidos &&
-                            recep.envolvidos.map((user: any) => (
-                              <React.Fragment key={user.envolvidoId}>
-                                <img
-                                  src={user.foto}
-                                  alt="usuario envolvido na fase"
-                                  style={{
-                                    height: '32px',
-                                    width: '32px',
-                                    borderRadius: '50px',
-                                  }}
-                                />
-                              </React.Fragment>
-                            ))}
-                        </S.EnvolvidosDiv>
-                      </React.Fragment>
-                    ))}
-                </React.Fragment>
-              ))}
-          </S.Fase>
 
           <S.Fase>
-            {/* PREPARO */}
+
             {task.fases &&
               task.fases.map((fase: any) => (
                 <React.Fragment key={fase.id}>
@@ -325,7 +283,7 @@ export const LoteDetails = () => {
           </S.Fase>
 
           <S.Fase>
-            {/* CATALOGAÇÃO */}
+
             {task.fases &&
               task.fases.map((fase: any) => (
                 <React.Fragment key={fase.id}>
@@ -377,7 +335,7 @@ export const LoteDetails = () => {
           </S.Fase>
 
           <S.Fase>
-            {/* DIGITALIZAÇÃO */}
+
             {task.fases &&
               task.fases.map((fase: any) => (
                 <React.Fragment key={fase.id}>
@@ -427,7 +385,8 @@ export const LoteDetails = () => {
                 </React.Fragment>
               ))}
           </S.Fase>
-        </S.DetalFase>
+        </S.DetalFase> 
+        */}
       </S.areaClick>
 
       {modal && <AtribuirAlguemModal close={handleAtribuirAlguem}></AtribuirAlguemModal>}

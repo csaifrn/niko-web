@@ -2,7 +2,6 @@ import { Routes, Route } from 'react-router-dom';
 import { Suspense, lazy } from 'react';
 import Login from './pages/Login';
 import Splash from './pages/Splash';
-
 import Arquivamento from './pages/Etapas/Arquivamento';
 import Recebidos from './pages/Etapas/Recebidos';
 import Preparo from './pages/Etapas/Preparo';
@@ -13,14 +12,16 @@ import LoteDetails from './components/LoteDetails';
 import Operador from './pages/Coordenador/Operador';
 import Categoria from './pages/Coordenador/Categoria';
 import { RequireAuth } from 'react-auth-kit';
-import Auth from './config/Auth';
 import Erro404 from './pages/Erros/404';
 import Unauthorized from './pages/Erros/Unauthorized';
+import Projetos from './pages/Projeto/HomeUser';
+import CreateProjeto from './pages/Projeto/CreateProjeto';
+import Users from './data/UserData';
+import Auth from './config/Auth';
 
 const Home = lazy(() => import('./pages/Home'));
 
 const App = () => {
-  const alow = ['Operador'];
   return (
     <Suspense fallback={<Splash />}>
       <Routes>
@@ -34,12 +35,30 @@ const App = () => {
         />
         <Route path="/login" element={<Login />} />
         <Route path="/" element={<Login />} />
-        <Route path="*" element={<Erro404 />} />
+
         <Route path="/unauthorized" element={<Unauthorized />} />
+
+        <Route
+          path="/Projetos"
+          element={
+            <RequireAuth loginPath={'/login'}>
+              <Projetos />
+            </RequireAuth>
+          }
+        />
+        <Route
+          path="/CriarProjeto"
+          element={
+            <RequireAuth loginPath={'/login'}>
+              <CreateProjeto users={Users} />
+            </RequireAuth>
+          }
+        />
         <Route element={<Auth allowedRoles={['Coordenador']} />}>
-          <Route path="/Fase" element={<Home />} />
+          <Route path="/Fase/:id" element={<Home />} />
+
           <Route
-            path="/Board/Arquivamento"
+            path="Fase/:id/Board/Arquivamento"
             element={
               <RequireAuth loginPath={'/login'}>
                 <Arquivamento />
@@ -47,7 +66,7 @@ const App = () => {
             }
           />
           <Route
-            path="/Board/Recebidos"
+            path="Fase/:id/Board/Recebidos"
             element={
               <RequireAuth loginPath={'/login'}>
                 <Recebidos etapa="recebidos" />
@@ -55,15 +74,15 @@ const App = () => {
             }
           />
           <Route
-            path="/Board/Preparo"
+            path="Fase/:id/Board/Preparo"
             element={
-              <RequireAuth loginPath={'/login'}>
+              // <RequireAuth loginPath={'/login'}>
                 <Preparo />
-              </RequireAuth>
+              // </RequireAuth>
             }
           />
           <Route
-            path="/Board/Catalogacao"
+            path="Fase/:id/Board/Catalogacao"
             element={
               <RequireAuth loginPath={'/login'}>
                 <Catalogacao />
@@ -71,7 +90,7 @@ const App = () => {
             }
           />
           <Route
-            path="/Board/Digitalizacao"
+            path="Fase/:id/Board/Digitalizacao"
             element={
               <RequireAuth loginPath={'/login'}>
                 <Digitalizacao />
@@ -79,7 +98,7 @@ const App = () => {
             }
           />
           <Route
-            path="/Operadores"
+            path="/Operadores/:id"
             element={
               <RequireAuth loginPath={'/login'}>
                 <Operador />
@@ -87,7 +106,7 @@ const App = () => {
             }
           />
           <Route
-            path="/Categorias"
+            path="/Categorias/:id"
             element={
               <RequireAuth loginPath={'/login'}>
                 <Categoria />
@@ -95,7 +114,7 @@ const App = () => {
             }
           />
           <Route
-            path="/Board/Upload"
+            path="Fase/:id/Board/Upload"
             element={
               <RequireAuth loginPath={'/login'}>
                 <Upload />
@@ -110,7 +129,12 @@ const App = () => {
               </RequireAuth>
             }
           />
+
+        {/* </Route> */}
+
         </Route>
+        <Route path="*" element={<Erro404 />} />
+
         {/* <Route
           path="/Fase"
           element={

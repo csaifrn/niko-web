@@ -1,37 +1,79 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import * as S from './styles';
-import mockData from '../../data/kanbanData';
 import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd';
 import Lote from '../Lote';
+import EtapaData from '../../data/EtapaData';
+import { LoteData } from '../../data/LoteData';
+
+
+interface Fase {
+  id: string;
+  titulo: string;
+}
+
 interface BoardProps {
-  fase: string;
+  titulo: string;
+  fase: Fase
 }
 
 export const Board = (props: BoardProps) => {
-  const [data, setData] = useState(mockData);
 
-  const onDragEnd = (result: any) => {
-    if (!result.destination) return;
-    const { source, destination } = result;
-    if (source.droppableId !== destination.droppableId) {
-      console.log('Funcionando!');
-      const ColunmIndexSource = data.findIndex((e) => e.id === source.droppableId);
-      const ColunmIndexDestination = data.findIndex((e) => e.id === destination.droppableId);
+  // temos 1 fase
+  // api
+  //  - etapas por fase
+  //  - lotes por etapa
 
-      const ColumnSource = data[ColunmIndexSource];
-      const ColumnDestination = data[ColunmIndexDestination];
+  const fase = props.fase
+  const etapasTemp = EtapaData.filter((Etapa) => Etapa.id_fase === fase.id)
+  // axios.get('projetos/incra/fases/preparo/etapas).then((datta) => data.json).then((json) => etapas.json)
+  
+  const [etapas, setEtapas] = useState<any[]>([])
+  const carregarLotes = (etapaid: string) => LoteData.filter((lote) => {
+    const etapa = lote.id_etapa;
 
-      const SourceTask = [...ColumnSource.tasks];
-      const DestinationTaks = [...ColumnDestination.tasks];
-
-      const [Removed] = SourceTask.splice(source.index, 1);
-      DestinationTaks.splice(destination.index, 0, Removed);
-
-      data[ColunmIndexSource].tasks = SourceTask;
-      data[ColunmIndexDestination].tasks = DestinationTaks;
-
-      setData(data);
+    // etapas do meio
+    if (etapa instanceof String || typeof etapa === 'string') {
+      return etapa === etapaid;
+    
+    // etapas das pontas
+    } else {
+      console.log(etapa);
+      return etapa[0] === etapaid || etapa[1] === etapaid;
     }
+  });
+
+  useEffect(() => {
+    for (let index = 0; index < etapasTemp.length; index++) {
+      const element = etapasTemp[index];
+      const Items = { id: element.id, title: element.titulo, tasks: carregarLotes(element.id) }  
+      setEtapas((dataItens) => [...dataItens, Items]);
+    }
+  }, [])
+
+//  const [data, setData] = useState(etapas);
+// FIXME: remover o estado data e o onDragEnd
+  const onDragEnd = (result: any) => {
+//    if (!result.destination) return;
+//    const { source, destination } = result;
+//    if (source.droppableId !== destination.droppableId) {
+      // console.log('Funcionando!');
+      // const ColunmIndexSource = data.findIndex((e) => e.id === source.droppableId);
+      // const ColunmIndexDestination = data.findIndex((e) => e.id === destination.droppableId);
+
+      // const ColumnSource = data[ColunmIndexSource];
+      // const ColumnDestination = data[ColunmIndexDestination];
+
+      // const SourceTask = [...ColumnSource.tasks];
+      // const DestinationTaks = [...ColumnDestination.tasks];
+
+      // const [Removed] = SourceTask.splice(source.index, 1);
+      // DestinationTaks.splice(destination.index, 0, Removed);
+
+      // data[ColunmIndexSource].tasks = SourceTask;
+      // data[ColunmIndexDestination].tasks = DestinationTaks;
+
+      // setData(data);
+//    }
   };
 
   return (
@@ -43,7 +85,7 @@ export const Board = (props: BoardProps) => {
       </>
       <DragDropContext onDragEnd={onDragEnd}>
         <S.kanban className="board">
-          {data.map((section: any) => (
+          {etapas.map((section: any) => (
             <Droppable key={section.id} droppableId={section.id}>
               {(provided) => (
                 <S.kanbanSection {...provided.droppableProps} ref={provided.innerRef}>
@@ -61,7 +103,7 @@ export const Board = (props: BoardProps) => {
                     {section.title == 'Em pausa' && (
                       <h2
                         style={{
-                          color: '#FCDE42',
+                          color: '#F32D2D',
                         }}
                       >
                         {section.tasks ? section.tasks.length : 0}
@@ -70,7 +112,7 @@ export const Board = (props: BoardProps) => {
                     {section.title == 'Em andamento' && (
                       <h2
                         style={{
-                          color: '#F32D2D',
+                          color: '#FCDE42',
                         }}
                       >
                         {section.tasks ? section.tasks.length : 0}
@@ -103,8 +145,8 @@ export const Board = (props: BoardProps) => {
                             <a href={`/Lote/${task.id}`} style={{ textDecoration: 'none' }}>
                               <Lote
                                 task={task}
-                                value={task.title}
-                                categoria={task.categoria}
+                                value={`${task.titulo} ${task.numero}`}
+                                categoria={task.categorias}
                                 envolvidos={task.envolvidos}
                               ></Lote>
                             </a>

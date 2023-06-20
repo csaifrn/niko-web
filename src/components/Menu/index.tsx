@@ -3,6 +3,7 @@ import React, { useState, useEffect, useRef } from 'react';
 // import MenuBurger from '../MenuBurger';
 import * as S from './styles';
 import { useSignOut } from 'react-auth-kit';
+import { useParams } from 'react-router-dom';
 // import { useNavigate } from 'react-router-dom';
 
 interface MenuProps {
@@ -11,6 +12,7 @@ interface MenuProps {
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars, no-unused-vars
 export const Menu = (props: MenuProps) => {
+  let { id } = useParams();
   // const [open, setOpen] = useState(false);
   const [DropDown, setDropDown] = useState(false);
   const signOut = useSignOut();
@@ -44,7 +46,7 @@ export const Menu = (props: MenuProps) => {
         {open && <MenuBurger area={props.area} onClose={() => setOpen(false)} />} 
       </S.ContainerA> */}
       <S.ContainerA>
-        <a href="/Fase">
+        <a href={`/Fase/${id}`}>
           <S.MenuImg src="/Logo_Niko.svg" />
         </a>
       </S.ContainerA>

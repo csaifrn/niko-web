@@ -38,10 +38,10 @@ const Login = () => {
           token: token,
           expiresIn: 3600,
           tokenType: 'Bearer',
-          authState: { user, role },
+          authState: { user, role, email: resgisterEmail },
         });
 
-        navigate('/Fase');
+        navigate('/Projetos');
       });
     } catch (err) {
       console.log(err);

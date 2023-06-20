@@ -22,19 +22,6 @@ const Lote = (props: any) => {
                 ))}
             </S.Content>
             <S.Content>
-              {/* <S.Pa >
-                                {
-                                    props.categoria && props.categoria.map((categoria: any, index: number) => (
-                                        <React.Fragment key={uuidv4()}>
-                                            {index >= 0 && (
-                                                <S.PaTextDiv style={{ borderRadius: "5px" }}>
-                                                    <p style={{ padding: "0 0.5em" }}>{categoria.nome}</p>
-                                                </S.PaTextDiv>
-                                            )}
-                                        </React.Fragment>
-                                    ))
-                                }
-                            </S.Pa> */}
               <div></div>
               <S.Pa>
                 {props.categoria &&
@@ -83,7 +70,7 @@ const Lote = (props: any) => {
                     <React.Fragment key={uuidv4()}>
                       {index <= 2 && (
                         <img
-                          src={envolvidos.foto}
+                          src={envolvidos.url}
                           width={24}
                           height={24}
                           style={{ marginLeft: '-10px', borderRadius: '100%' }}

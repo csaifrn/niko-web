@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import Users from '../../data/UserData';
 import { MembrosModal } from '../MembrosModal';
 import { Membros, Projeto } from '../../data/ProjetoData';
+import { EditProjetoModal } from '../EditProjetoModal';
 
 interface Projeto {
   id: string;
@@ -18,12 +19,11 @@ interface CardProps {
 export const CardProjeto = (Props: CardProps) => {
   const [DropDown, setDropDown] = useState(false);
   const [ModalMembro, setModalMembro] = useState(false);
+  const [ModalEdit, setModalEdit] = useState(false);
 
   const users = Users;
   const projeto = Props.projeto;
   const membros = Membros.filter((membro) => membro.id_Projeto === projeto.id);
-
-  console.log(projeto);
 
   return (
     <>
@@ -131,6 +131,7 @@ export const CardProjeto = (Props: CardProps) => {
                 </button>
                 <button
                   onClick={(event) => {
+                    setModalEdit(!ModalEdit);
                     event.preventDefault();
                   }}
                   style={{
@@ -162,6 +163,14 @@ export const CardProjeto = (Props: CardProps) => {
           }}
           users={users}
           membros={membros}
+          id_projeto={projeto.id}
+        />
+      )}
+      {ModalEdit && (
+        <EditProjetoModal
+          close={() => {
+            setModalEdit(!ModalEdit);
+          }}
           id_projeto={projeto.id}
         />
       )}

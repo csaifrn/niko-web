@@ -4,11 +4,6 @@ const FaseData = [
     {
         id: uuidv4(),
         titulo:'Preparo',
-        etapas: [
-            {
-                
-            }
-        ]
     },
     {
         id: uuidv4(),

@@ -70,7 +70,7 @@ const Lote = (props: any) => {
                     <React.Fragment key={uuidv4()}>
                       {index <= 2 && (
                         <img
-                          src={envolvidos.foto}
+                          src={envolvidos.url}
                           width={24}
                           height={24}
                           style={{ marginLeft: '-10px', borderRadius: '100%' }}

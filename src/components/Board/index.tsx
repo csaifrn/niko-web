@@ -1,9 +1,7 @@
 import { useEffect, useState } from 'react';
 import * as S from './styles';
 import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd';
-
 import Lote from '../Lote';
-import mockData from '../../data/kanbanData';
 import EtapaData from '../../data/EtapaData';
 import { LoteData } from '../../data/LoteData';
 

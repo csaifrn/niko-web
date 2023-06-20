@@ -1,5 +1,6 @@
 import { v4 as uuidv4 } from 'uuid';
 import EtapaData from '../data/EtapaData';
+import UserData from './UserData';
 
 export const LoteData = [
     //LOTE 1
@@ -20,12 +21,12 @@ export const LoteData = [
         ],
         envolvidos: [
             {
-                envolvidoId: 1,
-                foto: 'https://i.pinimg.com/474x/38/a7/f1/38a7f176c4783fd6f91a572057f5e2e8--figure-painting-the-high.jpg',
+                id: UserData[0].id,
+                foto:  UserData[0].url,
             },
             {
-                envolvidoId: 2,
-                foto: 'https://lh3.googleusercontent.com/a/AEdFTp4rZn-tIHMtcekPx2eo7A21IruNxrGHBlQfzpkh=s96-c',
+                id: UserData[1].id,
+                foto:  UserData[1].url,
             }
         ]
     },
@@ -55,14 +56,14 @@ export const LoteData = [
         ],
         envolvidos: [
             {
-                envolvidoId: 1,
-                foto: 'https://i.pinimg.com/474x/38/a7/f1/38a7f176c4783fd6f91a572057f5e2e8--figure-painting-the-high.jpg',
+                id: UserData[0].id,
+                foto:  UserData[0].url,
             },
             {
-                envolvidoId: 2,
-                foto: 'https://lh3.googleusercontent.com/a/AEdFTp4rZn-tIHMtcekPx2eo7A21IruNxrGHBlQfzpkh=s96-c',
+                id: UserData[1].id,
+                foto:  UserData[1].url,
             }
-        ] 
+        ]
     },
     //LOTE 3
     {
@@ -82,12 +83,12 @@ export const LoteData = [
         ],
         envolvidos: [
             {
-                envolvidoId: 1,
-                foto: 'https://i.pinimg.com/474x/38/a7/f1/38a7f176c4783fd6f91a572057f5e2e8--figure-painting-the-high.jpg',
+                id: UserData[0].id,
+                foto:  UserData[0].url,
             },
             {
-                envolvidoId: 2,
-                foto: 'https://lh3.googleusercontent.com/a/AEdFTp4rZn-tIHMtcekPx2eo7A21IruNxrGHBlQfzpkh=s96-c',
+                id: UserData[1].id,
+                foto:  UserData[1].url,
             }
         ]
     },
@@ -109,12 +110,12 @@ export const LoteData = [
         ],
         envolvidos: [
             {
-                envolvidoId: 1,
-                foto: 'https://i.pinimg.com/474x/38/a7/f1/38a7f176c4783fd6f91a572057f5e2e8--figure-painting-the-high.jpg',
+                id: UserData[0].id,
+                foto:  UserData[0].url,
             },
             {
-                envolvidoId: 2,
-                foto: 'https://lh3.googleusercontent.com/a/AEdFTp4rZn-tIHMtcekPx2eo7A21IruNxrGHBlQfzpkh=s96-c',
+                id: UserData[1].id,
+                foto:  UserData[1].url,
             }
         ]
     },
@@ -137,12 +138,12 @@ export const LoteData = [
         ],
         envolvidos: [
             {
-                envolvidoId: 1,
-                foto: 'https://i.pinimg.com/474x/38/a7/f1/38a7f176c4783fd6f91a572057f5e2e8--figure-painting-the-high.jpg',
+                id: UserData[0].id,
+                foto:  UserData[0].url,
             },
             {
-                envolvidoId: 2,
-                foto: 'https://lh3.googleusercontent.com/a/AEdFTp4rZn-tIHMtcekPx2eo7A21IruNxrGHBlQfzpkh=s96-c',
+                id: UserData[1].id,
+                foto:  UserData[1].url,
             }
         ]
     },
@@ -165,12 +166,12 @@ export const LoteData = [
         ],
         envolvidos: [
             {
-                envolvidoId: 1,
-                foto: 'https://i.pinimg.com/474x/38/a7/f1/38a7f176c4783fd6f91a572057f5e2e8--figure-painting-the-high.jpg',
+                id: UserData[0].id,
+                foto:  UserData[0].url,
             },
             {
-                envolvidoId: 2,
-                foto: 'https://lh3.googleusercontent.com/a/AEdFTp4rZn-tIHMtcekPx2eo7A21IruNxrGHBlQfzpkh=s96-c',
+                id: UserData[1].id,
+                foto:  UserData[1].url,
             }
         ]
     },
@@ -193,14 +194,376 @@ export const LoteData = [
         ],
         envolvidos: [
             {
-                envolvidoId: 1,
-                foto: 'https://i.pinimg.com/474x/38/a7/f1/38a7f176c4783fd6f91a572057f5e2e8--figure-painting-the-high.jpg',
+                id: UserData[0].id,
+                foto:  UserData[0].url,
             },
             {
-                envolvidoId: 2,
-                foto: 'https://lh3.googleusercontent.com/a/AEdFTp4rZn-tIHMtcekPx2eo7A21IruNxrGHBlQfzpkh=s96-c',
+                id: UserData[1].id,
+                foto:  UserData[1].url,
             }
         ]
     },
 
+    //LOTE 8
+    {
+        id: 8,
+        titulo: 'Lote',
+        numero: 8,
+        protocolo: '0008' ,
+        id_etapa: EtapaData[4].id,
+        prioridade: 0,
+        pendencias: [
+        ],
+        observacoes: [
+        ],
+        categorias: [
+        ],
+        tipologias: [
+        ],
+        envolvidos: [
+            {
+                id: UserData[0].id,
+                foto:  UserData[0].url,
+            },
+            {
+                id: UserData[1].id,
+                foto:  UserData[1].url,
+            }
+        ]
+    },
+
+    //LOTE 9
+    {
+        id: 9,
+        titulo: 'Lote',
+        numero: 9,
+        protocolo: '0009' ,
+        id_etapa: EtapaData[5].id,
+        prioridade: 0,
+        pendencias: [
+        ],
+        observacoes: [
+        ],
+        categorias: [
+        ],
+        tipologias: [
+        ],
+        envolvidos: [
+            {
+                id: UserData[0].id,
+                foto:  UserData[0].url,
+            },
+            {
+                id: UserData[1].id,
+                foto:  UserData[1].url,
+            }
+        ]
+    },
+
+    //LOTE 10
+    {
+        id: 10,
+        titulo: 'Lote',
+        numero: 10,
+        protocolo: '00010' ,
+        id_etapa: [EtapaData[6].id, EtapaData[7].id],
+        prioridade: 0,
+        pendencias: [
+        ],
+        observacoes: [
+        ],
+        categorias: [
+        ],
+        tipologias: [
+        ],
+        envolvidos: [
+            {
+                id: UserData[0].id,
+                foto:  UserData[0].url,
+            },
+            {
+                id: UserData[1].id,
+                foto:  UserData[1].url,
+            }
+        ]
+    },
+
+    //LOTE 11
+    {
+        id: 11,
+        titulo: 'Lote',
+        numero: 11,
+        protocolo: '00011' ,
+        id_etapa: [EtapaData[6].id, EtapaData[7].id],
+        prioridade: 0,
+        pendencias: [
+        ],
+        observacoes: [
+        ],
+        categorias: [
+        ],
+        tipologias: [
+        ],
+        envolvidos: [
+            {
+                id: UserData[0].id,
+                foto:  UserData[0].url,
+            },
+            {
+                id: UserData[1].id,
+                foto:  UserData[1].url,
+            }
+        ]
+    },
+
+    //LOTE 12
+    {
+        id: 12,
+        titulo: 'Lote',
+        numero: 12,
+        protocolo: '00012' ,
+        id_etapa: EtapaData[8].id,
+        prioridade: 0,
+        pendencias: [
+        ],
+        observacoes: [
+        ],
+        categorias: [
+        ],
+        tipologias: [
+        ],
+        envolvidos: [
+            {
+                id: UserData[0].id,
+                foto:  UserData[0].url,
+            },
+            {
+                id: UserData[1].id,
+                foto:  UserData[1].url,
+            }
+        ]
+    },
+
+    //LOTE 13
+    {
+        id: 13,
+        titulo: 'Lote',
+        numero: 13,
+        protocolo: '00013' ,
+        id_etapa: EtapaData[9].id,
+        prioridade: 0,
+        pendencias: [
+        ],
+        observacoes: [
+        ],
+        categorias: [
+        ],
+        tipologias: [
+        ],
+        envolvidos: [
+            {
+                id: UserData[0].id,
+                foto:  UserData[0].url,
+            },
+            {
+                id: UserData[1].id,
+                foto:  UserData[1].url,
+            }
+        ]
+    },
+
+    //LOTE 14
+    {
+        id: 14,
+        titulo: 'Lote',
+        numero: 14,
+        protocolo: '00014' ,
+        id_etapa: [EtapaData[10].id, EtapaData[11].id],
+        prioridade: 0,
+        pendencias: [
+        ],
+        observacoes: [
+        ],
+        categorias: [
+        ],
+        tipologias: [
+        ],
+        envolvidos: [
+            {
+                id: UserData[0].id,
+                foto:  UserData[0].url,
+            },
+            {
+                id: UserData[1].id,
+                foto:  UserData[1].url,
+            }
+        ]
+    },
+
+    //LOTE 15
+    {
+        id: 15,
+        titulo: 'Lote',
+        numero: 15,
+        protocolo: '00015' ,
+        id_etapa: [EtapaData[10].id, EtapaData[11].id],
+        prioridade: 0,
+        pendencias: [
+        ],
+        observacoes: [
+        ],
+        categorias: [
+        ],
+        tipologias: [
+        ],
+        envolvidos: [
+            {
+                id: UserData[0].id,
+                foto:  UserData[0].url,
+            },
+            {
+                id: UserData[1].id,
+                foto:  UserData[1].url,
+            }
+        ]
+    },
+
+    //LOTE 16
+    {
+        id: 16,
+        titulo: 'Lote',
+        numero: 16,
+        protocolo: '00016' ,
+        id_etapa: EtapaData[12].id,
+        prioridade: 0,
+        pendencias: [
+        ],
+        observacoes: [
+        ],
+        categorias: [
+        ],
+        tipologias: [
+        ],
+        envolvidos: [
+            {
+                id: UserData[0].id,
+                foto:  UserData[0].url,
+            },
+            {
+                id: UserData[1].id,
+                foto:  UserData[1].url,
+            }
+        ]
+    },
+
+    //LOTE 17
+    {
+        id: 17,
+        titulo: 'Lote',
+        numero: 17,
+        protocolo: '00016' ,
+        id_etapa: EtapaData[13].id,
+        prioridade: 0,
+        pendencias: [
+        ],
+        observacoes: [
+        ],
+        categorias: [
+        ],
+        tipologias: [
+        ],
+        envolvidos: [
+            {
+                id: UserData[0].id,
+                foto:  UserData[0].url,
+            },
+            {
+                id: UserData[1].id,
+                foto:  UserData[1].url,
+            }
+        ]
+    },
+
+    //LOTE 15
+    {
+        id: 18,
+        titulo: 'Lote',
+        numero: 18,
+        protocolo: '00018' ,
+        id_etapa: [EtapaData[14].id, EtapaData[15].id],
+        prioridade: 0,
+        pendencias: [
+        ],
+        observacoes: [
+        ],
+        categorias: [
+        ],
+        tipologias: [
+        ],
+        envolvidos: [
+            {
+                id: UserData[0].id,
+                foto:  UserData[0].url,
+            },
+            {
+                id: UserData[1].id,
+                foto:  UserData[1].url,
+            }
+        ]
+    },
+
+    //LOTE 19
+    {
+        id: 19,
+        titulo: 'Lote',
+        numero: 19,
+        protocolo: '00019' ,
+        id_etapa: [EtapaData[14].id, EtapaData[15].id],
+        prioridade: 0,
+        pendencias: [
+        ],
+        observacoes: [
+        ],
+        categorias: [
+        ],
+        tipologias: [
+        ],
+        envolvidos: [
+            {
+                id: UserData[0].id,
+                foto:  UserData[0].url,
+            },
+            {
+                id: UserData[1].id,
+                foto:  UserData[1].url,
+            }
+        ]
+    },
+    //LOTE 20
+    {
+        id: 20,
+        titulo: 'Lote',
+        numero: 20,
+        protocolo: '00020' ,
+        id_etapa: EtapaData[16].id,
+        prioridade: 0,
+        pendencias: [
+        ],
+        observacoes: [
+        ],
+        categorias: [
+        ],
+        tipologias: [
+        ],
+        envolvidos: [
+            {
+                id: UserData[0].id,
+                foto:  UserData[0].url,
+            },
+            {
+                id: UserData[1].id,
+                foto:  UserData[1].url,
+            }
+        ]
+    },
 ]

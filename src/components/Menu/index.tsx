@@ -3,7 +3,7 @@ import React, { useState, useEffect, useRef } from 'react';
 // import MenuBurger from '../MenuBurger';
 import * as S from './styles';
 import { useSignOut } from 'react-auth-kit';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 // import { useNavigate } from 'react-router-dom';
 
 interface MenuProps {
@@ -16,6 +16,7 @@ export const Menu = (props: MenuProps) => {
   // const [open, setOpen] = useState(false);
   const [DropDown, setDropDown] = useState(false);
   const signOut = useSignOut();
+  const navigate = useNavigate();
   // const navigate = useNavigate();
   const dropDownRef = useRef(null);
 
@@ -91,7 +92,10 @@ export const Menu = (props: MenuProps) => {
               <p>Perfil</p>
             </a>
             <button
-              onClick={() => signOut()}
+              onClick={() => {
+                signOut();
+                navigate('/');
+              }}
               style={{
                 color: '#fff',
                 backgroundColor: 'transparent',

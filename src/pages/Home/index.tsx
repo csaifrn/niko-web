@@ -2,14 +2,26 @@ import { Wrapper, Main } from './styles';
 import { Card } from '../../components/Card';
 import MenuCoord from '../../components/MenuCoord';
 import Menu from '../../components/Menu';
+import { useNavigate, useParams } from 'react-router-dom';
+import { Membros, Projeto } from '../../data/ProjetoData';
+import { useEffect } from 'react';
 import { useAuthUser } from 'react-auth-kit';
-import { useParams } from 'react-router-dom';
-import { Projeto } from '../../data/ProjetoData';
 
 const Home = () => {
   let { id } = useParams();
-  console.log(id);
-  console.info(Projeto);
+  const navigate = useNavigate();
+  const auth = useAuthUser();
+
+  useEffect(() => {
+    useEffect;
+    if (Projeto.filter((projeto) => projeto.id === id).length === 0) {
+      navigate('/Projetos');
+    }
+    if (Membros.filter((membro) => membro.email === auth()?.email).length === 0) {
+      navigate('/Projetos');
+    }
+  }, [Projeto]);
+
   //const {user, loading, logOut} = useFirebaseAuth();
 
   //if (loading){

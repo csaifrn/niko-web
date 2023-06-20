@@ -27,6 +27,25 @@ const LoteArea = styled.section`
   }
 `;
 
+const Main = styled.section`
+  height: 50vh;
+  background-color: #191c24;
+  display: flex;
+  flex-direction: column;
+  justify-items: center;
+  padding: 2em;
+  grid-gap: 1em;
+  border-radius: 5px;
+  overflow-y: scroll;
+  scroll-behavior: auto;
+  scrollbar-width: thin;
+
+  @media (min-width: 768px) {
+  }
+  @media (min-width: 1000px) {
+  }
+`;
+
 const FooterHome = styled.footer`
   height: 4em;
   background: #191c24;
@@ -59,4 +78,4 @@ const Btn = styled.button`
   }
 `;
 
-export { LoteArea, FooterHome, spanLinear, Btn };
+export { LoteArea, FooterHome, spanLinear, Btn, Main };

@@ -1,6 +1,7 @@
 import { v4 as uuidv4 } from 'uuid';
 import EtapaData from '../data/EtapaData';
 import UserData from './UserData';
+import CategoriaData from './CategoriaData';
 
 export const LoteData = [
     //LOTE 1
@@ -8,10 +9,13 @@ export const LoteData = [
         id: '1',
         titulo: 'Lote',
         numero: 1,
+        estante: '',
         protocolo: '0001',
+        arquiv_fisicos: 0,
+        arquiv_digitais: 0,
         id_etapa: EtapaData[0].id,
         fase_atual: 'Preparo',
-        prioridade: 0,
+        prioridade: false,
         pendencias: [
         ],
         observacoes: [
@@ -36,12 +40,16 @@ export const LoteData = [
         id: '2',
         titulo: 'Lote',
         numero: 2,
+        estante: '',
         protocolo: '0002',
+        arquiv_fisicos: 0,
+        arquiv_digitais: 0,
         id_etapa: EtapaData[1].id,
         fase_atual: 'Preparo',
         prioridade: 0,
         pendencias: [
             {
+                pend_icon:'/warning.svg',
                 titulo: 'Há 3 processos sem número',
                 PendId: uuidv4(),
             },
@@ -72,7 +80,10 @@ export const LoteData = [
         id: '3',
         titulo: 'Lote',
         numero: 3,
+        estante: '',
         protocolo: '0003',
+        arquiv_fisicos: 0,
+        arquiv_digitais: 0,
         id_etapa: EtapaData[1].id,
         fase_atual: 'Preparo',
         prioridade: 0,
@@ -100,7 +111,10 @@ export const LoteData = [
         id: '4',
         titulo: 'Lote',
         numero: 4,
-        protocolo: '0004' ,//´000${'2'}´
+        estante: '',
+        protocolo: '0004',
+        arquiv_fisicos: 0,
+        arquiv_digitais: 0,
         id_etapa: EtapaData[1].id,
         fase_atual: 'Preparo',
         prioridade: 0,
@@ -129,9 +143,12 @@ export const LoteData = [
         id: '5',
         titulo: 'Lote',
         numero: 5,
-        protocolo: '0005' ,//´000${'2'}´
+        estante: '',
+        protocolo: '0005',
+        arquiv_fisicos: 0,
+        arquiv_digitais: 0,
         id_etapa: [EtapaData[2].id, EtapaData[3].id],
-        fase_atual: '',
+        fase_atual: 'Catalogação',
         prioridade: 0,
         pendencias: [
         ],
@@ -158,9 +175,12 @@ export const LoteData = [
         id: '6',
         titulo: 'Lote',
         numero: 6,
-        protocolo: '0006' ,//´000${'2'}´
+        estante: '',
+        protocolo: '0006',
+        arquiv_fisicos: 0,
+        arquiv_digitais: 0,
         id_etapa: [EtapaData[2].id, EtapaData[3].id],
-        fase_atual: '',
+        fase_atual: 'Catalogação',
         prioridade: 0,
         pendencias: [
         ],
@@ -187,9 +207,12 @@ export const LoteData = [
         id: '7',
         titulo: 'Lote',
         numero: 7,
-        protocolo: '0007' ,
+        estante: '',
+        protocolo: '0007',
+        arquiv_fisicos: 0,
+        arquiv_digitais: 0,
         id_etapa: [EtapaData[2].id, EtapaData[3].id],
-        fase_atual: '',
+        fase_atual: 'Catalogação',
         prioridade: 0,
         pendencias: [
         ],
@@ -216,9 +239,12 @@ export const LoteData = [
         id: '8',
         titulo: 'Lote',
         numero: 8,
-        protocolo: '0008' ,
+        estante: '',
+        protocolo: '0008',
+        arquiv_fisicos: 0,
+        arquiv_digitais: 0,
         id_etapa: EtapaData[4].id,
-        fase_atual: 'Digitalizacao',
+        fase_atual: 'Catalogação',
         prioridade: 0,
         pendencias: [
         ],
@@ -245,9 +271,12 @@ export const LoteData = [
         id: '9',
         titulo: 'Lote',
         numero: 9,
-        protocolo: '0009' ,
+        estante: '',
+        protocolo: '0009',
+        arquiv_fisicos: 0,
+        arquiv_digitais: 0,
         id_etapa: EtapaData[5].id,
-        fase_atual: 'Digitalizacao',
+        fase_atual: 'Catalogação',
         prioridade: 0,
         pendencias: [
         ],
@@ -274,15 +303,30 @@ export const LoteData = [
         id: '10',
         titulo: 'Lote',
         numero: 10,
-        protocolo: '00010' ,
+        estante: '',
+        protocolo: '00010',
+        arquiv_fisicos: 20,
+        arquiv_digitais: 0,
         id_etapa: [EtapaData[6].id, EtapaData[7].id],
-        fase_atual: 'Digitalizacao',
-        prioridade: 0,
+        fase_atual: 'Digitalização',
+        prioridade: true,
         pendencias: [
         ],
         observacoes: [
         ],
         categorias: [
+            {
+                //FINANCEIRO
+                id: CategoriaData[0].id,
+                titulo: CategoriaData[0].name,
+                prioridade: CategoriaData[0].prioridade
+            },
+            {
+                //ADMINISTRATIVO
+                id: CategoriaData[1].id,
+                titulo: CategoriaData[1].name,
+                prioridade: CategoriaData[0].prioridade
+            }
         ],
         tipologias: [
         ],
@@ -303,15 +347,30 @@ export const LoteData = [
         id: '11',
         titulo: 'Lote',
         numero: 11,
-        protocolo: '00011' ,
+        estante: '',
+        protocolo: '00011',
+        arquiv_fisicos: 24,
+        arquiv_digitais: 0,
         id_etapa: [EtapaData[6].id, EtapaData[7].id],
-        fase_atual: 'Digitalizacao',
-        prioridade: 0,
+        fase_atual: 'Digitalização',
+        prioridade: true,
         pendencias: [
         ],
         observacoes: [
         ],
         categorias: [
+            {
+                //FINANCEIRO
+                id: CategoriaData[0].id,
+                titulo: CategoriaData[0].name,
+                prioridade: CategoriaData[0].prioridade
+            },
+            {
+                //ADMINISTRATIVO
+                id: CategoriaData[1].id,
+                titulo: CategoriaData[1].name,
+                prioridade: CategoriaData[0].prioridade
+            }
         ],
         tipologias: [
         ],
@@ -332,10 +391,13 @@ export const LoteData = [
         id: '12',
         titulo: 'Lote',
         numero: 12,
-        protocolo: '00012' ,
+        estante: '',
+        protocolo: '00012',
+        arquiv_fisicos: 15,
+        arquiv_digitais: 0,
         id_etapa: EtapaData[8].id,
-        fase_atual: 'Digitalizacao',
-        prioridade: 0,
+        fase_atual: 'Digitalização',
+        prioridade: false,
         pendencias: [
         ],
         observacoes: [
@@ -361,10 +423,13 @@ export const LoteData = [
         id: '13',
         titulo: 'Lote',
         numero: 13,
-        protocolo: '00013' ,
+        estante: '',
+        protocolo: '00013',
+        arquiv_fisicos: 18,
+        arquiv_digitais: 0,
         id_etapa: EtapaData[9].id,
-        fase_atual: 'Digitalizacao',
-        prioridade: 0,
+        fase_atual: 'Digitalização',
+        prioridade: false,
         pendencias: [
         ],
         observacoes: [
@@ -390,10 +455,13 @@ export const LoteData = [
         id: '14',
         titulo: 'Lote',
         numero: 14,
-        protocolo: '00014' ,
+        estante: '',
+        protocolo: '00014',
+        arquiv_fisicos: 20,
+        arquiv_digitais: 20,
         id_etapa: [EtapaData[10].id, EtapaData[11].id],
-        fase_atual: 'Digitalizacao',
-        prioridade: 0,
+        fase_atual: 'Upload',
+        prioridade: false,
         pendencias: [
         ],
         observacoes: [
@@ -419,9 +487,12 @@ export const LoteData = [
         id: '15',
         titulo: 'Lote',
         numero: 15,
-        protocolo: '00015' ,
+        estante: '',
+        protocolo: '00015',
+        arquiv_fisicos: 20,
+        arquiv_digitais: 19,
         id_etapa: [EtapaData[10].id, EtapaData[11].id],
-        fase_atual: 'Digitalizacao',
+        fase_atual: 'Upload',
         prioridade: 0,
         pendencias: [
         ],
@@ -448,9 +519,12 @@ export const LoteData = [
         id: '16',
         titulo: 'Lote',
         numero: 16,
-        protocolo: '00016' ,
+        estante: '',
+        protocolo: '00016',
+        arquiv_fisicos: 23,
+        arquiv_digitais: 23,
         id_etapa: EtapaData[12].id,
-        fase_atual: 'Digitalizacao',
+        fase_atual: 'Upload',
         prioridade: 0,
         pendencias: [
         ],
@@ -477,9 +551,12 @@ export const LoteData = [
         id: '17',
         titulo: 'Lote',
         numero: 17,
-        protocolo: '00016' ,
+        estante: '',
+        protocolo: '00016',
+        arquiv_fisicos: 25,
+        arquiv_digitais: 25,
         id_etapa: EtapaData[13].id,
-        fase_atual: 'Digitalizacao',
+        fase_atual: 'Upload',
         prioridade: 0,
         pendencias: [
         ],
@@ -501,14 +578,17 @@ export const LoteData = [
         ]
     },
 
-    //LOTE 15
+    //LOTE 18
     {
         id: "18",
         titulo: 'Lote',
         numero: 18,
-        protocolo: '00018' ,
+        estante: '',
+        protocolo: '00018',
+        arquiv_fisicos: 32,
+        arquiv_digitais: 32,
         id_etapa: [EtapaData[14].id, EtapaData[15].id],
-        fase_atual: 'Digitalizacao',
+        fase_atual: 'Arquivamento',
         prioridade: 0,
         pendencias: [
         ],
@@ -535,9 +615,12 @@ export const LoteData = [
         id: "19",
         titulo: 'Lote',
         numero: 19,
-        protocolo: '00019' ,
+        estante: '',
+        protocolo: '00019',
+        arquiv_fisicos: 31,
+        arquiv_digitais: 28,
         id_etapa: [EtapaData[14].id, EtapaData[15].id],
-        fase_atual: 'Digitalizacao',
+        fase_atual: 'Arquivamento',
         prioridade: 0,
         pendencias: [
         ],
@@ -563,9 +646,12 @@ export const LoteData = [
         id: "20",
         titulo: 'Lote',
         numero: 20,
-        protocolo: '00020' ,
+        protocolo: '00020',
+        estante: '23-A',
+        arquiv_fisicos: 28,
+        arquiv_digitais: 27,
         id_etapa: EtapaData[16].id,
-        fase_atual: 'Digitalizacao',
+        fase_atual: 'Arquivamento',
         prioridade: 0,
         pendencias: [
         ],

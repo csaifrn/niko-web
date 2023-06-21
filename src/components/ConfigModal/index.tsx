@@ -2,6 +2,7 @@ import React, {useState } from "react";
 import * as S from "./style";
 import CategoriaData from "../../data/CategoriaData";
 import mockData from "../../data/kanbanData";
+import { LoteData } from "../../data/LoteData";
 
 interface ConfigModalProps {
   close: () => void;

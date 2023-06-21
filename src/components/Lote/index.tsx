@@ -52,16 +52,12 @@ const Lote = (props: any) => {
           <S.LoteArea>
             <S.Content>
               <h2>{props.value}</h2>
-              {props.categoria &&
-                props.categoria.map((categoria: any) => (
-                  <React.Fragment key={uuidv4()}>
-                    {categoria.nome === props.prioridade && (
-                      <S.Prioridade>
-                        <p>Prioridade</p>
-                      </S.Prioridade>
-                    )}
-                  </React.Fragment>
-                ))}
+              {/* PRIORIDADE */}
+              {props.prioridade == true &&
+                <S.Prioridade>
+                  <p>Prioridade</p>
+                </S.Prioridade>
+              }
             </S.Content>
             <S.Content>
               <S.Envolvido style={{ display: 'flex', marginLeft: '10px' }}>
@@ -103,7 +99,7 @@ const Lote = (props: any) => {
                       )}
                       {index == 0 && (
                         <S.PaTextDiv style={{ borderRadius: '3px' }}>
-                          <p style={{ padding: '0 0.5em' }}>{categoria.nome}</p>
+                          <p style={{ padding: '0 0.5em' }}>{categoria.titulo}</p>
                         </S.PaTextDiv>
                       )}
                     </React.Fragment>

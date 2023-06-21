@@ -86,48 +86,56 @@ export const LoteDetails = () => {
               <p style={{ padding: '0 0.5em' }}>{task.protocolo}</p>
             </S.Protocolo>
 
-            {/* ARQUIVOS FÍSICOS */}
-            <S.ArquivFisicos>
-              <img src={`/arquivos_fisicos.svg`} alt="arquivos fisicos" />
-              {21}
-            </S.ArquivFisicos>
+            {task.estante != '' && 
+              <S.Estante>
+                {task.estante}
+              </S.Estante>
+            }
 
+
+            {/* ARQUIVOS FÍSICOS */}
+              {task.arquiv_fisicos != 0 &&
+                <S.ArquivFisicos>
+                  <img src={`/arquivos_fisicos.svg`} alt="arquivos fisicos"/>
+                  {task.arquiv_fisicos} 
+                </S.ArquivFisicos>
+              }
             {/* ARQUIVOS DIGITAIS */}
-            <S.ArquivDigitais>
-              <img src={`/arquivos_digitais.svg`} alt="arquivos digitais" />
-              {22}
-            </S.ArquivDigitais>
+            {task.arquiv_digitais != 0 &&
+                <S.ArquivDigitais>
+                  <img src={`/arquivos_digitais.svg`} alt="arquivos digitais"/>
+                  {task.arquiv_digitais} 
+                </S.ArquivDigitais>
+            }
           </S.DetalhesLote>
 
           <S.CategoriaPrioridade>
-            {task.categorias &&
+
+            {/* PRIORIDADE */}
+            {task.prioridade == true &&
+              <S.Prioridade>
+                <p>Prioridade</p>
+              </S.Prioridade>
+            }
+            
+            {/* CATEGORIAS */}
+            {task.categorias != null &&
               task.categorias.map((categoria: any, index: number) => (
                 <React.Fragment key={categoria.id}>
-                  {/* PRIORIDADE */}
-                  {categoria.nome == 'Financeiro' && (
-                    <S.Prioridade>
-                      <p>Prioridade</p>
-                    </S.Prioridade>
-                  )}
-                  {/* CATEGORIAS */}
-                  {index >= 0 && (
-                    <>
-                    <S.Categoria>
-                      <p>{categoria.nome}</p>
-                    </S.Categoria>
-                    </>
-                  )}
-                  
+                  <S.Categoria>
+                    <p>{categoria.titulo}</p>
+                  </S.Categoria> 
                 </React.Fragment>
               ))}
           </S.CategoriaPrioridade>
 
-          {/* FASE DO LOTE */}
+          
           <S.FaseEnvolvAtual>
-            <S.Icons src={`/icon-page/${task.fase_atual}.png`} />
+            {/* FASE ATUAL DO LOTE */}
+            <S.Icons src={`/icon-page/${task.fase_atual}_icon.png`} />
           </S.FaseEnvolvAtual>
 
-          </S.LoteInfos>
+        </S.LoteInfos>
 
         <S.PendObsBotoes>
 
@@ -136,7 +144,7 @@ export const LoteDetails = () => {
             <p>Pendências</p>
             {task.pendencias.map((pend: any) => (
               <S.PendDivBlack key={pend.PendId}>
-                {pend.pendencia && <img src={'/warning.svg'} alt="ícone de alerta" />}
+                {<img src={pend.pend_icon} alt="ícone de alerta" />}
                 {pend.titulo}
               </S.PendDivBlack>
             ))}

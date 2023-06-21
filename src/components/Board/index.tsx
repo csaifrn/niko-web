@@ -4,6 +4,7 @@ import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd';
 import Lote from '../Lote';
 import EtapaData from '../../data/EtapaData';
 import { LoteData } from '../../data/LoteData';
+import { v4 as uuidv4 } from 'uuid';
 
 
 interface Fase {
@@ -37,7 +38,6 @@ export const Board = (props: BoardProps) => {
     
     // etapas das pontas
     } else {
-      console.log(etapa);
       return etapa[0] === etapaid || etapa[1] === etapaid;
     }
   });
@@ -86,7 +86,7 @@ export const Board = (props: BoardProps) => {
       <DragDropContext onDragEnd={onDragEnd}>
         <S.kanban className="board">
           {etapas.map((section: any) => (
-            <Droppable key={section.id} droppableId={section.id}>
+            <Droppable key={uuidv4()} droppableId={section.id}>
               {(provided) => (
                 <S.kanbanSection {...provided.droppableProps} ref={provided.innerRef}>
                   <div style={{ display: 'flex', gap: '1em', marginLeft: '1em' }}>
@@ -146,6 +146,7 @@ export const Board = (props: BoardProps) => {
                               <Lote
                                 task={task}
                                 value={`${task.titulo} ${task.numero}`}
+                                prioridade={task.prioridade}
                                 categoria={task.categorias}
                                 envolvidos={task.envolvidos}
                               ></Lote>

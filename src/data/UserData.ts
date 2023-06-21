@@ -24,21 +24,21 @@ const Users = [
     fase: 'upload',
   },
   {
-    id: 4,
-    name: 'Melquiades',
-    url: 'https://th.bing.com/th/id/OIP.bs3eojDjgbugZiVSZD79wwAAAA?pid=ImgDet&w=400&h=600&rs=1',
-    email: 'melquiades.sousa@gmail.com',
-    lote: '',
-    fase: '',
-  },
-  {
     id: 5,
-    name: 'Andre',
+    name: 'André Souza',
     url: 'https://th.bing.com/th/id/OIP.bs3eojDjgbugZiVSZD79wwAAAA?pid=ImgDet&w=400&h=600&rs=1',
     email: 'andre.sousa@gmail.com',
     lote: '',
     fase: '',
   },
+  {
+    id: 6,
+    name: 'Gustavo Jácome',
+    url: 'https://th.bing.com/th/id/OIP.bs3eojDjgbugZiVSZD79wwAAAA?pid=ImgDet&w=400&h=600&rs=1',
+    email: 'gustavo.jacome@gmail.com',
+    lote: '',
+    fase: '',
+  }
 ];
 
 export default Users;

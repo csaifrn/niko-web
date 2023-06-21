@@ -37,6 +37,8 @@ export const Teste = styled.h1`
 
 export const Icons = styled.img``;
 
+export const EnvolvAtual = styled.img``;
+
 export const TituloLote = styled.h1``;
 
 export const CloseDiv = styled.div`
@@ -147,8 +149,7 @@ export const CategoriaPrioridade = styled.div`
 `;
 
 export const Categoria = styled.div`
-  width: 72px;
-  height: 24px;
+  padding: 5px 6px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -227,12 +228,13 @@ export const PendDivBlack = styled.div`
 export const ObsDivBlack = styled.div`
   background-color: #191c24;
   border-radius: 5px;
+  display:flex;
   gap: 10px;
   padding: 10px;
   width: calc(100%-2em);
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   order: 1;
   flex-grow: 0;
 `;

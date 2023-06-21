@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import * as S from './styles';
 import Search from '../Search';
-import CategoriaData from '../../data/CategoriaData';
-import mockData from '../../data/kanbanData';
 import Users from '../../data/UserData';
+import { v4 as uuidv4 } from 'uuid';
 
 interface clientes {
   id: string;
@@ -29,8 +28,22 @@ interface EditModalProps {
 
 export const CreateRemessa = (props: EditModalProps) => {
   const [cliente, setClientes] = useState<user[]>([]);
-  const [selectedCategoriaData, setCategoriaData] = useState<number[]>([]);
+  const [selectedClientes, setSelectedClientes] = useState<number[]>([]);
   const [searchTerm, setSearchTerm] = useState<string>('');
+
+  const [data, setData] = useState(new Date());
+  const [observacao, setObservacao] = useState('');
+  const [qtd, setQtd] = useState(0);
+
+  const handleQtd = (e: any) => {
+    setQtd(e.target.value);
+  };
+  const handleData = (e: any) => {
+    setData(e.target.date);
+  };
+  const handleObservacao = (e: any) => {
+    setObservacao(e.target.value);
+  };
 
   useEffect(() => {
     const foundUsers: any[] = [];
@@ -41,10 +54,10 @@ export const CreateRemessa = (props: EditModalProps) => {
   }, [props.clientes]);
 
   const handleLoteClick = (categId: number) => {
-    if (selectedCategoriaData.includes(categId)) {
-      setCategoriaData(selectedCategoriaData.filter((id) => id !== categId));
+    if (selectedClientes.includes(categId)) {
+      setSelectedClientes(selectedClientes.filter((id) => id !== categId));
     } else {
-      setCategoriaData([...selectedCategoriaData, categId]);
+      setSelectedClientes([...selectedClientes, categId]);
     }
   };
 
@@ -53,11 +66,11 @@ export const CreateRemessa = (props: EditModalProps) => {
   };
 
   const handleCriarLote = () => {
-    return console.log('Lote Criado');
+    return console.log({ data, observacao, qtd, selectedClientes });
   };
 
-  const filteredCategorias = cliente.filter((CategoriaData) =>
-    CategoriaData.name.toLowerCase().includes(searchTerm.toLowerCase()),
+  const filteredCategorias = cliente.filter((SelectedClientes) =>
+    SelectedClientes.name.toLowerCase().includes(searchTerm.toLowerCase()),
   );
 
   // const filteredTitulo = mockData.filter(
@@ -92,6 +105,7 @@ export const CreateRemessa = (props: EditModalProps) => {
               <S.TituloDiv>
                 <p>Quantidade de Caixas</p>
                 <S.Titulo
+                  onChange={handleQtd}
                   style={{ backgroundColor: '#2D303B' }}
                   type="number"
                   name="qtd_caixas"
@@ -104,6 +118,9 @@ export const CreateRemessa = (props: EditModalProps) => {
               <S.LocalDiv>
                 <p>Data</p>
                 <S.Local
+                  onChange={() => {
+                    handleData;
+                  }}
                   style={{ backgroundColor: '#2D303B' }}
                   type="date"
                   name="Data"
@@ -112,18 +129,30 @@ export const CreateRemessa = (props: EditModalProps) => {
                 ></S.Local>
               </S.LocalDiv>
 
+              <S.LocalDiv>
+                <p>Observação</p>
+                <S.Local
+                  onChange={handleObservacao}
+                  style={{ backgroundColor: '#2D303B' }}
+                  type="text"
+                  name="Data"
+                  placeholder={'...'}
+                  required
+                ></S.Local>
+              </S.LocalDiv>
+
               {/* CATEGORIAS */}
 
               <S.Categorias>
-                <p style={{ marginBottom: '1em' }}>Categorias</p>
+                <p style={{ marginBottom: '1em' }}>Clientes</p>
                 <Search searchTerm={searchTerm} handleSearchChange={handleSearchChange} />
                 <S.ChooseUser>
                   {filteredCategorias.map((categ: any) => (
                     <S.Categoria
-                      key={categ.id}
+                      key={uuidv4()}
                       onClick={() => handleLoteClick(categ.id)}
                       style={{
-                        backgroundColor: selectedCategoriaData.includes(categ.id) ? '#090E09' : '#2D303B',
+                        backgroundColor: selectedClientes.includes(categ.id) ? '#090E09' : '#2D303B',
                       }}
                     >
                       <img
@@ -135,7 +164,7 @@ export const CreateRemessa = (props: EditModalProps) => {
                       />
                       <p
                         style={{
-                          color: selectedCategoriaData.includes(categ.id) ? '#43DB6D' : '#838383',
+                          color: selectedClientes.includes(categ.id) ? '#fff' : '#838383',
                         }}
                       >
                         {categ.name}

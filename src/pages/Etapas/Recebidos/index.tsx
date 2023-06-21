@@ -111,6 +111,7 @@ const Recebidos = (props: RecepProps) => {
                       </p>
                     </div>
                   )}
+                  <p>{remessa.data}</p>
                 </div>
               );
             })}

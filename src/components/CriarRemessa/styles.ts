@@ -19,7 +19,7 @@ export const ModalArea = styled.div`
 
 export const ModalContent = styled.div`
   display: flex;
-  gap: 2em;
+  gap: 1em;
   flex-direction: column;
 `;
 

@@ -38,7 +38,7 @@ const Login = () => {
           token: token,
           expiresIn: 3600,
           tokenType: 'Bearer',
-          authState: { user, role, email: resgisterEmail },
+          authState: { id: 1, user, role, email: resgisterEmail },
         });
 
         navigate('/Projetos');

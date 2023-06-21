@@ -25,7 +25,7 @@ export const Membros = [
     id: '04d7a1ed-bbd6-4cf4-b402-38982b0399c6',
     id_Projeto: Projeto[0].id,
     email: 'pedro@email.com.br',
-    roleProjeto: 'Coordenador',
+    roleProjeto: 'Cliente',
     creator: true,
   },
   {

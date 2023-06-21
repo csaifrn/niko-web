@@ -69,7 +69,7 @@ export const AtribuirModal = (props: AtribuirModalProps) => {
               <h2>Atribuir Lote</h2>
               <button onClick={props.close} style={{ width: 'auto', backgroundColor: 'transparent', border: 'none' }}>
                 <img
-                  src="close.svg"
+                  src="/close.svg"
                   alt=""
                   height={18}
                   width={18}
@@ -93,7 +93,7 @@ export const AtribuirModal = (props: AtribuirModalProps) => {
                 >
                   <p
                     style={{
-                      color: selectedLotes.includes(lote.id) ? '#43DB6D' : '#838383',
+                      color: selectedLotes.includes(lote.id) ? '#fff' : '#838383',
                     }}
                   >
                     {lote.title}

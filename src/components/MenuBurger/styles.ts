@@ -21,8 +21,8 @@ const areaClick = styled.div<BurgerProps>`
   z-index: 9999999;
   width: 40%;
   height: 100%;
-  padding-left: 1em;
-  padding-top: 1.1em;
+  padding-left: 2em;
+  padding-top: 2em;
   position: absolute;
   top: 0;
   left: 0;

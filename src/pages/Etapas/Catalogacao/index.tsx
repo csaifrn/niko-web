@@ -3,17 +3,19 @@ import { Menu } from '../../../components/Menu';
 import * as Style from '../../../global/index';
 import MenuCoord from '../../../components/MenuCoord';
 import FaseData from '../../../data/FaseData';
+import { useParams } from 'react-router-dom';
 
 // import { Container } from './styles';
 
 const Catalogacao = () => {
+  let { id } = useParams();
   return (
     <>
-      <Menu area="/"></Menu>
+      <Menu area="/" id_projeto={id}></Menu>
       <MenuCoord />
       <Style.Wrapper>
         <p>Catalogação</p>
-        <Board fase={FaseData[1]} titulo='catalogacao' />
+        <Board fase={FaseData[1]} titulo="catalogacao" />
         <Style.Footer></Style.Footer>
       </Style.Wrapper>
     </>

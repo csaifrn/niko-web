@@ -44,7 +44,7 @@ const Recebidos = (props: RecepProps) => {
   return (
     <>
       <Style.Wrapper style={{ height: 'auto', marginBottom: '10em', width: '100%' }}>
-        <Menu area="/"></Menu>
+        <Menu area={`/Fase/${id}/Board/Recebidos`} id_projeto={id}></Menu>
         <MenuCoord />
         <>
           <div style={{ margin: '1em 3em 0em 3em', display: 'flex', justifyContent: 'flex-end', gap: '0.5em' }}>

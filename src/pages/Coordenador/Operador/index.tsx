@@ -5,6 +5,7 @@ import * as S from './styles';
 import Search from '../../../components/Search';
 import Menu from '../../../components/Menu';
 import MenuCoord from '../../../components/MenuCoord';
+import { useParams } from 'react-router';
 
 type User = {
   id: number;
@@ -19,6 +20,7 @@ const removeDiacritics = (str: string): string => {
 
 const Operador = (): JSX.Element => {
   const [searchTerm, setSearchTerm] = useState<string>('');
+  let { id } = useParams();
 
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
     setSearchTerm(event.target.value);
@@ -42,7 +44,7 @@ const Operador = (): JSX.Element => {
 
   return (
     <>
-      <Menu area="/"></Menu>
+      <Menu area={`/Operadores/${id}`} id_projeto={id}></Menu>
       <MenuCoord />
       <S.CardsArea>
         <Search searchTerm={searchTerm} handleSearchChange={handleSearchChange} />

@@ -32,7 +32,7 @@ const Home = () => {
 
   return (
     <Wrapper>
-      <Menu area="/"></Menu>
+      <Menu area={`/Fase/${id}`} id_projeto={id}></Menu>
       <MenuCoord />
       <Main>
         <Card link={`${id}/Board/Recebidos`} color="#F32D2D" srcImgIcon="/IconsFolder.svg" />

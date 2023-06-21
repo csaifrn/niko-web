@@ -28,7 +28,6 @@ const LoteArea = styled.section`
 `;
 
 const Main = styled.section`
-  height: 50vh;
   background-color: #191c24;
   display: flex;
   flex-direction: column;
@@ -36,11 +35,12 @@ const Main = styled.section`
   padding: 2em;
   grid-gap: 1em;
   border-radius: 5px;
-  overflow-y: scroll;
-  scroll-behavior: auto;
-  scrollbar-width: thin;
 
-  @media (min-width: 768px) {
+  @media (max-width: 768px) {
+    overflow-y: scroll;
+    scroll-behavior: auto;
+    scrollbar-width: thin;
+    height: 50vh;
   }
   @media (min-width: 1000px) {
   }

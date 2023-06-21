@@ -9,11 +9,10 @@ export const ModalArea = styled.div`
   font-family: 'Rubik';
   color: white;
   position: fixed;
-  width: 285px;
+  width: auto;
   background-color: #393e4b;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 5px;
-  overflow-y: scroll;
   scroll-behavior: auto;
   scrollbar-width: thin;
 `;
@@ -72,7 +71,7 @@ export const Categoria = styled.div`
 
 export const ChooseUser = styled.div`
   width: 100%;
-  height: 20vh;
+  max-height: 20vh;
   border-radius: 5px;
   display: flex;
   flex-direction: column;

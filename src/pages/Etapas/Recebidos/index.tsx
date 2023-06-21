@@ -10,6 +10,7 @@ import EntradaData from '../../../data/EntradasData';
 import { useParams } from 'react-router-dom';
 import Users from '../../../data/UserData';
 import { CreateRemessa } from '../../../components/CriarRemessa';
+import { Membros } from '../../../data/ProjetoData';
 
 export interface Categoria {
   id: string;
@@ -36,10 +37,13 @@ const Recebidos = (props: RecepProps) => {
   const [openCriarModal, setOpenCriarModal] = useState(false);
   const remessas = EntradaData.filter((entrada) => entrada.id_projeto === id);
   const auth = useAuthUser();
+  const membros = Membros.filter((membro) => membro.id_Projeto === id);
+  const membrosClientes = membros.filter((mem) => mem.roleProjeto === 'Cliente');
+  console.log(membrosClientes);
 
   return (
     <>
-      <Style.Wrapper>
+      <Style.Wrapper style={{ height: 'auto', marginBottom: '10em', width: '100%' }}>
         <Menu area="/"></Menu>
         <MenuCoord />
         <>
@@ -55,7 +59,7 @@ const Recebidos = (props: RecepProps) => {
                 setOpenCriarModal(!openCriarModal);
               }}
             >
-              <p>Adicionar Caixa</p>
+              <p>Adicionar Remessa</p>
             </S.Btn>
           )}
 
@@ -115,6 +119,7 @@ const Recebidos = (props: RecepProps) => {
       </Style.Wrapper>
       {openCriarModal && (
         <CreateRemessa
+          clientes={membrosClientes}
           close={() => {
             setOpenCriarModal(!openCriarModal);
           }}

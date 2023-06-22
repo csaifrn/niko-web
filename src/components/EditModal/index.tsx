@@ -4,11 +4,7 @@ import Search from '../Search';
 import CategoriaData from '../../data/CategoriaData';
 import mockData from '../../data/kanbanData';
 
-interface EditModalProps {
-  close: () => void;
-}
-
-export const EditModal = (props: EditModalProps) => {
+export const EditModal = () => {
   const [selectedCategoriaData, setCategoriaData] = useState<number[]>([]);
   const [searchTerm, setSearchTerm] = useState<string>('');
 
@@ -41,8 +37,8 @@ export const EditModal = (props: EditModalProps) => {
         <S.ModalArea>
           <S.ModalContent id="modal-content">
             <S.NameClose>
-              <h2>Editar Lote</h2>
-              <button onClick={props.close} style={{ width: 'auto', backgroundColor: 'transparent', border: 'none' }}>
+              <h1>Editar Lote</h1>
+              <button style={{ width: 'auto', backgroundColor: 'transparent', border: 'none' }}>
                 <img
                   src="/close.svg"
                   alt=""
@@ -65,7 +61,7 @@ export const EditModal = (props: EditModalProps) => {
                 style={{ backgroundColor: '#2D303B' }}
                 type="text"
                 name="nome"
-                placeholder={mockData[3].tasks[0].title}
+                placeholder={`${mockData[3].tasks[0].title}`}
               ></S.Titulo>
             </S.TituloDiv>
 
@@ -106,7 +102,7 @@ export const EditModal = (props: EditModalProps) => {
                 ))}
               </S.ChooseUser>
             </S.Categorias>
-            <S.AtribuirButton onClick={props.close}>Salvar</S.AtribuirButton>
+            <S.AtribuirButton>Salvar</S.AtribuirButton>
           </S.ModalContent>
         </S.ModalArea>
       </S.ModalBackdrop>

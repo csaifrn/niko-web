@@ -7,22 +7,22 @@ import { AtribuirAlguemModal } from '../AtribuirAlguemModal';
 import { AvancarModal } from '../AvancarModal';
 import { ConfigModal } from '../ConfigModal';
 import { DeletarLoteModal } from '../DeletarLoteModal';
-import { EditModal } from '../EditModal';
 import { VoltarModal } from '../VoltarModal';
 import { LoteData } from '../../data/LoteData';
+//import { EditModal } from '../EditModal';
 
 export const LoteDetails = () => {
+  //const [edit_modal, setEditModal] = useState(false);  
   const [lote , setLote] = useState(LoteData);
-  const [edit_modal, setEditModal] = useState(false);
   const [config_modal, setConfigModal] = useState(false);
   const [modal, setModal] = useState(false);
   const [delete_modal, setDeleteModal] = useState(false);
   const [voltar, setVoltar] = useState(false);
   const [avancar, setAvancar] = useState(false);
 
-  const handleEdit = () => {
-    setEditModal(!edit_modal);
-  };
+  // const handleEdit = () => {
+  //   setEditModal(!edit_modal);
+  // };
 
   const handleConfig = () => {
     setConfigModal(!config_modal);
@@ -50,6 +50,13 @@ export const LoteDetails = () => {
 
   const task = lote.filter((task) => task.id == id)[0];
 
+  const [prioridadeMudar, setPrioridadeMudar] = useState(task.prioridade);
+
+
+  const handlePChange = () => {
+    setPrioridadeMudar(!prioridadeMudar);
+  };
+
   return (
     <>
       <Menu area="/"></Menu>
@@ -68,13 +75,13 @@ export const LoteDetails = () => {
             <S.TituloLote>{`${task.titulo} ${task.numero} `}</S.TituloLote>
             <S.EditConfig>
               {/* EDITAR */}
-              <S.Edit onClick={handleEdit}>
-                {' '}
+              <S.Edit href={`/Lote/${task.id}/Edit`}>
+                {''}
                 <S.Icons src={`/pen.svg`}></S.Icons>{' '}
               </S.Edit>
               {/* CONFIGURAÇÕES */}
               <S.Config onClick={handleConfig}>
-                {' '}
+                {''}
                 <S.Icons src={`/config.svg`}></S.Icons>{' '}
               </S.Config>
             </S.EditConfig>
@@ -109,30 +116,87 @@ export const LoteDetails = () => {
             }
           </S.DetalhesLote>
 
-          <S.CategoriaPrioridade>
+          {/* MOSTRA CATEGORIAS QUANDO O LOTE É PRIORIDADE */}
+          {task.categorias != null && task.prioridade == true &&
+            <S.CategoriaPrioridade>
 
-            {/* PRIORIDADE */}
-            {task.prioridade == true &&
-              <S.Prioridade>
-                <p>Prioridade</p>
-              </S.Prioridade>
-            }
-            
-            {/* CATEGORIAS */}
-            {task.categorias != null &&
-              task.categorias.map((categoria: any, index: number) => (
-                <React.Fragment key={categoria.id}>
-                  <S.Categoria>
-                    <p>{categoria.titulo}</p>
-                  </S.Categoria> 
-                </React.Fragment>
-              ))}
-          </S.CategoriaPrioridade>
+              {/* PRIORIDADE */}
+              {task.prioridade == true &&
+                <S.Prioridade>
+                  <p>Prioridade</p>
+                </S.Prioridade>
+              }
+              
+              {/* CATEGORIAS */}
+              {task.categorias != null &&
+                task.categorias.map((categoria: any, index: number) => (
+                  <React.Fragment key={categoria.id}>
+                    <S.Categoria>
+                      <p>{categoria.titulo}</p>
+                    </S.Categoria> 
+                  </React.Fragment>
+                ))}
+          </S.CategoriaPrioridade>}
 
+          {/* MOSTRA CATEGORIAS QUANDO O LOTE NÃO É PRIORIDADE */}
+          {task.categorias != null && task.prioridade == false &&
+            <S.CategoriaPrioridade>
+              {/* CATEGORIAS */}
+              {task.categorias != null &&
+                task.categorias.map((categoria: any, index: number) => (
+                  <React.Fragment key={categoria.id}>
+                    <S.Categoria>
+                      <p>{categoria.titulo}</p>
+                    </S.Categoria> 
+                  </React.Fragment>
+                ))}
+            </S.CategoriaPrioridade>}
+
+          {/* TIPOLOGIAS */}
           
+            {task.tipologias != null &&
+              task.tipologias.map((tipol: any) => (
+                <S.Tipologias>
+                  <S.Tipologia key={tipol.id}>
+                      <p>{tipol.titulo}</p>
+                  </S.Tipologia>
+                </S.Tipologias>
+            ))}
+
           <S.FaseEnvolvAtual>
             {/* FASE ATUAL DO LOTE */}
             <S.Icons src={`/icon-page/${task.fase_atual}_icon.png`} />
+            {task.envolvidos != null &&
+              task.envolvidos.map((env: any) => (
+                <S.Envolvidos key={env.id}>
+                  {env.andamento == true &&
+                    <img 
+                      src={env.foto}
+                      alt={env.nome}
+                      width={28}
+                      height={28}
+                      style={{
+                        objectFit: 'cover',
+                        borderRadius: '100%',
+                        border: '1px solid #43DB6D',
+                      }}
+                    />}
+
+                  {env.andamento == false &&
+                    <img 
+                      src={env.foto}
+                      alt={env.nome}
+                      width={28}
+                      height={28}
+                      style={{
+                        objectFit: 'cover',
+                        borderRadius: '100%',
+                        border: '1px solid #393E4B',
+                      }}
+                    />}
+                </S.Envolvidos>
+
+              ))}
           </S.FaseEnvolvAtual>
 
         </S.LoteInfos>
@@ -398,8 +462,8 @@ export const LoteDetails = () => {
       </S.areaClick>
 
       {modal && <AtribuirAlguemModal close={handleAtribuirAlguem}></AtribuirAlguemModal>}
-      {edit_modal && <EditModal close={handleEdit}></EditModal>}
-      {config_modal && <ConfigModal close={handleConfig}></ConfigModal>}
+      {/*{edit_modal && <EditModal close={handleEdit}></EditModal>}*/}
+      {config_modal && <ConfigModal valor_prioridade={prioridadeMudar} handlePrioridade={handlePChange} close={handleConfig}></ConfigModal>}
       {voltar && <VoltarModal close={handleVoltar}></VoltarModal>}
       {avancar && <AvancarModal close={handleAvancar}></AvancarModal>}
       {delete_modal && <DeletarLoteModal close={handleDelete}></DeletarLoteModal>}

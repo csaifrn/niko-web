@@ -68,6 +68,9 @@ export const LoteInfos = styled.div`
 export const LoteEditConfig = styled.div`
   display: flex;
   justify-content: space-between;
+  align-items:flex-end;
+  margin-bottom: -0.5em;
+
 `;
 
 export const EditConfig = styled.div`
@@ -75,7 +78,7 @@ export const EditConfig = styled.div`
   gap: 0.5em;
 `;
 
-export const Edit = styled.div`
+export const Edit = styled.a`
   height: 2em;
   width: 2em;
   background-color: #393e4b;
@@ -148,15 +151,6 @@ export const CategoriaPrioridade = styled.div`
   gap: 0.5em;
 `;
 
-export const Categoria = styled.div`
-  padding: 5px 6px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: #393e4b;
-  border-radius: 3px;
-`;
-
 export const Prioridade = styled.div`
   width: 72px;
   height: 24px;
@@ -167,6 +161,31 @@ export const Prioridade = styled.div`
   justify-content: center;
   border-radius: 3px;
 `;
+
+export const Tipologias = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5em;
+`;
+
+export const Categoria = styled.div`
+  padding: 5px 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #393E4B;
+  border-radius: 3px;
+`;
+
+export const Tipologia = styled.div`
+  padding: 5px 6px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-start;
+  background-color: #626A7D;
+  border-radius: 3px;
+`;
+
 
 export const TextDiv = styled.div`
   height: 2em;
@@ -183,7 +202,12 @@ export const Text = styled.p`
 export const FaseEnvolvAtual = styled.div`
   display: flex;
   justify-content: flex-start;
-  gap: 0.5em;
+  gap: 8px;
+`;
+
+export const Envolvidos = styled.div`
+  display:flex;
+  gap: 0px;
 `;
 
 export const PendObsBotoes = styled.div`

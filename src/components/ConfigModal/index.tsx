@@ -6,12 +6,16 @@ import { LoteData } from "../../data/LoteData";
 
 interface ConfigModalProps {
   close: () => void;
+  handlePrioridade: () => void;
+  valor_prioridade: boolean;
 }
 
 export const ConfigModal = (props: ConfigModalProps) => {
 
   const [selectedCategoriaData, setCategoriaData] = useState<number[]>([]);
   const [searchTerm, setSearchTerm] = useState<string>("");
+  const [Pchecked, setPChecked] = useState(props.valor_prioridade);
+
 
   const handleLoteClick = (categId: number) => {
     if (selectedCategoriaData.includes(categId)) {
@@ -42,11 +46,11 @@ export const ConfigModal = (props: ConfigModalProps) => {
     setChecked(!checked);
   };
 
-  const [Pchecked, setPChecked] = useState(false);
-
-  const handlePChange = () => {
+  const handlePrioridadeCheck = () => {
     setPChecked(!Pchecked);
+    props.handlePrioridade
   };
+
 
   return (
     <>
@@ -80,7 +84,7 @@ export const ConfigModal = (props: ConfigModalProps) => {
           <S.Prioridade>
             <p>Prioridade</p>
             <S.SwitchButton>
-              <S.Input checked={Pchecked} onChange={handlePChange}/>
+              <S.Input checked={Pchecked} onChange={handlePrioridadeCheck}/>
               <S.Slider />
             </S.SwitchButton>
           </S.Prioridade>

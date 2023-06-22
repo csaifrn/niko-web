@@ -28,10 +28,12 @@ export const LoteData = [
             {
                 id: UserData[0].id,
                 foto:  UserData[0].url,
+                andamento: UserData[0].andamento
             },
             {
                 id: UserData[1].id,
                 foto:  UserData[1].url,
+                andamento: UserData[1].andamento
             }
         ]
     },
@@ -46,7 +48,7 @@ export const LoteData = [
         arquiv_digitais: 0,
         id_etapa: EtapaData[1].id,
         fase_atual: 'Preparo',
-        prioridade: 0,
+        prioridade: false,
         pendencias: [
             {
                 pend_icon:'/warning.svg',
@@ -68,10 +70,12 @@ export const LoteData = [
             {
                 id: UserData[0].id,
                 foto:  UserData[0].url,
+                andamento: UserData[0].andamento
             },
             {
                 id: UserData[1].id,
                 foto:  UserData[1].url,
+                andamento: UserData[1].andamento
             }
         ]
     },
@@ -86,7 +90,7 @@ export const LoteData = [
         arquiv_digitais: 0,
         id_etapa: EtapaData[1].id,
         fase_atual: 'Preparo',
-        prioridade: 0,
+        prioridade: false,
         pendencias: [
         ],
         observacoes: [
@@ -99,10 +103,12 @@ export const LoteData = [
             {
                 id: UserData[0].id,
                 foto:  UserData[0].url,
+                andamento: UserData[0].andamento
             },
             {
                 id: UserData[1].id,
                 foto:  UserData[1].url,
+                andamento: UserData[1].andamento
             }
         ]
     },
@@ -117,7 +123,7 @@ export const LoteData = [
         arquiv_digitais: 0,
         id_etapa: EtapaData[1].id,
         fase_atual: 'Preparo',
-        prioridade: 0,
+        prioridade: false,
         pendencias: [
         ],
         observacoes: [
@@ -130,10 +136,12 @@ export const LoteData = [
             {
                 id: UserData[0].id,
                 foto:  UserData[0].url,
+                andamento: UserData[0].andamento
             },
             {
                 id: UserData[1].id,
                 foto:  UserData[1].url,
+                andamento: UserData[1].andamento
             }
         ]
     },
@@ -148,8 +156,8 @@ export const LoteData = [
         arquiv_fisicos: 0,
         arquiv_digitais: 0,
         id_etapa: [EtapaData[2].id, EtapaData[3].id],
+        prioridade: false,
         fase_atual: 'Catalogação',
-        prioridade: 0,
         pendencias: [
         ],
         observacoes: [
@@ -162,10 +170,12 @@ export const LoteData = [
             {
                 id: UserData[0].id,
                 foto:  UserData[0].url,
+                andamento: UserData[0].andamento
             },
             {
                 id: UserData[1].id,
                 foto:  UserData[1].url,
+                andamento: UserData[1].andamento
             }
         ]
     },
@@ -181,7 +191,7 @@ export const LoteData = [
         arquiv_digitais: 0,
         id_etapa: [EtapaData[2].id, EtapaData[3].id],
         fase_atual: 'Catalogação',
-        prioridade: 0,
+        prioridade: false,
         pendencias: [
         ],
         observacoes: [
@@ -194,10 +204,12 @@ export const LoteData = [
             {
                 id: UserData[0].id,
                 foto:  UserData[0].url,
+                andamento: UserData[0].andamento
             },
             {
                 id: UserData[1].id,
                 foto:  UserData[1].url,
+                andamento: UserData[1].andamento
             }
         ]
     },
@@ -213,7 +225,7 @@ export const LoteData = [
         arquiv_digitais: 0,
         id_etapa: [EtapaData[2].id, EtapaData[3].id],
         fase_atual: 'Catalogação',
-        prioridade: 0,
+        prioridade: false,
         pendencias: [
         ],
         observacoes: [
@@ -226,10 +238,12 @@ export const LoteData = [
             {
                 id: UserData[0].id,
                 foto:  UserData[0].url,
+                andamento: UserData[0].andamento
             },
             {
                 id: UserData[1].id,
                 foto:  UserData[1].url,
+                andamento: UserData[1].andamento
             }
         ]
     },
@@ -245,7 +259,7 @@ export const LoteData = [
         arquiv_digitais: 0,
         id_etapa: EtapaData[4].id,
         fase_atual: 'Catalogação',
-        prioridade: 0,
+        prioridade: false,
         pendencias: [
         ],
         observacoes: [
@@ -258,10 +272,12 @@ export const LoteData = [
             {
                 id: UserData[0].id,
                 foto:  UserData[0].url,
+                andamento: UserData[0].andamento
             },
             {
                 id: UserData[1].id,
                 foto:  UserData[1].url,
+                andamento: UserData[1].andamento
             }
         ]
     },
@@ -277,7 +293,7 @@ export const LoteData = [
         arquiv_digitais: 0,
         id_etapa: EtapaData[5].id,
         fase_atual: 'Catalogação',
-        prioridade: 0,
+        prioridade: false,
         pendencias: [
         ],
         observacoes: [
@@ -290,10 +306,12 @@ export const LoteData = [
             {
                 id: UserData[0].id,
                 foto:  UserData[0].url,
+                andamento: UserData[0].andamento
             },
             {
                 id: UserData[1].id,
                 foto:  UserData[1].url,
+                andamento: UserData[1].andamento
             }
         ]
     },
@@ -329,15 +347,22 @@ export const LoteData = [
             }
         ],
         tipologias: [
+            //CRÉDITO
+            {
+                id: 1,
+                titulo: 'Crédito'
+            }
         ],
         envolvidos: [
             {
                 id: UserData[0].id,
                 foto:  UserData[0].url,
+                andamento: UserData[0].andamento
             },
             {
                 id: UserData[1].id,
                 foto:  UserData[1].url,
+                andamento: UserData[1].andamento
             }
         ]
     },
@@ -378,10 +403,12 @@ export const LoteData = [
             {
                 id: UserData[0].id,
                 foto:  UserData[0].url,
+                andamento: UserData[0].andamento
             },
             {
                 id: UserData[1].id,
                 foto:  UserData[1].url,
+                andamento: UserData[1].andamento
             }
         ]
     },
@@ -403,17 +430,36 @@ export const LoteData = [
         observacoes: [
         ],
         categorias: [
+            {
+                //FINANCEIRO
+                id: CategoriaData[0].id,
+                titulo: CategoriaData[0].name,
+                prioridade: CategoriaData[0].prioridade
+            },
+            {
+                //ADMINISTRATIVO
+                id: CategoriaData[1].id,
+                titulo: CategoriaData[1].name,
+                prioridade: CategoriaData[0].prioridade
+            }
         ],
         tipologias: [
+            //CRÉDITO
+            {
+                id: 1,
+                titulo: 'Crédito'
+            }
         ],
         envolvidos: [
             {
                 id: UserData[0].id,
                 foto:  UserData[0].url,
+                andamento: UserData[0].andamento
             },
             {
                 id: UserData[1].id,
                 foto:  UserData[1].url,
+                andamento: UserData[1].andamento
             }
         ]
     },
@@ -429,23 +475,42 @@ export const LoteData = [
         arquiv_digitais: 0,
         id_etapa: EtapaData[9].id,
         fase_atual: 'Digitalização',
-        prioridade: false,
+        prioridade: true,
         pendencias: [
         ],
         observacoes: [
         ],
         categorias: [
+            {
+                //FINANCEIRO
+                id: CategoriaData[0].id,
+                titulo: CategoriaData[0].name,
+                prioridade: CategoriaData[0].prioridade
+            },
+            {
+                //ADMINISTRATIVO
+                id: CategoriaData[1].id,
+                titulo: CategoriaData[1].name,
+                prioridade: CategoriaData[1].prioridade
+            }
         ],
         tipologias: [
+            //CRÉDITO
+            {
+                id: 1,
+                titulo: 'Crédito'
+            }
         ],
         envolvidos: [
             {
                 id: UserData[0].id,
                 foto:  UserData[0].url,
+                andamento: UserData[0].andamento
             },
             {
                 id: UserData[1].id,
                 foto:  UserData[1].url,
+                andamento: UserData[1].andamento
             }
         ]
     },
@@ -467,17 +532,36 @@ export const LoteData = [
         observacoes: [
         ],
         categorias: [
+            {
+                //FINANCEIRO
+                id: CategoriaData[0].id,
+                titulo: CategoriaData[0].name,
+                prioridade: CategoriaData[0].prioridade
+            },
+            {
+                //ADMINISTRATIVO
+                id: CategoriaData[1].id,
+                titulo: CategoriaData[1].name,
+                prioridade: CategoriaData[1].prioridade
+            }
         ],
         tipologias: [
+            //CRÉDITO
+            {
+                id: 1,
+                titulo: 'Crédito'
+            }
         ],
         envolvidos: [
             {
                 id: UserData[0].id,
                 foto:  UserData[0].url,
+                andamento: UserData[0].andamento
             },
             {
                 id: UserData[1].id,
                 foto:  UserData[1].url,
+                andamento: UserData[1].andamento
             }
         ]
     },
@@ -493,23 +577,42 @@ export const LoteData = [
         arquiv_digitais: 19,
         id_etapa: [EtapaData[10].id, EtapaData[11].id],
         fase_atual: 'Upload',
-        prioridade: 0,
+        prioridade: true,
         pendencias: [
         ],
         observacoes: [
         ],
         categorias: [
+            {
+                //FINANCEIRO
+                id: CategoriaData[0].id,
+                titulo: CategoriaData[0].name,
+                prioridade: CategoriaData[0].prioridade
+            },
+            {
+                //ADMINISTRATIVO
+                id: CategoriaData[1].id,
+                titulo: CategoriaData[1].name,
+                prioridade: CategoriaData[1].prioridade
+            }
         ],
         tipologias: [
+            //CRÉDITO
+            {
+                id: 1,
+                titulo: 'Crédito'
+            }
         ],
         envolvidos: [
             {
                 id: UserData[0].id,
                 foto:  UserData[0].url,
+                andamento: UserData[0].andamento
             },
             {
                 id: UserData[1].id,
                 foto:  UserData[1].url,
+                andamento: UserData[1].andamento
             }
         ]
     },
@@ -525,23 +628,42 @@ export const LoteData = [
         arquiv_digitais: 23,
         id_etapa: EtapaData[12].id,
         fase_atual: 'Upload',
-        prioridade: 0,
+        prioridade: false,
         pendencias: [
         ],
         observacoes: [
         ],
         categorias: [
+            {
+                //FINANCEIRO
+                id: CategoriaData[0].id,
+                titulo: CategoriaData[0].name,
+                prioridade: CategoriaData[0].prioridade
+            },
+            {
+                //ADMINISTRATIVO
+                id: CategoriaData[1].id,
+                titulo: CategoriaData[1].name,
+                prioridade: CategoriaData[1].prioridade
+            }
         ],
         tipologias: [
+            //CRÉDITO
+            {
+                id: 1,
+                titulo: 'Crédito'
+            }
         ],
         envolvidos: [
             {
                 id: UserData[0].id,
                 foto:  UserData[0].url,
+                andamento: UserData[0].andamento
             },
             {
                 id: UserData[1].id,
                 foto:  UserData[1].url,
+                andamento: UserData[1].andamento
             }
         ]
     },
@@ -557,14 +679,31 @@ export const LoteData = [
         arquiv_digitais: 25,
         id_etapa: EtapaData[13].id,
         fase_atual: 'Upload',
-        prioridade: 0,
+        prioridade: false,
         pendencias: [
         ],
         observacoes: [
         ],
         categorias: [
+            {
+                //FINANCEIRO
+                id: CategoriaData[0].id,
+                titulo: CategoriaData[0].name,
+                prioridade: CategoriaData[0].prioridade
+            },
+            {
+                //RH
+                id: CategoriaData[2].id,
+                titulo: CategoriaData[2].name,
+                prioridade: CategoriaData[2].prioridade
+            }
         ],
         tipologias: [
+            //CRÉDITO
+            {
+                id: 1,
+                titulo: 'Crédito'
+            }
         ],
         envolvidos: [
             {
@@ -589,7 +728,7 @@ export const LoteData = [
         arquiv_digitais: 32,
         id_etapa: [EtapaData[14].id, EtapaData[15].id],
         fase_atual: 'Arquivamento',
-        prioridade: 0,
+        prioridade: false,
         pendencias: [
         ],
         observacoes: [
@@ -603,10 +742,6 @@ export const LoteData = [
                 id: UserData[0].id,
                 foto:  UserData[0].url,
             },
-            {
-                id: UserData[1].id,
-                foto:  UserData[1].url,
-            }
         ]
     },
 
@@ -621,7 +756,7 @@ export const LoteData = [
         arquiv_digitais: 28,
         id_etapa: [EtapaData[14].id, EtapaData[15].id],
         fase_atual: 'Arquivamento',
-        prioridade: 0,
+        prioridade: true,
         pendencias: [
         ],
         observacoes: [
@@ -635,10 +770,6 @@ export const LoteData = [
                 id: UserData[0].id,
                 foto:  UserData[0].url,
             },
-            {
-                id: UserData[1].id,
-                foto:  UserData[1].url,
-            }
         ]
     },
     //LOTE 20
@@ -652,7 +783,7 @@ export const LoteData = [
         arquiv_digitais: 27,
         id_etapa: EtapaData[16].id,
         fase_atual: 'Arquivamento',
-        prioridade: 0,
+        prioridade: true,
         pendencias: [
         ],
         observacoes: [
@@ -666,10 +797,6 @@ export const LoteData = [
                 id: UserData[0].id,
                 foto:  UserData[0].url,
             },
-            {
-                id: UserData[1].id,
-                foto:  UserData[1].url,
-            }
         ]
     },
 ]

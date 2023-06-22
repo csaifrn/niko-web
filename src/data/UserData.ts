@@ -6,6 +6,7 @@ const Users = [
     email: 'pedro@email.com.br',
     lote: 'Lote 201',
     fase: 'catalogacao',
+    andamento: false
   },
   {
     id: 2,
@@ -14,6 +15,7 @@ const Users = [
     email: 'luis.gustavo@gmail.com',
     lote: '',
     fase: '',
+    andamento: true
   },
   {
     id: 3,
@@ -22,6 +24,7 @@ const Users = [
     email: 'jose.lucas@gmail.com',
     lote: 'Lote 220',
     fase: 'upload',
+    andamento: false
   },
   {
     id: 5,
@@ -30,6 +33,7 @@ const Users = [
     email: 'andre.sousa@gmail.com',
     lote: '',
     fase: '',
+    andamento: false
   },
   {
     id: 6,
@@ -38,6 +42,7 @@ const Users = [
     email: 'gustavo.jacome@gmail.com',
     lote: '',
     fase: '',
+    andamento: false
   }
 ];
 

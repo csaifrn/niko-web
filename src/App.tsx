@@ -18,6 +18,7 @@ import Projetos from './pages/Projeto/HomeUser';
 import CreateProjeto from './pages/Projeto/CreateProjeto';
 import Users from './data/UserData';
 import Auth from './config/Auth';
+import { EditModal } from './components/EditModal';
 
 const Home = lazy(() => import('./pages/Home'));
 
@@ -126,6 +127,15 @@ const App = () => {
             element={
               <RequireAuth loginPath={'/login'}>
                 <LoteDetails />
+              </RequireAuth>
+            }
+          />
+
+          <Route
+            path={`/Lote/:id/Edit`}
+            element={
+              <RequireAuth loginPath={'/login'}>
+                <EditModal/>
               </RequireAuth>
             }
           />

@@ -3,6 +3,8 @@ import React from 'react';
 import * as S from './styles';
 
 const Lote = (props: any) => {
+
+  console.log(props.pendencia)
   return (
     <>
       {props.edit == true && (
@@ -10,6 +12,9 @@ const Lote = (props: any) => {
           <S.LoteArea>
             <S.Content>
               <h2>{props.value}</h2>
+              {props.pendencia === true && (
+                <img src='/warning.svg' alt='icone de pendência'/>
+              )}
               {props.categoria &&
                 props.categoria.map((categoria: any) => (
                   <React.Fragment key={uuidv4()}>
@@ -19,7 +24,8 @@ const Lote = (props: any) => {
                       </S.Prioridade>
                     )}
                   </React.Fragment>
-                ))}
+                ))
+              }
             </S.Content>
             <S.Content>
               <div></div>
@@ -41,9 +47,6 @@ const Lote = (props: any) => {
                   ))}
               </S.Pa>
             </S.Content>
-            <S.Btn>
-              <p>Mover para o preparo</p>
-            </S.Btn>
           </S.LoteArea>
         </S.LoteEdit>
       )}
@@ -66,10 +69,10 @@ const Lote = (props: any) => {
                     <React.Fragment key={uuidv4()}>
                       {index <= 2 && (
                         <img
-                          src={envolvidos.url}
+                          src={envolvidos.foto}
                           width={24}
                           height={24}
-                          style={{ marginLeft: '-10px', borderRadius: '100%' }}
+                          style={{ marginLeft: '-10px', borderRadius: '100%' , objectFit: 'cover', }}
                           alt="Foto do usuário"
                         ></img>
                       )}

@@ -2,20 +2,41 @@ import React, {useState } from "react";
 import * as S from "./style";
 import CategoriaData from "../../data/CategoriaData";
 import mockData from "../../data/kanbanData";
-import { LoteData } from "../../data/LoteData";
+//import { LoteData } from "../../data/LoteData";
 
 interface ConfigModalProps {
   close: () => void;
   handlePrioridade: () => void;
   valor_prioridade: boolean;
+  valor_compart: boolean;
+  handleCompart: () => void;
 }
 
 export const ConfigModal = (props: ConfigModalProps) => {
 
   const [selectedCategoriaData, setCategoriaData] = useState<number[]>([]);
-  const [searchTerm, setSearchTerm] = useState<string>("");
-  const [Pchecked, setPChecked] = useState(props.valor_prioridade);
 
+  const [searchTerm, setSearchTerm] = useState<string>("");
+
+  //Função para ativar e desativar o switch
+  const [checked, setChecked] = useState(false);
+  const handleChange = () => {
+    setChecked(!checked);
+  };
+
+  const [Pchecked, setPChecked] = useState(props.valor_prioridade);
+  const handlePrioridadeCheck = () => {
+    setPChecked(!Pchecked);
+    props.handlePrioridade()
+  };
+
+
+  const [compartChecked, setCompartChecked] = useState(props.valor_compart);
+  const handlePCompartilhamentoCheck = () => {
+    setCompartChecked(!compartChecked);
+    props.handleCompart()
+  };
+  console.log(props.valor_compart)
 
   const handleLoteClick = (categId: number) => {
     if (selectedCategoriaData.includes(categId)) {
@@ -38,18 +59,6 @@ export const ConfigModal = (props: ConfigModalProps) => {
     (mockData) =>
     mockData.title.toLowerCase().includes(searchTerm.toLowerCase())
   );
-
-  //Função para ativar e desativar o switch
-  const [checked, setChecked] = useState(false);
-
-  const handleChange = () => {
-    setChecked(!checked);
-  };
-
-  const handlePrioridadeCheck = () => {
-    setPChecked(!Pchecked);
-    props.handlePrioridade
-  };
 
 
   return (
@@ -76,7 +85,7 @@ export const ConfigModal = (props: ConfigModalProps) => {
           <S.Compartilhamento>
             <p>Compartilhamento</p>
             <S.SwitchButton>
-              <S.Input checked={checked} onChange={handleChange} />
+              <S.Input checked={compartChecked} onChange={handlePCompartilhamentoCheck} />
               <S.Slider />
             </S.SwitchButton>
           </S.Compartilhamento>

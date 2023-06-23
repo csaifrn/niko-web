@@ -146,6 +146,7 @@ export const Board = (props: BoardProps) => {
                               <Lote
                                 task={task}
                                 value={`${task.titulo} ${task.numero}`}
+                                pendencia={task.possui_pendencia}
                                 prioridade={task.prioridade}
                                 categoria={task.categorias}
                                 envolvidos={task.envolvidos}

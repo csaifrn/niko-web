@@ -2,6 +2,8 @@ import { v4 as uuidv4 } from 'uuid';
 import EtapaData from '../data/EtapaData';
 import UserData from './UserData';
 import CategoriaData from './CategoriaData';
+import { Tipologia } from '../components/LoteDetails/styles';
+import { TipologiaData } from './TipologiaData';
 
 export const LoteData = [
     //LOTE 1
@@ -16,6 +18,7 @@ export const LoteData = [
         id_etapa: EtapaData[0].id,
         fase_atual: 'Preparo',
         prioridade: false,
+        possui_pendencia: true,
         pendencias: [
         ],
         observacoes: [
@@ -49,6 +52,7 @@ export const LoteData = [
         id_etapa: EtapaData[1].id,
         fase_atual: 'Preparo',
         prioridade: false,
+        possui_pendencia: true,
         pendencias: [
             {
                 pend_icon:'/warning.svg',
@@ -91,6 +95,7 @@ export const LoteData = [
         id_etapa: EtapaData[1].id,
         fase_atual: 'Preparo',
         prioridade: false,
+        possui_pendencia: true,
         pendencias: [
         ],
         observacoes: [
@@ -124,6 +129,7 @@ export const LoteData = [
         id_etapa: EtapaData[1].id,
         fase_atual: 'Preparo',
         prioridade: false,
+        possui_pendencia: true,
         pendencias: [
         ],
         observacoes: [
@@ -158,6 +164,7 @@ export const LoteData = [
         id_etapa: [EtapaData[2].id, EtapaData[3].id],
         prioridade: false,
         fase_atual: 'Catalogação',
+        possui_pendencia: true,
         pendencias: [
         ],
         observacoes: [
@@ -192,6 +199,7 @@ export const LoteData = [
         id_etapa: [EtapaData[2].id, EtapaData[3].id],
         fase_atual: 'Catalogação',
         prioridade: false,
+        possui_pendencia: true,
         pendencias: [
         ],
         observacoes: [
@@ -226,6 +234,7 @@ export const LoteData = [
         id_etapa: [EtapaData[2].id, EtapaData[3].id],
         fase_atual: 'Catalogação',
         prioridade: false,
+        possui_pendencia: true,
         pendencias: [
         ],
         observacoes: [
@@ -260,6 +269,7 @@ export const LoteData = [
         id_etapa: EtapaData[4].id,
         fase_atual: 'Catalogação',
         prioridade: false,
+        possui_pendencia: true,
         pendencias: [
         ],
         observacoes: [
@@ -294,6 +304,7 @@ export const LoteData = [
         id_etapa: EtapaData[5].id,
         fase_atual: 'Catalogação',
         prioridade: false,
+        possui_pendencia: true,
         pendencias: [
         ],
         observacoes: [
@@ -328,6 +339,7 @@ export const LoteData = [
         id_etapa: [EtapaData[6].id, EtapaData[7].id],
         fase_atual: 'Digitalização',
         prioridade: true,
+        possui_pendencia: true,
         pendencias: [
         ],
         observacoes: [
@@ -349,8 +361,13 @@ export const LoteData = [
         tipologias: [
             //CRÉDITO
             {
-                id: 1,
-                titulo: 'Crédito'
+                id: TipologiaData[0].id,
+                titulo: TipologiaData[0].nome
+            },
+            //SOLICITAÇÃO
+            {
+                id: TipologiaData[1].id,
+                titulo: TipologiaData[1].nome
             }
         ],
         envolvidos: [
@@ -379,6 +396,7 @@ export const LoteData = [
         id_etapa: [EtapaData[6].id, EtapaData[7].id],
         fase_atual: 'Digitalização',
         prioridade: true,
+        possui_pendencia: true,
         pendencias: [
         ],
         observacoes: [
@@ -398,6 +416,16 @@ export const LoteData = [
             }
         ],
         tipologias: [
+            //CRÉDITO
+            {
+                id: TipologiaData[0].id,
+                titulo: TipologiaData[0].nome
+            },
+            //SOLICITAÇÃO
+            {
+                id: TipologiaData[1].id,
+                titulo: TipologiaData[1].nome
+            }
         ],
         envolvidos: [
             {
@@ -425,6 +453,7 @@ export const LoteData = [
         id_etapa: EtapaData[8].id,
         fase_atual: 'Digitalização',
         prioridade: false,
+        possui_pendencia: true,
         pendencias: [
         ],
         observacoes: [
@@ -446,8 +475,13 @@ export const LoteData = [
         tipologias: [
             //CRÉDITO
             {
-                id: 1,
-                titulo: 'Crédito'
+                id: TipologiaData[0].id,
+                titulo: TipologiaData[0].nome
+            },
+            //SOLICITAÇÃO
+            {
+                id: TipologiaData[1].id,
+                titulo: TipologiaData[1].nome
             }
         ],
         envolvidos: [
@@ -476,6 +510,7 @@ export const LoteData = [
         id_etapa: EtapaData[9].id,
         fase_atual: 'Digitalização',
         prioridade: true,
+        possui_pendencia: true,
         pendencias: [
         ],
         observacoes: [
@@ -495,10 +530,10 @@ export const LoteData = [
             }
         ],
         tipologias: [
-            //CRÉDITO
+            //SOLICITAÇÃO
             {
-                id: 1,
-                titulo: 'Crédito'
+                id: TipologiaData[1].id,
+                titulo: TipologiaData[1].nome
             }
         ],
         envolvidos: [
@@ -527,7 +562,13 @@ export const LoteData = [
         id_etapa: [EtapaData[10].id, EtapaData[11].id],
         fase_atual: 'Upload',
         prioridade: false,
+        possui_pendencia: true,
         pendencias: [
+            {
+                pend_icon:'/warning.svg',
+                titulo: 'Há 3 processos que não possuem verso das páginas',
+                PendId: uuidv4(),
+            },
         ],
         observacoes: [
         ],
@@ -548,9 +589,9 @@ export const LoteData = [
         tipologias: [
             //CRÉDITO
             {
-                id: 1,
-                titulo: 'Crédito'
-            }
+                id: TipologiaData[0].id,
+                titulo: TipologiaData[0].nome
+            },
         ],
         envolvidos: [
             {
@@ -578,6 +619,7 @@ export const LoteData = [
         id_etapa: [EtapaData[10].id, EtapaData[11].id],
         fase_atual: 'Upload',
         prioridade: true,
+        possui_pendencia: true,
         pendencias: [
         ],
         observacoes: [
@@ -599,9 +641,9 @@ export const LoteData = [
         tipologias: [
             //CRÉDITO
             {
-                id: 1,
-                titulo: 'Crédito'
-            }
+                id: TipologiaData[0].id,
+                titulo: TipologiaData[0].nome
+            },
         ],
         envolvidos: [
             {
@@ -613,6 +655,16 @@ export const LoteData = [
                 id: UserData[1].id,
                 foto:  UserData[1].url,
                 andamento: UserData[1].andamento
+            },
+            {
+                id: UserData[2].id,
+                foto:  UserData[2].url,
+                andamento: UserData[2].andamento
+            },
+            {
+                id: UserData[3].id,
+                foto:  UserData[3].url,
+                andamento: UserData[3].andamento
             }
         ]
     },
@@ -629,6 +681,7 @@ export const LoteData = [
         id_etapa: EtapaData[12].id,
         fase_atual: 'Upload',
         prioridade: false,
+        possui_pendencia: true,
         pendencias: [
         ],
         observacoes: [
@@ -650,8 +703,13 @@ export const LoteData = [
         tipologias: [
             //CRÉDITO
             {
-                id: 1,
-                titulo: 'Crédito'
+                id: TipologiaData[0].id,
+                titulo: TipologiaData[0].nome
+            },
+            //SOLICITAÇÃO
+            {
+                id: TipologiaData[1].id,
+                titulo: TipologiaData[1].nome
             }
         ],
         envolvidos: [
@@ -674,12 +732,13 @@ export const LoteData = [
         titulo: 'Lote',
         numero: 17,
         estante: '',
-        protocolo: '00016',
+        protocolo: '00017',
         arquiv_fisicos: 25,
         arquiv_digitais: 25,
         id_etapa: EtapaData[13].id,
         fase_atual: 'Upload',
         prioridade: false,
+        possui_pendencia: true,
         pendencias: [
         ],
         observacoes: [
@@ -701,19 +760,21 @@ export const LoteData = [
         tipologias: [
             //CRÉDITO
             {
-                id: 1,
-                titulo: 'Crédito'
+                id: TipologiaData[0].id,
+                titulo: TipologiaData[0].nome
+            },
+            //SOLICITAÇÃO
+            {
+                id: TipologiaData[1].id,
+                titulo: TipologiaData[1].nome
             }
         ],
         envolvidos: [
             {
-                id: UserData[0].id,
-                foto:  UserData[0].url,
+                id: UserData[3].id,
+                foto:  UserData[3].url,
+                andamento: UserData[3].andamento
             },
-            {
-                id: UserData[1].id,
-                foto:  UserData[1].url,
-            }
         ]
     },
 
@@ -729,18 +790,42 @@ export const LoteData = [
         id_etapa: [EtapaData[14].id, EtapaData[15].id],
         fase_atual: 'Arquivamento',
         prioridade: false,
+        possui_pendencia: true,
         pendencias: [
         ],
         observacoes: [
         ],
         categorias: [
+            {
+                //FINANCEIRO
+                id: CategoriaData[0].id,
+                titulo: CategoriaData[0].name,
+                prioridade: CategoriaData[0].prioridade
+            },
+            {
+                //RH
+                id: CategoriaData[2].id,
+                titulo: CategoriaData[2].name,
+                prioridade: CategoriaData[2].prioridade
+            }
         ],
         tipologias: [
+            //CRÉDITO
+            {
+                id: TipologiaData[0].id,
+                titulo: TipologiaData[0].nome
+            },
+            //SOLICITAÇÃO
+            {
+                id: TipologiaData[1].id,
+                titulo: TipologiaData[1].nome
+            }
         ],
         envolvidos: [
             {
-                id: UserData[0].id,
-                foto:  UserData[0].url,
+                id: UserData[3].id,
+                foto:  UserData[3].url,
+                andamento: UserData[3].andamento
             },
         ]
     },
@@ -757,18 +842,42 @@ export const LoteData = [
         id_etapa: [EtapaData[14].id, EtapaData[15].id],
         fase_atual: 'Arquivamento',
         prioridade: true,
+        possui_pendencia: true,
         pendencias: [
         ],
         observacoes: [
         ],
         categorias: [
+            {
+                //FINANCEIRO
+                id: CategoriaData[0].id,
+                titulo: CategoriaData[0].name,
+                prioridade: CategoriaData[0].prioridade
+            },
+            {
+                //RH
+                id: CategoriaData[2].id,
+                titulo: CategoriaData[2].name,
+                prioridade: CategoriaData[2].prioridade
+            }
         ],
         tipologias: [
+            //CRÉDITO
+            {
+                id: TipologiaData[0].id,
+                titulo: TipologiaData[0].nome
+            },
+            //SOLICITAÇÃO
+            {
+                id: TipologiaData[1].id,
+                titulo: TipologiaData[1].nome
+            }
         ],
         envolvidos: [
             {
-                id: UserData[0].id,
-                foto:  UserData[0].url,
+                id: UserData[4].id,
+                foto:  UserData[4].url,
+                andamento: UserData[4].andamento
             },
         ]
     },
@@ -784,19 +893,49 @@ export const LoteData = [
         id_etapa: EtapaData[16].id,
         fase_atual: 'Arquivamento',
         prioridade: true,
+        possui_pendencia: true,
         pendencias: [
         ],
         observacoes: [
         ],
         categorias: [
+            {
+                //FINANCEIRO
+                id: CategoriaData[0].id,
+                titulo: CategoriaData[0].name,
+                prioridade: CategoriaData[0].prioridade
+            },
+            {
+                //RH
+                id: CategoriaData[2].id,
+                titulo: CategoriaData[2].name,
+                prioridade: CategoriaData[2].prioridade
+            }
         ],
         tipologias: [
+            //CRÉDITO
+            {
+                id: TipologiaData[0].id,
+                titulo: TipologiaData[0].nome
+            },
+            //SOLICITAÇÃO
+            {
+                id: TipologiaData[1].id,
+                titulo: TipologiaData[1].nome
+            }
         ],
         envolvidos: [
             {
-                id: UserData[0].id,
-                foto:  UserData[0].url,
+                id: UserData[4].id,
+                foto:  UserData[4].url,
+                andamento: UserData[4].andamento
             },
+            {
+                id: UserData[2].id,
+                foto:  UserData[2].url,
+                andamento: UserData[2].andamento
+            },
+            
         ]
     },
 ]

@@ -162,12 +162,6 @@ export const Prioridade = styled.div`
   border-radius: 3px;
 `;
 
-export const Tipologias = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5em;
-`;
-
 export const Categoria = styled.div`
   padding: 5px 6px;
   display: flex;
@@ -177,11 +171,19 @@ export const Categoria = styled.div`
   border-radius: 3px;
 `;
 
+
+export const Tipologias = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5em;
+`;
+
+
 export const Tipologia = styled.div`
   padding: 5px 6px;
   display: flex;
-  align-items: flex-end;
-  justify-content: flex-start;
+  align-items: center;
+  justify-content: center;
   background-color: #626A7D;
   border-radius: 3px;
 `;
@@ -245,8 +247,28 @@ export const PendDivBlack = styled.div`
   padding: 10px;
   width: calc(100%-2em);
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: flex-start;
+  flex-direction: column;
+`;
+
+export const PendenciaTextIcon = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 10px;
+`;
+
+export const ResolverPend = styled.div`
+  display: flex;
+  width: 276px;
+  height: 44px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+  border-radius: 5px;
+  background: #FCDE42;
+  color: #191C24;
 `;
 
 export const ObsDivBlack = styled.div`

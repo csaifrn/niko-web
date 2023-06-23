@@ -12,49 +12,50 @@ import { LoteData } from '../../data/LoteData';
 //import { EditModal } from '../EditModal';
 
 export const LoteDetails = () => {
-  //const [edit_modal, setEditModal] = useState(false);  
-  const [lote , setLote] = useState(LoteData);
-  const [config_modal, setConfigModal] = useState(false);
-  const [modal, setModal] = useState(false);
-  const [delete_modal, setDeleteModal] = useState(false);
-  const [voltar, setVoltar] = useState(false);
-  const [avancar, setAvancar] = useState(false);
 
+  //const [edit_modal, setEditModal] = useState(false); 
   // const handleEdit = () => {
   //   setEditModal(!edit_modal);
   // };
 
+  const [config_modal, setConfigModal] = useState(false);
   const handleConfig = () => {
     setConfigModal(!config_modal);
   };
 
+  const [delete_modal, setDeleteModal] = useState(false);
   const handleDelete = () => {
     setDeleteModal(!delete_modal);
   };
 
+  const [voltar, setVoltar] = useState(false);
   const handleVoltar = () => {
     setVoltar(!voltar);
   };
 
+  const [avancar, setAvancar] = useState(false);
   const handleAvancar = () => {
     setAvancar(!avancar);
   };
 
+  const [modal, setModal] = useState(false);
   const handleAtribuirAlguem = () => {
     setModal(!modal);
   };
 
   let { id } = useParams();
-
   const navigate = useNavigate();
-
+  const [lote , setLote] = useState(LoteData);
   const task = lote.filter((task) => task.id == id)[0];
 
-  const [prioridadeMudar, setPrioridadeMudar] = useState(task.prioridade);
-
-
+  const [prioridadeState, setPrioridadeState] = useState(task.prioridade);
   const handlePChange = () => {
-    setPrioridadeMudar(!prioridadeMudar);
+    setPrioridadeState(!prioridadeState);
+  };
+
+  const [compartState, setCompartState] = useState(task.envolvidos.length >= 2);
+  const handleCompartCheck = () => {
+    setCompartState(!compartState);
   };
 
   return (
@@ -99,7 +100,6 @@ export const LoteDetails = () => {
               </S.Estante>
             }
 
-
             {/* ARQUIVOS FÍSICOS */}
               {task.arquiv_fisicos != 0 &&
                 <S.ArquivFisicos>
@@ -117,18 +117,16 @@ export const LoteDetails = () => {
           </S.DetalhesLote>
 
           {/* MOSTRA CATEGORIAS QUANDO O LOTE É PRIORIDADE */}
-          {task.categorias != null && task.prioridade == true &&
+          {task.categorias != null && prioridadeState == true &&
             <S.CategoriaPrioridade>
 
               {/* PRIORIDADE */}
-              {task.prioridade == true &&
-                <S.Prioridade>
-                  <p>Prioridade</p>
-                </S.Prioridade>
-              }
+              <S.Prioridade>
+                <p>Prioridade</p>
+              </S.Prioridade>
               
               {/* CATEGORIAS */}
-              {task.categorias != null &&
+              {
                 task.categorias.map((categoria: any, index: number) => (
                   <React.Fragment key={categoria.id}>
                     <S.Categoria>
@@ -139,29 +137,30 @@ export const LoteDetails = () => {
           </S.CategoriaPrioridade>}
 
           {/* MOSTRA CATEGORIAS QUANDO O LOTE NÃO É PRIORIDADE */}
-          {task.categorias != null && task.prioridade == false &&
+          {task.categorias != null && prioridadeState == false &&
             <S.CategoriaPrioridade>
               {/* CATEGORIAS */}
-              {task.categorias != null &&
-                task.categorias.map((categoria: any, index: number) => (
+              {
+                task.categorias.map((categoria: any) => (
                   <React.Fragment key={categoria.id}>
                     <S.Categoria>
                       <p>{categoria.titulo}</p>
                     </S.Categoria> 
                   </React.Fragment>
                 ))}
-            </S.CategoriaPrioridade>}
-
-          {/* TIPOLOGIAS */}
+            </S.CategoriaPrioridade>
+          }
           
-            {task.tipologias != null &&
-              task.tipologias.map((tipol: any) => (
-                <S.Tipologias>
-                  <S.Tipologia key={tipol.id}>
-                      <p>{tipol.titulo}</p>
-                  </S.Tipologia>
-                </S.Tipologias>
-            ))}
+          {/* TIPOLOGIAS */}
+          {task.tipologias != null &&
+            <S.Tipologias>
+              {task.tipologias.map((tipol: any) => (
+                <S.Tipologia key={tipol.id} >
+                  <p>{tipol.titulo}</p>
+                </S.Tipologia>
+              ))}
+            </S.Tipologias>
+          }
 
           <S.FaseEnvolvAtual>
             {/* FASE ATUAL DO LOTE */}
@@ -208,8 +207,16 @@ export const LoteDetails = () => {
             <p>Pendências</p>
             {task.pendencias.map((pend: any) => (
               <S.PendDivBlack key={pend.PendId}>
-                {<img src={pend.pend_icon} alt="ícone de alerta" />}
-                {pend.titulo}
+
+                <S.PendenciaTextIcon>
+                  {<img src={pend.pend_icon} alt="ícone de alerta" />}
+                  {pend.titulo}
+                </S.PendenciaTextIcon>
+
+                <S.ResolverPend>
+                   <p>Resolver pendência</p>
+                </S.ResolverPend>
+                
               </S.PendDivBlack>
             ))}
           </S.Pendencias>
@@ -460,10 +467,15 @@ export const LoteDetails = () => {
         </S.DetalFase> 
         */}
       </S.areaClick>
-
-      {modal && <AtribuirAlguemModal close={handleAtribuirAlguem}></AtribuirAlguemModal>}
       {/*{edit_modal && <EditModal close={handleEdit}></EditModal>}*/}
-      {config_modal && <ConfigModal valor_prioridade={prioridadeMudar} handlePrioridade={handlePChange} close={handleConfig}></ConfigModal>}
+      {modal && <AtribuirAlguemModal close={handleAtribuirAlguem}></AtribuirAlguemModal>}
+      {config_modal && 
+        <ConfigModal 
+          valor_prioridade={prioridadeState} 
+          handlePrioridade={handlePChange} 
+          valor_compart={compartState} 
+          handleCompart={handleCompartCheck} 
+          close={handleConfig}></ConfigModal>}
       {voltar && <VoltarModal close={handleVoltar}></VoltarModal>}
       {avancar && <AvancarModal close={handleAvancar}></AvancarModal>}
       {delete_modal && <DeletarLoteModal close={handleDelete}></DeletarLoteModal>}

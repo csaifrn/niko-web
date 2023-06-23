@@ -15,12 +15,14 @@ import Categoria from './pages/Coordenador/Categoria';
 import { RequireAuth } from 'react-auth-kit';
 import Erro404 from './pages/Erros/404';
 import Unauthorized from './pages/Erros/Unauthorized';
-import Projetos from './pages/Projeto/HomeUser';
-import CreateProjeto from './pages/Projeto/CreateProjeto';
+import Projetos from './pages/Projeto/projeto-home';
+import CreateProjeto from './pages/Projeto/projeto-create';
 import Users from './data/UserData';
 import Auth from './config/Auth';
+import Atividade from './pages/Coordenador/Atividade/atividade-home';
+import AtividadeCreate from './pages/Coordenador/Atividade/atividade-create';
 
-const Home = lazy(() => import('./pages/Home'));
+const Home = lazy(() => import('./pages/Coordenador/Fase'));
 
 const App = () => {
   return (
@@ -110,7 +112,15 @@ const App = () => {
             path="/Atividades/:id"
             element={
               <RequireAuth loginPath={'/login'}>
-                <Operador />
+                <Atividade />
+              </RequireAuth>
+            }
+          />
+          <Route
+            path={`/Atividades/:id/CriarAtividade`}
+            element={
+              <RequireAuth loginPath={'/login'}>
+                <AtividadeCreate />
               </RequireAuth>
             }
           />

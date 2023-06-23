@@ -11,7 +11,7 @@ const Users = [
     id: 2,
     name: 'Luís Gustavo',
     url: 'https://img.freepik.com/free-photo/handsome-cheerful-man-with-happy-smile_176420-18028.jpg',
-    email: 'luis.gustavo@gmail.com',
+    email: 'pereira.luis@escolar.ifrn.edu.br',
     lote: '',
     fase: '',
   },

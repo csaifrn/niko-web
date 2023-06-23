@@ -12,7 +12,7 @@ const Arquivamento = () => {
   let { id } = useParams();
   return (
     <>
-      <Menu area={`/Fase/${id}/Board/Preparo`} id_projeto={id}></Menu>
+      <Menu area={`/Fase/${id}/Board/Arquivamento`} id_projeto={id}></Menu>
       <MenuCoord />
       <Style.Wrapper>
         <p>Arquivamento</p>

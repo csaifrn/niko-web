@@ -57,6 +57,18 @@ const App = () => {
             </RequireAuth>
           }
         />
+        <Route
+            path="/Atividades/:id"
+            element={
+                <Atividade />
+            }
+          />
+          <Route
+            path={`/Atividades/:id/CriarAtividade`}
+            element={
+                <AtividadeCreate />
+            }
+          />
         <Route element={<Auth allowedRoles={['Coordenador']} />}>
           <Route path="/Fase/:id" element={<Home />} />
 
@@ -108,7 +120,7 @@ const App = () => {
               </RequireAuth>
             }
           />
-          <Route
+          {/* <Route
             path="/Atividades/:id"
             element={
               <RequireAuth loginPath={'/login'}>
@@ -123,7 +135,7 @@ const App = () => {
                 <AtividadeCreate />
               </RequireAuth>
             }
-          />
+          /> */}
           <Route
             path="/Categorias/:id"
             element={

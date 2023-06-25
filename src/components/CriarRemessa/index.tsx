@@ -46,7 +46,6 @@ export const CreateRemessa = (props: EditModalProps) => {
   };
 
   useEffect(() => {
-    const foundUsers: any[] = [];
     for (let index = 0; index < props.clientes.length; index++) {
       const cliente = props.clientes[index];
       setClientes((clientes) => [...clientes, Users.filter((user) => user.email === cliente.email)[0]]);

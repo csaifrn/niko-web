@@ -1,8 +1,7 @@
 import * as Style from '../../../global/index';
 import * as S from './styles';
-import Lote from '../../../components/Lote/index';
 import { useState } from 'react';
-import { CreateModal } from '../../../components/CriarLote';
+
 import MenuCoord from '../../../components/MenuCoord';
 import Menu from '../../../components/Menu';
 import { useAuthUser } from 'react-auth-kit';
@@ -33,7 +32,7 @@ interface RecepProps {
 }
 
 const Recebidos = (props: RecepProps) => {
-  let { id } = useParams();
+  const { id } = useParams();
   const [openCriarModal, setOpenCriarModal] = useState(false);
   const remessas = EntradaData.filter((entrada) => entrada.id_projeto === id);
   const auth = useAuthUser();

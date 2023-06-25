@@ -1,19 +1,10 @@
 import React, { useState, useRef, useEffect } from 'react';
 import * as S from './styles';
-import Search from '../../../../components/Search';
-import CategoriaData from '../../../../data/CategoriaData';
-import CategoriaCard from '../../../../components/CategoriaCard';
 import Menu from '../../../../components/Menu';
 import MenuCoord from '../../../../components/MenuCoord';
 import { useParams } from 'react-router-dom';
 import AtividadeData from '../../../../data/AtividadeData';
 import moment from 'moment';
-
-type Categoria = {
-  id: number;
-  name: string;
-  percentage: number;
-};
 
 const Atividade = () => {
   function compare(a: any, b: any) {
@@ -28,7 +19,8 @@ const Atividade = () => {
     }
     return 0;
   }
-  let { id } = useParams();
+
+  const { id } = useParams();
 
   const atividades = AtividadeData.filter((atv) => atv.id_projeto === id);
 
@@ -71,13 +63,14 @@ const Atividade = () => {
       <Menu area={`/Categoria/${id}`} id_projeto={id}></Menu>
       <MenuCoord />
       <S.CardsArea>
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+        <div style={{ position: 'fixed', width: 'calc(100% - 6em)', top: '56px', padding: '2em 0em' , margin: '2em 0em', display: 'flex', alignItems: 'center', justifyContent: 'space-between', backgroundColor: '#0a090e', }}>
           <h1 style={{ color: 'white', fontFamily: 'Rubik' }}>Atividades</h1>
           <a
             href={`/Atividades/${id}/CriarAtividade`}
             style={{
               border: 'none',
               color: '#191C24',
+              
               borderRadius: '5px',
               fontFamily: 'Rubik',
             }}
@@ -87,8 +80,7 @@ const Atividade = () => {
         </div>
         <div
           style={{
-            height: '60vh',
-            overflowY: 'scroll',
+            marginTop: '10em',
             borderRadius: '5px',
             display: 'flex',
             flexDirection: 'column',

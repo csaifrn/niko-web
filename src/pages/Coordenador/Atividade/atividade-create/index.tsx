@@ -1,9 +1,41 @@
 import { useParams } from 'react-router-dom';
 import Menu from '../../../../components/Menu';
 import MenuCoord from '../../../../components/MenuCoord';
+import { useState } from 'react';
+import { CreateAtividade } from '../../../../components/CreateAtividadeModal';
+import FaseData from '../../../../data/FaseData';
+import { CategoriasTipologias } from '../../../../components/CategoriaTipologias';
+import CategoriaData from '../../../../data/CategoriaData';
+import TipologiaData from '../../../../data/TipologiaData';
 
 const AtividadeCreate = () => {
-  let { id } = useParams();
+  const { id } = useParams();
+  const [data, setData] = useState(new Date());
+  const [tarefas, setTarefas] = useState<typeof FaseData>([])
+  const [tarefasData, setTarefasData] = useState<any>([[],[]])
+  const [categorias, setCategorias] = useState<typeof CategoriaData>([])
+  const [tipologias, setTipologias] = useState<typeof TipologiaData>([])
+
+  const [modalTarefas, setModalTarefas] = useState(false)
+  const [modalCatTipo, SetModalCatTipo] = useState(false)
+
+  const handleData = (e: any) => {
+    setData(e.target.value);
+  };
+  
+  const handleTarefa = (e: any) => {
+    setTarefas(e)
+  }
+
+  const handleTarefaData = (e: any) => {
+    setTarefasData(e)
+  }
+
+  const handleSave = () => {
+    console.log(data)
+  }
+  
+
   return (
     <>
       <Menu area={`/Categoria/${id}`} id_projeto={id}></Menu>
@@ -14,8 +46,9 @@ const AtividadeCreate = () => {
           borderRadius: 5,
           flexDirection: 'column',
           display: 'flex',
-          gap: '1em',
+          gap: '2em',
           marginBottom: '10em',
+          marginTop: '10em',
         }}
       >
         <div
@@ -66,7 +99,7 @@ const AtividadeCreate = () => {
               paddingRight: 8,
               paddingTop: 5,
               paddingBottom: 5,
-              background: '#090E09',
+              background: '#393E4B',
               borderRadius: 3,
               flexDirection: 'column',
               justifyContent: 'flex-start',
@@ -97,32 +130,30 @@ const AtividadeCreate = () => {
             Data
           </h2>
           <div style={{ justifyContent: 'flex-start', alignItems: 'flex-start', gap: 8, display: 'inline-flex' }}>
-            <div
+            <input
+              type='date'
+              name='Data'
+              onChange={
+                handleData
+              }
               style={{
-                width: 119,
+                fontFamily: 'Rubik',
+                width: 150,
+                height: 44,
                 padding: 10,
                 background: '#393E4B',
                 borderRadius: 5,
                 justifyContent: 'center',
                 alignItems: 'center',
-                gap: 10,
                 display: 'flex',
+                border: 'none',
+                color: 'white',
               }}
-            >
-              <div
-                style={{
-                  color: 'rgba(255, 255, 255, 0.70)',
-                  fontSize: 12,
-                  fontFamily: 'Rubik',
-                  fontWeight: '500',
-                  wordWrap: 'break-word',
-                }}
-              >
-                Seg. 21/06/2023
-              </div>
-            </div>
+            />
+
           </div>
         </div>
+        <div style={{display: 'flex', flexDirection: 'column', gap: '1em'}}>
         <div
           style={{
             alignSelf: 'stretch',
@@ -135,130 +166,63 @@ const AtividadeCreate = () => {
           <div style={{ color: 'white', fontSize: 16, fontFamily: 'Rubik', fontWeight: '500', wordWrap: 'break-word' }}>
             Tarefas
           </div>
-          <img src="/plus.svg" />
+          <button 
+            style={{border: 'none', backgroundColor: 'transparent', display: 'flex', alignItems: 'center', justifyContent: 'center'}}
+            onClick={() => {setModalTarefas(!modalTarefas)}}
+          >
+            <img src="/plus.svg" alt='adicionar atividade'/>
+          </button>
         </div>
-        <div style={{ width: 344, justifyContent: 'flex-start', alignItems: 'center', gap: 8, display: 'inline-flex' }}>
-          <div
-            style={{
-              width: 128.56,
-              paddingRight: 8,
-              background: '#393E4B',
-              borderRadius: 5,
-              justifyContent: 'flex-start',
-              alignItems: 'center',
-              gap: 3,
-              display: 'flex',
-            }}
-          >
-            <div
-              style={{
-                padding: 6,
-                borderRadius: 2,
-                justifyContent: 'flex-end',
-                alignItems: 'flex-start',
-                gap: 10,
-                display: 'flex',
-              }}
-            >
-              <div
-                style={{
-                  flex: '1 1 0',
-                  alignSelf: 'stretch',
-                  padding: 3,
-                  background: '#9747FF',
-                  borderRadius: 4,
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  gap: 10,
-                  display: 'flex',
-                }}
-              >
-                <div style={{ width: 16, height: 16, position: 'relative' }}>
-                  <div
-                    style={{ width: 16, height: 16, left: 0, top: 0, position: 'absolute', background: 'white' }}
-                  ></div>
-                </div>
-              </div>
-            </div>
-            <div
-              style={{
-                width: 75,
-                height: 11,
-                color: 'white',
-                fontSize: 12,
-                fontFamily: 'Rubik',
-                fontWeight: '500',
-                wordWrap: 'break-word',
-              }}
-            >
-              Upload
-            </div>
-          </div>
-          <div
-            style={{
-              width: 128.56,
-              paddingRight: 8,
-              background: '#393E4B',
-              borderRadius: 5,
-              justifyContent: 'flex-start',
-              alignItems: 'center',
-              gap: 3,
-              display: 'flex',
-            }}
-          >
-            <div
-              style={{
-                padding: 6,
-                borderRadius: 2,
-                justifyContent: 'flex-end',
-                alignItems: 'flex-start',
-                gap: 10,
-                display: 'flex',
-              }}
-            >
-              <div
-                style={{
-                  flex: '1 1 0',
-                  alignSelf: 'stretch',
-                  padding: 3,
-                  background: '#2D94F3',
-                  borderRadius: 4,
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  gap: 10,
-                  display: 'flex',
-                }}
-              >
-                <div style={{ width: 16, height: 16, position: 'relative' }}>
+        <div style={{ width: 344, justifyContent: 'flex-start', alignItems: 'center', gap: 8, display: 'inline-flex', flexWrap: 'wrap' }}>
+
+            {tarefas.length > 0 && tarefas.map((fase) => {
+              return(
+                <div
+                  key={fase.id}
+                  style={{
+                    paddingRight: 8,
+                    background: '#393E4B',
+                    borderRadius: 5,
+                    justifyContent: 'flex-start',
+                    alignItems: 'center',
+                    gap: 3,
+                    display: 'flex',
+                  }}
+                >
                   <div
                     style={{
-                      width: 13.33,
-                      height: 14.67,
-                      left: 1.33,
-                      top: 0.67,
-                      position: 'absolute',
-                      background: 'white',
+                      padding: 6,
+                      borderRadius: 2,
+                      justifyContent: 'flex-end',
+                      alignItems: 'flex-start',
+                      gap: 10,
+                      display: 'flex',
                     }}
-                  ></div>
-                </div>
-              </div>
-            </div>
-            <h2
-              style={{
-                width: 75,
-                height: 11,
-                color: 'white',
-                fontSize: 12,
-                fontFamily: 'Rubik',
-                fontWeight: '500',
-                wordWrap: 'break-word',
-              }}
-            >
-              Digitalização
-            </h2>
-          </div>
-        </div>
+                  >
+                    <img src={`/icon-page/${fase.url}.png`} alt="" />
+                  </div>
+                  <h2
+                    style={{
 
+                      color: 'white',
+                      fontSize: 12,
+                      fontFamily: 'Rubik',
+                      fontWeight: '500',
+                      wordWrap: 'break-word',
+                    }}
+                  >
+                    {fase.titulo}
+                  </h2>
+                </div>
+              )
+            })
+              
+            }
+           
+        </div>
+        </div>
+       
+        <div style={{display: 'flex', flexDirection: 'column', gap: '1em'}}>
         <div
           style={{
             alignSelf: 'stretch',
@@ -271,64 +235,85 @@ const AtividadeCreate = () => {
           <div style={{ color: 'white', fontSize: 16, fontFamily: 'Rubik', fontWeight: '500', wordWrap: 'break-word' }}>
             Categorias e Tipologias
           </div>
-          <img src="/plus.svg" />
+          <button 
+            style={{border: 'none', backgroundColor: 'transparent', display: 'flex', alignItems: 'center', justifyContent: 'center'}}
+            onClick={() => {SetModalCatTipo(!modalCatTipo)}}
+          >
+            <img src="/plus.svg" alt='adicionar atividade'/>
+          </button>
         </div>
         <div style={{ justifyContent: 'flex-start', alignItems: 'flex-start', gap: 8, display: 'inline-flex' }}>
-          <div
-            style={{
-              paddingLeft: 4,
-              paddingRight: 4,
-              paddingTop: 5,
-              paddingBottom: 5,
-              background: '#393E4B',
-              borderRadius: 3,
-              justifyContent: 'flex-start',
-              alignItems: 'flex-start',
-              gap: 10,
-              display: 'flex',
-            }}
-          >
-            <div
-              style={{
-                textAlign: 'right',
-                color: 'white',
-                fontSize: 12,
-                fontFamily: 'Rubik',
-                fontWeight: '500',
-                wordWrap: 'break-word',
-              }}
-            >
-              Jurídico
+          {categorias.length > 0 && categorias.map((catg) => {
+            return(
+              <div
+                key={catg.id}
+                style={{
+                  paddingLeft: 8,
+                  paddingRight: 8,
+                  paddingTop: 5,
+                  paddingBottom: 5,
+                  background: '#393E4B',
+                  borderRadius: 3,
+                  justifyContent: 'flex-start',
+                  alignItems: 'flex-start',
+                  gap: 10,
+                  display: 'flex',
+                }}
+              >
+                <div
+                  style={{
+                    textAlign: 'right',
+                    color: 'white',
+                    fontSize: 12,
+                    fontFamily: 'Rubik',
+                    fontWeight: '500',
+                    wordWrap: 'break-word',
+                  }}
+                >
+                  {catg.name}
+                </div>
             </div>
-          </div>
-          <div
-            style={{
-              paddingLeft: 4,
-              paddingRight: 4,
-              paddingTop: 5,
-              paddingBottom: 5,
-              background: '#393E4B',
-              borderRadius: 3,
-              justifyContent: 'flex-start',
-              alignItems: 'flex-start',
-              gap: 10,
-              display: 'flex',
-            }}
-          >
-            <div
-              style={{
-                textAlign: 'right',
-                color: 'white',
-                fontSize: 12,
-                fontFamily: 'Rubik',
-                fontWeight: '500',
-                wordWrap: 'break-word',
-              }}
-            >
-              Administrativo
+            )
+          })
+            
+          }
+          {tipologias.length > 0 && tipologias.map((tipo) => {
+            return(
+              <div
+                key={tipo.id}
+                style={{
+                  paddingLeft: 8,
+                  paddingRight: 8,
+                  paddingTop: 5,
+                  paddingBottom: 5,
+                  background: '#393E4B',
+                  borderRadius: 3,
+                  justifyContent: 'flex-start',
+                  alignItems: 'flex-start',
+                  gap: 10,
+                  display: 'flex',
+                }}
+              >
+                <div
+                  style={{
+                    textAlign: 'right',
+                    color: 'white',
+                    fontSize: 12,
+                    fontFamily: 'Rubik',
+                    fontWeight: '500',
+                    wordWrap: 'break-word',
+                  }}
+                >
+                  {tipo.name}
+                </div>
             </div>
-          </div>
+            )
+          })
+            
+          }
         </div>
+        </div>
+       
 
         <div
           style={{
@@ -352,7 +337,7 @@ const AtividadeCreate = () => {
             >
               Usuários
             </div>
-            <img src="/plus.svg" />
+            <img src="/plus.svg" alt='adicionar usuários'/>
           </div>
           <div
             style={{
@@ -384,6 +369,7 @@ const AtividadeCreate = () => {
                     border: '0.50px #191C24 solid',
                   }}
                   src="https://via.placeholder.com/24x24"
+                  alt=''
                 />
                 <div
                   style={{
@@ -455,6 +441,8 @@ const AtividadeCreate = () => {
         </div>
 
         <button
+          
+          onClick={handleSave}
           style={{
             alignSelf: 'stretch',
             height: 44,
@@ -476,6 +464,27 @@ const AtividadeCreate = () => {
           </div>
         </button>
       </div>
+      {modalTarefas &&
+        <CreateAtividade close={() => {
+          setModalTarefas(!modalTarefas)
+          }}
+          setTarefas={handleTarefa}
+          tarefasData={tarefasData}
+          setTarefasData={handleTarefaData}
+        />
+      }
+      {modalCatTipo &&
+        <CategoriasTipologias 
+          close={() => {
+          SetModalCatTipo(!modalCatTipo)
+          }}
+          categorias={categorias}
+          tipologias={tipologias}
+          setCategoria={(e) => {setCategorias(e)}}
+          setTipologia={(e) => {setTipologias(e)}}
+        />
+      }
+      
     </>
   );
 };

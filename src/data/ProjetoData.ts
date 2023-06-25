@@ -1,5 +1,3 @@
-import { v4 as uuidv4 } from 'uuid';
-
 export const Projeto = [
   {
     id: '4398f464-c1b0-4814-905a-b97adc207d5a',

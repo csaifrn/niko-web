@@ -4,6 +4,7 @@ import UserData from './UserData';
 import CategoriaData from './CategoriaData';
 import { Tipologia } from '../components/LoteDetails/styles';
 import { TipologiaData } from './TipologiaData';
+import FaseData from './FaseData';
 
 export const LoteData = [
     //LOTE 1
@@ -37,6 +38,32 @@ export const LoteData = [
                 id: UserData[1].id,
                 foto:  UserData[1].url,
                 andamento: UserData[1].andamento
+            }
+        ],
+        detalhamento_por_fase: [
+            // PREPARO
+            {
+                id: FaseData[0].id,
+                nome: FaseData[0].titulo,
+                icone: FaseData[0].icone,
+                inicio: '01/06/23',
+                hora_inicio: '13:15',
+                conclusao: null,
+                hora_conclusao: null,
+                tempo: null,
+                envolvidos: [
+                    {
+                        id: UserData[0].id,
+                        nome: UserData[0].name,
+                        foto: UserData[0].url
+                    },
+                    {
+                        id: UserData[1].id,
+                        nome: UserData[1].name,
+                        foto: UserData[1].url
+                    }
+                ]
+                
             }
         ]
     },
@@ -81,6 +108,32 @@ export const LoteData = [
                 foto:  UserData[1].url,
                 andamento: UserData[1].andamento
             }
+        ],
+        detalhamento_por_fase: [
+            // PREPARO
+            {
+                id: FaseData[0].id,
+                nome: FaseData[0].titulo,
+                icone: FaseData[0].icone,
+                inicio: '01/06/23',
+                hora_inicio: '13:15',
+                conclusao: null,
+                hora_conclusao: null,
+                tempo: null,
+                envolvidos: [
+                    {
+                        id: UserData[0].id,
+                        nome: UserData[0].name,
+                        foto: UserData[0].url
+                    },
+                    {
+                        id: UserData[1].id,
+                        nome: UserData[1].name,
+                        foto: UserData[1].url
+                    }
+                ]
+                
+            }
         ]
     },
     //LOTE 3
@@ -114,6 +167,32 @@ export const LoteData = [
                 id: UserData[1].id,
                 foto:  UserData[1].url,
                 andamento: UserData[1].andamento
+            }
+        ],
+        detalhamento_por_fase: [
+            // PREPARO
+            {
+                id: FaseData[0].id,
+                nome: FaseData[0].titulo,
+                icone: FaseData[0].icone,
+                inicio: '01/06/23',
+                hora_inicio: '13:15',
+                conclusao: null,
+                hora_conclusao: null,
+                tempo: null,
+                envolvidos: [
+                    {
+                        id: UserData[0].id,
+                        nome: UserData[0].name,
+                        foto: UserData[0].url
+                    },
+                    {
+                        id: UserData[1].id,
+                        nome: UserData[1].name,
+                        foto: UserData[1].url
+                    }
+                ]
+                
             }
         ]
     },
@@ -149,6 +228,32 @@ export const LoteData = [
                 foto:  UserData[1].url,
                 andamento: UserData[1].andamento
             }
+        ],
+        detalhamento_por_fase: [
+            // PREPARO
+            {
+                id: FaseData[0].id,
+                nome: FaseData[0].titulo,
+                icone: FaseData[0].icone,
+                inicio: '01/06/23',
+                hora_inicio: '13:15',
+                conclusao: null,
+                hora_conclusao: null,
+                tempo: null,
+                envolvidos: [
+                    {
+                        id: UserData[0].id,
+                        nome: UserData[0].name,
+                        foto: UserData[0].url
+                    },
+                    {
+                        id: UserData[1].id,
+                        nome: UserData[1].name,
+                        foto: UserData[1].url
+                    }
+                ]
+                
+            }
         ]
     },
 
@@ -174,16 +279,27 @@ export const LoteData = [
         tipologias: [
         ],
         envolvidos: [
+        ],
+        detalhamento_por_fase: [
+            // PREPARO
             {
-                id: UserData[0].id,
-                foto:  UserData[0].url,
-                andamento: UserData[0].andamento
+                id: FaseData[0].id,
+                nome: FaseData[0].titulo,
+                icone: FaseData[0].icone,
+                inicio: '01/06/23',
+                hora_inicio: '13:15',
+                conclusao: '01/06/23',
+                hora_conclusao:'16:45',
+                tempo: '3:30 horas',
+                envolvidos: [
+                    {
+                        id: UserData[0].id,
+                        nome: UserData[0].name,
+                        foto: UserData[0].url
+                    }
+                ]
+                
             },
-            {
-                id: UserData[1].id,
-                foto:  UserData[1].url,
-                andamento: UserData[1].andamento
-            }
         ]
     },
 
@@ -209,16 +325,27 @@ export const LoteData = [
         tipologias: [
         ],
         envolvidos: [
+        ],
+        detalhamento_por_fase: [
+            // PREPARO
             {
-                id: UserData[0].id,
-                foto:  UserData[0].url,
-                andamento: UserData[0].andamento
+                id: FaseData[0].id,
+                nome: FaseData[0].titulo,
+                icone: FaseData[0].icone,
+                inicio: '01/06/23',
+                hora_inicio: '13:15',
+                conclusao: '01/06/23',
+                hora_conclusao:'16:45',
+                tempo: '3:30 horas',
+                envolvidos: [
+                    {
+                        id: UserData[0].id,
+                        nome: UserData[0].name,
+                        foto: UserData[0].url
+                    }
+                ]
+                
             },
-            {
-                id: UserData[1].id,
-                foto:  UserData[1].url,
-                andamento: UserData[1].andamento
-            }
         ]
     },
 
@@ -244,16 +371,27 @@ export const LoteData = [
         tipologias: [
         ],
         envolvidos: [
+        ],
+        detalhamento_por_fase: [
+            // PREPARO
             {
-                id: UserData[0].id,
-                foto:  UserData[0].url,
-                andamento: UserData[0].andamento
+                id: FaseData[0].id,
+                nome: FaseData[0].titulo,
+                icone: FaseData[0].icone,
+                inicio: '01/06/23',
+                hora_inicio: '13:15',
+                conclusao: '01/06/23',
+                hora_conclusao:'16:45',
+                tempo: '3:30 horas',
+                envolvidos: [
+                    {
+                        id: UserData[0].id,
+                        nome: UserData[0].name,
+                        foto: UserData[0].url
+                    }
+                ]
+                
             },
-            {
-                id: UserData[1].id,
-                foto:  UserData[1].url,
-                andamento: UserData[1].andamento
-            }
         ]
     },
 
@@ -289,6 +427,51 @@ export const LoteData = [
                 foto:  UserData[1].url,
                 andamento: UserData[1].andamento
             }
+        ],
+        detalhamento_por_fase: [
+            // PREPARO
+            {
+                id: FaseData[0].id,
+                nome: FaseData[0].titulo,
+                icone: FaseData[0].icone,
+                inicio: '01/06/23',
+                hora_inicio: '13:15',
+                conclusao: '01/06/23',
+                hora_conclusao:'16:45',
+                tempo: '3:30 horas',
+                envolvidos: [
+                    {
+                        id: UserData[0].id,
+                        nome: UserData[0].name,
+                        foto: UserData[0].url
+                    }
+                ]
+                
+            },
+            // CATALOGAÇÃO
+            {
+                id: FaseData[1].id,
+                nome: FaseData[1].titulo,
+                icone: FaseData[1].icone,
+                inicio: '01/06/23',
+                hora_inicio: '13:15',
+                conclusao: null,
+                hora_conclusao: null,
+                tempo: null,
+                envolvidos: [
+                    {
+                        id: UserData[0].id,
+                        nome: UserData[0].name,
+                        foto: UserData[0].url
+                    },
+                    {
+                        id: UserData[1].id,
+                        nome: UserData[1].name,
+                        foto: UserData[1].url
+                    }
+                ]
+                
+            },
         ]
     },
 
@@ -324,6 +507,51 @@ export const LoteData = [
                 foto:  UserData[1].url,
                 andamento: UserData[1].andamento
             }
+        ],
+        detalhamento_por_fase: [
+            // PREPARO
+            {
+                id: FaseData[0].id,
+                nome: FaseData[0].titulo,
+                icone: FaseData[0].icone,
+                inicio: '01/06/23',
+                hora_inicio: '13:15',
+                conclusao: '01/06/23',
+                hora_conclusao:'16:45',
+                tempo: '3:30 horas',
+                envolvidos: [
+                    {
+                        id: UserData[0].id,
+                        nome: UserData[0].name,
+                        foto: UserData[0].url
+                    }
+                ]
+                
+            },
+            // CATALOGAÇÃO
+            {
+                id: FaseData[1].id,
+                nome: FaseData[1].titulo,
+                icone: FaseData[1].icone,
+                inicio: '01/06/23',
+                hora_inicio: '13:15',
+                conclusao: null,
+                hora_conclusao: null,
+                tempo: null,
+                envolvidos: [
+                    {
+                        id: UserData[0].id,
+                        nome: UserData[0].name,
+                        foto: UserData[0].url
+                    },
+                    {
+                        id: UserData[1].id,
+                        nome: UserData[1].name,
+                        foto: UserData[1].url
+                    }
+                ]
+                
+            },
         ]
     },
 
@@ -371,16 +599,56 @@ export const LoteData = [
             }
         ],
         envolvidos: [
+        ],
+        detalhamento_por_fase: [
+            // PREPARO
             {
-                id: UserData[0].id,
-                foto:  UserData[0].url,
-                andamento: UserData[0].andamento
+                id: FaseData[0].id,
+                nome: FaseData[0].titulo,
+                icone: FaseData[0].icone,
+                inicio: '01/06/23',
+                hora_inicio: '13:15',
+                conclusao: '01/06/23',
+                hora_conclusao:'16:42',
+                tempo: '3:27 horas',
+                envolvidos: [
+                    {
+                        id: UserData[0].id,
+                        nome: UserData[0].name,
+                        foto: UserData[0].url
+                    },
+                    {
+                        id: UserData[1].id,
+                        nome: UserData[1].name,
+                        foto: UserData[1].url
+                    }
+                ]
+                
             },
+            // CATALOGAÇÃO
             {
-                id: UserData[1].id,
-                foto:  UserData[1].url,
-                andamento: UserData[1].andamento
-            }
+                id: FaseData[1].id,
+                nome: FaseData[1].titulo,
+                icone: FaseData[1].icone,
+                inicio: '01/06/23',
+                hora_inicio: '13:15',
+                conclusao: '01/06/23',
+                hora_conclusao:'16:15',
+                tempo: '3:00 horas',
+                envolvidos: [
+                    {
+                        id: UserData[0].id,
+                        nome: UserData[0].name,
+                        foto: UserData[0].url
+                    },
+                    {
+                        id: UserData[1].id,
+                        nome: UserData[1].name,
+                        foto: UserData[1].url
+                    }
+                ]
+                
+            },
         ]
     },
 
@@ -428,16 +696,56 @@ export const LoteData = [
             }
         ],
         envolvidos: [
+        ],
+        detalhamento_por_fase: [
+            // PREPARO
             {
-                id: UserData[0].id,
-                foto:  UserData[0].url,
-                andamento: UserData[0].andamento
+                id: FaseData[0].id,
+                nome: FaseData[0].titulo,
+                icone: FaseData[0].icone,
+                inicio: '01/06/23',
+                hora_inicio: '13:15',
+                conclusao: '01/06/23',
+                hora_conclusao:'16:42',
+                tempo: '3:27 horas',
+                envolvidos: [
+                    {
+                        id: UserData[0].id,
+                        nome: UserData[0].name,
+                        foto: UserData[0].url
+                    },
+                    {
+                        id: UserData[1].id,
+                        nome: UserData[1].name,
+                        foto: UserData[1].url
+                    }
+                ]
+                
             },
+            // CATALOGAÇÃO
             {
-                id: UserData[1].id,
-                foto:  UserData[1].url,
-                andamento: UserData[1].andamento
-            }
+                id: FaseData[1].id,
+                nome: FaseData[1].titulo,
+                icone: FaseData[1].icone,
+                inicio: '01/06/23',
+                hora_inicio: '13:15',
+                conclusao: '01/06/23',
+                hora_conclusao:'16:15',
+                tempo: '3:00 horas',
+                envolvidos: [
+                    {
+                        id: UserData[0].id,
+                        nome: UserData[0].name,
+                        foto: UserData[0].url
+                    },
+                    {
+                        id: UserData[1].id,
+                        nome: UserData[1].name,
+                        foto: UserData[1].url
+                    }
+                ]
+                
+            },
         ]
     },
 
@@ -495,6 +803,79 @@ export const LoteData = [
                 foto:  UserData[1].url,
                 andamento: UserData[1].andamento
             }
+        ],
+        detalhamento_por_fase: [
+            // PREPARO
+            {
+                id: FaseData[0].id,
+                nome: FaseData[0].titulo,
+                icone: FaseData[0].icone,
+                inicio: '01/06/23',
+                hora_inicio: '13:15',
+                conclusao: '01/06/23',
+                hora_conclusao:'16:42',
+                tempo: '3:27 horas',
+                envolvidos: [
+                    {
+                        id: UserData[0].id,
+                        nome: UserData[0].name,
+                        foto: UserData[0].url
+                    },
+                    {
+                        id: UserData[1].id,
+                        nome: UserData[1].name,
+                        foto: UserData[1].url
+                    }
+                ]
+                
+            },
+            // CATALOGAÇÃO
+            {
+                id: FaseData[1].id,
+                nome: FaseData[1].titulo,
+                icone: FaseData[1].icone,
+                inicio: '01/06/23',
+                hora_inicio: '13:15',
+                conclusao: '01/06/23',
+                hora_conclusao:'16:15',
+                tempo: '3:00 horas',
+                envolvidos: [
+                    {
+                        id: UserData[0].id,
+                        nome: UserData[0].name,
+                        foto: UserData[0].url
+                    },
+                    {
+                        id: UserData[1].id,
+                        nome: UserData[1].name,
+                        foto: UserData[1].url
+                    }
+                ]
+                
+            },
+            // DIGITALIZAÇÃO
+            {
+                id: FaseData[2].id,
+                nome: FaseData[2].titulo,
+                icone: FaseData[2].icone,
+                inicio: '03/06/23',
+                hora_inicio: '13:20',
+                conclusao: null,
+                hora_conclusao: null,
+                tempo: null,
+                envolvidos: [
+                    {
+                        id: UserData[0].id,
+                        nome: UserData[0].name,
+                        foto: UserData[0].url
+                    },
+                    {
+                        id: UserData[1].id,
+                        nome: UserData[1].name,
+                        foto: UserData[1].url
+                    }
+                ]
+            },
         ]
     },
 
@@ -547,6 +928,79 @@ export const LoteData = [
                 foto:  UserData[1].url,
                 andamento: UserData[1].andamento
             }
+        ],
+        detalhamento_por_fase: [
+            // PREPARO
+            {
+                id: FaseData[0].id,
+                nome: FaseData[0].titulo,
+                icone: FaseData[0].icone,
+                inicio: '01/06/23',
+                hora_inicio: '13:15',
+                conclusao: '01/06/23',
+                hora_conclusao:'16:42',
+                tempo: '3:27 horas',
+                envolvidos: [
+                    {
+                        id: UserData[0].id,
+                        nome: UserData[0].name,
+                        foto: UserData[0].url
+                    },
+                    {
+                        id: UserData[1].id,
+                        nome: UserData[1].name,
+                        foto: UserData[1].url
+                    }
+                ]
+                
+            },
+            // CATALOGAÇÃO
+            {
+                id: FaseData[1].id,
+                nome: FaseData[1].titulo,
+                icone: FaseData[1].icone,
+                inicio: '01/06/23',
+                hora_inicio: '13:15',
+                conclusao: '01/06/23',
+                hora_conclusao:'16:15',
+                tempo: '3:00 horas',
+                envolvidos: [
+                    {
+                        id: UserData[0].id,
+                        nome: UserData[0].name,
+                        foto: UserData[0].url
+                    },
+                    {
+                        id: UserData[1].id,
+                        nome: UserData[1].name,
+                        foto: UserData[1].url
+                    }
+                ]
+                
+            },
+            // DIGITALIZAÇÃO
+            {
+                id: FaseData[2].id,
+                nome: FaseData[2].titulo,
+                icone: FaseData[2].icone,
+                inicio: '03/06/23',
+                hora_inicio: '13:20',
+                conclusao: null,
+                hora_conclusao: null,
+                tempo: null,
+                envolvidos: [
+                    {
+                        id: UserData[0].id,
+                        nome: UserData[0].name,
+                        foto: UserData[0].url
+                    },
+                    {
+                        id: UserData[1].id,
+                        nome: UserData[1].name,
+                        foto: UserData[1].url
+                    }
+                ]
+            },
         ]
     },
 
@@ -594,16 +1048,79 @@ export const LoteData = [
             },
         ],
         envolvidos: [
+        ],
+        detalhamento_por_fase: [
+            // PREPARO
             {
-                id: UserData[0].id,
-                foto:  UserData[0].url,
-                andamento: UserData[0].andamento
+                id: FaseData[0].id,
+                nome: FaseData[0].titulo,
+                icone: FaseData[0].icone,
+                inicio: '01/06/23',
+                hora_inicio: '13:15',
+                conclusao: '01/06/23',
+                hora_conclusao:'16:42',
+                tempo: '3:27 horas',
+                envolvidos: [
+                    {
+                        id: UserData[0].id,
+                        nome: UserData[0].name,
+                        foto: UserData[0].url
+                    },
+                    {
+                        id: UserData[1].id,
+                        nome: UserData[1].name,
+                        foto: UserData[1].url
+                    }
+                ]
+                
             },
+            // CATALOGAÇÃO
             {
-                id: UserData[1].id,
-                foto:  UserData[1].url,
-                andamento: UserData[1].andamento
-            }
+                id: FaseData[1].id,
+                nome: FaseData[1].titulo,
+                icone: FaseData[1].icone,
+                inicio: '01/06/23',
+                hora_inicio: '13:15',
+                conclusao: '01/06/23',
+                hora_conclusao:'16:15',
+                tempo: '3:00 horas',
+                envolvidos: [
+                    {
+                        id: UserData[0].id,
+                        nome: UserData[0].name,
+                        foto: UserData[0].url
+                    },
+                    {
+                        id: UserData[1].id,
+                        nome: UserData[1].name,
+                        foto: UserData[1].url
+                    }
+                ]
+                
+            },
+            // DIGITALIZAÇÃO
+            {
+                id: FaseData[2].id,
+                nome: FaseData[2].titulo,
+                icone: FaseData[2].icone,
+                inicio: '03/06/23',
+                hora_inicio: '13:20',
+                conclusao: '03/06/23',
+                hora_conclusao: '16:15',
+                tempo: '2:55 horas',
+                envolvidos: [
+                    {
+                        id: UserData[0].id,
+                        nome: UserData[0].name,
+                        foto: UserData[0].url
+                    },
+                    {
+                        id: UserData[1].id,
+                        nome: UserData[1].name,
+                        foto: UserData[1].url
+                    }
+                ]
+            },
         ]
     },
 
@@ -646,26 +1163,64 @@ export const LoteData = [
             },
         ],
         envolvidos: [
+        ],
+        detalhamento_por_fase: [
+            // PREPARO
             {
-                id: UserData[0].id,
-                foto:  UserData[0].url,
-                andamento: UserData[0].andamento
+                id: FaseData[0].id,
+                nome: FaseData[0].titulo,
+                icone: FaseData[0].icone,
+                inicio: '01/06/23',
+                hora_inicio: '13:15',
+                conclusao: '01/06/23',
+                hora_conclusao:'16:42',
+                tempo: '3:27 horas',
+                envolvidos: [
+                    {
+                        id: 1,
+                        nome: 'Zé Lucas',
+                        foto: UserData[0].url
+                    }
+                ]
+                
             },
+            // CATALOGAÇÃO
             {
-                id: UserData[1].id,
-                foto:  UserData[1].url,
-                andamento: UserData[1].andamento
+                id: FaseData[1].id,
+                nome: FaseData[1].titulo,
+                icone: FaseData[1].icone,
+                inicio: '01/06/23',
+                hora_inicio: '13:15',
+                conclusao: '01/06/23',
+                hora_conclusao:'16:15',
+                tempo: '3:00 horas',
+                envolvidos: [
+                    {
+                        id: 1,
+                        nome: 'Zé Lucas',
+                        foto: UserData[0].url
+                    }
+                ]
+                
             },
+            // DIGITALIZAÇÃO
             {
-                id: UserData[2].id,
-                foto:  UserData[2].url,
-                andamento: UserData[2].andamento
+                id: FaseData[2].id,
+                nome: FaseData[2].titulo,
+                icone: FaseData[2].icone,
+                inicio: '03/06/23',
+                hora_inicio: '13:20',
+                conclusao: '03/06/23',
+                hora_conclusao: '16:15',
+                tempo: '2:55 horas',
+                envolvidos: [
+                    {
+                        id: 1,
+                        nome: 'Zé Lucas',
+                        foto: UserData[1].url
+                    }
+                ]
             },
-            {
-                id: UserData[3].id,
-                foto:  UserData[3].url,
-                andamento: UserData[3].andamento
-            }
         ]
     },
 
@@ -723,6 +1278,87 @@ export const LoteData = [
                 foto:  UserData[1].url,
                 andamento: UserData[1].andamento
             }
+        ],
+        detalhamento_por_fase: [
+            // PREPARO
+            {
+                id: FaseData[0].id,
+                nome: FaseData[0].titulo,
+                icone: FaseData[0].icone,
+                inicio: '01/06/23',
+                hora_inicio: '13:15',
+                conclusao: '01/06/23',
+                hora_conclusao:'16:42',
+                tempo: '3:27 horas',
+                envolvidos: [
+                    {
+                        id: 1,
+                        nome: 'Zé Lucas',
+                        foto: UserData[0].url
+                    }
+                ]
+                
+            },
+            // CATALOGAÇÃO
+            {
+                id: FaseData[1].id,
+                nome: FaseData[1].titulo,
+                icone: FaseData[1].icone,
+                inicio: '01/06/23',
+                hora_inicio: '13:15',
+                conclusao: '01/06/23',
+                hora_conclusao:'16:15',
+                tempo: '3:00 horas',
+                envolvidos: [
+                    {
+                        id: 1,
+                        nome: 'Zé Lucas',
+                        foto: UserData[0].url
+                    }
+                ]
+                
+            },
+            // DIGITALIZAÇÃO
+            {
+                id: FaseData[2].id,
+                nome: FaseData[2].titulo,
+                icone: FaseData[2].icone,
+                inicio: '03/06/23',
+                hora_inicio: '13:20',
+                conclusao: '03/06/23',
+                hora_conclusao: '16:15',
+                tempo: '2:55 horas',
+                envolvidos: [
+                    {
+                        id: 1,
+                        nome: 'Zé Lucas',
+                        foto: UserData[1].url
+                    }
+                ]
+            },
+            // UPLOAD
+            {
+                id: FaseData[3].id,
+                nome: FaseData[3].titulo,
+                icone: FaseData[3].icone,
+                inicio: '03/06/23',
+                hora_inicio: '13:20',
+                conclusao: null,
+                hora_conclusao: null,
+                tempo: null,
+                envolvidos: [
+                    {
+                        id: UserData[0].id,
+                        nome: UserData[0].name,
+                        foto: UserData[0].url
+                    },
+                    {
+                        id: UserData[1].id,
+                        nome: UserData[1].name,
+                        foto: UserData[1].url
+                    }
+                ]
+            },
         ]
     },
 
@@ -775,6 +1411,87 @@ export const LoteData = [
                 foto:  UserData[3].url,
                 andamento: UserData[3].andamento
             },
+        ],
+        detalhamento_por_fase: [
+            // PREPARO
+            {
+                id: FaseData[0].id,
+                nome: FaseData[0].titulo,
+                icone: FaseData[0].icone,
+                inicio: '01/06/23',
+                hora_inicio: '13:15',
+                conclusao: '01/06/23',
+                hora_conclusao:'16:42',
+                tempo: '3:27 horas',
+                envolvidos: [
+                    {
+                        id: 1,
+                        nome: 'Zé Lucas',
+                        foto: UserData[0].url
+                    }
+                ]
+                
+            },
+            // CATALOGAÇÃO
+            {
+                id: FaseData[1].id,
+                nome: FaseData[1].titulo,
+                icone: FaseData[1].icone,
+                inicio: '01/06/23',
+                hora_inicio: '13:15',
+                conclusao: '01/06/23',
+                hora_conclusao:'16:15',
+                tempo: '3:00 horas',
+                envolvidos: [
+                    {
+                        id: 1,
+                        nome: 'Zé Lucas',
+                        foto: UserData[0].url
+                    }
+                ]
+                
+            },
+            // DIGITALIZAÇÃO
+            {
+                id: FaseData[2].id,
+                nome: FaseData[2].titulo,
+                icone: FaseData[2].icone,
+                inicio: '03/06/23',
+                hora_inicio: '13:20',
+                conclusao: '03/06/23',
+                hora_conclusao: '16:15',
+                tempo: '2:55 horas',
+                envolvidos: [
+                    {
+                        id: 1,
+                        nome: 'Zé Lucas',
+                        foto: UserData[1].url
+                    }
+                ]
+            },
+            // UPLOAD
+            {
+                id: FaseData[3].id,
+                nome: FaseData[3].titulo,
+                icone: FaseData[3].icone,
+                inicio: '03/06/23',
+                hora_inicio: '13:20',
+                conclusao: null,
+                hora_conclusao: null,
+                tempo: null,
+                envolvidos: [
+                    {
+                        id: UserData[0].id,
+                        nome: UserData[0].name,
+                        foto: UserData[0].url
+                    },
+                    {
+                        id: UserData[1].id,
+                        nome: UserData[1].name,
+                        foto: UserData[1].url
+                    }
+                ]
+            },
         ]
     },
 
@@ -822,10 +1539,101 @@ export const LoteData = [
             }
         ],
         envolvidos: [
+        ],
+        detalhamento_por_fase: [
+            // PREPARO
             {
-                id: UserData[3].id,
-                foto:  UserData[3].url,
-                andamento: UserData[3].andamento
+                id: FaseData[0].id,
+                nome: FaseData[0].titulo,
+                icone: FaseData[0].icone,
+                inicio: '01/06/23',
+                hora_inicio: '13:15',
+                conclusao: '01/06/23',
+                hora_conclusao:'16:42',
+                tempo: '3:27 horas',
+                envolvidos: [
+                    {
+                        id: UserData[0].id,
+                        nome: UserData[0].name,
+                        foto: UserData[0].url
+                    },
+                    {
+                        id: UserData[1].id,
+                        nome: UserData[1].name,
+                        foto: UserData[1].url
+                    }
+                ]
+                
+            },
+            // CATALOGAÇÃO
+            {
+                id: FaseData[1].id,
+                nome: FaseData[1].titulo,
+                icone: FaseData[1].icone,
+                inicio: '01/06/23',
+                hora_inicio: '13:15',
+                conclusao: '01/06/23',
+                hora_conclusao:'16:15',
+                tempo: '3:00 horas',
+                envolvidos: [
+                    {
+                        id: UserData[0].id,
+                        nome: UserData[0].name,
+                        foto: UserData[0].url
+                    },
+                    {
+                        id: UserData[1].id,
+                        nome: UserData[1].name,
+                        foto: UserData[1].url
+                    }
+                ]
+                
+            },
+            // DIGITALIZAÇÃO
+            {
+                id: FaseData[2].id,
+                nome: FaseData[2].titulo,
+                icone: FaseData[2].icone,
+                inicio: '03/06/23',
+                hora_inicio: '13:20',
+                conclusao: '03/06/23',
+                hora_conclusao: '16:15',
+                tempo: '2:55 horas',
+                envolvidos: [
+                    {
+                        id: UserData[0].id,
+                        nome: UserData[0].name,
+                        foto: UserData[0].url
+                    },
+                    {
+                        id: UserData[1].id,
+                        nome: UserData[1].name,
+                        foto: UserData[1].url
+                    }
+                ]
+            },
+            // UPLOAD
+            {
+                id: FaseData[3].id,
+                nome: FaseData[3].titulo,
+                icone: FaseData[3].icone,
+                inicio: '03/06/23',
+                hora_inicio: '13:20',
+                conclusao: '03/06/23',
+                hora_conclusao: '16:15',
+                tempo: '2:55 horas',
+                envolvidos: [
+                    {
+                        id: UserData[0].id,
+                        nome: UserData[0].name,
+                        foto: UserData[0].url
+                    },
+                    {
+                        id: UserData[1].id,
+                        nome: UserData[1].name,
+                        foto: UserData[1].url
+                    }
+                ]
             },
         ]
     },
@@ -874,10 +1682,101 @@ export const LoteData = [
             }
         ],
         envolvidos: [
+        ],
+        detalhamento_por_fase: [
+            // PREPARO
             {
-                id: UserData[4].id,
-                foto:  UserData[4].url,
-                andamento: UserData[4].andamento
+                id: FaseData[0].id,
+                nome: FaseData[0].titulo,
+                icone: FaseData[0].icone,
+                inicio: '01/06/23',
+                hora_inicio: '13:15',
+                conclusao: '01/06/23',
+                hora_conclusao:'16:42',
+                tempo: '3:27 horas',
+                envolvidos: [
+                    {
+                        id: UserData[0].id,
+                        nome: UserData[0].name,
+                        foto: UserData[0].url
+                    },
+                    {
+                        id: UserData[1].id,
+                        nome: UserData[1].name,
+                        foto: UserData[1].url
+                    }
+                ]
+                
+            },
+            // CATALOGAÇÃO
+            {
+                id: FaseData[1].id,
+                nome: FaseData[1].titulo,
+                icone: FaseData[1].icone,
+                inicio: '01/06/23',
+                hora_inicio: '13:15',
+                conclusao: '01/06/23',
+                hora_conclusao:'16:15',
+                tempo: '3:00 horas',
+                envolvidos: [
+                    {
+                        id: UserData[0].id,
+                        nome: UserData[0].name,
+                        foto: UserData[0].url
+                    },
+                    {
+                        id: UserData[1].id,
+                        nome: UserData[1].name,
+                        foto: UserData[1].url
+                    }
+                ]
+                
+            },
+            // DIGITALIZAÇÃO
+            {
+                id: FaseData[2].id,
+                nome: FaseData[2].titulo,
+                icone: FaseData[2].icone,
+                inicio: '03/06/23',
+                hora_inicio: '13:20',
+                conclusao: '03/06/23',
+                hora_conclusao: '16:15',
+                tempo: '2:55 horas',
+                envolvidos: [
+                    {
+                        id: UserData[0].id,
+                        nome: UserData[0].name,
+                        foto: UserData[0].url
+                    },
+                    {
+                        id: UserData[1].id,
+                        nome: UserData[1].name,
+                        foto: UserData[1].url
+                    }
+                ]
+            },
+            // UPLOAD
+            {
+                id: FaseData[3].id,
+                nome: FaseData[3].titulo,
+                icone: FaseData[3].icone,
+                inicio: '03/06/23',
+                hora_inicio: '13:20',
+                conclusao: '03/06/23',
+                hora_conclusao: '16:15',
+                tempo: '2:55 horas',
+                envolvidos: [
+                    {
+                        id: UserData[0].id,
+                        nome: UserData[0].name,
+                        foto: UserData[0].url
+                    },
+                    {
+                        id: UserData[1].id,
+                        nome: UserData[1].name,
+                        foto: UserData[1].url
+                    }
+                ]
             },
         ]
     },
@@ -929,13 +1828,101 @@ export const LoteData = [
                 id: UserData[4].id,
                 foto:  UserData[4].url,
                 andamento: UserData[4].andamento
-            },
+            },       
+        ],
+        detalhamento_por_fase: [
+            // PREPARO
             {
-                id: UserData[2].id,
-                foto:  UserData[2].url,
-                andamento: UserData[2].andamento
+                id: FaseData[0].id,
+                nome: FaseData[0].titulo,
+                icone: FaseData[0].icone,
+                inicio: '01/06/23',
+                hora_inicio: '13:15',
+                conclusao: '01/06/23',
+                hora_conclusao:'16:42',
+                tempo: '3:27 horas',
+                envolvidos: [
+                    {
+                        id: 1,
+                        nome: 'Zé Lucas',
+                        foto: UserData[0].url
+                    }
+                ]
+                
             },
-            
+            // CATALOGAÇÃO
+            {
+                id: FaseData[1].id,
+                nome: FaseData[1].titulo,
+                icone: FaseData[1].icone,
+                inicio: '01/06/23',
+                hora_inicio: '13:15',
+                conclusao: '01/06/23',
+                hora_conclusao:'16:15',
+                tempo: '3:00 horas',
+                envolvidos: [
+                    {
+                        id: 1,
+                        nome: 'Zé Lucas',
+                        foto: UserData[0].url
+                    }
+                ]
+                
+            },
+            // DIGITALIZAÇÃO
+            {
+                id: FaseData[2].id,
+                nome: FaseData[2].titulo,
+                icone: FaseData[2].icone,
+                inicio: '03/06/23',
+                hora_inicio: '13:20',
+                conclusao: '03/06/23',
+                hora_conclusao: '16:15',
+                tempo: '2:55 horas',
+                envolvidos: [
+                    {
+                        id: 1,
+                        nome: 'Zé Lucas',
+                        foto: UserData[1].url
+                    }
+                ]
+            },
+            // UPLOAD
+            {
+                id: FaseData[3].id,
+                nome: FaseData[3].titulo,
+                icone: FaseData[3].icone,
+                inicio: '03/06/23',
+                hora_inicio: '13:20',
+                conclusao: '03/06/23',
+                hora_conclusao: '16:15',
+                tempo: '2:55 horas',
+                envolvidos: [
+                    {
+                        id: 1,
+                        nome: 'Zé Lucas',
+                        foto: UserData[3].url
+                    }
+                ]
+            },
+            //ARQUIVAMENTO
+            {
+                id: FaseData[4].id,
+                nome: FaseData[4].titulo,
+                icone: FaseData[4].icone,
+                inicio: null,
+                hora_inicio: null,
+                conclusao: '04/06/23',
+                hora_conclusao: '13:35',
+                tempo: null,
+                envolvidos: [
+                    {
+                        id: UserData[4].id,
+                        nome: UserData[4].name,
+                        foto: UserData[4].url
+                    },
+                ]
+            },
         ]
     },
 ]

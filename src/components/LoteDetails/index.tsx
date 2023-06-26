@@ -9,6 +9,7 @@ import { ConfigModal } from '../ConfigModal';
 import { DeletarLoteModal } from '../DeletarLoteModal';
 import { VoltarModal } from '../VoltarModal';
 import { LoteData } from '../../data/LoteData';
+import { v4 as uuidv4 } from 'uuid';
 //import { EditModal } from '../EditModal';
 
 export const LoteDetails = () => {
@@ -117,7 +118,7 @@ export const LoteDetails = () => {
           </S.DetalhesLote>
 
           {/* MOSTRA CATEGORIAS QUANDO O LOTE É PRIORIDADE */}
-          {task.categorias != null && prioridadeState == true &&
+          {task.categorias !== null && prioridadeState == true &&
             <S.CategoriaPrioridade>
 
               {/* PRIORIDADE */}
@@ -137,7 +138,7 @@ export const LoteDetails = () => {
           </S.CategoriaPrioridade>}
 
           {/* MOSTRA CATEGORIAS QUANDO O LOTE NÃO É PRIORIDADE */}
-          {task.categorias != null && prioridadeState == false &&
+          {task.categorias !== null && prioridadeState == false &&
             <S.CategoriaPrioridade>
               {/* CATEGORIAS */}
               {
@@ -152,7 +153,7 @@ export const LoteDetails = () => {
           }
           
           {/* TIPOLOGIAS */}
-          {task.tipologias != null &&
+          {task.tipologias !== null &&
             <S.Tipologias>
               {task.tipologias.map((tipol: any) => (
                 <S.Tipologia key={tipol.id} >
@@ -167,6 +168,7 @@ export const LoteDetails = () => {
             <S.Icons src={`/icon-page/${task.fase_atual}_icon.png`} />
             {task.envolvidos != null &&
               task.envolvidos.map((env: any) => (
+                // ENVOLVIDOS 
                 <S.Envolvidos key={env.id}>
                   {env.andamento == true &&
                     <img 
@@ -180,7 +182,6 @@ export const LoteDetails = () => {
                         border: '1px solid #43DB6D',
                       }}
                     />}
-
                   {env.andamento == false &&
                     <img 
                       src={env.foto}
@@ -306,169 +307,80 @@ export const LoteDetails = () => {
         </S.PendObsBotoes>
 
         {/* DETALHAMENTO POR FASE */}
-        {/* <S.DetalFase>
-          <h2>Detalhamento por fase</h2>
 
-          <S.Fase>
+        {task.detalhamento_por_fase != null && 
+        
+        <S.DetalFase>
+            <h2>Detalhamento por fase</h2>
 
-            {task.fases &&
-              task.fases.map((fase: any) => (
-                <React.Fragment key={fase.id}>
-                  {fase.preparo &&
-                    fase.preparo.map((prep: any) => (
-                      <React.Fragment key={prep.id}>
-                        <S.FaseIconDiv>
-                          <img src={prep.icone} alt="ícone de preparo" height={22} width={22} />
-                          <h2>{prep.title}</h2>
-                        </S.FaseIconDiv>
+            {task.detalhamento_por_fase.map((fase: any) => (
 
-                        <S.TimeBeginDiv>
-                          <img src={prep.time_begin} alt="seta para direita" />
-                          {prep.start}
-                          <S.Text style={{ color: '#FCDE42' }}>{prep.start_hour}</S.Text>
-                        </S.TimeBeginDiv>
+                <S.Fase key={fase.id}>
 
-                        <S.TimeFinishDiv>
-                          <img src={prep.time_finish} alt="icone de check" />
-                          {prep.end}
-                          <S.Text style={{ color: '#00D25B' }}>{prep.end_hour}</S.Text>
-                        </S.TimeFinishDiv>
+                  <S.FaseIconDiv>
+                    <img src={fase.icone} alt="ícone da fase" />
+                    <h2>{fase.nome}</h2>
+                  </S.FaseIconDiv>
 
-                        <S.Time>
-                          <img src={prep.time_icon} alt="icone de relógio" />
-                          {prep.time}
-                        </S.Time>
+                  {fase.inicio !== null &&
+                    <S.TimeBeginDiv>
+                      <img src={'/detal-fase-icons/inicio-icon.png'} alt="seta para direita" />
+                      {fase.inicio}
+                      <S.Text style={{ color: '#FCDE42' }}>{fase.hora_inicio}</S.Text>
+                    </S.TimeBeginDiv>
+                  }
 
-                        <S.EnvolvidosDiv>
-                          {prep.envolvidos &&
-                            prep.envolvidos.map((user: any) => (
-                              <React.Fragment key={user.envolvidoId}>
-                                <img
-                                  src={user.foto}
-                                  alt="usuario envolvido na fase"
-                                  style={{
-                                    height: '32px',
-                                    width: '32px',
-                                    borderRadius: '50px',
-                                  }}
-                                />
-                              </React.Fragment>
-                            ))}
-                        </S.EnvolvidosDiv>
-                      </React.Fragment>
-                    ))}
-                </React.Fragment>
-              ))}
-          </S.Fase>
+                  {fase.conclusao !== null &&
+                    <S.TimeFinishDiv>
+                      <img src={'/detal-fase-icons/conclusao-icon.png'} alt="icone de check" />
+                      {fase.conclusao}
+                      <S.Text style={{ color: '#00D25B' }}>{fase.hora_conclusao}</S.Text>
+                    </S.TimeFinishDiv>
+                  }
 
-          <S.Fase>
+                  {fase.tempo !== null &&
+                    <S.Time>
+                      <img src={'/detal-fase-icons/clock-icon.png'} alt="icone de relógio" />
+                      {fase.tempo}
+                    </S.Time>
+                  }
 
-            {task.fases &&
-              task.fases.map((fase: any) => (
-                <React.Fragment key={fase.id}>
-                  {fase.catalogacao &&
-                    fase.catalogacao.map((catalog: any) => (
-                      <React.Fragment key={catalog.id}>
-                        <S.FaseIconDiv>
-                          <img src={catalog.icone} alt="ícone de catalogação" height={22} width={22} />
-                          <h2>{catalog.title}</h2>
-                        </S.FaseIconDiv>
 
-                        <S.TimeBeginDiv>
-                          <img src={catalog.time_begin} alt="seta para direita" />
-                          {catalog.start}
-                          <S.Text style={{ color: '#FCDE42' }}>{catalog.start_hour}</S.Text>
-                        </S.TimeBeginDiv>
+                  <S.EnvolvidosDiv>
+                    {fase.envolvidos &&
+                      fase.envolvidos.map((user: any) => (
+                        <React.Fragment key={user.id}>
+                          <img
+                            src={user.foto}
+                            alt="usuario envolvido na fase"
+                            width={24}
+                            height={24}
+                            style={{
+                              objectFit: 'cover',
+                              borderRadius: '100%',
+                              border: '1px solid #191C24',
+                            }}
+                          />
+                        </React.Fragment>
+                      ))}
+                  </S.EnvolvidosDiv>
+                </S.Fase>
+                
 
-                        <S.TimeFinishDiv>
-                          <img src={catalog.time_finish} alt="icone de check" />
-                          {catalog.end}
-                          <S.Text style={{ color: '#00D25B' }}>{catalog.end_hour}</S.Text>
-                        </S.TimeFinishDiv>
+              ))
+            }
+        </S.DetalFase>        
+        }
 
-                        <S.Time>
-                          <img src={catalog.time_icon} alt="icone de relógio" />
-                          {catalog.time}
-                        </S.Time>
 
-                        <S.EnvolvidosDiv>
-                          {catalog.envolvidos &&
-                            catalog.envolvidos.map((user: any) => (
-                              <React.Fragment key={user.envolvidoId}>
-                                <img
-                                  src={user.foto}
-                                  alt="usuario envolvido na fase"
-                                  style={{
-                                    height: '32px',
-                                    width: '32px',
-                                    borderRadius: '50px',
-                                  }}
-                                />
-                              </React.Fragment>
-                            ))}
-                        </S.EnvolvidosDiv>
-                      </React.Fragment>
-                    ))}
-                </React.Fragment>
-              ))}
-          </S.Fase>
 
-          <S.Fase>
-
-            {task.fases &&
-              task.fases.map((fase: any) => (
-                <React.Fragment key={fase.id}>
-                  {fase.digitalizacao &&
-                    fase.digitalizacao.map((digital: any) => (
-                      <React.Fragment key={digital.id}>
-                        <S.FaseIconDiv>
-                          <img src={digital.icone} alt="ícone de digitalização" height={22} width={22} />
-                          <h2>{digital.title}</h2>
-                        </S.FaseIconDiv>
-
-                        <S.TimeBeginDiv>
-                          <img src={digital.time_begin} alt="seta para direita" />
-                          {digital.start}
-                          <S.Text style={{ color: '#FCDE42' }}>{digital.start_hour}</S.Text>
-                        </S.TimeBeginDiv>
-
-                        <S.TimeFinishDiv>
-                          <img src={digital.time_finish} alt="icone de check" />
-                          {digital.end}
-                          <S.Text style={{ color: '#00D25B' }}>{digital.end_hour}</S.Text>
-                        </S.TimeFinishDiv>
-
-                        <S.Time>
-                          <img src={digital.time_icon} alt="icone de relógio" />
-                          {digital.time}
-                        </S.Time>
-
-                        <S.EnvolvidosDiv>
-                          {digital.envolvidos &&
-                            digital.envolvidos.map((user: any) => (
-                              <React.Fragment key={user.envolvidoId}>
-                                <img
-                                  src={user.foto}
-                                  alt="usuario envolvido na fase"
-                                  style={{
-                                    height: '32px',
-                                    width: '32px',
-                                    borderRadius: '50px',
-                                  }}
-                                />
-                              </React.Fragment>
-                            ))}
-                        </S.EnvolvidosDiv>
-                      </React.Fragment>
-                    ))}
-                </React.Fragment>
-              ))}
-          </S.Fase>
-        </S.DetalFase> 
-        */}
       </S.areaClick>
+
       {/*{edit_modal && <EditModal close={handleEdit}></EditModal>}*/}
       {modal && <AtribuirAlguemModal close={handleAtribuirAlguem}></AtribuirAlguemModal>}
+      {voltar && <VoltarModal close={handleVoltar}></VoltarModal>}
+      {avancar && <AvancarModal close={handleAvancar}></AvancarModal>}
+      {delete_modal && <DeletarLoteModal close={handleDelete}></DeletarLoteModal>}
       {config_modal && 
         <ConfigModal 
           valor_prioridade={prioridadeState} 
@@ -476,9 +388,6 @@ export const LoteDetails = () => {
           valor_compart={compartState} 
           handleCompart={handleCompartCheck} 
           close={handleConfig}></ConfigModal>}
-      {voltar && <VoltarModal close={handleVoltar}></VoltarModal>}
-      {avancar && <AvancarModal close={handleAvancar}></AvancarModal>}
-      {delete_modal && <DeletarLoteModal close={handleDelete}></DeletarLoteModal>}
     </>
   );
 };

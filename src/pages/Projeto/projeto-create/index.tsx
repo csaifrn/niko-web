@@ -143,6 +143,7 @@ const CreateProjeto = (props: MembrosModalProps) => {
           gridTemplateColumns: '1fr',
           gap: '2em',
           color: '#fff',
+          marginTop: '6em',
         }}
       >
         <h1 style={{}}>Criar projeto</h1>

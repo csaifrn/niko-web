@@ -25,7 +25,7 @@ const Projetos = () => {
   return (
     <>
       <Menu area="/"></Menu>
-      <div style={{ fontFamily: 'Rubik', padding: '2em' }}>
+      <div style={{ fontFamily: 'Rubik', padding: '2em', marginTop: '6em' }}>
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end' }}>
           <a
             href={`/CriarProjeto`}

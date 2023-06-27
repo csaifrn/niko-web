@@ -17,6 +17,7 @@ const Wrapper = styled.section`
 
 const Main = styled.section`
   margin: 2em 0;
+  margin-top: 8em;
   display: grid;
   grid-template-columns: auto auto;
   justify-items: center;

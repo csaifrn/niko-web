@@ -5,7 +5,7 @@ import Users from '../../data/UserData';
 
 export interface IUserFase {
   id_fase: string;
-  users: Array<typeof Users>;
+  users: Array<any>;
 }
 
 export interface UserModalAtividadeProps {

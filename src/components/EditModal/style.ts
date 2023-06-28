@@ -1,5 +1,18 @@
 import styled from 'styled-components';
 
+export const ModalBackdrop = styled.div`
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  padding: 5em 0em 5em 0em;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 9999990;
+`;
+
+
 export const ModalArea = styled.div`
   display: flex;
   flex-direction: column;
@@ -28,18 +41,30 @@ export const NameClose = styled.div`
   justify-content: space-between;
 `;
 
-export const TituloDiv = styled.div`
+export const Close = styled.div`
+  display: flex;
+  background-color: #393E4B;
+  width: auto;
+  border: none;
+`;
+
+export const ProtocoloDiv = styled.div`
   display: flex;
   flex-direction: column;
   gap: 1em;
 `;
 
-export const Titulo = styled.input`
-  padding: 1.5em 2em;
-  border-radius: 5px;
+export const Protocolo = styled.input`
+  padding: 5px;
+  border-radius: 3px;
   color: white;
   border: none;
   font-family: 'Rubik';
+  background-color: #393E4B;
+`;
+
+export const ArquivsFiscos = styled.div`
+  background-color: #393E4B;
 `;
 
 export const LocalDiv = styled.div`
@@ -92,20 +117,6 @@ export const AtribuirButton = styled.button`
   font-family: 'Rubik';
   bottom: 0;
   left: 0;
-`;
-
-export const ModalBackdrop = styled.div`
-  position: fixed;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-  z-index: 999999999999999999;
-  background-color: rgba(25, 28, 36, 0.5);
 `;
 
 export const Switch = styled.input`

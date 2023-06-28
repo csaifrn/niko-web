@@ -754,7 +754,7 @@ export const LoteData = [
         id: '12',
         titulo: 'Lote',
         numero: 12,
-        estante: '',
+        estante: null,
         protocolo: '00012',
         arquiv_fisicos: 15,
         arquiv_digitais: 0,

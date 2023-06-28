@@ -9,7 +9,6 @@ import { ConfigModal } from '../ConfigModal';
 import { DeletarLoteModal } from '../DeletarLoteModal';
 import { VoltarModal } from '../VoltarModal';
 import { LoteData } from '../../data/LoteData';
-import { v4 as uuidv4 } from 'uuid';
 //import { EditModal } from '../EditModal';
 
 export const LoteDetails = () => {
@@ -79,12 +78,12 @@ export const LoteDetails = () => {
               {/* EDITAR */}
               <S.Edit href={`/Lote/${task.id}/Edit`}>
                 {''}
-                <S.Icons src={`/pen.svg`}></S.Icons>{' '}
+                <S.Icons src={`/pen.svg`}></S.Icons>{''}
               </S.Edit>
               {/* CONFIGURAÇÕES */}
               <S.Config onClick={handleConfig}>
                 {''}
-                <S.Icons src={`/config.svg`}></S.Icons>{' '}
+                <S.Icons src={`/config.svg`}></S.Icons>{''}
               </S.Config>
             </S.EditConfig>
           </S.LoteEditConfig>
@@ -95,7 +94,7 @@ export const LoteDetails = () => {
               <p style={{ padding: '0 0.5em' }}>{task.protocolo}</p>
             </S.Protocolo>
 
-            {task.estante != '' && 
+            {task.estante !== null && 
               <S.Estante>
                 {task.estante}
               </S.Estante>

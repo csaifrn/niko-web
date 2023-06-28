@@ -3,6 +3,10 @@ import * as S from './style';
 import Search from '../Search';
 import CategoriaData from '../../data/CategoriaData';
 import mockData from '../../data/kanbanData';
+import { LoteData } from '../../data/LoteData';
+import { useNavigate, useParams } from 'react-router-dom';
+import Menu from '../Menu';
+import MenuCoord from '../MenuCoord';
 
 export const EditModal = () => {
   const [selectedCategoriaData, setCategoriaData] = useState<number[]>([]);
@@ -24,6 +28,11 @@ export const EditModal = () => {
     CategoriaData.name.toLowerCase().includes(searchTerm.toLowerCase()),
   );
 
+  let { id } = useParams();
+  const navigate = useNavigate();
+  const [lote , setLote] = useState(LoteData);
+  const task = lote.filter((task) => task.id == id)[0];
+
   // const filteredTitulo = mockData.filter(
   //   (mockData) =>
   //   mockData.title.toLowerCase().includes(searchTerm.toLowerCase())
@@ -33,54 +42,82 @@ export const EditModal = () => {
 
   return (
     <>
+      <Menu area="/"></Menu>
+      <MenuCoord />
       <S.ModalBackdrop>
         <S.ModalArea>
           <S.ModalContent id="modal-content">
             <S.NameClose>
-              <h1>Editar Lote</h1>
+              <h1>Editar Lote {task.numero}</h1>
               <button style={{ width: 'auto', backgroundColor: 'transparent', border: 'none' }}>
                 <img
                   src="/close.svg"
                   alt=""
-                  height={18}
-                  width={18}
+                  height={24}
+                  width={24}
                   style={{
                     padding: '5px 5px',
-                    backgroundColor: '#090E09',
-                    borderRadius: '5px',
+                    backgroundColor: '#393E4B',
+                    borderRadius: '3px',
                   }}
                 />
               </button>
             </S.NameClose>
 
-            {/* TITULO */}
-            <S.TituloDiv>
-              <p>Título</p>
-              <S.Titulo
-                key={mockData[3].id}
-                style={{ backgroundColor: '#2D303B' }}
+            {/* PROTOCOLO */}
+            <S.ProtocoloDiv>
+              <h2>Protocolo</h2>
+              <S.Protocolo
+                key={task.id}
                 type="text"
                 name="nome"
-                placeholder={`${mockData[3].tasks[0].title}`}
-              ></S.Titulo>
-            </S.TituloDiv>
+                placeholder={`${task.protocolo}`}
+              >
+              </S.Protocolo>
+            </S.ProtocoloDiv>
 
-            {/* LOCAL */}
-            <S.LocalDiv>
-              <p>Local</p>
-              <S.Local
-                key={mockData[3].id}
-                style={{ backgroundColor: '#2D303B' }}
-                type="text"
-                name="nome"
-                placeholder={'23-A'}
-              ></S.Local>
-            </S.LocalDiv>
+
+            {/* LOCAL */}       
+            {task.estante !== null &&
+              <S.LocalDiv>
+                <p>Local</p>
+                <S.Local
+                  key={task.id}
+                  style={{ backgroundColor: '#2D303B' }}
+                  type="text"
+                  name="nome"
+                  placeholder={task.estante}
+                ></S.Local>
+              </S.LocalDiv>            
+            }
+
+            <h2>Arquivos</h2>
+            {/* ARQUIVOS FÍSICOS */}
+
+            {task.arquiv_fisicos !== null && 
+            <div>
+              <p>Físicos</p>
+              <S.ArquivsFiscos>
+                <p>{task.arquiv_fisicos}</p>
+              </S.ArquivsFiscos>
+            </div>
+            }
+
+            {/* ARQUIVOS DIGITAIS */}
+
+            {task.arquiv_digitais !== null && 
+            <div>
+              <p>Digitais</p>
+              <S.ArquivsFiscos>
+                <p>{task.arquiv_digitais}</p>
+              </S.ArquivsFiscos>
+            </div>
+            }
 
             {/* CATEGORIAS */}
 
             <S.Categorias>
-              <p style={{ marginBottom: '1em' }}>Categorias</p>
+              <h2 style={{ marginBottom: '1em' }}>Categorias</h2>
               <Search searchTerm={searchTerm} handleSearchChange={handleSearchChange} />
               <S.ChooseUser>
                 {filteredCategorias.map((categ: any) => (

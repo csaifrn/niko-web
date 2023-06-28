@@ -296,7 +296,7 @@ export const VoltarAvancar = styled.div`
   gap: 10px;
   padding: 0em 15px;
   height: 44px;
-  width: calc(40%);
+  width: calc(50%);
   border-radius: 5px 0px 0px 5px;
   p {
     color: 'white';
@@ -344,18 +344,6 @@ export const DetalFase = styled.div`
   gap: 16px;
 `;
 
-export const FaseIconDiv = styled.div`
-  height: 2em;
-  margin-top: 1em;
-  display: flex;
-  align-items: center;
-  gap: 1em;
-  h2 {
-    color: 'white';
-    margin-bottom: '0';
-  }
-`;
-
 export const Fase = styled.div`
   display: flex;
   flex-direction: column;
@@ -370,11 +358,23 @@ export const Fase = styled.div`
   flex-grow: 0;
 `;
 
+export const FaseIconDiv = styled.div`
+  height: 2em;
+  margin-top: 1em;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  h2 {
+    color: 'white';
+    margin-bottom: '0';
+  }
+`;
+
 export const TimeBeginDiv = styled.div`
   margin-top: 0.5em;
   display: flex;
   align-items: center;
-  gap: 1em;
+  gap: 8px;
   font-style: normal;
   line-height: 14px;
   font-weight: 400;

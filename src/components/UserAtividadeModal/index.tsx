@@ -37,16 +37,15 @@ export const UserModalAtividade = (props: UserModalAtividadeProps) => {
   const [error, setError] = useState(false);
 
   const handleLoteClick = (item: any) => {
-    const updatedUserFase = [...UserFase]; // Cria uma cópia do estado UserFase
+    const updatedUserFase = [...UserFase];
 
     if (updatedUserFase[faseSelected].users.some((user) => user.id === item.id)) {
-      // Verifica se o usuário já está presente no array
       updatedUserFase[faseSelected].users = updatedUserFase[faseSelected].users.filter((user) => user.id !== item.id);
     } else {
       updatedUserFase[faseSelected].users.push(item);
     }
 
-    setUserFase(updatedUserFase); // Atualiza o estado UserFase com o novo array atualizado
+    setUserFase(updatedUserFase);
   };
 
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -71,7 +70,6 @@ export const UserModalAtividade = (props: UserModalAtividadeProps) => {
       setTimeout(() => {
         setError(false);
       }, 3000);
-      console.error('Todas as fases precisam de um Operador');
       return; // Aborta a função handleSave
     }
 

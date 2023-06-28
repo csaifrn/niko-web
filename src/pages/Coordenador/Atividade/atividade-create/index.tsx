@@ -9,22 +9,42 @@ import CategoriaData from '../../../../data/CategoriaData';
 import TipologiaData from '../../../../data/TipologiaData';
 import { IUserFase, UserModalAtividade } from '../../../../components/UserAtividadeModal';
 import Users from '../../../../data/UserData';
+import { AtribuirModalAtividade, ILoteUser } from '../../../../components/AtribuirModalAtividade';
 
 const AtividadeCreate = () => {
   const { id } = useParams();
+
   const [data, setData] = useState(new Date());
+
   const [tarefas, setTarefas] = useState<typeof FaseData>([]);
   const [tarefasData, setTarefasData] = useState<any>([[], []]);
+
   const [categorias, setCategorias] = useState<typeof CategoriaData>([]);
   const [tipologias, setTipologias] = useState<typeof TipologiaData>([]);
+
   const [UserFase, setUserFase] = useState<IUserFase[]>([]);
+
+  const [name, setName] = useState('');
+  const [nameFase, setFaseName] = useState('');
+  const [idUser, setIdUser] = useState('');
+  const [idFase, setIdFase] = useState('');
+
+  const [LoteUser, setLoteUser] = useState<ILoteUser[]>([]);
 
   const [modalTarefas, setModalTarefas] = useState(false);
   const [modalCatTipo, SetModalCatTipo] = useState(false);
   const [modalUsers, SetModalUsers] = useState(false);
+  const [modalAtribuirLote, SetModalAtribuirLote] = useState(false);
 
   const handleData = (e: any) => {
     setData(e.target.value);
+  };
+
+  const handleLoteUser = (e: ILoteUser) => {
+    if (LoteUser.filter((lote) => lote.id_user === e.id_user && lote.id_fase === e.id_fase).length > 0) {
+      setLoteUser(LoteUser.filter((lote) => lote.id_user !== e.id_user && lote.id_fase !== e.id_fase));
+    }
+    setLoteUser((prev) => [...prev, e]);
   };
 
   const handleTarefa = (e: any) => {
@@ -386,7 +406,25 @@ const AtividadeCreate = () => {
             {UserFase.map((f) => {
               return (
                 <>
-                  {f.users.map((user: typeof Users) => {
+                  <div
+                    style={{
+                      display: 'flex',
+                      color: 'white',
+                      fontFamily: 'Rubik',
+                      gap: 16,
+                      alignItems: 'center',
+                    }}
+                  >
+                    <img
+                      height={24}
+                      width={24}
+                      src={`/icon-page/${tarefas.filter((tarefa) => tarefa.id === f.id_fase)[0].url}.png`}
+                      alt="Icone de Etapa"
+                    />
+                    <h3>{tarefas.filter((tarefa) => tarefa.id === f.id_fase)[0].titulo}</h3>
+                  </div>
+
+                  {f.users.map((user: any) => {
                     return (
                       <>
                         <div
@@ -447,6 +485,13 @@ const AtividadeCreate = () => {
                                 }}
                               >
                                 <div
+                                  onClick={() => {
+                                    setFaseName(tarefas.filter((tarefa) => tarefa.id === f.id_fase)[0].url);
+                                    setName(user.name);
+                                    setIdUser(user.id);
+                                    setIdFase(f.id_fase);
+                                    SetModalAtribuirLote(true);
+                                  }}
                                   style={{
                                     color: '#191C24',
                                     fontSize: 12,
@@ -460,34 +505,44 @@ const AtividadeCreate = () => {
                               </button>
                             </div>
                           </div>
-                          <div style={{ gap: 8, display: 'inline-flex' }}>
-                            <div
-                              style={{
-                                height: 30,
-                                paddingLeft: 9,
-                                paddingRight: 9,
-                                paddingTop: 8,
-                                paddingBottom: 8,
-                                background: '#191C24',
-                                borderRadius: 5,
-                                justifyContent: 'center',
-                                alignItems: 'center',
-                                gap: 10,
-                                display: 'flex',
-                              }}
-                            >
-                              <div
-                                style={{
-                                  color: 'white',
-                                  fontSize: 12,
-                                  fontFamily: 'Rubik',
-                                  fontWeight: '500',
-                                  wordWrap: 'break-word',
-                                }}
-                              >
-                                Lote 206
-                              </div>
-                            </div>
+                          <div style={{ gap: 8, display: 'flex', flexWrap: 'wrap' }}>
+                            {LoteUser.filter((lote) => lote.id_user === user.id).length > 0 &&
+                              LoteUser.filter((lote) => lote.id_fase === f.id_fase).length > 0 &&
+                              LoteUser.filter((lote) => lote.id_user === user.id)
+                                .filter((lote) => lote.id_fase === f.id_fase)
+                                .map((lote) => {
+                                  return lote.lotes.map((loteUser: any) => {
+                                    console.log(loteUser);
+                                    return (
+                                      <div
+                                        style={{
+                                          height: 30,
+                                          paddingLeft: 9,
+                                          paddingRight: 9,
+                                          paddingTop: 8,
+                                          paddingBottom: 8,
+                                          background: '#191C24',
+                                          borderRadius: 5,
+                                          justifyContent: 'center',
+                                          alignItems: 'center',
+                                          gap: 10,
+                                          display: 'flex',
+                                        }}
+                                      >
+                                        <div
+                                          style={{
+                                            color: 'white',
+                                            fontSize: 12,
+                                            fontFamily: 'Rubik',
+                                            fontWeight: '500',
+                                          }}
+                                        >
+                                          {`Lote ${loteUser.numero}`}
+                                        </div>
+                                      </div>
+                                    );
+                                  });
+                                })}
                           </div>
                         </div>
                       </>
@@ -557,6 +612,24 @@ const AtividadeCreate = () => {
           }}
           userFase={UserFase}
           fase={tarefas}
+        />
+      )}
+      {modalAtribuirLote && (
+        <AtribuirModalAtividade
+          close={() => {
+            SetModalAtribuirLote(!modalAtribuirLote);
+          }}
+          nameUser={name}
+          nameFase={nameFase}
+          id_user={idUser}
+          id_fase={idFase}
+          setLoteUser={handleLoteUser}
+          loteUser={
+            LoteUser.filter((loteUser) => loteUser.id_user === idUser).filter((lote) => lote.id_fase === idFase)
+              .length > 0
+              ? LoteUser.filter((loteUser) => loteUser.id_user === idUser)[0]
+              : LoteUser.filter((loteUser) => loteUser.id_user === idUser)[0]
+          }
         />
       )}
     </>

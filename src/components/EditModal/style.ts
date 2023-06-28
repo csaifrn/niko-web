@@ -1,39 +1,18 @@
 import styled from 'styled-components';
 
-export const ModalBackdrop = styled.div`
-  position: fixed;
-  display: flex;
-  flex-direction: column;
-  padding: 5em 0em 5em 0em;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-  z-index: 9999990;
-`;
-
-
-export const ModalArea = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 2em;
-  gap: 1em;
-  font-family: 'Rubik';
-  color: white;
-  position: fixed;
-  max-width: 400px;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  border-radius: 5px;
-  overflow-y: scroll;
-  scroll-behavior: auto;
-  scrollbar-width: thin;
-`;
-
 export const ModalContent = styled.div`
-  display: flex;
-  gap: 2em;
+  z-index: 9999990;
+  padding: 2em;
+  color:white;
+  transition: transform 0.9s ease-in-out;
+  display:flex;
   flex-direction: column;
+  gap: 16px;
+  margin: 0em 0em 8em 0em;
+  font-family: 'Rubik', Helvetica, sans-serif;
+  h2{
+    font-weight: normal;
+  }
 `;
 
 export const NameClose = styled.div`
@@ -49,22 +28,48 @@ export const Close = styled.div`
 `;
 
 export const ProtocoloDiv = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 1em;
+  display:flex;
+  flex-direction:column;
+  gap: 16px;
+  justify-content:flex-start;
+  align-items:flex-start;
 `;
 
-export const Protocolo = styled.input`
+export const Protocolo = styled.div`
+  display:flex;
+  justify-content:flex-start;
+  align-items:flex-start;
   padding: 5px;
   border-radius: 3px;
   color: white;
-  border: none;
   font-family: 'Rubik';
   background-color: #393E4B;
 `;
 
-export const ArquivsFiscos = styled.div`
+export const Arquivos = styled.div`
+  display:flex;
+  flex-direction:column;
+  gap:16px;
+`;
+
+export const ArquivosFisicos = styled.div`
+  display:flex;
+  flex-direction:column;
+  gap: 8px;
+`;
+
+export const ArquivosDigitais = styled.div`
+  display:flex;
+  flex-direction:column;
+  gap: 8px;
+`;
+
+export const ArquivosInput = styled.input`
   background-color: #393E4B;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  font-family: 'Rubik', Helvetica, sans-serif;
 `;
 
 export const LocalDiv = styled.div`

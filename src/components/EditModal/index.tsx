@@ -38,18 +38,14 @@ export const EditModal = () => {
   //   mockData.title.toLowerCase().includes(searchTerm.toLowerCase())
   // );
 
-  console.log('DADO', mockData);
-
   return (
     <>
       <Menu area="/"></Menu>
-      <MenuCoord />
-      <S.ModalBackdrop>
-        <S.ModalArea>
+      <MenuCoord/>
           <S.ModalContent id="modal-content">
             <S.NameClose>
-              <h1>Editar Lote {task.numero}</h1>
-              <button style={{ width: 'auto', backgroundColor: 'transparent', border: 'none' }}>
+              <h1>Editar Lote {task.numero}</h1> 
+              <button onClick={() => navigate(-1)} style={{ width: 'auto', backgroundColor: 'transparent', border: 'none' }}>
                 <img
                   src="/close.svg"
                   alt=""
@@ -67,13 +63,7 @@ export const EditModal = () => {
             {/* PROTOCOLO */}
             <S.ProtocoloDiv>
               <h2>Protocolo</h2>
-              <S.Protocolo
-                key={task.id}
-                type="text"
-                name="nome"
-                placeholder={`${task.protocolo}`}
-              >
-              </S.Protocolo>
+              <S.Protocolo>{task.protocolo}</S.Protocolo>
             </S.ProtocoloDiv>
 
 
@@ -91,29 +81,38 @@ export const EditModal = () => {
               </S.LocalDiv>            
             }
 
-            <h2>Arquivos</h2>
-            {/* ARQUIVOS FÍSICOS */}
+            <S.Arquivos>
+              <h2>Arquivos</h2>
 
-            {task.arquiv_fisicos !== null && 
-            <div>
-              <p>Físicos</p>
-              <S.ArquivsFiscos>
-                <p>{task.arquiv_fisicos}</p>
-              </S.ArquivsFiscos>
-            </div>
-            }
+              {/* ARQUIVOS FÍSICOS */}
+              {task.arquiv_fisicos !== null &&
+                <S.ArquivosFisicos>
+                  <p>Físicos</p> 
+                  <S.ArquivosInput      
+                    style={{ backgroundColor: '#393E4B' }}
+                    type="text"
+                    name="nome"
+                    placeholder={`${task.arquiv_fisicos}`}
+                  >
+                  </S.ArquivosInput>
+                </S.ArquivosFisicos>
+              }
 
-            {/* ARQUIVOS DIGITAIS */}
-
-            {task.arquiv_digitais !== null && 
-            <div>
-              <p>Digitais</p>
-              <S.ArquivsFiscos>
-                <p>{task.arquiv_digitais}</p>
-              </S.ArquivsFiscos>
-            </div>
-            }
-
+              {/* ARQUIVOS DIGITAIS */}
+              {task.arquiv_digitais !== null && 
+                <S.ArquivosDigitais>
+                  <p>Digitais</p>
+                  <S.ArquivosInput      
+                    style={{ backgroundColor: '#393E4B' }}
+                    type="text"
+                    name="nome"
+                    placeholder={`${task.arquiv_digitais}`}
+                  >
+                  </S.ArquivosInput>
+                </S.ArquivosDigitais>
+              }
+            </S.Arquivos>
+            
             {/* CATEGORIAS */}
 
             <S.Categorias>
@@ -141,8 +140,6 @@ export const EditModal = () => {
             </S.Categorias>
             <S.AtribuirButton>Salvar</S.AtribuirButton>
           </S.ModalContent>
-        </S.ModalArea>
-      </S.ModalBackdrop>
     </>
   );
 };

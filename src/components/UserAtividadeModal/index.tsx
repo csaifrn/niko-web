@@ -72,7 +72,6 @@ export const UserModalAtividade = (props: UserModalAtividadeProps) => {
       }, 3000);
       return; // Aborta a função handleSave
     }
-
     props.setUserFase(UserFase);
     props.close();
   };

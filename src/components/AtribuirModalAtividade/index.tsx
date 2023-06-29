@@ -13,6 +13,7 @@ interface AtribuirModalAtividadeProps {
   close: () => void;
   setLoteUser: (e: ILoteUser) => void;
   loteUser: ILoteUser | null;
+  loteUsers: ILoteUser[];
 }
 
 export interface ILoteUser {
@@ -83,28 +84,43 @@ export const AtribuirModalAtividade = (props: AtribuirModalAtividadeProps) => {
             <img height={24} width={24} src={`/icon-page/${props.nameFase}.png`} alt="Icone de Etapa" />
             <Search searchTerm={searchTerm} handleSearchChange={handleSearchChange} />
             <S.ChooseLote>
-              {filteredLotes.map((lote: any) => (
-                <S.Lote
-                  key={lote.id}
-                  onClick={() => handleLoteClick(lote)}
-                  style={{
-                    backgroundColor: selectedLotes.includes(lote) ? '#090E09' : '#2D303B',
-                  }}
-                >
-                  <p
+              {filteredLotes.map((lote: any) => {
+                const isLoteAssigned = props.loteUsers.some((userLote) =>
+                  userLote.lotes.some(
+                    (userLoteLote: any) => userLoteLote.id === lote.id && userLote.id_user !== props.id_user,
+                  ),
+                );
+
+                return (
+                  <S.Lote
+                    key={lote.id}
+                    onClick={() => handleLoteClick(lote)}
                     style={{
-                      color: selectedLotes.includes(lote) ? '#fff' : '#838383',
+                      backgroundColor: selectedLotes.includes(lote) ? '#090E09' : '#2D303B',
+                      display: 'flex',
+                      flexDirection: 'column',
+                      gap: '0.5em',
                     }}
                   >
-                    {lote.numero}
-                  </p>
-                </S.Lote>
-              ))}
+                    <p
+                      style={{
+                        color: selectedLotes.includes(lote) ? '#fff' : '#838383',
+                      }}
+                    >
+                      {lote.numero}
+                    </p>
+                    {isLoteAssigned && (
+                      <span style={{ color: '#FCDE42' }}>Este lote foi atribuído a outro operador</span>
+                    )}
+                  </S.Lote>
+                );
+              })}
             </S.ChooseLote>
+
             <S.AtribuirButton
               onClick={() => {
                 handleSave();
-                props.close;
+                props.close();
               }}
             >
               Atribuir para {props.nameUser}

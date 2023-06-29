@@ -13,6 +13,7 @@ const InputSearch = styled.input`
   color: #fff;
   border: none;
   width: 100%;
+  font-family: 'Rubik', Helvetica, sans-serif;
 `;
 
 const ImgSearch = styled.img`

@@ -52,6 +52,11 @@ export const Arquivos = styled.div`
   gap:16px;
 `;
 
+export const ArquivosDiv = styled.div`
+  display:flex;
+  gap:16px;
+`;
+
 export const ArquivosFisicos = styled.div`
   display:flex;
   flex-direction:column;
@@ -65,11 +70,16 @@ export const ArquivosDigitais = styled.div`
 `;
 
 export const ArquivosInput = styled.input`
+  display:flex;
+  justify-content:flex-start;
+  align-items:flex-start;
+  padding: 15px;
+  width: 56px;
   background-color: #393E4B;
-  border: none;
-  border-radius: 5px;
   color: white;
   font-family: 'Rubik', Helvetica, sans-serif;
+  border: none;
+  border-radius: 5px;
 `;
 
 export const LocalDiv = styled.div`
@@ -97,7 +107,16 @@ export const Categoria = styled.div`
   cursor: pointer;
 `;
 
-export const ChooseUser = styled.div`
+export const Tipologia = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 1em;
+  padding: 1.5em 2em;
+  border-radius: 5px;
+  cursor: pointer;
+`;
+
+export const ChooseCatTipol = styled.div`
   width: 100%;
   height: 20vh;
   border-radius: 5px;
@@ -113,7 +132,7 @@ export const ChooseUser = styled.div`
   scrollbar-width: thin;
 `;
 
-export const AtribuirButton = styled.button`
+export const SalvarEditButton = styled.button`
   height: 44px;
   border-radius: 5px;
   background-color: #43db6d;

@@ -61,7 +61,7 @@ export const LoteDetails = () => {
   return (
     <>
       <Menu area="/"></Menu>
-      <MenuCoord />
+      <MenuCoord/>
       <S.areaClick>
         {/* BOTÃO DE FECHAR */}
         <S.CloseDiv>

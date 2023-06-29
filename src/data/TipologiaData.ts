@@ -1,10 +1,10 @@
 export const TipologiaData = [
     {
       id: 1,
-      nome: 'Crédito',
+      name: 'Crédito',
     },
     {
       id: 2,
-      nome: 'Solicitação',
+      name: 'Solicitação',
     }
 ];

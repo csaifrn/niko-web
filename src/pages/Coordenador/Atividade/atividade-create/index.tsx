@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import Menu from '../../../../components/Menu';
 import MenuCoord from '../../../../components/MenuCoord';
 import { useEffect, useState } from 'react';
@@ -13,6 +13,7 @@ import Users from '../../../../data/UserData';
 
 const AtividadeCreate = () => {
   const { id } = useParams();
+  const navigate = useNavigate();
 
   const [data, setData] = useState(new Date());
 
@@ -47,7 +48,10 @@ const AtividadeCreate = () => {
           UserFase.filter((loteUser) => loteUser.id_fase === element.id).map((users) =>
             users.users.map((user) => ({
               user: user,
-              Lote: LoteUser.filter((lotes) => lotes.id_user === user.id),
+              Lotes: LoteUser.filter((lotes) => lotes.id_user === user.id).map((lote) => ({
+                check: false,
+                lote: lote,
+              })),
             })),
           ),
         ],
@@ -90,6 +94,7 @@ const AtividadeCreate = () => {
     };
 
     console.log(final);
+    navigate(`/Atividades/`);
   };
 
   return (

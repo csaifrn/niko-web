@@ -5,6 +5,7 @@ import MenuCoord from '../../../../components/MenuCoord';
 import { useParams } from 'react-router-dom';
 import AtividadeData from '../../../../data/AtividadeData';
 import moment from 'moment';
+import { Check } from '@phosphor-icons/react';
 
 const Atividade = () => {
   function compare(a: any, b: any) {
@@ -63,14 +64,26 @@ const Atividade = () => {
       <Menu area={`/Categoria/${id}`} id_projeto={id}></Menu>
       <MenuCoord />
       <S.CardsArea>
-        <div style={{ position: 'fixed', width: 'calc(100% - 6em)', top: '56px', padding: '2em 0em' , margin: '2em 0em', display: 'flex', alignItems: 'center', justifyContent: 'space-between', backgroundColor: '#0a090e', }}>
+        <div
+          style={{
+            position: 'fixed',
+            width: 'calc(100% - 6em)',
+            top: '56px',
+            padding: '2em 0em',
+            margin: '2em 0em',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            backgroundColor: '#0a090e',
+          }}
+        >
           <h1 style={{ color: 'white', fontFamily: 'Rubik' }}>Atividades</h1>
           <a
             href={`/Atividades/${id}/CriarAtividade`}
             style={{
               border: 'none',
               color: '#191C24',
-              
+
               borderRadius: '5px',
               fontFamily: 'Rubik',
             }}
@@ -156,10 +169,10 @@ const Atividade = () => {
                                       alt=""
                                     />
 
-                                    {user.Lote?.map((lote) => {
+                                    {user.Lotes?.map((lote) => {
                                       return (
                                         <div
-                                          key={lote.id}
+                                          key={lote.lote.id}
                                           style={{
                                             background: '#191C24',
                                             padding: '5px 6px',
@@ -167,9 +180,11 @@ const Atividade = () => {
                                             alignItems: 'center',
                                             flexWrap: 'wrap',
                                             borderRadius: '3px',
+                                            gap: '0.5em',
                                           }}
                                         >
-                                          {`Lote ${lote.numero}`}
+                                          <p>{`Lote ${lote.lote.numero}`}</p>
+                                          {lote.check && <Check size={12} color="#43DB6D" />}
                                         </div>
                                       );
                                     })}

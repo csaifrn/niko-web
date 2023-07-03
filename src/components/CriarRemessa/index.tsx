@@ -13,7 +13,7 @@ interface clientes {
 }
 
 interface user {
-  id: number;
+  id: string;
   name: string;
   url: string;
   email: string;

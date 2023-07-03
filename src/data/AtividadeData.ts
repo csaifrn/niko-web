@@ -11,6 +11,7 @@ const AtividadeData = [
     id_projeto: Projeto[0].id,
     atividades: [
       {
+        id: 'f4b30538-ccfa-47e4-aac5-17f7ae3507df',
         faseData: [
           {
             faseData: FaseData[2],
@@ -47,6 +48,7 @@ const AtividadeData = [
         ],
       },
       {
+        id: 'cb678c9c-c1ca-4f05-a066-b70fdbb9251d',
         faseData: [
           {
             faseData: FaseData[0],
@@ -95,6 +97,7 @@ const AtividadeData = [
     id_projeto: Projeto[0].id,
     atividades: [
       {
+        id: 'cca884f9-c26a-4d2b-8a6b-ded228c2004e',
         faseData: [
           {
             faseData: FaseData[2],
@@ -131,6 +134,7 @@ const AtividadeData = [
         ],
       },
       {
+        id: 'c3a7cffa-488a-49ea-ae8c-e3bd41f36f22',
         faseData: [
           {
             faseData: FaseData[0],
@@ -179,6 +183,7 @@ const AtividadeData = [
     id_projeto: Projeto[0].id,
     atividades: [
       {
+        id: '45a46284-3676-4621-913a-0fce3769a49e',
         faseData: [
           {
             faseData: FaseData[2],
@@ -215,6 +220,7 @@ const AtividadeData = [
         ],
       },
       {
+        id: '6ea836ce-185c-4c5b-83fa-d560a78c9c08',
         faseData: [
           {
             faseData: FaseData[0],

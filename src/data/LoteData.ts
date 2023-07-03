@@ -573,30 +573,16 @@ export const LoteData = [
         observacoes: [
         ],
         categorias: [
-            {
-                //FINANCEIRO
-                id: CategoriaData[0].id,
-                titulo: CategoriaData[0].name,
-                prioridade: CategoriaData[0].prioridade
-            },
-            {
-                //ADMINISTRATIVO
-                id: CategoriaData[1].id,
-                titulo: CategoriaData[1].name,
-                prioridade: CategoriaData[0].prioridade
-            }
+            //FINANCEIRO
+            CategoriaData[0],
+            //ADMINISTRATIVO
+            CategoriaData[1],
         ],
         tipologias: [
             //CRÉDITO
-            {
-                id: TipologiaData[0].id,
-                titulo: TipologiaData[0].nome
-            },
+            TipologiaData[0],
             //SOLICITAÇÃO
-            {
-                id: TipologiaData[1].id,
-                titulo: TipologiaData[1].nome
-            }
+            TipologiaData[1]
         ],
         envolvidos: [
         ],
@@ -659,7 +645,7 @@ export const LoteData = [
         numero: 11,
         estante: null,
         protocolo: '00011',
-        arquiv_fisicos: 24,
+        arquiv_fisicos: 23,
         arquiv_digitais: 0,
         id_etapa: [EtapaData[6].id, EtapaData[7].id],
         fase_atual: 'Digitalização',
@@ -670,30 +656,16 @@ export const LoteData = [
         observacoes: [
         ],
         categorias: [
-            {
-                //FINANCEIRO
-                id: CategoriaData[0].id,
-                titulo: CategoriaData[0].name,
-                prioridade: CategoriaData[0].prioridade
-            },
-            {
-                //ADMINISTRATIVO
-                id: CategoriaData[1].id,
-                titulo: CategoriaData[1].name,
-                prioridade: CategoriaData[0].prioridade
-            }
+            //FINANCEIRO
+            CategoriaData[0],
+            //ADMINISTRATIVO
+            CategoriaData[1],
         ],
         tipologias: [
             //CRÉDITO
-            {
-                id: TipologiaData[0].id,
-                titulo: TipologiaData[0].nome
-            },
+            TipologiaData[0],
             //SOLICITAÇÃO
-            {
-                id: TipologiaData[1].id,
-                titulo: TipologiaData[1].nome
-            }
+            TipologiaData[1]
         ],
         envolvidos: [
         ],
@@ -767,30 +739,16 @@ export const LoteData = [
         observacoes: [
         ],
         categorias: [
-            {
-                //FINANCEIRO
-                id: CategoriaData[0].id,
-                titulo: CategoriaData[0].name,
-                prioridade: CategoriaData[0].prioridade
-            },
-            {
-                //ADMINISTRATIVO
-                id: CategoriaData[1].id,
-                titulo: CategoriaData[1].name,
-                prioridade: CategoriaData[0].prioridade
-            }
+            //FINANCEIRO
+            CategoriaData[0],
+            //ADMINISTRATIVO
+            CategoriaData[1],
         ],
         tipologias: [
             //CRÉDITO
-            {
-                id: TipologiaData[0].id,
-                titulo: TipologiaData[0].nome
-            },
+            TipologiaData[0],
             //SOLICITAÇÃO
-            {
-                id: TipologiaData[1].id,
-                titulo: TipologiaData[1].nome
-            }
+            TipologiaData[1]
         ],
         envolvidos: [
             {
@@ -897,25 +855,16 @@ export const LoteData = [
         observacoes: [
         ],
         categorias: [
-            {
-                //FINANCEIRO
-                id: CategoriaData[0].id,
-                titulo: CategoriaData[0].name,
-                prioridade: CategoriaData[0].prioridade
-            },
-            {
-                //ADMINISTRATIVO
-                id: CategoriaData[1].id,
-                titulo: CategoriaData[1].name,
-                prioridade: CategoriaData[1].prioridade
-            }
+            //FINANCEIRO
+            CategoriaData[0],
+            //ADMINISTRATIVO
+            CategoriaData[1],
         ],
         tipologias: [
+            //CRÉDITO
+            TipologiaData[0],
             //SOLICITAÇÃO
-            {
-                id: TipologiaData[1].id,
-                titulo: TipologiaData[1].nome
-            }
+            TipologiaData[1]
         ],
         envolvidos: [
             {
@@ -1027,25 +976,16 @@ export const LoteData = [
         observacoes: [
         ],
         categorias: [
-            {
-                //FINANCEIRO
-                id: CategoriaData[0].id,
-                titulo: CategoriaData[0].name,
-                prioridade: CategoriaData[0].prioridade
-            },
-            {
-                //ADMINISTRATIVO
-                id: CategoriaData[1].id,
-                titulo: CategoriaData[1].name,
-                prioridade: CategoriaData[1].prioridade
-            }
+            //FINANCEIRO
+            CategoriaData[0],
+            //ADMINISTRATIVO
+            CategoriaData[1],
         ],
         tipologias: [
             //CRÉDITO
-            {
-                id: TipologiaData[0].id,
-                titulo: TipologiaData[0].nome
-            },
+            TipologiaData[0],
+            //SOLICITAÇÃO
+            TipologiaData[1]
         ],
         envolvidos: [
         ],
@@ -1142,25 +1082,16 @@ export const LoteData = [
         observacoes: [
         ],
         categorias: [
-            {
-                //FINANCEIRO
-                id: CategoriaData[0].id,
-                titulo: CategoriaData[0].name,
-                prioridade: CategoriaData[0].prioridade
-            },
-            {
-                //ADMINISTRATIVO
-                id: CategoriaData[1].id,
-                titulo: CategoriaData[1].name,
-                prioridade: CategoriaData[1].prioridade
-            }
+            //FINANCEIRO
+            CategoriaData[0],
+            //ADMINISTRATIVO
+            CategoriaData[1],
         ],
         tipologias: [
             //CRÉDITO
-            {
-                id: TipologiaData[0].id,
-                titulo: TipologiaData[0].nome
-            },
+            TipologiaData[0],
+            //SOLICITAÇÃO
+            TipologiaData[1]
         ],
         envolvidos: [
         ],
@@ -1242,30 +1173,16 @@ export const LoteData = [
         observacoes: [
         ],
         categorias: [
-            {
-                //FINANCEIRO
-                id: CategoriaData[0].id,
-                titulo: CategoriaData[0].name,
-                prioridade: CategoriaData[0].prioridade
-            },
-            {
-                //ADMINISTRATIVO
-                id: CategoriaData[1].id,
-                titulo: CategoriaData[1].name,
-                prioridade: CategoriaData[1].prioridade
-            }
+            //FINANCEIRO
+            CategoriaData[0],
+            //ADMINISTRATIVO
+            CategoriaData[1],
         ],
         tipologias: [
             //CRÉDITO
-            {
-                id: TipologiaData[0].id,
-                titulo: TipologiaData[0].nome
-            },
+            TipologiaData[0],
             //SOLICITAÇÃO
-            {
-                id: TipologiaData[1].id,
-                titulo: TipologiaData[1].nome
-            }
+            TipologiaData[1]
         ],
         envolvidos: [
             {
@@ -1380,30 +1297,16 @@ export const LoteData = [
         observacoes: [
         ],
         categorias: [
-            {
-                //FINANCEIRO
-                id: CategoriaData[0].id,
-                titulo: CategoriaData[0].name,
-                prioridade: CategoriaData[0].prioridade
-            },
-            {
-                //RH
-                id: CategoriaData[2].id,
-                titulo: CategoriaData[2].name,
-                prioridade: CategoriaData[2].prioridade
-            }
+            //FINANCEIRO
+            CategoriaData[0],
+            //ADMINISTRATIVO
+            CategoriaData[1],
         ],
         tipologias: [
             //CRÉDITO
-            {
-                id: TipologiaData[0].id,
-                titulo: TipologiaData[0].nome
-            },
+            TipologiaData[0],
             //SOLICITAÇÃO
-            {
-                id: TipologiaData[1].id,
-                titulo: TipologiaData[1].nome
-            }
+            TipologiaData[1]
         ],
         envolvidos: [
             {
@@ -1513,30 +1416,16 @@ export const LoteData = [
         observacoes: [
         ],
         categorias: [
-            {
-                //FINANCEIRO
-                id: CategoriaData[0].id,
-                titulo: CategoriaData[0].name,
-                prioridade: CategoriaData[0].prioridade
-            },
-            {
-                //RH
-                id: CategoriaData[2].id,
-                titulo: CategoriaData[2].name,
-                prioridade: CategoriaData[2].prioridade
-            }
+            //FINANCEIRO
+            CategoriaData[0],
+            //ADMINISTRATIVO
+            CategoriaData[1],
         ],
         tipologias: [
             //CRÉDITO
-            {
-                id: TipologiaData[0].id,
-                titulo: TipologiaData[0].nome
-            },
+            TipologiaData[0],
             //SOLICITAÇÃO
-            {
-                id: TipologiaData[1].id,
-                titulo: TipologiaData[1].nome
-            }
+            TipologiaData[1]
         ],
         envolvidos: [
         ],
@@ -1656,30 +1545,16 @@ export const LoteData = [
         observacoes: [
         ],
         categorias: [
-            {
-                //FINANCEIRO
-                id: CategoriaData[0].id,
-                titulo: CategoriaData[0].name,
-                prioridade: CategoriaData[0].prioridade
-            },
-            {
-                //RH
-                id: CategoriaData[2].id,
-                titulo: CategoriaData[2].name,
-                prioridade: CategoriaData[2].prioridade
-            }
+            //FINANCEIRO
+            CategoriaData[0],
+            //ADMINISTRATIVO
+            CategoriaData[1],
         ],
         tipologias: [
             //CRÉDITO
-            {
-                id: TipologiaData[0].id,
-                titulo: TipologiaData[0].nome
-            },
+            TipologiaData[0],
             //SOLICITAÇÃO
-            {
-                id: TipologiaData[1].id,
-                titulo: TipologiaData[1].nome
-            }
+            TipologiaData[1]
         ],
         envolvidos: [
         ],
@@ -1798,30 +1673,16 @@ export const LoteData = [
         observacoes: [
         ],
         categorias: [
-            {
-                //FINANCEIRO
-                id: CategoriaData[0].id,
-                titulo: CategoriaData[0].name,
-                prioridade: CategoriaData[0].prioridade
-            },
-            {
-                //RH
-                id: CategoriaData[2].id,
-                titulo: CategoriaData[2].name,
-                prioridade: CategoriaData[2].prioridade
-            }
+            //FINANCEIRO
+            CategoriaData[0],
+            //ADMINISTRATIVO
+            CategoriaData[1],
         ],
         tipologias: [
             //CRÉDITO
-            {
-                id: TipologiaData[0].id,
-                titulo: TipologiaData[0].nome
-            },
+            TipologiaData[0],
             //SOLICITAÇÃO
-            {
-                id: TipologiaData[1].id,
-                titulo: TipologiaData[1].nome
-            }
+            TipologiaData[1]
         ],
         envolvidos: [
             {

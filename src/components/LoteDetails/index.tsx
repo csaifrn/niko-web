@@ -130,7 +130,7 @@ export const LoteDetails = () => {
                 task.categorias.map((categoria: any, index: number) => (
                   <React.Fragment key={categoria.id}>
                     <S.Categoria>
-                      <p>{categoria.titulo}</p>
+                      <p>{categoria.name}</p>
                     </S.Categoria> 
                   </React.Fragment>
                 ))}
@@ -144,7 +144,7 @@ export const LoteDetails = () => {
                 task.categorias.map((categoria: any) => (
                   <React.Fragment key={categoria.id}>
                     <S.Categoria>
-                      <p>{categoria.titulo}</p>
+                      <p>{categoria.name}</p>
                     </S.Categoria> 
                   </React.Fragment>
                 ))}
@@ -156,7 +156,7 @@ export const LoteDetails = () => {
             <S.Tipologias>
               {task.tipologias.map((tipol: any) => (
                 <S.Tipologia key={tipol.id} >
-                  <p>{tipol.titulo}</p>
+                  <p>{tipol.name}</p>
                 </S.Tipologia>
               ))}
             </S.Tipologias>

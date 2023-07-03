@@ -10,7 +10,6 @@ const CategoriaData = [
     name: 'Administrativo',
     prioridade: true,
     percentage: 90,
-
   },
   {
     id: 3,

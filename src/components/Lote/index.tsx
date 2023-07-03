@@ -102,7 +102,7 @@ const Lote = (props: any) => {
                       )}
                       {index == 0 && (
                         <S.PaTextDiv style={{ borderRadius: '3px' }}>
-                          <p style={{ padding: '0 0.5em' }}>{categoria.titulo}</p>
+                          <p style={{ padding: '0 0.5em' }}>{categoria.name}</p>
                         </S.PaTextDiv>
                       )}
                     </React.Fragment>

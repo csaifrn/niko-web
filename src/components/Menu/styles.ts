@@ -8,6 +8,10 @@ const MenuLeft = styled.div`
 `;
 
 const MenuArea = styled.nav`
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
   display: flex;
   padding: 2em;
   background: #191c24;
@@ -15,6 +19,7 @@ const MenuArea = styled.nav`
   justify-content: space-between;
   gap: 20px;
   height: 80px;
+  z-index: 9999;
 `;
 
 interface BurgerProps {

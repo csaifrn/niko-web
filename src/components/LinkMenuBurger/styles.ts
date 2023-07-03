@@ -9,7 +9,7 @@ const LinkMenu = styled.a<LinkMenuProps>`
   border-right: 5px solid transparent;
   border-radius: 1em 0em 0em 1em;
   font-size: 1.5rem;
-  padding: 1rem 3em 1rem 1rem;
+  padding: 1rem 3em 1rem 2rem;
   color: white;
   text-decoration: none;
   transition: color 0.3s linear;

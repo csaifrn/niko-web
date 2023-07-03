@@ -11,7 +11,7 @@ const Catalogacao = () => {
   let { id } = useParams();
   return (
     <>
-      <Menu area="/" id_projeto={id}></Menu>
+      <Menu area={`/Fase/${id}/Board/Catalogacao`} id_projeto={id}></Menu>
       <MenuCoord />
       <Style.Wrapper>
         <p>Catalogação</p>

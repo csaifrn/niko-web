@@ -19,8 +19,8 @@ const StyledMenu = styled.nav<BurgerProps>`
 
 const areaClick = styled.div<BurgerProps>`
   z-index: 9999999;
-  width: 40%;
-  height: 100%;
+  width: 40vw;
+  height: 100vh;
   padding-left: 2em;
   padding-top: 2em;
   position: absolute;
@@ -28,7 +28,6 @@ const areaClick = styled.div<BurgerProps>`
   left: 0;
   background: #191c24;
   transform: ${({ open }) => (open ? 'translateX(0)' : 'translateX(-100%)')};
-  height: calc(100% - 1.1em);
   transition: transform 0.9s ease-in-out;
   filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
   @media (max-width: 576px) {

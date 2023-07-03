@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useRef } from 'react';
-import LinkMenuBurger from '../LinkMenuBurger';
 import MenuBurger from '../MenuBurger';
 import * as S from './styles';
 import { useSignOut } from 'react-auth-kit';
@@ -13,7 +12,7 @@ interface MenuProps {
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars, no-unused-vars
 export const Menu = (props: MenuProps) => {
-  let { id } = useParams();
+  const { id } = useParams();
   const [open, setOpen] = useState(false);
   const [DropDown, setDropDown] = useState(false);
   const signOut = useSignOut();

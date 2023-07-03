@@ -4,7 +4,7 @@ import React from 'react';
 import { v4 as uuidv4 } from 'uuid';
 
 interface User {
-  id: number;
+  id: string;
   name: string;
   url: string;
   email: string;

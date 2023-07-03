@@ -3,9 +3,10 @@ import Menu from '../../../components/Menu';
 import * as S from '../../../components/MembrosModal/styles';
 import { Membros, Projeto } from '../../../data/ProjetoData';
 import { useAuthUser } from 'react-auth-kit';
+import { useNavigate } from 'react-router-dom';
 
 interface User {
-  id: number;
+  id: string;
   name: string;
   url: string;
   email: string;
@@ -42,6 +43,7 @@ const CreateProjeto = (props: MembrosModalProps) => {
   const role = ['Coordenador', 'Operador'];
 
   const emailRef = useRef<HTMLInputElement>(null);
+  const navigate = useNavigate();
 
   const [selectedUsers, setSelectedUsers] = useState<User[]>([]);
   const [selectedRole, setSelectedRole] = useState<string>('');
@@ -141,6 +143,7 @@ const CreateProjeto = (props: MembrosModalProps) => {
           gridTemplateColumns: '1fr',
           gap: '2em',
           color: '#fff',
+          marginTop: '6em',
         }}
       >
         <h1 style={{}}>Criar projeto</h1>
@@ -388,7 +391,9 @@ const CreateProjeto = (props: MembrosModalProps) => {
                   Voltar
                 </button>
                 <button
-                  onClick={() => {}}
+                  onClick={() => {
+                    navigate('/Projetos');
+                  }}
                   style={{
                     border: 'none',
                     color: '#191C24',
@@ -398,7 +403,7 @@ const CreateProjeto = (props: MembrosModalProps) => {
                     backgroundColor: '#43DB6D',
                   }}
                 >
-                  Salvar
+                  Criar Projeto
                 </button>
               </div>
             </div>

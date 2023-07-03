@@ -10,36 +10,32 @@ interface CategoriasTipologiasProps {
   setCategoria: (e: any) => void;
   // eslint-disable-next-line no-unused-vars
   setTipologia: (e: any) => void;
-  categorias: typeof CategoriaData
-  tipologias: typeof TipologiaData
+  categorias: typeof CategoriaData;
+  tipologias: typeof TipologiaData;
 }
-
-
 
 export const CategoriasTipologias = (props: CategoriasTipologiasProps) => {
   const [categorias, setCategorias] = useState<typeof CategoriaData>(props.categorias);
   const [tipologias, setTipologias] = useState<typeof TipologiaData>(props.tipologias);
   const [searchTerm, setSearchTerm] = useState<string>('');
-  const [CatTipo, setCatTipo] = useState<boolean>(false)
+  const [CatTipo, setCatTipo] = useState<boolean>(false);
 
-  const [data, setData] = useState(CategoriaData)
+  const [data, setData] = useState<any>(CategoriaData);
 
   const handleLoteClick = (item: any) => {
-    if(CatTipo === false)
-    {
+    if (CatTipo === false) {
       if (categorias.includes(item)) {
-        setCategorias(categorias.filter((catg) => catg.id !== item.id)) 
+        setCategorias(categorias.filter((catg) => catg.id !== item.id));
       } else {
-        setCategorias((prev) => [...prev, CategoriaData.filter((catg) => catg.id === item.id)[0]])
+        setCategorias((prev) => [...prev, CategoriaData.filter((catg) => catg.id === item.id)[0]]);
       }
     } else {
       if (tipologias.includes(item)) {
-        setTipologias(tipologias.filter((tipo) => tipo.id !== item.id)) 
+        setTipologias(tipologias.filter((tipo) => tipo.id !== item.id));
       } else {
-        setTipologias((prev) => [...prev, TipologiaData.filter((tipo) => tipo.id === item.id)[0]])
+        setTipologias((prev) => [...prev, TipologiaData.filter((tipo) => tipo.id === item.id)[0]]);
       }
     }
-
   };
 
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -47,23 +43,22 @@ export const CategoriasTipologias = (props: CategoriasTipologiasProps) => {
   };
 
   const filteredCategorias = data.filter(
-    (catg) => catg.name.toLowerCase().includes(searchTerm.toLowerCase()) || catg.name.includes(searchTerm),
+    (catg: any) => catg.name.toLowerCase().includes(searchTerm.toLowerCase()) || catg.name.includes(searchTerm),
   );
 
   const handleSave = () => {
-    props.setCategoria(categorias)
-    props.setTipologia(tipologias)
-    props.close()
-  }
+    props.setCategoria(categorias);
+    props.setTipologia(tipologias);
+    props.close();
+  };
 
   useEffect(() => {
-    if(!CatTipo) {
-      setData(CategoriaData)
+    if (!CatTipo) {
+      setData(CategoriaData);
     } else {
-      setData(TipologiaData)
+      setData(TipologiaData);
     }
-  }, [CatTipo])
-  
+  }, [CatTipo]);
 
   return (
     <>
@@ -72,10 +67,7 @@ export const CategoriasTipologias = (props: CategoriasTipologiasProps) => {
           <S.ModalContent id="modal-content">
             <S.NameClose>
               <h2>Atribuir Lote</h2>
-              <button               
-                onClick={props.close}
-                style={{border: 'none', backgroundColor: 'transparent'}}
-              >
+              <button onClick={props.close} style={{ border: 'none', backgroundColor: 'transparent' }}>
                 <div
                   style={{
                     paddingLeft: 8,
@@ -92,23 +84,50 @@ export const CategoriasTipologias = (props: CategoriasTipologiasProps) => {
                   }}
                 >
                   <div
-                    style={{ color: 'white', fontSize: 12, fontFamily: 'Rubik', fontWeight: '700', wordWrap: 'break-word' }}
+                    style={{
+                      color: 'white',
+                      fontSize: 12,
+                      fontFamily: 'Rubik',
+                      fontWeight: '700',
+                      wordWrap: 'break-word',
+                    }}
                   >
                     X
                   </div>
-              </div>
-            </button>
+                </div>
+              </button>
             </S.NameClose>
-            <div style={{color:'white', overflow: 'hidden', borderRadius: '5px', display: 'flex', width: '12.5em'}}>
-              <button onClick={() => setCatTipo(false)} style={{height: '44px', color: 'white', border: 'none', backgroundColor: CatTipo ? '#2D303B' : '#191C24',  padding: '8px 8px'}}>Categorias</button>
-              <button onClick={() => setCatTipo(true)} style={{height: '44px', color: 'white', border: 'none', backgroundColor: CatTipo ? '#191C24' : '#2D303B', padding: '8px 8px'}}>Tipologia</button>
+            <div style={{ color: 'white', overflow: 'hidden', borderRadius: '5px', display: 'flex', width: '12.5em' }}>
+              <button
+                onClick={() => setCatTipo(false)}
+                style={{
+                  height: '44px',
+                  color: 'white',
+                  border: 'none',
+                  backgroundColor: CatTipo ? '#2D303B' : '#191C24',
+                  padding: '8px 8px',
+                }}
+              >
+                Categorias
+              </button>
+              <button
+                onClick={() => setCatTipo(true)}
+                style={{
+                  height: '44px',
+                  color: 'white',
+                  border: 'none',
+                  backgroundColor: CatTipo ? '#191C24' : '#2D303B',
+                  padding: '8px 8px',
+                }}
+              >
+                Tipologia
+              </button>
             </div>
             <Search searchTerm={searchTerm} handleSearchChange={handleSearchChange} />
             <S.ChooseLote>
               {filteredCategorias.map((cat: any) => {
-                if(!CatTipo)
-                {
-                  return(
+                if (!CatTipo) {
+                  return (
                     <S.Lote
                       key={cat.id}
                       onClick={() => handleLoteClick(cat)}
@@ -124,10 +143,9 @@ export const CategoriasTipologias = (props: CategoriasTipologiasProps) => {
                         {cat.name}
                       </p>
                     </S.Lote>
-                    
-                  )
+                  );
                 } else {
-                  return(
+                  return (
                     <S.Lote
                       key={cat.id}
                       onClick={() => handleLoteClick(cat)}
@@ -143,11 +161,9 @@ export const CategoriasTipologias = (props: CategoriasTipologiasProps) => {
                         {cat.name}
                       </p>
                     </S.Lote>
-                    
-                  )
+                  );
                 }
-                })
-              }
+              })}
             </S.ChooseLote>
             <S.AtribuirButton onClick={handleSave}>Salvar</S.AtribuirButton>
           </S.ModalContent>

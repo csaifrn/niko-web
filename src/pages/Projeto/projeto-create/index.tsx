@@ -6,7 +6,7 @@ import { useAuthUser } from 'react-auth-kit';
 import { useNavigate } from 'react-router-dom';
 
 interface User {
-  id: number;
+  id: string;
   name: string;
   url: string;
   email: string;

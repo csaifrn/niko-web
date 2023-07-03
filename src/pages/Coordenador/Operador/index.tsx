@@ -8,8 +8,10 @@ import MenuCoord from '../../../components/MenuCoord';
 import { useParams } from 'react-router';
 
 type User = {
-  id: number;
+  id: string;
   name: string;
+  url: string;
+  email: string;
   lote: string;
   fase: string;
 };

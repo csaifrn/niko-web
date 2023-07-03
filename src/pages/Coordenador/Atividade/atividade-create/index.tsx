@@ -86,15 +86,15 @@ const AtividadeCreate = () => {
   };
 
   const handleSave = () => {
-    const final = {
+    const atividadeFinal = {
       id: '2a78fa83-0abf-4dbe-a17d-b2ecf99831ae',
       data: data,
       id_projeto: id,
       atividade: [...faseDatas],
     };
 
-    console.log(final);
-    navigate(`/Atividades/`);
+    console.log(atividadeFinal);
+    navigate(`/Atividades/${id}`);
   };
 
   return (
@@ -155,6 +155,9 @@ const AtividadeCreate = () => {
             </div>
           </div>
           <div
+            onClick={() => {
+              navigate(`/Atividades/${id}`);
+            }}
             style={{
               paddingLeft: 8,
               paddingRight: 8,
@@ -705,6 +708,8 @@ const AtividadeCreate = () => {
           close={() => {
             SetModalAtribuirLote(!modalAtribuirLote);
           }}
+          categorias={categorias}
+          tipologia={tipologias}
           loteUsers={LoteUser}
           nameUser={name}
           nameFase={nameFase}

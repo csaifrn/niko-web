@@ -3,12 +3,17 @@ import * as S from './styles';
 import Search from '../Search';
 import { LoteData } from '../../data/LoteData';
 import EtapaData from '../../data/EtapaData';
+import CategoriaData from '../../data/CategoriaData';
+import TipologiaData from '../../data/TipologiaData';
 
 interface AtribuirModalAtividadeProps {
   nameUser: string;
   nameFase: string;
   id_user: string;
   id_fase: string;
+
+  categorias: typeof CategoriaData;
+  tipologia: typeof TipologiaData;
 
   close: () => void;
   setLoteUser: (e: ILoteUser) => void;
@@ -25,6 +30,7 @@ export interface ILoteUser {
 export const AtribuirModalAtividade = (props: AtribuirModalAtividadeProps) => {
   const [selectedLotes, setSelectedLotes] = useState<(typeof LoteData)[]>([]);
   const [searchTerm, setSearchTerm] = useState<string>('');
+  const [selectedCategoria, setSelectedCategoria] = useState<number | null>(null);
 
   const [lotes, setLotes] = useState(LoteData);
 
@@ -35,7 +41,8 @@ export const AtribuirModalAtividade = (props: AtribuirModalAtividadeProps) => {
 
     const Etapas = EtapaData.filter((etapa) => etapa.id_fase === props.id_fase);
     if (Etapas.length > 0) {
-      setLotes(lotes.filter((lote) => Etapas.filter((etapa) => etapa.id === lote.id_etapa).length > 0));
+      console.log('Com etapas');
+      setLotes(LoteData.filter((lote) => Etapas.filter((etapa) => etapa.id === lote.id_etapa).length > 0));
     }
   }, []);
 
@@ -55,9 +62,47 @@ export const AtribuirModalAtividade = (props: AtribuirModalAtividadeProps) => {
     props.setLoteUser({ id_fase: props.id_fase, id_user: props.id_user, lotes: selectedLotes });
   };
 
-  const filteredLotes = lotes.filter(
-    (lote) => lote.titulo.toLowerCase().includes(searchTerm.toLowerCase()) || lote.protocolo.includes(searchTerm),
+  const handleCategoriaClick = (categoriaId: number) => {
+    if (selectedCategoria === categoriaId) {
+      setSelectedCategoria(null);
+    } else {
+      setSelectedCategoria(categoriaId);
+    }
+  };
+
+  const [filteredLotes, setFilteredLotes] = useState(
+    lotes.filter((lote) => {
+      const hasMatchingEtapa = EtapaData.filter((etapa) => etapa.id === lote.id_etapa).length > 0;
+      const matchesSearchTerm =
+        lote.titulo.toLowerCase().includes(searchTerm.toLowerCase()) || lote.protocolo.includes(searchTerm);
+      return hasMatchingEtapa && matchesSearchTerm;
+    }),
   );
+
+  useEffect(() => {
+    // ...
+
+    let filteredLotes;
+
+    if (selectedCategoria != null) {
+      filteredLotes = lotes.filter((lote) => {
+        const hasMatchingEtapa = EtapaData.filter((etapa) => etapa.id === lote.id_etapa).length > 0;
+        const hasMatchingCategoria = lote.categorias.some((catg: any) => catg.id === selectedCategoria);
+        const matchesSearchTerm =
+          lote.titulo.toLowerCase().includes(searchTerm.toLowerCase()) || lote.protocolo.includes(searchTerm);
+        return hasMatchingEtapa && hasMatchingCategoria && matchesSearchTerm;
+      });
+    } else {
+      filteredLotes = lotes.filter((lote) => {
+        const hasMatchingEtapa = EtapaData.filter((etapa) => etapa.id === lote.id_etapa).length > 0;
+        const matchesSearchTerm =
+          lote.titulo.toLowerCase().includes(searchTerm.toLowerCase()) || lote.protocolo.includes(searchTerm);
+        return hasMatchingEtapa && matchesSearchTerm;
+      });
+    }
+
+    setFilteredLotes(filteredLotes);
+  }, [selectedCategoria, searchTerm, lotes]);
 
   return (
     <>
@@ -83,6 +128,17 @@ export const AtribuirModalAtividade = (props: AtribuirModalAtividadeProps) => {
             </S.NameClose>
             <img height={24} width={24} src={`/icon-page/${props.nameFase}.png`} alt="Icone de Etapa" />
             <Search searchTerm={searchTerm} handleSearchChange={handleSearchChange} />
+            <S.Categorias>
+              {props.categorias.map((categoria) => (
+                <S.Categoria
+                  key={categoria.id}
+                  selected={selectedCategoria === categoria.id}
+                  onClick={() => handleCategoriaClick(categoria.id)}
+                >
+                  {categoria.name}
+                </S.Categoria>
+              ))}
+            </S.Categorias>
             <S.ChooseLote>
               {filteredLotes.map((lote: any) => {
                 const isLoteAssigned = props.loteUsers.some((userLote) =>
@@ -107,7 +163,7 @@ export const AtribuirModalAtividade = (props: AtribuirModalAtividadeProps) => {
                         color: selectedLotes.includes(lote) ? '#fff' : '#838383',
                       }}
                     >
-                      {lote.numero}
+                      {lote.titulo + ' ' + lote.numero}
                     </p>
                     {isLoteAssigned && (
                       <span style={{ color: '#FCDE42' }}>Este lote foi atribuído a outro operador</span>

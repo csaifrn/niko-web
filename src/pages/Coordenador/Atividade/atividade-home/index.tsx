@@ -55,7 +55,7 @@ const Atividade = () => {
     // Verifica se a atividade mais próxima foi encontrada e se a referência existe
     if (atividadesOrdenadas.length > 0 && atividadeMaisProximaRef.current) {
       // Rola automaticamente até a atividade mais próxima
-      atividadeMaisProximaRef.current.scrollIntoView({ behavior: 'smooth' });
+      atividadeMaisProximaRef.current.scrollIntoView({ behavior: 'smooth', inline: 'start', block: 'start' });
     }
   }, [atividadesOrdenadas]);
 

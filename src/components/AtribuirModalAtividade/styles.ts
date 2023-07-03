@@ -58,8 +58,26 @@ const ModalBackdrop = styled.div`
   height: 100%;
   top: 0;
   left: 0;
-  z-index: 1040;
+  z-index: 9999999999;
   background-color: rgba(25, 28, 36, 0.5);
+`;
+
+interface CategoriaProps {
+  selected: boolean;
+}
+
+export const Categorias = styled.div`
+  display: flex;
+  gap: 1em;
+  margin-bottom: 1em;
+`;
+
+export const Categoria = styled.div<CategoriaProps>`
+  padding: 0.5em;
+  border-radius: 4px;
+  background-color: ${(props) => (props.selected ? '#090E09' : '#2D303B')};
+  color: ${(props) => (props.selected ? '#fff' : '#838383')};
+  cursor: pointer;
 `;
 
 export { ModalArea, ModalContent, NameClose, ChooseLote, Lote, AtribuirButton, ModalBackdrop };

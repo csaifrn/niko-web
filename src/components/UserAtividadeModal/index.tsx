@@ -133,7 +133,7 @@ export const UserModalAtividade = (props: UserModalAtividadeProps) => {
                         color: 'white',
                         border: 'none',
                         borderRadius: '5px',
-                        backgroundColor: faseSelected === index ? '#2D303B' : '#191C24',
+                        backgroundColor: faseSelected === index ? '#191C24 ' : '#2D303B',
                         padding: '8px 8px',
                       }}
                     >

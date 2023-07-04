@@ -85,7 +85,7 @@ const App = () => {
             }
           />
           <Route
-            path={`/Atividades/:id/Edit/:idatv`}
+            path={`/Atividades/:id/Edit/:iday/:idatv`}
             element={
               <RequireAuth loginPath={'/login'}>
                 <AtividadeEdit />

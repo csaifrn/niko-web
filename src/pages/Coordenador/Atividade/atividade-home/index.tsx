@@ -127,7 +127,7 @@ const Atividade = () => {
                         }}
                       >
                         <a
-                          href={`/Atividades/${id}/Edit/${atv.id}`}
+                          href={`/Atividades/${id}/Edit/${atividade.id}/${atv.id}`}
                           style={{
                             display: 'flex',
                             backgroundColor: '#191C24',

@@ -3,21 +3,17 @@ import Menu from '../../../../components/Menu';
 import MenuCoord from '../../../../components/MenuCoord';
 import { useEffect, useState } from 'react';
 import { CreateAtividade } from '../../../../components/CreateAtividadeModal';
-import FaseData from '../../../../data/FaseData';
 import { CategoriasTipologias } from '../../../../components/CategoriaTipologias';
 import CategoriaData from '../../../../data/CategoriaData';
 import TipologiaData from '../../../../data/TipologiaData';
 import { IUserFase, UserModalAtividade } from '../../../../components/UserAtividadeModal';
 import { AtribuirModalAtividade, ILoteUser } from '../../../../components/AtribuirModalAtividade';
-import Users from '../../../../data/UserData';
 import AtividadeData from '../../../../data/AtividadeData';
 
 const AtividadeEdit = () => {
   const { id, idatv, iday } = useParams();
 
-  const [atividade, setAtividade] = useState(AtividadeData.filter((atv) => atv.id === iday)[0]);
-
-  console.log(atividade, idatv);
+  const atividade = AtividadeData.filter((atv) => atv.id === iday)[0];
 
   const navigate = useNavigate();
 
@@ -26,8 +22,6 @@ const AtividadeEdit = () => {
   const atv = atividade.atividades.filter((atv) => {
     return atv.id === idatv;
   })[0];
-
-  console.log(atv);
 
   const [tarefas, setTarefas] = useState<any>(atv?.faseData.map((fase) => fase.faseData));
 
@@ -100,7 +94,7 @@ const AtividadeEdit = () => {
       },
     }));
     setFaseDatas(newFaseDatas);
-  }, [UserFase, UserFase, LoteUser]);
+  }, [UserFase, LoteUser, tarefas, categorias, tipologias]);
 
   const handleData = (e: any) => {
     setData(e.target.value);
@@ -127,11 +121,19 @@ const AtividadeEdit = () => {
     setTarefasData(e);
   };
 
+  const handleRemoveLote = (id_lote: string, id_user: string) => {
+    console.log(id_lote, LoteUser);
+    const updatedLotes = LoteUser.filter((lote) => lote.id_user === id_user)[0].lotes.filter(
+      (lote: any) => lote.lote.id === id_lote,
+    );
+    console.log(updatedLotes);
+  };
+
   function formatDate(date: Date) {
-    var d = new Date(date),
-      month = '' + (d.getMonth() + 1),
-      day = '' + d.getDate(),
-      year = d.getFullYear();
+    const d = new Date(date);
+    let month = '' + (d.getMonth() + 1);
+    let day = '' + d.getDate();
+    const year = d.getFullYear();
 
     if (month.length < 2) month = '0' + month;
     if (day.length < 2) day = '0' + day;
@@ -208,7 +210,7 @@ const AtividadeEdit = () => {
               </div>
             </div>
           </div>
-          <div
+          <button
             onClick={() => {
               navigate(`/Atividades/${id}`);
             }}
@@ -224,6 +226,7 @@ const AtividadeEdit = () => {
               alignItems: 'flex-start',
               gap: 10,
               display: 'inline-flex',
+              border: 'none',
             }}
           >
             <div
@@ -231,7 +234,7 @@ const AtividadeEdit = () => {
             >
               X
             </div>
-          </div>
+          </button>
         </div>
         <div
           style={{
@@ -587,6 +590,13 @@ const AtividadeEdit = () => {
                             </div>
                             <div style={{ gap: 16, display: 'flex' }}>
                               <button
+                                onClick={() => {
+                                  setFaseName(tarefas.filter((tarefa: any) => tarefa.id === f.id_fase)[0].url);
+                                  setName(user.user.name);
+                                  setIdUser(user.user.id);
+                                  setIdFase(f.id_fase);
+                                  SetModalAtribuirLote(true);
+                                }}
                                 style={{
                                   padding: 8,
                                   background: '#43DB6D',
@@ -597,13 +607,6 @@ const AtividadeEdit = () => {
                                 }}
                               >
                                 <div
-                                  onClick={() => {
-                                    setFaseName(tarefas.filter((tarefa: any) => tarefa.id === f.id_fase)[0].url);
-                                    setName(user.user.name);
-                                    setIdUser(user.user.id);
-                                    setIdFase(f.id_fase);
-                                    SetModalAtribuirLote(true);
-                                  }}
                                   style={{
                                     color: '#191C24',
                                     fontSize: 12,
@@ -655,7 +658,14 @@ const AtividadeEdit = () => {
                                               {`Lote ${loteUser.lote.numero}`}
                                             </div>
                                             {loteUser.check != true && (
-                                              <img src="/VectorDelete.svg" alt="" height={18} width={18} />
+                                              <button onClick={() => handleRemoveLote(loteUser.lote.id, user.user.id)}>
+                                                <img
+                                                  src="/VectorDelete.svg"
+                                                  alt="Bola vermelha, um botão para tirar o lote do usuário"
+                                                  height={18}
+                                                  width={18}
+                                                />
+                                              </button>
                                             )}
                                             {loteUser.check && <img src="/ok.svg" alt="" height={12} width={12} />}
                                           </div>

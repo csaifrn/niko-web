@@ -41,8 +41,11 @@ export const AtribuirModalAtividade = (props: AtribuirModalAtividadeProps) => {
 
     const Etapas = EtapaData.filter((etapa) => etapa.id_fase === props.id_fase);
     if (Etapas.length > 0) {
-      console.log('Com etapas');
+      const lotesEdit: any = selectedLotes.filter(
+        (lote: any) => Etapas.filter((etapa) => etapa.id !== lote.id).length > 0,
+      );
       setLotes(LoteData.filter((lote) => Etapas.filter((etapa) => etapa.id === lote.id_etapa).length > 0));
+      setLotes((prev) => [...lotesEdit, ...prev]);
     }
   }, []);
 

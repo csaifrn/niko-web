@@ -17,19 +17,19 @@ const AtividadeEdit = () => {
 
   const [atividade, setAtividade] = useState(AtividadeData.filter((atv) => atv.id === iday)[0]);
 
+  console.log(atividade, idatv);
+
   const navigate = useNavigate();
 
   const [data, setData] = useState<Date>(atividade.data);
 
-  const [tarefas, setTarefas] = useState<any>(
-    atividade.atividades
-      .map((atv) => {
-        if (atv.id === idatv) {
-          return atv;
-        }
-      })[0]
-      ?.faseData.map((fase) => fase.faseData),
-  );
+  const atv = atividade.atividades.filter((atv) => {
+    return atv.id === idatv;
+  })[0];
+
+  console.log(atv);
+
+  const [tarefas, setTarefas] = useState<any>(atv?.faseData.map((fase) => fase.faseData));
 
   const [tarefasData, setTarefasData] = useState<any>([[...tarefas], []]);
 
@@ -41,13 +41,7 @@ const AtividadeEdit = () => {
       tarefas.map((tarefa: any) => {
         return {
           id_fase: tarefa.id,
-          users: atividade.atividades
-            .map((atv) => {
-              if (atv.id === idatv) {
-                return atv;
-              }
-            })[0]
-            ?.faseData.filter((fase) => fase.faseData.id === tarefa.id)[0].users,
+          users: atv?.faseData.filter((fase) => fase.faseData.id === tarefa.id)[0].users,
         };
       }),
     ][0],
@@ -65,15 +59,8 @@ const AtividadeEdit = () => {
 
     UserFase.forEach((userFase: any) => {
       userFase.users.forEach((user: any) => {
-        const lote = atividade.atividades
-          .map((atv) => {
-            if (atv.id === idatv) {
-              return atv;
-            }
-          })[0]
-          ?.faseData.find(
-            (fase) => fase.faseData.id === userFase.id_fase && fase.users.some((us) => us.user.id === user.user.id),
-          )
+        const lote = atv?.faseData
+          .find((fase) => fase.faseData.id === userFase.id_fase && fase.users.some((us) => us.user.id === user.user.id))
           ?.users.find((use) => use.user.id === user.user.id)?.Lotes;
 
         updatedLoteUser.push({
@@ -638,38 +625,42 @@ const AtividadeEdit = () => {
                               ).map((lote) => {
                                 return (
                                   <div key={lote.id_fase} style={{ gap: 8, display: 'flex', flexWrap: 'wrap' }}>
-                                    {lote.lotes.map((loteUser: any) => {
-                                      return (
-                                        <div
-                                          key={loteUser.lote.id}
-                                          style={{
-                                            height: 30,
-                                            paddingLeft: 9,
-                                            paddingRight: 9,
-                                            paddingTop: 8,
-                                            paddingBottom: 8,
-                                            background: '#191C24',
-                                            borderRadius: 5,
-                                            justifyContent: 'center',
-                                            alignItems: 'center',
-                                            gap: 10,
-                                            display: 'flex',
-                                          }}
-                                        >
+                                    {lote.lotes &&
+                                      lote.lotes.map((loteUser: any) => {
+                                        return (
                                           <div
+                                            key={loteUser.lote.id}
                                             style={{
-                                              color: 'white',
-                                              fontSize: 12,
-                                              fontFamily: 'Rubik',
-                                              fontWeight: '500',
+                                              height: 30,
+                                              paddingLeft: 9,
+                                              paddingRight: 9,
+                                              paddingTop: 8,
+                                              paddingBottom: 8,
+                                              background: '#191C24',
+                                              borderRadius: 5,
+                                              justifyContent: 'center',
+                                              alignItems: 'center',
+                                              gap: 10,
+                                              display: 'flex',
                                             }}
                                           >
-                                            {`Lote ${loteUser.lote.numero}`}
+                                            <div
+                                              style={{
+                                                color: 'white',
+                                                fontSize: 12,
+                                                fontFamily: 'Rubik',
+                                                fontWeight: '500',
+                                              }}
+                                            >
+                                              {`Lote ${loteUser.lote.numero}`}
+                                            </div>
+                                            {loteUser.check != true && (
+                                              <img src="/VectorDelete.svg" alt="" height={18} width={18} />
+                                            )}
+                                            {loteUser.check && <img src="/ok.svg" alt="" height={12} width={12} />}
                                           </div>
-                                          <img src="/VectorDelete.svg" alt="" height={18} width={18} />
-                                        </div>
-                                      );
-                                    })}
+                                        );
+                                      })}
                                   </div>
                                 );
                               })}

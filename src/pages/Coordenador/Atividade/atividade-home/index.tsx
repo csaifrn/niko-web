@@ -73,6 +73,7 @@ const Atividade = () => {
             margin: '2em 0em',
             display: 'flex',
             alignItems: 'center',
+            zIndex: '999',
             justifyContent: 'space-between',
             backgroundColor: '#0a090e',
           }}

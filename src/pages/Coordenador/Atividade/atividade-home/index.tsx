@@ -5,7 +5,7 @@ import MenuCoord from '../../../../components/MenuCoord';
 import { useParams } from 'react-router-dom';
 import AtividadeData from '../../../../data/AtividadeData';
 import moment from 'moment';
-import { Check } from '@phosphor-icons/react';
+import { Check, Pen, PencilSimple } from '@phosphor-icons/react';
 
 const Atividade = () => {
   function compare(a: any, b: any) {
@@ -73,6 +73,7 @@ const Atividade = () => {
             margin: '2em 0em',
             display: 'flex',
             alignItems: 'center',
+            zIndex: '999',
             justifyContent: 'space-between',
             backgroundColor: '#0a090e',
           }}
@@ -123,8 +124,26 @@ const Atividade = () => {
                           flexDirection: 'column',
                           gap: '2em',
                           borderRadius: '5px',
+                          position: 'relative',
                         }}
                       >
+                        <a
+                          href={`/Atividades/${id}/Edit/${atividade.id}/${atv.id}`}
+                          style={{
+                            display: 'flex',
+                            backgroundColor: '#191C24',
+                            height: '24px',
+                            width: '24px',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            borderRadius: '5px',
+                            position: 'absolute',
+                            right: '2em',
+                            border: 'none',
+                          }}
+                        >
+                          <PencilSimple size={16} weight="fill" color="#fff" />
+                        </a>
                         {atv.faseData.map((fase, indexfase) => {
                           return (
                             <div key={indexfase} style={{ display: 'flex', flexDirection: 'column', gap: '1em' }}>

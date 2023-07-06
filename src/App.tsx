@@ -21,6 +21,7 @@ import Users from './data/UserData';
 import Auth from './config/Auth';
 import Atividade from './pages/Coordenador/Atividade/atividade-home';
 import AtividadeCreate from './pages/Coordenador/Atividade/atividade-create';
+import AtividadeEdit from './pages/Coordenador/Atividade/ativiade-edit';
 
 const Home = lazy(() => import('./pages/Coordenador/Fase'));
 
@@ -57,21 +58,40 @@ const App = () => {
             </RequireAuth>
           }
         />
-        <Route
+
+        <Route element={<Auth allowedRoles={['Coordenador']} />}>
+          <Route
+            path="/Fase/:id"
+            element={
+              <RequireAuth loginPath={'/login'}>
+                <Home />
+              </RequireAuth>
+            }
+          />
+          <Route
             path="/Atividades/:id"
             element={
+              <RequireAuth loginPath={'/login'}>
                 <Atividade />
+              </RequireAuth>
             }
           />
           <Route
             path={`/Atividades/:id/CriarAtividade`}
             element={
+              <RequireAuth loginPath={'/login'}>
                 <AtividadeCreate />
+              </RequireAuth>
             }
           />
-        <Route element={<Auth allowedRoles={['Coordenador']} />}>
-          <Route path="/Fase/:id" element={<Home />} />
-
+          <Route
+            path={`/Atividades/:id/Edit/:iday/:idatv`}
+            element={
+              <RequireAuth loginPath={'/login'}>
+                <AtividadeEdit />
+              </RequireAuth>
+            }
+          />
           <Route
             path="Fase/:id/Board/Arquivamento"
             element={

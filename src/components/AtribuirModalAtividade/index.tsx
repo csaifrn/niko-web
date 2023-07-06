@@ -16,6 +16,7 @@ interface AtribuirModalAtividadeProps {
   tipologia: typeof TipologiaData;
 
   close: () => void;
+  // eslint-disable-next-line no-unused-vars
   setLoteUser: (e: ILoteUser) => void;
   loteUser: ILoteUser | null;
   loteUsers: ILoteUser[];
@@ -41,10 +42,9 @@ export const AtribuirModalAtividade = (props: AtribuirModalAtividadeProps) => {
 
     const Etapas = EtapaData.filter((etapa) => etapa.id_fase === props.id_fase);
     if (Etapas.length > 0) {
-      console.log('Com etapas');
       setLotes(LoteData.filter((lote) => Etapas.filter((etapa) => etapa.id === lote.id_etapa).length > 0));
     }
-  }, []);
+  }, [props.loteUser, props.id_fase]);
 
   const handleLoteClick = (loteId: typeof LoteData) => {
     if (selectedLotes.includes(loteId)) {

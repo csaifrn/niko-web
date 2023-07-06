@@ -15,15 +15,15 @@ interface IEditModal {
   percentage?: number
 }
 
-interface CategoriasTipologiasProps {
-  close: () => void;
-  setCategoria: (e: any) => void
-  setTipologia: (e: any) => void
-  categorias: typeof CategoriaData
-  tipologias: typeof TipologiaData
-}
+// interface CategoriasTipologiasProps {
+//   close: () => void;
+//   setCategoria: (e: any) => void
+//   setTipologia: (e: any) => void
+//   categorias: typeof CategoriaData
+//   tipologias: typeof TipologiaData
+// }
 
-export const EditModal = (props: CategoriasTipologiasProps) => {
+export const EditModal = () => {
   
   // FUNÇÃO PARA PESQUISA
   const [searchTerm, setSearchTerm] = useState<string>('')

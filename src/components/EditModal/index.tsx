@@ -66,10 +66,14 @@ export const EditModal = (props: CategoriasTipologiasProps) => {
     } else {
       setData(TipologiaData)
     }
-    setCategorias(task.categorias)
+    
   }, [CatTipol])
 
-
+  useEffect(() => {
+    setCategorias(task.categorias)
+    setTipologias(task.tipologias)
+  },[])
+  
 
   const navigate = useNavigate();
   let { id } = useParams();
@@ -188,68 +192,104 @@ export const EditModal = (props: CategoriasTipologiasProps) => {
             
             {/*CATEGORIAS E TIPOLOGIAS*/}
 
-            <S.Categorias>
-              <div style={{color:'white', overflow: 'hidden', borderRadius: '5px', display: 'flex', width: '12.5em'}}>
-                <button onClick={() => setCatTipol(false)} style={{height: '44px', color: 'white', border: 'none', backgroundColor: CatTipol ? '#2D303B' : '#191C24',  padding: '8px 8px'}}>Categorias</button>
-                <button onClick={() => setCatTipol(true)} style={{height: '44px', color: 'white', border: 'none', backgroundColor: CatTipol ? '#191C24' : '#2D303B', padding: '8px 8px'}}>Tipologias</button>
-              </div>
+            <S.CatTipol>
+
+              {/*FILTRAR POR CATEGORIA OU TIPOLOGIA*/}
+              <S.FilterCatTipol style={{color:'white', overflow: 'hidden', display: 'flex', width: '18em'}}>
+
+                <S.ButtonCatTipol 
+                  onClick={() => setCatTipol(false)} 
+                  style={{
+                    height: '40px', 
+                    border: 'none', 
+                    backgroundColor: CatTipol ? '#20232A' : '#393E4B', 
+                    color: CatTipol ? '#838383' : 'white', 
+                    padding: '8px 8px'
+                  }}
+                >
+                  <S.Titulo2>Categorias</S.Titulo2>
+                </S.ButtonCatTipol>
+
+                <S.ButtonCatTipol 
+                  onClick={() => setCatTipol(true)} 
+                  style={{
+                    height: '40px', 
+                    border: 'none', 
+                    backgroundColor: CatTipol ? '#393E4B' : '#20232A',
+                    color: CatTipol ? 'white' : '#838383',
+                    padding: '8px 8px'
+                  }}
+                >
+                  <S.Titulo2>Tipologias</S.Titulo2>
+                </S.ButtonCatTipol>
+
+              </S.FilterCatTipol>
+
+              {/* */}
+              <S.MostrarCategTipolEscolhida>
+                {!CatTipol && categorias !== null ?       
+                  <S.MostrarCategTipolEscolhida>
+                          
+                    {categorias.map((cat:any ) => (
+                      <S.CategEscolhida key={cat.id}> {cat.name} </S.CategEscolhida>
+                    ))}
+                  </S.MostrarCategTipolEscolhida>
+                : 
+                  <S.MostrarCategTipolEscolhida>        
+                    {tipologias.map((tipol:any) => (
+                      <S.TipolEscolhida key={tipol.id}>{tipol.name}</S.TipolEscolhida>
+                    ))}  
+                  </S.MostrarCategTipolEscolhida>
+                }
+              </S.MostrarCategTipolEscolhida>
               
-              <h2 style={{ marginBottom: '1em' }}>Categorias</h2>
-              {categorias.map((cat:any) => (
-                cat.name
-
-              ))}
-              {tipologias.map((tipol:any) => (
-                tipol.name
-
-              ))}
               <Search searchTerm={searchTerm} handleSearchChange={handleSearchChange} />
+              
               <S.ChooseCatTipol>
                 {filteredCategorias.map((cat: any) => {
-                  if(!CatTipol)
-                  {
-                    return(
-                      <S.Categoria
-                        key={cat.id}
-                        onClick={() => handleLoteClick(cat)}
-                        style={{
-                          backgroundColor: categorias.includes(cat) ? '#393E4B' : '#20232B',
-                        }}
-                      >
-                        <p
+                    if(!CatTipol)
+                    {
+                      return(
+                          <S.Categoria
+                            key={cat.id}
+                            onClick={() => handleLoteClick(cat)}
+                            style={{
+                              backgroundColor: categorias.includes(cat) ? '#393E4B' : '#20232B',
+                            }}
+                          >
+                            <p
+                              style={{
+                                color: categorias.includes(cat) ? '#fff' : '#838383',
+                              }}
+                            >
+                              {cat.name}
+                            </p>
+                          </S.Categoria>
+                      )
+                    } 
+                    else {
+                      return(
+                        <S.Tipologia
+                          key={cat.id}
+                          onClick={() => handleLoteClick(cat)}
                           style={{
-                            color: categorias.includes(cat) ? '#fff' : '#838383',
+                            backgroundColor: tipologias.includes(cat) ? '#393E4B' : '#20232B',
                           }}
                         >
-                          {cat.name}
-                        </p>
-                      </S.Categoria>
-                      
-                    )
-                  } else {
-                    return(
-                      <S.Tipologia
-                        key={cat.id}
-                        onClick={() => handleLoteClick(cat)}
-                        style={{
-                          backgroundColor: tipologias.includes(cat) ? '#393E4B' : '#20232B',
-                        }}
-                      >
-                        <p
-                          style={{
-                            color: tipologias.includes(cat) ? '#fff' : '#838383',
-                          }}
-                        >
-                          {cat.name}
-                        </p>
-                      </S.Tipologia>
-                      
-                    )
-                  }
-                  })
-                }
+                          <p
+                            style={{
+                              color: tipologias.includes(cat) ? '#fff' : '#838383',
+                            }}
+                          >
+                            {cat.name}
+                          </p>
+                        </S.Tipologia> 
+                      )
+                    }
+                })}
               </S.ChooseCatTipol>
-            </S.Categorias>
+
+            </S.CatTipol>
             <S.SalvarEditButton onClick={handleSave}>Salvar</S.SalvarEditButton>
           </S.ModalContent>
     </>

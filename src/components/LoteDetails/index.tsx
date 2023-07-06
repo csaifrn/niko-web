@@ -225,7 +225,7 @@ export const LoteDetails = () => {
           <S.Observações>
             <p>Observações</p>
             {task.observacoes.map((obs: any) => (
-              <S.ObsDivBlack>
+              <S.ObsDivBlack key={obs.ObsId}>
                 {obs.titulo}
               </S.ObsDivBlack>
             ))}

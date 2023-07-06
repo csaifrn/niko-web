@@ -1,5 +1,9 @@
 import styled from 'styled-components';
 
+export const Titulo2 = styled.h2`
+  font-weight: normal;
+`;
+
 export const ModalContent = styled.div`
   z-index: 9999990;
   padding: 2em;
@@ -96,7 +100,34 @@ export const Local = styled.input`
   font-family: 'Rubik';
 `;
 
-export const Categorias = styled.div``;
+export const CatTipol = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+`;
+
+export const FilterCatTipol = styled.div`
+`;
+
+export const ButtonCatTipol = styled.div`
+`;
+
+export const MostrarCategTipolEscolhida = styled.div`
+  display:flex;
+  gap: 8px;
+`;
+
+export const CategEscolhida = styled.div`
+  background-color: #393E4B;
+  padding: 5px;
+  border-radius: 3px;
+`;
+
+export const TipolEscolhida = styled.div`
+  background-color: #393E4B;
+  padding: 5px;
+  border-radius: 3px;
+`;
 
 export const Categoria = styled.div`
   display: flex;
@@ -122,11 +153,11 @@ export const ChooseCatTipol = styled.div`
   border-radius: 5px;
   display: flex;
   flex-direction: column;
-  gap: 1em;
+  gap: 10px;
   overflow: auto;
   scroll-behavior: auto;
   padding: 0;
-  margin: 1em 0;
+  margin: 0 0;
   overflow-y: scroll;
   scroll-behavior: auto;
   scrollbar-width: thin;

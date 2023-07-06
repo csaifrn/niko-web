@@ -1,5 +1,8 @@
 import styled from 'styled-components';
 
+export const Texto = styled.p`
+`;
+
 const ModalArea = styled.div`
   width: 75vw;
   padding:2em;
@@ -25,37 +28,10 @@ const NameClose = styled.div`
   gap: 2em;
 `;
 
-const ChooseLote = styled.div`
-  width: 100%;
-  height: 40vh;
-  border-radius: 5px;
-  display: flex;
-  flex-direction: column;
-  gap: 1em;
-  overflow: auto;
-  scroll-behavior: auto;
-`;
-
-const Lote = styled.div`
-  padding: 1.5em 2em;
-  border-radius: 5px;
-  cursor: pointer;
+export const Titulo = styled.h2`
 `;
 
 const Recused = styled.button`
-  height: 44px;
-  border-radius: 5px;
-  background-color: #191c24;
-  border: none;
-  color: white;
-  font-family: 'Rubik';
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  padding: 0 2em;
-`;
-
-const Voltar = styled.button`
   height: 44px;
   border-radius: 5px;
   background-color: #FCDE42;
@@ -64,8 +40,24 @@ const Voltar = styled.button`
   font-family: 'Rubik';
   display: flex;
   align-items: center;
+  justify-content: center;
+  
+`;
+
+export const IconeAvancar = styled.img`
+`;
+
+const Avancar = styled.button`
+  height: 44px;
+  border-radius: 5px;
+  background-color: #191C24;
+  border: none;
+  color: #FFFFFF;
+  font-family: 'Rubik';
+  display: flex;
+  align-items: center;
   justify-content: flex-start;
-  padding: 0 2em;
+  padding: 0 16px;
   gap: 1em;
 `;
 
@@ -83,4 +75,4 @@ const ModalBackdrop = styled.div`
   align-items: center;
 `;
 
-export { ModalArea, ModalContent, NameClose, ChooseLote, Lote, Recused, Voltar, ModalBackdrop };
+export { ModalArea, ModalContent, NameClose, Recused, Avancar, ModalBackdrop };

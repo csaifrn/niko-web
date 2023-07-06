@@ -40,7 +40,7 @@ const ChooseUser = styled.div`
 `;
 
 const User = styled.div`
-  padding: 1em 2em;
+  padding: 10px 10px;
   border-radius: 5px;
   cursor: pointer;
 `;

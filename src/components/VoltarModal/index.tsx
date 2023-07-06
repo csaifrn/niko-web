@@ -11,15 +11,13 @@ export const VoltarModal = (props: VoltarModalProps) => {
         <S.ModalArea>
           <S.ModalContent>
             <S.NameClose>
-              <h2> Deseja voltar fase? </h2>
-              <button onClick={props.close} style={{ width: 'auto', backgroundColor: 'transparent', border: 'none' }}>
-              </button>
+              <S.Titulo> Deseja voltar para a fase? </S.Titulo>
             </S.NameClose>
-            <S.Recused onClick={props.close}><p>Não, não quero.</p></S.Recused>
-            <S.Voltar onClick={props.close}>
-              <img src="/voltar_black.svg"></img>
-              <p>Voltar fase</p>
-            </S.Voltar>
+            <S.Recused onClick={props.close}><S.Texto>Não, não quero.</S.Texto></S.Recused>
+            <S.Avancar onClick={props.close}>
+              <S.IconeAvancar src="/voltar.svg"></S.IconeAvancar>
+              <S.Texto>Voltar fase</S.Texto>
+            </S.Avancar>
           </S.ModalContent>
         </S.ModalArea>
       </S.ModalBackdrop>

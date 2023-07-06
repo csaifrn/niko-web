@@ -68,7 +68,7 @@ export const AtribuirAlguemModal = (props: AtribuirAlguemModalProps) => {
 
                     <p
                       style={{
-                        color: selectedUsers.includes(user.id) ? '#43DB6D' : '#838383',
+                        color: selectedUsers.includes(user.id) ? '#FFFFFF' : '#838383',
                       }}
                     >
                       {user.name}

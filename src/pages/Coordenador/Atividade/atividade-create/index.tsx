@@ -9,7 +9,6 @@ import CategoriaData from '../../../../data/CategoriaData';
 import TipologiaData from '../../../../data/TipologiaData';
 import { IUserFase, UserModalAtividade } from '../../../../components/UserAtividadeModal';
 import { AtribuirModalAtividade, ILoteUser } from '../../../../components/AtribuirModalAtividade';
-import Users from '../../../../data/UserData';
 
 const AtividadeCreate = () => {
   const { id } = useParams();
@@ -154,7 +153,7 @@ const AtividadeCreate = () => {
               </div>
             </div>
           </div>
-          <div
+          <button
             onClick={() => {
               navigate(`/Atividades/${id}`);
             }}
@@ -170,6 +169,8 @@ const AtividadeCreate = () => {
               alignItems: 'flex-start',
               gap: 10,
               display: 'inline-flex',
+              border: 'none',
+              backgroundColor: 'none',
             }}
           >
             <div
@@ -177,7 +178,7 @@ const AtividadeCreate = () => {
             >
               X
             </div>
-          </div>
+          </button>
         </div>
         <div
           style={{
@@ -538,7 +539,7 @@ const AtividadeCreate = () => {
                                 border: 'none',
                               }}
                             >
-                              <div
+                              <button
                                 onClick={() => {
                                   setFaseName(tarefas.filter((tarefa) => tarefa.id === f.id_fase)[0].url);
                                   setName(user.name);
@@ -552,10 +553,12 @@ const AtividadeCreate = () => {
                                   fontFamily: 'Rubik',
                                   fontWeight: '500',
                                   wordWrap: 'break-word',
+                                  border: 'none',
+                                  backgroundColor: 'transparent',
                                 }}
                               >
                                 Atribuir Lote
-                              </div>
+                              </button>
                             </button>
                           </div>
                         </div>

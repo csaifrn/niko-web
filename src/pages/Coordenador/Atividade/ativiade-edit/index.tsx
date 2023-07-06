@@ -9,71 +9,70 @@ import TipologiaData from '../../../../data/TipologiaData';
 import { IUserFase, UserModalAtividade } from '../../../../components/UserAtividadeModal';
 import { AtribuirModalAtividade, ILoteUser } from '../../../../components/AtribuirModalAtividade';
 import AtividadeData from '../../../../data/AtividadeData';
+import EtapaData from '../../../../data/EtapaData';
 
 const AtividadeEdit = () => {
   const { id, idatv, iday } = useParams();
-
   const atividade = AtividadeData.filter((atv) => atv.id === iday)[0];
-
   const navigate = useNavigate();
-
   const [data, setData] = useState<Date>(atividade.data);
-
   const atv = atividade.atividades.filter((atv) => {
     return atv.id === idatv;
   })[0];
-
   const [tarefas, setTarefas] = useState<any>(atv?.faseData.map((fase) => fase.faseData));
-
   const [tarefasData, setTarefasData] = useState<any>([[...tarefas], []]);
-
   const [categorias, setCategorias] = useState<typeof CategoriaData>([]);
   const [tipologias, setTipologias] = useState<typeof TipologiaData>([]);
-
-  const [UserFase, setUserFase] = useState<IUserFase[]>(
-    [
-      tarefas.map((tarefa: any) => {
-        return {
-          id_fase: tarefa.id,
-          users: atv?.faseData.filter((fase) => fase.faseData.id === tarefa.id)[0].users,
-        };
-      }),
-    ][0],
-  );
-
   const [name, setName] = useState('');
   const [nameFase, setFaseName] = useState('');
   const [idUser, setIdUser] = useState('');
   const [idFase, setIdFase] = useState('');
-
+  const [modalTarefas, setModalTarefas] = useState(false);
+  const [modalCatTipo, SetModalCatTipo] = useState(false);
+  const [modalUsers, SetModalUsers] = useState(false);
+  const [modalAtribuirLote, SetModalAtribuirLote] = useState(false);
+  const [faseDatas, setFaseDatas] = useState<any[]>([]);
   const [LoteUser, setLoteUser] = useState<any[]>([]);
+  const [UserFase, setUserFase] = useState<IUserFase[]>([]);
+  useEffect(() => {
+    setUserFase(
+      [
+        tarefas.map((tarefa: any) => {
+          return {
+            id_fase: tarefa.id,
+            users: atv?.faseData.filter((fase) => fase.faseData.id === tarefa.id)[0].users
+              ? atv?.faseData.filter((fase) => fase.faseData.id === tarefa.id)[0].users.map((use) => use.user)
+              : [],
+          };
+        }),
+      ][0],
+    );
+  }, []);
 
   useEffect(() => {
     const updatedLoteUser: any[] = [];
 
     UserFase.forEach((userFase: any) => {
       userFase.users.forEach((user: any) => {
-        const lote = atv?.faseData
-          .find((fase) => fase.faseData.id === userFase.id_fase && fase.users.some((us) => us.user.id === user.user.id))
-          ?.users.find((use) => use.user.id === user.user.id)?.Lotes;
+        try {
+          const lote: any = atv?.faseData
+            .find((fase) => fase.faseData.id === userFase.id_fase && fase.users.some((us) => us.user.id === user.id))
+            ?.users.find((use) => use.user.id === user.id)
+            ?.Lotes.map((lo) => lo.lote);
 
-        updatedLoteUser.push({
-          id_fase: userFase.id_fase,
-          id_user: user.user.id,
-          lotes: lote,
-        });
+          updatedLoteUser.push({
+            id_fase: userFase.id_fase,
+            id_user: user.id,
+            lotes: [...lote],
+          });
+        } catch (error) {
+          console.log('');
+        }
       });
     });
 
     setLoteUser(updatedLoteUser);
-  }, [UserFase, atividade, idatv]);
-
-  const [modalTarefas, setModalTarefas] = useState(false);
-  const [modalCatTipo, SetModalCatTipo] = useState(false);
-  const [modalUsers, SetModalUsers] = useState(false);
-  const [modalAtribuirLote, SetModalAtribuirLote] = useState(false);
-
-  const [faseDatas, setFaseDatas] = useState<any[]>([]);
+  }, [UserFase]);
 
   useEffect(() => {
     const newFaseDatas = tarefas.map((element: any) => ({
@@ -94,7 +93,7 @@ const AtividadeEdit = () => {
       },
     }));
     setFaseDatas(newFaseDatas);
-  }, [UserFase, LoteUser, tarefas, categorias, tipologias]);
+  }, []);
 
   const handleData = (e: any) => {
     setData(e.target.value);
@@ -121,12 +120,22 @@ const AtividadeEdit = () => {
     setTarefasData(e);
   };
 
-  const handleRemoveLote = (id_lote: string, id_user: string) => {
-    console.log(id_lote, LoteUser);
-    const updatedLotes = LoteUser.filter((lote) => lote.id_user === id_user)[0].lotes.filter(
-      (lote: any) => lote.lote.id === id_lote,
-    );
-    console.log(updatedLotes);
+  // const handleRemoveLote = (id_lote: string, id_user: string) => {
+  //   // const updatedLotes = LoteUser.filter((lote) => lote.id_user === id_user)[0].lotes.filter(
+  //   //   (lote: any) => lote.lote.id === id_lote,
+  //   // );
+  // };
+
+  const handleSave = () => {
+    const atividadeFinal = {
+      id: '2a78fa83-0abf-4dbe-a17d-b2ecf99831ae',
+      data: data,
+      id_projeto: id,
+      atividade: [...faseDatas],
+    };
+
+    console.log(atividadeFinal);
+    navigate(`/Atividades/${id}`);
   };
 
   function formatDate(date: Date) {
@@ -140,18 +149,6 @@ const AtividadeEdit = () => {
 
     return [year, month, day].join('-');
   }
-
-  const handleSave = () => {
-    const atividadeFinal = {
-      id: '2a78fa83-0abf-4dbe-a17d-b2ecf99831ae',
-      data: data,
-      id_projeto: id,
-      atividade: [...faseDatas],
-    };
-
-    console.log(atividadeFinal);
-    navigate(`/Atividades/${id}`);
-  };
 
   return (
     <>
@@ -516,11 +513,19 @@ const AtividadeEdit = () => {
               display: 'flex',
             }}
           >
-            {UserFase.map((f) => {
+            {UserFase.map((f, index) => {
               return (
-                <>
+                <div
+                  key={index}
+                  style={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    color: 'white',
+                    fontFamily: 'Rubik',
+                    gap: 16,
+                  }}
+                >
                   <div
-                    key={f.id_fase}
                     style={{
                       display: 'flex',
                       color: 'white',
@@ -542,7 +547,7 @@ const AtividadeEdit = () => {
                     if (user != undefined) {
                       return (
                         <div
-                          key={user.user.id}
+                          key={user.id}
                           style={{
                             width: '100%',
                             padding: 16,
@@ -573,7 +578,7 @@ const AtividadeEdit = () => {
                                   border: '0.50px #191C24 solid',
                                   objectFit: 'cover',
                                 }}
-                                src={user.user.url}
+                                src={user.url}
                                 alt=""
                               />
                               <div
@@ -585,15 +590,15 @@ const AtividadeEdit = () => {
                                   wordWrap: 'break-word',
                                 }}
                               >
-                                {user.user.name}
+                                {user.name}
                               </div>
                             </div>
                             <div style={{ gap: 16, display: 'flex' }}>
                               <button
                                 onClick={() => {
                                   setFaseName(tarefas.filter((tarefa: any) => tarefa.id === f.id_fase)[0].url);
-                                  setName(user.user.name);
-                                  setIdUser(user.user.id);
+                                  setName(user.name);
+                                  setIdUser(user.id);
                                   setIdFase(f.id_fase);
                                   SetModalAtribuirLote(true);
                                 }}
@@ -621,65 +626,61 @@ const AtividadeEdit = () => {
                             </div>
                           </div>
                           <div style={{ gap: 8, display: 'flex', flexWrap: 'wrap' }}>
-                            {LoteUser.filter((lote) => lote.id_user === user.user.id && lote.id_fase === f.id_fase)
-                              .length > 0 &&
-                              LoteUser.filter(
-                                (lote) => lote.id_user === user.user.id && lote.id_fase === f.id_fase,
-                              ).map((lote) => {
-                                return (
-                                  <div key={lote.id_fase} style={{ gap: 8, display: 'flex', flexWrap: 'wrap' }}>
-                                    {lote.lotes &&
-                                      lote.lotes.map((loteUser: any) => {
-                                        return (
-                                          <div
-                                            key={loteUser.lote.id}
-                                            style={{
-                                              height: 30,
-                                              paddingLeft: 9,
-                                              paddingRight: 9,
-                                              paddingTop: 8,
-                                              paddingBottom: 8,
-                                              background: '#191C24',
-                                              borderRadius: 5,
-                                              justifyContent: 'center',
-                                              alignItems: 'center',
-                                              gap: 10,
-                                              display: 'flex',
-                                            }}
-                                          >
-                                            <div
-                                              style={{
-                                                color: 'white',
-                                                fontSize: 12,
-                                                fontFamily: 'Rubik',
-                                                fontWeight: '500',
-                                              }}
-                                            >
-                                              {`Lote ${loteUser.lote.numero}`}
-                                            </div>
-                                            {loteUser.check != true && (
-                                              <button onClick={() => handleRemoveLote(loteUser.lote.id, user.user.id)}>
-                                                <img
-                                                  src="/VectorDelete.svg"
-                                                  alt="Bola vermelha, um botão para tirar o lote do usuário"
-                                                  height={18}
-                                                  width={18}
-                                                />
-                                              </button>
-                                            )}
-                                            {loteUser.check && <img src="/ok.svg" alt="" height={12} width={12} />}
-                                          </div>
-                                        );
-                                      })}
-                                  </div>
-                                );
-                              })}
+                            {LoteUser.filter((lote) => lote.id_user === user.id && lote.id_fase === f.id_fase).length >
+                              0 &&
+                              LoteUser.filter((lotes) => lotes.id_user === user.id && lotes.id_fase === f.id_fase).map(
+                                (lote, index) => {
+                                  return (
+                                    <div key={lote.id_fase} style={{ gap: 8, display: 'flex', flexWrap: 'wrap' }}>
+                                      {lote.lotes &&
+                                        lote.lotes.map((loteUser: any) => {
+                                          if (loteUser != undefined) {
+                                            return (
+                                              <div
+                                                key={loteUser.id}
+                                                style={{
+                                                  height: 30,
+                                                  paddingLeft: 9,
+                                                  paddingRight: 9,
+                                                  paddingTop: 8,
+                                                  paddingBottom: 8,
+                                                  background: '#191C24',
+                                                  borderRadius: 5,
+                                                  justifyContent: 'center',
+                                                  alignItems: 'center',
+                                                  gap: 10,
+                                                  display: 'flex',
+                                                }}
+                                              >
+                                                <div
+                                                  style={{
+                                                    color: 'white',
+                                                    fontSize: 12,
+                                                    fontFamily: 'Rubik',
+                                                    fontWeight: '500',
+                                                  }}
+                                                >
+                                                  {`Lote ${loteUser.numero}`}
+                                                </div>
+
+                                                {EtapaData.filter((etapa) => loteUser.id_etapa === etapa.id)[0]
+                                                  .id_fase !== f.id_fase && (
+                                                  <img src="/ok.svg" alt="" height={12} width={12} />
+                                                )}
+                                              </div>
+                                            );
+                                          }
+                                        })}
+                                    </div>
+                                  );
+                                },
+                              )}
                           </div>
                         </div>
                       );
                     }
                   })}
-                </>
+                </div>
               );
             })}
           </div>

@@ -18,7 +18,7 @@ export interface UserModalAtividadeProps {
 }
 
 export const UserModalAtividade = (props: UserModalAtividadeProps) => {
-  const [fase, setFase] = useState<any>(props.fase);
+  const [fase] = useState<any>(props.fase);
   const [searchTerm, setSearchTerm] = useState<string>('');
   const [faseSelected, setFaseSelected] = useState<number>(0);
   const [UserFase, setUserFase] = useState<IUserFase[]>([]);
@@ -33,7 +33,7 @@ export const UserModalAtividade = (props: UserModalAtividadeProps) => {
       }
     }
   }, []);
-  const [data, setData] = useState(Users);
+  const [data] = useState(Users);
   const [error, setError] = useState(false);
 
   const handleLoteClick = (item: any) => {
@@ -56,10 +56,6 @@ export const UserModalAtividade = (props: UserModalAtividadeProps) => {
     (f) => f.name.toLowerCase().includes(searchTerm.toLowerCase()) || f.name.includes(searchTerm),
   );
 
-  const userEmpyt = data.filter(
-    (f) => f.name.toLowerCase().includes(searchTerm.toLowerCase()) || f.name.includes(searchTerm),
-  );
-
   const handleSave = () => {
     // Verifica se alguma lista de usuários em UserFase está vazia
     const isAnyUserFaseEmpty = UserFase.some((uf) => uf.users.length === 0);
@@ -72,6 +68,7 @@ export const UserModalAtividade = (props: UserModalAtividadeProps) => {
       }, 3000);
       return; // Aborta a função handleSave
     }
+    console.log(UserFase);
     props.setUserFase(UserFase);
     props.close();
   };

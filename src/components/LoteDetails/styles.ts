@@ -31,6 +31,10 @@ export const areaClick = styled.div`
   }
 `;
 
+export const Texto = styled.p`
+  color: #191C24;
+`;
+
 export const Teste = styled.h1`
   color:white;
 `;
@@ -245,7 +249,6 @@ export const PendDivBlack = styled.div`
   border-radius: 5px;
   gap: 10px;
   padding: 10px;
-  width: calc(100%-2em);
   display: flex;
   align-items: flex-start;
   justify-content: flex-start;
@@ -260,8 +263,6 @@ export const PendenciaTextIcon = styled.div`
 
 export const ResolverPend = styled.div`
   display: flex;
-  width: 276px;
-  height: 44px;
   justify-content: center;
   align-items: center;
   gap: 10px;
@@ -269,6 +270,8 @@ export const ResolverPend = styled.div`
   border-radius: 5px;
   background: #FCDE42;
   color: #191C24;
+  padding: 1.5em;
+  width: 100%;
 `;
 
 export const ObsDivBlack = styled.div`

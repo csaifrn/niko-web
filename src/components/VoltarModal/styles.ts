@@ -4,8 +4,8 @@ export const Texto = styled.p`
 `;
 
 const ModalArea = styled.div`
-  width: 75vw;
-  padding:2em;
+  width: 85vw;
+  padding:16px ;
   position: relative;
   background: #393E4B;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
@@ -16,7 +16,7 @@ const ModalArea = styled.div`
 
 const ModalContent = styled.div`
   display: flex;
-  gap: 1em;
+  gap: 16px;
   flex-direction: column;
 
 `;
@@ -31,9 +31,52 @@ const NameClose = styled.div`
 export const Titulo = styled.h2`
 `;
 
+export const PendDivBlack = styled.div`
+  background-color: #191c24;
+  border-radius: 5px;
+  gap: 10px;
+  padding: 10px;
+  width: calc(100%-2em);
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+`;
+
+export const PendenciaTextIcon = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 10px;
+`;
+
+export const AlertIcon = styled.img`
+`;
+
+export const LabelPendencia = styled.label`
+
+`;
+
+export const SelectPendencia = styled.input`
+  display: flex;
+  width: 24px;
+  height: 24px;
+  padding: 2px 19px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  border-radius: 3px;
+  border: 1px solid #FFF;
+  background: red;
+`;
+
+export const SpanPendencia = styled.span`
+
+`;
+
 const Recused = styled.button`
   height: 44px;
   border-radius: 5px;
+  padding: 0 16px;
   background-color: #FCDE42;
   border: none;
   color: #191C24;
@@ -44,10 +87,16 @@ const Recused = styled.button`
   
 `;
 
-export const IconeAvancar = styled.img`
+export const RecusedAvancar = styled.div`
+  display:flex;
+  flex-direction:column;
+  gap: 8px;
 `;
 
-const Avancar = styled.button`
+export const IconeVoltar = styled.img`
+`;
+
+export const Voltar = styled.button`
   height: 44px;
   border-radius: 5px;
   background-color: #191C24;
@@ -58,7 +107,7 @@ const Avancar = styled.button`
   align-items: center;
   justify-content: flex-start;
   padding: 0 16px;
-  gap: 1em;
+  gap: 16px;
 `;
 
 const ModalBackdrop = styled.div`
@@ -75,4 +124,4 @@ const ModalBackdrop = styled.div`
   align-items: center;
 `;
 
-export { ModalArea, ModalContent, NameClose, Recused, Avancar, ModalBackdrop };
+export { ModalArea, ModalContent, NameClose, Recused, ModalBackdrop };

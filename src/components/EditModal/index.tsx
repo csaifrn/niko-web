@@ -59,14 +59,12 @@ export const EditModal = () => {
   )
 
   const [CatTipol, setCatTipol] = useState<boolean>(false)
-
   useEffect(() => {
     if(!CatTipol) {
       setData(CategoriaData)
     } else {
       setData(TipologiaData)
     }
-    
   }, [CatTipol])
 
   useEffect(() => {
@@ -74,7 +72,6 @@ export const EditModal = () => {
     setTipologias(task.tipologias)
   },[])
   
-
   const navigate = useNavigate();
   let { id } = useParams();
   const [lote , setLote] = useState(LoteData);

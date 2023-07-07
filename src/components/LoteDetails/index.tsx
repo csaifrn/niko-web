@@ -43,8 +43,8 @@ export const LoteDetails = () => {
     setModal(!modal);
   };
 
-  let { id } = useParams();
   const navigate = useNavigate();
+  let { id } = useParams();
   const [lote , setLote] = useState(LoteData);
   const task = lote.filter((task) => task.id == id)[0];
 
@@ -206,7 +206,7 @@ export const LoteDetails = () => {
           <S.Pendencias>
             <p>Pendências</p>
             {task.pendencias.map((pend: any) => (
-              <S.PendDivBlack key={pend.PendId}>
+              <S.PendDivBlack key={pend.PendId}  >
 
                 <S.PendenciaTextIcon>
                   {<img src={pend.pend_icon} alt="ícone de alerta" />}
@@ -214,7 +214,7 @@ export const LoteDetails = () => {
                 </S.PendenciaTextIcon>
 
                 <S.ResolverPend>
-                   <p>Resolver pendência</p>
+                  <S.Texto>Resolver pendência</S.Texto>
                 </S.ResolverPend>
                 
               </S.PendDivBlack>
@@ -225,7 +225,7 @@ export const LoteDetails = () => {
           <S.Observações>
             <p>Observações</p>
             {task.observacoes.map((obs: any) => (
-              <S.ObsDivBlack key={obs.ObsId}>
+              <S.ObsDivBlack key={obs.ObsId} >
                 {obs.titulo}
               </S.ObsDivBlack>
             ))}

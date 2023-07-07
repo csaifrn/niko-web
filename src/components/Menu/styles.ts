@@ -9,7 +9,7 @@ const MenuLeft = styled.div`
 
 const MenuArea = styled.nav`
   position: fixed;
-  width: 100%;
+  width: 100vw;
   top: 0;
   left: 0;
   display: flex;

@@ -21,7 +21,7 @@ const ModalArea = styled.div`
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
-    background: #393e4b url('Select.svg') 90% 50% no-repeat;
+    background: #393e4b url('/Select.svg') 90% 50% no-repeat;
     padding: 0 3em 0 1em;
   }
 `;

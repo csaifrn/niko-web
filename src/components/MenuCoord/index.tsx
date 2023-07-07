@@ -1,7 +1,5 @@
-import React from 'react';
 import * as S from './styles';
 import { useParams } from 'react-router-dom';
-import { Projeto } from '../../data/ProjetoData';
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars, no-unused-vars
 interface MenuProps {
@@ -9,16 +7,14 @@ interface MenuProps {
 }
 
 export const MenuCoord = () => {
-  let { id } = useParams();
+  const { id } = useParams();
   const pathname = window.location.pathname;
   return (
     <S.MenuArea>
-      <S.link href={`/Dashboard/${id}`}>
+      <S.link href={`/Painel/${id}`}>
         <S.MenuImg
           src={
-            pathname === `/Dashboard/${id}`
-              ? '/IconMenu/ChartDonut/fillicon.png'
-              : '/IconMenu/ChartDonut/regularicon.png'
+            pathname === `/Painel/${id}` ? '/IconMenu/ChartDonut/fillicon.png' : '/IconMenu/ChartDonut/regularicon.png'
           }
         />
         {pathname === `/Painel/${id}` && <S.textIcon style={{ color: '#F3802D' }}>Painel</S.textIcon>}

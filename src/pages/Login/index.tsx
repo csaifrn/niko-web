@@ -19,6 +19,7 @@ const Login = () => {
     onSuccess: (data: SignInResponse) => {
       localStorage.setItem('token', data.token);
       navigate('/Projetos');
+      // TODO: store user on context state
     },
     onError: (error: ApiError) => {
       setResponseError(error.response?.data.message || 'Um erro inesperado ocorreu.');

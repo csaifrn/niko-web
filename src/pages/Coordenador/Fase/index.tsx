@@ -8,7 +8,7 @@ import { useEffect } from 'react';
 import { useAuthUser } from 'react-auth-kit';
 
 const Home = () => {
-  let { id } = useParams();
+  const { id } = useParams();
   const navigate = useNavigate();
   const auth = useAuthUser();
 
@@ -21,14 +21,6 @@ const Home = () => {
       navigate('/Projetos');
     }
   }, [Projeto]);
-
-  //const {user, loading, logOut} = useFirebaseAuth();
-
-  //if (loading){
-  //  return <p>Loading please wait.......</p>
-  //}
-
-  // <Btn onClick={logOut}>Log Out</Btn>
 
   return (
     <Wrapper>

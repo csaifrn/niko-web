@@ -1,6 +1,6 @@
-import { uuidv4 } from '@firebase/util';
 import React from 'react';
 import * as S from './styles';
+import { generateUUID } from '../../utils/generateUUID.util';
 
 const Lote = (props: any) => {
   return (
@@ -12,7 +12,7 @@ const Lote = (props: any) => {
               <h2>{props.value}</h2>
               {props.categoria &&
                 props.categoria.map((categoria: any) => (
-                  <React.Fragment key={uuidv4()}>
+                  <React.Fragment key={generateUUID()}>
                     {categoria.nome === props.prioridade && (
                       <S.Prioridade>
                         <p>Prioridade</p>
@@ -26,7 +26,7 @@ const Lote = (props: any) => {
               <S.Pa>
                 {props.categoria &&
                   props.categoria.map((categoria: any, index: number) => (
-                    <React.Fragment key={uuidv4()}>
+                    <React.Fragment key={generateUUID()}>
                       {index >= 1 && (
                         <S.PaTextDiv style={{ borderRadius: '100%', width: '2em' }}>
                           <p>+{index}</p>
@@ -54,7 +54,7 @@ const Lote = (props: any) => {
               <h2>{props.value}</h2>
               {props.categoria &&
                 props.categoria.map((categoria: any) => (
-                  <React.Fragment key={uuidv4()}>
+                  <React.Fragment key={generateUUID()}>
                     {categoria.nome === props.prioridade && (
                       <S.Prioridade>
                         <p>Prioridade</p>
@@ -67,7 +67,7 @@ const Lote = (props: any) => {
               <S.Envolvido style={{ display: 'flex', marginLeft: '10px' }}>
                 {props.envolvidos &&
                   props.envolvidos.map((envolvidos: any, index: number) => (
-                    <React.Fragment key={uuidv4()}>
+                    <React.Fragment key={generateUUID()}>
                       {index <= 2 && (
                         <img
                           src={envolvidos.url}
@@ -95,7 +95,7 @@ const Lote = (props: any) => {
               <S.Pa>
                 {props.categoria &&
                   props.categoria.map((categoria: any, index: number) => (
-                    <React.Fragment key={uuidv4()}>
+                    <React.Fragment key={generateUUID()}>
                       {index >= 1 && (
                         <S.PaTextDiv style={{ borderRadius: '100%', width: '2em' }}>
                           <p>+{index}</p>

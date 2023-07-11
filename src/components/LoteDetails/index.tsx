@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import * as S from './styles';
 import { useParams, useNavigate } from 'react-router-dom';
 import Menu from '../Menu';
@@ -57,6 +57,13 @@ export const LoteDetails = () => {
   const handleCompartCheck = () => {
     setCompartState(!compartState);
   };
+
+  const [indisponivel , setIndisponivel ] = useState(false);
+
+  useEffect(() => {
+    if(task.pendencias.length == 0)
+    {setIndisponivel(true)}
+  },[])
 
   return (
     <>
@@ -232,64 +239,103 @@ export const LoteDetails = () => {
 
           </S.Observações>
 
-          {/* VOLTAR FASE */}
+          {/* VOLTAR FASE */}       
+          <S.BotaoMudarFase >
 
-          <S.BotaoMudarFase>
-            <S.VoltarAvancar onClick={handleVoltar}>
-              <img src={`/voltar.svg`} alt="voltar" />
-              Voltar Fase
-            </S.VoltarAvancar>
+            {indisponivel == false && 
+              <S.VoltarAvancar onClick={handleAvancar} style={{background: "#393E4B"}}>
+                <img src={"/voltar.svg"} alt="ícone circular com uma seta para a esquerda ao centro"/>
+                <p style={{color: indisponivel ? "rgba(255, 255, 255, 0.50)" : "#FFFFFF"}}>Voltar Fase</p>
+              </S.VoltarAvancar>
+            } 
+            {indisponivel == true &&
+              <S.VoltarAvancar style={{background:"rgba(57, 62, 75, 0.50)"}}>
+                <img src={"/voltar-desativado.svg"} alt="ícone circular com uma seta para a esquerda ao centro"/>
+                <p style={{color: indisponivel ? "rgba(255, 255, 255, 0.50)" : "#FFFFFF"}}>Voltar Fase</p>
+              </S.VoltarAvancar>
+            } 
 
-            <S.EscolherFase className="custom-select">
-              <S.OptionFases className="fase" value="recepção">
-                Recepção
-              </S.OptionFases>
-              <S.OptionFases className="fase" value="preparo">
-                Preparo
-              </S.OptionFases>
-              <S.OptionFases className="fase" value="catalogação">
-                Catalogação
-              </S.OptionFases>
-              <S.OptionFases className="fase" value="digitalização">
-                Digitalização
-              </S.OptionFases>
-              <S.OptionFases className="fase" value="upload">
-                Upload
-              </S.OptionFases>
-              <S.OptionFases className="fase" value="arquivamento">
-                Arquivamento
-              </S.OptionFases>
-            </S.EscolherFase>
+            {indisponivel == false &&
+              <S.EscolherFase className="custom-select" style={{background: indisponivel ? "rgba(57, 62, 75, 0.50)" : "#393E4B"}} >
+                <S.OptionFases className="fase" value="recepção">
+                  Recepção
+                </S.OptionFases>
+                <S.OptionFases className="fase" value="preparo">
+                  Preparo
+                </S.OptionFases>
+                <S.OptionFases className="fase" value="catalogação">
+                  Catalogação
+                </S.OptionFases>
+                <S.OptionFases className="fase" value="digitalização">
+                  Digitalização
+                </S.OptionFases>
+                <S.OptionFases className="fase" value="upload">
+                  Upload
+                </S.OptionFases>
+                <S.OptionFases className="fase" value="arquivamento">
+                  Arquivamento
+                </S.OptionFases>
+              </S.EscolherFase>
+            }
+
+            {indisponivel == true &&
+              <S.EscolherFase className="custom-select" style={{background: indisponivel ? "rgba(57, 62, 75, 0.50)" : "#393E4B"}} disabled >
+                <S.OptionFases className="fase" value="recepção">
+                  Recepção
+                </S.OptionFases>
+              </S.EscolherFase>
+            }
           </S.BotaoMudarFase>
 
-          {/* AVANÇAR FASE */}
+          {/* AVANÇAR FASE */}        
+          <S.BotaoMudarFase >
 
-          <S.BotaoMudarFase>
-            <S.VoltarAvancar onClick={handleAvancar}>
-              <img src={`/avancar.svg`} alt="avançar" />
-              <p>Avançar Fase</p>
-            </S.VoltarAvancar>
+            {indisponivel == false && 
+              <S.VoltarAvancar onClick={handleAvancar} style={{background: "#393E4B"}}>
+                <img src={"/avancar.svg"} alt="ícone circular com uma seta para a direita ao centro"/>
+                <p style={{color: indisponivel ? "rgba(255, 255, 255, 0.50)" : "#FFFFFF"}}>Avancar Fase</p>
+              </S.VoltarAvancar>
+            } 
 
-            <S.EscolherFase>
-              <S.OptionFases className="fase" value="recepção">
-                Recepção
-              </S.OptionFases>
-              <S.OptionFases className="fase" value="preparo">
-                Preparo
-              </S.OptionFases>
-              <S.OptionFases className="fase" value="catalogação">
-                Catalogação
-              </S.OptionFases>
-              <S.OptionFases className="fase" value="digitalização">
-                Digitalização
-              </S.OptionFases>
-              <S.OptionFases className="fase" value="upload">
-                Upload
-              </S.OptionFases>
-              <S.OptionFases className="fase" value="arquivamento">
-                Arquivamento
-              </S.OptionFases>
-            </S.EscolherFase>
+            {indisponivel == true &&
+              <S.VoltarAvancar style={{background:"rgba(57, 62, 75, 0.50)"}}>
+                <img src={"/avancar-desativado.svg"} alt="ícone circular com uma seta para a direita ao centro"/>
+                <p style={{color: indisponivel ? "rgba(255, 255, 255, 0.50)" : "#FFFFFF"}}>Avancar Fase</p>
+              </S.VoltarAvancar>
+            } 
+
+
+            {indisponivel == false &&
+              <S.EscolherFase className="custom-select" style={{background: indisponivel ? "rgba(57, 62, 75, 0.50)" : "#393E4B"}} >
+                <S.OptionFases className="fase" value="recepção">
+                  Recepção
+                </S.OptionFases>
+                <S.OptionFases className="fase" value="preparo">
+                  Preparo
+                </S.OptionFases>
+                <S.OptionFases className="fase" value="catalogação">
+                  Catalogação
+                </S.OptionFases>
+                <S.OptionFases className="fase" value="digitalização">
+                  Digitalização
+                </S.OptionFases>
+                <S.OptionFases className="fase" value="upload">
+                  Upload
+                </S.OptionFases>
+                <S.OptionFases className="fase" value="arquivamento">
+                  Arquivamento
+                </S.OptionFases>
+              </S.EscolherFase>
+            }
+
+            {indisponivel == true &&
+              <S.EscolherFase className="custom-select" style={{background: indisponivel ? "rgba(57, 62, 75, 0.50)" : "#393E4B"}} disabled >
+                <S.OptionFases className="fase" value="recepção">
+                  Recepção
+                </S.OptionFases>
+              </S.EscolherFase>
+            }
+
           </S.BotaoMudarFase>
 
           {/* ATRIBUIR À ALGUÉM */}

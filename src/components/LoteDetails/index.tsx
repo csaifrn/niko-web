@@ -9,6 +9,7 @@ import { ConfigModal } from '../ConfigModal';
 import { DeletarLoteModal } from '../DeletarLoteModal';
 import { VoltarModal } from '../VoltarModal';
 import { LoteData } from '../../data/LoteData';
+import FaseData from '../../data/FaseData';
 //import { EditModal } from '../EditModal';
 
 export const LoteDetails = () => {
@@ -64,6 +65,10 @@ export const LoteDetails = () => {
     if(task.pendencias.length == 0)
     {setIndisponivel(true)}
   },[])
+
+  const handleDebug = (fase: any) => {
+    console.log(fase)
+  }
 
   return (
     <>
@@ -256,33 +261,23 @@ export const LoteDetails = () => {
             } 
 
             {indisponivel == false &&
+
               <S.EscolherFase className="custom-select" style={{background: indisponivel ? "rgba(57, 62, 75, 0.50)" : "#393E4B"}} >
-                <S.OptionFases className="fase" value="recepção">
-                  Recepção
-                </S.OptionFases>
-                <S.OptionFases className="fase" value="preparo">
-                  Preparo
-                </S.OptionFases>
-                <S.OptionFases className="fase" value="catalogação">
-                  Catalogação
-                </S.OptionFases>
-                <S.OptionFases className="fase" value="digitalização">
-                  Digitalização
-                </S.OptionFases>
-                <S.OptionFases className="fase" value="upload">
-                  Upload
-                </S.OptionFases>
-                <S.OptionFases className="fase" value="arquivamento">
-                  Arquivamento
-                </S.OptionFases>
+                {FaseData.map((fase) => (
+                  <S.OptionFases className="fase" value='fase' key={fase.id}>
+                    {fase.titulo}
+                  </S.OptionFases>
+                ))}
               </S.EscolherFase>
             }
 
             {indisponivel == true &&
               <S.EscolherFase className="custom-select" style={{background: indisponivel ? "rgba(57, 62, 75, 0.50)" : "#393E4B"}} disabled >
-                <S.OptionFases className="fase" value="recepção">
-                  Recepção
-                </S.OptionFases>
+                {FaseData.map((fase) => (
+                  <S.OptionFases className="fase" value='fase' key={fase.id}>
+                    {fase.titulo}
+                  </S.OptionFases>
+                ))}
               </S.EscolherFase>
             }
           </S.BotaoMudarFase>
@@ -304,35 +299,23 @@ export const LoteDetails = () => {
               </S.VoltarAvancar>
             } 
 
-
             {indisponivel == false &&
-              <S.EscolherFase className="custom-select" style={{background: indisponivel ? "rgba(57, 62, 75, 0.50)" : "#393E4B"}} >
-                <S.OptionFases className="fase" value="recepção">
-                  Recepção
-                </S.OptionFases>
-                <S.OptionFases className="fase" value="preparo">
-                  Preparo
-                </S.OptionFases>
-                <S.OptionFases className="fase" value="catalogação">
-                  Catalogação
-                </S.OptionFases>
-                <S.OptionFases className="fase" value="digitalização">
-                  Digitalização
-                </S.OptionFases>
-                <S.OptionFases className="fase" value="upload">
-                  Upload
-                </S.OptionFases>
-                <S.OptionFases className="fase" value="arquivamento">
-                  Arquivamento
-                </S.OptionFases>
+              <S.EscolherFase className="custom-select" style={{background: indisponivel ? "rgba(57, 62, 75, 0.50)" : "#393E4B"}}  onChange={(e) => handleDebug(e)}>
+                {FaseData.map((fase) => (
+                  <S.OptionFases className="fase" value={fase.titulo} key={fase.id} >
+                    {fase.titulo}
+                  </S.OptionFases>
+                ))}
               </S.EscolherFase>
             }
 
             {indisponivel == true &&
               <S.EscolherFase className="custom-select" style={{background: indisponivel ? "rgba(57, 62, 75, 0.50)" : "#393E4B"}} disabled >
-                <S.OptionFases className="fase" value="recepção">
-                  Recepção
-                </S.OptionFases>
+                {FaseData.map((fase) => (
+                  <S.OptionFases className="fase" value={fase.titulo} key={fase.id}>
+                    {fase.titulo}
+                    </S.OptionFases>
+                ))}
               </S.EscolherFase>
             }
 

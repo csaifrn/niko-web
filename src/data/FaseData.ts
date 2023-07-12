@@ -7,27 +7,27 @@ const FaseData = [
     //     icone: '/icon-page/Recepção_icon.png'
     // },
     {
-        id: uuidv4(),
+        id: 0,
         titulo:'Preparo',
         icone: '/icon-page/Preparo_icon.png'
     },
     {
-        id: uuidv4(),
+        id: 1,
         titulo:'Catalogação',
         icone: '/icon-page/Catalogação_icon.png'
     },
     {
-        id: uuidv4(),
+        id: 2,
         titulo:'Digitalização',
         icone: '/icon-page/Digitalização_icon.png'
     },
     {
-        id: uuidv4(),
+        id: 3,
         titulo:'Upload',
         icone: '/icon-page/Upload_icon.png'
     },
     {
-        id: uuidv4(),
+        id: 4,
         titulo:'Arquivamento',
         icone: '/icon-page/Arquivamento_icon.png'
     },

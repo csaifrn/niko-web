@@ -2,7 +2,6 @@ import { Routes, Route } from 'react-router-dom';
 import { Suspense, lazy } from 'react';
 import Login from './pages/Login';
 import Splash from './pages/Splash';
-
 import Arquivamento from './pages/Etapas/Arquivamento';
 import Recebidos from './pages/Etapas/Recebidos';
 import Preparo from './pages/Etapas/Preparo';
@@ -12,7 +11,6 @@ import Upload from './pages/Etapas/Upload';
 import LoteDetails from './components/LoteDetails';
 import Operador from './pages/Coordenador/Operador';
 import Categoria from './pages/Coordenador/Categoria';
-import { RequireAuth } from 'react-auth-kit';
 import Erro404 from './pages/Erros/404';
 import Unauthorized from './pages/Erros/Unauthorized';
 import Projetos from './pages/Projeto/projeto-home';
@@ -31,171 +29,29 @@ const App = () => {
     <Suspense fallback={<Splash />}>
       <Routes>
         <Route path="Painel/:id" element={<Painel />} />
-        <Route
-          path="/splash"
-          element={
-            <RequireAuth loginPath={'/login'}>
-              <Splash />
-            </RequireAuth>
-          }
-        />
+        <Route path="/splash" element={<Splash />} />
         <Route path="/login" element={<Login />} />
         <Route path="/" element={<Login />} />
-
         <Route path="/unauthorized" element={<Unauthorized />} />
-
-        <Route
-          path="/Projetos"
-          element={
-            <RequireAuth loginPath={'/login'}>
-              <Projetos />
-            </RequireAuth>
-          }
-        />
-        <Route
-          path="/CriarProjeto"
-          element={
-            <RequireAuth loginPath={'/login'}>
-              <CreateProjeto users={Users} />
-            </RequireAuth>
-          }
-        />
-
+        <Route path="/Projetos" element={<Projetos />} />
+        <Route path="/CriarProjeto" element={<CreateProjeto users={Users} />} />
         <Route element={<Auth allowedRoles={['Coordenador']} />}>
-          <Route
-            path="/Fase/:id"
-            element={
-              <RequireAuth loginPath={'/login'}>
-                <Home />
-              </RequireAuth>
-            }
-          />
-          <Route
-            path="/Atividades/:id"
-            element={
-              <RequireAuth loginPath={'/login'}>
-                <Atividade />
-              </RequireAuth>
-            }
-          />
-          <Route
-            path={`/Atividades/:id/CriarAtividade`}
-            element={
-              <RequireAuth loginPath={'/login'}>
-                <AtividadeCreate />
-              </RequireAuth>
-            }
-          />
-          <Route
-            path={`/Atividades/:id/Edit/:iday/:idatv`}
-            element={
-              <RequireAuth loginPath={'/login'}>
-                <AtividadeEdit />
-              </RequireAuth>
-            }
-          />
-          <Route
-            path="Fase/:id/Board/Arquivamento"
-            element={
-              <RequireAuth loginPath={'/login'}>
-                <Arquivamento />
-              </RequireAuth>
-            }
-          />
-          <Route
-            path="Fase/:id/Board/Recebidos"
-            element={
-              <RequireAuth loginPath={'/login'}>
-                <Recebidos etapa="recebidos" />
-              </RequireAuth>
-            }
-          />
-          <Route
-            path="Fase/:id/Board/Preparo"
-            element={
-              // <RequireAuth loginPath={'/login'}>
-              <Preparo />
-              // </RequireAuth>
-            }
-          />
-          <Route
-            path="Fase/:id/Board/Catalogacao"
-            element={
-              <RequireAuth loginPath={'/login'}>
-                <Catalogacao />
-              </RequireAuth>
-            }
-          />
-          <Route
-            path="Fase/:id/Board/Digitalizacao"
-            element={
-              <RequireAuth loginPath={'/login'}>
-                <Digitalizacao />
-              </RequireAuth>
-            }
-          />
-          <Route
-            path="/Operadores/:id"
-            element={
-              <RequireAuth loginPath={'/login'}>
-                <Operador />
-              </RequireAuth>
-            }
-          />
-          {/* <Route
-            path="/Atividades/:id"
-            element={
-              <RequireAuth loginPath={'/login'}>
-                <Atividade />
-              </RequireAuth>
-            }
-          />
-          <Route
-            path={`/Atividades/:id/CriarAtividade`}
-            element={
-              <RequireAuth loginPath={'/login'}>
-                <AtividadeCreate />
-              </RequireAuth>
-            }
-          /> */}
-          <Route
-            path="/Categorias/:id"
-            element={
-              <RequireAuth loginPath={'/login'}>
-                <Categoria />
-              </RequireAuth>
-            }
-          />
-          <Route
-            path="Fase/:id/Board/Upload"
-            element={
-              <RequireAuth loginPath={'/login'}>
-                <Upload />
-              </RequireAuth>
-            }
-          />
-
-          <Route
-            path={`/Lote/:id`}
-            element={
-              <RequireAuth loginPath={'/login'}>
-                <LoteDetails />
-              </RequireAuth>
-            }
-          />
-
-          {/* </Route> */}
+          <Route path="/Fase/:id" element={<Home />} />
+          <Route path="/Atividades/:id" element={<Atividade />} />
+          <Route path={`/Atividades/:id/CriarAtividade`} element={<AtividadeCreate />} />
+          <Route path={`/Atividades/:id/Edit/:iday/:idatv`} element={<AtividadeEdit />} />
+          <Route path="Fase/:id/Board/Arquivamento" element={<Arquivamento />} />
+          <Route path="Fase/:id/Board/Recebidos" element={<Recebidos etapa="recebidos" />} />
+          <Route path="Fase/:id/Board/Preparo" element={<Preparo />} />
+          <Route path="Fase/:id/Board/Catalogacao" element={<Catalogacao />} />
+          <Route path="Fase/:id/Board/Digitalizacao" element={<Digitalizacao />} />
+          <Route path="/Operadores/:id" element={<Operador />} />
+          <Route path="/Categorias/:id" element={<Categoria />} />
+          <Route path="Fase/:id/Board/Upload" element={<Upload />} />
+          <Route path={`/Lote/:id`} element={<LoteDetails />} />
         </Route>
         <Route path="*" element={<Erro404 />} />
 
-        {/* <Route
-          path="/Fase"
-          element={
-            <RequireAuth loginPath={'/login'}>
-              <Home />
-            </RequireAuth>
-          }
-        /> */}
       </Routes>
     </Suspense>
   );

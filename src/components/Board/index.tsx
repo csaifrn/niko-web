@@ -24,7 +24,7 @@ export const Board = (props: BoardProps) => {
   //  - lotes por etapa
 
   const fase = props.fase
-  const etapasTemp = EtapaData.filter((Etapa) => Etapa.id_fase === fase.id)
+  const etapasTemp = EtapaData.filter((Etapa) => Etapa.id_fase === Number(fase.id))
   // axios.get('projetos/incra/fases/preparo/etapas).then((datta) => data.json).then((json) => etapas.json)
   
   const [etapas, setEtapas] = useState<any[]>([])

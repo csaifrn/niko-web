@@ -2,7 +2,6 @@ import { v4 as uuidv4 } from 'uuid';
 import EtapaData from '../data/EtapaData';
 import UserData from './UserData';
 import CategoriaData from './CategoriaData';
-import { Tipologia } from '../components/LoteDetails/styles';
 import { TipologiaData } from './TipologiaData';
 import FaseData from './FaseData';
 
@@ -19,7 +18,6 @@ export const LoteData = [
         id_etapa: EtapaData[0].id,
         fase_atual: 'Preparo',
         prioridade: false,
-        possui_pendencia: true,
         pendencias: [
         ],
         observacoes: [
@@ -79,7 +77,6 @@ export const LoteData = [
         id_etapa: EtapaData[1].id,
         fase_atual: 'Preparo',
         prioridade: false,
-        possui_pendencia: true,
         pendencias: [
             {
                 pend_icon:'/warning.svg',
@@ -148,7 +145,6 @@ export const LoteData = [
         id_etapa: EtapaData[1].id,
         fase_atual: 'Preparo',
         prioridade: false,
-        possui_pendencia: true,
         pendencias: [
         ],
         observacoes: [
@@ -208,7 +204,6 @@ export const LoteData = [
         id_etapa: EtapaData[1].id,
         fase_atual: 'Preparo',
         prioridade: false,
-        possui_pendencia: true,
         pendencias: [
         ],
         observacoes: [
@@ -269,7 +264,6 @@ export const LoteData = [
         id_etapa: [EtapaData[2].id, EtapaData[3].id],
         prioridade: false,
         fase_atual: 'Catalogação',
-        possui_pendencia: true,
         pendencias: [
         ],
         observacoes: [
@@ -315,7 +309,6 @@ export const LoteData = [
         id_etapa: [EtapaData[2].id, EtapaData[3].id],
         fase_atual: 'Catalogação',
         prioridade: false,
-        possui_pendencia: true,
         pendencias: [
         ],
         observacoes: [
@@ -361,7 +354,6 @@ export const LoteData = [
         id_etapa: [EtapaData[2].id, EtapaData[3].id],
         fase_atual: 'Catalogação',
         prioridade: false,
-        possui_pendencia: true,
         pendencias: [
         ],
         observacoes: [
@@ -407,7 +399,6 @@ export const LoteData = [
         id_etapa: EtapaData[4].id,
         fase_atual: 'Catalogação',
         prioridade: false,
-        possui_pendencia: true,
         pendencias: [
         ],
         observacoes: [
@@ -487,7 +478,6 @@ export const LoteData = [
         id_etapa: EtapaData[5].id,
         fase_atual: 'Catalogação',
         prioridade: false,
-        possui_pendencia: true,
         pendencias: [
         ],
         observacoes: [
@@ -567,7 +557,6 @@ export const LoteData = [
         id_etapa: [EtapaData[6].id, EtapaData[7].id],
         fase_atual: 'Digitalização',
         prioridade: true,
-        possui_pendencia: true,
         pendencias: [
         ],
         observacoes: [
@@ -650,7 +639,6 @@ export const LoteData = [
         id_etapa: [EtapaData[6].id, EtapaData[7].id],
         fase_atual: 'Digitalização',
         prioridade: true,
-        possui_pendencia: true,
         pendencias: [
         ],
         observacoes: [
@@ -733,7 +721,6 @@ export const LoteData = [
         id_etapa: EtapaData[8].id,
         fase_atual: 'Digitalização',
         prioridade: false,
-        possui_pendencia: true,
         pendencias: [
         ],
         observacoes: [
@@ -849,7 +836,6 @@ export const LoteData = [
         id_etapa: EtapaData[9].id,
         fase_atual: 'Digitalização',
         prioridade: true,
-        possui_pendencia: true,
         pendencias: [
         ],
         observacoes: [
@@ -964,8 +950,7 @@ export const LoteData = [
         arquiv_digitais: 20,
         id_etapa: [EtapaData[10].id, EtapaData[11].id],
         fase_atual: 'Upload',
-        prioridade: false,
-        possui_pendencia: true,
+        prioridade: true,
         pendencias: [
             {
                 pend_icon:'/warning.svg',
@@ -1076,7 +1061,6 @@ export const LoteData = [
         id_etapa: [EtapaData[10].id, EtapaData[11].id],
         fase_atual: 'Upload',
         prioridade: true,
-        possui_pendencia: true,
         pendencias: [
         ],
         observacoes: [
@@ -1167,7 +1151,6 @@ export const LoteData = [
         id_etapa: EtapaData[12].id,
         fase_atual: 'Upload',
         prioridade: false,
-        possui_pendencia: true,
         pendencias: [
         ],
         observacoes: [
@@ -1291,7 +1274,6 @@ export const LoteData = [
         id_etapa: EtapaData[13].id,
         fase_atual: 'Upload',
         prioridade: false,
-        possui_pendencia: true,
         pendencias: [
         ],
         observacoes: [
@@ -1410,7 +1392,6 @@ export const LoteData = [
         id_etapa: [EtapaData[14].id, EtapaData[15].id],
         fase_atual: 'Arquivamento',
         prioridade: false,
-        possui_pendencia: true,
         pendencias: [
         ],
         observacoes: [
@@ -1539,7 +1520,6 @@ export const LoteData = [
         id_etapa: [EtapaData[14].id, EtapaData[15].id],
         fase_atual: 'Arquivamento',
         prioridade: true,
-        possui_pendencia: true,
         pendencias: [
         ],
         observacoes: [
@@ -1667,7 +1647,6 @@ export const LoteData = [
         id_etapa: EtapaData[16].id,
         fase_atual: 'Arquivamento',
         prioridade: true,
-        possui_pendencia: true,
         pendencias: [
         ],
         observacoes: [

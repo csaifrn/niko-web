@@ -10,14 +10,8 @@ import { DeletarLoteModal } from '../DeletarLoteModal';
 import { VoltarModal } from '../VoltarModal';
 import { LoteData } from '../../data/LoteData';
 import FaseData from '../../data/FaseData';
-//import { EditModal } from '../EditModal';
 
 export const LoteDetails = () => {
-
-  //const [edit_modal, setEditModal] = useState(false); 
-  // const handleEdit = () => {
-  //   setEditModal(!edit_modal);
-  // };
 
   const [config_modal, setConfigModal] = useState(false);
   const handleConfig = () => {
@@ -69,6 +63,10 @@ export const LoteDetails = () => {
   const handleDebug = (fase: any) => {
     console.log(fase)
   }
+
+  const [usuarios , setUsuarios] = useState(task.envolvidos)
+
+  console.log(usuarios)
 
   return (
     <>
@@ -177,9 +175,11 @@ export const LoteDetails = () => {
           <S.FaseEnvolvAtual>
             {/* FASE ATUAL DO LOTE */}
             <S.Icons src={`/icon-page/${task.fase_atual}_icon.png`} />
-            {task.envolvidos != null &&
-              task.envolvidos.map((env: any) => (
-                // ENVOLVIDOS 
+
+            {/* ENVOLVIDOS  */}
+            {usuarios != null &&
+              usuarios.map((env: any) => (
+                 
                 <S.Envolvidos key={env.id}>
                   {env.andamento == true &&
                     <img 
@@ -195,7 +195,7 @@ export const LoteDetails = () => {
                     />}
                   {env.andamento == false &&
                     <img 
-                      src={env.foto}
+                      src={env.url}
                       alt={env.nome}
                       width={28}
                       height={28}
@@ -248,11 +248,12 @@ export const LoteDetails = () => {
           <S.BotaoMudarFase >
 
             {indisponivel == false && 
-              <S.VoltarAvancar onClick={handleAvancar} style={{background: "#393E4B"}}>
+              <S.VoltarAvancar onClick={handleVoltar} style={{background: "#393E4B"}}>
                 <img src={"/voltar.svg"} alt="ícone circular com uma seta para a esquerda ao centro"/>
                 <p style={{color: indisponivel ? "rgba(255, 255, 255, 0.50)" : "#FFFFFF"}}>Voltar Fase</p>
               </S.VoltarAvancar>
             } 
+
             {indisponivel == true &&
               <S.VoltarAvancar style={{background:"rgba(57, 62, 75, 0.50)"}}>
                 <img src={"/voltar-desativado.svg"} alt="ícone circular com uma seta para a esquerda ao centro"/>
@@ -261,7 +262,6 @@ export const LoteDetails = () => {
             } 
 
             {indisponivel == false &&
-
               <S.EscolherFase className="custom-select" style={{background: indisponivel ? "rgba(57, 62, 75, 0.50)" : "#393E4B"}} >
                 {FaseData.map((fase) => (
                   <S.OptionFases className="fase" value='fase' key={fase.id}>
@@ -404,8 +404,7 @@ export const LoteDetails = () => {
 
       </S.areaClick>
 
-      {/*{edit_modal && <EditModal close={handleEdit}></EditModal>}*/}
-      {modal && <AtribuirAlguemModal close={handleAtribuirAlguem}></AtribuirAlguemModal>}
+      {modal && <AtribuirAlguemModal user={usuarios} setUser={setUsuarios} close={handleAtribuirAlguem}></AtribuirAlguemModal>}
       {voltar && <VoltarModal close={handleVoltar}></VoltarModal>}
       {avancar && <AvancarModal close={handleAvancar}></AvancarModal>}
       {delete_modal && <DeletarLoteModal close={handleDelete}></DeletarLoteModal>}

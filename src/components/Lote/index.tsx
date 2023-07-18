@@ -4,18 +4,15 @@ import * as S from './styles';
 
 const Lote = (props: any) => {
 
-  console.log(props.pendencia)
+  console.log(props.pendencia.lenght > 0)
   return (
     <>
       {props.edit == true && (
         <S.LoteEdit className="Lote">
-          <S.LoteArea>
+          <S.LoteArea>      
             <S.Content>
               <h2>{props.value}</h2>
-              {props.pendencia === true && (
-                <img src='/warning.svg' alt='icone de pendência'/>
-              )}
-              {props.categoria &&
+              {props.categoria &&               
                 props.categoria.map((categoria: any) => (
                   <React.Fragment key={uuidv4()}>
                     {categoria.nome === props.prioridade && (
@@ -28,7 +25,6 @@ const Lote = (props: any) => {
               }
             </S.Content>
             <S.Content>
-              <div></div>
               <S.Pa>
                 {props.categoria &&
                   props.categoria.map((categoria: any, index: number) => (
@@ -55,6 +51,10 @@ const Lote = (props: any) => {
           <S.LoteArea>
             <S.Content>
               <h2>{props.value}</h2>
+              {/* PENDENCIA */}
+              {props.pendencia > 0 &&
+                <img src='/warning.svg' alt='icone triangular com ponto de exclamação no centro indicando que há uma pendência no lote'/>
+              }
               {/* PRIORIDADE */}
               {props.prioridade == true &&
                 <S.Prioridade>
@@ -99,6 +99,7 @@ const Lote = (props: any) => {
                         <S.PaTextDiv style={{ borderRadius: '100%', width: '2em' }}>
                           <p>+{index}</p>
                         </S.PaTextDiv>
+                        
                       )}
                       {index == 0 && (
                         <S.PaTextDiv style={{ borderRadius: '3px' }}>

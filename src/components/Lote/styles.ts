@@ -12,7 +12,6 @@ const Lote = styled.div`
 
 const LoteEdit = styled.div`
   font-family: 'Rubik';
-
   padding: 0.8em;
   background-color: #393e4b;
   border-radius: 5px;
@@ -43,7 +42,6 @@ const Prioridade = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-
   p {
     color: white;
     margin-bottom: 0;

@@ -69,10 +69,10 @@ export const AtribuirModal = (props: AtribuirModalProps) => {
               <h2>Atribuir Lote</h2>
               <button onClick={props.close} style={{ width: 'auto', backgroundColor: 'transparent', border: 'none' }}>
                 <img
-                  src="close.svg"
+                  src="/close.svg"
                   alt=""
-                  height={18}
-                  width={18}
+                  height={24}
+                  width={24}
                   style={{
                     padding: '5px 5px',
                     backgroundColor: '#090E09',

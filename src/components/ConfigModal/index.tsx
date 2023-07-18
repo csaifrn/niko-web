@@ -71,9 +71,9 @@ export const ConfigModal = (props: ConfigModalProps) => {
             <img
               onClick={props.close}
               src="/close.svg"
-              alt=""
-              height={18}
-              width={18}
+              alt="Botão com X ao centro para fechar as configurações do lote e voltar para o detalhamento"
+              height={24}
+              width={24}
               style={{
                 padding: "5px 5px",
                 backgroundColor: "#090E09",

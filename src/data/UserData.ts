@@ -2,7 +2,7 @@ const Users = [
   {
     id: 1,
     name: 'Pedro Varela',
-    url: 'https://th.bing.com/th/id/OIP.lhR5XN7V2Np1BY6B5q5_9gAAAA?pid=ImgDet&w=300&h=404&rs=1',
+    url: 'https://th.bing.com/th/id/OIP.jTpsrJxMrIRi5qsxX8RWRQHaLJ?pid=ImgDet&rs=1',
     email: 'pedro@email.com.br',
     lote: 'Lote 201',
     fase: 'catalogacao',

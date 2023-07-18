@@ -18,7 +18,6 @@ const ModalContent = styled.div`
   display: flex;
   gap: 16px;
   flex-direction: column;
-
 `;
 
 const NameClose = styled.div`

@@ -21,6 +21,7 @@ import Atividade from './pages/Coordenador/Atividade/atividade-home';
 import AtividadeCreate from './pages/Coordenador/Atividade/atividade-create';
 import AtividadeEdit from './pages/Coordenador/Atividade/ativiade-edit';
 import Painel from './pages/Coordenador/Painel';
+import RecuperarSenha from './pages/Recuperar';
 
 const Home = lazy(() => import('./pages/Coordenador/Fase'));
 
@@ -31,6 +32,7 @@ const App = () => {
         <Route path="Painel/:id" element={<Painel />} />
         <Route path="/splash" element={<Splash />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/recuperar-senha" element={<RecuperarSenha />} />
         <Route path="/" element={<Login />} />
         <Route path="/unauthorized" element={<Unauthorized />} />
         <Route path="/Projetos" element={<Projetos />} />
@@ -51,7 +53,6 @@ const App = () => {
           <Route path={`/Lote/:id`} element={<LoteDetails />} />
         </Route>
         <Route path="*" element={<Erro404 />} />
-
       </Routes>
     </Suspense>
   );

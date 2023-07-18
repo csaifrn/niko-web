@@ -69,8 +69,11 @@ const RecuperarSenha = () => {
       <S.Wrapper>
         <S.FormContainer>
           <S.Logo alt="Logo do sistema Niko em laranja." src="Logo_Niko.svg"></S.Logo>
-          <S.Titulo>Esqueci minha senha</S.Titulo>
-          <S.Text>Calma! vamos ajudar você com isso :)</S.Text>
+          <S.TextDiv>
+            <S.Titulo>Esqueci minha senha</S.Titulo>
+            <S.Text>Calma! vamos ajudar você com isso :)</S.Text>
+          </S.TextDiv>
+
           <S.FormLogin onSubmit={onSubmit}>
             <S.FieldContainer>
               <S.LabelField>

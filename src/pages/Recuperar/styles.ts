@@ -20,7 +20,7 @@ export const FormContainer = styled.div`
   background-color: ${({ theme }) => theme.colors['gray/700']};
   padding: 3em;
   border-radius: 2em;
-  gap: 2em;
+  gap: 4em;
 `;
 
 export const Logo = styled.img`
@@ -35,6 +35,7 @@ export const FormLogin = styled.form`
 
 export const TextDiv = styled.div`
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   gap: 1em;
@@ -98,7 +99,7 @@ export const ErrorMessage = styled.span`
 `;
 
 export const SubmitButton = styled.button`
-  margin-top: 4em;
+  margin-top: 2em;
   font-family: 'Rubik';
   padding: 0.5em;
   width: 70%;

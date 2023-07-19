@@ -22,6 +22,7 @@ import AtividadeCreate from './pages/Coordenador/Atividade/atividade-create';
 import AtividadeEdit from './pages/Coordenador/Atividade/ativiade-edit';
 import Painel from './pages/Coordenador/Painel';
 import RecuperarSenha from './pages/Recuperar';
+import ChangePassword from './pages/ChangePassword';
 
 const Home = lazy(() => import('./pages/Coordenador/Fase'));
 
@@ -33,6 +34,7 @@ const App = () => {
         <Route path="/splash" element={<Splash />} />
         <Route path="/login" element={<Login />} />
         <Route path="/recuperar-senha" element={<RecuperarSenha />} />
+        <Route path="/recuperar-senha/:id" element={<ChangePassword />} />
         <Route path="/" element={<Login />} />
         <Route path="/unauthorized" element={<Unauthorized />} />
         <Route path="/Projetos" element={<Projetos />} />

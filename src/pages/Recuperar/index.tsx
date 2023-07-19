@@ -4,7 +4,7 @@ import { validationLoginSchema } from './validation';
 import { ErrorsForm } from './reset.interface';
 import * as Yup from 'yup';
 import { EnvelopeSimple } from '@phosphor-icons/react';
-import { EmailRecuperadoModal } from '../../components/EmailRecuperado';
+import { CheckModal } from '../../components/CheckModal';
 import { ResetPassword } from '../../api/services/users/reset-password';
 import { useMutation } from 'react-query';
 import { ApiError } from '../../api/services/authentication/signIn/signIn.interface';
@@ -73,17 +73,14 @@ const RecuperarSenha = () => {
             <S.Titulo>Esqueci minha senha</S.Titulo>
             <S.Text>Calma! vamos ajudar você com isso :)</S.Text>
           </S.TextDiv>
-
           <S.FormLogin onSubmit={onSubmit}>
             <S.FieldContainer>
               <S.LabelField>
                 <S.IconEmail>
                   <EnvelopeSimple size={24} color="#b1b1b1" />
                 </S.IconEmail>
-
                 <S.InputText ref={emailInputRef} id="email" type="text" placeholder="E-mail Cadastrado" />
               </S.LabelField>
-
               <S.ErrorMessage>{validationFormError.email}</S.ErrorMessage>
             </S.FieldContainer>
             <S.ErrorMessage>{responseError}</S.ErrorMessage>
@@ -92,7 +89,13 @@ const RecuperarSenha = () => {
           </S.FormLogin>
         </S.FormContainer>
       </S.Wrapper>
-      {modal && <EmailRecuperadoModal close={() => setModal(!modal)} email={'pedro@gamilcmom'} />}
+      {modal && (
+        <CheckModal
+          close={() => setModal(!modal)}
+          text={`Enviamos um email para ${emailInputRef.current?.value} com um link para você entrar novamente na sua conta`}
+          title="E-mail Enviado"
+        />
+      )}
     </>
   );
 };

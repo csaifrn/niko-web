@@ -4,11 +4,12 @@ import { CheckCircle } from '@phosphor-icons/react';
 import theme from '../../global/theme';
 
 interface props {
-  email: string;
+  title: string;
+  text: string;
   close: () => void;
 }
 
-export const EmailRecuperadoModal = ({ email = '@gmail.com', close }: props) => {
+export const CheckModal = ({ close, title, text }: props) => {
   const [closing, setClosing] = useState(false);
 
   useEffect(() => {
@@ -36,10 +37,8 @@ export const EmailRecuperadoModal = ({ email = '@gmail.com', close }: props) => 
       <S.ModalArea id="modal-scaling">
         <S.TextDiv>
           <CheckCircle size={64} color={theme.colors['green/400']} />
-          <S.TituloModal>E-mail Enviado</S.TituloModal>
-          <S.TextModal>
-            Enviamos um email para {email} com um link para você poder entrar novamente da sua conta
-          </S.TextModal>
+          <S.TituloModal>{title}</S.TituloModal>
+          <S.TextModal>{text}</S.TextModal>
         </S.TextDiv>
 
         <S.Ok onClick={handleClose}>Ok</S.Ok>

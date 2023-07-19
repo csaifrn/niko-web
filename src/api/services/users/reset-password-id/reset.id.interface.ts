@@ -1,6 +1,7 @@
 export interface ResetPasswordParams {
   password: string;
   passwordConfirmation: string;
+  id: string;
 }
 
 export interface UnauthorizedError {

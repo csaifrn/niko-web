@@ -8,8 +8,10 @@ import { useMutation } from 'react-query';
 import { ApiError } from '../../api/services/authentication/signIn/signIn.interface';
 import { ResetPasswordId } from '../../api/services/users/reset-password-id';
 import { Eye, EyeSlash } from '@phosphor-icons/react';
+import { useParams } from 'react-router-dom';
 
 const ChangePassword = () => {
+  const { id } = useParams();
   const passwordRef = useRef<HTMLInputElement>(null);
   const passwordConfirmationRef = useRef<HTMLInputElement>(null);
   const [responseError, setResponseError] = useState('');
@@ -18,6 +20,7 @@ const ChangePassword = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [isPasswordWithContent, setIsPasswordWithContent] = useState(false);
 
+  //eye for ConfirmPassword
   const [showCPassword, setShowCPassword] = useState(false);
   const [isCPasswordWithContent, setIsCPasswordWithContent] = useState(false);
 
@@ -66,12 +69,13 @@ const ChangePassword = () => {
 
     const isValid = await validateForm();
 
-    if (isValid) {
+    if (isValid && id) {
       // na teoria funciona mas falta tratar a data retornada e testar
       if (passwordRef.current?.value && passwordConfirmationRef.current?.value) {
         resetPasswordMutate.mutate({
           password: passwordRef.current?.value,
           passwordConfirmation: passwordConfirmationRef.current?.value,
+          id: id,
         });
       }
     }

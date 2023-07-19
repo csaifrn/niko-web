@@ -2,6 +2,10 @@ export interface ResetPasswordParams {
   email: string;
 }
 
+export interface ResetPasswordResponse {
+  message: string;
+}
+
 export interface UnauthorizedError {
   statusCode: number;
   message: string;

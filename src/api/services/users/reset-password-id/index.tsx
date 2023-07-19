@@ -1,11 +1,9 @@
 import axiosInstance from '../../../axiosInstance';
 import { ResetPasswordParams } from './reset.id.interface';
 
-export const ResetPasswordId = async ({ password, passwordConfirmation }: ResetPasswordParams): Promise<any> => {
-  const data = await axiosInstance.post<any>('/users/reset-password', {
+export const ResetPasswordId = async ({ id, password, passwordConfirm }: ResetPasswordParams): Promise<void> => {
+  await axiosInstance.post<void>(`/users/reset-password/${id}`, {
     password,
-    passwordConfirmation,
+    passwordConfirm,
   });
-
-  return data.data;
 };

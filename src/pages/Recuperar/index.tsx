@@ -12,12 +12,14 @@ import { ApiError } from '../../api/services/authentication/signIn/signIn.interf
 const RecuperarSenha = () => {
   const emailInputRef = useRef<HTMLInputElement>(null);
   const [responseError, setResponseError] = useState('');
+  const [message, setMessage] = useState('');
   const [modal, setModal] = useState(false);
   const [validationFormError, setValidationFormError] = useState<ErrorsForm>({ email: '' });
 
   const resetPasswordMutate = useMutation(ResetPassword, {
-    onSuccess: () => {
+    onSuccess: (data) => {
       setModal(!modal);
+      setMessage(data.message);
       // TODO: store user on context state
     },
     onError: (error: ApiError) => {
@@ -89,13 +91,7 @@ const RecuperarSenha = () => {
           </S.FormLogin>
         </S.FormContainer>
       </S.Wrapper>
-      {modal && (
-        <CheckModal
-          close={() => setModal(!modal)}
-          text={`Enviamos um email para ${emailInputRef.current?.value} com um link para você entrar novamente na sua conta`}
-          title="E-mail Enviado"
-        />
-      )}
+      {modal && <CheckModal close={() => setModal(!modal)} text={`${message}`} title="E-mail Enviado" />}
     </>
   );
 };

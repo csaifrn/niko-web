@@ -68,13 +68,14 @@ const ChangePassword = () => {
     e.preventDefault();
 
     const isValid = await validateForm();
+    console.log(id);
 
     if (isValid && id) {
       // na teoria funciona mas falta tratar a data retornada e testar
       if (passwordRef.current?.value && passwordConfirmationRef.current?.value) {
         resetPasswordMutate.mutate({
           password: passwordRef.current?.value,
-          passwordConfirmation: passwordConfirmationRef.current?.value,
+          passwordConfirm: passwordConfirmationRef.current?.value,
           id: id,
         });
       }
@@ -119,13 +120,13 @@ const ChangePassword = () => {
               <S.ErrorMessage>{validationFormError.password}</S.ErrorMessage>
             </S.FieldContainer>
             <S.FieldContainer>
-              <S.LabelField htmlFor="password">Confirmar senha</S.LabelField>
+              <S.LabelField htmlFor="confirmPassword">Confirmar senha</S.LabelField>
               <S.ContainerInputText>
                 <S.InputText
-                  className="password"
+                  className="confirmPassword"
                   ref={passwordConfirmationRef}
                   onChange={(e) => setIsCPasswordWithContent(e.target.value ? true : false)}
-                  id="password"
+                  id="confirmPassword"
                   type={showCPassword ? 'text' : 'password'}
                   placeholder="Senha"
                 />

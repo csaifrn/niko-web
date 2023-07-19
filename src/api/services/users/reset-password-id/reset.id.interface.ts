@@ -1,6 +1,6 @@
 export interface ResetPasswordParams {
   password: string;
-  passwordConfirmation: string;
+  passwordConfirm: string;
   id: string;
 }
 

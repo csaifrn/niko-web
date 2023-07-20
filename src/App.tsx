@@ -23,6 +23,7 @@ import Atividade from './pages/Coordenador/Atividade/atividade-home';
 import AtividadeCreate from './pages/Coordenador/Atividade/atividade-create';
 import AtividadeEdit from './pages/Coordenador/Atividade/ativiade-edit';
 import Painel from './pages/Coordenador/Painel';
+import Cadastro from './pages/Cadastro';
 
 const Home = lazy(() => import('./pages/Coordenador/Fase'));
 
@@ -31,6 +32,7 @@ const App = () => {
     <Suspense fallback={<Splash />}>
       <Routes>
         <Route path="Painel/:id" element={<Painel />} />
+        <Route path="/Cadastro" element={<Cadastro />} />
         <Route
           path="/splash"
           element={

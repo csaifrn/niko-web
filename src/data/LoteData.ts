@@ -79,9 +79,14 @@ export const LoteData = [
         prioridade: false,
         pendencias: [
             {
-                pend_icon:'/warning.svg',
-                titulo: 'Há 3 processos sem número',
-                PendId: uuidv4(),
+                id: '1',
+                id_projeto: '2',
+                lote: '2',
+                fase_atual: 'Preparo',
+                fase_final: '',
+                comment: 'Lote possui folhas rasgadas',
+                voltar: false,
+                decisao: false,
             },
         ],
         observacoes: [
@@ -263,7 +268,7 @@ export const LoteData = [
         arquiv_digitais: 0,
         id_etapa: [EtapaData[2].id, EtapaData[3].id],
         prioridade: false,
-        fase_atual: 'Catalogação',
+        fase_atual: 'Catalogacao',
         pendencias: [
         ],
         observacoes: [
@@ -307,7 +312,7 @@ export const LoteData = [
         arquiv_fisicos: 0,
         arquiv_digitais: 0,
         id_etapa: [EtapaData[2].id, EtapaData[3].id],
-        fase_atual: 'Catalogação',
+        fase_atual: 'Catalogacao',
         prioridade: false,
         pendencias: [
         ],
@@ -352,7 +357,7 @@ export const LoteData = [
         arquiv_fisicos: 0,
         arquiv_digitais: 0,
         id_etapa: [EtapaData[2].id, EtapaData[3].id],
-        fase_atual: 'Catalogação',
+        fase_atual: 'Catalogacao',
         prioridade: false,
         pendencias: [
         ],
@@ -397,7 +402,7 @@ export const LoteData = [
         arquiv_fisicos: 0,
         arquiv_digitais: 0,
         id_etapa: EtapaData[4].id,
-        fase_atual: 'Catalogação',
+        fase_atual: 'Catalogacao',
         prioridade: false,
         pendencias: [
         ],
@@ -476,7 +481,7 @@ export const LoteData = [
         arquiv_fisicos: 0,
         arquiv_digitais: 0,
         id_etapa: EtapaData[5].id,
-        fase_atual: 'Catalogação',
+        fase_atual: 'Catalogacao',
         prioridade: false,
         pendencias: [
         ],
@@ -555,7 +560,7 @@ export const LoteData = [
         arquiv_fisicos: 20,
         arquiv_digitais: 0,
         id_etapa: [EtapaData[6].id, EtapaData[7].id],
-        fase_atual: 'Digitalização',
+        fase_atual: 'Digitalizacao',
         prioridade: true,
         pendencias: [
         ],
@@ -637,7 +642,7 @@ export const LoteData = [
         arquiv_fisicos: 23,
         arquiv_digitais: 0,
         id_etapa: [EtapaData[6].id, EtapaData[7].id],
-        fase_atual: 'Digitalização',
+        fase_atual: 'Digitalizacao',
         prioridade: true,
         pendencias: [
         ],
@@ -719,7 +724,7 @@ export const LoteData = [
         arquiv_fisicos: 15,
         arquiv_digitais: 0,
         id_etapa: EtapaData[8].id,
-        fase_atual: 'Digitalização',
+        fase_atual: 'Digitalizacao',
         prioridade: false,
         pendencias: [
         ],
@@ -834,7 +839,7 @@ export const LoteData = [
         arquiv_fisicos: 18,
         arquiv_digitais: 0,
         id_etapa: EtapaData[9].id,
-        fase_atual: 'Digitalização',
+        fase_atual: 'Digitalizacao',
         prioridade: true,
         pendencias: [
         ],
@@ -953,9 +958,14 @@ export const LoteData = [
         prioridade: true,
         pendencias: [
             {
-                pend_icon:'/warning.svg',
-                titulo: 'Há 3 processos que não possuem verso das páginas',
-                PendId: uuidv4(),
+                id: '1',
+                id_projeto: '2',
+                lote: '117',
+                fase_atual: 'Catalogacao',
+                fase_final: 'Upload',
+                comment: 'Lote possui vários processos com páginas não numeradas',
+                voltar: true,
+                decisao: false,
             },
         ],
         observacoes: [

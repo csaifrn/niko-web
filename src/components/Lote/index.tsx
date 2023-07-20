@@ -4,7 +4,7 @@ import * as S from './styles';
 
 const Lote = (props: any) => {
 
-  console.log(props.pendencia.lenght > 0)
+  //console.log(props.pendencia.lenght > 0)
   return (
     <>
       {props.edit == true && (

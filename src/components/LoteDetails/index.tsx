@@ -10,6 +10,7 @@ import { DeletarLoteModal } from '../DeletarLoteModal';
 import { VoltarModal } from '../VoltarModal';
 import { LoteData } from '../../data/LoteData';
 import FaseData from '../../data/FaseData';
+import { ModalResolverPendencia } from '../ModalResolverPendencia';
 
 export const LoteDetails = () => {
 
@@ -38,6 +39,14 @@ export const LoteDetails = () => {
     setModal(!modal);
   };
 
+  //Estado de uma pendência
+  const [pend, setPend] = useState(false);
+  const handleResolverPend = (p:any) => {
+    setPend(!pend);
+    setPendencia(p)
+  };
+  const [pendencia , setPendencia] = useState<any>(null)
+
   const navigate = useNavigate();
   let { id } = useParams();
   const [lote , setLote] = useState(LoteData);
@@ -61,12 +70,10 @@ export const LoteDetails = () => {
   },[])
 
   const handleDebug = (fase: any) => {
-    console.log(fase)
+    //console.log(fase)
   }
 
   const [usuarios , setUsuarios] = useState(task.envolvidos)
-
-  console.log(usuarios)
 
   return (
     <>
@@ -127,7 +134,7 @@ export const LoteDetails = () => {
           </S.DetalhesLote>
 
           {/* MOSTRA CATEGORIAS QUANDO O LOTE É PRIORIDADE */}
-          {task.categorias !== null && prioridadeState == true &&
+          {task.categorias.length >= 0 && prioridadeState == true &&
             <S.CategoriaPrioridade>
 
               {/* PRIORIDADE */}
@@ -147,7 +154,7 @@ export const LoteDetails = () => {
           </S.CategoriaPrioridade>}
 
           {/* MOSTRA CATEGORIAS QUANDO O LOTE NÃO É PRIORIDADE */}
-          {task.categorias !== null && prioridadeState == false &&
+          {task.categorias.length > 0 && prioridadeState == false &&
             <S.CategoriaPrioridade>
               {/* CATEGORIAS */}
               {
@@ -162,7 +169,7 @@ export const LoteDetails = () => {
           }
           
           {/* TIPOLOGIAS */}
-          {task.tipologias !== null &&
+          {task.tipologias.length > 0 &&
             <S.Tipologias>
               {task.tipologias.map((tipol: any) => (
                 <S.Tipologia key={tipol.id} >
@@ -174,7 +181,7 @@ export const LoteDetails = () => {
 
           <S.FaseEnvolvAtual>
             {/* FASE ATUAL DO LOTE */}
-            <S.Icons src={`/icon-page/${task.fase_atual}_icon.png`} />
+            <S.Icons src={`/icon-medium/${task.fase_atual}.png`} />
 
             {/* ENVOLVIDOS  */}
             {usuarios != null &&
@@ -217,15 +224,16 @@ export const LoteDetails = () => {
           {/* PENDÊNCIAS */}
           <S.Pendencias>
             <p>Pendências</p>
-            {task.pendencias.map((pend: any) => (
-              <S.PendDivBlack key={pend.PendId}  >
+            {task.pendencias.map((pen: any) => (
+              <S.PendDivBlack key={pen.id}  >
 
                 <S.PendenciaTextIcon>
-                  {<img src={pend.pend_icon} alt="ícone de alerta" />}
-                  {pend.titulo}
+
+                  {<img src='/warning.svg' alt="ícone de alerta" />}
+                  {pen.comment}
                 </S.PendenciaTextIcon>
 
-                <S.ResolverPend>
+                <S.ResolverPend onClick={() => handleResolverPend(pen)}>
                   <S.Texto>Resolver pendência</S.Texto>
                 </S.ResolverPend>
                 
@@ -342,19 +350,17 @@ export const LoteDetails = () => {
             <h2>Detalhamento por fase</h2>
 
             {task.detalhamento_por_fase.map((fase: any) => (
-
                 <S.Fase key={fase.id}>
-
                   <S.FaseIconDiv>
-                    <img src={fase.icone} alt="ícone da fase" />
+                    <img src={fase.icone} alt={'icone da fase' + fase.nome}/>
                     <h2>{fase.nome}</h2>
                   </S.FaseIconDiv>
 
                   {fase.inicio !== null &&
                     <S.TimeBeginDiv>
-                      <img src={'/detal-fase-icons/inicio-icon.png'} alt="seta para direita" />
+                      <img src={'/detal-fase-icons/inicio-icon.png'} alt="ícone com seta para direita indicando a data e hora que o lote começou a ser feito" />
                       {fase.inicio}
-                      <S.Text style={{ color: '#FCDE42' }}>{fase.hora_inicio}</S.Text>
+                      <S.Text style={{color:'#FCDE42'}}>{fase.hora_inicio}</S.Text>
                     </S.TimeBeginDiv>
                   }
 
@@ -362,7 +368,7 @@ export const LoteDetails = () => {
                     <S.TimeFinishDiv>
                       <img src={'/detal-fase-icons/conclusao-icon.png'} alt="icone de check" />
                       {fase.conclusao}
-                      <S.Text style={{ color: '#00D25B' }}>{fase.hora_conclusao}</S.Text>
+                      <S.Text style={{color: '#00D25B'}}>{fase.hora_conclusao}</S.Text>
                     </S.TimeFinishDiv>
                   }
 
@@ -372,7 +378,6 @@ export const LoteDetails = () => {
                       {fase.tempo}
                     </S.Time>
                   }
-
 
                   <S.EnvolvidosDiv>
                     {fase.envolvidos &&
@@ -393,8 +398,6 @@ export const LoteDetails = () => {
                       ))}
                   </S.EnvolvidosDiv>
                 </S.Fase>
-                
-
               ))
             }
         </S.DetalFase>        
@@ -404,6 +407,7 @@ export const LoteDetails = () => {
 
       </S.areaClick>
 
+      {pend && <ModalResolverPendencia pendencia={pendencia} close={() => setPend(!pend)}></ModalResolverPendencia>}
       {modal && <AtribuirAlguemModal user={usuarios} setUser={setUsuarios} close={handleAtribuirAlguem}></AtribuirAlguemModal>}
       {voltar && <VoltarModal close={handleVoltar}></VoltarModal>}
       {avancar && <AvancarModal close={handleAvancar}></AvancarModal>}

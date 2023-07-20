@@ -14,7 +14,7 @@ const Upload = () => {
       <MenuCoord />
       <Style.Wrapper>
         <p>Upload</p>
-        <Board fase={FaseData[3]} titulo='upload' />
+        <Board fase={FaseData[3]} titulo='Upload' />
         <Style.Footer></Style.Footer>
       </Style.Wrapper>
     </>

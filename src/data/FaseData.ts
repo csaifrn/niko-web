@@ -1,5 +1,3 @@
-import { v4 as uuidv4 } from 'uuid';
-
 const FaseData = [
     // {
     //     id: uuidv4(),
@@ -13,13 +11,13 @@ const FaseData = [
     },
     {
         id: 1,
-        titulo:'Catalogação',
-        icone: '/icon-page/Catalogação_icon.png'
+        titulo:'Catalogacao',
+        icone: '/icon-page/Catalogacao_icon.png'
     },
     {
         id: 2,
-        titulo:'Digitalização',
-        icone: '/icon-page/Digitalização_icon.png'
+        titulo:'Digitalizacao',
+        icone: '/icon-page/Digitalizacao_icon.png'
     },
     {
         id: 3,

@@ -2,6 +2,8 @@ import { createRoot } from 'react-dom/client';
 import App from './App';
 import { BrowserRouter } from 'react-router-dom';
 import { AuthProvider } from 'react-auth-kit';
+import { ThemeProvider } from 'styled-components';
+import theme from './global/theme';
 
 createRoot(document.getElementById('root') as HTMLElement).render(
   <AuthProvider
@@ -10,8 +12,10 @@ createRoot(document.getElementById('root') as HTMLElement).render(
     cookieDomain={window.location.hostname}
     cookieSecure={false}
   >
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
+    <ThemeProvider theme={theme}>
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    </ThemeProvider>
   </AuthProvider>,
 );

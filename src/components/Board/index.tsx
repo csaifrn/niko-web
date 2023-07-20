@@ -7,7 +7,7 @@ import { LoteData } from '../../data/LoteData';
 import { v4 as uuidv4 } from 'uuid';
 
 interface Fase {
-  id: string;
+  id: number;
   titulo: string;
 }
 
@@ -75,11 +75,13 @@ export const Board = (props: BoardProps) => {
 //    }
   };
 
+  console.log(fase.titulo)
+
   return (
     <>
       <>
         <div style={{ margin: '0em 2em 0em 3em', display: 'flex', justifyContent: 'flex-end', gap: '0.5em' }}>
-          <img src={`/icon-page/${fase.titulo}_icon.png`} alt={`icone da fase ${fase.titulo}`} />
+          <img src={`/icon-medium/${fase.titulo}.png`} alt={`icone da fase ${fase.titulo}`} />
         </div>
       </>
       <DragDropContext onDragEnd={onDragEnd}>

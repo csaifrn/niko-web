@@ -374,7 +374,6 @@ export const FaseIconDiv = styled.div`
 `;
 
 export const TimeBeginDiv = styled.div`
-  margin-top: 0.5em;
   display: flex;
   align-items: center;
   gap: 8px;
@@ -384,10 +383,9 @@ export const TimeBeginDiv = styled.div`
 `;
 
 export const TimeFinishDiv = styled.div`
-  margin-top: 0.5em;
   display: flex;
   align-items: center;
-  gap: 1em;
+  gap: 8px;
   font-style: normal;
   line-height: 14px;
   font-weight: 400;
@@ -396,7 +394,7 @@ export const TimeFinishDiv = styled.div`
 export const Time = styled.div`
   display: flex;
   align-items: center;
-  gap: 1em;
+  gap: 8px;
   font-style: normal;
   line-height: 14px;
   font-weight: 400;
@@ -407,5 +405,4 @@ export const EnvolvidosDiv = styled.div`
   align-items: center;
   flex-wrap: wrap;
   gap: 0.5em;
-  margin-top: 0.5em;
 `;

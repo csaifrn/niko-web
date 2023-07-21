@@ -15,11 +15,7 @@ const Digitalizacao = () => {
       <MenuCoord />
       <Style.Wrapper>
         <p>Digitalização</p>
-<<<<<<< HEAD
         <Board fase={FaseData[2]} titulo='Digitalizacao'/>
-=======
-        <Board fase={FaseData[2]} titulo="digitalizacao" />
->>>>>>> 934d3edd31fc2c334874b940536226e584149920
         <Style.Footer></Style.Footer>
       </Style.Wrapper>
     </>

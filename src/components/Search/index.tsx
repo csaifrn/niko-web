@@ -18,7 +18,7 @@ const Search = ({ searchTerm, handleSearchChange }: SearchProps): JSX.Element =>
           value={searchTerm}
           onChange={handleSearchChange}
           placeholder="Pesquisa"
-          style={{ backgroundColor: '#191C24' }}
+          style={{ backgroundColor: '#626A7D', color: 'white'}}
         />
       </S.SearchDiv>
     </>

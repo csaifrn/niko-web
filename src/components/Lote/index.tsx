@@ -3,14 +3,16 @@ import * as S from './styles';
 import { generateUUID } from '../../utils/generateUUID.util';
 
 const Lote = (props: any) => {
+
+  //console.log(props.pendencia.lenght > 0)
   return (
     <>
       {props.edit == true && (
         <S.LoteEdit className="Lote">
-          <S.LoteArea>
+          <S.LoteArea>      
             <S.Content>
               <h2>{props.value}</h2>
-              {props.categoria &&
+              {props.categoria &&               
                 props.categoria.map((categoria: any) => (
                   <React.Fragment key={generateUUID()}>
                     {categoria.nome === props.prioridade && (
@@ -19,10 +21,10 @@ const Lote = (props: any) => {
                       </S.Prioridade>
                     )}
                   </React.Fragment>
-                ))}
+                ))
+              }
             </S.Content>
             <S.Content>
-              <div></div>
               <S.Pa>
                 {props.categoria &&
                   props.categoria.map((categoria: any, index: number) => (
@@ -41,9 +43,6 @@ const Lote = (props: any) => {
                   ))}
               </S.Pa>
             </S.Content>
-            <S.Btn>
-              <p>Mover para o preparo</p>
-            </S.Btn>
           </S.LoteArea>
         </S.LoteEdit>
       )}
@@ -52,6 +51,18 @@ const Lote = (props: any) => {
           <S.LoteArea>
             <S.Content>
               <h2>{props.value}</h2>
+<<<<<<< HEAD
+              {/* PENDENCIA */}
+              {props.pendencia > 0 &&
+                <img src='/warning.svg' alt='icone triangular com ponto de exclamação no centro indicando que há uma pendência no lote'/>
+              }
+              {/* PRIORIDADE */}
+              {props.prioridade == true &&
+                <S.Prioridade>
+                  <p>Prioridade</p>
+                </S.Prioridade>
+              }
+=======
               {props.categoria &&
                 props.categoria.map((categoria: any) => (
                   <React.Fragment key={generateUUID()}>
@@ -62,6 +73,7 @@ const Lote = (props: any) => {
                     )}
                   </React.Fragment>
                 ))}
+>>>>>>> 934d3edd31fc2c334874b940536226e584149920
             </S.Content>
             <S.Content>
               <S.Envolvido style={{ display: 'flex', marginLeft: '10px' }}>
@@ -70,10 +82,10 @@ const Lote = (props: any) => {
                     <React.Fragment key={generateUUID()}>
                       {index <= 2 && (
                         <img
-                          src={envolvidos.url}
+                          src={envolvidos.foto}
                           width={24}
                           height={24}
-                          style={{ marginLeft: '-10px', borderRadius: '100%' }}
+                          style={{ marginLeft: '-10px', borderRadius: '100%' , objectFit: 'cover', }}
                           alt="Foto do usuário"
                         ></img>
                       )}
@@ -100,10 +112,11 @@ const Lote = (props: any) => {
                         <S.PaTextDiv style={{ borderRadius: '100%', width: '2em' }}>
                           <p>+{index}</p>
                         </S.PaTextDiv>
+                        
                       )}
                       {index == 0 && (
                         <S.PaTextDiv style={{ borderRadius: '3px' }}>
-                          <p style={{ padding: '0 0.5em' }}>{categoria.nome}</p>
+                          <p style={{ padding: '0 0.5em' }}>{categoria.name}</p>
                         </S.PaTextDiv>
                       )}
                     </React.Fragment>

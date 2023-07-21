@@ -8,13 +8,9 @@ export const ModalArea = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 16px;
+  padding: 2em;
   gap: 10px;
-
   position: relative;
-  width: 285px;
-  height: 136px;
-
   background: #393E4B;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 5px;

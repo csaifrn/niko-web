@@ -13,6 +13,22 @@ const InputSearch = styled.input`
   color: #fff;
   border: none;
   width: 100%;
+  font-family: 'Rubik', Helvetica, sans-serif;
+  ::-webkit-input-placeholder {
+    color: white;
+  }
+
+  :-moz-placeholder { /* Firefox 18- */
+    color: white;  
+  }
+
+  ::-moz-placeholder {  /* Firefox 19+ */
+    color: white;  
+  }
+
+  :-ms-input-placeholder {  
+    color: white;  
+  }
 `;
 
 const ImgSearch = styled.img`

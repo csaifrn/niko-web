@@ -1,3 +1,19 @@
+<<<<<<< HEAD
+export const TipologiaData = [
+    {
+      id: 1,
+      name: 'Solicitação de crédito',
+    },
+    {
+      id: 2,
+      name: 'Solicitação de assinatura de contrato',
+    },
+    {
+      id: 3,
+      name: 'Processo',
+    }
+];
+=======
 const TipologiaData = [
   {
     id: 1,
@@ -22,3 +38,4 @@ const TipologiaData = [
 ];
 
 export default TipologiaData;
+>>>>>>> 934d3edd31fc2c334874b940536226e584149920

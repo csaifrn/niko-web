@@ -17,10 +17,14 @@ import Projetos from './pages/Projeto/projeto-home';
 import CreateProjeto from './pages/Projeto/projeto-create';
 import Users from './data/UserData';
 import Auth from './config/Auth';
+<<<<<<< HEAD
+import { EditModal } from './components/EditModal';
+=======
 import Atividade from './pages/Coordenador/Atividade/atividade-home';
 import AtividadeCreate from './pages/Coordenador/Atividade/atividade-create';
 import AtividadeEdit from './pages/Coordenador/Atividade/ativiade-edit';
 import Painel from './pages/Coordenador/Painel';
+>>>>>>> 934d3edd31fc2c334874b940536226e584149920
 
 const Home = lazy(() => import('./pages/Coordenador/Fase'));
 
@@ -37,6 +41,93 @@ const App = () => {
         <Route path="/CriarProjeto" element={<CreateProjeto users={Users} />} />
         <Route element={<Auth allowedRoles={['Coordenador']} />}>
           <Route path="/Fase/:id" element={<Home />} />
+<<<<<<< HEAD
+
+          <Route
+            path="Fase/:id/Board/Arquivamento"
+            element={
+              <RequireAuth loginPath={'/login'}>
+                <Arquivamento />
+              </RequireAuth>
+            }
+          />
+          <Route
+            path="Fase/:id/Board/Recebidos"
+            element={
+              <RequireAuth loginPath={'/login'}>
+                <Recebidos etapa="recebidos" />
+              </RequireAuth>
+            }
+          />
+          <Route
+            path="Fase/:id/Board/Preparo"
+            element={
+              // <RequireAuth loginPath={'/login'}>
+                <Preparo />
+              // </RequireAuth>
+            }
+          />
+          <Route
+            path="Fase/:id/Board/Catalogacao"
+            element={
+              <RequireAuth loginPath={'/login'}>
+                <Catalogacao />
+              </RequireAuth>
+            }
+          />
+          <Route
+            path="Fase/:id/Board/Digitalizacao"
+            element={
+              <RequireAuth loginPath={'/login'}>
+                <Digitalizacao />
+              </RequireAuth>
+            }
+          />
+          <Route
+            path="/Operadores/:id"
+            element={
+              <RequireAuth loginPath={'/login'}>
+                <Operador />
+              </RequireAuth>
+            }
+          />
+          <Route
+            path="/Categorias/:id"
+            element={
+              <RequireAuth loginPath={'/login'}>
+                <Categoria />
+              </RequireAuth>
+            }
+          />
+          <Route
+            path="Fase/:id/Board/Upload"
+            element={
+              <RequireAuth loginPath={'/login'}>
+                <Upload />
+              </RequireAuth>
+            }
+          />
+          <Route
+            path={`/Lote/:id`}
+            element={
+              <RequireAuth loginPath={'/login'}>
+                <LoteDetails />
+              </RequireAuth>
+            }
+          />
+
+          <Route
+            path={`/Lote/:id/Edit`}
+            element={
+              <RequireAuth loginPath={'/login'}>
+                <EditModal/>
+              </RequireAuth>
+            }
+          />
+
+        {/* </Route> */}
+
+=======
           <Route path="/Atividades/:id" element={<Atividade />} />
           <Route path={`/Atividades/:id/CriarAtividade`} element={<AtividadeCreate />} />
           <Route path={`/Atividades/:id/Edit/:iday/:idatv`} element={<AtividadeEdit />} />
@@ -49,6 +140,7 @@ const App = () => {
           <Route path="/Categorias/:id" element={<Categoria />} />
           <Route path="Fase/:id/Board/Upload" element={<Upload />} />
           <Route path={`/Lote/:id`} element={<LoteDetails />} />
+>>>>>>> 934d3edd31fc2c334874b940536226e584149920
         </Route>
         <Route path="*" element={<Erro404 />} />
 
@@ -58,3 +150,4 @@ const App = () => {
 };
 
 export default App;
+

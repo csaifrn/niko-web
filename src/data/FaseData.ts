@@ -1,6 +1,37 @@
-import { v4 as uuidv4 } from 'uuid';
-
 const FaseData = [
+<<<<<<< HEAD
+    // {
+    //     id: uuidv4(),
+    //     titulo:'Recepção',
+    //     icone: '/icon-page/Recepção_icon.png'
+    // },
+    {
+        id: 0,
+        titulo:'Preparo',
+        icone: '/icon-page/Preparo_icon.png'
+    },
+    {
+        id: 1,
+        titulo:'Catalogacao',
+        icone: '/icon-page/Catalogacao_icon.png'
+    },
+    {
+        id: 2,
+        titulo:'Digitalizacao',
+        icone: '/icon-page/Digitalizacao_icon.png'
+    },
+    {
+        id: 3,
+        titulo:'Upload',
+        icone: '/icon-page/Upload_icon.png'
+    },
+    {
+        id: 4,
+        titulo:'Arquivamento',
+        icone: '/icon-page/Arquivamento_icon.png'
+    },
+]
+=======
   {
     id: 'be8a0005-51a6-4d1a-a1d2-f55817c42517',
     url: 'preparo',
@@ -27,5 +58,6 @@ const FaseData = [
     titulo: 'Arquivamento',
   },
 ];
+>>>>>>> 934d3edd31fc2c334874b940536226e584149920
 
 export default FaseData;

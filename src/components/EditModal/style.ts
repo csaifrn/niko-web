@@ -1,27 +1,22 @@
 import styled from 'styled-components';
 
-export const ModalArea = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 2em;
-  gap: 1em;
-  font-family: 'Rubik';
-  color: white;
-  position: fixed;
-  max-width: 400px;
-  background-color: #393e4b;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  border-radius: 5px;
-  overflow-y: scroll;
-  scroll-behavior: auto;
-  scrollbar-width: thin;
+export const Titulo2 = styled.h2`
+  font-weight: normal;
 `;
 
 export const ModalContent = styled.div`
-  display: flex;
-  gap: 2em;
+  z-index: 9999990;
+  padding: 2em;
+  color:white;
+  transition: transform 0.9s ease-in-out;
+  display:flex;
   flex-direction: column;
+  gap: 16px;
+  margin: 0em 0em 8em 0em;
+  font-family: 'Rubik', Helvetica, sans-serif;
+  h2{
+    font-weight: normal;
+  }
 `;
 
 export const NameClose = styled.div`
@@ -29,18 +24,66 @@ export const NameClose = styled.div`
   justify-content: space-between;
 `;
 
-export const TituloDiv = styled.div`
+export const Close = styled.div`
   display: flex;
-  flex-direction: column;
-  gap: 1em;
+  background-color: #393E4B;
+  width: auto;
+  border: none;
 `;
 
-export const Titulo = styled.input`
-  padding: 1.5em 2em;
-  border-radius: 5px;
+export const ProtocoloDiv = styled.div`
+  display:flex;
+  flex-direction:column;
+  gap: 16px;
+  justify-content:flex-start;
+  align-items:flex-start;
+`;
+
+export const Protocolo = styled.div`
+  display:flex;
+  justify-content:flex-start;
+  align-items:flex-start;
+  padding: 5px;
+  border-radius: 3px;
   color: white;
-  border: none;
   font-family: 'Rubik';
+  background-color: #393E4B;
+`;
+
+export const Arquivos = styled.div`
+  display:flex;
+  flex-direction:column;
+  gap:16px;
+`;
+
+export const ArquivosDiv = styled.div`
+  display:flex;
+  gap:16px;
+`;
+
+export const ArquivosFisicos = styled.div`
+  display:flex;
+  flex-direction:column;
+  gap: 8px;
+`;
+
+export const ArquivosDigitais = styled.div`
+  display:flex;
+  flex-direction:column;
+  gap: 8px;
+`;
+
+export const ArquivosInput = styled.input`
+  display:flex;
+  justify-content:flex-start;
+  align-items:flex-start;
+  padding: 15px;
+  width: 56px;
+  background-color: #393E4B;
+  color: white;
+  font-family: 'Rubik', Helvetica, sans-serif;
+  border: none;
+  border-radius: 5px;
 `;
 
 export const LocalDiv = styled.div`
@@ -57,7 +100,34 @@ export const Local = styled.input`
   font-family: 'Rubik';
 `;
 
-export const Categorias = styled.div``;
+export const CatTipol = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+`;
+
+export const FilterCatTipol = styled.div`
+`;
+
+export const ButtonCatTipol = styled.div`
+`;
+
+export const MostrarCategTipolEscolhida = styled.div`
+  display:flex;
+  gap: 8px;
+`;
+
+export const CategEscolhida = styled.div`
+  background-color: #393E4B;
+  padding: 5px;
+  border-radius: 3px;
+`;
+
+export const TipolEscolhida = styled.div`
+  background-color: #393E4B;
+  padding: 5px;
+  border-radius: 3px;
+`;
 
 export const Categoria = styled.div`
   display: flex;
@@ -68,23 +138,32 @@ export const Categoria = styled.div`
   cursor: pointer;
 `;
 
-export const ChooseUser = styled.div`
+export const Tipologia = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 1em;
+  padding: 1.5em 2em;
+  border-radius: 5px;
+  cursor: pointer;
+`;
+
+export const ChooseCatTipol = styled.div`
   width: 100%;
   height: 20vh;
   border-radius: 5px;
   display: flex;
   flex-direction: column;
-  gap: 1em;
+  gap: 10px;
   overflow: auto;
   scroll-behavior: auto;
   padding: 0;
-  margin: 1em 0;
+  margin: 0 0;
   overflow-y: scroll;
   scroll-behavior: auto;
   scrollbar-width: thin;
 `;
 
-export const AtribuirButton = styled.button`
+export const SalvarEditButton = styled.button`
   height: 44px;
   border-radius: 5px;
   background-color: #43db6d;
@@ -93,20 +172,6 @@ export const AtribuirButton = styled.button`
   font-family: 'Rubik';
   bottom: 0;
   left: 0;
-`;
-
-export const ModalBackdrop = styled.div`
-  position: fixed;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-  z-index: 999999999999999999;
-  background-color: rgba(25, 28, 36, 0.5);
 `;
 
 export const Switch = styled.input`

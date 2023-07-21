@@ -71,8 +71,8 @@ export const AtribuirModal = (props: AtribuirModalProps) => {
                 <img
                   src="/close.svg"
                   alt=""
-                  height={18}
-                  width={18}
+                  height={24}
+                  width={24}
                   style={{
                     padding: '5px 5px',
                     backgroundColor: '#090E09',

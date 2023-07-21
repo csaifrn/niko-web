@@ -1,5 +1,9 @@
 import { useNavigate } from 'react-router-dom';
 import * as S from './styles';
+<<<<<<< HEAD
+import { useSignIn } from 'react-auth-kit';
+import axiosInstance from '../../api/axiosInstance';
+=======
 import { useMutation } from 'react-query';
 import { signIn } from '../../api/services/authentication/signIn';
 import { useRef, useState } from 'react';
@@ -7,6 +11,7 @@ import { SignInResponse, ApiError } from '../../api/services/authentication/sign
 import { validationLoginSchema } from './validation';
 import { ErrorsForm } from './login.interface';
 import * as Yup from 'yup';
+>>>>>>> 934d3edd31fc2c334874b940536226e584149920
 
 const Login = () => {
   const emailInputRef = useRef<HTMLInputElement>(null);
@@ -28,6 +33,12 @@ const Login = () => {
 
   const validateForm = async (): Promise<boolean> => {
     try {
+<<<<<<< HEAD
+      axiosInstance.post('/auth/sign-in', user).then((response: any) => {
+        const token = response.data.token;
+        const user = response.data.user;
+        const role = ['Coordenador'];
+=======
       await validationLoginSchema.validate(
         {
           email: emailInputRef.current?.value,
@@ -50,6 +61,7 @@ const Login = () => {
     setValidationFormError({});
     return true;
   };
+>>>>>>> 934d3edd31fc2c334874b940536226e584149920
 
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();

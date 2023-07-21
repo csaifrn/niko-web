@@ -4,10 +4,10 @@ import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd';
 import Lote from '../Lote';
 import EtapaData from '../../data/EtapaData';
 import { LoteData } from '../../data/LoteData';
-
+import { v4 as uuidv4 } from 'uuid';
 
 interface Fase {
-  id: string;
+  id: number;
   titulo: string;
 }
 
@@ -24,7 +24,7 @@ export const Board = (props: BoardProps) => {
   //  - lotes por etapa
 
   const fase = props.fase
-  const etapasTemp = EtapaData.filter((Etapa) => Etapa.id_fase === fase.id)
+  const etapasTemp = EtapaData.filter((Etapa) => Etapa.id_fase === Number(fase.id))
   // axios.get('projetos/incra/fases/preparo/etapas).then((datta) => data.json).then((json) => etapas.json)
   
   const [etapas, setEtapas] = useState<any[]>([])
@@ -37,7 +37,6 @@ export const Board = (props: BoardProps) => {
     
     // etapas das pontas
     } else {
-      console.log(etapa);
       return etapa[0] === etapaid || etapa[1] === etapaid;
     }
   });
@@ -76,17 +75,19 @@ export const Board = (props: BoardProps) => {
 //    }
   };
 
+  console.log(fase.titulo)
+
   return (
     <>
       <>
-        <div style={{ margin: '0em 3em 0em 3em', display: 'flex', justifyContent: 'flex-end', gap: '0.5em' }}>
-          <img src={`/icon-page/${props.fase}.png`} alt={`icone da fase ${props.fase}`} />
+        <div style={{ margin: '0em 2em 0em 3em', display: 'flex', justifyContent: 'flex-end', gap: '0.5em' }}>
+          <img src={`/icon-medium/${fase.titulo}.png`} alt={`icone da fase ${fase.titulo}`} />
         </div>
       </>
       <DragDropContext onDragEnd={onDragEnd}>
         <S.kanban className="board">
           {etapas.map((section: any) => (
-            <Droppable key={section.id} droppableId={section.id}>
+            <Droppable key={uuidv4()} droppableId={section.id}>
               {(provided) => (
                 <S.kanbanSection {...provided.droppableProps} ref={provided.innerRef}>
                   <div style={{ display: 'flex', gap: '1em', marginLeft: '1em' }}>
@@ -146,6 +147,8 @@ export const Board = (props: BoardProps) => {
                               <Lote
                                 task={task}
                                 value={`${task.titulo} ${task.numero}`}
+                                pendencia={task.pendencias.length}
+                                prioridade={task.prioridade}
                                 categoria={task.categorias}
                                 envolvidos={task.envolvidos}
                               ></Lote>

@@ -1,6 +1,4 @@
 import { useLocation, Navigate, Outlet } from 'react-router-dom';
-import { useContext } from 'react';
-import React from 'react';
 import { useAuthUser, useIsAuthenticated } from 'react-auth-kit';
 
 const Auth = (props: any) => {

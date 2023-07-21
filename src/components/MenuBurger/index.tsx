@@ -4,6 +4,7 @@ import * as S from './styles';
 
 interface MenuBurgerProps {
   area: string;
+  id_projeto: string;
   onClose: () => void;
 }
 
@@ -34,8 +35,9 @@ const MenuBurger = (props: MenuBurgerProps) => {
         <S.MenuImg src="/Vector.svg" />
       </S.FecharMenu>
       <S.StyledMenu open={true} id="menu">
-        <LinkMenuBurger path="/" nome="Inicio" area={props.area} />
-        <LinkMenuBurger path="/Arquivamento" nome="Arquivamento" area={props.area} />
+        <LinkMenuBurger path={`/Fase/${props.id_projeto}`} nome="Inicio" area={props.area} />
+        <LinkMenuBurger path="/Projetos" nome="Projeto" area={props.area} />
+        <LinkMenuBurger path={`/Operadores/${props.id_projeto}`} nome="Operador" area={props.area} />
       </S.StyledMenu>
     </S.areaClick>
   );

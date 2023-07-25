@@ -10,16 +10,12 @@
     "lint": "eslint . --ext .ts,.tsx"
   },
   "dependencies": {
-<<<<<<< HEAD
     "@coreui/icons": "^2.1.0",
     "@coreui/icons-react": "^2.1.0",
     "@coreui/react": "^4.4.0",
     "@coreui/react-chartjs": "^2.1.0",
     "@phosphor-icons/react": "^2.0.10",
     "@types/react-beautiful-dnd": "^13.1.3",
-=======
-    "@phosphor-icons/react": "^2.0.10",
->>>>>>> 934d3edd31fc2c334874b940536226e584149920
     "axios": "^1.4.0",
     "immer": "^9.0.19",
     "moment": "^2.29.4",

@@ -16,11 +16,7 @@ const Upload = () => {
       <MenuCoord />
       <Style.Wrapper>
         <p>Upload</p>
-<<<<<<< HEAD
-        <Board fase={FaseData[3]} titulo='Upload' />
-=======
         <Board fase={FaseData[3]} titulo="upload" />
->>>>>>> 934d3edd31fc2c334874b940536226e584149920
         <Style.Footer></Style.Footer>
       </Style.Wrapper>
     </>

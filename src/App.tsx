@@ -8,7 +8,7 @@ import Preparo from './pages/Etapas/Preparo';
 import Catalogacao from './pages/Etapas/Catalogacao';
 import Digitalizacao from './pages/Etapas/Digitalizacao';
 import Upload from './pages/Etapas/Upload';
-import LoteDetails from './components/LoteDetails';
+// import LoteDetails from './components/LoteDetails';
 import Operador from './pages/Coordenador/Operador';
 import Categoria from './pages/Coordenador/Categoria';
 import Erro404 from './pages/Erros/404';
@@ -21,6 +21,7 @@ import Atividade from './pages/Coordenador/Atividade/atividade-home';
 import AtividadeCreate from './pages/Coordenador/Atividade/atividade-create';
 import AtividadeEdit from './pages/Coordenador/Atividade/ativiade-edit';
 import Painel from './pages/Coordenador/Painel';
+import Perfil from './pages/Perfil';
 
 const Home = lazy(() => import('./pages/Coordenador/Fase'));
 
@@ -28,6 +29,7 @@ const App = () => {
   return (
     <Suspense fallback={<Splash />}>
       <Routes>
+        <Route path="/Perfil/:id" element={<Perfil />} />
         <Route path="Painel/:id" element={<Painel />} />
         <Route path="/splash" element={<Splash />} />
         <Route path="/login" element={<Login />} />
@@ -48,14 +50,12 @@ const App = () => {
           <Route path="/Operadores/:id" element={<Operador />} />
           <Route path="/Categorias/:id" element={<Categoria />} />
           <Route path="Fase/:id/Board/Upload" element={<Upload />} />
-          <Route path={`/Lote/:id`} element={<LoteDetails />} />
+          {/* <Route path={`/Lote/:id`} element={<LoteDetails />} /> */}
         </Route>
         <Route path="*" element={<Erro404 />} />
-
       </Routes>
     </Suspense>
   );
 };
 
 export default App;
-

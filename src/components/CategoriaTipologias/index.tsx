@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import * as S from './styles';
 import Search from '../Search';
 import CategoriaData from '../../data/CategoriaData';
-import TipologiaData from '../../data/TipologiaData';
+import { TipologiaData } from '../../data/TipologiaData';
 
 interface CategoriasTipologiasProps {
   close: () => void;

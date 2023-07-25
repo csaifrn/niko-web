@@ -1,11 +1,11 @@
 import { Wrapper, Main } from './styles';
-import { Card } from '../../components/Card';
-import MenuCoord from '../../components/MenuCoord';
-import Menu from '../../components/Menu';
 import { useNavigate, useParams } from 'react-router-dom';
-import { Membros, Projeto } from '../../data/ProjetoData';
 import { useEffect } from 'react';
 import { useAuthUser } from 'react-auth-kit';
+import Menu from '../../../components/Menu';
+import MenuCoord from '../../../components/MenuCoord';
+import { Membros, Projeto } from '../../../data/ProjetoData';
+import { Card } from '../../../components/Card';
 
 const Home = () => {
   let { id } = useParams();

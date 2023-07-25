@@ -2,6 +2,8 @@ import styled from 'styled-components';
 
 const DataUser = styled.div`
   display: flex;
+  color: white;
+  font-family: 'Rubik';
   justify-content: space-between;
   gap: 3em;
   padding: 2em;

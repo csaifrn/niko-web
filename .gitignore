@@ -35,6 +35,3 @@ dist/
 *.njsproj
 *.sln
 *.sw?
-
-// Enviroment
-.env

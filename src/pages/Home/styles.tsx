@@ -11,12 +11,12 @@ const Title = styled.a`
 
 const Wrapper = styled.section`
   background-color: #0a090e;
+  height: 100vh;
   width: 100vw;
 `;
 
 const Main = styled.section`
   margin: 2em 0;
-  margin-top: 8em;
   display: grid;
   grid-template-columns: auto auto;
   justify-items: center;

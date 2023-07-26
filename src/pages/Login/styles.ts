@@ -1,93 +1,75 @@
-import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-export const Wrapper = styled.main`
+export const backgroundContainer = styled.main`
+  width: 100vw;
   height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: ${({ theme }) => theme.colors['gray/900']};
+  background-color: #0a090e;
   color: white;
   font-family: 'Rubik';
 `;
 
-export const FormContainer = styled.div`
+export const itemsContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: ${({ theme }) => theme.colors['gray/700']};
+  background-color: #191c24;
   padding: 3em;
   border-radius: 2em;
   gap: 2em;
 `;
 
-export const Logo = styled.img`
+export const logo = styled.img`
   width: 4rem;
 `;
 
-export const FormLogin = styled.form`
+export const formLogin = styled.div`
   display: flex;
   flex-direction: column;
   gap: 1em;
 `;
 
-export const FieldContainer = styled.div`
+export const dataArea = styled.div`
   display: flex;
   flex-direction: column;
   gap: 0.5em;
 `;
 
-export const InputText = styled.input`
+export const inputLogin = styled.input`
   padding: 0.5em;
-  background-color: ${({ theme }) => theme.colors['gray/500']};
+  background-color: #393e4b;
   border-radius: 0.5em;
-  border: 1px solid ${({ theme }) => theme.colors['gray/500']};
+  border: 1px solid #393e4b;
   color: white;
   :hover {
-    border: 1px solid ${({ theme }) => theme.colors['gray/300']};
+    border: 1px solid #b1b1b1;
   }
 `;
 
-export const LabelField = styled.label`
+export const labelLogin = styled.label`
   font-size: 16px;
 `;
 
-export const ForgotPasswordLink = styled(Link)`
-  color: ${({ theme }) => theme.colors['gray/300']};
+export const dangerText = styled.a`
+  color: #e76464;
   font-size: 10px;
-  text-decoration: none;
-
   :hover {
     color: white;
-    text-decoration: underline;
   }
 `;
 
-export const ErrorMessage = styled.span`
-  color: ${({ theme }) => theme.colors['red/300']};
-  font-size: 10px;
-`;
-
-export const SubmitButton = styled.button`
+export const btnLogin = styled.button`
   padding: 0.5em;
   width: 40%;
-  background-color: ${({ theme }) => theme.colors['orange/400']};
+  background-color: #f3802d;
   border-radius: 0.5em;
-  border: none;
+  border: 1px solid #f3802d;
   color: white;
   font-weight: bold;
-  cursor: pointer;
-  transition: background-color 500ms;
-  margin-left: auto;
-  margin-right: auto;
-
-  &:hover {
-    background-color: ${({ theme }) => theme.colors['orange/500']};
-  }
-
-  &:active {
-    background-color: ${({ theme }) => theme.colors['orange/600']};
-    transform: translateY(-5%) translateX(2%);
+  :hover {
+    border: 1px solid #b1b1b1;
   }
 `;

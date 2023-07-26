@@ -1,3 +1,5 @@
+import { v4 as uuidv4 } from 'uuid';
+
 export const Projeto = [
   {
     id: '4398f464-c1b0-4814-905a-b97adc207d5a',
@@ -14,8 +16,8 @@ export const Projeto = [
 export const Membros = [
   {
     id: '5bb5dd2a-1e7c-4449-a9ee-2bb7088c515f',
-    id_Projeto: Projeto[1].id,
-    email: 'pereira.luis@escolar.ifrn.edu.br',
+    id_Projeto: Projeto[0].id,
+    email: 'luis.gustavo@gmail.com',
     roleProjeto: 'Operador',
     creator: false,
   },
@@ -23,21 +25,21 @@ export const Membros = [
     id: '04d7a1ed-bbd6-4cf4-b402-38982b0399c6',
     id_Projeto: Projeto[0].id,
     email: 'pedro@email.com.br',
-    roleProjeto: 'Cliente',
-    creator: true,
-  },
-  {
-    id: '04d7a1ed-bbd6-4cf4-b402-38982b0399c6',
-    id_Projeto: Projeto[0].id,
-    email: 'pereira.luis@escolar.ifrn.edu.br',
-    roleProjeto: 'Operador',
+    roleProjeto: 'Coordenador',
     creator: true,
   },
   {
     id: '024da199-ead8-45bd-b3b4-380406c78841',
-    id_Projeto: Projeto[1].id,
+    id_Projeto: Projeto[0].id,
     email: 'melquiades.sousa@gmail.com',
     roleProjeto: 'Operador',
     creator: false,
+  },
+  {
+    id: '2198b0ab-37c2-4506-91d8-5953bf082cf0',
+    id_Projeto: Projeto[0].id,
+    email: 'melquiades.sousa@gmail.com',
+    roleProjeto: 'Coordenador',
+    creator: true,
   },
 ];

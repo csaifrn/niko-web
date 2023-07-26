@@ -93,7 +93,7 @@ export const AtribuirModal = (props: AtribuirModalProps) => {
                 >
                   <p
                     style={{
-                      color: selectedLotes.includes(lote.id) ? '#fff' : '#838383',
+                      color: selectedLotes.includes(lote.id) ? '#43DB6D' : '#838383',
                     }}
                   >
                     {lote.title}

@@ -5,7 +5,6 @@ import CategoriaData from '../../../data/CategoriaData';
 import CategoriaCard from '../../../components/CategoriaCard';
 import Menu from '../../../components/Menu';
 import MenuCoord from '../../../components/MenuCoord';
-import { useParams } from 'react-router-dom';
 
 type Categoria = {
   id: number;
@@ -18,7 +17,6 @@ const removeDiacritics = (str: string): string => {
 };
 
 const Categoria = () => {
-  let { id } = useParams();
   const [searchTerm, setSearchTerm] = useState<string>('');
 
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
@@ -43,7 +41,7 @@ const Categoria = () => {
 
   return (
     <>
-      <Menu area={`/Categoria/${id}`} id_projeto={id}></Menu>
+      <Menu area="/"></Menu>
       <MenuCoord />
       <S.CardsArea>
         <Search searchTerm={searchTerm} handleSearchChange={handleSearchChange} />

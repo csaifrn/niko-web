@@ -13,7 +13,7 @@ interface Projeto {
 }
 
 interface CardProps {
-  projeto: any;
+  projeto: Projeto;
 }
 
 export const CardProjeto = (Props: CardProps) => {
@@ -22,9 +22,8 @@ export const CardProjeto = (Props: CardProps) => {
   const [ModalEdit, setModalEdit] = useState(false);
 
   const users = Users;
-  const projeto = Props.projeto[0];
+  const projeto = Props.projeto;
   const membros = Membros.filter((membro) => membro.id_Projeto === projeto.id);
-  console.log(membros);
 
   return (
     <>
@@ -39,7 +38,7 @@ export const CardProjeto = (Props: CardProps) => {
         }}
       >
         <a
-          href={`/Fase/${projeto.id}`}
+          href={`/Fase/${Props.projeto.id}`}
           style={{
             textDecoration: 'none',
             color: 'white',
@@ -53,8 +52,8 @@ export const CardProjeto = (Props: CardProps) => {
         >
           <div style={{ display: 'flex' }}>
             <img
-              src={`${projeto.url}`}
-              alt={projeto.name}
+              src={projeto.url}
+              alt="Incra"
               width={'100%'}
               height={'150px'}
               style={{ borderRadius: '5px 5px 0 0 ', objectFit: 'cover' }}

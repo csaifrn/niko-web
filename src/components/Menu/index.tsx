@@ -1,27 +1,27 @@
 import React, { useState, useEffect, useRef } from 'react';
-import MenuBurger from '../MenuBurger';
+// import LinkMenuBurger from '../LinkMenuBurger';
+// import MenuBurger from '../MenuBurger';
 import * as S from './styles';
 import { useSignOut } from 'react-auth-kit';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 // import { useNavigate } from 'react-router-dom';
 
 interface MenuProps {
   area: string;
-  id_projeto?: string;
 }
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars, no-unused-vars
 export const Menu = (props: MenuProps) => {
-  const { id } = useParams();
-  const [open, setOpen] = useState(false);
+  let { id } = useParams();
+  // const [open, setOpen] = useState(false);
   const [DropDown, setDropDown] = useState(false);
   const signOut = useSignOut();
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const dropDownRef = useRef(null);
 
-  const handleClickButton = () => {
-    setOpen(!open);
-  };
+  // const handleClickButton = () => {
+  //   setOpen(!open);
+  // };
 
   const handleClickOutside = (event: any) => {
     if (dropDownRef.current && !(dropDownRef.current as HTMLElement).contains(event.target as Node)) {
@@ -39,17 +39,12 @@ export const Menu = (props: MenuProps) => {
 
   return (
     <S.MenuArea>
-      {props.id_projeto != undefined && (
-        <S.ContainerA>
-          <S.ButtonBurger open={open} onClick={handleClickButton}>
-            <S.MenuImg src="/menu.svg" />
-          </S.ButtonBurger>
-
-          {open && props.id_projeto != undefined && (
-            <MenuBurger area={props.area} id_projeto={props.id_projeto} onClose={() => setOpen(false)} />
-          )}
-        </S.ContainerA>
-      )}
+      {/* <S.ContainerA>
+        <S.ButtonBurger open={open} onClick={handleClickButton}>
+          <S.MenuImg src="/menu.svg" />
+        </S.ButtonBurger>
+        {open && <MenuBurger area={props.area} onClose={() => setOpen(false)} />} 
+      </S.ContainerA> */}
       <S.ContainerA>
         <a href={`/Fase/${id}`}>
           <S.MenuImg src="/Logo_Niko.svg" />
@@ -96,10 +91,7 @@ export const Menu = (props: MenuProps) => {
               <p>Perfil</p>
             </a>
             <button
-              onClick={() => {
-                signOut();
-                navigate('/');
-              }}
+              onClick={() => signOut()}
               style={{
                 color: '#fff',
                 backgroundColor: 'transparent',

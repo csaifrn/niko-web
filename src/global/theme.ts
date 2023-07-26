@@ -1,5 +1,4 @@
 const theme = {
-<<<<<<< HEAD
     colors: {
       white: '#fff',
       'gray/200': '#B2B5C0',
@@ -22,26 +21,3 @@ const theme = {
   };
   
   export default theme;
-=======
-  colors: {
-    white: '#fff',
-    'gray/200': '#B2B5C0',
-    'gray/300': '#b1b1b1',
-    'gray/500': '#393E4B',
-    'gray/700': '#191C24',
-    'gray/900': ': #0a090e',
-    'red/300': '#e76464',
-    'red/400': '#FC6342',
-    'red/500': '#F32D2D',
-    'orange/400': '#F3802D',
-    'orange/500': '#E76A00',
-    'orange/600': '#D65400',
-    'yellow/300': '#FCDE42',
-    'green/400': '#43DB6D',
-    'blue/400': '#2D94F3',
-    'purple/600': '#9C2DF3',
-  },
-};
-
-export default theme;
->>>>>>> 934d3edd31fc2c334874b940536226e584149920

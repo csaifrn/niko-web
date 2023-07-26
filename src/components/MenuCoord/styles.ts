@@ -12,9 +12,9 @@ const MenuArea = styled.div`
   z-index: 999999999999;
   position: fixed;
   display: flex;
-  bottom: 0px;
+  bottom: 0;
   left: 0;
-  padding: 2em;
+  padding: 1.5em 3em;
   width: 100vw;
   height: 80px;
   background: #191c24;

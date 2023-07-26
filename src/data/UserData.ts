@@ -24,11 +24,26 @@ const Users = [
     email: 'jose.lucas@gmail.com',
     lote: 'Lote 220',
     fase: 'upload',
+<<<<<<< HEAD
     andamento: false
   },
   {
     id: 5,
     name: 'André Souza',
+=======
+  },
+  {
+    id: '4',
+    name: 'Melquiades',
+    url: 'https://th.bing.com/th/id/OIP.bs3eojDjgbugZiVSZD79wwAAAA?pid=ImgDet&w=400&h=600&rs=1',
+    email: 'melquiades.sousa@gmail.com',
+    lote: '',
+    fase: '',
+  },
+  {
+    id: '5',
+    name: 'Andre',
+>>>>>>> 934d3edd31fc2c334874b940536226e584149920
     url: 'https://th.bing.com/th/id/OIP.bs3eojDjgbugZiVSZD79wwAAAA?pid=ImgDet&w=400&h=600&rs=1',
     email: 'andre.sousa@gmail.com',
     lote: '',

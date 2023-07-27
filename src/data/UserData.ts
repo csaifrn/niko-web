@@ -6,7 +6,7 @@ const Users = [
     email: 'pedro@email.com.br',
     lote: 'Lote 201',
     fase: 'catalogacao',
-    andamento: false
+    andamento: false,
   },
   {
     id: '2',
@@ -15,7 +15,7 @@ const Users = [
     email: 'pereira.luis@escolar.ifrn.edu.br',
     lote: '',
     fase: '',
-    andamento: true
+    andamento: true,
   },
   {
     id: '3',
@@ -24,26 +24,26 @@ const Users = [
     email: 'jose.lucas@gmail.com',
     lote: 'Lote 220',
     fase: 'upload',
-    andamento: false
+    andamento: false,
   },
   {
-    id: 5,
+    id: '5',
     name: 'André Souza',
     url: 'https://th.bing.com/th/id/OIP.bs3eojDjgbugZiVSZD79wwAAAA?pid=ImgDet&w=400&h=600&rs=1',
     email: 'andre.sousa@gmail.com',
     lote: '',
     fase: '',
-    andamento: false
+    andamento: false,
   },
   {
-    id: 6,
+    id: '6',
     name: 'Gustavo Jácome',
     url: 'https://th.bing.com/th/id/OIP.bs3eojDjgbugZiVSZD79wwAAAA?pid=ImgDet&w=400&h=600&rs=1',
     email: 'gustavo.jacome@gmail.com',
     lote: '',
     fase: '',
-    andamento: false
-  }
+    andamento: false,
+  },
 ];
 
 export default Users;

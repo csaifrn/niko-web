@@ -4,13 +4,13 @@ import Search from '../Search';
 import { LoteData } from '../../data/LoteData';
 import EtapaData from '../../data/EtapaData';
 import CategoriaData from '../../data/CategoriaData';
-import TipologiaData from '../../data/TipologiaData';
+import { TipologiaData } from '../../data/TipologiaData';
 
 interface AtribuirModalAtividadeProps {
   nameUser: string;
   nameFase: string;
   id_user: string;
-  id_fase: string;
+  id_fase: number;
 
   categorias: typeof CategoriaData;
   tipologia: typeof TipologiaData;
@@ -24,7 +24,7 @@ interface AtribuirModalAtividadeProps {
 
 export interface ILoteUser {
   id_user: string;
-  id_fase: string;
+  id_fase: number;
   lotes: (typeof LoteData)[];
 }
 

@@ -148,7 +148,7 @@ const Atividade = () => {
                           return (
                             <div key={indexfase} style={{ display: 'flex', flexDirection: 'column', gap: '1em' }}>
                               <div style={{ display: 'flex', alignItems: 'center', gap: '1em' }}>
-                                <img src={`/icon-page/${fase.faseData.url}.png`} alt="" />
+                                <img src={`/icon-page/${fase.faseData.icone}.png`} alt="" />
                                 <h3>{fase.faseData.titulo}</h3>
                               </div>
 

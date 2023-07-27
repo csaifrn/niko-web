@@ -4,6 +4,7 @@ import * as S from '../../../components/MembrosModal/styles';
 import { Membros, Projeto } from '../../../data/ProjetoData';
 import { useAuthUser } from 'react-auth-kit';
 import { useNavigate } from 'react-router-dom';
+import Users from '../../../data/UserData';
 
 interface User {
   id: string;
@@ -12,6 +13,7 @@ interface User {
   email: string;
   lote: string;
   fase: string;
+  andamento: boolean;
 }
 
 interface UserMembro {
@@ -22,11 +24,8 @@ interface UserMembro {
   creator: boolean;
 }
 
-interface MembrosModalProps {
-  users: User[];
-}
-
-const CreateProjeto = (props: MembrosModalProps) => {
+const CreateProjeto = () => {
+  const users = Users;
   const [contador, setContador] = useState(0);
   const auth = useAuthUser();
   const [projetoMembros, setProjetoMembros] = useState<UserMembro[]>([
@@ -54,8 +53,8 @@ const CreateProjeto = (props: MembrosModalProps) => {
 
   useEffect(() => {
     const foundUsers: any[] = [];
-    for (let index = 0; index < props.users.length; index++) {
-      const user = props.users[index];
+    for (let index = 0; index < users.length; index++) {
+      const user = users[index];
       for (let i = 0; i < projetoMembros.length; i++) {
         const projetoMembro = projetoMembros[i];
         if (projetoMembro.email === user.email) {
@@ -65,7 +64,7 @@ const CreateProjeto = (props: MembrosModalProps) => {
       }
     }
     setSelectedUsers(foundUsers);
-  }, [props.users]);
+  }, [users]);
 
   const [file, setFile] = useState<File>();
 
@@ -88,8 +87,8 @@ const CreateProjeto = (props: MembrosModalProps) => {
     }
 
     let foundUser: any = null;
-    for (let index = 0; index < props.users.length; index++) {
-      const user = props.users[index];
+    for (let index = 0; index < users.length; index++) {
+      const user = users[index];
       if (user.email === emailValue) {
         foundUser = user;
         break;

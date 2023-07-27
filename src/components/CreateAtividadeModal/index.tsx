@@ -18,7 +18,7 @@ export const CreateAtividade = (props: CreateAtividadeProps) => {
   const [newAtividade, setNewAtividade] = useState<string>('');
 
   const [tarefasFase, setTarefasFase] = useState<typeof FaseData>(props.tarefasData[0]);
-  const [listNewAtividades, setListNewAtividades] = useState<typeof FaseData>(props.tarefasData[1]);
+  const [listNewAtividades, setListNewAtividades] = useState<typeof FaseData>([props.tarefasData[1]]);
 
   const handleLoteClick = (tarefa: any) => {
     if (tarefasFase.includes(tarefa)) {
@@ -125,7 +125,10 @@ export const CreateAtividade = (props: CreateAtividadeProps) => {
               <button
                 onClick={() => {
                   if (newAtividade.length > 0) {
-                    setListNewAtividades((old) => [...old, { url: 'new', titulo: newAtividade, id: uuidv4() }]);
+                    setListNewAtividades((old) => [
+                      ...old,
+                      { icone: 'new', titulo: newAtividade, id: 1111 + listNewAtividades.length },
+                    ]);
                   }
                 }}
                 style={{

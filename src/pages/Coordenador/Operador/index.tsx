@@ -14,6 +14,7 @@ type User = {
   email: string;
   lote: string;
   fase: string;
+  andamento: boolean;
 };
 
 const removeDiacritics = (str: string): string => {

@@ -19,6 +19,7 @@ interface user {
   email: string;
   lote: string;
   fase: string;
+  andamento: boolean;
 }
 
 interface EditModalProps {

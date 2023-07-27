@@ -10,6 +10,7 @@ interface User {
   email: string;
   lote: string;
   fase: string;
+  andamento: boolean;
 }
 
 interface UserMembro {

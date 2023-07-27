@@ -6,7 +6,7 @@ import { CreateAtividade } from '../../../../components/CreateAtividadeModal';
 import FaseData from '../../../../data/FaseData';
 import { CategoriasTipologias } from '../../../../components/CategoriaTipologias';
 import CategoriaData from '../../../../data/CategoriaData';
-import TipologiaData from '../../../../data/TipologiaData';
+import { TipologiaData } from '../../../../data/TipologiaData';
 import { IUserFase, UserModalAtividade } from '../../../../components/UserAtividadeModal';
 import { AtribuirModalAtividade, ILoteUser } from '../../../../components/AtribuirModalAtividade';
 
@@ -27,7 +27,7 @@ const AtividadeCreate = () => {
   const [name, setName] = useState('');
   const [nameFase, setFaseName] = useState('');
   const [idUser, setIdUser] = useState('');
-  const [idFase, setIdFase] = useState('');
+  const [idFase, setIdFase] = useState<number>(0);
 
   const [LoteUser, setLoteUser] = useState<ILoteUser[]>([]);
 
@@ -280,7 +280,7 @@ const AtividadeCreate = () => {
                         display: 'flex',
                       }}
                     >
-                      <img src={`/icon-page/${fase.url}.png`} alt="" />
+                      <img src={`/icon-page/${fase.icone}.png`} alt="" />
                     </div>
                     <h2
                       style={{
@@ -475,7 +475,7 @@ const AtividadeCreate = () => {
                     <img
                       height={24}
                       width={24}
-                      src={`/icon-page/${tarefas.filter((tarefa) => tarefa.id === f.id_fase)[0].url}.png`}
+                      src={`/icon-page/${tarefas.filter((tarefa) => tarefa.id === f.id_fase)[0].icone}.png`}
                       alt="Icone de Etapa"
                     />
                     <h3>{tarefas.filter((tarefa) => tarefa.id === f.id_fase)[0].titulo}</h3>
@@ -541,7 +541,7 @@ const AtividadeCreate = () => {
                             >
                               <button
                                 onClick={() => {
-                                  setFaseName(tarefas.filter((tarefa) => tarefa.id === f.id_fase)[0].url);
+                                  setFaseName(tarefas.filter((tarefa) => tarefa.id === f.id_fase)[0].icone);
                                   setName(user.name);
                                   setIdUser(user.id);
                                   setIdFase(f.id_fase);

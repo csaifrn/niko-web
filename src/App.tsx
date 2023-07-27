@@ -36,7 +36,7 @@ const App = () => {
         <Route path="/" element={<Login />} />
         <Route path="/unauthorized" element={<Unauthorized />} />
         <Route path="/Projetos" element={<Projetos />} />
-        <Route path="/CriarProjeto" element={<CreateProjeto users={Users} />} />
+        <Route path="/CriarProjeto" element={<CreateProjeto />} />
         <Route element={<Auth allowedRoles={['Coordenador']} />}>
           <Route path="/Fase/:id" element={<Home />} />
           <Route path="/Atividades/:id" element={<Atividade />} />

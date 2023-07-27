@@ -4,7 +4,7 @@ import Search from '../Search';
 import Users from '../../data/UserData';
 
 export interface IUserFase {
-  id_fase: string;
+  id_fase: any;
   users: Array<any>;
 }
 

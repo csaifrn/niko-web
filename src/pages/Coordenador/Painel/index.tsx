@@ -13,7 +13,7 @@ const Painel = () => {
 
   return (
     <S.Wrapper>
-      <Menu area={`/Painel/${id}`}></Menu>
+      <Menu area={`/Painel/${id}`} id_projeto={id}></Menu>
       <MenuCoord />
       <PainelPorFase />
       <PendenciaCoord />

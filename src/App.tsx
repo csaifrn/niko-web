@@ -8,7 +8,6 @@ import Preparo from './pages/Etapas/Preparo';
 import Catalogacao from './pages/Etapas/Catalogacao';
 import Digitalizacao from './pages/Etapas/Digitalizacao';
 import Upload from './pages/Etapas/Upload';
-// import LoteDetails from './components/LoteDetails';
 import Operador from './pages/Coordenador/Operador';
 import Categoria from './pages/Coordenador/Categoria';
 import Erro404 from './pages/Erros/404';
@@ -22,6 +21,8 @@ import AtividadeCreate from './pages/Coordenador/Atividade/atividade-create';
 import AtividadeEdit from './pages/Coordenador/Atividade/ativiade-edit';
 import Painel from './pages/Coordenador/Painel';
 import Perfil from './pages/Perfil';
+import LoteDetails from './components/LoteDetails';
+import { EditModal } from './components/EditModal';
 
 const Home = lazy(() => import('./pages/Coordenador/Fase'));
 
@@ -37,21 +38,20 @@ const App = () => {
         <Route path="/unauthorized" element={<Unauthorized />} />
         <Route path="/Projetos" element={<Projetos />} />
         <Route path="/CriarProjeto" element={<CreateProjeto />} />
-        <Route element={<Auth allowedRoles={['Coordenador']} />}>
-          <Route path="/Fase/:id" element={<Home />} />
-          <Route path="/Atividades/:id" element={<Atividade />} />
-          <Route path={`/Atividades/:id/CriarAtividade`} element={<AtividadeCreate />} />
-          <Route path={`/Atividades/:id/Edit/:iday/:idatv`} element={<AtividadeEdit />} />
-          <Route path="Fase/:id/Board/Arquivamento" element={<Arquivamento />} />
-          <Route path="Fase/:id/Board/Recebidos" element={<Recebidos etapa="recebidos" />} />
-          <Route path="Fase/:id/Board/Preparo" element={<Preparo />} />
-          <Route path="Fase/:id/Board/Catalogacao" element={<Catalogacao />} />
-          <Route path="Fase/:id/Board/Digitalizacao" element={<Digitalizacao />} />
-          <Route path="/Operadores/:id" element={<Operador />} />
-          <Route path="/Categorias/:id" element={<Categoria />} />
-          <Route path="Fase/:id/Board/Upload" element={<Upload />} />
-          {/* <Route path={`/Lote/:id`} element={<LoteDetails />} /> */}
-        </Route>
+        <Route path="/Fase/:id" element={<Home />} />
+        <Route path="/Atividades/:id" element={<Atividade />} />
+        <Route path={`/Atividades/:id/CriarAtividade`} element={<AtividadeCreate />} />
+        <Route path={`/Atividades/:id/Edit/:iday/:idatv`} element={<AtividadeEdit />} />
+        <Route path="Fase/:id/Board/Arquivamento" element={<Arquivamento />} />
+        <Route path="Fase/:id/Board/Recebidos" element={<Recebidos etapa="recebidos" />} />
+        <Route path="Fase/:id/Board/Preparo" element={<Preparo />} />
+        <Route path="Fase/:id/Board/Catalogacao" element={<Catalogacao />} />
+        <Route path="Fase/:id/Board/Digitalizacao" element={<Digitalizacao />} />
+        <Route path="/Operadores/:id" element={<Operador />} />
+        <Route path="/Categorias/:id" element={<Categoria />} />
+        <Route path="Fase/:id/Board/Upload" element={<Upload />} />
+        <Route path={`/Lote/:id`} element={<LoteDetails />} />
+        <Route path={`/Lote/:id/Edit`} element={<EditModal />} />
         <Route path="*" element={<Erro404 />} />
       </Routes>
     </Suspense>

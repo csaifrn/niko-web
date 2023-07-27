@@ -2,13 +2,12 @@ import styled from 'styled-components';
 
 export const areaClick = styled.div`
   color: white;
-  z-index: 9999990;
   padding: 2em;
   transition: transform 0.9s ease-in-out;
-  display:flex;
+  display: flex;
   flex-direction: column;
   gap: 24px;
-  margin: 0em 0em 8em 0em;
+  margin: 8em 0em 8em 0em;
   font-family: 'Rubik', Helvetica, sans-serif;
   filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
   &::-webkit-scrollbar {
@@ -32,11 +31,11 @@ export const areaClick = styled.div`
 `;
 
 export const Texto = styled.p`
-  color: #191C24;
+  color: #191c24;
 `;
 
 export const Teste = styled.h1`
-  color:white;
+  color: white;
 `;
 
 export const Icons = styled.img``;
@@ -63,18 +62,16 @@ export const Exit = styled.div`
 `;
 
 export const LoteInfos = styled.div`
-  display:flex;
-  flex-direction:column;
+  display: flex;
+  flex-direction: column;
   gap: 16px;
 `;
-
 
 export const LoteEditConfig = styled.div`
   display: flex;
   justify-content: space-between;
-  align-items:flex-end;
+  align-items: flex-end;
   margin-bottom: -0.5em;
-
 `;
 
 export const EditConfig = styled.div`
@@ -171,10 +168,9 @@ export const Categoria = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #393E4B;
+  background-color: #393e4b;
   border-radius: 3px;
 `;
-
 
 export const Tipologias = styled.div`
   display: flex;
@@ -182,16 +178,14 @@ export const Tipologias = styled.div`
   gap: 0.5em;
 `;
 
-
 export const Tipologia = styled.div`
   padding: 5px 6px;
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #626A7D;
+  background-color: #626a7d;
   border-radius: 3px;
 `;
-
 
 export const TextDiv = styled.div`
   height: 2em;
@@ -212,7 +206,7 @@ export const FaseEnvolvAtual = styled.div`
 `;
 
 export const Envolvidos = styled.div`
-  display:flex;
+  display: flex;
   gap: 0px;
 `;
 
@@ -268,8 +262,8 @@ export const ResolverPend = styled.div`
   gap: 10px;
   flex-shrink: 0;
   border-radius: 5px;
-  background: #FCDE42;
-  color: #191C24;
+  background: #fcde42;
+  color: #191c24;
   padding: 1.5em;
   width: 100%;
 `;
@@ -277,7 +271,7 @@ export const ResolverPend = styled.div`
 export const ObsDivBlack = styled.div`
   background-color: #191c24;
   border-radius: 5px;
-  display:flex;
+  display: flex;
   gap: 10px;
   padding: 10px;
   width: calc(100%-2em);
@@ -325,8 +319,8 @@ export const OptionFases = styled.option`
   width: calc(50%);
   display: flex;
   padding: 2em;
-  :hover{
-    background-color:red;
+  :hover {
+    background-color: red;
   }
 `;
 

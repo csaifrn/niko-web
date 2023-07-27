@@ -7,14 +7,14 @@ export const Titulo2 = styled.h2`
 export const ModalContent = styled.div`
   z-index: 9999990;
   padding: 2em;
-  color:white;
+  color: white;
   transition: transform 0.9s ease-in-out;
-  display:flex;
+  display: flex;
   flex-direction: column;
   gap: 16px;
-  margin: 0em 0em 8em 0em;
+  margin: 8em 0em 8em 0em;
   font-family: 'Rubik', Helvetica, sans-serif;
-  h2{
+  h2 {
     font-weight: normal;
   }
 `;
@@ -26,60 +26,60 @@ export const NameClose = styled.div`
 
 export const Close = styled.div`
   display: flex;
-  background-color: #393E4B;
+  background-color: #393e4b;
   width: auto;
   border: none;
 `;
 
 export const ProtocoloDiv = styled.div`
-  display:flex;
-  flex-direction:column;
+  display: flex;
+  flex-direction: column;
   gap: 16px;
-  justify-content:flex-start;
-  align-items:flex-start;
+  justify-content: flex-start;
+  align-items: flex-start;
 `;
 
 export const Protocolo = styled.div`
-  display:flex;
-  justify-content:flex-start;
-  align-items:flex-start;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
   padding: 5px;
   border-radius: 3px;
   color: white;
   font-family: 'Rubik';
-  background-color: #393E4B;
+  background-color: #393e4b;
 `;
 
 export const Arquivos = styled.div`
-  display:flex;
-  flex-direction:column;
-  gap:16px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 `;
 
 export const ArquivosDiv = styled.div`
-  display:flex;
-  gap:16px;
+  display: flex;
+  gap: 16px;
 `;
 
 export const ArquivosFisicos = styled.div`
-  display:flex;
-  flex-direction:column;
+  display: flex;
+  flex-direction: column;
   gap: 8px;
 `;
 
 export const ArquivosDigitais = styled.div`
-  display:flex;
-  flex-direction:column;
+  display: flex;
+  flex-direction: column;
   gap: 8px;
 `;
 
 export const ArquivosInput = styled.input`
-  display:flex;
-  justify-content:flex-start;
-  align-items:flex-start;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
   padding: 15px;
   width: 56px;
-  background-color: #393E4B;
+  background-color: #393e4b;
   color: white;
   font-family: 'Rubik', Helvetica, sans-serif;
   border: none;
@@ -106,25 +106,23 @@ export const CatTipol = styled.div`
   gap: 16px;
 `;
 
-export const FilterCatTipol = styled.div`
-`;
+export const FilterCatTipol = styled.div``;
 
-export const ButtonCatTipol = styled.div`
-`;
+export const ButtonCatTipol = styled.div``;
 
 export const MostrarCategTipolEscolhida = styled.div`
-  display:flex;
+  display: flex;
   gap: 8px;
 `;
 
 export const CategEscolhida = styled.div`
-  background-color: #393E4B;
+  background-color: #393e4b;
   padding: 5px;
   border-radius: 3px;
 `;
 
 export const TipolEscolhida = styled.div`
-  background-color: #393E4B;
+  background-color: #393e4b;
   padding: 5px;
   border-radius: 3px;
 `;

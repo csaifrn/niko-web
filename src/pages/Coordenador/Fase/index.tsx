@@ -22,18 +22,6 @@ const Home = () => {
   //   }
   // }, [Projeto]);
 
-  //const {user, loading, logOut} = useFirebaseAuth();
-
-  useEffect(() => {
-    useEffect;
-    if (Projeto.filter((projeto) => projeto.id === id).length === 0) {
-      navigate('/Projetos');
-    }
-    if (Membros.filter((membro) => membro.email === auth()?.email).length === 0) {
-      navigate('/Projetos');
-    }
-  }, [Projeto]);
-
   return (
     <Wrapper>
       <Menu area={`/Fase/${id}`} id_projeto={id}></Menu>

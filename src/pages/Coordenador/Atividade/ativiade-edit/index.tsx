@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
 import { CreateAtividade } from '../../../../components/CreateAtividadeModal';
 import { CategoriasTipologias } from '../../../../components/CategoriaTipologias';
 import CategoriaData from '../../../../data/CategoriaData';
-import TipologiaData from '../../../../data/TipologiaData';
+import { TipologiaData } from '../../../../data/TipologiaData';
 import { IUserFase, UserModalAtividade } from '../../../../components/UserAtividadeModal';
 import { AtribuirModalAtividade, ILoteUser } from '../../../../components/AtribuirModalAtividade';
 import AtividadeData from '../../../../data/AtividadeData';
@@ -26,7 +26,7 @@ const AtividadeEdit = () => {
   const [name, setName] = useState('');
   const [nameFase, setFaseName] = useState('');
   const [idUser, setIdUser] = useState('');
-  const [idFase, setIdFase] = useState('');
+  const [idFase, setIdFase] = useState<number>(0);
   const [modalTarefas, setModalTarefas] = useState(false);
   const [modalCatTipo, SetModalCatTipo] = useState(false);
   const [modalUsers, SetModalUsers] = useState(false);

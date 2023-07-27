@@ -432,3 +432,11 @@
 // };
 
 // export default LoteDetails;'
+
+export const LoteDetails = () => {
+  return (
+    <div>
+      <p>LoteDetails</p>
+    </div>
+  );
+};

@@ -418,7 +418,7 @@ const AtividadeEdit = () => {
                 );
               })}
             {tipologias.length > 0 &&
-              tipologias.map((tipo) => {
+              tipologias.map((tipo: any) => {
                 return (
                   <div
                     key={tipo.id}

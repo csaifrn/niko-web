@@ -280,7 +280,7 @@ const AtividadeCreate = () => {
                         display: 'flex',
                       }}
                     >
-                      <img src={`/icon-page/${fase.icone}.png`} alt="" />
+                      <img src={`${fase.icone}`} alt="" />
                     </div>
                     <h2
                       style={{
@@ -475,7 +475,7 @@ const AtividadeCreate = () => {
                     <img
                       height={24}
                       width={24}
-                      src={`/icon-page/${tarefas.filter((tarefa) => tarefa.id === f.id_fase)[0].icone}.png`}
+                      src={`${tarefas.filter((tarefa) => tarefa.id === f.id_fase)[0].icone}`}
                       alt="Icone de Etapa"
                     />
                     <h3>{tarefas.filter((tarefa) => tarefa.id === f.id_fase)[0].titulo}</h3>

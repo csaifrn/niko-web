@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import * as S from './style';
 import FaseData from '../../data/FaseData';
 import Search from '../Search';
-import { v4 as uuidv4 } from 'uuid';
 
 interface CreateAtividadeProps {
   close: () => void;
@@ -18,7 +17,7 @@ export const CreateAtividade = (props: CreateAtividadeProps) => {
   const [newAtividade, setNewAtividade] = useState<string>('');
 
   const [tarefasFase, setTarefasFase] = useState<typeof FaseData>(props.tarefasData[0]);
-  const [listNewAtividades, setListNewAtividades] = useState<typeof FaseData>([props.tarefasData[1]]);
+  const [listNewAtividades, setListNewAtividades] = useState<typeof FaseData>(props.tarefasData[1]);
 
   const handleLoteClick = (tarefa: any) => {
     if (tarefasFase.includes(tarefa)) {
@@ -94,7 +93,7 @@ export const CreateAtividade = (props: CreateAtividadeProps) => {
                       backgroundColor: tarefasFase.includes(categ) ? '#090E09' : '#2D303B',
                     }}
                   >
-                    <img src={`/icon-page/${categ.url}.png`} alt="" />
+                    <img src={`${categ.icone}`} alt="" />
                     <p
                       style={{
                         color: tarefasFase.includes(categ) ? '#fff' : '#838383',
@@ -124,10 +123,10 @@ export const CreateAtividade = (props: CreateAtividadeProps) => {
               />
               <button
                 onClick={() => {
-                  if (newAtividade.length > 0) {
+                  if (newAtividade.length >= 0) {
                     setListNewAtividades((old) => [
                       ...old,
-                      { icone: 'new', titulo: newAtividade, id: 1111 + listNewAtividades.length },
+                      { icone: '/icon-page/new.png', titulo: newAtividade, id: 1111 + listNewAtividades.length },
                     ]);
                   }
                 }}
@@ -155,7 +154,7 @@ export const CreateAtividade = (props: CreateAtividadeProps) => {
                       backgroundColor: '#090E09',
                     }}
                   >
-                    <img src={`/icon-page/${categ.url}.png`} alt="" />
+                    <img src={`${categ.icone}`} alt="" />
                     <p
                       style={{
                         color: '#fff',

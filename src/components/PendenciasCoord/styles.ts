@@ -9,6 +9,8 @@ export const Wrapper = styled.div`
 `;
 
 export const ContainerData = styled.div`
+  min-width: 250px;
+  width: 250px;
   border-radius: 5px;
   background-color: ${({ theme }) => theme.colors['gray/500']};
   display: flex;
@@ -16,11 +18,20 @@ export const ContainerData = styled.div`
   flex-direction: column;
   align-items: flex-start;
   gap: 1rem;
-  align-self: stretch;
 `;
 
 export const ContainerNumber = styled.div`
   display: flex;
+  justify-content: space-between;
+  align-items: center;
+  align-self: stretch;
+`;
+
+export const ContainerEmpty = styled.div`
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  text-align: center;
   justify-content: space-between;
   align-items: center;
   align-self: stretch;
@@ -51,9 +62,19 @@ export const ContainerDataFase = styled.div`
   display: flex;
   padding: 0.5rem;
   align-items: center;
+  gap: 1rem;
+  border-radius: 5px;
+`;
+
+export const ContainerDataDependencias = styled.div`
+  background-color: ${({ theme }) => theme.colors['gray/700']};
+  color: ${({ theme }) => theme.colors.white};
+  display: flex;
+  padding: 1rem;
   width: 100%;
   gap: 1rem;
   border-radius: 5px;
+  overflow-x: auto;
 `;
 
 export const NumberOrange = styled.span`
@@ -89,14 +110,21 @@ export const DataAcao = styled.div`
   align-items: center;
 `;
 
+export const Fase = styled.div`
+  display: flex;
+  width: 100%;
+  gap: 1em;
+  align-items: center;
+`;
+
 export const TextAlerta = styled.div`
   background-color: ${({ theme }) => theme.colors['gray/700']};
   display: flex;
   width: 100%;
-  height: 6.25rem;
+  height: 120px;
   gap: 1em;
   padding: 1em;
-  justify-content: center;
+
   border-radius: 5px;
 `;
 
@@ -125,7 +153,7 @@ export const Prioridade = styled.p`
 export const YelloButton = styled.button`
   background-color: ${({ theme }) => theme.colors['yellow/300']};
   font-family: Rubik;
-  color: ${({ theme }) => theme.colors['gray/900']};
+  color: ${({ theme }) => theme.colors['gray/700']};
   padding: 2em;
   width: 100%;
   border-radius: 5px;
@@ -136,8 +164,14 @@ export const YelloButton = styled.button`
   justify-content: center;
   height: 44px;
   transition: all 300ms;
-  :hover {
-    filter: brightness(110%);
+
+  &:hover {
+    background-color: ${({ theme }) => theme.colors['yellow/200']};
+  }
+
+  &:active {
+    background-color: ${({ theme }) => theme.colors['yellow/200']};
+    transform: translateY(-5%) translateX(2%);
   }
 `;
 
@@ -157,7 +191,7 @@ export const DataFaseTxtCenter = styled.p`
   font-weight: 500;
 `;
 
-export const TituloH2 = styled.h3`
+export const TituloH2 = styled.p`
   color: ${({ theme }) => theme.colors.white};
   font-family: Rubik;
   font-size: 22px;

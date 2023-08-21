@@ -5,6 +5,7 @@ import { useEffect, useRef, useState } from 'react';
 import { validationLoginSchema } from './validation';
 import * as Yup from 'yup';
 import { ErrorsForm } from './modalresolver.interface';
+//import { Pend } from '../PendenciasCoord';
 
 interface ModalPendencia {
   close: () => void;

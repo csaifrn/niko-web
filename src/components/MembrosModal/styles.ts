@@ -1,16 +1,16 @@
 import styled from 'styled-components';
 
 const ModalArea = styled.div`
-  position: fixed;
-  padding: 2em;
-  width: 90vw;
-  height: 80vh;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  width: 80vw;
   max-width: 400px;
-  background-color: #393e4b;
-  align-items: center;
+  background-color: ${({ theme }) => theme.colors['gray/500']};
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  padding: 2em;
+  gap: 2em;
+  transform: scale(0);
+  transition: transform 0.3s ease-in-out;
   color: white;
   font-family: 'Rubik';
   font-size: 12px;
@@ -24,6 +24,16 @@ const ModalArea = styled.div`
     background: #393e4b url('/Select.svg') 90% 50% no-repeat;
     padding: 0 3em 0 1em;
   }
+`;
+export const Exit = styled.button`
+  height: 2em;
+  width: 2em;
+  background-color: #090e09;
+  border-radius: 3px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
 `;
 
 const ModalContent = styled.div`

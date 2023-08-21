@@ -1,93 +1,160 @@
 import * as S from './styles';
 
 export const PainelPorFase = () => {
+  const valores = [
+    {
+      fase: 1,
+      concluidos: 5,
+    },
+    {
+      fase: 2,
+      concluidos: 1200,
+      faltaram: 5,
+    },
+    {
+      fase: 3,
+      concluidos: 12,
+      faltaram: 5,
+    },
+    {
+      fase: 4,
+      concluidos: 12,
+      faltaram: 5,
+    },
+    {
+      fase: 5,
+      concluidos: 12,
+      faltaram: 5,
+    },
+    {
+      fase: 6,
+      concluidos: 12,
+    },
+  ];
   return (
     <S.Wrapper>
       <S.ContainerData>
         <S.ContainerFilterNumber>
           <S.QtdLotes>
-            <S.NumberOrange>172</S.NumberOrange> Lotes
+            <S.NumberOrangeTitle>172</S.NumberOrangeTitle> Lotes
           </S.QtdLotes>
-          <S.Filter>
-            <S.Opiton selected>Semana Passada</S.Opiton>
-            <S.Opiton>Semana Retrasada</S.Opiton>
-            <S.Opiton>Semana 14/02</S.Opiton>
-          </S.Filter>
+
+          <S.Filter type="week" />
         </S.ContainerFilterNumber>
         <S.DataFaseDois>
           <S.ContainerDataFase>
-            <S.ContainerImg src="/icon-page/Recepcao_icon.png" />
+            <S.ContainerImg src="/icon-page/recepcao_icon.png" />
+            <S.DataFase>
+              <S.NumberTextDataUnic>
+                <S.DataFaseTxtCenter>
+                  <S.NumberGreen>{valores.filter((valor) => valor.fase === 1)[0].concluidos}</S.NumberGreen>
+                </S.DataFaseTxtCenter>
+                <S.DataFaseTxtCenter>Remessas Recebidas</S.DataFaseTxtCenter>
+              </S.NumberTextDataUnic>
+            </S.DataFase>
+          </S.ContainerDataFase>
+          <S.ContainerDataFase>
+            <S.ContainerImg src="/icon-page/arquivamento_icon.png" />
+            <S.DataFase>
+              <S.NumberTextDataUnic>
+                <S.DataFaseTxtCenter>
+                  <S.NumberGreen>{valores.filter((valor) => valor.fase === 6)[0].concluidos}</S.NumberGreen>
+                </S.DataFaseTxtCenter>
+                <S.DataFaseTxtCenter>Concluídos</S.DataFaseTxtCenter>
+              </S.NumberTextDataUnic>
+            </S.DataFase>
+          </S.ContainerDataFase>
+        </S.DataFaseDois>
+        <S.Container>
+          <S.ContainerDataFase>
+            <S.ContainerImg src="/icon-page/preparo_icon.png" />
             <S.DataFase>
               <S.NumberTextData>
-                <S.DataFaseTxtCenter>
-                  <S.NumberGreen>12</S.NumberGreen> Concluídos
-                </S.DataFaseTxtCenter>
+                <S.NumberName>
+                  <S.NumberTxt>
+                    <S.NumberRed>{valores.filter((valor) => valor.fase === 2)[0].faltaram}</S.NumberRed>
+                  </S.NumberTxt>
+                  <S.DataFaseTxt>Faltaram</S.DataFaseTxt>
+                </S.NumberName>
+
+                <S.DataFaseTxt>
+                  <S.NumberName>
+                    <S.NumberTxt>
+                      <S.NumberGreen>{valores.filter((valor) => valor.fase === 2)[0].concluidos}</S.NumberGreen>
+                    </S.NumberTxt>
+                    <S.DataFaseTxt>Concluídos</S.DataFaseTxt>
+                  </S.NumberName>
+                </S.DataFaseTxt>
               </S.NumberTextData>
             </S.DataFase>
           </S.ContainerDataFase>
           <S.ContainerDataFase>
-            <S.ContainerImg src="/icon-page/Arquivamento_icon.png" />
+            <S.ContainerImg src="/icon-page/catalogacao_icon.png" />
             <S.DataFase>
               <S.NumberTextData>
-                <S.DataFaseTxtCenter>
-                  <S.NumberGreen>12</S.NumberGreen> Concluídos
-                </S.DataFaseTxtCenter>
+                <S.NumberName>
+                  <S.NumberTxt>
+                    <S.NumberRed>{valores.filter((valor) => valor.fase === 3)[0].faltaram}</S.NumberRed>
+                  </S.NumberTxt>
+                  <S.DataFaseTxt>Faltaram</S.DataFaseTxt>
+                </S.NumberName>
+
+                <S.DataFaseTxt>
+                  <S.NumberName>
+                    <S.NumberTxt>
+                      <S.NumberGreen>{valores.filter((valor) => valor.fase === 3)[0].concluidos}</S.NumberGreen>
+                    </S.NumberTxt>
+                    <S.DataFaseTxt>Concluídos</S.DataFaseTxt>
+                  </S.NumberName>
+                </S.DataFaseTxt>
               </S.NumberTextData>
             </S.DataFase>
           </S.ContainerDataFase>
-        </S.DataFaseDois>
-        <S.ContainerDataFase>
-          <S.ContainerImg src="/icon-page/Preparo_icon.png" />
-          <S.DataFase>
-            <S.NumberTextData>
-              <S.DataFaseTxt>
-                <S.NumberRed>5</S.NumberRed> Faltaram
-              </S.DataFaseTxt>
-              <S.DataFaseTxt>
-                <S.NumberGreen>12</S.NumberGreen> Foram concluidos
-              </S.DataFaseTxt>
-            </S.NumberTextData>
-          </S.DataFase>
-        </S.ContainerDataFase>
-        <S.ContainerDataFase>
-          <S.ContainerImg src="/icon-page/Catalogacao_icon.png" />
-          <S.DataFase>
-            <S.NumberTextData>
-              <S.DataFaseTxt>
-                <S.NumberRed>5</S.NumberRed> Faltaram
-              </S.DataFaseTxt>
-              <S.DataFaseTxt>
-                <S.NumberGreen>12</S.NumberGreen> Foram concluidos
-              </S.DataFaseTxt>
-            </S.NumberTextData>
-          </S.DataFase>
-        </S.ContainerDataFase>
-        <S.ContainerDataFase>
-          <S.ContainerImg src="/icon-page/Digitalizacao_icon.png" />
-          <S.DataFase>
-            <S.NumberTextData>
-              <S.DataFaseTxt>
-                <S.NumberRed>5</S.NumberRed> Faltaram
-              </S.DataFaseTxt>
-              <S.DataFaseTxt>
-                <S.NumberGreen>12</S.NumberGreen> Foram concluidos
-              </S.DataFaseTxt>
-            </S.NumberTextData>
-          </S.DataFase>
-        </S.ContainerDataFase>
-        <S.ContainerDataFase>
-          <S.ContainerImg src="/icon-page/Upload_icon.png" />
-          <S.DataFase>
-            <S.NumberTextData>
-              <S.DataFaseTxt>
-                <S.NumberRed>5</S.NumberRed> Faltaram
-              </S.DataFaseTxt>
-              <S.DataFaseTxt>
-                <S.NumberGreen>12</S.NumberGreen> Foram concluidos
-              </S.DataFaseTxt>
-            </S.NumberTextData>
-          </S.DataFase>
-        </S.ContainerDataFase>
+          <S.ContainerDataFase>
+            <S.ContainerImg src="/icon-page/digitalizacao_icon.png" />
+            <S.DataFase>
+              <S.NumberTextData>
+                <S.NumberName>
+                  <S.NumberTxt>
+                    <S.NumberRed>{valores.filter((valor) => valor.fase === 4)[0].faltaram}</S.NumberRed>
+                  </S.NumberTxt>
+                  <S.DataFaseTxt>Faltaram</S.DataFaseTxt>
+                </S.NumberName>
+
+                <S.DataFaseTxt>
+                  <S.NumberName>
+                    <S.NumberTxt>
+                      <S.NumberGreen>{valores.filter((valor) => valor.fase === 4)[0].concluidos}</S.NumberGreen>
+                    </S.NumberTxt>
+                    <S.DataFaseTxt>Concluídos</S.DataFaseTxt>
+                  </S.NumberName>
+                </S.DataFaseTxt>
+              </S.NumberTextData>
+            </S.DataFase>
+          </S.ContainerDataFase>
+          <S.ContainerDataFase>
+            <S.ContainerImg src="/icon-page/upload_icon.png" />
+            <S.DataFase>
+              <S.NumberTextData>
+                <S.NumberName>
+                  <S.NumberTxt>
+                    <S.NumberRed>{valores.filter((valor) => valor.fase === 5)[0].faltaram}</S.NumberRed>
+                  </S.NumberTxt>
+                  <S.DataFaseTxt>Faltaram</S.DataFaseTxt>
+                </S.NumberName>
+
+                <S.DataFaseTxt>
+                  <S.NumberName>
+                    <S.NumberTxt>
+                      <S.NumberGreen>{valores.filter((valor) => valor.fase === 5)[0].concluidos}</S.NumberGreen>
+                    </S.NumberTxt>
+                    <S.DataFaseTxt>Concluídos</S.DataFaseTxt>
+                  </S.NumberName>
+                </S.DataFaseTxt>
+              </S.NumberTextData>
+            </S.DataFase>
+          </S.ContainerDataFase>
+        </S.Container>
       </S.ContainerData>
     </S.Wrapper>
   );

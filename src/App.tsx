@@ -14,8 +14,7 @@ import Erro404 from './pages/Erros/404';
 import Unauthorized from './pages/Erros/Unauthorized';
 import Projetos from './pages/Projeto/projeto-home';
 import CreateProjeto from './pages/Projeto/projeto-create';
-import Users from './data/UserData';
-import Auth from './config/Auth';
+
 import Atividade from './pages/Coordenador/Atividade/atividade-home';
 import AtividadeCreate from './pages/Coordenador/Atividade/atividade-create';
 import AtividadeEdit from './pages/Coordenador/Atividade/ativiade-edit';
@@ -43,7 +42,7 @@ const App = () => {
         <Route path={`/Atividades/:id/CriarAtividade`} element={<AtividadeCreate />} />
         <Route path={`/Atividades/:id/Edit/:iday/:idatv`} element={<AtividadeEdit />} />
         <Route path="Fase/:id/Board/Arquivamento" element={<Arquivamento />} />
-        <Route path="Fase/:id/Board/Recebidos" element={<Recebidos etapa="recebidos" />} />
+        <Route path="Fase/:id/Board/Recebidos" element={<Recebidos />} />
         <Route path="Fase/:id/Board/Preparo" element={<Preparo />} />
         <Route path="Fase/:id/Board/Catalogacao" element={<Catalogacao />} />
         <Route path="Fase/:id/Board/Digitalizacao" element={<Digitalizacao />} />

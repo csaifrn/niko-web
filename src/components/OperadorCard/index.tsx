@@ -44,7 +44,7 @@ const OperadorCard = (user: any) => {
                 <p style={{ color: '#43DB6D' }}>{User.name}</p>
               </S.dataUser>
               <S.dataLote>
-                <img src={`/icon-page/${User.fase}.png`} height={28} width={28} alt="" />
+                <img src={`/icon-page/${User.fase}_icon.png`} height={28} width={28} alt="" />
                 <div>
                   <S.textLote>{User.lote}</S.textLote>
                 </div>
@@ -65,14 +65,14 @@ const OperadorCard = (user: any) => {
               </S.dataUser>
             </S.CardArea>
           )}
-          {User.fase === '' && (
+          {/* {User.fase === '' && (
             <div className="padding">
               <S.ButtonAtribuir onClick={handleAtribuir}>
                 <S.Icon src="/upIcon.svg" />
                 <p>Atribuir lote</p>
               </S.ButtonAtribuir>
             </div>
-          )}
+          )} */}
         </S.CardA>
 
         <S.Footer className={expanded ? 'show' : ''} setHeight={accodionHeight} ref={ref}>

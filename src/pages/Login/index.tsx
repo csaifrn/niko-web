@@ -7,20 +7,24 @@ import { SignInResponse, ApiError } from '../../api/services/authentication/sign
 import { validationLoginSchema } from './validation';
 import { ErrorsForm } from './login.interface';
 import * as Yup from 'yup';
+import { Eye, EyeSlash } from '@phosphor-icons/react';
 
 const Login = () => {
   const emailInputRef = useRef<HTMLInputElement>(null);
   const passwordInputRef = useRef<HTMLInputElement>(null);
   const [responseError, setResponseError] = useState('');
+
   const [validationFormError, setValidationFormError] = useState<ErrorsForm>({ email: '', password: '' });
   const navigate = useNavigate();
 
-
+  const [showPassword, setShowPassword] = useState(false);
+  const [isPasswordWithContent, setIsPasswordWithContent] = useState(false);
 
   const loginMutation = useMutation(signIn, {
     onSuccess: (data: SignInResponse) => {
       localStorage.setItem('token', data.token);
       navigate('/Projetos');
+      // TODO: store user on context state
     },
     onError: (error: ApiError) => {
       setResponseError(error.response?.data.message || 'Um erro inesperado ocorreu.');
@@ -77,7 +81,29 @@ const Login = () => {
           </S.FieldContainer>
           <S.FieldContainer>
             <S.LabelField htmlFor="password">Senha</S.LabelField>
-            <S.InputText ref={passwordInputRef} id="password" type="password" placeholder="Senha" />
+            <S.ContainerInputText>
+              <S.InputText
+                className="password"
+                ref={passwordInputRef}
+                onChange={(e) => setIsPasswordWithContent(e.target.value ? true : false)}
+                id="password"
+                type={showPassword ? 'text' : 'password'}
+                placeholder="Senha"
+              />
+              {isPasswordWithContent && (
+                <S.ShowPassword type="button" onClick={() => setShowPassword(!showPassword)}>
+                  {showPassword ? (
+                    <Eye size={24} weight="fill" alt="Olho aberto que ao clicar esconde a senha" />
+                  ) : (
+                    <EyeSlash
+                      size={24}
+                      weight="fill"
+                      alt="Olho aberto com uma linha riscando na diagonal que ao clicar mostra a senha"
+                    />
+                  )}
+                </S.ShowPassword>
+              )}
+            </S.ContainerInputText>
             <S.ErrorMessage>{validationFormError.password}</S.ErrorMessage>
           </S.FieldContainer>
           <S.ForgotPasswordLink to="/">Esqueceu a senha?</S.ForgotPasswordLink>

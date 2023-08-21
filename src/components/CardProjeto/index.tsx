@@ -11,7 +11,7 @@ interface Projeto {
 }
 
 interface CardProps {
-  projeto: Projeto[];
+  projeto: Projeto;
 }
 
 export const CardProjeto = (Props: CardProps) => {
@@ -20,7 +20,7 @@ export const CardProjeto = (Props: CardProps) => {
   const [ModalEdit, setModalEdit] = useState(false);
 
   const users = Users;
-  const projeto = Props.projeto[0];
+  const projeto = Props.projeto;
   const membros = Membros.filter((membro) => membro.id_Projeto === projeto.id);
   console.log(membros);
 

@@ -16,14 +16,10 @@ interface IEditModal {
 }
 
 export const EditModal = () => {
-  
-  // FUNÇÃO PARA PESQUISA
   const [searchTerm, setSearchTerm] = useState<string>('')
-
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(event.target.value)
   };
-
   const [categorias, setCategorias] = useState<any>([])
   const [tipologias, setTipologias] = useState<any>([])
 

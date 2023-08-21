@@ -1,19 +1,18 @@
-import { StyleHTMLAttributes } from "react";
 import styled from "styled-components";
 
 export const ModalArea = styled.div`
-  font-family: "Rubik";
+  font-family: 'Rubik';
   color: white;
+  width: 80vw;
+  max-width: 400px;
+  background-color: ${({ theme }) => theme.colors['gray/500']};
+  border-radius: 5px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
   padding: 2em;
-  gap: 10px;
-  position: relative;
-  background: #393E4B;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  border-radius: 5px;
+  gap: 2em;
+  transform: scale(0);
+  transition: transform 0.3s ease-in-out;
 `;
 
 export const ModalContent = styled.div`

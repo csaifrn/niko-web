@@ -36,16 +36,48 @@ export const FieldContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 0.5em;
+  .password {
+    padding-right: 2.8em;
+  }
 `;
 
 export const InputText = styled.input`
   padding: 0.5em;
+  font-family: 'Rubik';
+  font-weight: 400;
   background-color: ${({ theme }) => theme.colors['gray/500']};
   border-radius: 0.5em;
   border: 1px solid ${({ theme }) => theme.colors['gray/500']};
   color: white;
   :hover {
     border: 1px solid ${({ theme }) => theme.colors['gray/300']};
+  }
+`;
+
+export const ContainerInputText = styled.div`
+  position: relative;
+`;
+
+export const ShowPassword = styled.button`
+  border: none;
+  background-color: transparent;
+  color: ${({ theme }) => theme.colors.white};
+  position: absolute;
+  right: 7.5px;
+  top: 50%;
+  translate: 0 -50%;
+  padding: 4px;
+  transition: all;
+  height: 26px;
+  width: 26px;
+  border-radius: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 0.2s all;
+
+  &:hover {
+    background-color: ${({ theme }) => theme.colors['gray/700']};
   }
 `;
 

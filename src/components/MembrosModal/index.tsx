@@ -41,6 +41,7 @@ export const MembrosModal = (props: MembrosModalProps) => {
 
   const [showError, setShowError] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
+  const [closing, setClosing] = useState(false);
 
   useEffect(() => {
     const foundUsers: any[] = [];
@@ -56,6 +57,27 @@ export const MembrosModal = (props: MembrosModalProps) => {
     }
     setSelectedUsers(foundUsers);
   }, [props.users]);
+
+  useEffect(() => {
+    // Ao renderizar o modal, aplicar um escalonamento gradual para exibi-lo
+    const timer = setTimeout(() => {
+      const modal = document.getElementById('modal-scaling');
+      if (closing === false && modal) {
+        modal.style.transform = 'scale(1)';
+      } else if (modal && closing) {
+        modal.style.transform = 'scale(0)';
+      }
+    }, 10);
+
+    return () => clearTimeout(timer);
+  }, [closing]);
+
+  const handleClose = () => {
+    setClosing(true);
+    setTimeout(() => {
+      props.close();
+    }, 300);
+  };
 
   const handleEnviar = () => {
     const emailValue = emailRef.current?.value;
@@ -116,23 +138,13 @@ export const MembrosModal = (props: MembrosModalProps) => {
   return (
     <>
       <S.ModalBackdrop>
-        <S.ModalArea>
+        <S.ModalArea id="modal-scaling">
           <S.ModalContent>
             <S.NameClose>
               <h1>+Incra</h1>
-              <button onClick={props.close} style={{ width: 'auto', backgroundColor: 'transparent', border: 'none' }}>
-                <img
-                  src="close.svg"
-                  alt=""
-                  height={18}
-                  width={18}
-                  style={{
-                    padding: '5px 5px',
-                    backgroundColor: '#090E09',
-                    borderRadius: '5px',
-                  }}
-                />
-              </button>
+              <S.Exit type="button" onClick={handleClose}>
+                <img src="/close.svg" alt="" height={18} width={18} />
+              </S.Exit>
             </S.NameClose>
             <h3>Editar Mebros</h3>
             <form action="">
@@ -262,7 +274,7 @@ export const MembrosModal = (props: MembrosModalProps) => {
             </S.ChooseLote>
             <S.AtribuirButton
               onClick={() => {
-                props.close;
+                handleClose();
                 console.log(projetoMembros);
               }}
             >

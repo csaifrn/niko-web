@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import * as S from './style';
 import Search from '../Search';
 import Users from '../../data/UserData';
@@ -13,6 +13,28 @@ export interface AtribuirAlguemModalProps {
 export const AtribuirAlguemModal = (props: AtribuirAlguemModalProps) => {
   const [selectedUsers, setSelectedUsers] = useState<string[]>([]);
   const [searchTerm, setSearchTerm] = useState<string>('');
+  const [closing, setClosing] = useState(false);
+
+  useEffect(() => {
+    // Ao renderizar o modal, aplicar um escalonamento gradual para exibi-lo
+    const timer = setTimeout(() => {
+      const modal = document.getElementById('modal-scaling');
+      if (closing === false && modal) {
+        modal.style.transform = 'scale(1)';
+      } else if (modal && closing) {
+        modal.style.transform = 'scale(0)';
+      }
+    }, 10);
+
+    return () => clearTimeout(timer);
+  }, [closing]);
+
+  const handleClose = () => {
+    setClosing(true);
+    setTimeout(() => {
+      props.close();
+    }, 300);
+  };
 
   const handleLoteClick = (userId: string) => {
     if (selectedUsers.includes(userId)) {
@@ -25,7 +47,7 @@ export const AtribuirAlguemModal = (props: AtribuirAlguemModalProps) => {
   const handleAtualizarUser = () => {
     if (selectedUsers) {
       props.setUser(selectedUsers.map((userId) => Users.filter((user) => user.id === userId)[0]));
-      props.close();
+      handleClose();
     } else {
       console.log('nenhum item está selecionado');
     }
@@ -40,12 +62,12 @@ export const AtribuirAlguemModal = (props: AtribuirAlguemModalProps) => {
   return (
     <>
       <S.ModalBackdrop>
-        <S.ModalArea>
+        <S.ModalArea id="modal-scaling">
           <S.ModalContent id="modal-content">
             <S.NameClose>
               <h2>Atribuir para</h2>
 
-              <button onClick={props.close} style={{ width: 'auto', backgroundColor: 'transparent', border: 'none' }}>
+              <button onClick={handleClose} style={{ width: 'auto', backgroundColor: 'transparent', border: 'none' }}>
                 <img
                   src="/close.svg"
                   alt=""

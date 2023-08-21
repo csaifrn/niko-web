@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import * as S from './style';
 
 interface ConfigModalProps {
@@ -10,7 +10,6 @@ interface ConfigModalProps {
 }
 
 export const ConfigModal = (props: ConfigModalProps) => {
-
   const [Pchecked, setPChecked] = useState(props.valor_prioridade);
   const handlePrioridadeCheck = () => {
     setPChecked(!Pchecked);
@@ -24,15 +23,36 @@ export const ConfigModal = (props: ConfigModalProps) => {
   };
   console.log(props.valor_compart);
 
+  const [closing, setClosing] = useState(false);
+  useEffect(() => {
+    // Ao renderizar o modal, aplicar um escalonamento gradual para exibi-lo
+    const timer = setTimeout(() => {
+      const modal = document.getElementById('modal-scaling');
+      if (closing === false && modal) {
+        modal.style.transform = 'scale(1)';
+      } else if (modal && closing) {
+        modal.style.transform = 'scale(0)';
+      }
+    }, 10);
+
+    return () => clearTimeout(timer);
+  }, [closing]);
+
+  const handleClose = () => {
+    setClosing(true);
+    setTimeout(() => {
+      props.close();
+    }, 300);
+  };
+
   return (
     <>
       <S.ModalBackdrop>
-        <S.ModalArea>
+        <S.ModalArea id="modal-scaling">
           <S.ModalContent id="modal-content">
             <S.NameClose>
               <h2>Configurações do lote</h2>
-
-              <button onClick={props.close} style={{ border: 'none', backgroundColor: 'transparent' }}>
+              <button onClick={handleClose} style={{ border: 'none', backgroundColor: 'transparent' }}>
                 <div
                   style={{
                     paddingLeft: 8,

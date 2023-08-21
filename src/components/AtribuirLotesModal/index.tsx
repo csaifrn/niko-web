@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import * as S from './styles';
 import Search from '../Search';
 
@@ -43,6 +43,28 @@ export const lotes = [
 export const AtribuirModal = (props: AtribuirModalProps) => {
   const [selectedLotes, setSelectedLotes] = useState<number[]>([]);
   const [searchTerm, setSearchTerm] = useState<string>('');
+  const [closing, setClosing] = useState(false);
+
+  useEffect(() => {
+    // Ao renderizar o modal, aplicar um escalonamento gradual para exibi-lo
+    const timer = setTimeout(() => {
+      const modal = document.getElementById('modal-scaling');
+      if (closing === false && modal) {
+        modal.style.transform = 'scale(1)';
+      } else if (modal && closing) {
+        modal.style.transform = 'scale(0)';
+      }
+    }, 10);
+
+    return () => clearTimeout(timer);
+  }, [closing]);
+
+  const handleClose = () => {
+    setClosing(true);
+    setTimeout(() => {
+      props.close();
+    }, 300);
+  };
 
   const handleLoteClick = (loteId: number) => {
     if (selectedLotes.includes(loteId)) {
@@ -63,11 +85,11 @@ export const AtribuirModal = (props: AtribuirModalProps) => {
   return (
     <>
       <S.ModalBackdrop>
-        <S.ModalArea>
+        <S.ModalArea id="modal-scaling">
           <S.ModalContent id="modal-content">
             <S.NameClose>
               <h2>Atribuir Lote</h2>
-              <button onClick={props.close} style={{ width: 'auto', backgroundColor: 'transparent', border: 'none' }}>
+              <button onClick={handleClose} style={{ width: 'auto', backgroundColor: 'transparent', border: 'none' }}>
                 <img
                   src="/close.svg"
                   alt=""
@@ -101,7 +123,7 @@ export const AtribuirModal = (props: AtribuirModalProps) => {
                 </S.Lote>
               ))}
             </S.ChooseLote>
-            <S.AtribuirButton onClick={props.close}>Atribuir para {props.nameUser}</S.AtribuirButton>
+            <S.AtribuirButton onClick={handleClose}>Atribuir para {props.nameUser}</S.AtribuirButton>
           </S.ModalContent>
         </S.ModalArea>
       </S.ModalBackdrop>

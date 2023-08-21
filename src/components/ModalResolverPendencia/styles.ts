@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 
 export const ModalBackdrop = styled.div`
   position: fixed;
@@ -13,10 +13,6 @@ export const ModalBackdrop = styled.div`
   background-color: rgba(25, 28, 36, 0.7);
   transition: transform 1s;
 `;
-
-interface ModalScalingProps {
-  closing: boolean;
-}
 
 export const Wrapper = styled.div`
   width: 80vw;

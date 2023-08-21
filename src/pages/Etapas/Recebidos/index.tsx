@@ -27,11 +27,7 @@ export interface Task {
   envolvidos: Envolvidos[] | null;
 }
 
-interface RecepProps {
-  etapa: string;
-}
-
-const Recebidos = (props: RecepProps) => {
+const Recebidos = () => {
   const { id } = useParams();
   const [openCriarModal, setOpenCriarModal] = useState(false);
   const remessas = EntradaData.filter((entrada) => entrada.id_projeto === id);
@@ -47,7 +43,7 @@ const Recebidos = (props: RecepProps) => {
         <MenuCoord />
         <>
           <div style={{ margin: '1em 3em 0em 3em', display: 'flex', justifyContent: 'flex-end', gap: '0.5em' }}>
-            <img src={`/icon-page/${props.etapa}.png`} alt={`icone da etapa ${props.etapa}`} />
+            <img src={`/icon-page/recepcao_icon.png`} alt={`icone da etapa recepção`} />
           </div>
         </>
 

@@ -1,21 +1,21 @@
-import { useAuthUser } from 'react-auth-kit';
+
 import { CardProjeto } from '../../../components/CardProjeto';
 import Menu from '../../../components/Menu';
-import { Membros, Projeto } from '../../../data/ProjetoData';
+import {  Projeto } from '../../../data/ProjetoData';
 import { Main } from './styles';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 const Projetos = () => {
-  const auth = useAuthUser();
-  const projetosParc = Membros.filter((mem) => mem.email === auth()?.email);
-  const [projetos, setProjetos] = useState<typeof Projeto[]>([]);
+  // const auth = useAuthUser();
+  // const projetosParc = Membros.filter((mem) => mem.email === auth()?.email);
+  const [projetos] = useState<typeof Projeto>(Projeto);
 
-  useEffect(() => {
-    for (let index = 0; index < projetosParc.length; index++) {
-      const user = projetosParc[index];
-      setProjetos((prev) => [...prev, Projeto.filter((projeto) => projeto.id === user.id_Projeto)]);
-    }
-  }, []);
+  // useEffect(() => {
+  //   for (let index = 0; index < projetosParc.length; index++) {
+  //     const user = projetosParc[index];
+  //     setProjetos((prev) => [...prev, Projeto.filter((projeto) => projeto.id === user.id_Projeto)]);
+  //   }
+  // }, []);
 
   return (
     <>

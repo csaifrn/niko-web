@@ -13,6 +13,28 @@ export const EditProjetoModal = (props: EditProjetoModalProps) => {
   const [url, setUrl] = useState<string>();
   const [file, setFile] = useState<File>();
   const [name, setName] = useState('');
+  const [closing, setClosing] = useState(false);
+
+  useEffect(() => {
+    // Ao renderizar o modal, aplicar um escalonamento gradual para exibi-lo
+    const timer = setTimeout(() => {
+      const modal = document.getElementById('modal-scaling');
+      if (closing === false && modal) {
+        modal.style.transform = 'scale(1)';
+      } else if (modal && closing) {
+        modal.style.transform = 'scale(0)';
+      }
+    }, 10);
+
+    return () => clearTimeout(timer);
+  }, [closing]);
+
+  const handleClose = () => {
+    setClosing(true);
+    setTimeout(() => {
+      props.close();
+    }, 300);
+  };
 
   useEffect(() => {
     setUrl(projeto.url);
@@ -32,28 +54,18 @@ export const EditProjetoModal = (props: EditProjetoModalProps) => {
       setName(e.target.value);
     }
   };
+  
 
   return (
     <>
       <S.ModalBackdrop>
-        <S.ModalArea>
+        <S.ModalArea id="modal-scaling">
           <S.ModalContent>
             <S.NameClose>
-              <h1>+Incra</h1>
-              <button onClick={props.close} style={{ width: 'auto', backgroundColor: 'transparent', border: 'none' }}>
-                <img
-                  src="close.svg"
-                  alt=""
-                  height={18}
-                  width={18}
-                  style={{
-                    padding: '5px 5px',
-                    backgroundColor: '#090E09',
-                    borderRadius: '5px',
-                    display: 'flex',
-                  }}
-                />
-              </button>
+              <h1>{name}</h1>
+              <S.Exit type="button" onClick={handleClose}>
+                <img src="/close.svg" alt="" height={18} width={18} />
+              </S.Exit>
             </S.NameClose>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '2em' }}>
               <label
@@ -102,7 +114,7 @@ export const EditProjetoModal = (props: EditProjetoModalProps) => {
             </div>
             <S.AtribuirButton
               onClick={() => {
-                props.close;
+                handleClose();
               }}
             >
               Salvar

@@ -13,11 +13,10 @@ const theme = {
     'orange/500': '#E76A00',
     'orange/600': '#D65400',
     'yellow/300': '#FCDE42',
+    'yellow/200': '#FFE55B',
     'green/400': '#43DB6D',
     'blue/400': '#2D94F3',
     'purple/600': '#9C2DF3',
-    'green/500': '#46EA73',
-    'green/600': '#38C25E',
   },
 };
 

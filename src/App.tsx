@@ -14,7 +14,6 @@ import Erro404 from './pages/Erros/404';
 import Unauthorized from './pages/Erros/Unauthorized';
 import Projetos from './pages/Projeto/projeto-home';
 import CreateProjeto from './pages/Projeto/projeto-create';
-
 import Atividade from './pages/Coordenador/Atividade/atividade-home';
 import AtividadeCreate from './pages/Coordenador/Atividade/atividade-create';
 import AtividadeEdit from './pages/Coordenador/Atividade/ativiade-edit';
@@ -22,6 +21,7 @@ import Painel from './pages/Coordenador/Painel';
 import Perfil from './pages/Perfil';
 import LoteDetails from './components/LoteDetails';
 import { EditModal } from './components/EditModal';
+import Cadastro from './pages/Cadastro';
 
 const Home = lazy(() => import('./pages/Coordenador/Fase'));
 
@@ -29,6 +29,7 @@ const App = () => {
   return (
     <Suspense fallback={<Splash />}>
       <Routes>
+        <Route path="/Cadastro" element={<Cadastro />} />
         <Route path="/Perfil/:id" element={<Perfil />} />
         <Route path="Painel/:id" element={<Painel />} />
         <Route path="/splash" element={<Splash />} />

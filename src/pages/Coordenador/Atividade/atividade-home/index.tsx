@@ -6,6 +6,7 @@ import { useParams } from 'react-router-dom';
 import AtividadeData from '../../../../data/AtividadeData';
 import moment from 'moment';
 import { Check, PencilSimple } from '@phosphor-icons/react';
+import EtapaData from '../../../../data/EtapaData';
 
 const Atividade = () => {
   function compare(a: any, b: any) {
@@ -43,10 +44,9 @@ const Atividade = () => {
       {
         return -1;
       }
-
     });
     setAtividadesOrdenadas(atividadesOrdenadas);
-  }, []); 
+  }, []);
 
   useEffect(() => {
     if (atividadesOrdenadas.length > 0 && atividadeMaisProximaRef.current) {
@@ -143,7 +143,7 @@ const Atividade = () => {
                           return (
                             <div key={indexfase} style={{ display: 'flex', flexDirection: 'column', gap: '1em' }}>
                               <div style={{ display: 'flex', alignItems: 'center', gap: '1em' }}>
-                                <img src={`/icon-page/${fase.faseData.icone}.png`} alt="" />
+                                <img src={`${fase.faseData.icone}`} alt="" />
                                 <h3>{fase.faseData.titulo}</h3>
                               </div>
 
@@ -198,7 +198,8 @@ const Atividade = () => {
                                           }}
                                         >
                                           <p>{`Lote ${lote.lote.numero}`}</p>
-                                          {lote.check && <Check size={12} color="#43DB6D" />}
+                                          {EtapaData.filter((etapa) => lote.lote.id_etapa === etapa.id)[0].id_fase !==
+                                            fase.faseData.id && <Check size={12} color="#43DB6D" />}
                                         </div>
                                       );
                                     })}

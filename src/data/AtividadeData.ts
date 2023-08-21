@@ -155,8 +155,8 @@ const AtividadeData = [
               {
                 user: Users[1],
                 Lotes: [
-                  { check: false, lote: LoteData[0] },
-                  { check: false, lote: LoteData[1] },
+                  { check: true, lote: LoteData[0] },
+                  { check: true, lote: LoteData[1] },
                 ],
               },
             ],

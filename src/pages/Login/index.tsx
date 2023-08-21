@@ -107,7 +107,8 @@ const Login = () => {
             </S.ContainerInputText>
             <S.ErrorMessage>{validationFormError.password}</S.ErrorMessage>
           </S.FieldContainer>
-          <S.ForgotPasswordLink to="/">Esqueceu a senha?</S.ForgotPasswordLink>
+          <S.ForgotPasswordLink to="/recuperar-senha">Esqueceu a senha?</S.ForgotPasswordLink>
+          <S.ForgotPasswordLink to="/Cadastro">Não tem conta? Cadastra-se</S.ForgotPasswordLink>
           <S.ErrorMessage>{responseError}</S.ErrorMessage>
           <S.SubmitButton type="submit">Entrar</S.SubmitButton>
         </S.FormLogin>

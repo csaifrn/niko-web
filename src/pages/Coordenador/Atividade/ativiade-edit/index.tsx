@@ -328,7 +328,7 @@ const AtividadeEdit = () => {
                         display: 'flex',
                       }}
                     >
-                      <img src={`/icon-page/${fase.url}.png`} alt="" />
+                      <img src={`${fase.icone}`} alt="" />
                     </div>
                     <h2
                       style={{
@@ -531,7 +531,7 @@ const AtividadeEdit = () => {
                     <img
                       height={24}
                       width={24}
-                      src={`/icon-page/${tarefas.filter((tarefa: any) => tarefa.id === f.id_fase)[0].url}.png`}
+                      src={`${tarefas.filter((tarefa: any) => tarefa.id === f.id_fase)[0].icone}`}
                       alt="Icone de Etapa"
                     />
                     <h3>{tarefas.filter((tarefa: any) => tarefa.id === f.id_fase)[0].titulo}</h3>
@@ -590,7 +590,7 @@ const AtividadeEdit = () => {
                             <div style={{ gap: 16, display: 'flex' }}>
                               <button
                                 onClick={() => {
-                                  setFaseName(tarefas.filter((tarefa: any) => tarefa.id === f.id_fase)[0].url);
+                                  setFaseName(tarefas.filter((tarefa: any) => tarefa.id === f.id_fase)[0].icone);
                                   setName(user.name);
                                   setIdUser(user.id);
                                   setIdFase(f.id_fase);

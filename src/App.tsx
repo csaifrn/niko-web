@@ -22,6 +22,8 @@ import Perfil from './pages/Perfil';
 import LoteDetails from './components/LoteDetails';
 import { EditModal } from './components/EditModal';
 import Cadastro from './pages/Cadastro';
+import RecuperarSenha from './pages/Recuperar';
+import ChangePassword from './pages/ChangePassword';
 
 const Home = lazy(() => import('./pages/Coordenador/Fase'));
 
@@ -34,6 +36,8 @@ const App = () => {
         <Route path="Painel/:id" element={<Painel />} />
         <Route path="/splash" element={<Splash />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/recuperar-senha" element={<RecuperarSenha />} />
+        <Route path="/recuperar-senha/:id" element={<ChangePassword />} />
         <Route path="/" element={<Login />} />
         <Route path="/unauthorized" element={<Unauthorized />} />
         <Route path="/Projetos" element={<Projetos />} />

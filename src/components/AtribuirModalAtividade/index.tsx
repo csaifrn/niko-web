@@ -104,15 +104,38 @@ export const AtribuirModalAtividade = (props: AtribuirModalAtividadeProps) => {
     setFilteredLotes(filteredLotes);
   }, [selectedCategoria, searchTerm, lotes]);
 
+  const [closing, setClosing] = useState(false);
+
+  useEffect(() => {
+    // Ao renderizar o modal, aplicar um escalonamento gradual para exibi-lo
+    const timer = setTimeout(() => {
+      const modal = document.getElementById('modal-scaling');
+      if (closing === false && modal) {
+        modal.style.transform = 'scale(1)';
+      } else if (modal && closing) {
+        modal.style.transform = 'scale(0)';
+      }
+    }, 10);
+
+    return () => clearTimeout(timer);
+  }, [closing]);
+
+  const handleClose = () => {
+    setClosing(true);
+    setTimeout(() => {
+      props.close();
+    }, 300);
+  };
+
   return (
     <>
       <S.ModalBackdrop>
-        <S.ModalArea>
+        <S.ModalArea id="modal-scaling">
           <S.ModalContent id="modal-content">
             <S.NameClose>
               <h2>Atribuir Lote</h2>
 
-              <button onClick={props.close} style={{ width: 'auto', backgroundColor: 'transparent', border: 'none' }}>
+              <button onClick={handleClose} style={{ width: 'auto', backgroundColor: 'transparent', border: 'none' }}>
                 <img
                   src="/close.svg"
                   alt=""
@@ -126,7 +149,7 @@ export const AtribuirModalAtividade = (props: AtribuirModalAtividadeProps) => {
                 />
               </button>
             </S.NameClose>
-            <img height={24} width={24} src={`/icon-page/${props.nameFase}.png`} alt="Icone de Etapa" />
+            <img height={24} width={24} src={`${props.nameFase}`} alt="Icone de Etapa" />
             <Search searchTerm={searchTerm} handleSearchChange={handleSearchChange} />
             <S.Categorias>
               {props.categorias.map((categoria) => (
@@ -174,7 +197,7 @@ export const AtribuirModalAtividade = (props: AtribuirModalAtividadeProps) => {
             <S.AtribuirButton
               onClick={() => {
                 handleSave();
-                props.close();
+                handleClose();
               }}
             >
               Atribuir para {props.nameUser}

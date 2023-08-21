@@ -28,8 +28,8 @@ const FigureIconCard = styled.figure<ColorProps>`
 `;
 
 const ImgIconCard = styled.img`
-  width: 3.125em;
-  height: 3.125em;
+  width: 2.8em;
+  height: 2.8em;
 `;
 
 const NumberCard = styled.span<ColorProps>`

@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import * as S from './styles';
 import Search from '../Search';
 import CategoriaData from '../../data/CategoriaData';
-import mockData from '../../data/kanbanData';
 
 interface EditModalProps {
   close: () => void;
@@ -31,13 +30,6 @@ export const CreateModal = (props: EditModalProps) => {
   const filteredCategorias = CategoriaData.filter((CategoriaData) =>
     CategoriaData.name.toLowerCase().includes(searchTerm.toLowerCase()),
   );
-
-  // const filteredTitulo = mockData.filter(
-  //   (mockData) =>
-  //   mockData.title.toLowerCase().includes(searchTerm.toLowerCase())
-  // );
-
-  console.log('DADO', mockData);
 
   return (
     <>

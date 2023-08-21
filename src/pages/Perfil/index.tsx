@@ -1,9 +1,8 @@
-import { Check, Pencil, PencilSimple } from '@phosphor-icons/react';
+import { PencilSimple } from '@phosphor-icons/react';
 import Menu from '../../components/Menu';
 import * as S from './styles';
-import ReactLoading from 'react-loading';
 import { DataFase } from '../../components/DataFase';
-import { ChangeEvent, useState } from 'react';
+import { useState } from 'react';
 import { EditImage } from '../../components/EditImage';
 import Users from '../../data/UserData';
 import { validationPerfilSchema } from './validation';
@@ -18,13 +17,13 @@ const user = Users[0];
 const Perfil = () => {
   const [name, setName] = useState(user.name);
   const [modal, setModal] = useState(false);
-  const [url, setUrl] = useState<string>(user.url);
+  const [url] = useState<string>(user.url);
   const [responseError, setResponseError] = useState('');
   const [validationFormError, setValidationFormError] = useState<ErrorsForm>({ name: '' });
 
   const perfilMutation = useMutation(userPatch, {
     onSuccess: (data: UserPatchResponse) => {
-      console.log('mudou');
+      console.log(data);
       // TODO: store user on context state
     },
     onError: (error: ApiError) => {

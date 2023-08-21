@@ -7,9 +7,9 @@ import { TipologiaData } from '../../data/TipologiaData';
 interface CategoriasTipologiasProps {
   close: () => void;
   // eslint-disable-next-line no-unused-vars
-  setCategoria: (e: any) => void;
+  setCategoria: (e: typeof CategoriaData) => void;
   // eslint-disable-next-line no-unused-vars
-  setTipologia: (e: any) => void;
+  setTipologia: (e: typeof TipologiaData) => void;
   categorias: typeof CategoriaData;
   tipologias: typeof TipologiaData;
 }
@@ -20,7 +20,7 @@ export const CategoriasTipologias = (props: CategoriasTipologiasProps) => {
   const [searchTerm, setSearchTerm] = useState<string>('');
   const [CatTipo, setCatTipo] = useState<boolean>(false);
 
-  const [data, setData] = useState<any>(CategoriaData);
+  const [data, setData] = useState<typeof CategoriaData | typeof TipologiaData>(CategoriaData);
 
   const handleLoteClick = (item: any) => {
     if (CatTipo === false) {
@@ -43,7 +43,7 @@ export const CategoriasTipologias = (props: CategoriasTipologiasProps) => {
   };
 
   const filteredCategorias = data.filter(
-    (catg: any) => catg.name.toLowerCase().includes(searchTerm.toLowerCase()) || catg.name.includes(searchTerm),
+    (catg) => catg.name.toLowerCase().includes(searchTerm.toLowerCase()) || catg.name.includes(searchTerm),
   );
 
   const handleSave = () => {

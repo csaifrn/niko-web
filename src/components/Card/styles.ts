@@ -6,8 +6,8 @@ interface ColorProps {
 
 const CardContainer = styled.a`
   text-decoration: none;
-  width: 9.6875em;
-  height: 8.375em;
+  width: 9.6em;
+  height: 9em;
   overflow: hidden;
   border-radius: 20px;
   display: flex;
@@ -42,13 +42,13 @@ const DataStrongCard = styled.strong`
 `;
 
 const TextBoxCard = styled.div`
-  padding-top: 0.5625em;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 5px;
+  justify-content: center;
+  gap: 4px;
   color: white;
-  font-size: 7px;
+  font-size: 8px;
   background-color: #191c24;
   width: 100%;
 `;

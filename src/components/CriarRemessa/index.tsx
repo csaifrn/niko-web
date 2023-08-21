@@ -73,10 +73,6 @@ export const CreateRemessa = (props: EditModalProps) => {
     SelectedClientes.name.toLowerCase().includes(searchTerm.toLowerCase()),
   );
 
-  // const filteredTitulo = mockData.filter(
-  //   (mockData) =>
-  //   mockData.title.toLowerCase().includes(searchTerm.toLowerCase())
-  // );
 
   return (
     <>

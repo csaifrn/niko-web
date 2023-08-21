@@ -83,7 +83,7 @@ export const AtribuirModal = (props: AtribuirModalProps) => {
             </S.NameClose>
             <Search searchTerm={searchTerm} handleSearchChange={handleSearchChange} />
             <S.ChooseLote>
-              {filteredLotes.map((lote: any) => (
+              {filteredLotes.map((lote) => (
                 <S.Lote
                   key={lote.id}
                   onClick={() => handleLoteClick(lote.id)}

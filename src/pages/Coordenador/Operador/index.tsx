@@ -23,7 +23,7 @@ const removeDiacritics = (str: string): string => {
 
 const Operador = (): JSX.Element => {
   const [searchTerm, setSearchTerm] = useState<string>('');
-  let { id } = useParams();
+  const { id } = useParams();
 
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
     setSearchTerm(event.target.value);

@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
-import { CardContainer } from './styles';
-import { useNavigate } from 'react-router-dom';
 import Users from '../../data/UserData';
 import { MembrosModal } from '../MembrosModal';
-import { Membros, Projeto } from '../../data/ProjetoData';
+import { Membros } from '../../data/ProjetoData';
 import { EditProjetoModal } from '../EditProjetoModal';
 
 interface Projeto {
@@ -13,7 +11,7 @@ interface Projeto {
 }
 
 interface CardProps {
-  projeto: any;
+  projeto: Projeto[];
 }
 
 export const CardProjeto = (Props: CardProps) => {

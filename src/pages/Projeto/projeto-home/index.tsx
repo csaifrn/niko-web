@@ -1,23 +1,18 @@
 import { useAuthUser } from 'react-auth-kit';
 import { CardProjeto } from '../../../components/CardProjeto';
 import Menu from '../../../components/Menu';
-import MenuCoord from '../../../components/MenuCoord';
 import { Membros, Projeto } from '../../../data/ProjetoData';
-import { Wrapper } from '../../../global';
 import { Main } from './styles';
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
 
 const Projetos = () => {
-  let { id } = useParams();
   const auth = useAuthUser();
   const projetosParc = Membros.filter((mem) => mem.email === auth()?.email);
-  const [projetos, setProjetos] = useState<any[]>([]);
+  const [projetos, setProjetos] = useState<typeof Projeto[]>([]);
 
   useEffect(() => {
     for (let index = 0; index < projetosParc.length; index++) {
       const user = projetosParc[index];
-
       setProjetos((prev) => [...prev, Projeto.filter((projeto) => projeto.id === user.id_Projeto)]);
     }
   }, []);

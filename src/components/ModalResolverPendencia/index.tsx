@@ -2,11 +2,9 @@ import { ArrowCircleLeft, ArrowCircleRight, CheckCircle, Warning, XCircle } from
 import * as S from './styles';
 import theme from '../../global/theme';
 import { useEffect, useRef, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { validationLoginSchema } from './validation';
 import * as Yup from 'yup';
 import { ErrorsForm } from './modalresolver.interface';
-//import { Pend } from '../PendenciasCoord';
 
 interface ModalPendencia {
   close: () => void;
@@ -18,9 +16,7 @@ export const ModalResolverPendencia = (props: ModalPendencia) => {
   const [selected, setSelected] = useState('ok');
   const commentInputRef = useRef<HTMLInputElement>(null);
   const decisionInputRef = useRef<HTMLInputElement>(null);
-  const [responseError, setResponseError] = useState('');
   const [validationFormError, setValidationFormError] = useState<ErrorsForm>({ comment: '', decision: '' });
-  const navigate = useNavigate();
 
   useEffect(() => {
     // Ao renderizar o modal, aplicar um escalonamento gradual para exibi-lo
@@ -117,7 +113,6 @@ export const ModalResolverPendencia = (props: ModalPendencia) => {
                       type="radio"
                       name="decision"
                       value={'true'}
-                      onChange={() => {}}
                       checked={selected === 'ok'}
                     />
                     <CheckCircle
@@ -134,7 +129,6 @@ export const ModalResolverPendencia = (props: ModalPendencia) => {
                       type="radio"
                       name="decision"
                       value={'false'}
-                      onChange={() => {}}
                       checked={selected === 'x'}
                     />
                     <XCircle

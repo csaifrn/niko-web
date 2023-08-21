@@ -10,13 +10,13 @@ export const PainelPorFase = () => {
           </S.QtdLotes>
           <S.Filter>
             <S.Opiton selected>Semana Passada</S.Opiton>
-            <S.Opiton selected>Semana Retrasada</S.Opiton>
-            <S.Opiton selected>Semana 14/02</S.Opiton>
+            <S.Opiton>Semana Retrasada</S.Opiton>
+            <S.Opiton>Semana 14/02</S.Opiton>
           </S.Filter>
         </S.ContainerFilterNumber>
         <S.DataFaseDois>
           <S.ContainerDataFase>
-            <S.ContainerImg src="/icon-page/recebidos.png" />
+            <S.ContainerImg src="/icon-page/Recepcao_icon.png" />
             <S.DataFase>
               <S.NumberTextData>
                 <S.DataFaseTxtCenter>
@@ -26,7 +26,7 @@ export const PainelPorFase = () => {
             </S.DataFase>
           </S.ContainerDataFase>
           <S.ContainerDataFase>
-            <S.ContainerImg src="/icon-page/arquivamento.png" />
+            <S.ContainerImg src="/icon-page/Arquivamento_icon.png" />
             <S.DataFase>
               <S.NumberTextData>
                 <S.DataFaseTxtCenter>
@@ -37,7 +37,7 @@ export const PainelPorFase = () => {
           </S.ContainerDataFase>
         </S.DataFaseDois>
         <S.ContainerDataFase>
-          <S.ContainerImg src="/icon-page/preparo.png" />
+          <S.ContainerImg src="/icon-page/Preparo_icon.png" />
           <S.DataFase>
             <S.NumberTextData>
               <S.DataFaseTxt>
@@ -50,7 +50,7 @@ export const PainelPorFase = () => {
           </S.DataFase>
         </S.ContainerDataFase>
         <S.ContainerDataFase>
-          <S.ContainerImg src="/icon-page/catalogacao.png" />
+          <S.ContainerImg src="/icon-page/Catalogacao_icon.png" />
           <S.DataFase>
             <S.NumberTextData>
               <S.DataFaseTxt>
@@ -63,7 +63,7 @@ export const PainelPorFase = () => {
           </S.DataFase>
         </S.ContainerDataFase>
         <S.ContainerDataFase>
-          <S.ContainerImg src="/icon-page/digitalizacao.png" />
+          <S.ContainerImg src="/icon-page/Digitalizacao_icon.png" />
           <S.DataFase>
             <S.NumberTextData>
               <S.DataFaseTxt>
@@ -76,7 +76,7 @@ export const PainelPorFase = () => {
           </S.DataFase>
         </S.ContainerDataFase>
         <S.ContainerDataFase>
-          <S.ContainerImg src="/icon-page/upload.png" />
+          <S.ContainerImg src="/icon-page/Upload_icon.png" />
           <S.DataFase>
             <S.NumberTextData>
               <S.DataFaseTxt>

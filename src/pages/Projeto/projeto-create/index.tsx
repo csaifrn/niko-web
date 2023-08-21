@@ -52,7 +52,7 @@ const CreateProjeto = () => {
   const [errorMessage, setErrorMessage] = useState('');
 
   useEffect(() => {
-    const foundUsers: any[] = [];
+    const foundUsers: User[] | null = [];
     for (let index = 0; index < users.length; index++) {
       const user = users[index];
       for (let i = 0; i < projetoMembros.length; i++) {
@@ -86,7 +86,7 @@ const CreateProjeto = () => {
       setShowError(false);
     }
 
-    let foundUser: any = null;
+    let foundUser: User | null = null;
     for (let index = 0; index < users.length; index++) {
       const user = users[index];
       if (user.email === emailValue) {
@@ -95,8 +95,8 @@ const CreateProjeto = () => {
       }
     }
 
-    if (foundUser && !selectedUsers.find((user) => user.email === foundUser.email)) {
-      const projetoMembro = projetoMembros.find((membro) => membro.email === foundUser.email);
+    if (foundUser && !selectedUsers.find((user) => user.email === foundUser?.email)) {
+      const projetoMembro = projetoMembros.find((membro) => membro.email === foundUser?.email);
       const newUser = { ...foundUser, roleProjeto: projetoMembro ? projetoMembro.roleProjeto : selectedRole };
       setSelectedUsers((prevUsers) => [...prevUsers, newUser]);
       const dataUser = {

@@ -1,6 +1,6 @@
-import { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import * as S from './styles';
-import React from 'react';
+
 import { v4 as uuidv4 } from 'uuid';
 
 interface User {

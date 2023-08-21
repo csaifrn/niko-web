@@ -37,21 +37,21 @@ export const DataFase = (Props: IDataFaseProps) => {
       <S.DataUser>
         <S.SideUser>
           <S.Fase>
-            <S.Icon src="/icon-page/recepcao_icon.png"></S.Icon>
+            <S.Icon src="/icon-page/Recepcao_icon.png"></S.Icon>
             <div>
               <S.TotalFase>{Props.recepcao} Lotes</S.TotalFase>
               <S.PerecentageFase>{calPercentage(Props.recepcao)}%</S.PerecentageFase>
             </div>
           </S.Fase>
           <S.Fase>
-            <S.Icon src="/icon-page/preparo_icon.png"></S.Icon>
+            <S.Icon src="/icon-page/Preparo_icon.png"></S.Icon>
             <div>
               <S.TotalFase>{Props.preparo} Lotes</S.TotalFase>
               <S.PerecentageFase>{calPercentage(Props.preparo)}%</S.PerecentageFase>
             </div>
           </S.Fase>
           <S.Fase>
-            <S.Icon src="/icon-page/catalogacao_icon.png"></S.Icon>
+            <S.Icon src="/icon-page/Catalogacao_icon.png"></S.Icon>
             <div>
               <S.TotalFase>{Props.catalogacao}Lotes</S.TotalFase>
               <S.PerecentageFase>{calPercentage(Props.catalogacao)}%</S.PerecentageFase>
@@ -60,21 +60,21 @@ export const DataFase = (Props: IDataFaseProps) => {
         </S.SideUser>
         <S.SideUser>
           <S.Fase>
-            <S.Icon src="/icon-page/digitalizacao_icon.png"></S.Icon>
+            <S.Icon src="/icon-page/Digitalizacao_icon.png"></S.Icon>
             <div>
               <S.TotalFase>{Props.digitalizacao} Lotes</S.TotalFase>
               <S.PerecentageFase>{calPercentage(Props.digitalizacao)}%</S.PerecentageFase>
             </div>
           </S.Fase>
           <S.Fase>
-            <S.Icon src="/icon-page/upload_icon.png"></S.Icon>
+            <S.Icon src="/icon-page/Upload_icon.png"></S.Icon>
             <div>
               <S.TotalFase>{Props.upload} Lotes</S.TotalFase>
               <S.PerecentageFase>{calPercentage(Props.upload)}%</S.PerecentageFase>
             </div>
           </S.Fase>
           <S.Fase>
-            <S.Icon src="/icon-page/arquivamento_icon.png"></S.Icon>
+            <S.Icon src="/icon-page/Arquivamento_icon.png"></S.Icon>
             <div>
               <S.TotalFase>{Props.arquivados} Lotes</S.TotalFase>
               <S.PerecentageFase>{calPercentage(Props.arquivados)}%</S.PerecentageFase>

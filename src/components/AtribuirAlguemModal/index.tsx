@@ -6,13 +6,13 @@ import Users from '../../data/UserData';
 export interface AtribuirAlguemModalProps {
   close: () => void;
   user: any;
+  // eslint-disable-next-line no-unused-vars
   setUser: (e: any) => void;
 }
 
 export const AtribuirAlguemModal = (props: AtribuirAlguemModalProps) => {
   const [selectedUsers, setSelectedUsers] = useState<string[]>([]);
   const [searchTerm, setSearchTerm] = useState<string>('');
-  const [usuario, setUsuario] = useState<any[]>([]);
 
   const handleLoteClick = (userId: string) => {
     if (selectedUsers.includes(userId)) {
@@ -20,10 +20,6 @@ export const AtribuirAlguemModal = (props: AtribuirAlguemModalProps) => {
     } else {
       setSelectedUsers([...selectedUsers, userId]);
     }
-  };
-
-  const handleUsuario = () => {
-    setUsuario(selectedUsers.map((userId) => Users.filter((user) => user.id === userId)[0]));
   };
 
   const handleAtualizarUser = () => {

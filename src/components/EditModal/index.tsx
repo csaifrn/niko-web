@@ -15,14 +15,6 @@ interface IEditModal {
   percentage?: number
 }
 
-// interface CategoriasTipologiasProps {
-//   close: () => void;
-//   setCategoria: (e: any) => void
-//   setTipologia: (e: any) => void
-//   categorias: typeof CategoriaData
-//   tipologias: typeof TipologiaData
-// }
-
 export const EditModal = () => {
   
   // FUNÇÃO PARA PESQUISA
@@ -34,7 +26,6 @@ export const EditModal = () => {
 
   const [categorias, setCategorias] = useState<any>([])
   const [tipologias, setTipologias] = useState<any>([])
-  const [selectedCategoriaData, setCategoriaData] = useState<number[]>([])
 
   const handleLoteClick = (item: any) => {
     if(CatTipol === false)
@@ -73,8 +64,8 @@ export const EditModal = () => {
   },[])
   
   const navigate = useNavigate();
-  let { id } = useParams();
-  const [lote , setLote] = useState(LoteData);
+  const { id } = useParams();
+  const [lote] = useState(LoteData);
   const task = lote.filter((task) => task.id == id)[0]
 
   const [arquivFis , setArquivFis] = useState(task.arquiv_fisicos);
@@ -98,13 +89,8 @@ export const EditModal = () => {
       arquivosDigitais: arquivDig
     }
     console.log(LoteAtualizado)
-    //navigate(/Lote/${categorias.id});
   }
 
-  // const filteredTitulo = mockData.filter(
-  //   (mockData) =>
-  //   mockData.title.toLowerCase().includes(searchTerm.toLowerCase())
-  // );
 
   return (
     <>

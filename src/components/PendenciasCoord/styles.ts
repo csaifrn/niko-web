@@ -157,7 +157,7 @@ export const DataFaseTxtCenter = styled.p`
   font-weight: 500;
 `;
 
-export const TituloH2 = styled.p`
+export const TituloH2 = styled.h3`
   color: ${({ theme }) => theme.colors.white};
   font-family: Rubik;
   font-size: 22px;

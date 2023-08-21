@@ -9,7 +9,7 @@ import { useParams } from 'react-router-dom';
 // import { Container } from './styles';
 
 const Upload = () => {
-  let { id } = useParams();
+  const { id } = useParams();
   return (
     <>
       <Menu area={`/Fase/${id}/Board/Upload`} id_projeto={id}></Menu>

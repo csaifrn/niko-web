@@ -12,9 +12,9 @@ export const PendenciaCoord = () => {
           <S.Prioridade>Prioridade</S.Prioridade>
         </S.ContainerNumber>
         <S.DataAcao>
-          <S.ContainerImg src="/icon-page/preparo.png" />
+          <S.ContainerImg src="/icon-medium/Preparo.png" />
           <ArrowCircleLeft size={32} weight="fill" color={theme.colors['red/500']} />
-          <S.ContainerImg src="/icon-page/digitalizacao.png" />
+          <S.ContainerImg src="/icon-medium/Digitalizacao.png" />
         </S.DataAcao>
         <S.YelloButton>Resolver Pendencia</S.YelloButton>
         <S.TextAlerta>

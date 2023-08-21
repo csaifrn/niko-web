@@ -1,3 +1,4 @@
+
 import { Check, X } from '@phosphor-icons/react';
 import { useState, ChangeEvent } from 'react';
 import * as S from './styles';
@@ -10,6 +11,7 @@ interface EditImageProps {
 
 export const EditImage = (props: EditImageProps) => {
   const [url, setUrl] = useState<string>(props.url);
+  // eslint-disable-next-line no-unused-vars, @typescript-eslint/no-unused-vars
   const [file, setFile] = useState<File>();
 
   const handleFile = (e: ChangeEvent<HTMLInputElement>) => {

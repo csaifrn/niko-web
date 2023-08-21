@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import * as S from './styles';
-import { AtribuirModal } from '../AtribuirModal';
+import { AtribuirModal } from '../AtribuirLotesModal';
 import { DataFase } from '../DataFase';
 
 const OperadorCard = (user: any) => {

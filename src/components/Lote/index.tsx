@@ -3,16 +3,15 @@ import * as S from './styles';
 import { generateUUID } from '../../utils/generateUUID.util';
 
 const Lote = (props: any) => {
-
   //console.log(props.pendencia.lenght > 0)
   return (
     <>
       {props.edit == true && (
         <S.LoteEdit className="Lote">
-          <S.LoteArea>      
+          <S.LoteArea>
             <S.Content>
               <h2>{props.value}</h2>
-              {props.categoria &&               
+              {props.categoria &&
                 props.categoria.map((categoria: any) => (
                   <React.Fragment key={generateUUID()}>
                     {categoria.nome === props.prioridade && (
@@ -21,8 +20,7 @@ const Lote = (props: any) => {
                       </S.Prioridade>
                     )}
                   </React.Fragment>
-                ))
-              }
+                ))}
             </S.Content>
             <S.Content>
               <S.Pa>
@@ -52,15 +50,18 @@ const Lote = (props: any) => {
             <S.Content>
               <h2>{props.value}</h2>
               {/* PENDENCIA */}
-              {props.pendencia > 0 &&
-                <img src='/warning.svg' alt='icone triangular com ponto de exclamação no centro indicando que há uma pendência no lote'/>
-              }
+              {props.pendencia > 0 && (
+                <img
+                  src="/warning.svg"
+                  alt="icone triangular com ponto de exclamação no centro indicando que há uma pendência no lote"
+                />
+              )}
               {/* PRIORIDADE */}
-              {props.prioridade == true &&
+              {props.prioridade == true && (
                 <S.Prioridade>
                   <p>Prioridade</p>
                 </S.Prioridade>
-              }
+              )}
             </S.Content>
             <S.Content>
               <S.Envolvido style={{ display: 'flex', marginLeft: '10px' }}>
@@ -72,7 +73,7 @@ const Lote = (props: any) => {
                           src={envolvidos.foto}
                           width={24}
                           height={24}
-                          style={{ marginLeft: '-10px', borderRadius: '100%' , objectFit: 'cover', }}
+                          style={{ marginLeft: '-10px', borderRadius: '100%', objectFit: 'cover' }}
                           alt="Foto do usuário"
                         ></img>
                       )}
@@ -99,7 +100,6 @@ const Lote = (props: any) => {
                         <S.PaTextDiv style={{ borderRadius: '100%', width: '2em' }}>
                           <p>+{index}</p>
                         </S.PaTextDiv>
-                        
                       )}
                       {index == 0 && (
                         <S.PaTextDiv style={{ borderRadius: '3px' }}>

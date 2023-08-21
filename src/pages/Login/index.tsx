@@ -15,11 +15,12 @@ const Login = () => {
   const [validationFormError, setValidationFormError] = useState<ErrorsForm>({ email: '', password: '' });
   const navigate = useNavigate();
 
+
+
   const loginMutation = useMutation(signIn, {
     onSuccess: (data: SignInResponse) => {
       localStorage.setItem('token', data.token);
       navigate('/Projetos');
-      // TODO: store user on context state
     },
     onError: (error: ApiError) => {
       setResponseError(error.response?.data.message || 'Um erro inesperado ocorreu.');

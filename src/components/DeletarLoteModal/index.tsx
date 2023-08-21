@@ -17,7 +17,7 @@ export const DeletarLoteModal = (props: DeletarModalProps) => {
             </S.NameClose>
             <S.Recused onClick={props.close}><p>Não, não quero.</p></S.Recused>
             <S.Delete onClick={props.close}>
-              <img src="/trash.svg"></img>
+              <img src="/trash.svg" alt='icone de um lixo, clique para deletar'></img>
               <p>Deletar Lote</p>
               </S.Delete>
           </S.ModalContent>

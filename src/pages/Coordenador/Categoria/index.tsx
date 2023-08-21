@@ -11,6 +11,7 @@ type Categoria = {
   id: number;
   name: string;
   percentage: number;
+  prioridade: boolean;
 };
 
 const removeDiacritics = (str: string): string => {
@@ -18,7 +19,7 @@ const removeDiacritics = (str: string): string => {
 };
 
 const Categoria = () => {
-  let { id } = useParams();
+  const { id } = useParams();
   const [searchTerm, setSearchTerm] = useState<string>('');
 
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
@@ -49,7 +50,7 @@ const Categoria = () => {
         <Search searchTerm={searchTerm} handleSearchChange={handleSearchChange} />
 
         {sortedAndFilteredCategorias.map((categoria: Categoria) => (
-          <CategoriaCard key={categoria.id} categoria={categoria} />
+          <CategoriaCard key={categoria.id} id={categoria.id} name={categoria.name} percentage={categoria.percentage} prioridade={categoria.prioridade}/>
         ))}
       </S.CardsArea>
     </>

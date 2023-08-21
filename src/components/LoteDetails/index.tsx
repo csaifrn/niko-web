@@ -47,8 +47,8 @@ export const LoteDetails = () => {
   const [pendencia, setPendencia] = useState<any>(null);
 
   const navigate = useNavigate();
-  let { id } = useParams();
-  const [lote, setLote] = useState(LoteData);
+  const { id } = useParams();
+  const [lote] = useState(LoteData);
   const task = lote.filter((task) => task.id == id)[0];
 
   const [prioridadeState, setPrioridadeState] = useState(task.prioridade);
@@ -70,7 +70,7 @@ export const LoteDetails = () => {
   }, []);
 
   const handleDebug = (fase: any) => {
-    //console.log(fase)
+    console.log(fase);
   };
 
   const [usuarios, setUsuarios] = useState(task.envolvidos);
@@ -140,7 +140,7 @@ export const LoteDetails = () => {
               </S.Prioridade>
 
               {/* CATEGORIAS */}
-              {task.categorias.map((categoria: any, index: number) => (
+              {task.categorias.map((categoria: any) => (
                 <React.Fragment key={categoria.id}>
                   <S.Categoria>
                     <p>{categoria.name}</p>

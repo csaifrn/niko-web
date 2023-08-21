@@ -120,12 +120,6 @@ const AtividadeEdit = () => {
     setTarefasData(e);
   };
 
-  // const handleRemoveLote = (id_lote: string, id_user: string) => {
-  //   // const updatedLotes = LoteUser.filter((lote) => lote.id_user === id_user)[0].lotes.filter(
-  //   //   (lote: any) => lote.lote.id === id_lote,
-  //   // );
-  // };
-
   const handleSave = () => {
     const atividadeFinal = {
       id: '2a78fa83-0abf-4dbe-a17d-b2ecf99831ae',
@@ -629,7 +623,7 @@ const AtividadeEdit = () => {
                             {LoteUser.filter((lote) => lote.id_user === user.id && lote.id_fase === f.id_fase).length >
                               0 &&
                               LoteUser.filter((lotes) => lotes.id_user === user.id && lotes.id_fase === f.id_fase).map(
-                                (lote, index) => {
+                                (lote) => {
                                   return (
                                     <div key={lote.id_fase} style={{ gap: 8, display: 'flex', flexWrap: 'wrap' }}>
                                       {lote.lotes &&

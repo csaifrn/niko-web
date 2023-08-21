@@ -9,7 +9,7 @@ import { useParams } from 'react-router-dom';
 // import { Container } from './styles';
 
 const Arquivamento = () => {
-  let { id } = useParams();
+  const { id } = useParams();
   return (
     <>
       <Menu area={`/Fase/${id}/Board/Arquivamento`} id_projeto={id}></Menu>

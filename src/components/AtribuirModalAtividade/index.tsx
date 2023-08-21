@@ -46,11 +46,11 @@ export const AtribuirModalAtividade = (props: AtribuirModalAtividadeProps) => {
     }
   }, [props.loteUser, props.id_fase]);
 
-  const handleLoteClick = (loteId: typeof LoteData) => {
-    if (selectedLotes.includes(loteId)) {
-      setSelectedLotes(selectedLotes.filter((lote) => lote !== loteId));
+  const handleLoteClick = (loteClicked: typeof LoteData) => {
+    if (selectedLotes.includes(loteClicked)) {
+      setSelectedLotes(selectedLotes.filter((lote) => lote !== loteClicked));
     } else {
-      setSelectedLotes([...selectedLotes, loteId]);
+      setSelectedLotes([...selectedLotes, loteClicked]);
     }
   };
 
@@ -142,9 +142,7 @@ export const AtribuirModalAtividade = (props: AtribuirModalAtividadeProps) => {
             <S.ChooseLote>
               {filteredLotes.map((lote: any) => {
                 const isLoteAssigned = props.loteUsers.some((userLote) =>
-                  userLote.lotes.some(
-                    (userLoteLote: any) => userLoteLote.id === lote.id && userLote.id_user !== props.id_user,
-                  ),
+                  userLote.lotes.some((userLote: any) => userLote.id === lote.id && userLote.id_user !== props.id_user),
                 );
 
                 return (

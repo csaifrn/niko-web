@@ -8,7 +8,7 @@ import { useParams } from 'react-router-dom';
 // import { Container } from './styles';
 
 const Catalogacao = () => {
-  let { id } = useParams();
+  const { id } = useParams();
   return (
     <>
       <Menu area={`/Fase/${id}/Board/Catalogacao`} id_projeto={id}></Menu>

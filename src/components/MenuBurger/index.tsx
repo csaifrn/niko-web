@@ -22,7 +22,7 @@ const MenuBurger = (props: MenuBurgerProps) => {
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
-  }, [menuRef]);
+  }, [menuRef, props]);
 
   const handleMenuClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.stopPropagation();

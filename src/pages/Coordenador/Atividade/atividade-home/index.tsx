@@ -5,7 +5,7 @@ import MenuCoord from '../../../../components/MenuCoord';
 import { useParams } from 'react-router-dom';
 import AtividadeData from '../../../../data/AtividadeData';
 import moment from 'moment';
-import { Check, Pen, PencilSimple } from '@phosphor-icons/react';
+import { Check, PencilSimple } from '@phosphor-icons/react';
 
 const Atividade = () => {
   function compare(a: any, b: any) {
@@ -44,17 +44,12 @@ const Atividade = () => {
         return -1;
       }
 
-      return diferencaA - diferencaB;
     });
-
-    // Atualiza o estado com as atividades ordenadas
     setAtividadesOrdenadas(atividadesOrdenadas);
-  }, []); // Add 'atividades' as a dependency
+  }, []); 
 
   useEffect(() => {
-    // Verifica se a atividade mais próxima foi encontrada e se a referência existe
     if (atividadesOrdenadas.length > 0 && atividadeMaisProximaRef.current) {
-      // Rola automaticamente até a atividade mais próxima
       atividadeMaisProximaRef.current.scrollIntoView({ behavior: 'smooth', inline: 'start', block: 'start' });
     }
   }, [atividadesOrdenadas]);

@@ -12,6 +12,7 @@ import EntradaData from '../../../data/EntradasData';
 const Home = () => {
   const { id } = useParams();
 
+
   const [recepcao] = useState({
     remes: EntradaData.length,
   });
@@ -98,6 +99,7 @@ const Home = () => {
           dispo={arquivamento.dispo}
         />
       </Main>
+
     </Wrapper>
   );
 };

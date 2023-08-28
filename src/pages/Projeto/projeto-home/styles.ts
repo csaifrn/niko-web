@@ -14,4 +14,23 @@ const Main = styled.section`
   }
 `;
 
+export const Wrapper = styled.div`
+  font-family: Rubik;
+  padding: 2em;
+  margin-top: 6em;
+`;
+
+export const ContainerCriarProjeto = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+`;
+
+export const Link = styled.a`
+  border: none;
+  color: #191c24;
+  border-radius: 5px;
+  font-family: Rubik;
+`;
+
 export { Main };

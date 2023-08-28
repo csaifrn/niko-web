@@ -1,10 +1,11 @@
 import { ChangeEvent, useEffect, useRef, useState } from 'react';
 import Menu from '../../../components/Menu';
-import * as S from '../../../components/MembrosModal/styles';
+import * as Sm from '../../../components/MembrosModal/styles';
 import { Membros, Projeto } from '../../../data/ProjetoData';
 import { useAuthUser } from 'react-auth-kit';
 import { useNavigate } from 'react-router-dom';
 import Users from '../../../data/UserData';
+import * as S from './styles';
 
 interface User {
   id: string;
@@ -134,126 +135,47 @@ const CreateProjeto = () => {
   return (
     <>
       <Menu area="/Projetos"></Menu>
-      <div
-        style={{
-          fontFamily: 'Rubik',
-          padding: '2em',
-          display: 'grid',
-          gridTemplateColumns: '1fr',
-          gap: '2em',
-          color: '#fff',
-          marginTop: '6em',
-        }}
-      >
-        <h1 style={{}}>Criar projeto</h1>
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-evenly', gap: '2em' }}>
-          <div
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              gap: '1em',
-              flexDirection: 'column',
-            }}
-          >
-            <div
+      <S.Wrapper>
+        <h1>Criar projeto</h1>
+        <S.Head>
+          <S.Status>
+            <S.BallStatus
               style={{
-                height: '32px',
-                width: '32px',
-                borderRadius: '100%',
                 backgroundColor: `${contador > 0 ? '#43DB6D' : '#F3802D'}`,
-                transition: '200ms all',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
               }}
             >
               {contador > 0 && <img src="Check.svg" alt="" height={18} width={18} />}
-            </div>
+            </S.BallStatus>
             <h3>Detalhes</h3>
-          </div>
+          </S.Status>
 
-          <div
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              gap: '1em',
-              flexDirection: 'column',
-            }}
-          >
-            <div
+          <S.Status>
+            <S.BallStatus
               style={{
-                height: '32px',
-                width: '32px',
-                borderRadius: '100%',
                 backgroundColor: `${contador > 1 ? '#43DB6D' : '#F3802D'}`,
               }}
-            ></div>
+            ></S.BallStatus>
             <h3>Membros</h3>
-          </div>
-        </div>
+          </S.Status>
+        </S.Head>
         <form action="">
           {contador === 0 && (
-            <div style={{ display: 'grid', gap: '2em' }}>
-              <label
-                htmlFor="imagem"
-                style={{
-                  display: 'flex',
-                  height: '150px',
-                  border: 'dashed 1px #fff',
-                  borderRadius: '5px',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  background: 'rgba(57, 62, 75, 0.5)',
-                }}
-              >
+            <S.ContainerForm>
+              <S.LabelForm htmlFor="imagem">
                 <img src="Img.svg" alt="Imagem" height={32} width={32} />
-              </label>
+              </S.LabelForm>
               <input type="file" accept="image/*" id="imagem" style={{ display: 'none' }} onChange={handleFileChange} />
               <label htmlFor="nome">
                 <h2>Nome</h2>
               </label>
-              <input
-                type="text"
-                placeholder="Nome"
-                style={{
-                  boxSizing: 'border-box',
-                  height: '44px',
-                  width: '100%',
-                  padding: '0 1em',
-                  borderRadius: '5px',
-                  border: 'none',
-                  backgroundColor: '#5C6170',
-                }}
-              />
-              <button
-                onClick={() => setContador(contador + 1)}
-                style={{
-                  border: 'none',
-                  color: '#191C24',
-                  borderRadius: '5px',
-                  height: '44px',
-                  width: '100%',
-                  fontFamily: 'Rubik',
-                  backgroundColor: '#43DB6D',
-                }}
-              >
-                Avançar
-              </button>
-            </div>
+              <S.InputText type="text" placeholder="nome" />
+              <S.ButtonGreen onClick={() => setContador(contador + 1)}>Avançar</S.ButtonGreen>
+            </S.ContainerForm>
           )}
           {contador === 1 && (
-            <div style={{ display: 'grid', gap: '2em' }}>
-              <div style={{ display: 'grid', gap: '2em' }}>
-                <div
-                  style={{
-                    display: 'grid',
-                    height: '44px',
-                    gap: '2em',
-                    gridTemplateColumns: '30fr 1fr',
-                  }}
-                >
+            <S.ContainerForm>
+              <S.ContainerForm>
+                <S.AdressContainer>
                   <div style={{ display: 'flex', borderRadius: '5px', width: '100%' }}>
                     <input
                       type="text"
@@ -314,16 +236,16 @@ const CreateProjeto = () => {
                   >
                     <img src="VectorSend.svg" alt="" style={{ marginLeft: '0.25em' }} />
                   </button>
-                </div>
+                </S.AdressContainer>
                 {showError && <p style={{ color: 'red' }}>{errorMessage}</p>}
-                <S.ChooseLote>
+                <Sm.ChooseLote>
                   {selectedUsers.map((user: any) => {
                     const projetoMembro = projetoMembros.find((membro) => membro.email === user.email);
                     const roleProjeto = projetoMembro ? projetoMembro.roleProjeto : '';
                     const creator = projetoMembro ? projetoMembro.creator : false;
 
                     return (
-                      <S.Lote
+                      <Sm.Lote
                         key={user.id}
                         style={{
                           backgroundColor: '#393E4B',
@@ -343,17 +265,7 @@ const CreateProjeto = () => {
                           <p style={{ color: 'white' }}>{user.name}</p>
                         </div>
                         <div style={{ display: 'flex', justifyContent: 'flex-end', width: '100%' }}>
-                          <select
-                            value={roleProjeto}
-                            onChange={(event) => handleRoleChanges(event, user.email)}
-                            style={{
-                              color: 'white',
-                              padding: '0em 1em',
-                              fontSize: '10px',
-                              border: 'none',
-                              backgroundColor: '#393E4B',
-                            }}
-                          >
+                          <select value={roleProjeto} onChange={(event) => handleRoleChanges(event, user.email)}>
                             {role.map((roles, index) => (
                               <option key={index + 3} value={roles}>
                                 {roles}
@@ -372,10 +284,10 @@ const CreateProjeto = () => {
                           )}
                           {creator && <p style={{ color: 'white' }}>Dono</p>}
                         </div>
-                      </S.Lote>
+                      </Sm.Lote>
                     );
                   })}
-                </S.ChooseLote>
+                </Sm.ChooseLote>
                 <button
                   onClick={() => setContador(contador - 1)}
                   style={{
@@ -404,11 +316,11 @@ const CreateProjeto = () => {
                 >
                   Criar Projeto
                 </button>
-              </div>
-            </div>
+              </S.ContainerForm>
+            </S.ContainerForm>
           )}
         </form>
-      </div>
+      </S.Wrapper>
     </>
   );
 };

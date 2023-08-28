@@ -1,8 +1,7 @@
-
 import { CardProjeto } from '../../../components/CardProjeto';
 import Menu from '../../../components/Menu';
-import {  Projeto } from '../../../data/ProjetoData';
-import { Main } from './styles';
+import { Projeto } from '../../../data/ProjetoData';
+import * as S from './styles';
 import { useState } from 'react';
 
 const Projetos = () => {
@@ -20,28 +19,19 @@ const Projetos = () => {
   return (
     <>
       <Menu area="/"></Menu>
-      <div style={{ fontFamily: 'Rubik', padding: '2em', marginTop: '6em' }}>
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end' }}>
-          <a
-            href={`/CriarProjeto`}
-            style={{
-              border: 'none',
-              color: '#191C24',
-              borderRadius: '5px',
-              fontFamily: 'Rubik',
-            }}
-          >
+      <S.Wrapper>
+        <S.ContainerCriarProjeto>
+          <S.Link href={`/CriarProjeto`}>
             <img src="plus.svg" alt="" />
-          </a>
-        </div>
-
-        <Main style={{ margin: '16px 0' }}>
+          </S.Link>
+        </S.ContainerCriarProjeto>
+        <S.Main style={{ margin: '16px 0' }}>
           {projetos.map((projeto, index) => {
             console.log(projeto);
             return <CardProjeto projeto={projeto} key={index} />;
           })}
-        </Main>
-      </div>
+        </S.Main>
+      </S.Wrapper>
     </>
   );
 };

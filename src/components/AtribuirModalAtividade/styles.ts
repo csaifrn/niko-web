@@ -17,6 +17,17 @@ const ModalArea = styled.div`
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 `;
 
+export const Exit = styled.button`
+  height: 2em;
+  width: 2em;
+  background-color: #090e09;
+  border-radius: 3px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+`;
+
 const ModalContent = styled.div`
   display: flex;
   gap: 1em;

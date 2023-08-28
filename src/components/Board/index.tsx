@@ -51,14 +51,14 @@ export const Board = (props: BoardProps) => {
   return (
     <>
       <>
-        <div style={{ margin: '0em 2em 0em 3em', display: 'flex', justifyContent: 'flex-end', gap: '0.5em' }}>
+        <S.divImg>
           <img src={`/icon-medium/${fase.titulo}.png`} alt={`icone da fase ${fase.titulo}`} />
-        </div>
+        </S.divImg>
       </>
       <S.kanban className="board">
         {etapas.map((section) => (
           <S.kanbanSection key={section.id}>
-            <div style={{ display: 'flex', gap: '1em', marginLeft: '1em' }}>
+            <S.divTitulo>
               <h2 className="kanbanSectionTititle">{section.title}</h2>
               {section.title == 'Disponíveis' && (
                 <h2
@@ -96,7 +96,7 @@ export const Board = (props: BoardProps) => {
                   {section.tasks ? section.tasks.length : 0}
                 </h2>
               )}
-            </div>
+            </S.divTitulo>
 
             <S.kanbanSectionContent>
               {section.tasks.map((task: any) => (

@@ -71,7 +71,7 @@ export const CategoriasTipologias = (props: CategoriasTipologiasProps) => {
                 <img src="/close.svg" alt="" height={18} width={18} />
               </S.Exit>
             </S.NameClose>
-            <div style={{ color: 'white', overflow: 'hidden', borderRadius: '5px', display: 'flex', width: '15.3em' }}>
+            <S.DivCatTipol>
               <S.ButtonCatTipol
                 onClick={() => setCatTipo(false)}
                 style={{
@@ -88,7 +88,7 @@ export const CategoriasTipologias = (props: CategoriasTipologiasProps) => {
               >
                 Tipologia
               </S.ButtonCatTipol>
-            </div>
+            </S.DivCatTipol>
             <Search searchTerm={searchTerm} handleSearchChange={handleSearchChange} />
             <S.ChooseLote>
               {filteredCategorias.map((cat: any) => {

@@ -115,4 +115,17 @@ const inputPrioridade = styled.input`
   }
 `;
 
+export const divImg = styled.div`
+  margin: 0em 2em 0em 3em;
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5em;
+`;
+
+export const divTitulo = styled.div`
+  display: flex;
+  gap: 1em;
+  margin-left: 1em;
+`;
+
 export { kanban, kanbanSection, kanbanSectionContent, btnPrioridade, inputPrioridade };

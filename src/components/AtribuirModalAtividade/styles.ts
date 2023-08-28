@@ -1,7 +1,9 @@
 import styled from 'styled-components';
 
-const ModalArea = styled.div`
+export const ModalArea = styled.div`
   width: 80vw;
+  max-height: 90vh;
+  overflow-y: auto;
   max-width: 400px;
   background-color: ${({ theme }) => theme.colors['gray/500']};
   border-radius: 5px;
@@ -65,7 +67,7 @@ const AtribuirButton = styled.button`
   font-family: 'Rubik';
 `;
 
-const ModalBackdrop = styled.div`
+export const ModalBackdrop = styled.div`
   position: fixed;
   display: flex;
   align-items: center;
@@ -96,4 +98,4 @@ export const Categoria = styled.div<CategoriaProps>`
   cursor: pointer;
 `;
 
-export { ModalArea, ModalContent, NameClose, ChooseLote, Lote, AtribuirButton, ModalBackdrop };
+export { ModalContent, NameClose, ChooseLote, Lote, AtribuirButton };

@@ -62,4 +62,30 @@ const ModalBackdrop = styled.div`
   background-color: rgba(25, 28, 36, 0.5);
 `;
 
+export const Exit = styled.button`
+  height: 2em;
+  width: 2em;
+  background-color: #090e09;
+  border-radius: 3px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+`;
+
+export const ButtonCatTipol = styled.button`
+  height: 44px;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+`;
+
+export const DivCatTipol = styled.div`
+  color: white;
+  overflow: hiddenwhite;
+  border-radius: 5pxwhite;
+  display: flexwhite;
+  width: 15.3em;
+`;
+
 export { ModalArea, ModalContent, NameClose, ChooseLote, Lote, AtribuirButton, ModalBackdrop };

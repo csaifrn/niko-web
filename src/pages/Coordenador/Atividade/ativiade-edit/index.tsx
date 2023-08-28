@@ -377,7 +377,15 @@ const AtividadeEdit = () => {
               <img src="/plus.svg" alt="adicionar atividade" />
             </button>
           </div>
-          <div style={{ justifyContent: 'flex-start', alignItems: 'flex-start', gap: 8, display: 'inline-flex' }}>
+          <div
+            style={{
+              justifyContent: 'flex-start',
+              alignItems: 'flex-start',
+              gap: 8,
+              display: 'flex',
+              flexWrap: 'wrap',
+            }}
+          >
             {categorias.length > 0 &&
               categorias.map((catg) => {
                 return (

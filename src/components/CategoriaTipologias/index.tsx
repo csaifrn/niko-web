@@ -67,61 +67,27 @@ export const CategoriasTipologias = (props: CategoriasTipologiasProps) => {
           <S.ModalContent id="modal-content">
             <S.NameClose>
               <h2>Atribuir Lote</h2>
-              <button onClick={props.close} style={{ border: 'none', backgroundColor: 'transparent' }}>
-                <div
-                  style={{
-                    paddingLeft: 8,
-                    paddingRight: 8,
-                    paddingTop: 5,
-                    paddingBottom: 5,
-                    background: '#191C24',
-                    borderRadius: 3,
-                    flexDirection: 'column',
-                    justifyContent: 'flex-start',
-                    alignItems: 'flex-start',
-                    gap: 10,
-                    display: 'inline-flex',
-                  }}
-                >
-                  <div
-                    style={{
-                      color: 'white',
-                      fontSize: 12,
-                      fontFamily: 'Rubik',
-                      fontWeight: '700',
-                      wordWrap: 'break-word',
-                    }}
-                  >
-                    X
-                  </div>
-                </div>
-              </button>
+              <S.Exit type="button" onClick={props.close}>
+                <img src="/close.svg" alt="" height={18} width={18} />
+              </S.Exit>
             </S.NameClose>
-            <div style={{ color: 'white', overflow: 'hidden', borderRadius: '5px', display: 'flex', width: '12.5em' }}>
-              <button
+            <div style={{ color: 'white', overflow: 'hidden', borderRadius: '5px', display: 'flex', width: '15.3em' }}>
+              <S.ButtonCatTipol
                 onClick={() => setCatTipo(false)}
                 style={{
-                  height: '44px',
-                  color: 'white',
-                  border: 'none',
                   backgroundColor: CatTipo ? '#2D303B' : '#191C24',
-                  padding: '8px 8px',
                 }}
               >
                 Categorias
-              </button>
-              <button
+              </S.ButtonCatTipol>
+              <S.ButtonCatTipol
                 onClick={() => setCatTipo(true)}
                 style={{
-                  height: '44px',
-                  color: 'white',
-                  border: 'none',
                   backgroundColor: CatTipo ? '#191C24' : '#2D303B',
-                  padding: '8px 8px',
                 }}
               >
                 Tipologia
-              </button>
+              </S.ButtonCatTipol>
             </div>
             <Search searchTerm={searchTerm} handleSearchChange={handleSearchChange} />
             <S.ChooseLote>

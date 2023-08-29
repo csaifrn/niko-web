@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import * as S from './style';
 import FaseData from '../../data/FaseData';
 import Search from '../Search';
@@ -15,6 +15,21 @@ interface CreateAtividadeProps {
 export const CreateAtividade = (props: CreateAtividadeProps) => {
   const [searchTerm, setSearchTerm] = useState<string>('');
   const [newAtividade, setNewAtividade] = useState<string>('');
+  const [closing, setClosing] = useState(false);
+
+  useEffect(() => {
+    // Ao renderizar o modal, aplicar um escalonamento gradual para exibi-lo
+    const timer = setTimeout(() => {
+      const modal = document.getElementById('modal-scaling');
+      if (closing === false && modal) {
+        modal.style.transform = 'scale(1)';
+      } else if (modal && closing) {
+        modal.style.transform = 'scale(0)';
+      }
+    }, 10);
+
+    return () => clearTimeout(timer);
+  }, [closing]);
 
   const [tarefasFase, setTarefasFase] = useState<typeof FaseData>(props.tarefasData[0]);
   const [listNewAtividades, setListNewAtividades] = useState<typeof FaseData>(props.tarefasData[1]);
@@ -48,7 +63,7 @@ export const CreateAtividade = (props: CreateAtividadeProps) => {
   return (
     <>
       <S.ModalBackdrop>
-        <S.ModalArea>
+        <S.ModalArea id="modal-scaling">
           <S.ModalContent>
             <S.NameClose>
               <h2>Configurações do lote</h2>
@@ -123,7 +138,7 @@ export const CreateAtividade = (props: CreateAtividadeProps) => {
               />
               <button
                 onClick={() => {
-                  if (newAtividade.length >= 0) {
+                  if (newAtividade.length >= 0 && newAtividade != '') {
                     setListNewAtividades((old) => [
                       ...old,
                       { icone: '/icon-page/new.png', titulo: newAtividade, id: 1111 + listNewAtividades.length },
@@ -164,7 +179,7 @@ export const CreateAtividade = (props: CreateAtividadeProps) => {
                     </p>
                     <button
                       onClick={() => {
-                        if (newAtividade.length > 0) {
+                        if (newAtividade.length > 0 && newAtividade != '') {
                           setListNewAtividades(listNewAtividades.filter((atv) => atv.id != categ.id));
                         }
                       }}

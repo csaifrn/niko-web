@@ -46,6 +46,22 @@ export const CategoriasTipologias = (props: CategoriasTipologiasProps) => {
     (catg) => catg.name.toLowerCase().includes(searchTerm.toLowerCase()) || catg.name.includes(searchTerm),
   );
 
+  const [closing, setClosing] = useState(false);
+
+  useEffect(() => {
+    // Ao renderizar o modal, aplicar um escalonamento gradual para exibi-lo
+    const timer = setTimeout(() => {
+      const modal = document.getElementById('modal-scaling');
+      if (closing === false && modal) {
+        modal.style.transform = 'scale(1)';
+      } else if (modal && closing) {
+        modal.style.transform = 'scale(0)';
+      }
+    }, 10);
+
+    return () => clearTimeout(timer);
+  }, [closing]);
+
   const handleSave = () => {
     props.setCategoria(categorias);
     props.setTipologia(tipologias);
@@ -63,7 +79,7 @@ export const CategoriasTipologias = (props: CategoriasTipologiasProps) => {
   return (
     <>
       <S.ModalBackdrop>
-        <S.ModalArea>
+        <S.ModalArea id="modal-scaling">
           <S.ModalContent id="modal-content">
             <S.NameClose>
               <h2>Atribuir Lote</h2>
@@ -71,7 +87,7 @@ export const CategoriasTipologias = (props: CategoriasTipologiasProps) => {
                 <img src="/close.svg" alt="" height={18} width={18} />
               </S.Exit>
             </S.NameClose>
-            <div style={{ color: 'white', overflow: 'hidden', borderRadius: '5px', display: 'flex', width: '15.3em' }}>
+            <S.DivCatTipol>
               <S.ButtonCatTipol
                 onClick={() => setCatTipo(false)}
                 style={{
@@ -88,7 +104,7 @@ export const CategoriasTipologias = (props: CategoriasTipologiasProps) => {
               >
                 Tipologia
               </S.ButtonCatTipol>
-            </div>
+            </S.DivCatTipol>
             <Search searchTerm={searchTerm} handleSearchChange={handleSearchChange} />
             <S.ChooseLote>
               {filteredCategorias.map((cat: any) => {

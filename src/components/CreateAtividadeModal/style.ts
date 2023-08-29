@@ -1,22 +1,22 @@
 import styled from 'styled-components';
 
 export const ModalArea = styled.div`
-  font-family: 'Rubik';
-  width: 90vw;
+  width: 80vw;
+  max-height: 90vh;
   overflow-y: auto;
-  color: white;
+  max-width: 400px;
+  background-color: ${({ theme }) => theme.colors['gray/500']};
+  border-radius: 5px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 16px;
-  gap: 10px;
-
-  position: relative;
-
-  background: #393e4b;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  padding: 2em;
+  gap: 2em;
+  transform: scale(0);
+  transition: transform 0.3s ease-in-out;
+  color: white;
+  font-family: 'Rubik';
   border-radius: 5px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 `;
 
 export const ModalContent = styled.div`
@@ -72,7 +72,7 @@ export const Categoria = styled.div`
 
 export const ChooseUser = styled.div`
   width: 100%;
-  height: 40vh;
+  max-height: 40vh;
   border-radius: 5px;
   display: flex;
   flex-direction: column;
@@ -81,7 +81,6 @@ export const ChooseUser = styled.div`
   scroll-behavior: auto;
   padding: 0;
   margin: 1em 0;
-  overflow-y: scroll;
   scroll-behavior: auto;
   scrollbar-width: thin;
 `;
@@ -100,15 +99,15 @@ export const AtribuirButton = styled.button`
 export const ModalBackdrop = styled.div`
   position: fixed;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
   width: 100%;
   height: 100%;
   top: 0;
   left: 0;
-  z-index: 999999999999999999;
-  background-color: rgba(25, 28, 36, 0.5);
+  z-index: 99999999999999;
+  background-color: rgba(25, 28, 36, 0.7);
+  transition: transform 1s;
 `;
 
 export const Compartilhamento = styled.div`

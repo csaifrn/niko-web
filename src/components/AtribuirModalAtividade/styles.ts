@@ -1,7 +1,9 @@
 import styled from 'styled-components';
 
-const ModalArea = styled.div`
+export const ModalArea = styled.div`
   width: 80vw;
+  max-height: 90vh;
+  overflow-y: auto;
   max-width: 400px;
   background-color: ${({ theme }) => theme.colors['gray/500']};
   border-radius: 5px;
@@ -15,6 +17,17 @@ const ModalArea = styled.div`
   font-family: 'Rubik';
   border-radius: 5px;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+`;
+
+export const Exit = styled.button`
+  height: 2em;
+  width: 2em;
+  background-color: #090e09;
+  border-radius: 3px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
 `;
 
 const ModalContent = styled.div`
@@ -54,7 +67,7 @@ const AtribuirButton = styled.button`
   font-family: 'Rubik';
 `;
 
-const ModalBackdrop = styled.div`
+export const ModalBackdrop = styled.div`
   position: fixed;
   display: flex;
   align-items: center;
@@ -85,4 +98,4 @@ export const Categoria = styled.div<CategoriaProps>`
   cursor: pointer;
 `;
 
-export { ModalArea, ModalContent, NameClose, ChooseLote, Lote, AtribuirButton, ModalBackdrop };
+export { ModalContent, NameClose, ChooseLote, Lote, AtribuirButton };

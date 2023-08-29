@@ -1,20 +1,23 @@
 import styled from 'styled-components';
 
-const ModalArea = styled.div`
-  position: fixed;
+export const ModalArea = styled.div`
   width: 80vw;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  max-height: 90vh;
+  overflow-y: auto;
+  max-width: 400px;
+  background-color: ${({ theme }) => theme.colors['gray/500']};
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
   padding: 2em;
-  background-color: #393e4b;
-  align-items: center;
+  gap: 2em;
+  transform: scale(0);
+  transition: transform 0.3s ease-in-out;
   color: white;
   font-family: 'Rubik';
   border-radius: 5px;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 `;
-
 const ModalContent = styled.div`
   display: flex;
   gap: 1em;
@@ -52,14 +55,18 @@ const AtribuirButton = styled.button`
   font-family: 'Rubik';
 `;
 
-const ModalBackdrop = styled.div`
+export const ModalBackdrop = styled.div`
   position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 100%;
   height: 100%;
   top: 0;
   left: 0;
-  z-index: 1040;
-  background-color: rgba(25, 28, 36, 0.5);
+  z-index: 99999999999999;
+  background-color: rgba(25, 28, 36, 0.7);
+  transition: transform 1s;
 `;
 
 export const Exit = styled.button`
@@ -88,4 +95,4 @@ export const DivCatTipol = styled.div`
   width: 15.3em;
 `;
 
-export { ModalArea, ModalContent, NameClose, ChooseLote, Lote, AtribuirButton, ModalBackdrop };
+export { ModalContent, NameClose, ChooseLote, Lote, AtribuirButton };

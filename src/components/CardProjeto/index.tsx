@@ -28,7 +28,7 @@ export const CardProjeto = (Props: CardProps) => {
   return (
     <>
       <S.CardProjeto>
-        <S.LinkContainer href={`/Fase/${projeto.id}`}>
+        <S.LinkContainer href={`/Painel/${projeto.id}`}>
           <S.DivImgProjeto>
             <S.ImgProjeto src={`${projeto.url}`} alt={projeto.name} width={'100%'} height={'150px'} />
           </S.DivImgProjeto>

@@ -134,20 +134,9 @@ export const AtribuirModalAtividade = (props: AtribuirModalAtividadeProps) => {
           <S.ModalContent id="modal-content">
             <S.NameClose>
               <h2>Atribuir Lote</h2>
-
-              <button onClick={handleClose} style={{ width: 'auto', backgroundColor: 'transparent', border: 'none' }}>
-                <img
-                  src="/close.svg"
-                  alt=""
-                  height={18}
-                  width={18}
-                  style={{
-                    padding: '5px 5px',
-                    backgroundColor: '#090E09',
-                    borderRadius: '5px',
-                  }}
-                />
-              </button>
+              <S.Exit type="button" onClick={handleClose}>
+                <img src="/close.svg" alt="" height={18} width={18} />
+              </S.Exit>
             </S.NameClose>
             <img height={24} width={24} src={`${props.nameFase}`} alt="Icone de Etapa" />
             <Search searchTerm={searchTerm} handleSearchChange={handleSearchChange} />

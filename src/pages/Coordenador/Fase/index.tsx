@@ -7,41 +7,40 @@ import { useState } from 'react';
 import { LoteData } from '../../../data/LoteData';
 import FaseData from '../../../data/FaseData';
 import EntradaData from '../../../data/EntradasData';
-// import { Membros, Projeto } from '../../../data/ProjetoData';
 
 const Home = () => {
   const { id } = useParams();
 
 
   const [recepcao] = useState({
-    remes: EntradaData.length,
+    remes: EntradaData.filter((remessa: any) => remessa.id_projeto === id).length
   });
 
   const [preparo] = useState({
-    anda: LoteData.filter((lote) => lote.id_etapa === '19f7e58c-4e4d-40c4-8b73-3711e8d9e215').length,
-    empausa: LoteData.filter((lote) => lote.id_etapa === '2aa7d36e-3ce7-4682-a356-1d7c8843709b').length,
+    anda: LoteData.filter((lote) => lote.id_etapa === '19f7e58c-4e4d-40c4-8b73-3711e8d9e215' && lote.id_projeto === id).length,
+    empausa: LoteData.filter((lote) => lote.id_etapa === '2aa7d36e-3ce7-4682-a356-1d7c8843709b' && lote.id_projeto === id).length,
   });
 
   const [catalogacao] = useState({
-    dispo: LoteData.filter((lote) => lote.id_etapa[1] === 'b01c6523-a1dc-479e-b8b0-5d73202295ee').length,
-    anda: LoteData.filter((lote) => lote.id_etapa === '11501491-8406-43e8-8800-99a99843d051').length,
-    empausa: LoteData.filter((lote) => lote.id_etapa === 'f5ac0f72-34e1-474c-b27a-8cc31b76536a').length,
+    dispo: LoteData.filter((lote) => lote.id_etapa[1] === 'b01c6523-a1dc-479e-b8b0-5d73202295ee' && lote.id_projeto === id).length,
+    anda: LoteData.filter((lote) => lote.id_etapa === '11501491-8406-43e8-8800-99a99843d051' && lote.id_projeto === id).length,
+    empausa: LoteData.filter((lote) => lote.id_etapa === 'f5ac0f72-34e1-474c-b27a-8cc31b76536a' && lote.id_projeto === id).length,
   });
 
   const [digitalizacao] = useState({
-    dispo: LoteData.filter((lote) => lote.id_etapa[1] === '2ed2be79-c811-4462-b3a4-c1e4abcec404').length,
-    anda: LoteData.filter((lote) => lote.id_etapa === '97ba0de2-9f79-404e-ab07-6e1fdf8fe85c').length,
-    empausa: LoteData.filter((lote) => lote.id_etapa === '8532679d-769d-4996-a211-ed24049a9882').length,
+    dispo: LoteData.filter((lote) => lote.id_etapa[1] === '2ed2be79-c811-4462-b3a4-c1e4abcec404' && lote.id_projeto === id).length,
+    anda: LoteData.filter((lote) => lote.id_etapa === '97ba0de2-9f79-404e-ab07-6e1fdf8fe85c' && lote.id_projeto === id) .length,
+    empausa: LoteData.filter((lote) => lote.id_etapa === '8532679d-769d-4996-a211-ed24049a9882' && lote.id_projeto === id).length,
   });
 
   const [upload] = useState({
-    dispo: LoteData.filter((lote) => lote.id_etapa[1] === '3ed36543-9207-4484-8747-4e26c6a89586').length,
-    anda: LoteData.filter((lote) => lote.id_etapa === '3ed36543-9207-4484-8547-4e26c6a89586').length,
-    empausa: LoteData.filter((lote) => lote.id_etapa === '3ed36543-9207-4484-8947-4e26c6a89586').length,
+    dispo: LoteData.filter((lote) => lote.id_etapa[1] === '3ed36543-9207-4484-8747-4e26c6a89586' && lote.id_projeto === id).length,
+    anda: LoteData.filter((lote) => lote.id_etapa === '50cce204-0440-4545-974e-4565afcd8179' && lote.id_projeto === id).length,
+    empausa: LoteData.filter((lote) => lote.id_etapa === '3d3df507-b4e3-4fb4-bf9f-77cdfea526e2' && lote.id_projeto === id).length,
   });
 
   const [arquivamento] = useState({
-    dispo: LoteData.filter((lote) => lote.id_etapa[1] === 'eb0c5be8-5a6b-4df5-ada0-fcc66c1a747d').length,
+    dispo: LoteData.filter((lote) => lote.id_etapa[1] === 'eb0c5be8-5a6b-4df5-ada0-fcc66c1a747d' && lote.id_projeto === id).length,
   });
 
   return (
@@ -99,7 +98,6 @@ const Home = () => {
           dispo={arquivamento.dispo}
         />
       </Main>
-
     </Wrapper>
   );
 };

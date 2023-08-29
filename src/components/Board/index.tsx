@@ -3,6 +3,7 @@ import * as S from './styles';
 import Lote from '../Lote';
 import EtapaData from '../../data/EtapaData';
 import { LoteData } from '../../data/LoteData';
+import { useParams } from 'react-router-dom';
 
 interface Fase {
   id: number;
@@ -20,6 +21,8 @@ export const Board = (props: BoardProps) => {
   //  - etapas por fase
   //  - lotes por etapa
 
+  const { id } = useParams();
+  
   const fase = props.fase;
   const etapasTemp = EtapaData.filter((Etapa) => Etapa.id_fase === Number(fase.id));
 
@@ -66,7 +69,7 @@ export const Board = (props: BoardProps) => {
                     color: '#43DB6D',
                   }}
                 >
-                  {section.tasks ? section.tasks.length : 0}
+                  {section.tasks.filter((lote:any) => lote.id_projeto === id) ? section.tasks.filter((lote:any) => lote.id_projeto === id).length : 0}
                 </h2>
               )}
               {section.title == 'Em pausa' && (
@@ -75,7 +78,7 @@ export const Board = (props: BoardProps) => {
                     color: '#F32D2D',
                   }}
                 >
-                  {section.tasks ? section.tasks.length : 0}
+                  {section.tasks.filter((lote:any) => lote.id_projeto === id) ? section.tasks.filter((lote:any) => lote.id_projeto === id).length : 0}
                 </h2>
               )}
               {section.title == 'Em andamento' && (
@@ -84,7 +87,7 @@ export const Board = (props: BoardProps) => {
                     color: '#FCDE42',
                   }}
                 >
-                  {section.tasks ? section.tasks.length : 0}
+                  {section.tasks.filter((lote:any) => lote.id_projeto === id) ? section.tasks.filter((lote:any) => lote.id_projeto === id).length : 0}
                 </h2>
               )}
               {section.title == 'Concluídos' && (
@@ -93,23 +96,24 @@ export const Board = (props: BoardProps) => {
                     color: '#43DB6D',
                   }}
                 >
-                  {section.tasks ? section.tasks.length : 0}
+                  {section.tasks.filter((lote:any) => lote.id_projeto === id) ? section.tasks.filter((lote:any) => lote.id_projeto === id).length : 0}
                 </h2>
               )}
             </S.divTitulo>
 
             <S.kanbanSectionContent>
               {section.tasks.map((task: any) => (
-                <a href={`/Lote/${task.id}`} key={task.id} style={{ textDecoration: 'none' }}>
-                  <Lote
-                    task={task}
-                    value={`${task.titulo} ${task.numero}`}
-                    pendencia={task.pendencias.length}
-                    prioridade={task.prioridade}
-                    categoria={task.categorias}
-                    envolvidos={task.envolvidos}
-                  ></Lote>
-                </a>
+                task.id_projeto === id &&
+                  <a href={`/Lote/${task.id}`} key={task.id} style={{ textDecoration: 'none' }}>
+                    <Lote
+                      task={task}
+                      value={`${task.titulo} ${task.numero}`}
+                      pendencia={task.pendencias.length}
+                      prioridade={task.prioridade}
+                      categoria={task.categorias}
+                      envolvidos={task.envolvidos}
+                    ></Lote>
+                  </a>
               ))}
             </S.kanbanSectionContent>
           </S.kanbanSection>

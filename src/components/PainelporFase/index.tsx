@@ -8,7 +8,7 @@ export const PainelPorFase = () => {
     },
     {
       fase: 2,
-      concluidos: 1200,
+      concluidos: 12,
       faltaram: 5,
     },
     {
@@ -43,7 +43,7 @@ export const PainelPorFase = () => {
         </S.ContainerFilterNumber>
         <S.DataFaseDois>
           <S.ContainerDataFase>
-            <S.ContainerImg src="/icon-page/recepcao_icon.png" />
+            <S.ContainerImg src="/icon-big/Recebimento_icon.svg" />
             <S.DataFase>
               <S.NumberTextDataUnic>
                 <S.DataFaseTxtCenter>
@@ -54,7 +54,7 @@ export const PainelPorFase = () => {
             </S.DataFase>
           </S.ContainerDataFase>
           <S.ContainerDataFase>
-            <S.ContainerImg src="/icon-page/arquivamento_icon.png" />
+            <S.ContainerImg src="/icon-big/Arquivamento_icon.svg" />
             <S.DataFase>
               <S.NumberTextDataUnic>
                 <S.DataFaseTxtCenter>
@@ -67,7 +67,7 @@ export const PainelPorFase = () => {
         </S.DataFaseDois>
         <S.Container>
           <S.ContainerDataFase>
-            <S.ContainerImg src="/icon-page/preparo_icon.png" />
+            <S.ContainerImg src="/icon-big/Preparo_icon.svg" />
             <S.DataFase>
               <S.NumberTextData>
                 <S.NumberName>
@@ -89,7 +89,7 @@ export const PainelPorFase = () => {
             </S.DataFase>
           </S.ContainerDataFase>
           <S.ContainerDataFase>
-            <S.ContainerImg src="/icon-page/catalogacao_icon.png" />
+            <S.ContainerImg src="/icon-big/Catalogacao_icon.svg" />
             <S.DataFase>
               <S.NumberTextData>
                 <S.NumberName>
@@ -111,7 +111,7 @@ export const PainelPorFase = () => {
             </S.DataFase>
           </S.ContainerDataFase>
           <S.ContainerDataFase>
-            <S.ContainerImg src="/icon-page/digitalizacao_icon.png" />
+            <S.ContainerImg src="/icon-big/Digitalizacao_icon.svg" />
             <S.DataFase>
               <S.NumberTextData>
                 <S.NumberName>
@@ -133,7 +133,7 @@ export const PainelPorFase = () => {
             </S.DataFase>
           </S.ContainerDataFase>
           <S.ContainerDataFase>
-            <S.ContainerImg src="/icon-page/upload_icon.png" />
+            <S.ContainerImg src="/icon-big/Upload_icon.svg" />
             <S.DataFase>
               <S.NumberTextData>
                 <S.NumberName>

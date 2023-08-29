@@ -65,7 +65,7 @@ const Atividade = () => {
         <div
           style={{
             position: 'fixed',
-            width: 'calc(100% - 6em)',
+            width: 'calc(100% - 4em)',
             top: '56px',
             padding: '2em 0em',
             margin: '2em 0em',

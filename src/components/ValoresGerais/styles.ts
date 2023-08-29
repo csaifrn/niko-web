@@ -55,4 +55,5 @@ export const TituloH2 = styled.p`
   color: ${({ theme }) => theme.colors.white};
   font-family: Rubik;
   font-size: 22px;
+  font-weight: bold;
 `;

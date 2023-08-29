@@ -12,7 +12,7 @@ const EntradaData = [
   },
   {
     id: '185e6f88-d83c-48d9-b359-6d3b99d81e57',
-    Observacao: '',
+    Observacao: 'As caixas vieram em bom estado',
     Qtd_caixa: 40,
     id_cliente: Users[0].id,
     id_projeto: Projeto[0].id,

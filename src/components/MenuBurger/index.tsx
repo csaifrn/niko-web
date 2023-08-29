@@ -54,9 +54,8 @@ const MenuBurger = (props: MenuBurgerProps) => {
         <S.MenuImg src="/Vector.svg" />
       </S.FecharMenu>
       <S.StyledMenu open={true} id="menu">
-        <LinkMenuBurger path={`/Fase/${props.id_projeto}`} nome="Inicio" area={props.area} />
-        <LinkMenuBurger path="/Projetos" nome="Projeto" area={props.area} />
-        <LinkMenuBurger path={`/Operadores/${props.id_projeto}`} nome="Operador" area={props.area} />
+        <LinkMenuBurger path="/Projetos" nome="Projetos" area={props.area} />
+        <LinkMenuBurger path={`/Operadores/${props.id_projeto}`} nome="Operadores" area={props.area} />
       </S.StyledMenu>
     </S.areaClick>
   );

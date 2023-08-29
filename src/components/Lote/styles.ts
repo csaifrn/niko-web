@@ -2,11 +2,16 @@ import styled from 'styled-components';
 
 const Lote = styled.div`
   font-family: 'Rubik';
+  border: 0.2px solid #35394a;
   position: relative;
   padding: 0.8em;
   background-color: #393e4b;
   border-radius: 5px;
   color: white;
+  min-height: 80px;
+  max-width: 400px;
+  min-width: 180px;
+
   filter: drop-shadow(0px 4px 1px rgba(0, 0, 0, 0.25));
 `;
 
@@ -18,6 +23,7 @@ const LoteEdit = styled.div`
   color: white;
   max-width: 400px;
   min-width: 230px;
+  min-height: 200px;
   filter: drop-shadow(0px 4px 1px rgba(0, 0, 0, 0.25));
 `;
 
@@ -29,6 +35,7 @@ const LoteArea = styled.div`
 
 const Content = styled.div`
   display: flex;
+  gap: 2em;
   justify-content: space-between;
   align-left {
     justify-self: left;

@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import * as S from './styles';
 import Search from '../Search';
 import Users from '../../data/UserData';
+import { Membros } from '../../data/ProjetoData';
+import { useParams } from 'react-router-dom';
 
 export interface IUserFase {
   id_fase: any;
@@ -18,6 +20,7 @@ export interface UserModalAtividadeProps {
 }
 
 export const UserModalAtividade = (props: UserModalAtividadeProps) => {
+  const { id } = useParams();
   const [fase] = useState<any>(props.fase);
   const [searchTerm, setSearchTerm] = useState<string>('');
   const [faseSelected, setFaseSelected] = useState<number>(0);
@@ -33,7 +36,20 @@ export const UserModalAtividade = (props: UserModalAtividadeProps) => {
       }
     }
   }, []);
-  const [data] = useState(Users);
+
+  const [membros, setMembros] = useState<typeof Users>([]);
+
+  useEffect(() => {
+    Users.forEach((element) => {
+      const membro = Membros.filter((membr) => membr.email === element.email);
+      membro.forEach((m) => {
+        if (m.id_Projeto == id) {
+          setMembros((old: any) => [...old, element]);
+        }
+      });
+    });
+  }, []);
+
   const [error, setError] = useState(false);
 
   const handleLoteClick = (item: any) => {
@@ -52,7 +68,7 @@ export const UserModalAtividade = (props: UserModalAtividadeProps) => {
     setSearchTerm(event.target.value);
   };
 
-  const filteredCategorias = data.filter(
+  const filteredCategorias = membros.filter(
     (f) => f.name.toLowerCase().includes(searchTerm.toLowerCase()) || f.name.includes(searchTerm),
   );
 
@@ -142,7 +158,7 @@ export const UserModalAtividade = (props: UserModalAtividadeProps) => {
             </div>
             <Search searchTerm={searchTerm} handleSearchChange={handleSearchChange} />
             <S.ChooseLote>
-              {filteredCategorias.map((f: any) => {
+              {filteredCategorias.map((f) => {
                 const isSelected = UserFase[faseSelected]?.users.includes(f);
                 const isPresentInOtherFase = UserFase.some(
                   (userFase) =>

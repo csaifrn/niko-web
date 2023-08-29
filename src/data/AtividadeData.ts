@@ -106,8 +106,8 @@ const AtividadeData = [
               {
                 user: Users[0],
                 Lotes: [
-                  { check: false, lote: LoteData[0] },
-                  { check: false, lote: LoteData[1] },
+                  { check: false, lote: LoteData[4] },
+                  { check: false, lote: LoteData[2] },
                 ],
               },
             ],
@@ -118,15 +118,15 @@ const AtividadeData = [
               {
                 user: Users[3],
                 Lotes: [
-                  { check: false, lote: LoteData[0] },
-                  { check: false, lote: LoteData[1] },
+                  { check: false, lote: LoteData[7] },
+                  { check: false, lote: LoteData[2] },
                 ],
               },
               {
                 user: Users[2],
                 Lotes: [
-                  { check: false, lote: LoteData[0] },
-                  { check: false, lote: LoteData[1] },
+                  { check: false, lote: LoteData[3] },
+                  { check: false, lote: LoteData[2] },
                 ],
               },
             ],
@@ -155,8 +155,8 @@ const AtividadeData = [
               {
                 user: Users[1],
                 Lotes: [
-                  { check: true, lote: LoteData[0] },
-                  { check: true, lote: LoteData[1] },
+                  { check: true, lote: LoteData[4] },
+                  { check: true, lote: LoteData[7] },
                 ],
               },
             ],
@@ -192,8 +192,8 @@ const AtividadeData = [
               {
                 user: Users[0],
                 Lotes: [
-                  { check: true, lote: LoteData[0] },
-                  { check: true, lote: LoteData[1] },
+                  { check: true, lote: LoteData[9] },
+                  { check: true, lote: LoteData[8] },
                 ],
               },
             ],
@@ -204,8 +204,8 @@ const AtividadeData = [
               {
                 user: Users[3],
                 Lotes: [
-                  { check: true, lote: LoteData[0] },
-                  { check: false, lote: LoteData[1] },
+                  { check: true, lote: LoteData[10] },
+                  { check: false, lote: LoteData[2] },
                 ],
               },
               {

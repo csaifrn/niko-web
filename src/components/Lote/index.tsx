@@ -110,6 +110,7 @@ const Lote = (props: any) => {
                   ))}
               </S.Pa>
             </S.Content>
+            <div>{props.children}</div>
           </S.LoteArea>
         </S.Lote>
       )}

@@ -94,12 +94,12 @@ export const NumberOrange = styled.span`
 `;
 export const NumberGreen = styled.span`
   color: ${({ theme }) => theme.colors['green/400']};
-  font-size: 12px;
+  font-size: 18px;
   font: bold;
 `;
 export const NumberRed = styled.span`
   color: ${({ theme }) => theme.colors['red/400']};
-  font-size: 12px;
+  font-size: 18px;
   font: bold;
 `;
 

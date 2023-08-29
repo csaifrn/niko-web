@@ -707,7 +707,7 @@ const AtividadeEdit = () => {
             <div
               style={{ color: '#191C24', fontSize: 12, fontFamily: 'Rubik', fontWeight: '500', wordWrap: 'break-word' }}
             >
-              Adicionar Atividade
+              Editar Atividade
             </div>
           </button>
         )}
@@ -738,7 +738,7 @@ const AtividadeEdit = () => {
                 opacity: '50%',
               }}
             >
-              Adicionar Atividade
+              Editar Atividade
             </div>
           </button>
         )}

@@ -45,17 +45,17 @@ export const PendenciaCoord = () => {
                 </S.ContainerNumber>
                 {pendencia.fase_final.length > 0 ? (
                   <S.DataAcao>
-                    <S.ContainerImg src={`/icon-page/${pendencia.fase_atual}_icon.png`} />
+                    <S.ContainerImg src={`/icon-medium/${pendencia.fase_atual}.png`} />
                     {pendencia.voltar ? (
                       <ArrowCircleLeft size={2} weight="fill" color={theme.colors['red/500']} />
                     ) : (
                       <ArrowCircleRight size={32} weight="fill" color={theme.colors['green/400']} />
                     )}
-                    <S.ContainerImg src={`/icon-page/${pendencia.fase_final}_icon.png`} />
+                    <S.ContainerImg src={`/icon-medium/${pendencia.fase_final}.png`} />
                   </S.DataAcao>
                 ) : (
                   <S.Fase>
-                    <S.ContainerImg src={`/icon-page/${pendencia.fase_atual}_icon.png`} />
+                    <S.ContainerImg src={`/icon-medium/${pendencia.fase_atual}.png`} />
                   </S.Fase>
                 )}
 

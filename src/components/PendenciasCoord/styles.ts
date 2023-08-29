@@ -147,7 +147,7 @@ export const Prioridade = styled.p`
   font-family: Rubik;
   color: ${({ theme }) => theme.colors.white};
   padding: 0.5em 1em;
-  border-radius: 5px;
+  border-radius: 3px;
 `;
 
 export const YelloButton = styled.button`
@@ -195,4 +195,5 @@ export const TituloH2 = styled.p`
   color: ${({ theme }) => theme.colors.white};
   font-family: Rubik;
   font-size: 22px;
+  font-weight: bold;
 `;

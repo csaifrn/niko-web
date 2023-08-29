@@ -7,7 +7,6 @@ interface BurgerProps {
 const StyledMenu = styled.nav<BurgerProps>`
   display: flex;
   padding-top: 2em;
-  padding-left: 1em;
   flex-direction: column;
   justify-content: right;
   background: #191c24;

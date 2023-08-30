@@ -346,8 +346,8 @@ export const LoteDetails = () => {
 
         {task.detalhamento_por_fase != null && (
           <S.DetalFase>
-            <h2>Detalhamento por fase</h2>
-
+            <S.DetalhamentoTitulo>Detalhamento por fase</S.DetalhamentoTitulo>
+            <S.DetalhamentoGrid>
             {task.detalhamento_por_fase.map((fase: any) => (
               <S.Fase key={fase.id}>
                 <S.FaseIconDiv>
@@ -401,6 +401,9 @@ export const LoteDetails = () => {
                 </S.EnvolvidosDiv>
               </S.Fase>
             ))}
+            </S.DetalhamentoGrid>
+
+            
           </S.DetalFase>
         )}
       </S.areaClick>

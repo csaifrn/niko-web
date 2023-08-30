@@ -23,23 +23,23 @@ const Lote = (props: any) => {
                 ))}
             </S.Content>
             <S.Content>
-              <S.Pa>
+              <S.Categoria>
                 {props.categoria &&
                   props.categoria.map((categoria: any, index: number) => (
                     <React.Fragment key={generateUUID()}>
                       {index >= 1 && (
-                        <S.PaTextDiv style={{ borderRadius: '100%', width: '2em' }}>
+                        <S.CategoriaTextDiv style={{ borderRadius: '100%', width: '2em' }}>
                           <p>+{index}</p>
-                        </S.PaTextDiv>
+                        </S.CategoriaTextDiv>
                       )}
                       {index == 0 && (
-                        <S.PaTextDiv style={{ borderRadius: '3px' }}>
+                        <S.CategoriaTextDiv style={{ borderRadius: '3px' }}>
                           <p style={{ padding: '0 0.5em' }}>{categoria.nome}</p>
-                        </S.PaTextDiv>
+                        </S.CategoriaTextDiv>
                       )}
                     </React.Fragment>
                   ))}
-              </S.Pa>
+              </S.Categoria>
             </S.Content>
           </S.LoteArea>
         </S.LoteEdit>
@@ -78,7 +78,7 @@ const Lote = (props: any) => {
                         ></img>
                       )}
                       {index >= 3 && (
-                        <S.PaTextDiv
+                        <S.CategoriaTextDiv
                           style={{
                             borderRadius: '100%',
                             width: '24px',
@@ -86,29 +86,29 @@ const Lote = (props: any) => {
                           }}
                         >
                           <p>+{index - 2}</p>
-                        </S.PaTextDiv>
+                        </S.CategoriaTextDiv>
                       )}
                     </React.Fragment>
                   ))}
               </S.Envolvido>
 
-              <S.Pa>
+              <S.Categoria>
                 {props.categoria &&
                   props.categoria.map((categoria: any, index: number) => (
                     <React.Fragment key={generateUUID()}>
                       {index >= 1 && (
-                        <S.PaTextDiv style={{ borderRadius: '100%', width: '2em' }}>
+                        <S.CategoriaTextDiv style={{ borderRadius: '100%', width: '2em' }}>
                           <p>+{index}</p>
-                        </S.PaTextDiv>
+                        </S.CategoriaTextDiv>
                       )}
                       {index == 0 && (
-                        <S.PaTextDiv style={{ borderRadius: '3px' }}>
+                        <S.CategoriaTextDiv style={{ borderRadius: '3px' }}>
                           <p style={{ padding: '0 0.5em' }}>{categoria.name}</p>
-                        </S.PaTextDiv>
+                        </S.CategoriaTextDiv>
                       )}
                     </React.Fragment>
                   ))}
-              </S.Pa>
+              </S.Categoria>
             </S.Content>
           </S.LoteArea>
         </S.Lote>

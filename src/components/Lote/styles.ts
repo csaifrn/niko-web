@@ -54,13 +54,13 @@ const Envolvido = styled.div`
   margin-left: 10px;
 `;
 
-const Pa = styled.div`
+const Categoria = styled.div`
   display: flex;
   flex-wrap: wrap;
   gap: 0.5em;
 `;
 
-const PaTextDiv = styled.div`
+const CategoriaTextDiv = styled.div`
   height: 24px;
   background-color: #191c24;
   display: flex;
@@ -97,4 +97,4 @@ const Btn = styled.button`
   }
 `;
 
-export { Lote, LoteArea, Content, Prioridade, Envolvido, Pa, PaTextDiv, fotoEnv, LoteEdit, Btn };
+export { Lote, LoteArea, Content, Prioridade, Envolvido, Categoria, CategoriaTextDiv, fotoEnv, LoteEdit, Btn };

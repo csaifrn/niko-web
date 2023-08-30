@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import media from 'styled-media-query';
 
 export const areaClick = styled.div`
   color: white;
@@ -338,8 +339,22 @@ export const Botao = styled.div`
 export const DetalFase = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 16px;
 `;
+
+export const DetalhamentoTitulo = styled.h2`
+  margin-bottom: 10px;
+`
+
+export const DetalhamentoGrid = styled.div`
+  display: grid;
+  grid-gap: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(21rem, 1fr));
+
+  ${media.greaterThan("large")`
+    grid-gap: 2rem;
+  `}
+`;
+
 
 export const Fase = styled.div`
   display: flex;

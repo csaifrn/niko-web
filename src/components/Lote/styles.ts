@@ -10,7 +10,7 @@ const Lote = styled.div`
   color: white;
   min-height: 80px;
   max-width: 400px;
-  min-width: 180px;
+  min-width: 230px;
 
   filter: drop-shadow(0px 4px 1px rgba(0, 0, 0, 0.25));
 `;
@@ -33,14 +33,22 @@ const LoteArea = styled.div`
   gap: 1em;
 `;
 
-const Content = styled.div`
+const LoteNumAvisos = styled.div`
   display: flex;
   gap: 2em;
   justify-content: space-between;
+  align-items: center;
   align-left {
     justify-self: left;
   }
 `;
+
+export const PendPrioridade = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 16px;
+`;
+
 
 const Prioridade = styled.div`
   height: 24px;
@@ -104,4 +112,24 @@ const Btn = styled.button`
   }
 `;
 
-export { Lote, LoteArea, Content, Prioridade, Envolvido, Categoria, CategoriaTextDiv, fotoEnv, LoteEdit, Btn };
+export const Icone = styled.img`
+
+`
+
+export const AtribuirAlguem = styled.div`
+  display:flex;
+  gap: 8px;
+  align-items: center;
+  padding: 16px;
+  background-color: #000000;
+  border: none;
+  border-radius: 5px;
+`
+export const AtribuirButton = styled.button`
+  border: none;
+  border-radius: 5px;
+  color: white;
+  font-family: 'Rubik'
+`
+
+export { Lote, LoteArea, LoteNumAvisos, Prioridade, Envolvido, Categoria, CategoriaTextDiv, fotoEnv, LoteEdit, Btn };

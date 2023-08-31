@@ -5,9 +5,9 @@ const kanban = styled.div`
   display: flex;
   align-items: center;
   justify-content: start;
-  gap: 1em;
+  gap: 16px;
   margin: 0 2em 2em 2em;
-  padding: 1em;
+  padding: 16px;
   scroll-behavior: auto;
   scrollbar-width: thin;
   overflow-x: scroll;
@@ -36,7 +36,7 @@ const kanban = styled.div`
 `;
 
 const kanbanSection = styled.div`
-  min-width: 250px;
+  min-width: 280px;
   gap: 1em;
   height: 60vh;
   padding: 1em;
@@ -58,7 +58,7 @@ const kanbanSection = styled.div`
     border-radius: 20px;
   }
   @media screen and (min-width: 1008px) {
-    width: 100px;
+    width: 100%;
   }
 `;
 

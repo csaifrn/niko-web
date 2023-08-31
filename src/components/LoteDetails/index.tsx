@@ -77,7 +77,7 @@ export const LoteDetails = () => {
 
   return (
     <>
-      <Menu area="/"></Menu>
+      <Menu area={`/Painel/${id}`} id_projeto={id}></Menu>
       <MenuCoord />
       <S.areaClick>
         {/* BOTÃO DE FECHAR */}
@@ -214,7 +214,7 @@ export const LoteDetails = () => {
           </S.FaseEnvolvAtual>
         </S.LoteInfos>
 
-        <S.PendObsBotoes>
+        <S.PendObservacao>
           {/* PENDÊNCIAS */}
           <S.Pendencias>
             <p>Pendências</p>
@@ -239,6 +239,15 @@ export const LoteDetails = () => {
               <S.ObsDivBlack key={obs.ObsId}>{obs.titulo}</S.ObsDivBlack>
             ))}
           </S.Observações>
+        </S.PendObservacao>
+
+
+        <S.Botoes>
+          {/* ATRIBUIR À ALGUÉM */}
+          <S.Botao onClick={handleAtribuirAlguem}>
+            <img src={`/atribuir.svg`} alt="botão para atribuir lote a algum operador "/>
+            <p>Atribuir à alguém</p>
+          </S.Botao>
 
           {/* VOLTAR FASE */}
           <S.BotaoMudarFase>
@@ -329,18 +338,13 @@ export const LoteDetails = () => {
             )}
           </S.BotaoMudarFase>
 
-          {/* ATRIBUIR À ALGUÉM */}
-          <S.Botao onClick={handleAtribuirAlguem}>
-            <img src={`/atribuir.svg`} alt="atribuir lote" />
-            <p>Atribuir à alguém</p>
-          </S.Botao>
 
           {/* DELETAR LOTE */}
           <S.Botao onClick={handleDelete} style={{ backgroundColor: '#F32D2D' }}>
             <img src={`/trash.svg`} alt="Deletar Lote" />
             <p>Deletar lote</p>
           </S.Botao>
-        </S.PendObsBotoes>
+        </S.Botoes>
 
         {/* DETALHAMENTO POR FASE */}
 

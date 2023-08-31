@@ -211,10 +211,16 @@ export const Envolvidos = styled.div`
   gap: 0px;
 `;
 
-export const PendObsBotoes = styled.div`
+export const PendObservacao = styled.div`
   display: flex;
   flex-direction: column;
   gap: 16px;
+  grid-template-columns: repeat(auto-fit, minmax(21rem, 1fr));
+  ${media.greaterThan("large")`
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  `}
 `;
 
 export const Pendencias = styled.div`
@@ -287,6 +293,19 @@ export const BotaoMudarFase = styled.div`
   display: flex;
 `;
 
+export const Botoes = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  grid-template-columns: repeat(auto-fit, minmax(21rem, 1fr));
+  ${media.greaterThan("large")`
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 160px;
+  `}
+`;
+
 export const VoltarAvancar = styled.div`
   background-color: #393e4b;
   display: flex;
@@ -349,7 +368,6 @@ export const DetalhamentoGrid = styled.div`
   display: grid;
   grid-gap: 2rem;
   grid-template-columns: repeat(auto-fit, minmax(21rem, 1fr));
-
   ${media.greaterThan("large")`
     grid-gap: 2rem;
   `}

@@ -1,28 +1,45 @@
-import React from 'react';
+import React, { useState } from 'react';
 import * as S from './styles';
 import { generateUUID } from '../../utils/generateUUID.util';
+import { AtribuirAlguemModal } from '../AtribuirAlguemModal';
+import { ArrowCircleUp } from '@phosphor-icons/react';
+import { LoteData } from '../../data/LoteData';
+import { useParams } from 'react-router-dom';
 
 const Lote = (props: any) => {
   //console.log(props.pendencia.lenght > 0)
+
+  const [modal, setModal] = useState(false);
+  const handleAtribuirAlguem = (e:MouseEvent) => {
+    e.preventDefault()
+    setModal(!modal);
+  };
+
+  const [usuarios, setUsuarios] = useState('LG');
   return (
     <>
       {props.edit == true && (
         <S.LoteEdit className="Lote">
           <S.LoteArea>
-            <S.Content>
+            <S.LoteNumAvisos>
+            
+              {/* NÚMERO DO LOTE */}
               <h2>{props.value}</h2>
+
               {props.categoria &&
                 props.categoria.map((categoria: any) => (
                   <React.Fragment key={generateUUID()}>
+                    
                     {categoria.nome === props.prioridade && (
+                      //AVISO DE PRIORIDADE
                       <S.Prioridade>
                         <p>Prioridade</p>
                       </S.Prioridade>
                     )}
                   </React.Fragment>
                 ))}
-            </S.Content>
-            <S.Content>
+            </S.LoteNumAvisos>
+            <S.LoteNumAvisos>
               <S.Categoria>
                 {props.categoria &&
                   props.categoria.map((categoria: any, index: number) => (
@@ -40,30 +57,33 @@ const Lote = (props: any) => {
                     </React.Fragment>
                   ))}
               </S.Categoria>
-            </S.Content>
+            </S.LoteNumAvisos>
           </S.LoteArea>
         </S.LoteEdit>
       )}
       {props.edit == null && (
         <S.Lote className="Lote">
           <S.LoteArea>
-            <S.Content>
+            <S.LoteNumAvisos>
               <h2>{props.value}</h2>
-              {/* PENDENCIA */}
-              {props.pendencia > 0 && (
-                <img
-                  src="/warning.svg"
-                  alt="icone triangular com ponto de exclamação no centro indicando que há uma pendência no lote"
-                />
-              )}
-              {/* PRIORIDADE */}
-              {props.prioridade == true && (
-                <S.Prioridade>
-                  <p>Prioridade</p>
-                </S.Prioridade>
-              )}
-            </S.Content>
-            <S.Content>
+
+              <S.PendPrioridade>
+                {/* PENDENCIA */}
+                {props.pendencia > 0 && (
+                  <img
+                    src="/warning.svg"
+                    alt="icone triangular com ponto de exclamação no centro indicando que há uma pendência no lote"
+                  />
+                )}
+                {/* PRIORIDADE */}
+                {props.prioridade == true && (
+                  <S.Prioridade>
+                    <p>Prioridade</p>
+                  </S.Prioridade>
+                )}
+              </S.PendPrioridade>
+            </S.LoteNumAvisos>
+            <S.LoteNumAvisos>
               <S.Envolvido style={{ display: 'flex', marginLeft: '10px' }}>
                 {props.envolvidos &&
                   props.envolvidos.map((envolvidos: any, index: number) => (
@@ -109,10 +129,27 @@ const Lote = (props: any) => {
                     </React.Fragment>
                   ))}
               </S.Categoria>
-            </S.Content>
-            <div>{props.children}</div>
+              
+            </S.LoteNumAvisos>
+
+            {/* BOTÃO DE ATRIBUIR ALGUÉM */}
+            { props.prioridade == true &&
+              <S.AtribuirButton onClick={handleAtribuirAlguem}>
+                <S.AtribuirAlguem>
+                  <ArrowCircleUp weight='fill' color='#FCDE42' width={20} height={20}/>
+                  <p>Atribuir à alguém</p>
+                </S.AtribuirAlguem>
+              </S.AtribuirButton>
+            }
+
+
+            {/* <div>{props.children}</div> */}
           </S.LoteArea>
         </S.Lote>
+      )}
+
+      {modal && (
+        <AtribuirAlguemModal user={usuarios} setUser={setUsuarios} close={handleAtribuirAlguem}></AtribuirAlguemModal>
       )}
     </>
   );

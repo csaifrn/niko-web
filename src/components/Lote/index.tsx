@@ -3,8 +3,6 @@ import * as S from './styles';
 import { generateUUID } from '../../utils/generateUUID.util';
 import { AtribuirAlguemModal } from '../AtribuirAlguemModal';
 import { ArrowCircleUp } from '@phosphor-icons/react';
-import { LoteData } from '../../data/LoteData';
-import { useParams } from 'react-router-dom';
 
 const Lote = (props: any) => {
   //console.log(props.pendencia.lenght > 0)

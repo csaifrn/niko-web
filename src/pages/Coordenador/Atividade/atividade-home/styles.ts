@@ -1,10 +1,58 @@
 import styled from 'styled-components';
+import media from 'styled-media-query';
 
-const CardsArea = styled.div`
+export const AtividadesPage = styled.div`
   display: flex;
   margin: 3em 2em 10em 2em;
   gap: 1em;
   flex-direction: column;
+`;
+
+export const TituloAtividades = styled.h1`
+`;
+
+export const CriarAtiv = styled.a`
+`;
+
+export const AtivsCabecalho = styled.div`
+`;
+
+export const AtivsPorDiaDiv = styled.div`
+`;
+
+export const DataAtiv = styled.h2`
+`;
+
+export const AtivPorDia = styled.div`
+  background-color: #191C24;
+  padding: 16px;
+`;
+
+export const Atividades = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 2em;
+  ${media.greaterThan("large")`
+    display:flex;
+    flex-direction: row;
+    gap:2em;
+  `}
+`;
+
+
+export const AtivCard = styled.div`
+  padding: 2em;
+  background-color: #393E4B;
+  display: flex;
+  flex-direction: column;
+  gap: 2em;
+  border-radius: 5px;
+  position: relative;
+  ${media.greaterThan("large")`
+    display:flex;
+    flex-direction: row;
+  `}
+
 `;
 
 const SearchDiv = styled.div`
@@ -55,4 +103,4 @@ export const AtribuirButton = styled.button`
 
 export const ContainerLote = styled.div``;
 
-export { CardsArea, InputSearch, ImgSearch, SearchDiv };
+export {InputSearch, ImgSearch, SearchDiv };

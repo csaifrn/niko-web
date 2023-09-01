@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import * as S from './styles';
 import Menu from '../../../../components/Menu';
 import MenuCoord from '../../../../components/MenuCoord';
@@ -61,8 +61,9 @@ const Atividade = () => {
     <>
       <Menu area={`/Categoria/${id}`} id_projeto={id}></Menu>
       <MenuCoord />
-      <S.CardsArea>
-        <div
+      <S.AtividadesPage>
+
+        <S.AtivsCabecalho
           style={{
             position: 'fixed',
             width: 'calc(100% - 4em)',
@@ -76,9 +77,9 @@ const Atividade = () => {
             backgroundColor: '#0a090e',
           }}
         >
-          <h1 style={{ color: 'white', fontFamily: 'Rubik' }}>Atividades</h1>
+          <S.TituloAtividades style={{ color: 'white', fontFamily: 'Rubik' }}>Atividades</S.TituloAtividades>
           {auth.role == 'Coordenador' && (
-            <a
+            <S.CriarAtiv
               href={`/Atividades/${id}/CriarAtividade`}
               style={{
                 border: 'none',
@@ -89,10 +90,11 @@ const Atividade = () => {
               }}
             >
               <img src="/plus.svg" alt="adicionar atividade" />
-            </a>
+            </S.CriarAtiv>
           )}
-        </div>
-        <div
+        </S.AtivsCabecalho>
+
+        <S.AtivsPorDiaDiv
           style={{
             marginTop: '10em',
             borderRadius: '5px',
@@ -105,28 +107,21 @@ const Atividade = () => {
           {atividades.map((atividade, indexatv) => {
             if (auth.role === 'Coordenador') {
               return (
-                <div
+                <S.AtivPorDia
                   key={indexatv}
                   ref={atividade === atividadesOrdenadas[0] ? atividadeMaisProximaRef : null}
                   style={{ color: 'white', fontFamily: 'Rubik' }}
                 >
-                  <h2 style={{ padding: '0 0 0.5em 0' }}>{`${atividade.data.getDate()}/${
+                  <S.DataAtiv style={{ padding: '0 0 0.5em 0' }}>{`${atividade.data.getDate()}/${
                     atividade.data.getMonth() + 1
-                  }/${atividade.data.getFullYear()}`}</h2>
-                  <div style={{ display: 'flex', flexDirection: 'column', gap: '2em' }}>
+                  }/${atividade.data.getFullYear()}`}
+                  </S.DataAtiv>
+                  
+                  <S.Atividades>
                     {atividade.atividades.map((atv, index) => {
                       return (
-                        <div
+                        <S.AtivCard
                           key={index}
-                          style={{
-                            padding: '2em',
-                            backgroundColor: '#393E4B',
-                            display: 'flex',
-                            flexDirection: 'column',
-                            gap: '2em',
-                            borderRadius: '5px',
-                            position: 'relative',
-                          }}
                         >
                           <a
                             href={`/Atividades/${id}/Edit/${atividade.id}/${atv.id}`}
@@ -217,11 +212,11 @@ const Atividade = () => {
                               </div>
                             );
                           })}
-                        </div>
+                        </S.AtivCard>
                       );
                     })}
-                  </div>
-                </div>
+                  </S.Atividades>
+                </S.AtivPorDia>
               );
             } else {
               return (
@@ -393,8 +388,8 @@ const Atividade = () => {
               );
             }
           })}
-        </div>
-      </S.CardsArea>
+        </S.AtivsPorDiaDiv>
+      </S.AtividadesPage>
     </>
   );
 };

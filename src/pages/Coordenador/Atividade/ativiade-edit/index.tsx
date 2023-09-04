@@ -665,7 +665,7 @@ const AtividadeEdit = () => {
                                                   {`Lote ${loteUser.numero}`}
                                                 </div>
 
-                                                {EtapaData.filter((etapa) => loteUser.id_etapa === etapa.id)[0]
+                                                {EtapaData.filter((etapa) => loteUser.id_etapa === etapa.id)[0] && EtapaData.filter((etapa) => loteUser.id_etapa === etapa.id)[0]
                                                   .id_fase !== f.id_fase && (
                                                   <img src="/ok.svg" alt="" height={12} width={12} />
                                                 )}

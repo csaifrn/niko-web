@@ -118,31 +118,37 @@ const Atividade = () => {
                   </S.DataAtiv>
                   
                   <S.Atividades>
+
                     {atividade.atividades.map((atv, index) => {
                       return (
-                        <S.AtivCard
-                          key={index}
-                        >
-                          <a
-                            href={`/Atividades/${id}/Edit/${atividade.id}/${atv.id}`}
-                            style={{
-                              display: 'flex',
-                              backgroundColor: '#191C24',
-                              height: '24px',
-                              width: '24px',
-                              alignItems: 'center',
-                              justifyContent: 'center',
-                              borderRadius: '5px',
-                              position: 'absolute',
-                              right: '2em',
-                              border: 'none',
-                            }}
-                          >
-                            <PencilSimple size={16} weight="fill" color="#fff" />
-                          </a>
+
+                        <>
+
+                        <S.AtivCard key={index}>
+
+                          <S.EditDiv>
+                            <S.Edit
+                              href={`/Atividades/${id}/Edit/${atividade.id}/${atv.id}`}
+                              style={{
+                                display: 'flex',
+                                backgroundColor: '#191C24',
+                                height: '24px',
+                                width: '24px',
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                borderRadius: '5px',
+                                right: '2em',
+                                border: 'none',
+                              }}
+                            >
+                              <PencilSimple size={16} weight="fill" color="#fff" />
+                            </S.Edit>
+                          </S.EditDiv>
+
+                          <S.AtivsDetails>
                           {atv.faseData.map((fase, indexfase) => {
                             return (
-                              <div key={indexfase} style={{ display: 'flex', flexDirection: 'column', gap: '1em' }}>
+                              <S.AtivPorFase key={indexfase}>
                                 <div style={{ display: 'flex', alignItems: 'center', gap: '1em' }}>
                                   <img src={`${fase.faseData.icone}`} alt="" />
                                   <h3>{fase.faseData.titulo}</h3>
@@ -209,10 +215,13 @@ const Atividade = () => {
                                     </div>
                                   );
                                 })}
-                              </div>
+                              </S.AtivPorFase>
                             );
                           })}
+                          </S.AtivsDetails>
+                          
                         </S.AtivCard>
+                        </>
                       );
                     })}
                   </S.Atividades>

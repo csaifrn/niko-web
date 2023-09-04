@@ -50,9 +50,38 @@ export const AtivCard = styled.div`
   position: relative;
   ${media.greaterThan("large")`
     display:flex;
-    flex-direction: row;
+    flex-direction: column;
   `}
 
+`;
+
+export const AtivPorFase = styled.div`
+  ${media.greaterThan("large")`
+    display:flex;
+    flex-direction: column;
+    gap: 16px;
+  `}
+`;
+
+export const AtivsDetails = styled.div`
+  ${media.greaterThan("large")`
+    display:flex;
+    flex-direction: row;
+    gap: 16px;
+    align-items: start;
+  `}
+`;
+
+export const EditDiv = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  ${media.greaterThan("large")`
+    display: flex;
+    justify-content: flex-end;
+  `}
+`;
+
+export const Edit = styled.a`
 `;
 
 const SearchDiv = styled.div`

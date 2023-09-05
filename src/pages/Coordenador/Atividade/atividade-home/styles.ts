@@ -55,20 +55,26 @@ export const AtivCard = styled.div`
 
 `;
 
+export const AtivsDetails = styled.div`
+  display:flex;
+  flex-direction:column;
+  gap: 24px;
+  ${media.greaterThan("large")`
+    display:flex;
+    flex-direction: row;
+    gap: 32px;
+    align-items: start;
+  `}
+`;
+
 export const AtivPorFase = styled.div`
+  display:flex;
+  flex-direction:column;
+  gap: 16px;
   ${media.greaterThan("large")`
     display:flex;
     flex-direction: column;
     gap: 16px;
-  `}
-`;
-
-export const AtivsDetails = styled.div`
-  ${media.greaterThan("large")`
-    display:flex;
-    flex-direction: row;
-    gap: 16px;
-    align-items: start;
   `}
 `;
 
@@ -82,6 +88,31 @@ export const EditDiv = styled.div`
 `;
 
 export const Edit = styled.a`
+`;
+
+export const IconeFase = styled.img`
+`;
+
+export const TituloFase = styled.h2`
+`;
+
+export const Operador = styled.div`
+  :hover div{
+    visibility: visible;
+    opacity: 1;
+    display: block;
+  }
+`;
+
+export const FotoOperador = styled.img`
+`;
+
+export const NomeOperador = styled.div`
+  background-color: #191C24;
+  padding: 8px;
+  border-radius: 3px;
+  position: absolute;
+  display: none;
 `;
 
 const SearchDiv = styled.div`

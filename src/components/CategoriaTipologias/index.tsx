@@ -94,7 +94,7 @@ export const CategoriasTipologias = (props: CategoriasTipologiasProps) => {
                   backgroundColor: CatTipo ? '#2D303B' : '#191C24',
                 }}
               >
-                Categorias
+                <p>Categorias</p>
               </S.ButtonCatTipol>
               <S.ButtonCatTipol
                 onClick={() => setCatTipo(true)}
@@ -102,7 +102,7 @@ export const CategoriasTipologias = (props: CategoriasTipologiasProps) => {
                   backgroundColor: CatTipo ? '#191C24' : '#2D303B',
                 }}
               >
-                Tipologia
+                <p>Tipologia</p>
               </S.ButtonCatTipol>
             </S.DivCatTipol>
             <Search searchTerm={searchTerm} handleSearchChange={handleSearchChange} />

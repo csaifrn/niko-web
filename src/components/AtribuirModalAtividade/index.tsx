@@ -147,7 +147,7 @@ export const AtribuirModalAtividade = (props: AtribuirModalAtividadeProps) => {
                   selected={selectedCategoria === categoria.id}
                   onClick={() => handleCategoriaClick(categoria.id)}
                 >
-                  {categoria.name}
+                  <p>{categoria.name}</p>
                 </S.Categoria>
               ))}
             </S.Categorias>

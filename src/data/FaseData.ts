@@ -16,8 +16,8 @@ const FaseData = [
     },
     {
         id: 2,
-        titulo:'Digitalizacao',
-        icone: '/icon-page/Digitalizacao_icon.png'
+        titulo:'Digitalização',
+        icone: '/icon-page/Digitalização_icon.png'
     },
     {
         id: 3,

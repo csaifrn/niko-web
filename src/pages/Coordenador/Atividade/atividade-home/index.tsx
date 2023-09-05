@@ -150,8 +150,8 @@ const Atividade = () => {
                             return (
                               <S.AtivPorFase key={indexfase}>
                                 <div style={{ display: 'flex', alignItems: 'center', gap: '1em' }}>
-                                  <img src={`${fase.faseData.icone}`} alt="" />
-                                  <h3>{fase.faseData.titulo}</h3>
+                                  <S.IconeFase src={`/icon-medium/${fase.faseData.titulo}.png`} alt="" />
+                                  <S.TituloFase>{fase.faseData.titulo}</S.TituloFase>
                                 </div>
 
                                 {fase.categoriasTipologias?.length != undefined && (
@@ -177,18 +177,34 @@ const Atividade = () => {
                                 )}
 
                                 {fase.users?.map((user) => {
-                                  return (
+                                  // useEffect(() =>{
+                                  //   const operadores = document.getElementById('operador')
+                                  //   console.log(operadores);
+                                  //   operadores?.addEventListener('mouseenter', handleNomedoOperador)
+                                  // },[])
+
+                                   return (
                                     <div
                                       key={user.user.id}
                                       style={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap', gap: '0.5em' }}
                                     >
-                                      <img
-                                        src={user.user.url}
-                                        height={32}
-                                        width={32}
-                                        style={{ objectFit: 'cover', borderRadius: '100%' }}
-                                        alt=""
-                                      />
+
+                                      <S.Operador>
+                                        <S.FotoOperador
+                                          src={user.user.url}
+                                          height={32}
+                                          width={32}
+                                          style={{ objectFit: 'cover', borderRadius: '100%' }}
+                                          alt=""
+                                        />
+
+                                        <S.NomeOperador>
+                                          <p>{user.user.name}</p>
+                                        </S.NomeOperador>
+                                       
+                                      </S.Operador>
+
+
 
                                       {user.Lotes?.map((lote) => {
                                         return (
@@ -232,7 +248,7 @@ const Atividade = () => {
                 <div>
                   {atividade.atividades.map((atv, index) => {
                     return (
-                      <div>
+                      <div key={index}>
                         {atv.faseData.map((fase, indexfase) => {
                           let cont = 0;
                           return (

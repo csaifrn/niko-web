@@ -86,7 +86,7 @@ const ModalBackdrop = styled.div`
   left: 0;
   z-index: 99999999999999;
   background-color: rgba(25, 28, 36, 0.7);
-  transition: transform 1s; 
+  transition: transform 1s;
 `;
 
 export { ModalArea, ModalContent, NameClose, ChooseLote, Lote, Recused, Delete, ModalBackdrop };

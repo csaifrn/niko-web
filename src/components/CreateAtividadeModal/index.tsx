@@ -15,7 +15,7 @@ interface CreateAtividadeProps {
 export const CreateAtividade = (props: CreateAtividadeProps) => {
   const [searchTerm, setSearchTerm] = useState<string>('');
   const [newAtividade, setNewAtividade] = useState<string>('');
-  const [closing, setClosing] = useState(false);
+  const [closing] = useState(false);
 
   useEffect(() => {
     // Ao renderizar o modal, aplicar um escalonamento gradual para exibi-lo

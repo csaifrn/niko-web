@@ -2,7 +2,6 @@ import { ChangeEvent, useEffect, useRef, useState } from 'react';
 import Menu from '../../../components/Menu';
 import * as Sm from '../../../components/MembrosModal/styles';
 import { Membros, Projeto } from '../../../data/ProjetoData';
-import { useAuthUser } from 'react-auth-kit';
 import { useNavigate } from 'react-router-dom';
 import Users from '../../../data/UserData';
 import * as S from './styles';
@@ -28,17 +27,16 @@ interface UserMembro {
 const CreateProjeto = () => {
   const users = Users;
   const [contador, setContador] = useState(0);
-  const auth = useAuthUser();
+
   const [projetoMembros, setProjetoMembros] = useState<UserMembro[]>([
     {
       id: Membros.length + 1,
       id_Projeto: Projeto.length + 1,
-      email: auth()?.email,
+      email: 'pedro@gmail.com',
       roleProjeto: 'Coordenador',
       creator: true,
     },
   ]);
-  console.log(projetoMembros);
 
   const role = ['Coordenador', 'Operador'];
 
@@ -79,7 +77,8 @@ const CreateProjeto = () => {
   const handleEnviar = () => {
     const emailValue = emailRef.current?.value;
 
-    if (selectedRole === '') {
+    if
+     (selectedRole === '') {
       setShowError(true);
       setErrorMessage('Por favor, selecione uma função.');
       return;

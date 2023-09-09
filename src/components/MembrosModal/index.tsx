@@ -275,7 +275,6 @@ export const MembrosModal = (props: MembrosModalProps) => {
             <S.AtribuirButton
               onClick={() => {
                 handleClose();
-                console.log(projetoMembros);
               }}
             >
               Salvar

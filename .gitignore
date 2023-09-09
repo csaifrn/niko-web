@@ -36,5 +36,5 @@ dist/
 *.sln
 *.sw?
 
-// Enviroment
+#
 .env

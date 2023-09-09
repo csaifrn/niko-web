@@ -10,6 +10,8 @@ import { IUserFase, UserModalAtividade } from '../../../../components/UserAtivid
 import { AtribuirModalAtividade, ILoteUser } from '../../../../components/AtribuirModalAtividade';
 import AtividadeData from '../../../../data/AtividadeData';
 import EtapaData from '../../../../data/EtapaData';
+import { Check } from '@phosphor-icons/react';
+import theme from '../../../../global/theme';
 
 const AtividadeEdit = () => {
   const { id, idatv, iday } = useParams();
@@ -66,7 +68,7 @@ const AtividadeEdit = () => {
             lotes: [...lote],
           });
         } catch (error) {
-          console.log('');
+          console.log('Erro');
         }
       });
     });
@@ -667,7 +669,7 @@ const AtividadeEdit = () => {
 
                                                 {EtapaData.filter((etapa) => loteUser.id_etapa === etapa.id)[0]
                                                   .id_fase !== f.id_fase && (
-                                                  <img src="/ok.svg" alt="" height={12} width={12} />
+                                                  <Check size={14} color={theme.colors['green/400']} />
                                                 )}
                                               </div>
                                             );
@@ -760,10 +762,10 @@ const AtividadeEdit = () => {
           }}
           categorias={categorias}
           tipologias={tipologias}
-          setCategoria={(e) => {
+          setCategoria={(e: any) => {
             setCategorias(e);
           }}
-          setTipologia={(e) => {
+          setTipologia={(e: any) => {
             setTipologias(e);
           }}
         />

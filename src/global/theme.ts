@@ -15,6 +15,8 @@ const theme = {
     'yellow/300': '#FCDE42',
     'yellow/200': '#FFE55B',
     'green/400': '#43DB6D',
+    'green/500': '#46EA73',
+    'green/600': '#38C25E',
     'blue/400': '#2D94F3',
     'purple/600': '#9C2DF3',
   },

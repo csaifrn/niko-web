@@ -46,7 +46,6 @@ export const EditProjetoModal = (props: EditProjetoModalProps) => {
       setFile(e.target.files[0]);
       setUrl(`${file?.name}`);
     }
-    console.log(file);
   };
 
   const handleNameChange = (e: any) => {
@@ -54,7 +53,6 @@ export const EditProjetoModal = (props: EditProjetoModalProps) => {
       setName(e.target.value);
     }
   };
-  
 
   return (
     <>

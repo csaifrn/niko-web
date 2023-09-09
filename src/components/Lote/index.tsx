@@ -3,15 +3,17 @@ import * as S from './styles';
 import { generateUUID } from '../../utils/generateUUID.util';
 import { AtribuirAlguemModal } from '../AtribuirAlguemModal';
 import { ArrowCircleUp } from '@phosphor-icons/react';
-import { LoteData } from '../../data/LoteData';
-import { useParams } from 'react-router-dom';
 
 const Lote = (props: any) => {
   //console.log(props.pendencia.lenght > 0)
 
   const [modal, setModal] = useState(false);
-  const handleAtribuirAlguem = (e:MouseEvent) => {
-    e.preventDefault()
+  const handleAtribuirAlguem = (e: any) => {
+    e.preventDefault();
+    setModal(!modal);
+  };
+
+  const close = () => {
     setModal(!modal);
   };
 
@@ -22,14 +24,12 @@ const Lote = (props: any) => {
         <S.LoteEdit className="Lote">
           <S.LoteArea>
             <S.LoteNumAvisos>
-            
               {/* NÚMERO DO LOTE */}
               <h2>{props.value}</h2>
 
               {props.categoria &&
                 props.categoria.map((categoria: any) => (
                   <React.Fragment key={generateUUID()}>
-                    
                     {categoria.nome === props.prioridade && (
                       //AVISO DE PRIORIDADE
                       <S.Prioridade>
@@ -129,28 +129,24 @@ const Lote = (props: any) => {
                     </React.Fragment>
                   ))}
               </S.Categoria>
-              
             </S.LoteNumAvisos>
 
             {/* BOTÃO DE ATRIBUIR ALGUÉM */}
-            { props.prioridade == true &&
-              <S.AtribuirButton onClick={handleAtribuirAlguem}>
+            {props.prioridade == true && (
+              <S.AtribuirButton type="button" onClick={handleAtribuirAlguem}>
                 <S.AtribuirAlguem>
-                  <ArrowCircleUp weight='fill' color='#FCDE42' width={20} height={20}/>
+                  <ArrowCircleUp weight="fill" color="#FCDE42" width={20} height={20} />
                   <p>Atribuir à alguém</p>
                 </S.AtribuirAlguem>
               </S.AtribuirButton>
-            }
-
+            )}
 
             {/* <div>{props.children}</div> */}
           </S.LoteArea>
         </S.Lote>
       )}
 
-      {modal && (
-        <AtribuirAlguemModal user={usuarios} setUser={setUsuarios} close={handleAtribuirAlguem}></AtribuirAlguemModal>
-      )}
+      {modal && <AtribuirAlguemModal user={usuarios} setUser={setUsuarios} close={close}></AtribuirAlguemModal>}
     </>
   );
 };

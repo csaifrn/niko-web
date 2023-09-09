@@ -10,13 +10,15 @@ const Painel = () => {
   const { id } = useParams();
 
   return (
-    <S.Wrapper>
+    <>
       <Menu area={`/Painel/${id}`} id_projeto={id}></Menu>
       <MenuCoord />
-      <PainelPorFase />
-      <PendenciaCoord />
-      <ValoresGerais />
-    </S.Wrapper>
+      <S.Wrapper>
+        <PainelPorFase />
+        <PendenciaCoord />
+        <ValoresGerais />
+      </S.Wrapper>
+    </>
   );
 };
 

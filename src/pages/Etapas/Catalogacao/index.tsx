@@ -15,7 +15,7 @@ const Catalogacao = () => {
       <MenuCoord />
       <Style.Wrapper>
         <p>Catalogação</p>
-        <Board fase={FaseData[1]} titulo='Catalogacao' />
+        <Board fase={FaseData[1]} titulo="Catalogacao" />
         <Style.Footer></Style.Footer>
       </Style.Wrapper>
     </>

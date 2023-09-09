@@ -50,7 +50,13 @@ const Categoria = () => {
         <Search searchTerm={searchTerm} handleSearchChange={handleSearchChange} />
 
         {sortedAndFilteredCategorias.map((categoria: Categoria) => (
-          <CategoriaCard key={categoria.id} id={categoria.id} name={categoria.name} percentage={categoria.percentage} prioridade={categoria.prioridade}/>
+          <CategoriaCard
+            key={categoria.id}
+            id={categoria.id}
+            name={categoria.name}
+            percentage={categoria.percentage}
+            prioridade={categoria.prioridade}
+          />
         ))}
       </S.CardsArea>
     </>

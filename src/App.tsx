@@ -39,6 +39,7 @@ const App = () => {
         <Route path="/recuperar-senha" element={<RecuperarSenha />} />
         <Route path="/recuperar-senha/:id" element={<ChangePassword />} />
         <Route path="/" element={<Login />} />
+
         <Route path="/unauthorized" element={<Unauthorized />} />
         <Route path="/Projetos" element={<Projetos />} />
         <Route path="/CriarProjeto" element={<CreateProjeto />} />

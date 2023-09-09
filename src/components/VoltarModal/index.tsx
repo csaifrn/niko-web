@@ -15,7 +15,6 @@ export const VoltarModal = (props: VoltarModalProps) => {
 
   const handlePendCheck = () => {
     setPendCheck(!pendCheck);
-    console.log('Vc clicou em uma pendência');
   };
 
   return (

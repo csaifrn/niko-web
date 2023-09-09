@@ -5,16 +5,7 @@ import * as S from './styles';
 import { useState } from 'react';
 
 const Projetos = () => {
-  // const auth = useAuthUser();
-  // const projetosParc = Membros.filter((mem) => mem.email === auth()?.email);
   const [projetos] = useState<typeof Projeto>(Projeto);
-
-  // useEffect(() => {
-  //   for (let index = 0; index < projetosParc.length; index++) {
-  //     const user = projetosParc[index];
-  //     setProjetos((prev) => [...prev, Projeto.filter((projeto) => projeto.id === user.id_Projeto)]);
-  //   }
-  // }, []);
 
   return (
     <>
@@ -27,7 +18,6 @@ const Projetos = () => {
         </S.ContainerCriarProjeto>
         <S.Main style={{ margin: '16px 0' }}>
           {projetos.map((projeto, index) => {
-            console.log(projeto);
             return <CardProjeto projeto={projeto} key={index} />;
           })}
         </S.Main>

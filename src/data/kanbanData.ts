@@ -210,7 +210,7 @@ const mockData = [
             pendencia: true,
             PendId: uuidv4(),
           },
-        ],       
+        ],
         observacoes: [
           {
             titulo: 'Lote possui 2 processos que já foram digitalizados previamente',

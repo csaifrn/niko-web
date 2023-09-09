@@ -241,11 +241,10 @@ export const LoteDetails = () => {
           </S.Observações>
         </S.PendObservacao>
 
-
         <S.Botoes>
           {/* ATRIBUIR À ALGUÉM */}
           <S.Botao onClick={handleAtribuirAlguem}>
-            <img src={`/atribuir.svg`} alt="botão para atribuir lote a algum operador "/>
+            <img src={`/atribuir.svg`} alt="botão para atribuir lote a algum operador " />
             <p>Atribuir à alguém</p>
           </S.Botao>
 
@@ -338,7 +337,6 @@ export const LoteDetails = () => {
             )}
           </S.BotaoMudarFase>
 
-
           {/* DELETAR LOTE */}
           <S.Botao onClick={handleDelete} style={{ backgroundColor: '#F32D2D' }}>
             <img src={`/trash.svg`} alt="Deletar Lote" />
@@ -352,62 +350,60 @@ export const LoteDetails = () => {
           <S.DetalFase>
             <S.DetalhamentoTitulo>Detalhamento por fase</S.DetalhamentoTitulo>
             <S.DetalhamentoGrid>
-            {task.detalhamento_por_fase.map((fase: any) => (
-              <S.Fase key={fase.id}>
-                <S.FaseIconDiv>
-                  <img src={fase.icone} alt={'icone da fase' + fase.nome} />
-                  <h2>{fase.nome}</h2>
-                </S.FaseIconDiv>
+              {task.detalhamento_por_fase.map((fase: any) => (
+                <S.Fase key={fase.id}>
+                  <S.FaseIconDiv>
+                    <img src={fase.icone} alt={'icone da fase' + fase.nome} />
+                    <h2>{fase.nome}</h2>
+                  </S.FaseIconDiv>
 
-                {fase.inicio !== null && (
-                  <S.TimeBeginDiv>
-                    <img
-                      src={'/detal-fase-icons/inicio-icon.png'}
-                      alt="ícone com seta para direita indicando a data e hora que o lote começou a ser feito"
-                    />
-                    {fase.inicio}
-                    <S.Text style={{ color: '#FCDE42' }}>{fase.hora_inicio}</S.Text>
-                  </S.TimeBeginDiv>
-                )}
+                  {fase.inicio !== null && (
+                    <S.TimeBeginDiv>
+                      <img
+                        src={'/detal-fase-icons/inicio-icon.png'}
+                        alt="ícone com seta para direita indicando a data e hora que o lote começou a ser feito"
+                      />
+                      {fase.inicio}
+                      <S.Text style={{ color: '#FCDE42' }}>{fase.hora_inicio}</S.Text>
+                    </S.TimeBeginDiv>
+                  )}
 
-                {fase.conclusao !== null && (
-                  <S.TimeFinishDiv>
-                    <img src={'/detal-fase-icons/conclusao-icon.png'} alt="icone de check" />
-                    {fase.conclusao}
-                    <S.Text style={{ color: '#00D25B' }}>{fase.hora_conclusao}</S.Text>
-                  </S.TimeFinishDiv>
-                )}
+                  {fase.conclusao !== null && (
+                    <S.TimeFinishDiv>
+                      <img src={'/detal-fase-icons/conclusao-icon.png'} alt="icone de check" />
+                      {fase.conclusao}
+                      <S.Text style={{ color: '#00D25B' }}>{fase.hora_conclusao}</S.Text>
+                    </S.TimeFinishDiv>
+                  )}
 
-                {fase.tempo !== null && (
-                  <S.Time>
-                    <img src={'/detal-fase-icons/clock-icon.png'} alt="icone de relógio" />
-                    {fase.tempo}
-                  </S.Time>
-                )}
+                  {fase.tempo !== null && (
+                    <S.Time>
+                      <img src={'/detal-fase-icons/clock-icon.png'} alt="icone de relógio" />
+                      {fase.tempo}
+                    </S.Time>
+                  )}
 
-                <S.EnvolvidosDiv>
-                  {fase.envolvidos &&
-                    fase.envolvidos.map((user: any) => (
-                      <React.Fragment key={user.id}>
-                        <img
-                          src={user.foto}
-                          alt="usuario envolvido na fase"
-                          width={24}
-                          height={24}
-                          style={{
-                            objectFit: 'cover',
-                            borderRadius: '100%',
-                            border: '1px solid #191C24',
-                          }}
-                        />
-                      </React.Fragment>
-                    ))}
-                </S.EnvolvidosDiv>
-              </S.Fase>
-            ))}
+                  <S.EnvolvidosDiv>
+                    {fase.envolvidos &&
+                      fase.envolvidos.map((user: any) => (
+                        <React.Fragment key={user.id}>
+                          <img
+                            src={user.foto}
+                            alt="usuario envolvido na fase"
+                            width={24}
+                            height={24}
+                            style={{
+                              objectFit: 'cover',
+                              borderRadius: '100%',
+                              border: '1px solid #191C24',
+                            }}
+                          />
+                        </React.Fragment>
+                      ))}
+                  </S.EnvolvidosDiv>
+                </S.Fase>
+              ))}
             </S.DetalhamentoGrid>
-
-            
           </S.DetalFase>
         )}
       </S.areaClick>

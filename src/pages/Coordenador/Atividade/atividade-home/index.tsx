@@ -8,6 +8,7 @@ import moment from 'moment';
 import { ArrowCircleRight, Check, PencilSimple } from '@phosphor-icons/react';
 import EtapaData from '../../../../data/EtapaData';
 import Lote from '../../../../components/Lote';
+import theme from '../../../../global/theme';
 
 const Atividade = () => {
   const auth = { role: 'Coordenador', email: 'andre.sousa@gmail.com' };
@@ -64,11 +65,10 @@ const Atividade = () => {
       <S.CardsArea>
         <div
           style={{
-            position: 'fixed',
-            width: 'calc(100% - 4em)',
-            top: '56px',
+            position: 'sticky',
+            top: '40px',
             padding: '2em 0em',
-            margin: '2em 0em',
+            paddingTop: '80px',
             display: 'flex',
             alignItems: 'center',
             zIndex: '999',
@@ -94,7 +94,6 @@ const Atividade = () => {
         </div>
         <div
           style={{
-            marginTop: '10em',
             borderRadius: '5px',
             display: 'flex',
             flexDirection: 'column',
@@ -225,14 +224,14 @@ const Atividade = () => {
               );
             } else {
               return (
-                <div>
+                <div key={atividade.id}>
                   {atividade.atividades.map((atv, index) => {
                     return (
-                      <div>
+                      <div key={atv.id}>
                         {atv.faseData.map((fase, indexfase) => {
                           let cont = 0;
                           return (
-                            <div>
+                            <div key={fase.faseData.id}>
                               {fase.users?.map((user) => {
                                 if (user.user.email === auth.email) {
                                   return (
@@ -343,7 +342,7 @@ const Atividade = () => {
                                                               height: '44px',
                                                             }}
                                                           >
-                                                            <Check size={12} color="#43DB6D" />
+                                                            <Check size={14} color={theme.colors['green/400']} />
                                                             <p>Feito</p>
                                                           </div>
                                                         </Lote>

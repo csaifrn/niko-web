@@ -34,7 +34,7 @@ const Recebidos = () => {
   const auth = useAuthUser();
   const membros = Membros.filter((membro) => membro.id_Projeto === id);
   const membrosClientes = membros.filter((mem) => mem.roleProjeto === 'Cliente');
-  console.log(membrosClientes);
+
 
   return (
     <>

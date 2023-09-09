@@ -1,4 +1,3 @@
-import { v4 as uuidv4 } from 'uuid';
 import Users from './UserData';
 import { Projeto } from './ProjetoData';
 

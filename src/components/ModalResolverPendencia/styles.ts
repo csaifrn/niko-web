@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 
 export const ModalBackdrop = styled.div`
   position: fixed;
@@ -13,10 +13,6 @@ export const ModalBackdrop = styled.div`
   background-color: rgba(25, 28, 36, 0.7);
   transition: transform 1s;
 `;
-
-interface ModalScalingProps {
-  closing: boolean;
-}
 
 export const Wrapper = styled.div`
   width: 80vw;
@@ -165,7 +161,7 @@ export const TextComment = styled.div`
   color: ${({ theme }) => theme.colors.white};
   background-color: ${({ theme }) => theme.colors['gray/700']};
   display: flex;
-  align-items:flex-start;
+  align-items: flex-start;
   border: none;
   width: 100%;
   height: 80px;
@@ -177,7 +173,7 @@ export const TextComment = styled.div`
 
 export const PendIconText = styled.div`
   display: flex;
-  align-items:center;
+  align-items: center;
   gap: 8px;
 `;
 
@@ -198,7 +194,7 @@ export const QtdLotes = styled.p`
 export const Exit = styled.button`
   height: 2em;
   width: 2em;
-  background-color: #090E09;
+  background-color: #090e09;
   border-radius: 3px;
   display: flex;
   justify-content: center;
@@ -247,7 +243,7 @@ export const DataFaseTxt = styled.p`
 
 export const DataFaseTxtCenter = styled.p`
   color: ${({ theme }) => theme.colors.white};
-  font-family: "Rubik";
+  font-family: 'Rubik';
   font-style: normal;
   text-align: center;
   word-break: normal;

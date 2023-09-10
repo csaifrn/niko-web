@@ -2,7 +2,6 @@ import { ArrowCircleLeft, ArrowCircleRight, CheckCircle, Warning, XCircle } from
 import * as S from './styles';
 import theme from '../../global/theme';
 import { useEffect, useRef, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { validationLoginSchema } from './validation';
 import * as Yup from 'yup';
 import { ErrorsForm } from './modalresolver.interface';
@@ -18,9 +17,7 @@ export const ModalResolverPendencia = (props: ModalPendencia) => {
   const [selected, setSelected] = useState('ok');
   const commentInputRef = useRef<HTMLInputElement>(null);
   const decisionInputRef = useRef<HTMLInputElement>(null);
-  const [responseError, setResponseError] = useState('');
   const [validationFormError, setValidationFormError] = useState<ErrorsForm>({ comment: '', decision: '' });
-  const navigate = useNavigate();
 
   useEffect(() => {
     // Ao renderizar o modal, aplicar um escalonamento gradual para exibi-lo
@@ -89,9 +86,9 @@ export const ModalResolverPendencia = (props: ModalPendencia) => {
           <S.ContainerData>
             <S.ContainerNumber>
               <S.QtdLotes>Resolver Pêndencia</S.QtdLotes>
-                <S.Exit type="button" onClick={handleClose}>
-                  <img src="/close.svg" alt="" height={18} width={18} />
-                </S.Exit>
+              <S.Exit type="button" onClick={handleClose}>
+                <img src="/close.svg" alt="" height={18} width={18} />
+              </S.Exit>
             </S.ContainerNumber>
             <S.DataAcao>
               {props.pendencia.fase_final && props.pendencia.fase_final.length > 0 ? (
@@ -117,7 +114,6 @@ export const ModalResolverPendencia = (props: ModalPendencia) => {
                       type="radio"
                       name="decision"
                       value={'true'}
-                      onChange={() => {}}
                       checked={selected === 'ok'}
                     />
                     <CheckCircle
@@ -134,7 +130,6 @@ export const ModalResolverPendencia = (props: ModalPendencia) => {
                       type="radio"
                       name="decision"
                       value={'false'}
-                      onChange={() => {}}
                       checked={selected === 'x'}
                     />
                     <XCircle
@@ -153,7 +148,6 @@ export const ModalResolverPendencia = (props: ModalPendencia) => {
                 <Warning size={24} color={theme.colors['yellow/300']} weight="fill" />
                 <S.DataFaseTxt>{props.pendencia.comment}</S.DataFaseTxt>
               </S.PendIconText>
-              
             </S.TextComment>
             <S.ErrorMessage>{validationFormError.comment}</S.ErrorMessage>
             <S.TextAlerta placeholder="comment" id="comment" name="comment" maxLength={100} />

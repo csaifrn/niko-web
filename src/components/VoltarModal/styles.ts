@@ -1,13 +1,12 @@
 import styled from 'styled-components';
 
-export const Texto = styled.p`
-`;
+export const Texto = styled.p``;
 
 const ModalArea = styled.div`
   width: 85vw;
-  padding:16px ;
+  padding: 16px;
   position: relative;
-  background: #393E4B;
+  background: #393e4b;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 5px;
   color: white;
@@ -18,7 +17,6 @@ const ModalContent = styled.div`
   display: flex;
   gap: 16px;
   flex-direction: column;
-
 `;
 
 const NameClose = styled.div`
@@ -28,8 +26,7 @@ const NameClose = styled.div`
   gap: 2em;
 `;
 
-export const Titulo = styled.h2`
-`;
+export const Titulo = styled.h2``;
 
 export const PendDivBlack = styled.div`
   background-color: #191c24;
@@ -48,12 +45,9 @@ export const PendenciaTextIcon = styled.div`
   gap: 10px;
 `;
 
-export const AlertIcon = styled.img`
-`;
+export const AlertIcon = styled.img``;
 
-export const LabelPendencia = styled.label`
-
-`;
+export const LabelPendencia = styled.label``;
 
 export const SelectPendencia = styled.input`
   display: flex;
@@ -65,43 +59,39 @@ export const SelectPendencia = styled.input`
   align-items: center;
   gap: 10px;
   border-radius: 3px;
-  border: 1px solid #FFF;
+  border: 1px solid #fff;
   background: red;
 `;
 
-export const SpanPendencia = styled.span`
-
-`;
+export const SpanPendencia = styled.span``;
 
 const Recused = styled.button`
   height: 44px;
   border-radius: 5px;
   padding: 0 16px;
-  background-color: #FCDE42;
+  background-color: #fcde42;
   border: none;
-  color: #191C24;
+  color: #191c24;
   font-family: 'Rubik';
   display: flex;
   align-items: center;
   justify-content: center;
-  
 `;
 
 export const RecusedAvancar = styled.div`
-  display:flex;
-  flex-direction:column;
+  display: flex;
+  flex-direction: column;
   gap: 8px;
 `;
 
-export const IconeVoltar = styled.img`
-`;
+export const IconeVoltar = styled.img``;
 
 export const Voltar = styled.button`
   height: 44px;
   border-radius: 5px;
-  background-color: #191C24;
+  background-color: #191c24;
   border: none;
-  color: #FFFFFF;
+  color: #ffffff;
   font-family: 'Rubik';
   display: flex;
   align-items: center;

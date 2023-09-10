@@ -2,7 +2,9 @@ import styled from 'styled-components';
 
 const CardsArea = styled.div`
   display: flex;
-  margin: 3em 3em 10em 3em;
+  margin: 2em;
+  margin-top: 8em;
+  margin-bottom: 8em;
   gap: 1em;
   flex-direction: column;
 `;

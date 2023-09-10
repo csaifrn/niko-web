@@ -7,7 +7,6 @@ interface BurgerProps {
 const StyledMenu = styled.nav<BurgerProps>`
   display: flex;
   padding-top: 2em;
-  padding-left: 1em;
   flex-direction: column;
   justify-content: right;
   background: #191c24;
@@ -18,21 +17,20 @@ const StyledMenu = styled.nav<BurgerProps>`
 `;
 
 const areaClick = styled.div<BurgerProps>`
-  z-index: 9999999;
-  width: 40%;
-  height: 100%;
-  padding-left: 1em;
-  padding-top: 1.1em;
-  position: absolute;
+  position: fixed;
   top: 0;
-  left: 0;
+  left: -100%;
+  width: 500px; /* ou o tamanho desejado */
+  height: 100%;
+  background-color: white;
+  transition: all 0.3s ease; /* Adiciona uma transição suave */
+  z-index: 999999999999999999999999999;
+  padding-left: 2em;
+  padding-top: 2em;
   background: #191c24;
-  transform: ${({ open }) => (open ? 'translateX(0)' : 'translateX(-100%)')};
-  height: calc(100% - 1.1em);
-  transition: transform 0.9s ease-in-out;
   filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
   @media (max-width: 576px) {
-    width: 70vw;
+    width: 300px;
   }
 `;
 

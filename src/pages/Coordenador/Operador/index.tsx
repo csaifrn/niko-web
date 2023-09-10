@@ -1,16 +1,21 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import OperadorCard from '../../../components/OperadorCard';
 import Users from '../../../data/UserData';
 import * as S from './styles';
 import Search from '../../../components/Search';
 import Menu from '../../../components/Menu';
 import MenuCoord from '../../../components/MenuCoord';
+import { useParams } from 'react-router';
+import { Membros } from '../../../data/ProjetoData';
 
 type User = {
-  id: number;
+  id: string;
   name: string;
+  url: string;
+  email: string;
   lote: string;
   fase: string;
+  andamento: boolean;
 };
 
 const removeDiacritics = (str: string): string => {
@@ -19,12 +24,26 @@ const removeDiacritics = (str: string): string => {
 
 const Operador = (): JSX.Element => {
   const [searchTerm, setSearchTerm] = useState<string>('');
+  const { id } = useParams();
 
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
     setSearchTerm(event.target.value);
   };
 
-  const filteredUsers: User[] = Users.filter((user: User) => {
+  const [membros, setMembros] = useState<typeof Users>([]);
+
+  useEffect(() => {
+    Users.forEach((element) => {
+      const membro = Membros.filter((membr) => membr.email === element.email);
+      membro.forEach((m) => {
+        if (m.id_Projeto == id) {
+          setMembros((old: any) => [...old, element]);
+        }
+      });
+    });
+  }, []);
+
+  const filteredUsers: User[] = membros.filter((user: User) => {
     const userName = removeDiacritics(user.name.toLowerCase());
     const search = removeDiacritics(searchTerm.toLowerCase());
     return userName.includes(search);
@@ -42,7 +61,7 @@ const Operador = (): JSX.Element => {
 
   return (
     <>
-      <Menu area="/"></Menu>
+      <Menu area={`/Operadores/${id}`} id_projeto={id}></Menu>
       <MenuCoord />
       <S.CardsArea>
         <Search searchTerm={searchTerm} handleSearchChange={handleSearchChange} />

@@ -18,6 +18,7 @@ const Wrapper = styled.div`
   background-color: #0a090e;
   height: 100vh;
   width: 100vw;
+  margin-top: 8em;
   overflow: hidden;
   min-height: 550px;
 `;

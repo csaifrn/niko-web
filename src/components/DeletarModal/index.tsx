@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react';
 import * as S from './styles';
 
 interface DeletarModalProps {
@@ -6,29 +7,40 @@ interface DeletarModalProps {
 }
 
 export const DeletarModal = (props: DeletarModalProps) => {
+  const [closing, setClosing] = useState(false);
+  useEffect(() => {
+    // Ao renderizar o modal, aplicar um escalonamento gradual para exibi-lo
+    const timer = setTimeout(() => {
+      const modal = document.getElementById('modal-scaling');
+      if (closing === false && modal) {
+        modal.style.transform = 'scale(1)';
+      } else if (modal && closing) {
+        modal.style.transform = 'scale(0)';
+      }
+    }, 10);
+
+    return () => clearTimeout(timer);
+  }, [closing]);
+
+  const handleClose = () => {
+    setClosing(true);
+    setTimeout(() => {
+      props.close();
+    }, 300);
+  };
   return (
     <>
       <S.ModalBackdrop>
-        <S.ModalArea>
+        <S.ModalArea id="modal-scaling">
           <S.ModalContent>
             <S.NameClose>
               <h2>{props.title}</h2>
-              <button onClick={props.close} style={{ width: 'auto', backgroundColor: 'transparent', border: 'none' }}>
-                <img
-                  src="close.svg"
-                  alt=""
-                  height={18}
-                  width={18}
-                  style={{
-                    padding: '5px 5px',
-                    backgroundColor: '#090E09',
-                    borderRadius: '5px',
-                  }}
-                />
-              </button>
+              <S.Exit type="button" onClick={handleClose}>
+                <img src="/close.svg" alt="" height={18} width={18} />
+              </S.Exit>
             </S.NameClose>
             <S.Recused onClick={props.close}>Não, não quero.</S.Recused>
-            <S.Delete onClick={props.close}>Deletar</S.Delete>
+            <S.Delete onClick={handleClose}>Deletar</S.Delete>
           </S.ModalContent>
         </S.ModalArea>
       </S.ModalBackdrop>

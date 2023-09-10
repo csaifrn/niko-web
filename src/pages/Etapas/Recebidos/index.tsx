@@ -1,10 +1,15 @@
 import * as Style from '../../../global/index';
 import * as S from './styles';
-import Lote from '../../../components/Lote/index';
 import { useState } from 'react';
-import { CreateModal } from '../../../components/CriarLote';
+
 import MenuCoord from '../../../components/MenuCoord';
 import Menu from '../../../components/Menu';
+import { useAuthUser } from 'react-auth-kit';
+import EntradaData from '../../../data/EntradasData';
+import { useParams } from 'react-router-dom';
+import Users from '../../../data/UserData';
+import { CreateRemessa } from '../../../components/CriarRemessa';
+import { Membros } from '../../../data/ProjetoData';
 
 export interface Categoria {
   id: string;
@@ -22,208 +27,95 @@ export interface Task {
   envolvidos: Envolvidos[] | null;
 }
 
-interface RecepProps {
-  etapa: string;
-}
-
-const Recebidos = (props: RecepProps) => {
+const Recebidos = () => {
+  const { id } = useParams();
   const [openCriarModal, setOpenCriarModal] = useState(false);
+  const remessas = EntradaData.filter((entrada) => entrada.id_projeto === id);
+  const auth = useAuthUser();
+  const membros = Membros.filter((membro) => membro.id_Projeto === id);
+  const membrosClientes = membros.filter((mem) => mem.roleProjeto === 'Cliente');
 
-  // const [CategoriaDetails, setCategoriaDetails] = useState<Categoria[]>([{
-  //   id: uuidv4(),
-  //   nome: "Xxx"
-  // }])
-  // const [title, setTitleDetails] = useState<string>("")
-
-  const task = {
-    id: '2',
-    title: 'Lote 10',
-    categoria: [
-      {
-        nome: 'Administrativo',
-        id: 1,
-      },
-    ],
-  };
-
-  // const [task, setTaskDetails] = useState({
-  //   id: uuidv4(),
-  //   title: 'Lote X',
-  //   categoria: [{
-  //     id: uuidv4(),
-  //     nome: "Categoria"
-  //   }],
-  //   envolvidos: null,
-  // })
-
-  // function writeLoteData(LoteId: string, title: string, categorias: Categoria[], envolvidos: [] | null) {
-  //   const db = getDatabase();
-  //   console.log(LoteId, title, categorias, envolvidos)
-  //   console.log('Lote Criado!')
-  //   set(ref(db, 'Lotes/' + LoteId), {
-  //     title: title,
-  //     categoria: categorias,
-  //     envolvidos: envolvidos
-  //   });
-  // }
 
   return (
     <>
-      <Style.Wrapper>
-        <Menu area="/"></Menu>
+      <Style.Wrapper style={{ height: 'auto', marginBottom: '10em', width: '100%' }}>
+        <Menu area={`/Fase/${id}/Board/Recebidos`} id_projeto={id}></Menu>
         <MenuCoord />
         <>
           <div style={{ margin: '1em 3em 0em 3em', display: 'flex', justifyContent: 'flex-end', gap: '0.5em' }}>
-            <img src={`/icon-page/${props.etapa}.png`} alt={`icone da etapa ${props.etapa}`} />
+            <img src={`/icon-page/recepcao_icon.png`} alt={`icone da etapa recepção`} />
           </div>
         </>
 
         <div style={{ margin: '2em', display: 'flex', flexDirection: 'column', gap: '1em' }}>
-          <S.Btn
-            onClick={() => {
-              setOpenCriarModal(!openCriarModal);
-            }}
-          >
-            <p>Adicionar Caixa</p>
-          </S.Btn>
+          {auth()?.role.filter((role: string) => role === 'Coordenador')[0] === 'Coordenador' && (
+            <S.Btn
+              onClick={() => {
+                setOpenCriarModal(!openCriarModal);
+              }}
+            >
+              <p>Adicionar Remessa</p>
+            </S.Btn>
+          )}
 
-          <S.LoteArea>
-            <Lote
-              task={task}
-              value={task.title}
-              categoria={task.categoria}
-              envolvidos={{}}
-              prioridade={'Maisa'}
-              edit={true}
-            ></Lote>
-            <Lote
-              task={task}
-              value={task.title}
-              categoria={task.categoria}
-              envolvidos={{}}
-              prioridade={'Maisa'}
-              edit={true}
-            ></Lote>
-            <Lote
-              task={task}
-              value={task.title}
-              categoria={task.categoria}
-              envolvidos={{}}
-              prioridade={'Maisa'}
-              edit={true}
-            ></Lote>
-            <Lote
-              task={task}
-              value={task.title}
-              categoria={task.categoria}
-              envolvidos={{}}
-              prioridade={'Maisa'}
-              edit={true}
-            ></Lote>
-            <Lote
-              task={task}
-              value={task.title}
-              categoria={task.categoria}
-              envolvidos={{}}
-              prioridade={'Maisa'}
-              edit={true}
-            ></Lote>
-            <Lote
-              task={task}
-              value={task.title}
-              categoria={task.categoria}
-              envolvidos={{}}
-              prioridade={'Maisa'}
-              edit={true}
-            ></Lote>
-            <Lote
-              task={task}
-              value={task.title}
-              categoria={task.categoria}
-              envolvidos={{}}
-              prioridade={'Maisa'}
-              edit={true}
-            ></Lote>
-            <Lote
-              task={task}
-              value={task.title}
-              categoria={task.categoria}
-              envolvidos={{}}
-              prioridade={'Maisa'}
-              edit={true}
-            ></Lote>
-            <Lote
-              task={task}
-              value={task.title}
-              categoria={task.categoria}
-              envolvidos={{}}
-              prioridade={'Maisa'}
-              edit={true}
-            ></Lote>
-            <Lote
-              task={task}
-              value={task.title}
-              categoria={task.categoria}
-              envolvidos={{}}
-              prioridade={'Maisa'}
-              edit={true}
-            ></Lote>
-          </S.LoteArea>
-
-          {/* 
-          <h1 style={{ color: 'white', margin: '0.5em 0' }}>Recebidos</h1>
-          <h3 style={{ color: 'white', marginBottom: '0.5em' }}>Adicionar Lote</h3>
-          <div >
-            <div style={{ marginBottom: '0.5em' }}>
-              <S.btnPrioridade onClick={() => {
-                setCategoriaDetails(currentCategorias => [...currentCategorias, {
-                  id: uuidv4(),
-                  nome: ''
-                }])
-                setTaskDetails(currentTask => {
-                  return {
-                    ...currentTask,
-                    categoria: CategoriaDetails
-                  };
-                });
-              }}>Adicionar Categoria</S.btnPrioridade>
-            </div>
-            {
-              CategoriaDetails.map((p, index) => {
-                return (
-                  <div key={p.id} style={{ display: 'flex', flexDirection: 'row', gap: '0.5em', margin: '0.5em 0' }}>
-                    <S.inputPrioridade type="text" className="form-control" placeholder="Categoria" aria-label="Username" aria-describedby="basic-addon1" onChange={e => {
-                      const name = e.target.value;
-                      setCategoriaDetails(currentCategoria => {
-                        const updatedCategoriaDetails = produce(currentCategoria, v => {
-                          v[index].nome = name;
-                        });
-                        setTaskDetails(currentTask => {
-                          return {
-                            ...currentTask,
-                            categoria: updatedCategoriaDetails
-                          };
-                        });
-                        return updatedCategoriaDetails;
-                      })
-                      task.categoria = CategoriaDetails;
-                    }} />
-                    <S.btnPrioridade onClick={() => {
-                      setCategoriaDetails(currentCategoria => currentCategoria.filter(x => x.id !== p.id)); task.categoria = CategoriaDetails;
-                    }}>X</S.btnPrioridade>
+          <S.Main>
+            {remessas.map((remessa) => {
+              const user = Users.filter((user) => user.id === remessa.id_cliente)[0];
+              return (
+                <div
+                  key={remessa.id}
+                  style={{
+                    color: 'white',
+                    backgroundColor: '#393E4B',
+                    padding: '2em',
+                    borderRadius: '5px',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    gap: '1em',
+                    height: 'auto',
+                  }}
+                >
+                  <div
+                    style={{
+                      display: 'flex',
+                      justifyContent: 'space-between',
+                      alignItems: 'center',
+                    }}
+                  >
+                    <h1>{`${remessa.Qtd_caixa} Caixas`}</h1>
+                    <img
+                      src={user.url}
+                      alt=""
+                      height={32}
+                      width={32}
+                      style={{ objectFit: 'cover', borderRadius: '100%' }}
+                    />
                   </div>
-                )
-              })
-            }
-          </div>
-          <S.inputPrioridade type="text" className="form-control" placeholder="Title" aria-label="Username" aria-describedby="basic-addon1" onChange={e => { setTitleDetails(e.target.value); task.title = e.target.value }} style={{ marginBottom: "0.5em" }} />
-          <br />
-          
-          <Style.Footer></Style.Footer> */}
+
+                  {remessa.Observacao.length > 0 && (
+                    <div
+                      style={{
+                        display: 'flex',
+                        flexDirection: 'column',
+                        gap: '1em',
+                      }}
+                    >
+                      <p>Observações</p>
+                      <p style={{ backgroundColor: '#191C24', padding: '1em', borderRadius: '3px' }}>
+                        {remessa.Observacao}
+                      </p>
+                    </div>
+                  )}
+                  <p>{remessa.data}</p>
+                </div>
+              );
+            })}
+          </S.Main>
         </div>
       </Style.Wrapper>
       {openCriarModal && (
-        <CreateModal
+        <CreateRemessa
+          clientes={membrosClientes}
           close={() => {
             setOpenCriarModal(!openCriarModal);
           }}

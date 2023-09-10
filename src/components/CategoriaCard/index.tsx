@@ -2,8 +2,9 @@ import { useEffect, useRef, useState } from 'react';
 import * as S from './styles';
 import { DataFase } from '../DataFase';
 import { DeletarModal } from '../DeletarModal';
+import CategoriaData from '../../data/CategoriaData';
 
-const CategoriaCard = (Categoria: any) => {
+const CategoriaCard = (Categoria: typeof CategoriaData[0]) => {
   const [expanded, setExpanded] = useState(false);
   const [accodionHeight, setAccodionHeight] = useState(0);
   const [modal, setModal] = useState(false);
@@ -26,7 +27,7 @@ const CategoriaCard = (Categoria: any) => {
 
   const open = () => setExpanded(!expanded);
 
-  const categoria = Categoria.categoria;
+  const categoria = Categoria;
 
   useEffect(() => {
     if (ref.current) {

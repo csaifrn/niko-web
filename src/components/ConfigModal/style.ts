@@ -1,19 +1,18 @@
-import { StyleHTMLAttributes } from "react";
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const ModalArea = styled.div`
-  font-family: "Rubik";
+  font-family: 'Rubik';
   color: white;
+  width: 80vw;
+  max-width: 400px;
+  background-color: ${({ theme }) => theme.colors['gray/500']};
+  border-radius: 5px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
   padding: 2em;
-  gap: 10px;
-  position: relative;
-  background: #393E4B;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  border-radius: 5px;
+  gap: 2em;
+  transform: scale(0);
+  transition: transform 0.3s ease-in-out;
 `;
 
 export const ModalContent = styled.div`
@@ -29,7 +28,7 @@ export const NameClose = styled.div`
 `;
 
 export const TituloDiv = styled.div`
-  display:flex;
+  display: flex;
   flex-direction: column;
   gap: 1em;
 `;
@@ -37,13 +36,13 @@ export const TituloDiv = styled.div`
 export const Titulo = styled.input`
   padding: 1.5em 2em;
   border-radius: 5px;
-  color:white;
+  color: white;
   border: none;
-  font-family: "Rubik";
+  font-family: 'Rubik';
 `;
 
 export const LocalDiv = styled.div`
-  display:flex;
+  display: flex;
   flex-direction: column;
   gap: 1em;
 `;
@@ -51,22 +50,21 @@ export const LocalDiv = styled.div`
 export const Local = styled.input`
   padding: 1.5em 2em;
   border-radius: 5px;
-  color:white;
+  color: white;
   border: none;
-  font-family: "Rubik";
+  font-family: 'Rubik';
 `;
 
-export const Categorias = styled.div`
-`;
+export const Categorias = styled.div``;
 
 export const Categoria = styled.div`
-  display:flex;
+  display: flex;
   align-items: center;
   gap: 1em;
   padding: 1.5em 2em;
   border-radius: 5px;
   cursor: pointer;
-`; 
+`;
 
 export const ChooseUser = styled.div`
   width: 100%;
@@ -87,10 +85,10 @@ export const ChooseUser = styled.div`
 export const AtribuirButton = styled.button`
   height: 44px;
   border-radius: 5px;
-  background-color: #43DB6D;
+  background-color: #43db6d;
   border: none;
   color: white;
-  font-family: "Rubik";
+  font-family: 'Rubik';
   bottom: 0;
   left: 0;
 `;
@@ -106,21 +104,21 @@ export const ModalBackdrop = styled.div`
   top: 0;
   left: 0;
   z-index: 999999999999999999;
-  background-color: rgba(25, 28, 36, 0.5);;
+  background-color: rgba(25, 28, 36, 0.5);
 `;
 
 export const Compartilhamento = styled.div`
-  display:flex;
+  display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top:0.5em;
+  margin-top: 0.5em;
 `;
 
 export const Prioridade = styled.div`
-  display:flex;
+  display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top:0.5em;
+  margin-top: 0.5em;
 `;
 
 export const SwitchButton = styled.label`
@@ -136,13 +134,13 @@ export const Slider = styled.span`
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: #0A090E;
+  background-color: #0a090e;
   border-radius: 34px;
   cursor: pointer;
 
   &:before {
     position: absolute;
-    content: "";
+    content: '';
     height: 26px;
     width: 26px;
     left: 4px;
@@ -156,7 +154,7 @@ export const Slider = styled.span`
 export const Input = styled.input.attrs({ type: 'checkbox' })`
   display: none;
   &:checked + ${Slider} {
-    background-color: #43DB6D
+    background-color: #43db6d;
   }
 
   &:checked + ${Slider}:before {

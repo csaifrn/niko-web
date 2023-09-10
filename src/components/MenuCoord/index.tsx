@@ -1,7 +1,5 @@
-import React from 'react';
 import * as S from './styles';
 import { useParams } from 'react-router-dom';
-import { Projeto } from '../../data/ProjetoData';
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars, no-unused-vars
 interface MenuProps {
@@ -9,10 +7,26 @@ interface MenuProps {
 }
 
 export const MenuCoord = () => {
-  let { id } = useParams();
+  const { id } = useParams();
   const pathname = window.location.pathname;
   return (
     <S.MenuArea>
+      <S.link href={`/Painel/${id}`}>
+        <S.MenuImg
+          src={
+            pathname === `/Painel/${id}` ? '/IconMenu/ChartDonut/fillicon.png' : '/IconMenu/ChartDonut/regularicon.png'
+          }
+        />
+        {pathname === `/Painel/${id}` && <S.textIcon style={{ color: '#F3802D' }}>Painel</S.textIcon>}
+        {pathname !== `/Painel/${id}` && <S.textIcon>Painel</S.textIcon>}
+      </S.link>
+      <S.link href={`/Atividades/${id}`}>
+        <S.MenuImg
+          src={pathname === `/Atividades/${id}` ? '/IconMenu/Activity/Fill.svg' : '/IconMenu/Activity/Regular.svg'}
+        />
+        {pathname === `/Atividades/${id}` && <S.textIcon style={{ color: '#F3802D' }}>Atividades</S.textIcon>}
+        {pathname !== `/Atividades/${id}` && <S.textIcon>Atividades</S.textIcon>}
+      </S.link>
       <S.link href={`/Fase/${id}`}>
         <S.MenuImg
           src={
@@ -28,28 +42,7 @@ export const MenuCoord = () => {
           <S.textIcon>Fases</S.textIcon>
         )}
       </S.link>
-      <S.link href={`/Operadores/${id}`}>
-        <S.MenuImg
-          src={
-            pathname === `/Operadores/${id}`
-              ? '/IconMenu/UsersThree/fillicon.png'
-              : '/IconMenu/UsersThree/regularicon.png'
-          }
-        />
-        {pathname === `/Operadores/${id}` && <S.textIcon style={{ color: '#F3802D' }}>Operadores</S.textIcon>}
-        {pathname !== `/Operadores/${id}` && <S.textIcon>Operadores</S.textIcon>}
-      </S.link>
-      <S.link href={`/Dashboard/${id}`}>
-        <S.MenuImg
-          src={
-            pathname === `/Dashboard/${id}`
-              ? '/IconMenu/ChartDonut/fillicon.png'
-              : '/IconMenu/ChartDonut/regularicon.png'
-          }
-        />
-        {pathname === `/Dashboard/${id}` && <S.textIcon style={{ color: '#F3802D' }}>Dashboard</S.textIcon>}
-        {pathname !== `/Dashboard/${id}` && <S.textIcon>Dashboard</S.textIcon>}
-      </S.link>
+
       <S.link href={`/Categorias/${id}`}>
         <S.MenuImg
           src={

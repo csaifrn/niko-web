@@ -23,11 +23,8 @@ export const ModalCriarLote = (props: ModalCriarProps) => {
   const [settlement_project, setSettlement_project] = useState('');
   const [responseError, setResponseError] = useState('');
   const [validationFormError, setValidationFormError] = useState<ErrorsForm>({ settlement_project: '' });
-  const [showPassword, setShowPassword] = useState(false);
-  const [isPasswordWithContent, setIsPasswordWithContent] = useState(false);
 
   useEffect(() => {
-    // Ao renderizar o modal, aplicar um escalonamento gradual para exibi-lo
     const timer = setTimeout(() => {
       const modal = document.getElementById('modal-scaling');
       if (closing === false && modal) {
@@ -39,10 +36,6 @@ export const ModalCriarLote = (props: ModalCriarProps) => {
 
     return () => clearTimeout(timer);
   }, [closing]);
-
-  const handleCriar = () => {
-    handleClose();
-  };
 
   const handleOk = () => {
     setCriar(true);
@@ -129,7 +122,10 @@ export const ModalCriarLote = (props: ModalCriarProps) => {
                 name="settlement_project"
                 className="settlement_project"
               />
-              <ErrorMessage>{validationFormError.settlement_project}</ErrorMessage>
+              {validationFormError.settlement_project && (
+                <ErrorMessage>{validationFormError.settlement_project}</ErrorMessage>
+              )}
+
               {criar! ? (
                 <S.Criar type="submit" disabled>
                   <CheckCircle weight="fill" color={theme.colors['gray/700']} height={28} width={28} />
@@ -139,8 +135,7 @@ export const ModalCriarLote = (props: ModalCriarProps) => {
                   {loading ? <ReactLoading type="cylon" color="white" height={30} width={30} /> : 'Criar Lote'}
                 </S.Criar>
               )}
-
-              <ErrorMessage>{responseError}</ErrorMessage>
+              {responseError && <ErrorMessage>{responseError}</ErrorMessage>}
             </S.FormCriar>
           </S.ModalContent>
         </S.ModalArea>

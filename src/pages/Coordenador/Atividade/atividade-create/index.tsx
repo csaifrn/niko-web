@@ -18,6 +18,8 @@ const AtividadeCreate = () => {
   const [data, setData] = useState(new Date());
 
   const [tarefas, setTarefas] = useState<typeof FaseData>([]);
+
+  
   const [tarefasData, setTarefasData] = useState<any>([[], []]);
 
   const [categorias, setCategorias] = useState<typeof CategoriaData>([]);
@@ -101,7 +103,7 @@ const AtividadeCreate = () => {
     <>
       <Menu area={`/Categoria/${id}`} id_projeto={id}></Menu>
       <MenuCoord />
-      <div
+      <S.CriarAtivArea
         style={{
           margin: 16,
           borderRadius: 5,
@@ -140,18 +142,7 @@ const AtividadeCreate = () => {
                 display: 'inline-flex',
               }}
             >
-              <div
-                style={{
-                  textAlign: 'right',
-                  color: 'white',
-                  fontSize: 24,
-                  fontFamily: 'Rubik',
-                  fontWeight: '700',
-                  wordWrap: 'break-word',
-                }}
-              >
-                Adicionar Atividade
-              </div>
+              <S.Titulo>Adicionar Atividade </S.Titulo>
             </div>
           </div>
           <button
@@ -193,9 +184,7 @@ const AtividadeCreate = () => {
               display: 'flex',
             }}
           >
-            <h2 style={{ color: 'white', fontSize: 16, fontFamily: 'Rubik', fontWeight: '500', wordWrap: 'break-word' }}>
-              Data
-            </h2>
+            <S.Titulo2> Data </S.Titulo2>
             <div style={{ justifyContent: 'flex-start', alignItems: 'flex-start', gap: 8, display: 'inline-flex' }}>
               <input
                 type="date"
@@ -217,46 +206,22 @@ const AtividadeCreate = () => {
               />
             </div>
           </S.Data>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '1em' }}>
-            <div
-              style={{
-                alignSelf: 'stretch',
-                justifyContent: 'space-between',
-                alignItems: 'center',
-                gap: 8,
-                display: 'inline-flex',
-              }}
-            >
-              <div
-                style={{ color: 'white', fontSize: 16, fontFamily: 'Rubik', fontWeight: '500', wordWrap: 'break-word' }}
-              >
-                Tarefas
-              </div>
-              <button
-                style={{
-                  border: 'none',
-                  backgroundColor: 'transparent',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                }}
+          <S.Tarefas>
+            <S.TituloBotaoAdd>
+              <S.Titulo2>Tarefas</S.Titulo2>
+
+              <S.BotaoAdd
                 onClick={() => {
                   setModalTarefas(!modalTarefas);
                 }}
               >
                 <img src="/plus.svg" alt="adicionar atividade" />
-              </button>
-            </div>
-            <div
-              style={{
-                width: 344,
-                justifyContent: 'flex-start',
-                alignItems: 'center',
-                gap: 8,
-                display: 'inline-flex',
-                flexWrap: 'wrap',
-              }}
-            >
+              </S.BotaoAdd>
+
+            </S.TituloBotaoAdd>
+
+            <S.TarefasCardsArea>
+
               {tarefas.length > 0 &&
                 tarefas.map((fase) => {
                   return (
@@ -282,7 +247,11 @@ const AtividadeCreate = () => {
                           display: 'flex',
                         }}
                       >
-                        <img src={`${fase.icone}`} alt="" />
+                        {fase.icone === '/icon-page/new.png' && 
+                          <img src={'/icon-page/new.png'} alt=""/>
+                        }
+                        <img src={`/icon-medium/${fase.titulo}.png`} alt="" />
+
                       </div>
                       <h2
                         style={{
@@ -298,39 +267,21 @@ const AtividadeCreate = () => {
                     </div>
                   );
                 })}
-            </div>
-          </div>
+            </S.TarefasCardsArea>
+          </S.Tarefas>
 
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '1em' }}>
-            <div
-              style={{
-                alignSelf: 'stretch',
-                justifyContent: 'space-between',
-                alignItems: 'center',
-                gap: 8,
-                display: 'flex',
-              }}
-            >
-              <div
-                style={{ color: 'white', fontSize: 16, fontFamily: 'Rubik', fontWeight: '500', wordWrap: 'break-word' }}
-              >
-                Categorias e Tipologias
-              </div>
-              <button
-                style={{
-                  border: 'none',
-                  backgroundColor: 'transparent',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                }}
+          <S.CategTipol>
+            <S.TituloBotaoAdd>
+              <S.Titulo2>Categorias e Tipologias</S.Titulo2>
+
+              <S.BotaoAdd
                 onClick={() => {
                   SetModalCatTipo(!modalCatTipo);
                 }}
               >
                 <img src="/plus.svg" alt="adicionar atividade" />
-              </button>
-            </div>
+              </S.BotaoAdd>
+            </S.TituloBotaoAdd>
             <div
               style={{
                 justifyContent: 'flex-start',
@@ -407,89 +358,43 @@ const AtividadeCreate = () => {
                   );
                 })}
             </div>
-          </div>
+          </S.CategTipol>
 
-          <div
-            style={{
-              alignSelf: 'stretch',
-              flexDirection: 'column',
-              gap: 16,
-              display: 'flex',
-            }}
-          >
-            <div
-              style={{
-                alignSelf: 'stretch',
-                justifyContent: 'space-between',
-                alignItems: 'center',
-                gap: 8,
-                display: 'flex',
-              }}
-            >
-              <div
-                style={{ color: 'white', fontSize: 16, fontFamily: 'Rubik', fontWeight: '500', wordWrap: 'break-word' }}
-              >
-                Usuários
-              </div>
+          <S.Usuarios>
+            <S.TituloBotaoAdd>
+              <S.Titulo2>Usuários</S.Titulo2>
+
+              {/* BOTÃO ATIVADO */}
               {tarefas.length > 0 && (
-                <button
-                  style={{
-                    border: 'none',
-                    backgroundColor: 'transparent',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                  }}
+                <S.BotaoAdd
                   onClick={() => {
                     SetModalUsers(!modalUsers);
                   }}
                 >
                   <img src="/plus.svg" alt="adicionar atividade" />
-                </button>
+                </S.BotaoAdd>
               )}
+
+              {/* BOTÃO DESATIVADO */}
               {tarefas.length === 0 && (
-                <button
-                  style={{
-                    border: 'none',
-                    backgroundColor: 'transparent',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                  }}
+                <S.BotaoAdd
                 >
                   <img src="/plus.svg" alt="adicionar atividade" style={{ opacity: '50%' }} />
-                </button>
+                </S.BotaoAdd>
               )}
-            </div>
-            <div
-              style={{
-                width: '100%',
-                flexDirection: 'column',
-                gap: '2em',
-                display: 'flex',
-              }}
-            >
+
+            </S.TituloBotaoAdd>
+
+            <S.UsuariosPorFase>
+
               {UserFase.map((f) => {
                 return (
-                  <>
-                    <div
-                      key={f.id_fase}
-                      style={{
-                        display: 'flex',
-                        color: 'white',
-                        fontFamily: 'Rubik',
-                        gap: 16,
-                        alignItems: 'center',
-                      }}
-                    >
-                      <img
-                        height={24}
-                        width={24}
-                        src={`${tarefas.filter((tarefa) => tarefa.id === f.id_fase)[0].icone}`}
-                        alt="Icone de Etapa"
-                      />
+                  <S.UsuariosDeUmaFase>
+                    <S.IconeTituloFase key={f.id_fase}>
+                      <img src={`/icon-medium/${tarefas.filter((tarefa) => tarefa.id === f.id_fase)[0].titulo}.png`} alt="" />
+          
                       <h3>{tarefas.filter((tarefa) => tarefa.id === f.id_fase)[0].titulo}</h3>
-                    </div>
+                    </S.IconeTituloFase>
 
                     {f.users.map((user: any) => {
                       return (
@@ -572,6 +477,9 @@ const AtividadeCreate = () => {
                               </button>
                             </div>
                           </div>
+
+
+
                           <div style={{ gap: 8, display: 'flex', flexWrap: 'wrap' }}>
                             {LoteUser.filter((lote) => lote.id_user === user.id && lote.id_fase === f.id_fase).length >
                               0 &&
@@ -618,52 +526,26 @@ const AtividadeCreate = () => {
                         </div>
                       );
                     })}
-                  </>
+                  </S.UsuariosDeUmaFase>
                 );
               })}
-            </div>
-          </div>
+            </S.UsuariosPorFase>
+          </S.Usuarios>
+
         </S.EspecificacoesAtiv>
         {UserFase.length > 0 && (
-          <button
+          <S.AddAtivDesativado
             onClick={handleSave}
-            style={{
-              alignSelf: 'stretch',
-              height: 44,
-              padding: 10,
-              background: '#43DB6D',
-              boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)',
-              borderRadius: 5,
-              justifyContent: 'center',
-              alignItems: 'center',
-              gap: 10,
-              display: 'flex',
-              border: 'none',
-            }}
           >
             <div
               style={{ color: '#191C24', fontSize: 12, fontFamily: 'Rubik', fontWeight: '500', wordWrap: 'break-word' }}
             >
               Adicionar Atividade
             </div>
-          </button>
+          </S.AddAtivDesativado>
         )}
         {UserFase.length === 0 && (
-          <button
-            style={{
-              alignSelf: 'stretch',
-              height: 44,
-              padding: 10,
-              background: '#43DB6D',
-              boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)',
-              borderRadius: 5,
-              justifyContent: 'center',
-              alignItems: 'center',
-              gap: 10,
-              display: 'flex',
-              border: 'none',
-              opacity: '50%',
-            }}
+          <S.AddAtivAtivado
           >
             <div
               style={{
@@ -677,9 +559,11 @@ const AtividadeCreate = () => {
             >
               Adicionar Atividade
             </div>
-          </button>
+          </S.AddAtivAtivado>
         )}
-      </div>
+      </S.CriarAtivArea>
+
+
       {modalTarefas && (
         <CreateAtividade
           close={() => {

@@ -3,52 +3,86 @@ import Menu from '../../../../components/Menu';
 import MenuCoord from '../../../../components/MenuCoord';
 import { useEffect, useState } from 'react';
 import { CreateAtividade } from '../../../../components/CreateAtividadeModal';
-import FaseData from '../../../../data/FaseData';
 import { CategoriasTipologias } from '../../../../components/CategoriaTipologias';
 import CategoriaData from '../../../../data/CategoriaData';
 import { TipologiaData } from '../../../../data/TipologiaData';
 import { IUserFase, UserModalAtividade } from '../../../../components/UserAtividadeModal';
 import { AtribuirModalAtividade, ILoteUser } from '../../../../components/AtribuirModalAtividade';
-import * as S from './style';
+import AtividadeData from '../../../../data/AtividadeData';
+import EtapaData from '../../../../data/EtapaData';
+import * as S from './styles';
 
-const AtividadeCreate = () => {
-  const { id } = useParams();
+const AtividadeEdit = () => {
+  const { id, idatv, iday } = useParams();
+  const atividade = AtividadeData.filter((atv) => atv.id === iday)[0];
   const navigate = useNavigate();
-
-  const [data, setData] = useState(new Date());
-
-  const [tarefas, setTarefas] = useState<typeof FaseData>([]);
-
-  
-  const [tarefasData, setTarefasData] = useState<any>([[], []]);
-
+  const [data, setData] = useState<Date>(atividade.data);
+  const atv = atividade.atividades.filter((atv) => {
+    return atv.id === idatv;
+  })[0];
+  const [tarefas, setTarefas] = useState<any>(atv?.faseData.map((fase:any) => fase.faseData));
+  const [tarefasData, setTarefasData] = useState<any>([[...tarefas], []]);
   const [categorias, setCategorias] = useState<typeof CategoriaData>([]);
   const [tipologias, setTipologias] = useState<typeof TipologiaData>([]);
-
-  const [UserFase, setUserFase] = useState<IUserFase[]>([]);
-
   const [name, setName] = useState('');
   const [nameFase, setFaseName] = useState('');
   const [idUser, setIdUser] = useState('');
   const [idFase, setIdFase] = useState<number>(0);
-
-  const [LoteUser, setLoteUser] = useState<ILoteUser[]>([]);
-
   const [modalTarefas, setModalTarefas] = useState(false);
   const [modalCatTipo, SetModalCatTipo] = useState(false);
   const [modalUsers, SetModalUsers] = useState(false);
   const [modalAtribuirLote, SetModalAtribuirLote] = useState(false);
-
   const [faseDatas, setFaseDatas] = useState<any[]>([]);
+  const [LoteUser, setLoteUser] = useState<any[]>([]);
+  const [UserFase, setUserFase] = useState<IUserFase[]>([]);
+  useEffect(() => {
+    setUserFase(
+      [
+        tarefas.map((tarefa: any) => {
+          return {
+            id_fase: tarefa.id,
+            users: atv?.faseData.filter((fase) => fase.faseData.id === tarefa.id)[0].users
+              ? atv?.faseData.filter((fase) => fase.faseData.id === tarefa.id)[0].users.map((use) => use.user)
+              : [],
+          };
+        }),
+      ][0],
+    );
+  }, []);
 
   useEffect(() => {
-    const newFaseDatas = tarefas.map((element) => ({
+    const updatedLoteUser: any[] = [];
+
+    UserFase.forEach((userFase: any) => {
+      userFase.users.forEach((user: any) => {
+        try {
+          const lote: any = atv?.faseData
+            .find((fase) => fase.faseData.id === userFase.id_fase && fase.users.some((us) => us.user.id === user.id))
+            ?.users.find((use) => use.user.id === user.id)
+            ?.Lotes.map((lo) => lo.lote);
+
+          updatedLoteUser.push({
+            id_fase: userFase.id_fase,
+            id_user: user.id,
+            lotes: [...lote],
+          });
+        } catch (error) {
+          console.log('');
+        }
+      });
+    });
+
+    setLoteUser(updatedLoteUser);
+  }, [UserFase]);
+
+  useEffect(() => {
+    const newFaseDatas = tarefas.map((element: any) => ({
       faseData: {
         tarefas: element,
         categoriasTipologias: [...categorias, ...tipologias],
         users: [
           UserFase.filter((loteUser) => loteUser.id_fase === element.id).map((users) =>
-            users.users.map((user) => ({
+            users.users.map((user: any) => ({
               user: user,
               Lotes: LoteUser.filter((lotes) => lotes.id_user === user.id).map((lote) => ({
                 check: false,
@@ -60,7 +94,7 @@ const AtividadeCreate = () => {
       },
     }));
     setFaseDatas(newFaseDatas);
-  }, [UserFase, UserFase, LoteUser]);
+  }, []);
 
   const handleData = (e: any) => {
     setData(e.target.value);
@@ -95,14 +129,27 @@ const AtividadeCreate = () => {
       atividade: [...faseDatas],
     };
 
+    console.log(atividadeFinal);
     navigate(`/Atividades/${id}`);
   };
+
+  function formatDate(date: Date) {
+    const d = new Date(date);
+    let month = '' + (d.getMonth() + 1);
+    let day = '' + d.getDate();
+    const year = d.getFullYear();
+
+    if (month.length < 2) month = '0' + month;
+    if (day.length < 2) day = '0' + day;
+
+    return [year, month, day].join('-');
+  }
 
   return (
     <>
       <Menu area={`/Categoria/${id}`} id_projeto={id}></Menu>
       <MenuCoord />
-      <S.CriarAtivArea>
+      <S.EditarAtivArea>
         <div
           style={{
             alignSelf: 'stretch',
@@ -131,7 +178,7 @@ const AtividadeCreate = () => {
                 display: 'inline-flex',
               }}
             >
-              <S.Titulo> Adicionar Atividade </S.Titulo>
+              <S.Titulo> Editar Atividade </S.Titulo>
             </div>
           </div>
           <button
@@ -151,7 +198,6 @@ const AtividadeCreate = () => {
               gap: 10,
               display: 'inline-flex',
               border: 'none',
-              backgroundColor: 'none',
             }}
           >
             <div
@@ -161,6 +207,8 @@ const AtividadeCreate = () => {
             </div>
           </button>
         </div>
+
+
         <S.EspecificacoesAtiv>
           <S.Data
             style={{
@@ -179,6 +227,7 @@ const AtividadeCreate = () => {
                 type="date"
                 name="Data"
                 onChange={handleData}
+                value={formatDate(data)}
                 style={{
                   fontFamily: 'Rubik',
                   width: 150,
@@ -198,21 +247,17 @@ const AtividadeCreate = () => {
           <S.Tarefas>
             <S.TituloBotaoAdd>
               <S.Titulo2>Tarefas</S.Titulo2>
-
-              <S.BotaoAdd
-                onClick={() => {
-                  setModalTarefas(!modalTarefas);
-                }}
-              >
-                <img src="/plus.svg" alt="adicionar atividade" />
-              </S.BotaoAdd>
-
+                <S.BotaoAdd
+                  onClick={() => {
+                    setModalTarefas(!modalTarefas);
+                  }}
+                >
+                  <img src="/plus.svg" alt="adicionar atividade" />
+                </S.BotaoAdd>
             </S.TituloBotaoAdd>
-
             <S.TarefasCardsArea>
-
               {tarefas.length > 0 &&
-                tarefas.map((fase) => {
+                tarefas.map((fase: any) => {
                   return (
                     <div
                       key={fase.id}
@@ -236,11 +281,10 @@ const AtividadeCreate = () => {
                           display: 'flex',
                         }}
                       >
-                        {fase.icone === '/icon-page/new.png' ? 
-                        <img src={'/icon-page/new.png'} width={28} height={28} alt=""/> : 
-                        <img src={`/icon-medium/${fase.titulo}.png`} alt="" />
+                        {fase.icone === '/icon-page/new.png' && 
+                          <img src={'/icon-page/new.png'} width={28} height={28} alt=""/>
                         }
-
+                        <img src={`/icon-medium/${fase.titulo}.png`} alt="" />
                       </div>
                       <h2
                         style={{
@@ -262,7 +306,6 @@ const AtividadeCreate = () => {
           <S.CategTipol>
             <S.TituloBotaoAdd>
               <S.Titulo2>Categorias e Tipologias</S.Titulo2>
-
               <S.BotaoAdd
                 onClick={() => {
                   SetModalCatTipo(!modalCatTipo);
@@ -270,7 +313,6 @@ const AtividadeCreate = () => {
               >
                 <img src="/plus.svg" alt="adicionar atividade" />
               </S.BotaoAdd>
-              
             </S.TituloBotaoAdd>
             <div
               style={{
@@ -315,7 +357,7 @@ const AtividadeCreate = () => {
                   );
                 })}
               {tipologias.length > 0 &&
-                tipologias.map((tipo) => {
+                tipologias.map((tipo: any) => {
                   return (
                     <div
                       key={tipo.id}
@@ -353,7 +395,6 @@ const AtividadeCreate = () => {
           <S.Usuarios>
             <S.TituloBotaoAdd>
               <S.Titulo2>Usuários</S.Titulo2>
-
               {/* BOTÃO ATIVADO */}
               {tarefas.length > 0 && (
                 <S.BotaoAdd
@@ -371,175 +412,176 @@ const AtividadeCreate = () => {
                   <img src="/plus.svg" alt="adicionar atividade" style={{ opacity: '50%' }} />
                 </S.BotaoAdd>
               )}
-
             </S.TituloBotaoAdd>
-
             <S.UsuariosPorFase>
-
-              {UserFase.map((f) => {
+              {UserFase.map((f, index) => {
                 return (
                   <S.UsuariosDeUmaFase key={f.id_fase}>
                     <S.IconeTituloFase >
-                      <img src={`/icon-medium/${tarefas.filter((tarefa) => tarefa.id === f.id_fase)[0].titulo}.png`} alt="" />
+                      <img src={`/icon-medium/${tarefas.filter((tarefa:any) => tarefa.id === f.id_fase)[0].titulo}.png`} alt="" />
 
-                      {tarefas.filter((tarefa) => tarefa.id === f.id_fase)[0].icone === '/icon-page/new.png' &&
+                      {tarefas.filter((tarefa:any) => tarefa.id === f.id_fase)[0].icone === '/icon-page/new.png' &&
                         <img src={'/icon-page/new.png'} style={{marginLeft: '-16px'}} width={28} height={28} alt=''></img>
                       }
-          
-                      <h3>{tarefas.filter((tarefa) => tarefa.id === f.id_fase)[0].titulo}</h3>
+
+                      <h3>{tarefas.filter((tarefa:any) => tarefa.id === f.id_fase)[0].titulo}</h3>
                     </S.IconeTituloFase>
 
                     {f.users.map((user: any) => {
-                      return (
-                        <div
-                          key={user.id}
-                          style={{
-                            width: '100%',
-                            padding: 16,
-                            background: '#393E4B',
-                            borderRadius: 5,
-                            flexDirection: 'column',
-                            gap: '2em',
-                            display: 'flex',
-                          }}
-                        >
+                      if (user != undefined) {
+                        return (
                           <div
+                            key={user.id}
                             style={{
-                              justifyContent: 'space-between',
-                              alignItems: 'center',
-                              gap: 16,
+                              width: '100%',
+                              padding: 16,
+                              background: '#393E4B',
+                              borderRadius: 5,
+                              flexDirection: 'column',
+                              gap: '2em',
                               display: 'flex',
                             }}
                           >
-                            <div style={{ justifyContent: 'flex-start', alignItems: 'center', gap: 16, display: 'flex' }}>
-                              <img
-                                style={{
-                                  width: 32,
-                                  height: 32,
-                                  background: 'linear-gradient(0deg, #D9D9D9 0%, #D9D9D9 100%)',
-                                  borderRadius: 9999,
-                                  border: '0.50px #191C24 solid',
-                                  objectFit: 'cover',
-                                }}
-                                src={user.url}
-                                alt=""
-                              />
+                            <div
+                              style={{
+                                justifyContent: 'space-between',
+                                alignItems: 'center',
+                                gap: 16,
+                                display: 'flex',
+                              }}
+                            >
                               <div
-                                style={{
-                                  color: 'white',
-                                  fontSize: 12,
-                                  fontFamily: 'Rubik',
-                                  fontWeight: '500',
-                                  wordWrap: 'break-word',
-                                }}
+                                style={{ justifyContent: 'flex-start', alignItems: 'center', gap: 16, display: 'flex' }}
                               >
-                                {user.name}
+                                <img
+                                  style={{
+                                    width: 32,
+                                    height: 32,
+                                    background: 'linear-gradient(0deg, #D9D9D9 0%, #D9D9D9 100%)',
+                                    borderRadius: 9999,
+                                    border: '0.50px #191C24 solid',
+                                    objectFit: 'cover',
+                                  }}
+                                  src={user.url}
+                                  alt=""
+                                />
+                                <div
+                                  style={{
+                                    color: 'white',
+                                    fontSize: 12,
+                                    fontFamily: 'Rubik',
+                                    fontWeight: '500',
+                                    wordWrap: 'break-word',
+                                  }}
+                                >
+                                  {user.name}
+                                </div>
                               </div>
-                            </div>
-                            <div style={{ gap: 16, display: 'flex' }}>
-                              <div
-                                style={{
-                                  padding: 8,
-                                  background: '#43DB6D',
-                                  borderRadius: 5,
-                                  gap: 10,
-                                  display: 'flex',
-                                  border: 'none',
-                                }}
-                              >
+                              <div style={{ gap: 16, display: 'flex' }}>
                                 <button
                                   onClick={() => {
-                                    setFaseName(tarefas.filter((tarefa) => tarefa.id === f.id_fase)[0].icone);
+                                    setFaseName(tarefas.filter((tarefa: any) => tarefa.id === f.id_fase)[0].icone);
                                     setName(user.name);
                                     setIdUser(user.id);
                                     setIdFase(f.id_fase);
                                     SetModalAtribuirLote(true);
                                   }}
                                   style={{
-                                    color: '#191C24',
-                                    fontSize: 12,
-                                    fontFamily: 'Rubik',
-                                    fontWeight: '500',
-                                    wordWrap: 'break-word',
+                                    padding: 8,
+                                    background: '#43DB6D',
+                                    borderRadius: 5,
+                                    gap: 10,
+                                    display: 'flex',
                                     border: 'none',
-                                    backgroundColor: 'transparent',
                                   }}
                                 >
-                                  Atribuir Lote
+                                  <div
+                                    style={{
+                                      color: '#191C24',
+                                      fontSize: 12,
+                                      fontFamily: 'Rubik',
+                                      fontWeight: '500',
+                                      wordWrap: 'break-word',
+                                    }}
+                                  >
+                                    Atribuir Lote
+                                  </div>
                                 </button>
                               </div>
                             </div>
+                            <div style={{ gap: 8, display: 'flex', flexWrap: 'wrap' }}>
+                              {LoteUser.filter((lote) => lote.id_user === user.id && lote.id_fase === f.id_fase).length >
+                                0 &&
+                                LoteUser.filter((lotes) => lotes.id_user === user.id && lotes.id_fase === f.id_fase).map(
+                                  (lote) => {
+                                    return (
+                                      <div key={lote.id_fase} style={{ gap: 8, display: 'flex', flexWrap: 'wrap' }}>
+                                        {lote.lotes &&
+                                          lote.lotes.map((loteUser: any) => {
+                                            if (loteUser != undefined) {
+                                              return (
+                                                <div
+                                                  key={loteUser.id}
+                                                  style={{
+                                                    height: 30,
+                                                    paddingLeft: 9,
+                                                    paddingRight: 9,
+                                                    paddingTop: 8,
+                                                    paddingBottom: 8,
+                                                    background: '#191C24',
+                                                    borderRadius: 5,
+                                                    justifyContent: 'center',
+                                                    alignItems: 'center',
+                                                    gap: 10,
+                                                    display: 'flex',
+                                                  }}
+                                                >
+                                                  <div
+                                                    style={{
+                                                      color: 'white',
+                                                      fontSize: 12,
+                                                      fontFamily: 'Rubik',
+                                                      fontWeight: '500',
+                                                    }}
+                                                  >
+                                                    {`Lote ${loteUser.numero}`}
+                                                  </div>
+
+                                                  {EtapaData.filter((etapa) => loteUser.id_etapa === etapa.id)[0] && EtapaData.filter((etapa) => loteUser.id_etapa === etapa.id)[0]
+                                                    .id_fase !== f.id_fase && (
+                                                    <img src="/ok.svg" alt="" height={12} width={12} />
+                                                  )}
+                                                </div>
+                                              );
+                                            }
+                                          })}
+                                      </div>
+                                    );
+                                  },
+                                )}
+                            </div>
                           </div>
-
-
-
-                          <div style={{ gap: 8, display: 'flex', flexWrap: 'wrap' }}>
-                            {LoteUser.filter((lote) => lote.id_user === user.id && lote.id_fase === f.id_fase).length >
-                              0 &&
-                              LoteUser.filter((lote) => lote.id_user === user.id && lote.id_fase === f.id_fase).map(
-                                (lote) => {
-                                  return (
-                                    <div key={lote.id_fase} style={{ gap: 8, display: 'flex', flexWrap: 'wrap' }}>
-                                      {lote.lotes.map((loteUser: any) => {
-                                        return (
-                                          <div
-                                            key={loteUser.id}
-                                            style={{
-                                              height: 30,
-                                              paddingLeft: 9,
-                                              paddingRight: 9,
-                                              paddingTop: 8,
-                                              paddingBottom: 8,
-                                              background: '#191C24',
-                                              borderRadius: 5,
-                                              justifyContent: 'center',
-                                              alignItems: 'center',
-                                              gap: 10,
-                                              display: 'flex',
-                                            }}
-                                          >
-                                            <div
-                                              style={{
-                                                color: 'white',
-                                                fontSize: 12,
-                                                fontFamily: 'Rubik',
-                                                fontWeight: '500',
-                                              }}
-                                            >
-                                              {`Lote ${loteUser.numero}`}
-                                            </div>
-                                          </div>
-                                        );
-                                      })}
-                                    </div>
-                                  );
-                                },
-                              )}
-                          </div>
-                        </div>
-                      );
+                        );
+                      }
                     })}
                   </S.UsuariosDeUmaFase>
                 );
               })}
             </S.UsuariosPorFase>
           </S.Usuarios>
-
         </S.EspecificacoesAtiv>
         {/* BOTÃO DE SALVAR */}
         {UserFase.length > 0 && (
-          <S.AddAtivAtivado onClick={handleSave}>
-            Adicionar Atividade
-          </S.AddAtivAtivado>
+          <S.EditAtivAtivado onClick={handleSave}>
+            Editar Atividade
+          </S.EditAtivAtivado>
         )}
         {UserFase.length === 0 && (
-          <S.AddAtivDesativado>
-            Adicionar Atividade
-          </S.AddAtivDesativado>
+          <S.EditAtivDesativado>
+            Editar Atividade
+          </S.EditAtivDesativado>
         )}
-      </S.CriarAtivArea>
-
-
+      </S.EditarAtivArea>
       {modalTarefas && (
         <CreateAtividade
           close={() => {
@@ -597,4 +639,4 @@ const AtividadeCreate = () => {
   );
 };
 
-export default AtividadeCreate;
+export default AtividadeEdit;

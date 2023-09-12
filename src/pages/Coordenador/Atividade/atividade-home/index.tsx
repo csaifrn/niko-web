@@ -140,6 +140,7 @@ const Atividade = () => {
                                 right: '2em',
                                 border: 'none',
                               }}
+                              
                             >
                               <PencilSimple size={16} weight="fill" color="#fff" />
                             </S.Edit>
@@ -252,7 +253,7 @@ const Atividade = () => {
                         {atv.faseData.map((fase, indexfase) => {
                           let cont = 0;
                           return (
-                            <div>
+                            <div key={indexfase}>
                               {fase.users?.map((user) => {
                                 if (user.user.email === auth.email) {
                                   return (

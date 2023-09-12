@@ -16,7 +16,7 @@ import Projetos from './pages/Projeto/projeto-home';
 import CreateProjeto from './pages/Projeto/projeto-create';
 import Atividade from './pages/Coordenador/Atividade/atividade-home';
 import AtividadeCreate from './pages/Coordenador/Atividade/atividade-create';
-import AtividadeEdit from './pages/Coordenador/Atividade/ativiade-edit';
+import AtividadeEdit from './pages/Coordenador/Atividade/atividade-edit';
 import Painel from './pages/Coordenador/Painel';
 import Perfil from './pages/Perfil';
 import LoteDetails from './components/LoteDetails';

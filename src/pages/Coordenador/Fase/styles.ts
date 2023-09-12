@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import media from 'styled-media-query';
 
 // Create a Title component that'll render an <h1> tag with some styles
 const Title = styled.a`
@@ -22,6 +23,11 @@ const Main = styled.section`
   justify-items: center;
   justify-content: center;
   grid-gap: 1.25em;
+
+  ${media.greaterThan('large')`
+    margin-top: 16em;
+    flex-direction: row;
+  `}
 `;
 
 const FooterHome = styled.footer`

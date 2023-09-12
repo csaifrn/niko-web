@@ -3,7 +3,6 @@ import styled from 'styled-components';
 export const Wrapper = styled.div`
   height: 100%;
   width: 100%;
-  margin: 6.5em 2em 2em 2em;
   gap: 2em;
   select {
     -webkit-appearance: none;
@@ -147,7 +146,7 @@ export const DataFaseDois = styled.div`
 
 export const QtdLotes = styled.p`
   color: ${({ theme }) => theme.colors.white};
-  font-family: Rubik;
+  font-family: 'Rubik';
   font-style: normal;
   font-weight: 500;
   font-size: 20px;
@@ -155,21 +154,21 @@ export const QtdLotes = styled.p`
 
 export const DataFaseTxt = styled.div`
   color: ${({ theme }) => theme.colors.white};
-  font-family: Rubik;
+  font-family: 'Rubik';
   font-style: normal;
   font-weight: 500;
 `;
 
 export const NumberTxt = styled.p`
   color: ${({ theme }) => theme.colors.white};
-  font-family: Rubik;
+  font-family: 'Rubik';
   font-style: normal;
   font-weight: 500;
 `;
 
 export const DataFaseTxtCenter = styled.p`
   color: ${({ theme }) => theme.colors.white};
-  font-family: Rubik;
+  font-family: 'Rubik';
   font-style: normal;
   text-align: center;
   font-weight: 500;

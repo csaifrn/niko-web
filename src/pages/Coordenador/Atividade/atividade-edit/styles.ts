@@ -1,10 +1,10 @@
 import styled from 'styled-components';
 import media from 'styled-media-query';
 
-export const CriarAtivArea = styled.div`
+export const EditarAtivArea = styled.div`
   font-family: 'Rubik';
   margin: 2em;
-  border-radius: 5;
+  border-radius: 5px;
   flex-direction: column;
   display: flex;
   gap: 2em;
@@ -129,7 +129,7 @@ export const EspecificacoesAtiv = styled.div`
 
 export const Data = styled.div``;
 
-export const AddAtivAtivado = styled.button`
+export const EditAtivAtivado = styled.button`
   font-family: 'Rubik';
   font-weight: 500;
   align-self: stretch;
@@ -149,7 +149,7 @@ export const AddAtivAtivado = styled.button`
     `}
 `;
 
-export const AddAtivDesativado = styled.button`
+export const EditAtivDesativado = styled.button`
   font-family: 'Rubik';
   font-weight: 500;
   align-self: stretch;

@@ -95,7 +95,6 @@ const AtividadeCreate = () => {
       atividade: [...faseDatas],
     };
 
-    console.log(atividadeFinal);
     navigate(`/Atividades/${id}`);
   };
 
@@ -377,8 +376,7 @@ const AtividadeCreate = () => {
 
               {/* BOTÃO DESATIVADO */}
               {tarefas.length === 0 && (
-                <S.BotaoAdd
-                >
+                <S.BotaoAdd>
                   <img src="/plus.svg" alt="adicionar atividade" style={{ opacity: '50%' }} />
                 </S.BotaoAdd>
               )}
@@ -388,10 +386,16 @@ const AtividadeCreate = () => {
             <S.UsuariosPorFase>
 
               {UserFase.map((f) => {
+
+                console.log(tarefas.filter((tarefa) => tarefa.id === f.id_fase)[0].icone)
                 return (
                   <S.UsuariosDeUmaFase>
                     <S.IconeTituloFase key={f.id_fase}>
                       <img src={`/icon-medium/${tarefas.filter((tarefa) => tarefa.id === f.id_fase)[0].titulo}.png`} alt="" />
+
+                      {tarefas.filter((tarefa) => tarefa.id === f.id_fase)[0].icone === '/icon-page/new.png' &&
+                        <img src={'/icon-page/new.png'} alt=''></img>
+                      }
           
                       <h3>{tarefas.filter((tarefa) => tarefa.id === f.id_fase)[0].titulo}</h3>
                     </S.IconeTituloFase>

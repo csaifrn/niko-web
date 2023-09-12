@@ -7,12 +7,14 @@ import FaseData from '../../../data/FaseData';
 import { useParams } from 'react-router-dom';
 import * as S from './styles';
 import { ModalCriarLote } from '../../../components/ModalCrairLote';
+import { Toaster } from 'react-hot-toast';
 
 // import { Container } from './styles';
 
 const Preparo = () => {
   const { id } = useParams();
   const [openCriarModal, setOpenCriarModal] = useState(false);
+
   return (
     <>
       <Menu area={`/Fase/${id}/Board/Preparo`} id_projeto={id}></Menu>

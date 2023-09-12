@@ -11,6 +11,7 @@ import { ErrorsForm } from './criar.interface';
 import ReactLoading from 'react-loading';
 import { CheckCircle } from '@phosphor-icons/react';
 import theme from '../../global/theme';
+import toast, { Toaster } from 'react-hot-toast';
 
 interface ModalCriarProps {
   close: () => void;
@@ -38,7 +39,9 @@ export const ModalCriarLote = (props: ModalCriarProps) => {
   }, [closing]);
 
   const handleOk = () => {
-    setCriar(true);
+    setSettlement_project('');
+    setLoading(false);
+
     setTimeout(() => {
       handleClose();
     }, 300);
@@ -48,15 +51,20 @@ export const ModalCriarLote = (props: ModalCriarProps) => {
     setClosing(true);
     setTimeout(() => {
       props.close();
-    }, 1000);
+    }, 300);
   };
 
   const loginMutation = useMutation(CreateBatche, {
     onSuccess: (data: CreateResponseBatche) => {
-      console.log(data);
-      setLoading(false);
+      toast.success('Lote Criado!', {
+        style: {
+          borderRadius: '5px',
+          background: theme.colors['gray/500'],
+          color: '#fff',
+          fontFamily: 'Rubik',
+        },
+      });
       handleOk();
-
       // TODO: store user on context state
     },
     onError: (error: ApiError) => {
@@ -95,7 +103,6 @@ export const ModalCriarLote = (props: ModalCriarProps) => {
     const isValid = await validateForm();
 
     if (isValid) {
-      setSettlement_project('');
       loginMutation.mutate({
         settlement_project,
       });
@@ -119,6 +126,7 @@ export const ModalCriarLote = (props: ModalCriarProps) => {
               <S.InputText
                 placeholder="Nome do Lote"
                 onChange={(e) => setSettlement_project(e.currentTarget.value)}
+                value={settlement_project}
                 name="settlement_project"
                 className="settlement_project"
               />
@@ -139,6 +147,7 @@ export const ModalCriarLote = (props: ModalCriarProps) => {
             </S.FormCriar>
           </S.ModalContent>
         </S.ModalArea>
+        <Toaster position="bottom-right" reverseOrder={false} />
       </S.ModalBackdrop>
     </>
   );

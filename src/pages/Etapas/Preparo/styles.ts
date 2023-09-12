@@ -2,13 +2,15 @@ import styled from 'styled-components';
 
 export const Btn = styled.button`
   padding: 0.5em 2em;
-  flex: 1;
-  margin: 0.5em 2em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin-bottom: 2em;
   height: 44px;
   background-color: #43db6d;
   border-radius: 5px;
   border: none;
-  color: white;
   font-weight: bold;
   :hover {
   }
@@ -19,4 +21,14 @@ export const Btn = styled.button`
     font-family: 'Rubik';
     color: ${({ theme }) => theme.colors['gray/700']};
   }
+`;
+
+export const Wrapper = styled.div`
+  font-family: 'Rubik';
+  background-color: #0a090e;
+  width: 100vw;
+  padding: 0 2em;
+  margin-top: 8em;
+  overflow: hidden;
+  min-height: 550px;
 `;

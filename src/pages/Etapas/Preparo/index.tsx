@@ -19,7 +19,7 @@ const Preparo = () => {
     <>
       <Menu area={`/Fase/${id}/Board/Preparo`} id_projeto={id}></Menu>
       <MenuCoord />
-      <Style.Wrapper>
+      <S.Wrapper>
         {true && (
           <S.Btn
             onClick={() => {
@@ -31,7 +31,7 @@ const Preparo = () => {
         )}
         <Board fase={FaseData[0]} titulo="preparo" />
         <Style.Footer></Style.Footer>
-      </Style.Wrapper>
+      </S.Wrapper>
       {openCriarModal && <ModalCriarLote close={() => setOpenCriarModal(!openCriarModal)} />}
     </>
   );

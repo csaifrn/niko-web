@@ -41,10 +41,11 @@ export const ModalCriarLote = (props: ModalCriarProps) => {
   const handleOk = () => {
     setSettlement_project('');
     setLoading(false);
+    setCriar(true);
 
     setTimeout(() => {
       handleClose();
-    }, 300);
+    }, 2000);
   };
 
   const handleClose = () => {
@@ -113,42 +114,47 @@ export const ModalCriarLote = (props: ModalCriarProps) => {
 
   return (
     <>
-      <S.ModalBackdrop>
-        <S.ModalArea id="modal-scaling">
-          <S.ModalContent>
-            <S.NameClose>
-              <h2>Criar Lote</h2>
-              <S.Exit type="button" onClick={handleClose}>
-                <img src="/close.svg" alt="" height={18} width={18} />
-              </S.Exit>
-            </S.NameClose>
-            <S.FormCriar onSubmit={onSubmit}>
-              <S.InputText
-                placeholder="Nome do Lote"
-                onChange={(e) => setSettlement_project(e.currentTarget.value)}
-                value={settlement_project}
-                name="settlement_project"
-                className="settlement_project"
-              />
-              {validationFormError.settlement_project && (
-                <ErrorMessage>{validationFormError.settlement_project}</ErrorMessage>
-              )}
+      <S.Toaster>
+        {criar == false && (
+          <S.ModalBackdrop>
+            <S.ModalArea id="modal-scaling">
+              <S.ModalContent>
+                <S.NameClose>
+                  <h2>Criar Lote</h2>
+                  <S.Exit type="button" onClick={handleClose}>
+                    <img src="/close.svg" alt="" height={18} width={18} />
+                  </S.Exit>
+                </S.NameClose>
+                <S.FormCriar onSubmit={onSubmit}>
+                  <S.InputText
+                    placeholder="Nome do Lote"
+                    onChange={(e) => setSettlement_project(e.currentTarget.value)}
+                    value={settlement_project}
+                    name="settlement_project"
+                    className="settlement_project"
+                  />
+                  {validationFormError.settlement_project && (
+                    <ErrorMessage>{validationFormError.settlement_project}</ErrorMessage>
+                  )}
 
-              {criar! ? (
-                <S.Criar type="submit" disabled>
-                  <CheckCircle weight="fill" color={theme.colors['gray/700']} height={28} width={28} />
-                </S.Criar>
-              ) : (
-                <S.Criar type="submit">
-                  {loading ? <ReactLoading type="cylon" color="white" height={30} width={30} /> : 'Criar Lote'}
-                </S.Criar>
-              )}
-              {responseError && <ErrorMessage>{responseError}</ErrorMessage>}
-            </S.FormCriar>
-          </S.ModalContent>
-        </S.ModalArea>
-        <Toaster position="bottom-right" reverseOrder={false} />
-      </S.ModalBackdrop>
+                  {criar! ? (
+                    <S.Criar type="submit" disabled>
+                      <CheckCircle weight="fill" color={theme.colors['gray/700']} height={28} width={28} />
+                    </S.Criar>
+                  ) : (
+                    <S.Criar type="submit">
+                      {loading ? <ReactLoading type="cylon" color="white" height={30} width={30} /> : 'Criar Lote'}
+                    </S.Criar>
+                  )}
+                  {responseError && <ErrorMessage>{responseError}</ErrorMessage>}
+                </S.FormCriar>
+              </S.ModalContent>
+            </S.ModalArea>
+          </S.ModalBackdrop>
+        )}
+
+        <Toaster position="top-center" reverseOrder={true} />
+      </S.Toaster>
     </>
   );
 };

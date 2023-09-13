@@ -7,7 +7,6 @@ import FaseData from '../../../data/FaseData';
 import { useParams } from 'react-router-dom';
 import * as S from './styles';
 import { ModalCriarLote } from '../../../components/ModalCrairLote';
-import { Toaster } from 'react-hot-toast';
 
 // import { Container } from './styles';
 

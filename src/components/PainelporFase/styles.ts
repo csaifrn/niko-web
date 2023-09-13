@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import media from 'styled-media-query';
 
 export const Wrapper = styled.div`
   height: 100%;
@@ -65,7 +66,19 @@ export const Container = styled.div`
   @media (min-width: 520px) {
     display: grid;
     gap: 1.5em;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+`;
+
+export const TodasAsFases = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 1.5em;
+  width: 100%;
+  @media (min-width: 520px) {
+    display: grid;
+    gap: 1.5em;
+    grid-template-columns: 1fr 1fr 1fr;
   }
 `;
 
@@ -105,7 +118,10 @@ export const NumberRed = styled.span`
 export const NumberTextData = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 0.5em;
+  gap: 16px;
+  ${media.greaterThan('large')`
+    flex-direction: row;
+  `}
 `;
 
 export const NumberTextDataUnic = styled.div`
@@ -125,7 +141,7 @@ export const NumberTextDataUnic = styled.div`
 export const NumberName = styled.div`
   display: flex;
   align-items: center;
-  gap: 1em;
+  gap: 8px;
 `;
 
 export const ContainerImg = styled.img``;
@@ -135,13 +151,19 @@ export const DataFase = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
 `;
 
 export const DataFaseDois = styled.div`
   display: grid;
   width: 100%;
   grid-template-columns: 1fr 1fr;
+  grid-column: span 2;
   gap: 1em;
+  @media (min-width: 520px) {
+    grid-rows: 1;
+    grid-column: span 2;
+  }
 `;
 
 export const QtdLotes = styled.p`

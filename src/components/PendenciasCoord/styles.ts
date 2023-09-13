@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import media from 'styled-media-query';
 
 export const Wrapper = styled.div`
   height: 100%;
@@ -75,6 +76,8 @@ export const ContainerDataDependencias = styled.div`
   gap: 1rem;
   border-radius: 5px;
   overflow-x: auto;
+  ${media.greaterThan('large')`
+  `}
 `;
 
 export const NumberOrange = styled.span`

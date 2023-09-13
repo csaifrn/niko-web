@@ -41,31 +41,34 @@ export const PainelPorFase = () => {
 
           <S.Filter type="week" />
         </S.ContainerFilterNumber>
-        <S.DataFaseDois>
-          <S.ContainerDataFase>
-            <S.ContainerImg src="/icon-big/Recebimento_icon.svg" />
-            <S.DataFase>
-              <S.NumberTextDataUnic>
-                <S.DataFaseTxtCenter>
-                  <S.NumberGreen>{valores.filter((valor) => valor.fase === 1)[0].concluidos}</S.NumberGreen>
-                </S.DataFaseTxtCenter>
-                <S.DataFaseTxtCenter>Remessas Recebidas</S.DataFaseTxtCenter>
-              </S.NumberTextDataUnic>
-            </S.DataFase>
-          </S.ContainerDataFase>
-          <S.ContainerDataFase>
-            <S.ContainerImg src="/icon-big/Arquivamento_icon.svg" />
-            <S.DataFase>
-              <S.NumberTextDataUnic>
-                <S.DataFaseTxtCenter>
-                  <S.NumberGreen>{valores.filter((valor) => valor.fase === 6)[0].concluidos}</S.NumberGreen>
-                </S.DataFaseTxtCenter>
-                <S.DataFaseTxtCenter>Concluídos</S.DataFaseTxtCenter>
-              </S.NumberTextDataUnic>
-            </S.DataFase>
-          </S.ContainerDataFase>
-        </S.DataFaseDois>
+        
         <S.Container>
+
+          <S.DataFaseDois>
+            <S.ContainerDataFase>
+              <S.ContainerImg src="/icon-big/Recebimento_icon.svg" />
+              <S.DataFase>
+                <S.NumberTextDataUnic>
+                  <S.DataFaseTxtCenter>
+                    <S.NumberGreen>{valores.filter((valor) => valor.fase === 1)[0].concluidos}</S.NumberGreen>
+                  </S.DataFaseTxtCenter>
+                  <S.DataFaseTxtCenter>Remessas Recebidas</S.DataFaseTxtCenter>
+                </S.NumberTextDataUnic>
+              </S.DataFase>
+            </S.ContainerDataFase>
+            <S.ContainerDataFase>
+              <S.ContainerImg src="/icon-big/Arquivamento_icon.svg" />
+              <S.DataFase>
+                <S.NumberTextDataUnic>
+                  <S.DataFaseTxtCenter>
+                    <S.NumberGreen>{valores.filter((valor) => valor.fase === 6)[0].concluidos}</S.NumberGreen>
+                  </S.DataFaseTxtCenter>
+                  <S.DataFaseTxtCenter>Concluídos</S.DataFaseTxtCenter>
+                </S.NumberTextDataUnic>
+              </S.DataFase>
+            </S.ContainerDataFase>
+          </S.DataFaseDois>
+        
           <S.ContainerDataFase>
             <S.ContainerImg src="/icon-big/Preparo_icon.svg" />
             <S.DataFase>
@@ -155,6 +158,7 @@ export const PainelPorFase = () => {
             </S.DataFase>
           </S.ContainerDataFase>
         </S.Container>
+
       </S.ContainerData>
     </S.Wrapper>
   );

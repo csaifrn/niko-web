@@ -5,7 +5,7 @@ export const Titulo2 = styled.h2`
 `;
 
 export const ModalContent = styled.div`
-  z-index: 9999990;
+  z-index: 100;
   padding: 2em;
   color: white;
   transition: transform 0.9s ease-in-out;

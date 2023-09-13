@@ -71,7 +71,7 @@ const Atividade = () => {
             paddingTop: '80px',
             display: 'flex',
             alignItems: 'center',
-            zIndex: '999',
+            zIndex: '98',
             justifyContent: 'space-between',
             backgroundColor: '#0a090e',
           }}

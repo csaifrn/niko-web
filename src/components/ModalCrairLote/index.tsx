@@ -9,9 +9,7 @@ import { ApiError } from '../../api/services/authentication/signIn/signIn.interf
 import * as Yup from 'yup';
 import { ErrorsForm } from './criar.interface';
 import ReactLoading from 'react-loading';
-import { CheckCircle } from '@phosphor-icons/react';
-import theme from '../../global/theme';
-import toast, { Toaster } from 'react-hot-toast';
+import toast from 'react-hot-toast';
 
 interface ModalCriarProps {
   close: () => void;
@@ -19,10 +17,8 @@ interface ModalCriarProps {
 
 export const ModalCriarLote = (props: ModalCriarProps) => {
   const [closing, setClosing] = useState(false);
-  const [loading, setLoading] = useState(false);
-  const [criar, setCriar] = useState(false);
   const [settlement_project, setSettlement_project] = useState('');
-  const [responseError, setResponseError] = useState('');
+  const [responseError] = useState('');
   const [validationFormError, setValidationFormError] = useState<ErrorsForm>({ settlement_project: '' });
 
   useEffect(() => {
@@ -38,14 +34,9 @@ export const ModalCriarLote = (props: ModalCriarProps) => {
     return () => clearTimeout(timer);
   }, [closing]);
 
-  const handleOk = () => {
+  const handleSucess = () => {
     setSettlement_project('');
-    setLoading(false);
-    setCriar(true);
-
-    setTimeout(() => {
-      handleClose();
-    }, 2000);
+    handleClose();
   };
 
   const handleClose = () => {
@@ -57,20 +48,11 @@ export const ModalCriarLote = (props: ModalCriarProps) => {
 
   const loginMutation = useMutation(CreateBatche, {
     onSuccess: (data: CreateResponseBatche) => {
-      toast.success('Lote Criado!', {
-        style: {
-          borderRadius: '5px',
-          background: theme.colors['gray/500'],
-          color: '#fff',
-          fontFamily: 'Rubik',
-        },
-      });
-      handleOk();
-      // TODO: store user on context state
+      toast.success('Lote Criado!');
+      handleSucess();
     },
     onError: (error: ApiError) => {
-      setLoading(false);
-      setResponseError(error.response?.data.message || 'Um erro inesperado ocorreu.');
+      toast.error(error.response!.data.message);
     },
   });
 
@@ -99,7 +81,6 @@ export const ModalCriarLote = (props: ModalCriarProps) => {
   };
 
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    setLoading(true);
     e.preventDefault();
     const isValid = await validateForm();
 
@@ -107,54 +88,43 @@ export const ModalCriarLote = (props: ModalCriarProps) => {
       loginMutation.mutate({
         settlement_project,
       });
-    } else {
-      setLoading(false);
     }
   };
 
   return (
     <>
-      <S.Toaster>
-        {criar == false && (
-          <S.ModalBackdrop>
-            <S.ModalArea id="modal-scaling">
-              <S.ModalContent>
-                <S.NameClose>
-                  <h2>Criar Lote</h2>
-                  <S.Exit type="button" onClick={handleClose}>
-                    <img src="/close.svg" alt="" height={18} width={18} />
-                  </S.Exit>
-                </S.NameClose>
-                <S.FormCriar onSubmit={onSubmit}>
-                  <S.InputText
-                    placeholder="Nome do Lote"
-                    onChange={(e) => setSettlement_project(e.currentTarget.value)}
-                    value={settlement_project}
-                    name="settlement_project"
-                    className="settlement_project"
-                  />
-                  {validationFormError.settlement_project && (
-                    <ErrorMessage>{validationFormError.settlement_project}</ErrorMessage>
-                  )}
-
-                  {criar! ? (
-                    <S.Criar type="submit" disabled>
-                      <CheckCircle weight="fill" color={theme.colors['gray/700']} height={28} width={28} />
-                    </S.Criar>
-                  ) : (
-                    <S.Criar type="submit">
-                      {loading ? <ReactLoading type="cylon" color="white" height={30} width={30} /> : 'Criar Lote'}
-                    </S.Criar>
-                  )}
-                  {responseError && <ErrorMessage>{responseError}</ErrorMessage>}
-                </S.FormCriar>
-              </S.ModalContent>
-            </S.ModalArea>
-          </S.ModalBackdrop>
-        )}
-
-        <Toaster position="top-center" reverseOrder={true} />
-      </S.Toaster>
+      <S.ModalBackdrop>
+        <S.ModalArea id="modal-scaling">
+          <S.ModalContent>
+            <S.NameClose>
+              <h2>Criar Lote</h2>
+              <S.Exit type="button" onClick={handleClose}>
+                <img src="/close.svg" alt="" height={18} width={18} />
+              </S.Exit>
+            </S.NameClose>
+            <S.FormCriar onSubmit={onSubmit}>
+              <S.InputText
+                placeholder="Nome do Lote"
+                onChange={(e) => setSettlement_project(e.currentTarget.value)}
+                value={settlement_project}
+                name="settlement_project"
+                className="settlement_project"
+              />
+              {validationFormError.settlement_project && (
+                <ErrorMessage>{validationFormError.settlement_project}</ErrorMessage>
+              )}
+              {loginMutation.isLoading ? (
+                <S.Criar type="submit" disabled>
+                  <ReactLoading type="cylon" color="white" height={30} width={30} />
+                </S.Criar>
+              ) : (
+                <S.Criar type="submit">Criar Lote</S.Criar>
+              )}
+              {responseError && <ErrorMessage>{responseError}</ErrorMessage>}
+            </S.FormCriar>
+          </S.ModalContent>
+        </S.ModalArea>
+      </S.ModalBackdrop>
     </>
   );
 };

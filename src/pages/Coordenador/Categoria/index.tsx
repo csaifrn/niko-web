@@ -47,11 +47,14 @@ const Categoria = () => {
       <Menu area={`/Categoria/${id}`} id_projeto={id}></Menu>
       <MenuCoord />
       <S.CardsArea>
-        <Search searchTerm={searchTerm} handleSearchChange={handleSearchChange} />
-
-        {sortedAndFilteredCategorias.map((categoria: Categoria) => (
-          <CategoriaCard key={categoria.id} id={categoria.id} name={categoria.name} percentage={categoria.percentage} prioridade={categoria.prioridade}/>
-        ))}
+        <S.SearchDiv>
+          <Search searchTerm={searchTerm} handleSearchChange={handleSearchChange} />
+        </S.SearchDiv>
+        <S.CategoriaCardsArea>
+          {sortedAndFilteredCategorias.map((categoria: Categoria) => (
+            <CategoriaCard key={categoria.id} id={categoria.id} name={categoria.name} percentage={categoria.percentage} prioridade={categoria.prioridade}/>
+          ))}
+        </S.CategoriaCardsArea>
       </S.CardsArea>
     </>
   );

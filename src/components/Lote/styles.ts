@@ -9,7 +9,7 @@ const Lote = styled.div`
   border-radius: 5px;
   color: white;
   min-height: 80px;
-  max-width: 400px;
+  width: 100%;
   min-width: 230px;
 
   filter: drop-shadow(0px 4px 1px rgba(0, 0, 0, 0.25));

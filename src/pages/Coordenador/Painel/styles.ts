@@ -1,14 +1,6 @@
 import styled from 'styled-components';
 import media from 'styled-media-query';
 
-export const Wrapper = styled.div`
-  font-family: 'Rubik';
-  width: 100vw;
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-`;
-
 export const PainelArea = styled.div`
   display: flex;
   margin: 10em 2em 10em 2em;

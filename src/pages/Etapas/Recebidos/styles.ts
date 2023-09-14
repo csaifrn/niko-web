@@ -41,8 +41,11 @@ const Main = styled.section`
     scroll-behavior: auto;
     scrollbar-width: thin;
     height: 50vh;
+    flex-direction: row;
   }
   @media (min-width: 1000px) {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
   }
 `;
 

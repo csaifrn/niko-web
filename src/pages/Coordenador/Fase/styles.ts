@@ -16,8 +16,8 @@ const Wrapper = styled.section`
 `;
 
 const Main = styled.section`
-  margin: 2em 0;
-  margin-top: 8em;
+  margin: 2em 8em;
+  margin-top: 8.5em;
   display: grid;
   grid-template-columns: auto auto;
   justify-items: center;
@@ -25,8 +25,10 @@ const Main = styled.section`
   grid-gap: 1.25em;
 
   ${media.greaterThan('large')`
+    margin: 2em 40em;
     margin-top: 16em;
-    flex-direction: row;
+    grid-gap: 2.5em;
+    grid-template-columns: 1fr 1fr 1fr;
   `}
 `;
 

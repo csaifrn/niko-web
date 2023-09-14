@@ -60,7 +60,7 @@ export const DataFase = (Props: IDataFaseProps) => {
         </S.SideUser>
         <S.SideUser>
           <S.Fase>
-            <S.Icon src="/icon-page/Digitalizacao_icon.png"></S.Icon>
+            <S.Icon src="/icon-page/Digitalização_icon.png"></S.Icon>
             <div>
               <S.TotalFase>{Props.digitalizacao} Lotes</S.TotalFase>
               <S.PerecentageFase>{calPercentage(Props.digitalizacao)}%</S.PerecentageFase>

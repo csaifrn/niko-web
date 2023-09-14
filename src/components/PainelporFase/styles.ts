@@ -34,6 +34,10 @@ export const ContainerFilterNumber = styled.div`
   justify-content: space-between;
   align-items: center;
   align-self: stretch;
+  /* @media (min-width: 520px) {
+    justify-content: flex-start;
+    gap: 16px;
+  } */
 `;
 
 export const Filter = styled.input`
@@ -58,29 +62,7 @@ export const Opiton = styled.option`
   gap: 1rem;
 `;
 
-export const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 1.5em;
-  width: 100%;
-  @media (min-width: 520px) {
-    display: grid;
-    gap: 1.5em;
-    grid-template-columns: 1fr 1fr 1fr;
-  }
-`;
 
-export const TodasAsFases = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 1.5em;
-  width: 100%;
-  @media (min-width: 520px) {
-    display: grid;
-    gap: 1.5em;
-    grid-template-columns: 1fr 1fr 1fr;
-  }
-`;
 
 export const ContainerDataFase = styled.div`
   background-color: ${({ theme }) => theme.colors['gray/700']};
@@ -151,7 +133,19 @@ export const DataFase = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+`;
 
+export const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+  @media (min-width: 520px) {
+    display: flex;
+    gap: 16px;
+    flex-direction: row;
+    
+  }
 `;
 
 export const DataFaseDois = styled.div`
@@ -159,10 +153,23 @@ export const DataFaseDois = styled.div`
   width: 100%;
   grid-template-columns: 1fr 1fr;
   grid-column: span 2;
-  gap: 1em;
+  gap: 16px;
   @media (min-width: 520px) {
-    grid-rows: 1;
-    grid-column: span 2;
+    display: flex;
+    width: 50%;
+    flex-direction: column;
+  }
+`;
+
+export const FasesDoMeio = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  @media (min-width: 520px) {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    width: 100%;
   }
 `;
 

@@ -40,12 +40,10 @@ const Main = styled.section`
     overflow-y: scroll;
     scroll-behavior: auto;
     scrollbar-width: thin;
-    height: 50vh;
-    flex-direction: row;
+    height: 60vh;
+    flex-direction: column;
   }
   @media (min-width: 1000px) {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
   }
 `;
 

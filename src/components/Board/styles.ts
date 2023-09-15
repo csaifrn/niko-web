@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import media from 'styled-media-query';
 
 const kanban = styled.div`
   font-family: 'Rubik';
@@ -7,7 +8,7 @@ const kanban = styled.div`
   justify-content: start;
   gap: 16px;
   margin: 0 2em 2em 2em;
-  padding: 16px;
+  padding: 16px 0px 16px;
   scroll-behavior: auto;
   scrollbar-width: thin;
   overflow-x: scroll;
@@ -36,7 +37,7 @@ const kanban = styled.div`
 `;
 
 const kanbanSection = styled.div`
-  min-width: 280px;
+  min-width: 308px;
   gap: 1em;
   height: 60vh;
   padding: 1em;
@@ -58,7 +59,6 @@ const kanbanSection = styled.div`
     border-radius: 20px;
   }
   @media screen and (min-width: 1008px) {
-    width: 100%;
   }
 `;
 
@@ -116,11 +116,33 @@ const inputPrioridade = styled.input`
 `;
 
 export const divImg = styled.div`
-  margin: 0em 2em 0em 3em;
+  margin: 0em 2em 0em 2em;
   display: flex;
-  justify-content: flex-end;
+  justify-content: flex-start;
   gap: 0.5em;
+  ${media.greaterThan('large')`
+    display: none;
+  `}
 `;
+
+export const divImgMaior = styled.div`
+  margin: 0em 2em 0em 2em;
+  display: none;
+  justify-content: flex-start;
+  gap: 0.5em;
+  ${media.greaterThan('large')`
+    display: flex;
+    justify-content: center;
+  `}
+`;
+
+export const IconeFase = styled.img`
+  ${media.greaterThan('large')`
+  `}
+`;
+
+
+
 
 export const divTitulo = styled.div`
   display: flex;

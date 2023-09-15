@@ -17,7 +17,7 @@ const Wrapper = styled.div`
   font-family: 'Rubik';
   margin-top: 8em;
   background-color: #0a090e;
-  height: 100vh;
+  height: 80vh;
   width: 100vw;
   overflow: hidden;
   min-height: 550px;

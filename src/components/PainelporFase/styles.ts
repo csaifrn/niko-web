@@ -141,10 +141,10 @@ export const Container = styled.div`
   gap: 16px;
   width: 100%;
   @media (min-width: 520px) {
-    display: flex;
-    gap: 16px;
+    flex-direction: column;
+  }
+  @media (min-width: 620px) {
     flex-direction: row;
-    
   }
 `;
 
@@ -154,7 +154,7 @@ export const DataFaseDois = styled.div`
   grid-template-columns: 1fr 1fr;
   grid-column: span 2;
   gap: 16px;
-  @media (min-width: 520px) {
+  @media (min-width: 620px) {
     display: flex;
     width: 50%;
     flex-direction: column;
@@ -165,7 +165,7 @@ export const FasesDoMeio = styled.div`
   display: flex;
   flex-direction: column;
   gap: 16px;
-  @media (min-width: 520px) {
+  @media (min-width: 620px) {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 16px;

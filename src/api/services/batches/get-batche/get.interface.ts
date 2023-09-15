@@ -5,10 +5,16 @@ export interface GetBatcheParams {
 export interface GetResponseBatche {
   id: string;
   settlement_project: string;
-  created_at: Date;
-  updated_at: Date;
-  created_by: {
-    user_id: string;
-    name: string;
-  };
+  digital_files_count: number;
+  physical_files_count: number;
+  priority: number;
+  shelf_number: null | number;
+  created_at: string;
+  updated_at: string;
+  created_by: CreatedBy;
+}
+
+export interface CreatedBy {
+  user_id: string;
+  name: string;
 }

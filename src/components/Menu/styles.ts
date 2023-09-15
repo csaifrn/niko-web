@@ -1,6 +1,23 @@
 import styled from 'styled-components';
 
 const MenuImg = styled.img``;
+export const MenuLupa = styled.img`
+  @media screen and (min-width: 1008px) {
+    width: 24px;
+  }
+`;
+
+export const LinkLogo = styled.a`
+  @media screen and (max-width: 1008px) {
+    display: none;
+  }
+`;
+
+export const MenuLupaMobile = styled.img`
+  @media screen and (min-width: 1008px) {
+    display: none;
+  }
+`;
 
 const MenuLeft = styled.div`
   display: flex;
@@ -19,7 +36,7 @@ const MenuArea = styled.nav`
   justify-content: space-between;
   gap: 20px;
   height: 80px;
-  z-index: 9999;
+  z-index: 99;
 `;
 
 interface BurgerProps {
@@ -28,10 +45,20 @@ interface BurgerProps {
 
 const ButtonBurger = styled.a<BurgerProps>`
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  border-radius: 5px;
   z-index: 0;
+  border: 1px solid ${({ theme }) => theme.colors['gray/500']};
+  padding: 8px;
+  background-color: ${({ theme }) => theme.colors['gray/700']};
 
   &:focus {
     outline: none;
+  }
+
+  &:hover {
+    background-color: #12141a;
   }
 
   img {
@@ -65,6 +92,50 @@ const StyledMenu = styled.nav<BurgerProps>`
 
 const ContainerA = styled.div`
   width: 74px;
+  display: flex;
+  gap: 4em;
+  align-items: center;
+`;
+
+export const ContainerLogo = styled.div`
+  width: 74px;
+  display: flex;
+  gap: 2em;
+  align-items: center;
+  @media screen and (min-width: 1008px) {
+    display: none;
+  }
 `;
 
 export { MenuImg, MenuArea, MenuLeft, ButtonBurger, StyledMenu, ContainerA };
+
+export const MenuDesk = styled.div`
+  display: none;
+  gap: 2em;
+
+  @media screen and (min-width: 1008px) {
+    display: flex;
+  }
+`;
+
+export const InputSearch = styled.button`
+  font-family: 'Rubik';
+  display: flex;
+  min-width: 200px;
+  justify-content: space-between;
+  color: ${({ theme }) => theme.colors['white']};
+  border-radius: 5px;
+  align-items: center;
+  padding: 0 16px;
+  border: 1px solid ${({ theme }) => theme.colors['gray/500']};
+  background-color: ${({ theme }) => theme.colors['gray/700']};
+  transition: all 0.3s;
+
+  &:hover {
+    background-color: #12141a;
+  }
+
+  @media screen and (max-width: 1008px) {
+    display: none;
+  }
+`;

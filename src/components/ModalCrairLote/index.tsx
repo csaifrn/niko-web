@@ -1,6 +1,6 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import * as S from './styles';
-import { ErrorMessage, InputText } from '../../pages/Login/styles';
+import { ErrorMessage } from '../../pages/Login/styles';
 import { validationLoginSchema } from './validation';
 import { useMutation } from 'react-query';
 import { CreateBatche } from '../../api/services/batches/create-batche';
@@ -48,6 +48,7 @@ export const ModalCriarLote = (props: ModalCriarProps) => {
 
   const loginMutation = useMutation(CreateBatche, {
     onSuccess: (data: CreateResponseBatche) => {
+      console.log(data);
       toast.success('Lote Criado!');
       handleSucess();
     },

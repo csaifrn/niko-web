@@ -41,13 +41,16 @@ const Recebidos = () => {
       <Style.Wrapper style={{ height: 'auto', marginBottom: '10em', width: '100%' }}>
         <Menu area={`/Fase/${id}/Board/Recebidos`} id_projeto={id}></Menu>
         <MenuCoord />
-        <>
-          <div style={{ margin: '1em 3em 0em 3em', display: 'flex', justifyContent: 'flex-end', gap: '0.5em' }}>
-            <img src={`/icon-page/recepcao_icon.png`} alt={`icone da etapa recepção`} />
-          </div>
-        </>
 
-        <div style={{ margin: '2em', display: 'flex', flexDirection: 'column', gap: '1em' }}>
+        <S.IconeRecepDivDesktop>
+          <S.IconeRecepcao src={`/icon-big/Recebimento_icon.svg`} alt={`icone da etapa recepção`} />
+        </S.IconeRecepDivDesktop>
+
+        <S.IconeRecepDivMobile>
+          <S.IconeRecepcao src={`/icon-medium/Recepcao.png`} />
+        </S.IconeRecepDivMobile>
+
+        <div style={{ margin: '2em 0em 2em 0em', display: 'flex', flexDirection: 'column', gap: '1em', justifyContent: 'center' , alignItems: 'center' }}>
           {auth()?.role.filter((role: string) => role === 'Coordenador')[0] === 'Coordenador' && (
             <S.Btn
               onClick={() => {

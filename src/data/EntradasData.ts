@@ -41,6 +41,7 @@ const EntradaData = [
     id_cliente: Users[0].id,
     id_projeto: Projeto[0].id,
   },
+  
 ];
 
 export default EntradaData;

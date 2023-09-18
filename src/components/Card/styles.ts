@@ -18,8 +18,8 @@ const CardContainer = styled.a`
     filter: brightness(0.9);
   }
   ${media.greaterThan('large')`
-    width: 18.6em;
-    height: 15em;
+    width: 20.6em;
+    height: 17em;
   `}
 `;
 
@@ -68,6 +68,15 @@ const TextBoxCard = styled.div`
   width: 100%;
   ${media.greaterThan('large')`
     gap: 20px;
+  `}
+`;
+
+export const NomeEtapa = styled.p`
+
+  font-size: 8px;
+
+  ${media.greaterThan('large')`
+    font-size: 12px;
   `}
 `;
 

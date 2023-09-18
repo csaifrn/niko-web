@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import media from 'styled-media-query';
 
 // Create a Title component that'll render an <h1> tag with some styles
 
@@ -27,6 +28,12 @@ const LoteArea = styled.section`
   }
 `;
 
+const RemessasDiv = styled.section`
+  
+  ${media.greaterThan('large')`
+  `}
+`;
+
 const Main = styled.section`
   background-color: #191c24;
   display: flex;
@@ -35,16 +42,43 @@ const Main = styled.section`
   padding: 2em;
   grid-gap: 1em;
   border-radius: 5px;
+  overflow-y: scroll;
+  scroll-behavior: auto;
+  scrollbar-width: thin;
+  height: 60vh;
+  
+  ${media.greaterThan('large')`
+    justify-items: center;
+    width: 80vh;
+    height: 70vh;
+  `}
+`;
 
-  @media (max-width: 768px) {
-    overflow-y: scroll;
-    scroll-behavior: auto;
-    scrollbar-width: thin;
-    height: 60vh;
-    flex-direction: column;
-  }
-  @media (min-width: 1000px) {
-  }
+export const IconeRecepDivMobile = styled.div`
+   
+  display: flex;
+  margin: 1em 3em 0em 3em; 
+  justify-content: flex-start;
+  gap: 0.5em ;
+  ${media.greaterThan('large')`
+    display: none;
+  `}
+`;
+
+export const IconeRecepDivDesktop = styled.div`
+   
+  display: none;
+  margin: 1em 3em 0em 2em; 
+  justify-content: center;
+  gap: 0.5em ;
+  ${media.greaterThan('large')`
+    display: flex;
+  `}
+
+`;
+
+export const IconeRecepcao = styled.img`
+
 `;
 
 const FooterHome = styled.footer`

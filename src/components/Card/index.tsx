@@ -1,4 +1,4 @@
-import { CardContainer, DataStrongCard, FigureIconCard, ImgIconCard, NumberCard, TextBoxCard } from './styles';
+import { CardContainer, DataStrongCard, FigureIconCard, ImgIconCard, NumberCard, TextBoxCard , NomeEtapa} from './styles';
 
 interface CardProps {
   color: string;
@@ -22,7 +22,7 @@ export const CardFase = ({ remes = 0, dispo = 0, anda = 0, empausa = 0, ...props
         <TextBoxCard>
           <DataStrongCard>
             <NumberCard backgroundColor="#43DB6D">{remes}</NumberCard>
-            <p>REMESSAS RECEBIDAS</p>
+            <NomeEtapa>REMESSAS RECEBIDAS</NomeEtapa>
           </DataStrongCard>
         </TextBoxCard>
       )}
@@ -30,12 +30,12 @@ export const CardFase = ({ remes = 0, dispo = 0, anda = 0, empausa = 0, ...props
         <TextBoxCard>
           <DataStrongCard>
             <NumberCard backgroundColor="#FCDE42">{anda}</NumberCard>
-            <p>ANDAMENTO</p>
+            <NomeEtapa>ANDAMENTO</NomeEtapa>
           </DataStrongCard>
 
           <DataStrongCard>
             <NumberCard backgroundColor="#F32D2D">{empausa}</NumberCard>
-            <p>EM PAUSA</p>
+            <NomeEtapa>EM PAUSA</NomeEtapa>
           </DataStrongCard>
         </TextBoxCard>
       )}
@@ -43,17 +43,17 @@ export const CardFase = ({ remes = 0, dispo = 0, anda = 0, empausa = 0, ...props
         <TextBoxCard>
           <DataStrongCard>
             <NumberCard backgroundColor="#43DB6D">{dispo}</NumberCard>
-            <p>DISPONÍVEIS</p>
+            <NomeEtapa>DISPONÍVEIS</NomeEtapa>
           </DataStrongCard>
 
           <DataStrongCard>
             <NumberCard backgroundColor="#FCDE42">{anda}</NumberCard>
-            <p>ANDAMENTO</p>
+            <NomeEtapa>ANDAMENTO</NomeEtapa>
           </DataStrongCard>
 
           <DataStrongCard>
             <NumberCard backgroundColor="#F32D2D">{empausa}</NumberCard>
-            <p>EM PAUSA</p>
+            <NomeEtapa>EM PAUSA</NomeEtapa>
           </DataStrongCard>
         </TextBoxCard>
       )}
@@ -61,7 +61,7 @@ export const CardFase = ({ remes = 0, dispo = 0, anda = 0, empausa = 0, ...props
         <TextBoxCard>
           <DataStrongCard>
             <NumberCard backgroundColor="#43DB6D">{dispo}</NumberCard>
-            <p>DISPONÍVEIS</p>
+            <NomeEtapa>DISPONÍVEIS</NomeEtapa>
           </DataStrongCard>
         </TextBoxCard>
       )}

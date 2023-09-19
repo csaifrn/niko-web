@@ -50,7 +50,7 @@ const Recebidos = () => {
           <S.IconeRecepcao src={`/icon-medium/Recepcao.png`} />
         </S.IconeRecepDivMobile>
 
-        <div style={{ margin: '2em 0em 2em 0em', display: 'flex', flexDirection: 'column', gap: '1em', justifyContent: 'center' , alignItems: 'center' }}>
+        <S.RemessasDiv>
           {auth()?.role.filter((role: string) => role === 'Coordenador')[0] === 'Coordenador' && (
             <S.Btn
               onClick={() => {
@@ -114,7 +114,7 @@ const Recebidos = () => {
               );
             })}
           </S.Main>
-        </div>
+        </S.RemessasDiv>
       </Style.Wrapper>
       {openCriarModal && (
         <CreateRemessa

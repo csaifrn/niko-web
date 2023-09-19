@@ -28,7 +28,13 @@ const LoteArea = styled.section`
   }
 `;
 
-const RemessasDiv = styled.section`
+export const RemessasDiv = styled.div`
+  margin: 2em 0em 2em 0em; 
+  display: flex; 
+  flex-direction: column; 
+  gap: 1em; 
+  justify-content: center ;
+  align-items: center;
   
   ${media.greaterThan('large')`
   `}
@@ -38,8 +44,8 @@ const Main = styled.section`
   background-color: #191c24;
   display: flex;
   flex-direction: column;
-  justify-items: center;
   padding: 2em;
+  margin: 0em 1em 0em 1em;
   grid-gap: 1em;
   border-radius: 5px;
   overflow-y: scroll;
@@ -57,7 +63,7 @@ const Main = styled.section`
 export const IconeRecepDivMobile = styled.div`
    
   display: flex;
-  margin: 1em 3em 0em 3em; 
+  margin: 1em 0em 0em 2em; 
   justify-content: flex-start;
   gap: 0.5em ;
   ${media.greaterThan('large')`
@@ -68,7 +74,7 @@ export const IconeRecepDivMobile = styled.div`
 export const IconeRecepDivDesktop = styled.div`
    
   display: none;
-  margin: 1em 3em 0em 2em; 
+  margin: 1em 0em 0em 2em; 
   justify-content: center;
   gap: 0.5em ;
   ${media.greaterThan('large')`

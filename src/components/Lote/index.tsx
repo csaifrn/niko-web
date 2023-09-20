@@ -62,73 +62,78 @@ const Lote = (props: any) => {
       {props.edit == null && (
         <S.Lote className="Lote">
           <S.LoteArea>
-            <S.LoteNumAvisos>
-              <h2>{props.value}</h2>
 
-              <S.PendPrioridade>
-                {/* PENDENCIA */}
-                {props.pendencia > 0 && (
-                  <img
-                    src="/warning.svg"
-                    alt="icone triangular com ponto de exclamação no centro indicando que há uma pendência no lote"
-                  />
-                )}
-                {/* PRIORIDADE */}
-                {props.prioridade == true && (
-                  <S.Prioridade>
-                    <p>Prioridade</p>
-                  </S.Prioridade>
-                )}
-              </S.PendPrioridade>
-            </S.LoteNumAvisos>
-            <S.LoteNumAvisos>
-              <S.Envolvido style={{ display: 'flex', marginLeft: '10px' }}>
-                {props.envolvidos &&
-                  props.envolvidos.map((envolvidos: any, index: number) => (
-                    <React.Fragment key={generateUUID()}>
-                      {index <= 2 && (
-                        <img
-                          src={envolvidos.foto}
-                          width={24}
-                          height={24}
-                          style={{ marginLeft: '-10px', borderRadius: '100%', objectFit: 'cover' }}
-                          alt="Foto do usuário"
-                        ></img>
-                      )}
-                      {index >= 3 && (
-                        <S.CategoriaTextDiv
-                          style={{
-                            borderRadius: '100%',
-                            width: '24px',
-                            marginLeft: '-10px',
-                          }}
-                        >
-                          <p>+{index - 2}</p>
-                        </S.CategoriaTextDiv>
-                      )}
-                    </React.Fragment>
-                  ))}
-              </S.Envolvido>
+            <S.LoteDetalhes>
 
-              <S.Categoria>
-                {props.categoria &&
-                  props.categoria.map((categoria: any, index: number) => (
-                    <React.Fragment key={generateUUID()}>
-                      {index >= 1 && (
-                        <S.CategoriaTextDiv style={{ borderRadius: '100%', width: '2em' }}>
-                          <p>+{index}</p>
-                        </S.CategoriaTextDiv>
-                      )}
-                      {index == 0 && (
-                        <S.CategoriaTextDiv style={{ borderRadius: '3px' }}>
-                          <p style={{ padding: '0 0.5em' }}>{categoria.name}</p>
-                        </S.CategoriaTextDiv>
-                      )}
-                    </React.Fragment>
-                  ))}
-              </S.Categoria>
-              
-            </S.LoteNumAvisos>
+              <S.LoteNumAvisos>
+                <h2>{props.value}</h2>
+
+                <S.PendPrioridade>
+                  {/* PENDENCIA */}
+                  {props.pendencia > 0 && (
+                    <img
+                      src="/warning.svg"
+                      alt="icone triangular com ponto de exclamação no centro indicando que há uma pendência no lote"
+                    />
+                  )}
+                  {/* PRIORIDADE */}
+                  {props.prioridade == true && (
+                    <S.Prioridade>
+                      <p>Prioridade</p>
+                    </S.Prioridade>
+                  )}
+                </S.PendPrioridade>
+              </S.LoteNumAvisos>
+
+              <S.LoteNumAvisos>
+                <S.Envolvido style={{ display: 'flex', marginLeft: '10px' }}>
+                  {props.envolvidos &&
+                    props.envolvidos.map((envolvidos: any, index: number) => (
+                      <React.Fragment key={generateUUID()}>
+                        {index <= 2 && (
+                          <img
+                            src={envolvidos.foto}
+                            width={24}
+                            height={24}
+                            style={{ marginLeft: '-10px', borderRadius: '100%', objectFit: 'cover' }}
+                            alt="Foto do usuário"
+                          ></img>
+                        )}
+                        {index >= 3 && (
+                          <S.CategoriaTextDiv
+                            style={{
+                              borderRadius: '100%',
+                              width: '24px',
+                              marginLeft: '-10px',
+                            }}
+                          >
+                            <p>+{index - 2}</p>
+                          </S.CategoriaTextDiv>
+                        )}
+                      </React.Fragment>
+                    ))}
+                </S.Envolvido>
+
+                <S.Categoria>
+                  {props.categoria &&
+                    props.categoria.map((categoria: any, index: number) => (
+                      <React.Fragment key={generateUUID()}>
+                        {index >= 1 && (
+                          <S.CategoriaTextDiv style={{ borderRadius: '100%', width: '2em' }}>
+                            <p>+{index}</p>
+                          </S.CategoriaTextDiv>
+                        )}
+                        {index == 0 && (
+                          <S.CategoriaTextDiv style={{ borderRadius: '3px' }}>
+                            <p style={{ padding: '0 0.5em' }}>{categoria.name}</p>
+                          </S.CategoriaTextDiv>
+                        )}
+                      </React.Fragment>
+                    ))}
+                </S.Categoria>
+                
+              </S.LoteNumAvisos>
+            </S.LoteDetalhes>
 
             {/* BOTÃO DE ATRIBUIR ALGUÉM */}
             { props.prioridade == true &&

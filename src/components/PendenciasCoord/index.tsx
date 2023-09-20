@@ -10,7 +10,7 @@ export const Pend = [
     id_projeto: '2',
     lote: '117',
     fase_atual: 'Catalogacao',
-    fase_final: 'Digitalização',
+    fase_final: 'Digitalizacao',
     comment: 'Lote possui vários processos com páginas não numeradas',
     voltar: false,
     decisao: false,

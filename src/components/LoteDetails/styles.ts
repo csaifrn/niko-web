@@ -369,7 +369,7 @@ export const DetalhamentoGrid = styled.div`
   grid-gap: 2rem;
   grid-template-columns: repeat(auto-fit, minmax(21rem, 1fr));
   ${media.greaterThan("large")`
-    grid-gap: 2rem;
+    grid-template-columns: 2fr 2fr 2fr;
   `}
 `;
 

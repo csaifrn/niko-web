@@ -38,7 +38,7 @@ const Recebidos = () => {
 
   return (
     <>
-      <Style.Wrapper style={{ height: 'auto', marginBottom: '10em', width: '100%' }}>
+      <Style.Wrapper style={{ height: 'auto', width: '100%' }}>
         <Menu area={`/Fase/${id}/Board/Recebidos`} id_projeto={id}></Menu>
         <MenuCoord />
 

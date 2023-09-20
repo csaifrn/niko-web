@@ -1,8 +1,8 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, CSSProperties } from 'react';
 import * as S from './styles';
 import { ErrorMessage } from '../../pages/Login/styles';
-import { validationLoginSchema } from './validation';
-import { useMutation } from 'react-query';
+import { validationLoginSchema, validationSearch } from './validation';
+import { useMutation, useQuery } from 'react-query';
 import { CreateBatche } from '../../api/services/batches/create-batche';
 import { CreateResponseBatche } from '../../api/services/batches/create-batche/create.interface';
 import { ApiError } from '../../api/services/authentication/signIn/signIn.interface';
@@ -10,16 +10,44 @@ import * as Yup from 'yup';
 import { ErrorsForm } from './criar.interface';
 import ReactLoading from 'react-loading';
 import toast from 'react-hot-toast';
+import React from 'react';
+import Select from 'react-select';
+import { SeachCategoria } from '../../api/services/categoria/get-categoria';
+import { SeachCategoriaResponseBatche } from '../../api/services/categoria/get-categoria/get.interface';
+import theme from '../../global/theme';
+import classNames from 'classnames';
 
 interface ModalCriarProps {
   close: () => void;
 }
 
+interface Options {
+  value: string;
+  label: string;
+}
+
 export const ModalCriarLote = (props: ModalCriarProps) => {
+  const [categoria, setCategoria] = useState<any>(null);
   const [closing, setClosing] = useState(false);
+  const [options, setOptions] = useState<Options[]>([]);
+  const [name, setName] = useState('');
+  const categorias = useMutation(SeachCategoria, {
+    onSuccess: (data: SeachCategoriaResponseBatche) => {
+      setOptions([]);
+      const opt = data.categories;
+      const response: Options[] = opt.map((e) => ({ value: e.id, label: e.name }));
+
+      setOptions(response);
+    },
+    onError: () => {},
+  });
+
   const [settlement_project, setSettlement_project] = useState('');
   const [responseError] = useState('');
-  const [validationFormError, setValidationFormError] = useState<ErrorsForm>({ settlement_project: '' });
+  const [validationFormError, setValidationFormError] = useState<ErrorsForm>({
+    settlement_project: '',
+    settlement_project_category_id: '',
+  });
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -48,7 +76,6 @@ export const ModalCriarLote = (props: ModalCriarProps) => {
 
   const loginMutation = useMutation(CreateBatche, {
     onSuccess: (data: CreateResponseBatche) => {
-      console.log(data);
       toast.success('Lote Criado!');
       handleSucess();
     },
@@ -62,6 +89,7 @@ export const ModalCriarLote = (props: ModalCriarProps) => {
       await validationLoginSchema.validate(
         {
           settlement_project,
+          settlement_project_category_id: categoria?.value,
         },
         {
           abortEarly: false,
@@ -81,6 +109,23 @@ export const ModalCriarLote = (props: ModalCriarProps) => {
     return true;
   };
 
+  const validateSearch = async (): Promise<boolean> => {
+    try {
+      await validationSearch.validate(
+        {
+          name,
+        },
+        {
+          abortEarly: false,
+        },
+      );
+    } catch (error) {
+      return false;
+    }
+    setValidationFormError({});
+    return true;
+  };
+
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const isValid = await validateForm();
@@ -88,6 +133,21 @@ export const ModalCriarLote = (props: ModalCriarProps) => {
     if (isValid) {
       loginMutation.mutate({
         settlement_project,
+        settlement_project_category_id: categoria!.value,
+      });
+    }
+  };
+
+  useEffect(() => {
+    onChange();
+  }, [name]);
+
+  const onChange = async () => {
+    const isValid = await validateSearch();
+
+    if (isValid) {
+      categorias.mutate({
+        name,
       });
     }
   };
@@ -113,6 +173,19 @@ export const ModalCriarLote = (props: ModalCriarProps) => {
               />
               {validationFormError.settlement_project && (
                 <ErrorMessage>{validationFormError.settlement_project}</ErrorMessage>
+              )}
+              <S.CustomSelect
+                onInputChange={(e) => setName(e)}
+                placeholder={'Digite no mínimo 3 caracteres...'}
+                inputValue={name}
+                options={options}
+                onChange={(e) => setCategoria(e)}
+                isLoading={categorias.isLoading}
+                className="react-select-container"
+                classNamePrefix="react-select"
+              />
+              {validationFormError.settlement_project_category_id && (
+                <ErrorMessage>{validationFormError.settlement_project_category_id}</ErrorMessage>
               )}
               {loginMutation.isLoading ? (
                 <S.Criar type="submit" disabled>

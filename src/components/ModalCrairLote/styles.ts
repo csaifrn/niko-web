@@ -1,3 +1,4 @@
+import Select from 'react-select';
 import styled from 'styled-components';
 
 const ModalArea = styled.div`
@@ -126,6 +127,43 @@ export const FormCriar = styled.form`
   display: flex;
   flex-direction: column;
   gap: 1em;
+`;
+
+export const CustomSelect = styled(Select)`
+  .react-select__control {
+    border: none;
+    background-color: ${({ theme }) => theme.colors['gray/700']} !important; /* Cor de fundo do controle */
+    color: ${({ theme }) => theme.colors.white} !important;
+  }
+
+  .react-select__placeholder {
+    color: ${({ theme }) => theme.colors.white / 10} !important;
+  }
+
+  .react-select__single-value {
+    color: ${({ theme }) => theme.colors['gray/200']};
+  }
+
+  .react-select__menu {
+    background-color: ${({ theme }) => theme.colors['gray/700']} !important;
+  }
+
+  .react-select__option {
+    background-color: ${({ theme }) => theme.colors['gray/700']};
+    color: ${({ theme }) => theme.colors.white}; /* Cor do texto das opções */
+  }
+
+  .react-select__option--is-selected {
+    background-color: ${({ theme }) => theme.colors['gray/500']}; /* Cor de fundo da opção selecionada */
+  }
+
+  .react-select__indicator-separator {
+    background-color: ${({ theme }) => theme.colors['gray/500']}; /* Cor do separador entre indicadores */
+  }
+
+  .react-select__value-container .react-select__input {
+    color: ${({ theme }) => theme.colors.white} !important;
+  }
 `;
 
 export { ModalArea, ModalContent, NameClose, ChooseLote, Lote, Recused, ModalBackdrop };

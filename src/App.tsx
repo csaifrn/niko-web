@@ -20,7 +20,7 @@ import AtividadeEdit from './pages/Coordenador/Atividade/ativiade-edit';
 import Painel from './pages/Coordenador/Painel';
 import Perfil from './pages/Perfil';
 import LoteDetails from './components/LoteDetails';
-import { EditModal } from './components/EditModal';
+import { EditModal } from './components/LoteEdit';
 import Cadastro from './pages/Cadastro';
 import RecuperarSenha from './pages/Recuperar';
 import ChangePassword from './pages/ChangePassword';

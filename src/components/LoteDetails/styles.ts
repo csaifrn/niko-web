@@ -248,7 +248,7 @@ export const ObservacaoTitulo = styled.p`
 export const Pendencias = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 16px;
   background: #393e4b;
   border-radius: 5px;
   order: 0;
@@ -259,7 +259,7 @@ export const Pendencias = styled.div`
 export const Observações = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 16px;
   background: #393e4b;
   border-radius: 5px;
   order: 0;
@@ -271,7 +271,7 @@ export const PendDivBlack = styled.div`
   background-color: #191c24;
   border-radius: 5px;
   gap: 10px;
-  padding: 10px;
+  padding: 15px;
   display: flex;
   align-items: flex-start;
   justify-content: flex-start;
@@ -284,7 +284,7 @@ export const PendenciaTextIcon = styled.div`
   gap: 10px;
 `;
 
-export const ResolverPend = styled.div`
+export const BotaoResolverPend = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -295,6 +295,13 @@ export const ResolverPend = styled.div`
   color: #191c24;
   padding: 1.5em;
   width: 100%;
+  border: none;
+  font-family: 'Rubik';
+  color: #FFFFFF;
+  cursor: pointer;
+  &:hover {
+    background-color: ${({ theme }) => theme.colors['yellow/300']};
+  }
 `;
 
 export const ObsDivBlack = styled.div`
@@ -302,7 +309,7 @@ export const ObsDivBlack = styled.div`
   border-radius: 5px;
   display: flex;
   gap: 10px;
-  padding: 10px;
+  padding: 15px;
   width: calc(100%-2em);
   display: flex;
   align-items: center;
@@ -311,8 +318,13 @@ export const ObsDivBlack = styled.div`
   flex-grow: 0;
 `;
 
-export const BotaoMudarFase = styled.div`
+export const BotaoMudarFase = styled.button`
   display: flex;
+  border: none;
+  font-family: 'Rubik';
+  color: #FFFFFF;
+  background-color: #393e4b;
+  border-radius: 5px;
 `;
 
 export const Botoes = styled.div`
@@ -337,9 +349,13 @@ export const VoltarAvancar = styled.div`
   height: 44px;
   width: calc(50%);
   border-radius: 5px 0px 0px 5px;
-  p {
+  p{
     color: 'white';
     margin-bottom: '0';
+  }
+  cursor: pointer;
+  &:hover {
+    background-color: ${({ theme }) => theme.colors['yellow/200']};
   }
 `;
 
@@ -366,7 +382,7 @@ export const OptionFases = styled.option`
   }
 `;
 
-export const Botao = styled.div`
+export const Botao = styled.button`
   background-color: #393e4b;
   display: flex;
   align-items: center;
@@ -375,6 +391,13 @@ export const Botao = styled.div`
   height: 44px;
   width: calc(100%-6em);
   border-radius: 5px;
+  border: none;
+  font-family: 'Rubik';
+  color: #FFFFFF;
+  cursor: pointer;
+  &:hover {
+    background-color: ${({ theme }) => theme.colors['gray/400']};
+  }
 `;
 
 export const DetalFase = styled.div`
@@ -398,6 +421,32 @@ export const DetalhamentoGrid = styled.div`
 
 export const NomeDaFase = styled.h2`
   
+`;
+
+export const TodasAsPendencias = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  ${media.greaterThan('large')`
+    height: 20vh;
+    overflow-y: scroll;
+    scroll-behavior: auto;
+    scrollbar-width: thin;
+  `}
+
+`;
+
+export const TodasAsObservacoes = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  ${media.greaterThan('large')`
+    height: 20vh;
+    overflow-y: scroll;
+    scroll-behavior: auto;
+    scrollbar-width: thin;
+  `}
+
 `;
 
 

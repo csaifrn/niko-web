@@ -220,26 +220,37 @@ export const LoteDetails = () => {
             {/* PENDÊNCIAS */}
             <S.Pendencias>
               <S.PendenciaTitulo>Pendências</S.PendenciaTitulo>
-              {task.pendencias.map((pen: any) => (
-                <S.PendDivBlack key={pen.id}>
-                  <S.PendenciaTextIcon>
-                    {<img src="/warning.svg" alt="ícone de alerta" />}
-                    {pen.comment}
-                  </S.PendenciaTextIcon>
+ 
+              <S.TodasAsPendencias>
+   
+                {task.pendencias.map((pen: any) => (
+                  <S.PendDivBlack key={pen.id}>
 
-                  <S.ResolverPend onClick={() => handleResolverPend(pen)}>
-                    <S.Texto>Resolver pendência</S.Texto>
-                  </S.ResolverPend>
-                </S.PendDivBlack>
-              ))}
+                    <S.PendenciaTextIcon>
+                      {<img src="/warning.svg" alt="ícone de alerta" />}
+                      {pen.comment}
+                    </S.PendenciaTextIcon>
+
+                    <S.BotaoResolverPend onClick={() => handleResolverPend(pen)}>
+                      <S.Texto>Resolver pendência</S.Texto>
+                    </S.BotaoResolverPend>
+
+                  </S.PendDivBlack>
+                ))}
+
+              </S.TodasAsPendencias>
             </S.Pendencias>
 
             {/* OBSERVAÇÕES */}
             <S.Observações>
               <S.ObservacaoTitulo>Observações</S.ObservacaoTitulo>
-              {task.observacoes.map((obs: any) => (
-                <S.ObsDivBlack key={obs.ObsId}>{obs.titulo}</S.ObsDivBlack>
-              ))}
+
+              <S.TodasAsObservacoes>
+                {task.observacoes.map((obs: any) => (
+                  <S.ObsDivBlack key={obs.ObsId}>{obs.titulo}</S.ObsDivBlack>
+                ))}
+              </S.TodasAsObservacoes>
+
             </S.Observações>
           </S.PendObservacao>
 

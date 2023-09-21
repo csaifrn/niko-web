@@ -221,8 +221,10 @@ export const EditModal = () => {
                   </S.MostrarCategTipolEscolhida>
                 }
               </S.MostrarCategTipolEscolhida>
-              
-              <Search searchTerm={searchTerm} handleSearchChange={handleSearchChange} />
+
+              <S.SearchDiv>
+                <Search searchTerm={searchTerm} handleSearchChange={handleSearchChange}/>
+              </S.SearchDiv>
               
               <S.ChooseCatTipol>
                 {filteredCategorias.map((cat: any) => {

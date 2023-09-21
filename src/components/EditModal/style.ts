@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import media from 'styled-media-query';
 
 export const Titulo2 = styled.h2`
   font-weight: normal;
@@ -17,6 +18,10 @@ export const ModalContent = styled.div`
   h2 {
     font-weight: normal;
   }
+`;
+
+export const SearchDiv = styled.div`
+  width: 20%;
 `;
 
 export const NameClose = styled.div`
@@ -159,6 +164,10 @@ export const ChooseCatTipol = styled.div`
   overflow-y: scroll;
   scroll-behavior: auto;
   scrollbar-width: thin;
+  ${media.greaterThan('large')`
+    width: 20%;
+    height: 30vh;
+  `}
 `;
 
 export const SalvarEditButton = styled.button`
@@ -166,10 +175,13 @@ export const SalvarEditButton = styled.button`
   border-radius: 5px;
   background-color: #43db6d;
   border: none;
-  color: white;
+  color: #0A090E;
   font-family: 'Rubik';
   bottom: 0;
   left: 0;
+  ${media.greaterThan('large')`
+    width: 140px;
+  `}
 `;
 
 export const Switch = styled.input`

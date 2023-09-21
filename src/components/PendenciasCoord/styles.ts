@@ -155,7 +155,7 @@ export const Prioridade = styled.p`
 
 export const YelloButton = styled.button`
   background-color: ${({ theme }) => theme.colors['yellow/300']};
-  font-family: Rubik;
+  font-family: 'Rubik';
   color: ${({ theme }) => theme.colors['gray/700']};
   padding: 2em;
   width: 100%;

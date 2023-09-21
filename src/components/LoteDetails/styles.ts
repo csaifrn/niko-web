@@ -211,15 +211,37 @@ export const Envolvidos = styled.div`
   gap: 0px;
 `;
 
+export const PendObservacaoBotoes = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  grid-template-columns: repeat(auto-fit, minmax(21rem, 1fr));
+  ${media.greaterThan("large")`
+    display: grid;
+  `}
+`;
+
 export const PendObservacao = styled.div`
   display: flex;
   flex-direction: column;
   gap: 16px;
   grid-template-columns: repeat(auto-fit, minmax(21rem, 1fr));
   ${media.greaterThan("large")`
-    display: flex;
-    flex-direction: row;
+    display: grid;
     justify-content: space-between;
+  `}
+`;
+export const PendenciaTitulo = styled.p`
+  font-size: 12px;
+  ${media.greaterThan("large")`
+    font-size: 16px;
+  `}
+`;
+
+export const ObservacaoTitulo = styled.p`
+  font-size: 12px;
+  ${media.greaterThan("large")`
+    font-size: 16px;
   `}
 `;
 
@@ -300,9 +322,9 @@ export const Botoes = styled.div`
   grid-template-columns: repeat(auto-fit, minmax(21rem, 1fr));
   ${media.greaterThan("large")`
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: space-between;
-    gap: 160px;
+    gap: 16px;
   `}
 `;
 
@@ -360,7 +382,8 @@ export const DetalFase = styled.div`
   flex-direction: column;
 `;
 
-export const DetalhamentoTitulo = styled.h2`
+export const DetalhamentoTitulo = styled.p`
+  font-size: 20px;
   margin-bottom: 10px;
 `
 
@@ -371,6 +394,10 @@ export const DetalhamentoGrid = styled.div`
   ${media.greaterThan("large")`
     grid-template-columns: 2fr 2fr 2fr;
   `}
+`;
+
+export const NomeDaFase = styled.h2`
+  
 `;
 
 

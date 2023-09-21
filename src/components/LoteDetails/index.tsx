@@ -213,138 +213,141 @@ export const LoteDetails = () => {
               ))}
           </S.FaseEnvolvAtual>
         </S.LoteInfos>
+        
+        <S.PendObservacaoBotoes>
+          <S.PendObservacao>
 
-        <S.PendObservacao>
-          {/* PENDÊNCIAS */}
-          <S.Pendencias>
-            <p>Pendências</p>
-            {task.pendencias.map((pen: any) => (
-              <S.PendDivBlack key={pen.id}>
-                <S.PendenciaTextIcon>
-                  {<img src="/warning.svg" alt="ícone de alerta" />}
-                  {pen.comment}
-                </S.PendenciaTextIcon>
+            {/* PENDÊNCIAS */}
+            <S.Pendencias>
+              <S.PendenciaTitulo>Pendências</S.PendenciaTitulo>
+              {task.pendencias.map((pen: any) => (
+                <S.PendDivBlack key={pen.id}>
+                  <S.PendenciaTextIcon>
+                    {<img src="/warning.svg" alt="ícone de alerta" />}
+                    {pen.comment}
+                  </S.PendenciaTextIcon>
 
-                <S.ResolverPend onClick={() => handleResolverPend(pen)}>
-                  <S.Texto>Resolver pendência</S.Texto>
-                </S.ResolverPend>
-              </S.PendDivBlack>
-            ))}
-          </S.Pendencias>
+                  <S.ResolverPend onClick={() => handleResolverPend(pen)}>
+                    <S.Texto>Resolver pendência</S.Texto>
+                  </S.ResolverPend>
+                </S.PendDivBlack>
+              ))}
+            </S.Pendencias>
 
-          {/* OBSERVAÇÕES */}
-          <S.Observações>
-            <p>Observações</p>
-            {task.observacoes.map((obs: any) => (
-              <S.ObsDivBlack key={obs.ObsId}>{obs.titulo}</S.ObsDivBlack>
-            ))}
-          </S.Observações>
-        </S.PendObservacao>
-
-
-        <S.Botoes>
-          {/* ATRIBUIR À ALGUÉM */}
-          <S.Botao onClick={handleAtribuirAlguem}>
-            <img src={`/atribuir.svg`} alt="botão para atribuir lote a algum operador "/>
-            <p>Atribuir à alguém</p>
-          </S.Botao>
-
-          {/* VOLTAR FASE */}
-          <S.BotaoMudarFase>
-            {indisponivel == false && (
-              <S.VoltarAvancar onClick={handleVoltar} style={{ background: '#393E4B' }}>
-                <img src={'/voltar.svg'} alt="ícone circular com uma seta para a esquerda ao centro" />
-                <p style={{ color: indisponivel ? 'rgba(255, 255, 255, 0.50)' : '#FFFFFF' }}>Voltar Fase</p>
-              </S.VoltarAvancar>
-            )}
-
-            {indisponivel == true && (
-              <S.VoltarAvancar style={{ background: 'rgba(57, 62, 75, 0.50)' }}>
-                <img src={'/voltar-desativado.svg'} alt="ícone circular com uma seta para a esquerda ao centro" />
-                <p style={{ color: indisponivel ? 'rgba(255, 255, 255, 0.50)' : '#FFFFFF' }}>Voltar Fase</p>
-              </S.VoltarAvancar>
-            )}
-
-            {indisponivel == false && (
-              <S.EscolherFase
-                className="custom-select"
-                style={{ background: indisponivel ? 'rgba(57, 62, 75, 0.50)' : '#393E4B' }}
-              >
-                {FaseData.map((fase) => (
-                  <S.OptionFases className="fase" value="fase" key={fase.id}>
-                    {fase.titulo}
-                  </S.OptionFases>
-                ))}
-              </S.EscolherFase>
-            )}
-
-            {indisponivel == true && (
-              <S.EscolherFase
-                className="custom-select"
-                style={{ background: indisponivel ? 'rgba(57, 62, 75, 0.50)' : '#393E4B' }}
-                disabled
-              >
-                {FaseData.map((fase) => (
-                  <S.OptionFases className="fase" value="fase" key={fase.id}>
-                    {fase.titulo}
-                  </S.OptionFases>
-                ))}
-              </S.EscolherFase>
-            )}
-          </S.BotaoMudarFase>
-
-          {/* AVANÇAR FASE */}
-          <S.BotaoMudarFase>
-            {indisponivel == false && (
-              <S.VoltarAvancar onClick={handleAvancar} style={{ background: '#393E4B' }}>
-                <img src={'/avancar.svg'} alt="ícone circular com uma seta para a direita ao centro" />
-                <p style={{ color: indisponivel ? 'rgba(255, 255, 255, 0.50)' : '#FFFFFF' }}>Avancar Fase</p>
-              </S.VoltarAvancar>
-            )}
-
-            {indisponivel == true && (
-              <S.VoltarAvancar style={{ background: 'rgba(57, 62, 75, 0.50)' }}>
-                <img src={'/avancar-desativado.svg'} alt="ícone circular com uma seta para a direita ao centro" />
-                <p style={{ color: indisponivel ? 'rgba(255, 255, 255, 0.50)' : '#FFFFFF' }}>Avancar Fase</p>
-              </S.VoltarAvancar>
-            )}
-
-            {indisponivel == false && (
-              <S.EscolherFase
-                className="custom-select"
-                style={{ background: indisponivel ? 'rgba(57, 62, 75, 0.50)' : '#393E4B' }}
-                onChange={(e) => handleDebug(e)}
-              >
-                {FaseData.map((fase) => (
-                  <S.OptionFases className="fase" value={fase.titulo} key={fase.id}>
-                    {fase.titulo}
-                  </S.OptionFases>
-                ))}
-              </S.EscolherFase>
-            )}
-
-            {indisponivel == true && (
-              <S.EscolherFase
-                className="custom-select"
-                style={{ background: indisponivel ? 'rgba(57, 62, 75, 0.50)' : '#393E4B' }}
-                disabled
-              >
-                {FaseData.map((fase) => (
-                  <S.OptionFases className="fase" value={fase.titulo} key={fase.id}>
-                    {fase.titulo}
-                  </S.OptionFases>
-                ))}
-              </S.EscolherFase>
-            )}
-          </S.BotaoMudarFase>
+            {/* OBSERVAÇÕES */}
+            <S.Observações>
+              <S.ObservacaoTitulo>Observações</S.ObservacaoTitulo>
+              {task.observacoes.map((obs: any) => (
+                <S.ObsDivBlack key={obs.ObsId}>{obs.titulo}</S.ObsDivBlack>
+              ))}
+            </S.Observações>
+          </S.PendObservacao>
 
 
-          {/* DELETAR LOTE */}
-          <S.Botao onClick={handleDelete} style={{ backgroundColor: '#F32D2D' }}>
-            <img src={`/trash.svg`} alt="Deletar Lote" />
-            <p>Deletar lote</p>
-          </S.Botao>
-        </S.Botoes>
+          <S.Botoes>
+            {/* ATRIBUIR À ALGUÉM */}
+            <S.Botao onClick={handleAtribuirAlguem}>
+              <img src={`/atribuir.svg`} alt="botão para atribuir lote a algum operador "/>
+              <p>Atribuir à alguém</p>
+            </S.Botao>
+
+            {/* VOLTAR FASE */}
+            <S.BotaoMudarFase>
+              {indisponivel == false && (
+                <S.VoltarAvancar onClick={handleVoltar} style={{ background: '#393E4B' }}>
+                  <img src={'/voltar.svg'} alt="ícone circular com uma seta para a esquerda ao centro" />
+                  <p style={{ color: indisponivel ? 'rgba(255, 255, 255, 0.50)' : '#FFFFFF' }}>Voltar Fase</p>
+                </S.VoltarAvancar>
+              )}
+
+              {indisponivel == true && (
+                <S.VoltarAvancar style={{ background: 'rgba(57, 62, 75, 0.50)' }}>
+                  <img src={'/voltar-desativado.svg'} alt="ícone circular com uma seta para a esquerda ao centro" />
+                  <p style={{ color: indisponivel ? 'rgba(255, 255, 255, 0.50)' : '#FFFFFF' }}>Voltar Fase</p>
+                </S.VoltarAvancar>
+              )}
+
+              {indisponivel == false && (
+                <S.EscolherFase
+                  className="custom-select"
+                  style={{ background: indisponivel ? 'rgba(57, 62, 75, 0.50)' : '#393E4B' }}
+                >
+                  {FaseData.map((fase) => (
+                    <S.OptionFases className="fase" value="fase" key={fase.id}>
+                      {fase.titulo}
+                    </S.OptionFases>
+                  ))}
+                </S.EscolherFase>
+              )}
+
+              {indisponivel == true && (
+                <S.EscolherFase
+                  className="custom-select"
+                  style={{ background: indisponivel ? 'rgba(57, 62, 75, 0.50)' : '#393E4B' }}
+                  disabled
+                >
+                  {FaseData.map((fase) => (
+                    <S.OptionFases className="fase" value="fase" key={fase.id}>
+                      {fase.titulo}
+                    </S.OptionFases>
+                  ))}
+                </S.EscolherFase>
+              )}
+            </S.BotaoMudarFase>
+
+            {/* AVANÇAR FASE */}
+            <S.BotaoMudarFase>
+              {indisponivel == false && (
+                <S.VoltarAvancar onClick={handleAvancar} style={{ background: '#393E4B' }}>
+                  <img src={'/avancar.svg'} alt="ícone circular com uma seta para a direita ao centro" />
+                  <p style={{ color: indisponivel ? 'rgba(255, 255, 255, 0.50)' : '#FFFFFF' }}>Avancar Fase</p>
+                </S.VoltarAvancar>
+              )}
+
+              {indisponivel == true && (
+                <S.VoltarAvancar style={{ background: 'rgba(57, 62, 75, 0.50)' }}>
+                  <img src={'/avancar-desativado.svg'} alt="ícone circular com uma seta para a direita ao centro" />
+                  <p style={{ color: indisponivel ? 'rgba(255, 255, 255, 0.50)' : '#FFFFFF' }}>Avancar Fase</p>
+                </S.VoltarAvancar>
+              )}
+
+              {indisponivel == false && (
+                <S.EscolherFase
+                  className="custom-select"
+                  style={{ background: indisponivel ? 'rgba(57, 62, 75, 0.50)' : '#393E4B' }}
+                  onChange={(e) => handleDebug(e)}
+                >
+                  {FaseData.map((fase) => (
+                    <S.OptionFases className="fase" value={fase.titulo} key={fase.id}>
+                      {fase.titulo}
+                    </S.OptionFases>
+                  ))}
+                </S.EscolherFase>
+              )}
+
+              {indisponivel == true && (
+                <S.EscolherFase
+                  className="custom-select"
+                  style={{ background: indisponivel ? 'rgba(57, 62, 75, 0.50)' : '#393E4B' }}
+                  disabled
+                >
+                  {FaseData.map((fase) => (
+                    <S.OptionFases className="fase" value={fase.titulo} key={fase.id}>
+                      {fase.titulo}
+                    </S.OptionFases>
+                  ))}
+                </S.EscolherFase>
+              )}
+            </S.BotaoMudarFase>
+
+
+            {/* DELETAR LOTE */}
+            <S.Botao onClick={handleDelete} style={{ backgroundColor: '#F32D2D' }}>
+              <img src={`/trash.svg`} alt="Deletar Lote" />
+              <p>Deletar lote</p>
+            </S.Botao>
+          </S.Botoes>
+        </S.PendObservacaoBotoes>
 
         {/* DETALHAMENTO POR FASE */}
 
@@ -356,7 +359,7 @@ export const LoteDetails = () => {
               <S.Fase key={fase.id}>
                 <S.FaseIconDiv>
                   <img src={fase.icone} alt={'icone da fase' + fase.nome} />
-                  <h2>{fase.nome}</h2>
+                  <S.NomeDaFase>{fase.nome}</S.NomeDaFase>
                 </S.FaseIconDiv>
 
                 {fase.inicio !== null && (

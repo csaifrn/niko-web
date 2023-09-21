@@ -8,7 +8,7 @@ const kanban = styled.div`
   justify-content: start;
   flex-direction: column;
   gap: 16px;
-  margin: 0 2em 2em 2em;
+  margin: 0em 2em 2em 2em;
   padding: 16px 0px 16px;
   scroll-behavior: auto;
   scrollbar-width: thin;

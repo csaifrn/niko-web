@@ -915,6 +915,7 @@ export const LoteData = [
         voltar: true,
         decisao: false,
       },
+      
     ],
     observacoes: [],
     categorias: [

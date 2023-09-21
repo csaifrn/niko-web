@@ -1,9 +1,9 @@
 import axiosInstance from '../../../axiosInstance';
 import { PatchResponseBatche, PatchBatcheParams } from './patch.interface';
 
-export const PatchBatche = async ({ id, settlement_project }: PatchBatcheParams): Promise<PatchResponseBatche> => {
+export const PatchBatchePriority = async ({ id, priority }: PatchBatcheParams): Promise<PatchResponseBatche> => {
   const Batche = await axiosInstance.patch<PatchResponseBatche>(`/Batches/${id}`, {
-    settlement_project,
+    priority,
   });
 
   return Batche.data;

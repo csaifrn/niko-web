@@ -15,7 +15,6 @@ import Select from 'react-select';
 import { SeachCategoria } from '../../api/services/categoria/get-categoria';
 import { SeachCategoriaResponseBatche } from '../../api/services/categoria/get-categoria/get.interface';
 import theme from '../../global/theme';
-import classNames from 'classnames';
 
 interface ModalCriarProps {
   close: () => void;
@@ -77,6 +76,7 @@ export const ModalCriarLote = (props: ModalCriarProps) => {
   const loginMutation = useMutation(CreateBatche, {
     onSuccess: (data: CreateResponseBatche) => {
       toast.success('Lote Criado!');
+      console.log(data);
       handleSucess();
     },
     onError: (error: ApiError) => {

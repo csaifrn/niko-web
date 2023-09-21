@@ -3,14 +3,16 @@ import * as S from './styles';
 import { useParams, useNavigate } from 'react-router-dom';
 import Menu from '../Menu';
 import MenuCoord from '../MenuCoord';
-import { AtribuirAlguemModal } from '../AtribuirAlguemModal';
-import { AvancarModal } from '../AvancarModal';
 import { ConfigModal } from '../ConfigModal';
 import { DeletarLoteModal } from '../DeletarLoteModal';
-import { VoltarModal } from '../VoltarModal';
-import { LoteData } from '../../data/LoteData';
-import FaseData from '../../data/FaseData';
-import { ModalResolverPendencia } from '../ModalResolverPendencia';
+import { useMutation } from 'react-query';
+import { GetBatche } from '../../api/services/batches/get-batche';
+import { GetResponseBatche } from '../../api/services/batches/get-batche/get.interface';
+import { ApiError } from '../../api/services/authentication/signIn/signIn.interface';
+import toast from 'react-hot-toast';
+import { Empty } from '../EmptyPage';
+import { number } from 'yup';
+import Splash from '../../pages/Splash';
 
 export const LoteDetails = () => {
   const [config_modal, setConfigModal] = useState(false);
@@ -44,102 +46,123 @@ export const LoteDetails = () => {
     setPend(!pend);
     setPendencia(p);
   };
+
   const [pendencia, setPendencia] = useState<any>(null);
+  const [error, setError] = useState<string | null>(null);
 
   const navigate = useNavigate();
   const { id } = useParams();
-  const [lote] = useState(LoteData);
-  const task = lote.filter((task) => task.id == id)[0];
+  const beforeTask = useMutation(GetBatche, {
+    onSuccess: (data: GetResponseBatche) => {
+      console.log(data);
+      console.log('Success');
+      setTask(data);
+    },
+    onError: (error: ApiError) => {
+      toast.error(error.response!.data.message);
+      setError(error.response!.data.message);
+    },
+  });
 
-  const [prioridadeState, setPrioridadeState] = useState(task.prioridade);
-  const handlePChange = () => {
-    setPrioridadeState(!prioridadeState);
-  };
-
-  const [compartState, setCompartState] = useState(task.envolvidos.length >= 2);
-  const handleCompartCheck = () => {
-    setCompartState(!compartState);
-  };
-
-  const [indisponivel, setIndisponivel] = useState(false);
+  const [task, setTask] = useState<GetResponseBatche | null>();
 
   useEffect(() => {
-    if (task.pendencias.length == 0) {
-      setIndisponivel(true);
+    if (typeof id === 'string') {
+      const response = beforeTask.mutate({
+        id,
+      });
+    } else {
+      navigate(-1);
     }
   }, []);
+
+  const [prioridadeState, setPrioridadeState] = useState(task?.priority);
+  const handlePChange = () => {
+    setPrioridadeState(prioridadeState === 1 ? 0 : 1);
+  };
+
+  // const [compartState, setCompartState] = useState(task.envolvidos.length >= 2);
+  //const handleCompartCheck = () => {
+  //  setCompartState(!compartState);
+  //};
 
   const handleDebug = (fase: any) => {
     console.log(fase);
   };
 
-  const [usuarios, setUsuarios] = useState(task.envolvidos);
+  if (beforeTask.isLoading) {
+    return <Splash />;
+  } else if (error === null) {
+    return (
+      <>
+        <Menu area={`/Painel/${id}`} id_projeto={id}></Menu>
+        <MenuCoord />
+        <S.areaClick>
+          {/* BOTÃO DE FECHAR */}
+          <S.CloseDiv>
+            <S.Exit onClick={() => navigate(-1)}>
+              <img src="/close.svg" alt="" height={18} width={18} />
+            </S.Exit>
+          </S.CloseDiv>
 
-  return (
-    <>
-      <Menu area={`/Painel/${id}`} id_projeto={id}></Menu>
-      <MenuCoord />
-      <S.areaClick>
-        {/* BOTÃO DE FECHAR */}
-        <S.CloseDiv>
-          <S.Exit onClick={() => navigate(-1)}>
-            <img src="/close.svg" alt="" height={18} width={18} />
-          </S.Exit>
-        </S.CloseDiv>
+          <S.LoteInfos>
+            <S.LoteEditConfig>
+              {/* TÍTULO */}
+              <S.TituloLote>{`${task?.settlement_project}`}</S.TituloLote>
+              <S.EditConfig>
+                {/* EDITAR */}
+                <S.Edit href={`/Lote/${task?.id}/Edit`}>
+                  {''}
+                  <S.Icons src={`/pen.svg`}></S.Icons>
+                  {''}
+                </S.Edit>
+                {/* CONFIGURAÇÕES */}
+                <S.Config onClick={handleConfig}>
+                  {''}
+                  <S.Icons src={`/config.svg`}></S.Icons>
+                  {''}
+                </S.Config>
+              </S.EditConfig>
+            </S.LoteEditConfig>
 
-        <S.LoteInfos>
-          <S.LoteEditConfig>
-            {/* TÍTULO */}
-            <S.TituloLote>{`${task.titulo} ${task.numero} `}</S.TituloLote>
-            <S.EditConfig>
-              {/* EDITAR */}
-              <S.Edit href={`/Lote/${task.id}/Edit`}>
-                {''}
-                <S.Icons src={`/pen.svg`}></S.Icons>
-                {''}
-              </S.Edit>
-              {/* CONFIGURAÇÕES */}
-              <S.Config onClick={handleConfig}>
-                {''}
-                <S.Icons src={`/config.svg`}></S.Icons>
-                {''}
-              </S.Config>
-            </S.EditConfig>
-          </S.LoteEditConfig>
-
-          <S.DetalhesLote>
-            {/* PROTOCOLO */}
-            <S.Protocolo>
+            <S.DetalhesLote>
+              {/* PROTOCOLO */}
+              {/* <S.Protocolo>
               <p style={{ padding: '0 0.5em' }}>{task.protocolo}</p>
-            </S.Protocolo>
+            </S.Protocolo> */}
 
-            {task.estante !== null && <S.Estante>{task.estante}</S.Estante>}
+              {task?.shelf_number !== null && <S.Estante>{task?.shelf_number}</S.Estante>}
 
-            {/* ARQUIVOS FÍSICOS */}
-            {task.arquiv_fisicos != 0 && (
-              <S.ArquivFisicos>
-                <img src={`/arquivos_fisicos.svg`} alt="arquivos fisicos" />
-                {task.arquiv_fisicos}
-              </S.ArquivFisicos>
-            )}
-            {/* ARQUIVOS DIGITAIS */}
-            {task.arquiv_digitais != 0 && (
-              <S.ArquivDigitais>
-                <img src={`/arquivos_digitais.svg`} alt="arquivos digitais" />
-                {task.arquiv_digitais}
-              </S.ArquivDigitais>
-            )}
-          </S.DetalhesLote>
+              {/* ARQUIVOS FÍSICOS */}
+              {task?.physical_files_count != 0 && (
+                <S.ArquivFisicos>
+                  <img src={`/arquivos_fisicos.svg`} alt="arquivos fisicos" />
+                  {task?.physical_files_count}
+                </S.ArquivFisicos>
+              )}
+              {/* ARQUIVOS DIGITAIS */}
+              {task?.digital_files_count != 0 && (
+                <S.ArquivDigitais>
+                  <img src={`/arquivos_digitais.svg`} alt="arquivos digitais" />
+                  {task?.digital_files_count}
+                </S.ArquivDigitais>
+              )}
+            </S.DetalhesLote>
 
-          {/* MOSTRA CATEGORIAS QUANDO O LOTE É PRIORIDADE */}
-          {task.categorias.length >= 0 && prioridadeState == true && (
+            {/* MOSTRA CATEGORIAS QUANDO O LOTE É PRIORIDADE */}
             <S.CategoriaPrioridade>
-              {/* PRIORIDADE */}
-              <S.Prioridade>
-                <p>Prioridade</p>
-              </S.Prioridade>
+              {prioridadeState === 1 && (
+                <S.Prioridade>
+                  <p>Prioridade</p>
+                </S.Prioridade>
+              )}
+              <S.Categoria>
+                <p>{task?.category.name}</p>
+              </S.Categoria>
+            </S.CategoriaPrioridade>
 
-              {/* CATEGORIAS */}
+            {/* {task.categorias.length > 0 && prioridadeState == false && (
+            <S.CategoriaPrioridade>
               {task.categorias.map((categoria: any) => (
                 <React.Fragment key={categoria.id}>
                   <S.Categoria>
@@ -148,24 +171,9 @@ export const LoteDetails = () => {
                 </React.Fragment>
               ))}
             </S.CategoriaPrioridade>
-          )}
+          )} */}
 
-          {/* MOSTRA CATEGORIAS QUANDO O LOTE NÃO É PRIORIDADE */}
-          {task.categorias.length > 0 && prioridadeState == false && (
-            <S.CategoriaPrioridade>
-              {/* CATEGORIAS */}
-              {task.categorias.map((categoria: any) => (
-                <React.Fragment key={categoria.id}>
-                  <S.Categoria>
-                    <p>{categoria.name}</p>
-                  </S.Categoria>
-                </React.Fragment>
-              ))}
-            </S.CategoriaPrioridade>
-          )}
-
-          {/* TIPOLOGIAS */}
-          {task.tipologias.length > 0 && (
+            {/* {task.tipologias.length > 0 && (
             <S.Tipologias>
               {task.tipologias.map((tipol: any) => (
                 <S.Tipologia key={tipol.id}>
@@ -173,14 +181,14 @@ export const LoteDetails = () => {
                 </S.Tipologia>
               ))}
             </S.Tipologias>
-          )}
+          )} */}
 
-          <S.FaseEnvolvAtual>
-            {/* FASE ATUAL DO LOTE */}
-            <S.Icons src={`/icon-medium/${task.fase_atual}.png`} />
+            <S.FaseEnvolvAtual>
+              {/* FASE ATUAL DO LOTE */}
+              {/* <S.Icons src={`/icon-medium/${task.}.png`} /> */}
 
-            {/* ENVOLVIDOS  */}
-            {usuarios != null &&
+              {/* ENVOLVIDOS  */}
+              {/* {usuarios != null &&
               usuarios.map((env: any) => (
                 <S.Envolvidos key={env.id}>
                   {env.andamento == true && (
@@ -210,12 +218,11 @@ export const LoteDetails = () => {
                     />
                   )}
                 </S.Envolvidos>
-              ))}
-          </S.FaseEnvolvAtual>
-        </S.LoteInfos>
+              ))} */}
+            </S.FaseEnvolvAtual>
+          </S.LoteInfos>
 
-        <S.PendObservacao>
-          {/* PENDÊNCIAS */}
+          {/* <S.PendObservacao>
           <S.Pendencias>
             <p>Pendências</p>
             {task.pendencias.map((pen: any) => (
@@ -232,24 +239,23 @@ export const LoteDetails = () => {
             ))}
           </S.Pendencias>
 
-          {/* OBSERVAÇÕES */}
           <S.Observações>
             <p>Observações</p>
-            {task.observacoes.map((obs: any) => (
+            {observacoes.map((obs: any) => (
               <S.ObsDivBlack key={obs.ObsId}>{obs.titulo}</S.ObsDivBlack>
             ))}
           </S.Observações>
-        </S.PendObservacao>
+        </S.PendObservacao> */}
 
-        <S.Botoes>
-          {/* ATRIBUIR À ALGUÉM */}
-          <S.Botao onClick={handleAtribuirAlguem}>
-            <img src={`/atribuir.svg`} alt="botão para atribuir lote a algum operador " />
-            <p>Atribuir à alguém</p>
-          </S.Botao>
+          <S.Botoes>
+            {/* ATRIBUIR À ALGUÉM */}
+            <S.Botao onClick={handleAtribuirAlguem}>
+              <img src={`/atribuir.svg`} alt="botão para atribuir lote a algum operador " />
+              <p>Atribuir à alguém</p>
+            </S.Botao>
 
-          {/* VOLTAR FASE */}
-          <S.BotaoMudarFase>
+            {/* VOLTAR FASE */}
+            {/* <S.BotaoMudarFase>
             {indisponivel == false && (
               <S.VoltarAvancar onClick={handleVoltar} style={{ background: '#393E4B' }}>
                 <img src={'/voltar.svg'} alt="ícone circular com uma seta para a esquerda ao centro" />
@@ -290,10 +296,10 @@ export const LoteDetails = () => {
                 ))}
               </S.EscolherFase>
             )}
-          </S.BotaoMudarFase>
+          </S.BotaoMudarFase> */}
 
-          {/* AVANÇAR FASE */}
-          <S.BotaoMudarFase>
+            {/* AVANÇAR FASE */}
+            {/* <S.BotaoMudarFase>
             {indisponivel == false && (
               <S.VoltarAvancar onClick={handleAvancar} style={{ background: '#393E4B' }}>
                 <img src={'/avancar.svg'} alt="ícone circular com uma seta para a direita ao centro" />
@@ -335,18 +341,18 @@ export const LoteDetails = () => {
                 ))}
               </S.EscolherFase>
             )}
-          </S.BotaoMudarFase>
+          </S.BotaoMudarFase> */}
 
-          {/* DELETAR LOTE */}
-          <S.Botao onClick={handleDelete} style={{ backgroundColor: '#F32D2D' }}>
-            <img src={`/trash.svg`} alt="Deletar Lote" />
-            <p>Deletar lote</p>
-          </S.Botao>
-        </S.Botoes>
+            {/* DELETAR LOTE */}
+            <S.Botao onClick={handleDelete} style={{ backgroundColor: '#F32D2D' }}>
+              <img src={`/trash.svg`} alt="Deletar Lote" />
+              <p>Deletar lote</p>
+            </S.Botao>
+          </S.Botoes>
 
-        {/* DETALHAMENTO POR FASE */}
+          {/* DETALHAMENTO POR FASE */}
 
-        {task.detalhamento_por_fase != null && (
+          {/* {task.detalhamento_por_fase != null && (
           <S.DetalFase>
             <S.DetalhamentoTitulo>Detalhamento por fase</S.DetalhamentoTitulo>
             <S.DetalhamentoGrid>
@@ -405,27 +411,32 @@ export const LoteDetails = () => {
               ))}
             </S.DetalhamentoGrid>
           </S.DetalFase>
-        )}
-      </S.areaClick>
+        )} */}
+        </S.areaClick>
+        {/* {pend && <ModalResolverPendencia pendencia={pendencia} close={() => setPend(!pend)}></ModalResolverPendencia>}
 
-      {pend && <ModalResolverPendencia pendencia={pendencia} close={() => setPend(!pend)}></ModalResolverPendencia>}
-      {modal && (
-        <AtribuirAlguemModal user={usuarios} setUser={setUsuarios} close={handleAtribuirAlguem}></AtribuirAlguemModal>
-      )}
-      {voltar && <VoltarModal close={handleVoltar}></VoltarModal>}
-      {avancar && <AvancarModal close={handleAvancar}></AvancarModal>}
-      {delete_modal && <DeletarLoteModal close={handleDelete}></DeletarLoteModal>}
-      {config_modal && (
-        <ConfigModal
-          valor_prioridade={prioridadeState}
-          handlePrioridade={handlePChange}
-          valor_compart={compartState}
-          handleCompart={handleCompartCheck}
-          close={handleConfig}
-        ></ConfigModal>
-      )}
-    </>
-  );
+        {modal && (
+          <AtribuirAlguemModal user={usuarios} setUser={setUsuarios} close={handleAtribuirAlguem}></AtribuirAlguemModal>
+        )}
+        {voltar && <VoltarModal close={handleVoltar}></VoltarModal>}
+        {avancar && <AvancarModal close={handleAvancar}></AvancarModal>} */}
+        {delete_modal && (
+          <DeletarLoteModal delete={(id: number) => console.log(number)} close={handleDelete}></DeletarLoteModal>
+        )}
+        {config_modal && (
+          <ConfigModal
+            id={id!}
+            prioridade={task!.priority}
+            close={() => {
+              setConfigModal(!config_modal);
+            }}
+          ></ConfigModal>
+        )}
+      </>
+    );
+  } else {
+    return <Empty error={error} />;
+  }
 };
 
 export default LoteDetails;

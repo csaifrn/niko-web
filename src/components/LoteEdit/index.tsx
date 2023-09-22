@@ -1,6 +1,5 @@
-import { useEffect, useState } from 'react';
+import { FormEvent, useEffect, useState } from 'react';
 import * as S from './style';
-import Search from '../Search';
 import Menu from '../Menu';
 import MenuCoord from '../MenuCoord';
 import { GetResponseBatche } from '../../api/services/batches/get-batche/get.interface';
@@ -12,7 +11,8 @@ import { GetBatche } from '../../api/services/batches/get-batche';
 import Splash from '../../pages/Splash';
 import { SeachCategoriaResponseBatche } from '../../api/services/categoria/get-categoria/get.interface';
 import { SeachCategoria } from '../../api/services/categoria/get-categoria';
-import { validationSearch } from './validation';
+import { validationPatch, validationSearch } from './validation';
+import { PatchBatcheEdit } from '../../api/services/batches/patch-batche';
 
 interface Options {
   value: string;
@@ -22,14 +22,10 @@ interface Options {
 const LoteEdit = () => {
   const navigate = useNavigate();
   const { id } = useParams();
-
-  const [batch, setBatch] = useState<GetResponseBatche | null>(null);
-  const [categoria, setCategoria] = useState<any>(null);
-  const [options, setOptions] = useState<Options[]>([]);
+  const [, setOptions] = useState<Options[]>([]);
   const [name, setName] = useState('');
   const [title, setTitle] = useState<string>('');
-  const [priority, setPriority] = useState<boolean>(false);
-  const [pyshical_files_count, setPyshical_files_count] = useState<number>(0);
+  const [physical_files_count, setPhysical_files_count] = useState<number>(0);
   const [digital_files_count, setDigital_files_count] = useState<number>(0);
 
   const categorias = useMutation(SeachCategoria, {
@@ -40,19 +36,36 @@ const LoteEdit = () => {
 
       setOptions(response);
     },
-    onError: () => {},
+    onError: (error: ApiError) => {
+      if (error.response) {
+        toast.error(error.response.data.message);
+      }
+    },
+  });
+
+  const patchBatch = useMutation(PatchBatcheEdit, {
+    onSuccess: () => {
+      toast.success('Alterações salvas!');
+      navigate(`/Lote/${id}`);
+    },
+    onError: (error: ApiError) => {
+      if (error.response) {
+        toast.error(error.response.data.message);
+      }
+    },
   });
 
   const beforeBatch = useMutation(GetBatche, {
     onSuccess: (data: GetResponseBatche) => {
-      setBatch(data);
       setTitle(data.settlement_project);
-      setPriority(Boolean(data.priority));
-      setPyshical_files_count(data.physical_files_count);
+      setName(data.category.name);
+      setPhysical_files_count(data.physical_files_count);
       setDigital_files_count(data.digital_files_count);
     },
     onError: (error: ApiError) => {
-      toast.error(error.response!.data.message);
+      if (error.response) {
+        toast.error(error.response.data.message);
+      }
     },
   });
 
@@ -70,8 +83,18 @@ const LoteEdit = () => {
     onChange();
   }, [name]);
 
-  const handleSave = () => {
-    console.log('Feito');
+  const handleSave = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const isValid = await validatePatch();
+
+    if (isValid && id) {
+      patchBatch.mutate({
+        id: id,
+        settlement_project: title,
+        digital_files_count,
+        physical_files_count,
+      });
+    }
   };
 
   const validateSearch = async (): Promise<boolean> => {
@@ -79,6 +102,24 @@ const LoteEdit = () => {
       await validationSearch.validate(
         {
           name,
+        },
+        {
+          abortEarly: false,
+        },
+      );
+    } catch (error) {
+      return false;
+    }
+    return true;
+  };
+
+  const validatePatch = async (): Promise<boolean> => {
+    try {
+      await validationPatch.validate(
+        {
+          title,
+          physical_files_count,
+          digital_files_count,
         },
         {
           abortEarly: false,
@@ -107,7 +148,7 @@ const LoteEdit = () => {
       <>
         <Menu area="/"></Menu>
         <MenuCoord />
-        <S.ModalContent id="modal-content" onSubmit={handleSave}>
+        <S.ModalContent id="modal-content" onSubmit={(e) => handleSave(e)}>
           <S.NameClose>
             <h1>{title}</h1>
             <button
@@ -147,22 +188,25 @@ const LoteEdit = () => {
               ></S.Local>
             </S.LocalDiv>
           )} */}
+          <h2>Título</h2>
+          <S.NameInput type="text" value={title} onChange={(e) => setTitle(e.currentTarget.value)} />
 
           {/* ARQUIVOS */}
           <S.Arquivos>
             <h2>Arquivos</h2>
             <S.ArquivosDiv>
               {/* ARQUIVOS FÍSICOS */}
-              {pyshical_files_count !== null && (
+              {physical_files_count !== null && (
                 <S.ArquivosFisicos>
                   <p>Físicos</p>
                   <S.ArquivosInput
                     style={{ backgroundColor: '#393E4B' }}
                     type="number"
-                    name="nome"
+                    name="Arquivos físicos"
                     placeholder={``}
-                    onChange={(e) => setPyshical_files_count(Number(e.currentTarget.value))}
-                    value={pyshical_files_count}
+                    onChange={(e) => setPhysical_files_count(Number(e.currentTarget.value))}
+                    value={physical_files_count}
+                    min={0}
                   ></S.ArquivosInput>
                 </S.ArquivosFisicos>
               )}
@@ -173,11 +217,12 @@ const LoteEdit = () => {
                   <p>Digitais</p>
                   <S.ArquivosInput
                     style={{ backgroundColor: '#393E4B' }}
-                    type="text"
-                    name="nome"
+                    type="number"
+                    name="Arquivos digitais"
                     placeholder={``}
                     onChange={(e) => setDigital_files_count(Number(e.currentTarget.value))}
                     value={digital_files_count}
+                    min={0}
                   ></S.ArquivosInput>
                 </S.ArquivosDigitais>
               )}
@@ -185,18 +230,21 @@ const LoteEdit = () => {
           </S.Arquivos>
 
           {/*CATEGORIAS E TIPOLOGIAS*/}
+          {/* <h2>Categoria</h2>
           <S.CustomSelect
             onInputChange={(e) => setName(e)}
             placeholder={'Digite no mínimo 3 caracteres...'}
             inputValue={name}
             options={options}
-            onChange={(e) => setCategoria(e)}
+            onChange={(e) => setCategoria(e.value)}
             isLoading={categorias.isLoading}
             className="react-select-container"
             classNamePrefix="react-select"
-          />
+          /> */}
 
-          <S.SalvarEditButton type="submit">Salvar</S.SalvarEditButton>
+          <S.SalvarEditButton type="submit" onClick={(e) => e.preventDefault}>
+            Salvar
+          </S.SalvarEditButton>
         </S.ModalContent>
       </>
     );

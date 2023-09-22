@@ -110,7 +110,8 @@ const ModalBackdrop = styled.div`
 `;
 
 export const InputText = styled.input`
-  padding: 0.5em;
+  padding: 0.8em;
+  font-size: 12px;
   font-family: 'Rubik';
   height: 44px;
   font-weight: 400;
@@ -134,6 +135,7 @@ export const CustomSelect = styled(Select)`
     border: none;
     background-color: ${({ theme }) => theme.colors['gray/700']} !important; /* Cor de fundo do controle */
     color: ${({ theme }) => theme.colors.white} !important;
+    min-height: 44px;
   }
 
   .react-select__placeholder {
@@ -154,6 +156,10 @@ export const CustomSelect = styled(Select)`
   }
 
   .react-select__option--is-selected {
+    background-color: ${({ theme }) => theme.colors['gray/500']}; /* Cor de fundo da opção selecionada */
+  }
+
+  .react-select__option--is-focused {
     background-color: ${({ theme }) => theme.colors['gray/500']}; /* Cor de fundo da opção selecionada */
   }
 

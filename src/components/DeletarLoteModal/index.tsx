@@ -1,15 +1,13 @@
 import { useState, useEffect } from 'react';
 import * as S from './styles';
-import { useParams } from 'react-router-dom';
 
 interface DeletarModalProps {
   close: () => void;
-  delete?: Function;
+  delete?: () => void;
 }
 
 export const DeletarLoteModal = (props: DeletarModalProps) => {
   const [closing, setClosing] = useState(false);
-  const { id } = useParams();
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -33,7 +31,7 @@ export const DeletarLoteModal = (props: DeletarModalProps) => {
 
   const handleDelete = () => {
     if (props.delete) {
-      props.delete(id);
+      props.delete();
     }
     handleClose();
   };

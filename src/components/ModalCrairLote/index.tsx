@@ -1,8 +1,8 @@
-import { useState, useEffect, CSSProperties } from 'react';
+import React, { useState, useEffect } from 'react';
 import * as S from './styles';
 import { ErrorMessage } from '../../pages/Login/styles';
 import { validationLoginSchema, validationSearch } from './validation';
-import { useMutation, useQuery } from 'react-query';
+import { useMutation } from 'react-query';
 import { CreateBatche } from '../../api/services/batches/create-batche';
 import { CreateResponseBatche } from '../../api/services/batches/create-batche/create.interface';
 import { ApiError } from '../../api/services/authentication/signIn/signIn.interface';
@@ -10,11 +10,8 @@ import * as Yup from 'yup';
 import { ErrorsForm } from './criar.interface';
 import ReactLoading from 'react-loading';
 import toast from 'react-hot-toast';
-import React from 'react';
-import Select from 'react-select';
 import { SeachCategoria } from '../../api/services/categoria/get-categoria';
 import { SeachCategoriaResponseBatche } from '../../api/services/categoria/get-categoria/get.interface';
-import theme from '../../global/theme';
 
 interface ModalCriarProps {
   close: () => void;
@@ -38,7 +35,6 @@ export const ModalCriarLote = (props: ModalCriarProps) => {
 
       setOptions(response);
     },
-    onError: () => {},
   });
 
   const [settlement_project, setSettlement_project] = useState('');
@@ -80,7 +76,9 @@ export const ModalCriarLote = (props: ModalCriarProps) => {
       handleSucess();
     },
     onError: (error: ApiError) => {
-      toast.error(error.response!.data.message);
+      if (error.response) {
+        toast.error(error.response!.data.message);
+      }
     },
   });
 

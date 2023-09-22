@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import * as S from './styles';
 import { useParams, useNavigate } from 'react-router-dom';
 import Menu from '../Menu';
@@ -11,7 +11,6 @@ import { GetResponseBatche } from '../../api/services/batches/get-batche/get.int
 import { ApiError } from '../../api/services/authentication/signIn/signIn.interface';
 import toast from 'react-hot-toast';
 import { Empty } from '../EmptyPage';
-import { number } from 'yup';
 import Splash from '../../pages/Splash';
 
 export const LoteDetails = () => {
@@ -25,42 +24,34 @@ export const LoteDetails = () => {
     setDeleteModal(!delete_modal);
   };
 
-  const [voltar, setVoltar] = useState(false);
-  const handleVoltar = () => {
-    setVoltar(!voltar);
-  };
+  // const [voltar, setVoltar] = useState(false);
+  // const handleVoltar = () => {
+  //   setVoltar(!voltar);
+  // };
 
-  const [avancar, setAvancar] = useState(false);
-  const handleAvancar = () => {
-    setAvancar(!avancar);
-  };
+  // const [avancar, setAvancar] = useState(false);
+  // const handleAvancar = () => {
+  //   setAvancar(!avancar);
+  // };
 
   const [modal, setModal] = useState(false);
   const handleAtribuirAlguem = () => {
     setModal(!modal);
   };
 
-  //Estado de uma pendência
-  const [pend, setPend] = useState(false);
-  const handleResolverPend = (p: any) => {
-    setPend(!pend);
-    setPendencia(p);
-  };
-
-  const [pendencia, setPendencia] = useState<any>(null);
   const [error, setError] = useState<string | null>(null);
 
   const navigate = useNavigate();
   const { id } = useParams();
   const beforeTask = useMutation(GetBatche, {
     onSuccess: (data: GetResponseBatche) => {
-      console.log(data);
-      console.log('Success');
       setTask(data);
     },
     onError: (error: ApiError) => {
-      toast.error(error.response!.data.message);
-      setError(error.response!.data.message);
+      if (error.response) {
+        toast.error(error.response.data.message);
+        setError(error.response.data.message);
+      }
     },
   });
 
@@ -68,7 +59,7 @@ export const LoteDetails = () => {
 
   useEffect(() => {
     if (typeof id === 'string') {
-      const response = beforeTask.mutate({
+      beforeTask.mutate({
         id,
       });
     } else {
@@ -76,20 +67,16 @@ export const LoteDetails = () => {
     }
   }, []);
 
-  const [prioridadeState, setPrioridadeState] = useState(task?.priority);
-  const handlePChange = () => {
-    setPrioridadeState(prioridadeState === 1 ? 0 : 1);
-  };
+  const [prioridadeState] = useState(task?.priority);
+
+  // const handlePChange = () => {
+  //   setPrioridadeState(prioridadeState === 1 ? 0 : 1);
+  // };
 
   // const [compartState, setCompartState] = useState(task.envolvidos.length >= 2);
   //const handleCompartCheck = () => {
   //  setCompartState(!compartState);
   //};
-
-  const handleDebug = (fase: any) => {
-    console.log(fase);
-  };
-
   if (beforeTask.isLoading) {
     return <Splash />;
   } else if (error === null) {
@@ -420,9 +407,7 @@ export const LoteDetails = () => {
         )}
         {voltar && <VoltarModal close={handleVoltar}></VoltarModal>}
         {avancar && <AvancarModal close={handleAvancar}></AvancarModal>} */}
-        {delete_modal && (
-          <DeletarLoteModal delete={(id: number) => console.log(number)} close={handleDelete}></DeletarLoteModal>
-        )}
+        {delete_modal && <DeletarLoteModal delete={() => console.log(id)} close={handleDelete}></DeletarLoteModal>}
         {config_modal && (
           <ConfigModal
             id={id!}

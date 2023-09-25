@@ -47,7 +47,7 @@ export const Menu = (props: MenuProps) => {
           <S.ButtonBurger open={open} onClick={handleClickButton}>
             <S.MenuImg src="/menu.svg" />
           </S.ButtonBurger>
-          <S.LinkLogo href={`/Fase/${id}`}>
+          <S.LinkLogo href={`/Painel/${id}`}>
             <S.MenuImg src="/Logo_Niko.svg" />
           </S.LinkLogo>
           {open && props.id_projeto != undefined && (

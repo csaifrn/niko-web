@@ -19,7 +19,7 @@ const MenuArea = styled.nav`
   justify-content: space-between;
   gap: 20px;
   height: 80px;
-  z-index: 9999;
+  z-index: 99;
 `;
 
 interface BurgerProps {

@@ -13,7 +13,7 @@ const LinkMenu = styled.a<LinkMenuProps>`
   color: white;
   text-decoration: none;
   transition: color 0.3s linear;
-  z-index: 99999999;
+  z-index: 99;
   background-color: ${({ open }) => (open ? '#0E0F13' : 'transparent')};
 
   @media (max-width: 576px) {

@@ -1,11 +1,59 @@
+import Select from 'react-select';
 import styled from 'styled-components';
 
 export const Titulo2 = styled.h2`
   font-weight: normal;
 `;
 
-export const ModalContent = styled.div`
-  z-index: 9999990;
+export const CustomSelect = styled(Select)`
+  .react-select__control {
+    border: none;
+    background-color: ${({ theme }) => theme.colors['gray/500']} !important; /* Cor de fundo do controle */
+    color: ${({ theme }) => theme.colors.white} !important;
+    min-height: 44px;
+  }
+
+  .react-select__placeholder {
+    color: ${({ theme }) => theme.colors.white / 10} !important;
+  }
+
+  .react-select__single-value {
+    color: ${({ theme }) => theme.colors['gray/200']};
+  }
+
+  .react-select__menu {
+    background-color: ${({ theme }) => theme.colors['gray/500']} !important;
+  }
+
+  .react-select__option {
+    background-color: ${({ theme }) => theme.colors['gray/500']};
+    color: ${({ theme }) => theme.colors.white}; /* Cor do texto das opções */
+  }
+
+  .react-select__option {
+    background-color: ${({ theme }) => theme.colors['gray/500']};
+    color: ${({ theme }) => theme.colors.white}; /* Cor do texto das opções */
+  }
+
+  .react-select__option--is-selected {
+    background-color: ${({ theme }) => theme.colors['gray/700']}; /* Cor de fundo da opção selecionada */
+  }
+
+  .react-select__option--is-focused {
+    background-color: ${({ theme }) => theme.colors['gray/700']}; /* Cor de fundo da opção selecionada */
+  }
+
+  .react-select__indicator-separator {
+    background-color: ${({ theme }) => theme.colors['gray/50']}; /* Cor do separador entre indicadores */
+  }
+
+  .react-select__value-container .react-select__input {
+    color: ${({ theme }) => theme.colors.white} !important;
+  }
+`;
+
+export const ModalContent = styled.form`
+  z-index: 100;
   padding: 2em;
   color: white;
   transition: transform 0.9s ease-in-out;
@@ -84,6 +132,39 @@ export const ArquivosInput = styled.input`
   font-family: 'Rubik', Helvetica, sans-serif;
   border: none;
   border-radius: 5px;
+  min-width: 100px;
+
+  ::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    background: url('/carets.svg') no-repeat center center;
+    width: 3em;
+    border-left: 1px solid #bbb;
+    opacity: 0.5; /* shows Spin Buttons per default (Chrome >= 39) */
+    position: absolute;
+    border-left: none;
+    top: 0;
+    right: 0;
+    bottom: 0;
+  }
+
+  ::-webkit-inner-spin-button,
+  ::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+  }
+`;
+
+export const NameInput = styled.input`
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding: 15px;
+  width: 56px;
+  background-color: #393e4b;
+  color: white;
+  font-family: 'Rubik', Helvetica, sans-serif;
+  border: none;
+  border-radius: 5px;
+  width: 100%;
 `;
 
 export const LocalDiv = styled.div`

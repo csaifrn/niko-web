@@ -11,7 +11,7 @@ const StyledMenu = styled.nav<BurgerProps>`
   justify-content: right;
   background: #191c24;
   text-align: left;
-  z-index: 9999999;
+  z-index: 99;
   gap: 1em;
   transition: transform 0.3s ease-in-out;
 `;
@@ -24,7 +24,7 @@ const areaClick = styled.div<BurgerProps>`
   height: 100%;
   background-color: white;
   transition: all 0.3s ease; /* Adiciona uma transição suave */
-  z-index: 999999999999999999999999999;
+  z-index: 99;
   padding-left: 2em;
   padding-top: 2em;
   background: #191c24;

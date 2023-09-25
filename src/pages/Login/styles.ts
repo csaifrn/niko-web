@@ -98,7 +98,7 @@ export const ForgotPasswordLink = styled(Link)`
 
 export const ErrorMessage = styled.span`
   color: ${({ theme }) => theme.colors['red/300']};
-  font-size: 10px;
+  font-size: 12px;
 `;
 
 export const SubmitButton = styled.button`

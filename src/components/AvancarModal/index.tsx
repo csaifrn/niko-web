@@ -84,7 +84,7 @@ export const AvancarModal = (props: AvancarModalProps) => {
               <S.Avancar
                 onClick={handleClose}
                 disabled={!isChecked}
-                style={{ background: !isChecked ? '#666666' : '' }}
+                style={{ background: !isChecked ? '#666666' : '' , cursor: !isChecked ? '' : 'pointer' }}
               >
                 {!isChecked && <S.IconeAvancar src="/avancar-desativado.svg"></S.IconeAvancar>}
                 {isChecked && <S.IconeAvancar src="/avancar.svg"></S.IconeAvancar>}

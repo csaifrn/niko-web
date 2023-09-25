@@ -95,7 +95,7 @@ export const EditModal = () => {
           <S.ModalContent id="modal-content">
             <S.NameClose>
               <h1>Editar Lote {task.numero}</h1> 
-              <button onClick={() => navigate(-1)} style={{ width: 'auto', backgroundColor: 'transparent', border: 'none' }}>
+              <button onClick={() => navigate(-1)} style={{ width: 'auto', backgroundColor: 'transparent', border: 'none' , cursor: 'pointer' }}>
                 <img
                   src="/close.svg"
                   alt=""

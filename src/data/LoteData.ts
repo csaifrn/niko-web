@@ -914,8 +914,7 @@ export const LoteData = [
         comment: 'Lote possui vários processos com páginas não numeradas',
         voltar: true,
         decisao: false,
-      },
-      
+      },    
     ],
     observacoes: [],
     categorias: [

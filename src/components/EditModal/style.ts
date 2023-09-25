@@ -1,8 +1,10 @@
 import styled from 'styled-components';
 import media from 'styled-media-query';
 
-export const Titulo2 = styled.h2`
+export const Titulo2 = styled.p`
   font-weight: normal;
+  font-family: 'Rubik';
+  font-size: 18px;
 `;
 
 export const ModalContent = styled.div`
@@ -21,7 +23,7 @@ export const ModalContent = styled.div`
 `;
 
 export const SearchDiv = styled.div`
-  width: 20%;
+  width: 19.5%;
 `;
 
 export const NameClose = styled.div`
@@ -113,7 +115,10 @@ export const CatTipol = styled.div`
 
 export const FilterCatTipol = styled.div``;
 
-export const ButtonCatTipol = styled.div``;
+export const ButtonCatTipol = styled.button`
+  border: none;
+  cursor: pointer;
+`;
 
 export const MostrarCategTipolEscolhida = styled.div`
   display: flex;
@@ -164,6 +169,24 @@ export const ChooseCatTipol = styled.div`
   overflow-y: scroll;
   scroll-behavior: auto;
   scrollbar-width: thin;
+  &::-webkit-scrollbar {
+    width: 0.8em;
+    height: 0.5em;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: #191c24;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: #2a2e38;
+    border-radius: 20px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background-color: transparent;
+    margin: 0em;
+  }
   ${media.greaterThan('large')`
     width: 20%;
     height: 30vh;
@@ -179,8 +202,9 @@ export const SalvarEditButton = styled.button`
   font-family: 'Rubik';
   bottom: 0;
   left: 0;
+  cursor: pointer;
   ${media.greaterThan('large')`
-    width: 140px;
+    width: 110px;
   `}
 `;
 

@@ -42,7 +42,7 @@ export const CheckContainer = styled.div`
   display: grid;
   grid-template-columns: 18px 1fr;
   gap: 1em;
-
+  cursor: pointer;
   span {
     position: relative;
     background-color: ${({ theme }) => theme.colors['gray/500']};
@@ -115,12 +115,13 @@ const Recused = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
+  cursor: pointer;
 `;
 
 export const RecusedVoltar = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 16px;
 `;
 
 export const IconeVoltar = styled.img``;

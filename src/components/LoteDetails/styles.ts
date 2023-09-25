@@ -52,7 +52,7 @@ export const CloseDiv = styled.div`
   border-radius: '5px';
 `;
 
-export const Exit = styled.div`
+export const Exit = styled.button`
   height: 2em;
   width: 2em;
   background-color: #393e4b;
@@ -60,6 +60,8 @@ export const Exit = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  border: none;
+  cursor: pointer;
 `;
 
 export const LoteInfos = styled.div`
@@ -77,12 +79,12 @@ export const LoteEditConfig = styled.div`
 
 export const EditConfig = styled.div`
   display: flex;
-  gap: 0.5em;
+  gap: 8px;
 `;
 
 export const Edit = styled.a`
-  height: 2em;
-  width: 2em;
+  height: 2.25em;
+  width: 2.25em;
   background-color: #393e4b;
   border-radius: 3px;
   margin-bottom: 0.5em;
@@ -91,7 +93,7 @@ export const Edit = styled.a`
   align-items: center;
 `;
 
-export const Config = styled.div`
+export const Config = styled.button`
   height: 2em;
   width: 2em;
   background-color: #393e4b;
@@ -100,6 +102,8 @@ export const Config = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  border: none;
+  cursor: pointer;
 `;
 
 export const DetalhesLote = styled.div`
@@ -216,7 +220,7 @@ export const PendObservacaoBotoes = styled.div`
   flex-direction: column;
   gap: 16px;
   grid-template-columns: repeat(auto-fit, minmax(21rem, 1fr));
-  ${media.greaterThan("large")`
+  ${media.greaterThan('large')`
     display: grid;
   `}
 `;
@@ -226,21 +230,21 @@ export const PendObservacao = styled.div`
   flex-direction: column;
   gap: 16px;
   grid-template-columns: repeat(auto-fit, minmax(21rem, 1fr));
-  ${media.greaterThan("large")`
+  ${media.greaterThan('large')`
     display: grid;
     justify-content: space-between;
   `}
 `;
 export const PendenciaTitulo = styled.p`
   font-size: 12px;
-  ${media.greaterThan("large")`
+  ${media.greaterThan('large')`
     font-size: 16px;
   `}
 `;
 
 export const ObservacaoTitulo = styled.p`
   font-size: 12px;
-  ${media.greaterThan("large")`
+  ${media.greaterThan('large')`
     font-size: 16px;
   `}
 `;
@@ -297,10 +301,14 @@ export const BotaoResolverPend = styled.button`
   width: 100%;
   border: none;
   font-family: 'Rubik';
-  color: #FFFFFF;
+  color: #ffffff;
   cursor: pointer;
   &:hover {
     background-color: ${({ theme }) => theme.colors['yellow/300']};
+  }
+  &:active {
+    background-color: ${({ theme }) => theme.colors['yellow/200']};
+    transform: translateY(-5%) translateX(2%);
   }
 `;
 
@@ -318,68 +326,13 @@ export const ObsDivBlack = styled.div`
   flex-grow: 0;
 `;
 
-export const BotaoMudarFase = styled.button`
-  display: flex;
-  border: none;
-  font-family: 'Rubik';
-  color: #FFFFFF;
-  background-color: #393e4b;
-  border-radius: 5px;
-`;
-
 export const Botoes = styled.div`
   display: flex;
   flex-direction: column;
   gap: 16px;
-  grid-template-columns: repeat(auto-fit, minmax(21rem, 1fr));
-  ${media.greaterThan("large")`
-    display: flex;
-    flex-direction: column;
+  ${media.greaterThan('large')`
     justify-content: space-between;
-    gap: 16px;
   `}
-`;
-
-export const VoltarAvancar = styled.div`
-  background-color: #393e4b;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 0em 15px;
-  height: 44px;
-  width: calc(50%);
-  border-radius: 5px 0px 0px 5px;
-  p{
-    color: 'white';
-    margin-bottom: '0';
-  }
-  cursor: pointer;
-  &:hover {
-    background-color: ${({ theme }) => theme.colors['yellow/200']};
-  }
-`;
-
-export const EscolherFase = styled.select`
-  background-color: #393e4b;
-  width: calc(50%);
-  display: flex;
-  padding: 0em 2em;
-  height: 44px;
-  border: none;
-  border-radius: 0px 5px 5px 0px;
-  border-left: 1px solid #888c99;
-  color: white;
-  font-family: 'Rubik', Helvetica, sans-serif;
-`;
-
-export const OptionFases = styled.option`
-  background-color: #393e4b;
-  width: calc(50%);
-  display: flex;
-  padding: 2em;
-  :hover {
-    background-color: red;
-  }
 `;
 
 export const Botao = styled.button`
@@ -393,10 +346,90 @@ export const Botao = styled.button`
   border-radius: 5px;
   border: none;
   font-family: 'Rubik';
-  color: #FFFFFF;
+  color: #ffffff;
   cursor: pointer;
   &:hover {
     background-color: ${({ theme }) => theme.colors['gray/400']};
+  }
+  &:active {
+    background-color: ${({ theme }) => theme.colors['gray/400']};
+    transform: translateY(-5%) translateX(2%);
+  }
+`;
+
+export const BotaoDeletarLote = styled.button`
+  background-color: #F32D2D;
+  display: flex;
+  align-items: center;
+  gap: 1em;
+  padding: 0em 15px;
+  height: 44px;
+  width: calc(100%-6em);
+  border-radius: 5px;
+  border: none;
+  font-family: 'Rubik';
+  color: #ffffff;
+  cursor: pointer;
+  &:hover {
+    background-color: ${({ theme }) => theme.colors['red/400']};
+  }
+  &:active {
+    background-color: ${({ theme }) => theme.colors['red/400']};
+    transform: translateY(-5%) translateX(2%);
+  }
+`;
+
+export const BotaoMudarFase = styled.button`
+  display: flex;
+  border: none;
+  font-family: 'Rubik';
+  color: #ffffff;
+  background-color: #393e4b;
+  border-radius: 5px;
+`;
+
+export const VoltarAvancar = styled.button`
+  background-color: #393e4b;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0em 15px;
+  height: 44px;
+  width: calc(50%);
+  border-radius: 5px 0px 0px 5px;
+  border: none;
+  cursor: pointer;
+  font-family: 'Rubik';
+  &:hover {
+    background-color: ${({ theme }) => theme.colors['gray/400']};
+  }
+  &:active {
+    background-color: ${({ theme }) => theme.colors['gray/400']};
+    transform: translateY(-5%) translateX(2%);
+  }
+  
+`;
+
+export const EscolherFase = styled.select`
+  background-color: #393e4b;
+  width: calc(50%);
+  display: flex;
+  padding: 0em 2em;
+  height: 44px;
+  border: none;
+  border-radius: 0px 5px 5px 0px;
+  border-left: 1px solid #888c99;
+  color: white;
+  font-family: 'Rubik';
+`;
+
+export const OptionFases = styled.option`
+  background-color: #393e4b;
+  width: calc(50%);
+  display: flex;
+  padding: 2em;
+  :hover {
+    background-color: red;
   }
 `;
 
@@ -408,20 +441,18 @@ export const DetalFase = styled.div`
 export const DetalhamentoTitulo = styled.p`
   font-size: 20px;
   margin-bottom: 10px;
-`
+`;
 
 export const DetalhamentoGrid = styled.div`
   display: grid;
   grid-gap: 2rem;
   grid-template-columns: repeat(auto-fit, minmax(21rem, 1fr));
-  ${media.greaterThan("large")`
+  ${media.greaterThan('large')`
     grid-template-columns: 2fr 2fr 2fr;
   `}
 `;
 
-export const NomeDaFase = styled.h2`
-  
-`;
+export const NomeDaFase = styled.h2``;
 
 export const TodasAsPendencias = styled.div`
   display: flex;
@@ -432,8 +463,25 @@ export const TodasAsPendencias = styled.div`
     overflow-y: scroll;
     scroll-behavior: auto;
     scrollbar-width: thin;
-  `}
+    &::-webkit-scrollbar {
+      width: 0.3em;
+      height: 0.5em;
+    }
 
+    &::-webkit-scrollbar-track {
+      background: #191c24;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: #2a2e38;
+      border-radius: 20px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background-color: transparent;
+      margin: 0em 2em;
+    }
+  `}
 `;
 
 export const TodasAsObservacoes = styled.div`
@@ -445,10 +493,26 @@ export const TodasAsObservacoes = styled.div`
     overflow-y: scroll;
     scroll-behavior: auto;
     scrollbar-width: thin;
+    &::-webkit-scrollbar {
+      width: 0.3em;
+      height: 0.5em;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: #191c24;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: #2a2e38;
+      border-radius: 20px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background-color: transparent;
+      margin: 0em 2em;
+    }
   `}
-
 `;
-
 
 export const Fase = styled.div`
   display: flex;

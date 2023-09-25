@@ -353,10 +353,10 @@ export const LoteDetails = () => {
 
 
             {/* DELETAR LOTE */}
-            <S.Botao onClick={handleDelete} style={{ backgroundColor: '#F32D2D' }}>
-              <img src={`/trash.svg`} alt="Deletar Lote" />
+            <S.BotaoDeletarLote onClick={handleDelete}>
+              <img src={`/trash.svg`} alt="Botão de deletar Lote" />
               <p>Deletar lote</p>
-            </S.Botao>
+            </S.BotaoDeletarLote>
           </S.Botoes>
         </S.PendObservacaoBotoes>
 

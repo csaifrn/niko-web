@@ -33,13 +33,10 @@ export const DeletarLoteModal = (props: DeletarModalProps) => {
         <S.ModalArea id="modal-scaling">
           <S.ModalContent>
             <S.NameClose>
-              <h2>Deseja apagar o lote?</h2>
-              <S.Exit type="button" onClick={handleClose}>
-                <img src="/close.svg" alt="" height={18} width={18} />
-              </S.Exit>
+              <h2>Deseja excluir o lote?</h2>
             </S.NameClose>
-            <S.Recused onClick={props.close}>Não, não quero.</S.Recused>
-            <S.Delete onClick={handleClose}>Deletar</S.Delete>
+            <S.Recused onClick={handleClose}>Não, não quero.</S.Recused>
+            <S.Delete onClick={handleClose}>Excluir</S.Delete>
           </S.ModalContent>
         </S.ModalArea>
       </S.ModalBackdrop>

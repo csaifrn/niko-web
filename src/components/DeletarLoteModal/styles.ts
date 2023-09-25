@@ -64,6 +64,7 @@ const Recused = styled.button`
   border: none;
   color: white;
   font-family: 'Rubik';
+  cursor: pointer;
 `;
 
 const Delete = styled.button`
@@ -73,6 +74,7 @@ const Delete = styled.button`
   border: none;
   color: white;
   font-family: 'Rubik';
+  cursor: pointer;
 `;
 
 const ModalBackdrop = styled.div`

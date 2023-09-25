@@ -58,8 +58,9 @@ const AtribuirButton = styled.button`
   border-radius: 5px;
   background-color: #43db6d;
   border: none;
-  color: white;
+  color: #0A090E;
   font-family: 'Rubik';
+  cursor: pointer;
 `;
 
 const ModalBackdrop = styled.div`

@@ -119,11 +119,11 @@ export const Menu = (props: MenuProps) => {
         </a>
       </S.ContainerLogo>
       <S.MenuLeft>
-        <S.MenuLupaMobile src="/Lupa.svg" />
-        <S.InputSearch>
-          <p>Ctrl + K</p>
+        {/* <S.MenuLupaMobile src="/Lupa.svg" /> */}
+        {/* <S.InputSearch>
+          <p>Em desenvolvimento..</p>
           <S.MenuLupa src="/Lupa.svg" />
-        </S.InputSearch>
+        </S.InputSearch> */}
 
         <div style={{ position: 'relative' }} ref={dropDownRef}>
           <User

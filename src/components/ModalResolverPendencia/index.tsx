@@ -5,6 +5,8 @@ import { useEffect, useRef, useState } from 'react';
 import { validationLoginSchema } from './validation';
 import * as Yup from 'yup';
 import { ErrorsForm } from './modalresolver.interface';
+
+
 //import { Pend } from '../PendenciasCoord';
 
 interface ModalPendencia {
@@ -121,7 +123,7 @@ export const ModalResolverPendencia = (props: ModalPendencia) => {
                       weight="fill"
                       color={selected === 'ok' ? theme.colors['green/400'] : theme.colors['gray/700']}
                       onClick={() => selectedA('ok')}
-                      style={{ transition: 'all 0.2s' }}
+                      style={{ transition: 'all 0.2s' , cursor: 'pointer'}}
                     />
                   </S.LabelRadio>
                   <S.LabelRadio>
@@ -137,7 +139,7 @@ export const ModalResolverPendencia = (props: ModalPendencia) => {
                       weight="fill"
                       color={selected === 'x' ? theme.colors['red/500'] : theme.colors['gray/700']}
                       onClick={() => selectedA('x')}
-                      style={{ transition: 'all 0.2s' }}
+                      style={{ transition: 'all 0.2s' , cursor: 'pointer'}}
                     />
                   </S.LabelRadio>
                 </S.DataOkX>

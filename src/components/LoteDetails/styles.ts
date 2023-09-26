@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import media from 'styled-media-query';
+import Select from 'react-select';
 
 export const areaClick = styled.div`
   color: white;
@@ -398,7 +399,6 @@ export const VoltarAvancar = styled.button`
   width: calc(50%);
   border-radius: 5px 0px 0px 5px;
   border: none;
-  cursor: pointer;
   font-family: 'Rubik';
   &:hover {
     background-color: ${({ theme }) => theme.colors['gray/400']};
@@ -406,8 +406,7 @@ export const VoltarAvancar = styled.button`
   &:active {
     background-color: ${({ theme }) => theme.colors['gray/400']};
     transform: translateY(-5%) translateX(2%);
-  }
-  
+  } 
 `;
 
 export const EscolherFase = styled.select`
@@ -428,9 +427,6 @@ export const OptionFases = styled.option`
   width: calc(50%);
   display: flex;
   padding: 2em;
-  :hover {
-    background-color: red;
-  }
 `;
 
 export const DetalFase = styled.div`
@@ -572,4 +568,48 @@ export const EnvolvidosDiv = styled.div`
   align-items: center;
   flex-wrap: wrap;
   gap: 0.5em;
+`;
+
+export const EscolherFaseSelect = styled(Select)`
+  width: calc(50%);
+  border-left: 1px solid #888c99;
+  .react-select__control {
+    border: none;
+    background-color: ${({ theme }) => theme.colors['gray/500']} !important; /* Cor de fundo do controle */
+    color: ${({ theme }) => theme.colors.white} !important;
+    min-height: 44px;
+  }
+
+  .react-select__placeholder {
+    color: #ffffff;
+  }
+
+  .react-select__single-value {
+    color: ${({ theme }) => theme.colors.white};
+  }
+
+  .react-select__menu {
+    background-color: ${({ theme }) => theme.colors['gray/500']} !important;
+  }
+
+  .react-select__option {
+    background-color: ${({ theme }) => theme.colors['gray/500']};
+    color: ${({ theme }) => theme.colors.white}; /* Cor do texto das opções */
+  }
+
+  .react-select__option--is-selected {
+    background-color: ${({ theme }) => theme.colors['gray/500']}; /* Cor de fundo da opção selecionada */
+  }
+
+  .react-select__option--is-focused {
+    background-color: ${({ theme }) => theme.colors['gray/700']}; /* Cor de fundo da opção selecionada */
+  }
+
+  .react-select__indicator-separator {
+    background-color: ${({ theme }) => theme.colors['gray/200']}; /* Cor do separador entre indicadores */
+  }
+
+  .react-select__value-container .react-select__input {
+    color: ${({ theme }) => theme.colors.white} !important;
+  }
 `;

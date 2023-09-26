@@ -11,8 +11,14 @@ import { VoltarModal } from '../VoltarModal';
 import { LoteData } from '../../data/LoteData';
 import FaseData from '../../data/FaseData';
 import { ModalResolverPendencia } from '../ModalResolverPendencia';
+import Select from 'react-select';
 
 export const LoteDetails = () => {
+
+  const options = FaseData.map((fase) => (
+    {value: 'fase', label: fase.titulo}
+  ));
+
   const [config_modal, setConfigModal] = useState(false);
   const handleConfig = () => {
     setConfigModal(!config_modal);
@@ -264,57 +270,62 @@ export const LoteDetails = () => {
 
             {/* VOLTAR FASE */}
             <S.BotaoMudarFase>
+
+              {/* BOTÃO DE VOLTAR FASE ATIVADO */}
               {indisponivel == false && (
-                <S.VoltarAvancar onClick={handleVoltar} style={{ background: '#393E4B' }}>
+                <S.VoltarAvancar 
+                  onClick={handleVoltar} 
+                  style={{cursor: 'pointer'}}
+                >
                   <img src={'/voltar.svg'} alt="ícone circular com uma seta para a esquerda ao centro" />
-                  <p style={{ color: indisponivel ? 'rgba(255, 255, 255, 0.50)' : '#FFFFFF' }}>Voltar Fase</p>
+                  <p style={{ color: indisponivel ? 'rgba(255, 255, 255, 0.50)' : '#FFFFFF'}}>Voltar Fase</p>
                 </S.VoltarAvancar>
               )}
 
+              {/* BOTÃO DE VOLTAR FASE DESATIVADO */}
               {indisponivel == true && (
                 <S.VoltarAvancar style={{ background: 'rgba(57, 62, 75, 0.50)' }}>
                   <img src={'/voltar-desativado.svg'} alt="ícone circular com uma seta para a esquerda ao centro" />
-                  <p style={{ color: indisponivel ? 'rgba(255, 255, 255, 0.50)' : '#FFFFFF' }}>Voltar Fase</p>
+                  <p style={{ color: indisponivel ? 'rgba(255, 255, 255, 0.50)' : '#FFFFFF'}}>Voltar Fase</p>
                 </S.VoltarAvancar>
               )}
 
+
+              {/* BOTÃO DE ESCOLHER FASE PARA VOLTAR ATIVADO */}
               {indisponivel == false && (
-                <S.EscolherFase
-                  className="custom-select"
-                  style={{ background: indisponivel ? 'rgba(57, 62, 75, 0.50)' : '#393E4B' }}
-                >
-                  {FaseData.map((fase) => (
-                    <S.OptionFases className="fase" value="fase" key={fase.id}>
-                      {fase.titulo}
-                    </S.OptionFases>
-                  ))}
-                </S.EscolherFase>
+                <S.EscolherFaseSelect 
+                  options={options} 
+                  className="react-select-container"
+                  classNamePrefix="react-select"
+                />
               )}
 
+              {/* BOTÃO DE ESCOLHER FASE PARA VOLTAR DESATIVADO */}
               {indisponivel == true && (
-                <S.EscolherFase
-                  className="custom-select"
-                  style={{ background: indisponivel ? 'rgba(57, 62, 75, 0.50)' : '#393E4B' }}
-                  disabled
-                >
-                  {FaseData.map((fase) => (
-                    <S.OptionFases className="fase" value="fase" key={fase.id}>
-                      {fase.titulo}
-                    </S.OptionFases>
-                  ))}
-                </S.EscolherFase>
+                <S.EscolherFaseSelect 
+                options={options} 
+                className="react-select-container"
+                classNamePrefix="react-select"
+                isDisabled
+                />
               )}
             </S.BotaoMudarFase>
 
             {/* AVANÇAR FASE */}
             <S.BotaoMudarFase>
+
+              {/* BOTÃO DE AVANÇAR FASE ATIVADO */}
               {indisponivel == false && (
-                <S.VoltarAvancar onClick={handleAvancar} style={{ background: '#393E4B' }}>
+                <S.VoltarAvancar 
+                  onClick={handleAvancar} 
+                  style={{cursor: 'pointer' , backgroundColor: indisponivel ? '#191C24' : '#393E4B' }}
+                >
                   <img src={'/avancar.svg'} alt="ícone circular com uma seta para a direita ao centro" />
                   <p style={{ color: indisponivel ? 'rgba(255, 255, 255, 0.50)' : '#FFFFFF' }}>Avancar Fase</p>
                 </S.VoltarAvancar>
               )}
 
+              {/* BOTÃO DE AVANÇAR FASE DESATIVADO */}
               {indisponivel == true && (
                 <S.VoltarAvancar style={{ background: 'rgba(57, 62, 75, 0.50)' }}>
                   <img src={'/avancar-desativado.svg'} alt="ícone circular com uma seta para a direita ao centro" />
@@ -322,32 +333,46 @@ export const LoteDetails = () => {
                 </S.VoltarAvancar>
               )}
 
+              {/* BOTÃO DE ESCOLHER FASE PARA AVANÇAR ATIVADO */}
               {indisponivel == false && (
-                <S.EscolherFase
-                  className="custom-select"
-                  style={{ background: indisponivel ? 'rgba(57, 62, 75, 0.50)' : '#393E4B' }}
-                  onChange={(e) => handleDebug(e)}
-                >
-                  {FaseData.map((fase) => (
-                    <S.OptionFases className="fase" value={fase.titulo} key={fase.id}>
-                      {fase.titulo}
-                    </S.OptionFases>
-                  ))}
-                </S.EscolherFase>
+                <S.EscolherFaseSelect 
+                  options={options} 
+                  className="react-select-container"
+                  classNamePrefix="react-select"
+                />
+                // <S.EscolherFase
+                //   className="custom-select"
+                //   style={{ background: indisponivel ? 'rgba(57, 62, 75, 0.50)' : '#393E4B' }}
+                //   onChange={(e) => handleDebug(e)}
+                // >
+                //   {FaseData.map((fase) => (
+                //     <S.OptionFases className="fase" value={fase.titulo} key={fase.id}>
+                //       {fase.titulo}
+                //     </S.OptionFases>
+                    
+                //   ))}
+                // </S.EscolherFase>
               )}
 
+              {/* BOTÃO DE ESCOLHER FASE PARA AVANÇAR DESATIVADO */}      
               {indisponivel == true && (
-                <S.EscolherFase
-                  className="custom-select"
-                  style={{ background: indisponivel ? 'rgba(57, 62, 75, 0.50)' : '#393E4B' }}
-                  disabled
-                >
-                  {FaseData.map((fase) => (
-                    <S.OptionFases className="fase" value={fase.titulo} key={fase.id}>
-                      {fase.titulo}
-                    </S.OptionFases>
-                  ))}
-                </S.EscolherFase>
+                <S.EscolherFaseSelect 
+                  options={options} 
+                  className="react-select-container"
+                  classNamePrefix="react-select"
+                  isDisabled
+                />
+                // <S.EscolherFase
+                //   className="custom-select"
+                //   style={{ background: indisponivel ? 'rgba(57, 62, 75, 0.50)' : '#393E4B' }}
+                //   disabled
+                // >
+                //   {FaseData.map((fase) => (
+                //     <S.OptionFases className="fase" value={fase.titulo} key={fase.id}>
+                //       {fase.titulo}
+                //     </S.OptionFases>
+                //   ))}
+                // </S.EscolherFase>
               )}
             </S.BotaoMudarFase>
 
@@ -355,7 +380,7 @@ export const LoteDetails = () => {
             {/* DELETAR LOTE */}
             <S.BotaoDeletarLote onClick={handleDelete}>
               <img src={`/trash.svg`} alt="Botão de deletar Lote" />
-              <p>Deletar lote</p>
+              <p>Excluir lote</p>
             </S.BotaoDeletarLote>
           </S.Botoes>
         </S.PendObservacaoBotoes>

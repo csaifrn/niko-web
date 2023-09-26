@@ -55,27 +55,31 @@ export const AvancarModal = (props: AvancarModalProps) => {
 
             {/* PENDÊNCIAS */}
             {task.pendencias.map((pend) => (
-              <S.PendDivBlack key={pend.id}>
-                <S.PendenciaTextIcon>
-                  {<S.AlertIcon src={'/warning.svg'} alt="ícone de alerta" />}
-                  {pend.comment}
-                </S.PendenciaTextIcon>
 
-                <S.LabelCheck htmlFor="check">
-                  <S.CheckContainer>
-                    <span>
-                      <S.InputCheck
-                        name="check"
-                        checked={isChecked}
-                        onChange={handleInputChange}
-                        id="check"
-                        type="checkbox"
-                      />
-                      <Check style={{ position: 'absolute', top: '20%', left: '20%' }} />
-                    </span>
-                  </S.CheckContainer>
-                </S.LabelCheck>
-              </S.PendDivBlack>
+              <>
+                <h3> Motivo:</h3>
+                <S.PendDivBlack key={pend.id}>
+                  <S.PendenciaTextIcon>
+                    {<S.AlertIcon src={'/warning.svg'} alt="ícone de alerta" />}
+                    {pend.comment}
+                  </S.PendenciaTextIcon>
+
+                  <S.LabelCheck htmlFor="check">
+                    <S.CheckContainer>
+                      <span>
+                        <S.InputCheck
+                          name="check"
+                          checked={isChecked}
+                          onChange={handleInputChange}
+                          id="check"
+                          type="checkbox"
+                        />
+                        <Check style={{ position: 'absolute', top: '20%', left: '20%' }} />
+                      </span>
+                    </S.CheckContainer>
+                  </S.LabelCheck>
+                </S.PendDivBlack>
+              </>
             ))}
             <S.RecusedAvancar>
               <S.Recused onClick={handleClose}>

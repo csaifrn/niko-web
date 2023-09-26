@@ -21,6 +21,10 @@ const MenuArea = styled.div`
   align-items: center;
   justify-content: space-between;
   gap: 20px;
+
+  @media screen and (min-width: 1008px) {
+    display: none;
+  }
 `;
 
 const textIcon = styled.p`

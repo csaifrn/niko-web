@@ -1,8 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react';
 import MenuBurger from '../MenuBurger';
 import * as S from './styles';
+import * as MenuC from '../MenuCoord/styles';
 import { useSignOut } from 'react-auth-kit';
 import { useNavigate, useParams } from 'react-router-dom';
+import { User } from '@phosphor-icons/react';
 // import { useNavigate } from 'react-router-dom';
 
 interface MenuProps {
@@ -13,6 +15,7 @@ interface MenuProps {
 // eslint-disable-next-line @typescript-eslint/no-unused-vars, no-unused-vars
 export const Menu = (props: MenuProps) => {
   const { id } = useParams();
+  const pathname = window.location.pathname;
   const [open, setOpen] = useState(false);
   const [DropDown, setDropDown] = useState(false);
   const signOut = useSignOut();
@@ -39,30 +42,95 @@ export const Menu = (props: MenuProps) => {
 
   return (
     <S.MenuArea>
-      {props.id_projeto != undefined && (
+      {props.id_projeto && (
         <S.ContainerA>
           <S.ButtonBurger open={open} onClick={handleClickButton}>
             <S.MenuImg src="/menu.svg" />
           </S.ButtonBurger>
-
+          <S.LinkLogo href={`/Painel/${id}`}>
+            <S.MenuImg src="/Logo_Niko.svg" />
+          </S.LinkLogo>
           {open && props.id_projeto != undefined && (
             <MenuBurger area={props.area} id_projeto={props.id_projeto} onClose={() => setOpen(false)} />
           )}
+          <S.MenuDesk>
+            <MenuC.link href={`/Painel/${id}`}>
+              <MenuC.MenuImg
+                src={
+                  pathname === `/Painel/${id}`
+                    ? '/IconMenu/ChartDonut/fillicon.png'
+                    : '/IconMenu/ChartDonut/regularicon.png'
+                }
+              />
+              {pathname === `/Painel/${id}` && <MenuC.textIcon style={{ color: '#F3802D' }}>Painel</MenuC.textIcon>}
+              {pathname !== `/Painel/${id}` && <MenuC.textIcon>Painel</MenuC.textIcon>}
+            </MenuC.link>
+            <MenuC.link href={`/Atividades/${id}`}>
+              <MenuC.MenuImg
+                src={
+                  pathname === `/Atividades/${id}` ? '/IconMenu/Activity/Fill.svg' : '/IconMenu/Activity/Regular.svg'
+                }
+              />
+              {pathname === `/Atividades/${id}` && (
+                <MenuC.textIcon style={{ color: '#F3802D' }}>Atividades</MenuC.textIcon>
+              )}
+              {pathname !== `/Atividades/${id}` && <MenuC.textIcon>Atividades</MenuC.textIcon>}
+            </MenuC.link>
+            <MenuC.link href={`/Fase/${id}`}>
+              <MenuC.MenuImg
+                src={
+                  pathname === `/Fase/${id}` || pathname.search('Board') >= 0 || pathname.search('Lote') >= 0
+                    ? '/IconMenu/SquaresFour/fillicon.png'
+                    : '/IconMenu/SquaresFour/regularicon.png'
+                }
+              />
+              {pathname === `/Fase/${id}` && <MenuC.textIcon style={{ color: '#F3802D' }}>Fases</MenuC.textIcon>}
+              {pathname.search('Board') >= 0 && <MenuC.textIcon style={{ color: '#F3802D' }}>Fases</MenuC.textIcon>}
+              {pathname.search('Lote') >= 0 && <MenuC.textIcon style={{ color: '#F3802D' }}>Fases</MenuC.textIcon>}
+              {pathname !== `/Fase/${id}` && pathname.search('Board') < 0 && pathname.search('Lote') < 0 && (
+                <MenuC.textIcon>Fases</MenuC.textIcon>
+              )}
+            </MenuC.link>
+
+            <MenuC.link href={`/Categorias/${id}`}>
+              <MenuC.MenuImg
+                src={
+                  pathname === `/Categorias/${id}`
+                    ? '/IconMenu/TagSimple/fillicon.png'
+                    : '/IconMenu/TagSimple/regularicon.png'
+                }
+              />
+              {pathname === `/Categorias/${id}` && (
+                <MenuC.textIcon style={{ color: '#F3802D' }}>Categorias</MenuC.textIcon>
+              )}
+              {pathname !== `/Categorias/${id}` && <MenuC.textIcon>Categorias</MenuC.textIcon>}
+            </MenuC.link>
+          </S.MenuDesk>
         </S.ContainerA>
       )}
-      <S.ContainerA>
-        <a href={`/Fase/${id}`}>
+      {props.id_projeto == undefined && (
+        <S.LinkLogo href={`/Projetos`}>
+          <S.MenuImg src="/Logo_Niko.svg" />
+        </S.LinkLogo>
+      )}
+      <S.ContainerLogo>
+        <a href={props.id_projeto ? `/Fase/${id}` : '/Projetos'}>
           <S.MenuImg src="/Logo_Niko.svg" />
         </a>
-      </S.ContainerA>
+      </S.ContainerLogo>
       <S.MenuLeft>
-        <S.MenuImg src="/Lupa.svg" />
+        {/* <S.MenuLupaMobile src="/Lupa.svg" /> */}
+        {/* <S.InputSearch>
+          <p>Em desenvolvimento..</p>
+          <S.MenuLupa src="/Lupa.svg" />
+        </S.InputSearch> */}
 
         <div style={{ position: 'relative' }} ref={dropDownRef}>
-          <S.MenuImg
-            src="/user.png"
-            height={32}
-            width={32}
+          <User
+            size={44}
+            color="#fff"
+            style={{ border: 'solid 1px #393E4B', borderRadius: '100%', padding: '8px' }}
+            weight="fill"
             onClick={() => {
               setDropDown(!DropDown);
             }}

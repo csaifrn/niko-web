@@ -138,6 +138,7 @@ const Avancar = styled.button`
   justify-content: flex-start;
   padding: 0 16px;
   gap: 16px;
+  cursor: pointer;
 `;
 
 const ModalBackdrop = styled.div`

@@ -54,7 +54,7 @@ export const AvancarModal = (props: AvancarModalProps) => {
             </S.NameClose>
 
             {/* PENDÊNCIAS */}
-            {task.pendencias.map((pend) => (
+            {/* {task.pendencias.map((pend) => (
 
               <>
                 <h3> Motivo:</h3>
@@ -80,19 +80,16 @@ export const AvancarModal = (props: AvancarModalProps) => {
                   </S.LabelCheck>
                 </S.PendDivBlack>
               </>
-            ))}
+            ))} */}
             <S.RecusedAvancar>
               <S.Recused onClick={handleClose}>
                 <S.Texto>Não, não quero.</S.Texto>
               </S.Recused>
               <S.Avancar
                 onClick={handleClose}
-                disabled={!isChecked}
-                style={{ background: !isChecked ? '#666666' : '' , cursor: !isChecked ? '' : 'pointer' }}
               >
-                {!isChecked && <S.IconeAvancar src="/avancar-desativado.svg"></S.IconeAvancar>}
-                {isChecked && <S.IconeAvancar src="/avancar.svg"></S.IconeAvancar>}
-                <S.Texto style={{ color: !isChecked ? 'rgba(255, 255, 255, 0.50)' : '#FFFFFF' }}>Avançar fase</S.Texto>
+                <S.IconeAvancar src="/avancar.svg"></S.IconeAvancar>
+                <S.Texto style={{ color: '#FFFFFF' }}>Avançar fase</S.Texto>
               </S.Avancar>
             </S.RecusedAvancar>
           </S.ModalContent>

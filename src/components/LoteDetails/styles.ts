@@ -332,7 +332,7 @@ export const Botoes = styled.div`
   flex-direction: column;
   gap: 16px;
   ${media.greaterThan('large')`
-    justify-content: space-between;
+    gap: 27px;
   `}
 `;
 
@@ -359,7 +359,7 @@ export const Botao = styled.button`
 `;
 
 export const BotaoDeletarLote = styled.button`
-  background-color: #F32D2D;
+  background-color: ${({ theme }) => theme.colors['red/700']};
   display: flex;
   align-items: center;
   gap: 1em;
@@ -380,12 +380,11 @@ export const BotaoDeletarLote = styled.button`
   }
 `;
 
-export const BotaoMudarFase = styled.button`
+export const BotaoMudarFase = styled.div`
   display: flex;
   border: none;
   font-family: 'Rubik';
   color: #ffffff;
-  background-color: #393e4b;
   border-radius: 5px;
 `;
 
@@ -409,16 +408,16 @@ export const VoltarAvancar = styled.button`
   } 
 `;
 
-export const EscolherFase = styled.select`
-  background-color: #393e4b;
-  width: calc(50%);
+export const VoltarAvancarDesativado = styled.button`
+  background-color: ${({ theme }) => theme.colors['gray/700']};
   display: flex;
-  padding: 0em 2em;
+  align-items: center;
+  gap: 10px;
+  padding: 0em 15px;
   height: 44px;
+  width: calc(50%);
+  border-radius: 5px 0px 0px 5px;
   border: none;
-  border-radius: 0px 5px 5px 0px;
-  border-left: 1px solid #888c99;
-  color: white;
   font-family: 'Rubik';
 `;
 
@@ -571,6 +570,50 @@ export const EnvolvidosDiv = styled.div`
 `;
 
 export const EscolherFaseSelect = styled(Select)`
+  width: calc(50%);
+  border-left: 1px solid #888c99;
+  .react-select__control {
+    border: none;
+    background-color: ${({ theme }) => theme.colors['gray/500']} !important; /* Cor de fundo do controle */
+    color: ${({ theme }) => theme.colors.white} !important;
+    min-height: 44px;
+  }
+
+  .react-select__placeholder {
+    color: #ffffff;
+  }
+
+  .react-select__single-value {
+    color: ${({ theme }) => theme.colors.white};
+  }
+
+  .react-select__menu {
+    background-color: ${({ theme }) => theme.colors['gray/500']} !important;
+  }
+
+  .react-select__option {
+    background-color: ${({ theme }) => theme.colors['gray/500']};
+    color: ${({ theme }) => theme.colors.white}; /* Cor do texto das opções */
+  }
+
+  .react-select__option--is-selected {
+    background-color: ${({ theme }) => theme.colors['gray/500']}; /* Cor de fundo da opção selecionada */
+  }
+
+  .react-select__option--is-focused {
+    background-color: ${({ theme }) => theme.colors['gray/700']}; /* Cor de fundo da opção selecionada */
+  }
+
+  .react-select__indicator-separator {
+    background-color: ${({ theme }) => theme.colors['gray/200']}; /* Cor do separador entre indicadores */
+  }
+
+  .react-select__value-container .react-select__input {
+    color: ${({ theme }) => theme.colors.white} !important;
+  }
+`;
+
+export const EscolherFaseSelectDesativado = styled(Select)`
   width: calc(50%);
   border-left: 1px solid #888c99;
   .react-select__control {

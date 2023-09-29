@@ -14,10 +14,7 @@ import { ModalResolverPendencia } from '../ModalResolverPendencia';
 import Select from 'react-select';
 
 export const LoteDetails = () => {
-
-  const options = FaseData.map((fase) => (
-    {value: 'fase', label: fase.titulo}
-  ));
+  const optionsFases = FaseData.map((fase) => ({ id: fase.id, label: fase.titulo }));
 
   const [config_modal, setConfigModal] = useState(false);
   const handleConfig = () => {
@@ -67,19 +64,21 @@ export const LoteDetails = () => {
     setCompartState(!compartState);
   };
 
-  const [indisponivel, setIndisponivel] = useState(false);
+  const [ComPendencia, setComPendencia] = useState(false);
 
   useEffect(() => {
-    if (task.pendencias.length == 0) {
-      setIndisponivel(true);
+    if (task.pendencias.length > 0) {
+      setComPendencia(true);
     }
   }, []);
 
-  const handleDebug = (fase: any) => {
-    console.log(fase);
-  };
-
   const [usuarios, setUsuarios] = useState(task.envolvidos);
+
+  const optionsFasesTeste = FaseData.map(
+    (fase) => LoteData[Number(task.id) - 1].id_fase_atual === fase.id && { label: fase.titulo },
+  );
+
+  console.log(optionsFasesTeste);
 
   return (
     <>
@@ -219,19 +218,16 @@ export const LoteDetails = () => {
               ))}
           </S.FaseEnvolvAtual>
         </S.LoteInfos>
-        
+
         <S.PendObservacaoBotoes>
           <S.PendObservacao>
-
             {/* PENDÊNCIAS */}
             <S.Pendencias>
               <S.PendenciaTitulo>Pendências</S.PendenciaTitulo>
- 
+
               <S.TodasAsPendencias>
-   
                 {task.pendencias.map((pen: any) => (
                   <S.PendDivBlack key={pen.id}>
-
                     <S.PendenciaTextIcon>
                       {<img src="/warning.svg" alt="ícone de alerta" />}
                       {pen.comment}
@@ -240,10 +236,8 @@ export const LoteDetails = () => {
                     <S.BotaoResolverPend onClick={() => handleResolverPend(pen)}>
                       <S.Texto>Resolver pendência</S.Texto>
                     </S.BotaoResolverPend>
-
                   </S.PendDivBlack>
                 ))}
-
               </S.TodasAsPendencias>
             </S.Pendencias>
 
@@ -256,126 +250,57 @@ export const LoteDetails = () => {
                   <S.ObsDivBlack key={obs.ObsId}>{obs.titulo}</S.ObsDivBlack>
                 ))}
               </S.TodasAsObservacoes>
-
             </S.Observações>
           </S.PendObservacao>
-
 
           <S.Botoes>
             {/* ATRIBUIR À ALGUÉM */}
             <S.Botao onClick={handleAtribuirAlguem}>
-              <img src={`/atribuir.svg`} alt="botão para atribuir lote a algum operador "/>
+              <img src={`/atribuir.svg`} alt="botão para atribuir lote a algum operador " />
               <p>Atribuir à alguém</p>
             </S.Botao>
 
             {/* VOLTAR FASE */}
             <S.BotaoMudarFase>
-
-              {/* BOTÃO DE VOLTAR FASE ATIVADO */}
-              {indisponivel == false && (
-                <S.VoltarAvancar 
-                  onClick={handleVoltar} 
-                  style={{cursor: 'pointer'}}
-                >
+              {/* BOTÃO DE VOLTAR FASE*/}
+              {ComPendencia == true && task.fase_atual != 'Preparo' && (
+                <S.VoltarAvancar onClick={handleVoltar} style={{ cursor: 'pointer' }}>
                   <img src={'/voltar.svg'} alt="ícone circular com uma seta para a esquerda ao centro" />
-                  <p style={{ color: indisponivel ? 'rgba(255, 255, 255, 0.50)' : '#FFFFFF'}}>Voltar Fase</p>
+                  <p style={{ color: '#FFFFFF' }}>Voltar Fase</p>
                 </S.VoltarAvancar>
               )}
 
-              {/* BOTÃO DE VOLTAR FASE DESATIVADO */}
-              {indisponivel == true && (
-                <S.VoltarAvancar style={{ background: 'rgba(57, 62, 75, 0.50)' }}>
-                  <img src={'/voltar-desativado.svg'} alt="ícone circular com uma seta para a esquerda ao centro" />
-                  <p style={{ color: indisponivel ? 'rgba(255, 255, 255, 0.50)' : '#FFFFFF'}}>Voltar Fase</p>
-                </S.VoltarAvancar>
-              )}
-
-
-              {/* BOTÃO DE ESCOLHER FASE PARA VOLTAR ATIVADO */}
-              {indisponivel == false && (
-                <S.EscolherFaseSelect 
-                  options={options} 
+              {/* BOTÃO DE ESCOLHER FASE PARA VOLTAR*/}
+              {ComPendencia == true && task.fase_atual != 'Preparo' && (
+                <S.EscolherFaseSelect
+                  options={optionsFases}
                   className="react-select-container"
                   classNamePrefix="react-select"
-                />
-              )}
-
-              {/* BOTÃO DE ESCOLHER FASE PARA VOLTAR DESATIVADO */}
-              {indisponivel == true && (
-                <S.EscolherFaseSelect 
-                options={options} 
-                className="react-select-container"
-                classNamePrefix="react-select"
-                isDisabled
                 />
               )}
             </S.BotaoMudarFase>
 
             {/* AVANÇAR FASE */}
             <S.BotaoMudarFase>
+              {/* BOTÃO DE AVANÇAR FASE*/}
 
-              {/* BOTÃO DE AVANÇAR FASE ATIVADO */}
-              {indisponivel == false && (
-                <S.VoltarAvancar 
-                  onClick={handleAvancar} 
-                  style={{cursor: 'pointer' , backgroundColor: indisponivel ? '#191C24' : '#393E4B' }}
-                >
+              {task.fase_atual != 'Arquivamento' && (
+                <S.VoltarAvancar onClick={handleAvancar} style={{ cursor: 'pointer' }}>
                   <img src={'/avancar.svg'} alt="ícone circular com uma seta para a direita ao centro" />
-                  <p style={{ color: indisponivel ? 'rgba(255, 255, 255, 0.50)' : '#FFFFFF' }}>Avancar Fase</p>
+                  <p style={{ color: '#FFFFFF' }}>Avancar Fase</p>
                 </S.VoltarAvancar>
               )}
 
-              {/* BOTÃO DE AVANÇAR FASE DESATIVADO */}
-              {indisponivel == true && (
-                <S.VoltarAvancar style={{ background: 'rgba(57, 62, 75, 0.50)' }}>
-                  <img src={'/avancar-desativado.svg'} alt="ícone circular com uma seta para a direita ao centro" />
-                  <p style={{ color: indisponivel ? 'rgba(255, 255, 255, 0.50)' : '#FFFFFF' }}>Avancar Fase</p>
-                </S.VoltarAvancar>
-              )}
+              {/* BOTÃO DE ESCOLHER FASE PARA AVANÇAR*/}
 
-              {/* BOTÃO DE ESCOLHER FASE PARA AVANÇAR ATIVADO */}
-              {indisponivel == false && (
-                <S.EscolherFaseSelect 
-                  options={options} 
+              {task.fase_atual != 'Arquivamento' && (
+                <S.EscolherFaseSelect
+                  options={optionsFases}
                   className="react-select-container"
                   classNamePrefix="react-select"
                 />
-                // <S.EscolherFase
-                //   className="custom-select"
-                //   style={{ background: indisponivel ? 'rgba(57, 62, 75, 0.50)' : '#393E4B' }}
-                //   onChange={(e) => handleDebug(e)}
-                // >
-                //   {FaseData.map((fase) => (
-                //     <S.OptionFases className="fase" value={fase.titulo} key={fase.id}>
-                //       {fase.titulo}
-                //     </S.OptionFases>
-                    
-                //   ))}
-                // </S.EscolherFase>
-              )}
-
-              {/* BOTÃO DE ESCOLHER FASE PARA AVANÇAR DESATIVADO */}      
-              {indisponivel == true && (
-                <S.EscolherFaseSelect 
-                  options={options} 
-                  className="react-select-container"
-                  classNamePrefix="react-select"
-                  isDisabled
-                />
-                // <S.EscolherFase
-                //   className="custom-select"
-                //   style={{ background: indisponivel ? 'rgba(57, 62, 75, 0.50)' : '#393E4B' }}
-                //   disabled
-                // >
-                //   {FaseData.map((fase) => (
-                //     <S.OptionFases className="fase" value={fase.titulo} key={fase.id}>
-                //       {fase.titulo}
-                //     </S.OptionFases>
-                //   ))}
-                // </S.EscolherFase>
               )}
             </S.BotaoMudarFase>
-
 
             {/* DELETAR LOTE */}
             <S.BotaoDeletarLote onClick={handleDelete}>
@@ -391,62 +316,60 @@ export const LoteDetails = () => {
           <S.DetalFase>
             <S.DetalhamentoTitulo>Detalhamento por fase</S.DetalhamentoTitulo>
             <S.DetalhamentoGrid>
-            {task.detalhamento_por_fase.map((fase: any) => (
-              <S.Fase key={fase.id}>
-                <S.FaseIconDiv>
-                  <img src={fase.icone} alt={'icone da fase' + fase.nome} />
-                  <S.NomeDaFase>{fase.nome}</S.NomeDaFase>
-                </S.FaseIconDiv>
+              {task.detalhamento_por_fase.map((fase: any) => (
+                <S.Fase key={fase.id}>
+                  <S.FaseIconDiv>
+                    <img src={fase.icone} alt={'icone da fase' + fase.nome} />
+                    <S.NomeDaFase>{fase.nome}</S.NomeDaFase>
+                  </S.FaseIconDiv>
 
-                {fase.inicio !== null && (
-                  <S.TimeBeginDiv>
-                    <img
-                      src={'/detal-fase-icons/inicio-icon.png'}
-                      alt="ícone com seta para direita indicando a data e hora que o lote começou a ser feito"
-                    />
-                    {fase.inicio}
-                    <S.Text style={{ color: '#FCDE42' }}>{fase.hora_inicio}</S.Text>
-                  </S.TimeBeginDiv>
-                )}
+                  {fase.inicio !== null && (
+                    <S.TimeBeginDiv>
+                      <img
+                        src={'/detal-fase-icons/inicio-icon.png'}
+                        alt="ícone com seta para direita indicando a data e hora que o lote começou a ser feito"
+                      />
+                      {fase.inicio}
+                      <S.Text style={{ color: '#FCDE42' }}>{fase.hora_inicio}</S.Text>
+                    </S.TimeBeginDiv>
+                  )}
 
-                {fase.conclusao !== null && (
-                  <S.TimeFinishDiv>
-                    <img src={'/detal-fase-icons/conclusao-icon.png'} alt="icone de check" />
-                    {fase.conclusao}
-                    <S.Text style={{ color: '#00D25B' }}>{fase.hora_conclusao}</S.Text>
-                  </S.TimeFinishDiv>
-                )}
+                  {fase.conclusao !== null && (
+                    <S.TimeFinishDiv>
+                      <img src={'/detal-fase-icons/conclusao-icon.png'} alt="icone de check" />
+                      {fase.conclusao}
+                      <S.Text style={{ color: '#00D25B' }}>{fase.hora_conclusao}</S.Text>
+                    </S.TimeFinishDiv>
+                  )}
 
-                {fase.tempo !== null && (
-                  <S.Time>
-                    <img src={'/detal-fase-icons/clock-icon.png'} alt="icone de relógio" />
-                    {fase.tempo}
-                  </S.Time>
-                )}
+                  {fase.tempo !== null && (
+                    <S.Time>
+                      <img src={'/detal-fase-icons/clock-icon.png'} alt="icone de relógio" />
+                      {fase.tempo}
+                    </S.Time>
+                  )}
 
-                <S.EnvolvidosDiv>
-                  {fase.envolvidos &&
-                    fase.envolvidos.map((user: any) => (
-                      <React.Fragment key={user.id}>
-                        <img
-                          src={user.foto}
-                          alt="usuario envolvido na fase"
-                          width={24}
-                          height={24}
-                          style={{
-                            objectFit: 'cover',
-                            borderRadius: '100%',
-                            border: '1px solid #191C24',
-                          }}
-                        />
-                      </React.Fragment>
-                    ))}
-                </S.EnvolvidosDiv>
-              </S.Fase>
-            ))}
+                  <S.EnvolvidosDiv>
+                    {fase.envolvidos &&
+                      fase.envolvidos.map((user: any) => (
+                        <React.Fragment key={user.id}>
+                          <img
+                            src={user.foto}
+                            alt="usuario envolvido na fase"
+                            width={24}
+                            height={24}
+                            style={{
+                              objectFit: 'cover',
+                              borderRadius: '100%',
+                              border: '1px solid #191C24',
+                            }}
+                          />
+                        </React.Fragment>
+                      ))}
+                  </S.EnvolvidosDiv>
+                </S.Fase>
+              ))}
             </S.DetalhamentoGrid>
-
-            
           </S.DetalFase>
         )}
       </S.areaClick>

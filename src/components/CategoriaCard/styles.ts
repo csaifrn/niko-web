@@ -6,6 +6,7 @@ const totalArea = styled.div`
   color: white;
   font-family: 'Rubik';
   border-radius: 5px;
+  cursor: pointer;
 `;
 
 const CardArea = styled.div`

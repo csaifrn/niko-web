@@ -30,6 +30,11 @@ export const areaClick = styled.div`
     background-color: transparent;
     margin: 0em;
   }
+
+  ${media.greaterThan('large')`
+    margin: 8em 15em 4em 15em;
+    //margin: 8em 0em 4em 0em;
+  `}
 `;
 
 export const Texto = styled.p`
@@ -222,7 +227,8 @@ export const PendObservacaoBotoes = styled.div`
   gap: 16px;
   grid-template-columns: repeat(auto-fit, minmax(21rem, 1fr));
   ${media.greaterThan('large')`
-    display: grid;
+    display:grid;
+    grid-template-columns: 2fr 1fr;
   `}
 `;
 
@@ -232,10 +238,11 @@ export const PendObservacao = styled.div`
   gap: 16px;
   grid-template-columns: repeat(auto-fit, minmax(21rem, 1fr));
   ${media.greaterThan('large')`
-    display: grid;
-    justify-content: space-between;
+    flex-direction: row;
+    width: 100%;
   `}
 `;
+
 export const PendenciaTitulo = styled.p`
   font-size: 12px;
   ${media.greaterThan('large')`
@@ -259,6 +266,9 @@ export const Pendencias = styled.div`
   order: 0;
   flex-grow: 0;
   padding: 16px;
+  ${media.greaterThan('large')`
+    width: 100%;
+  `}
 `;
 
 export const Observações = styled.div`
@@ -270,6 +280,9 @@ export const Observações = styled.div`
   order: 0;
   flex-grow: 0;
   padding: 16px;
+  ${media.greaterThan('large')`
+    width: 100%;
+  `}
 `;
 
 export const PendDivBlack = styled.div`
@@ -332,7 +345,8 @@ export const Botoes = styled.div`
   flex-direction: column;
   gap: 16px;
   ${media.greaterThan('large')`
-    gap: 27px;
+    /* display: grid;
+    grid-template-columns: 1fr 2fr 2fr 1fr; */
   `}
 `;
 

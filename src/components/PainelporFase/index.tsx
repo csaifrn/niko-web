@@ -93,7 +93,7 @@ export const PainelPorFase = () => {
             </S.ContainerDataFase>
 
             <S.ContainerDataFase>
-              <S.ContainerImg src="/icon-big/Catalogacao_icon.svg" />
+              <S.ContainerImg src="/icon-big/Catalogação_icon.svg" />
               <S.DataFase>
                 <S.NumberTextData>
                   <S.NumberName>
@@ -115,7 +115,7 @@ export const PainelPorFase = () => {
               </S.DataFase>
             </S.ContainerDataFase>
             <S.ContainerDataFase>
-              <S.ContainerImg src="/icon-big/Digitalizacao_icon.svg" />
+              <S.ContainerImg src="/icon-big/Digitalização_icon.svg" />
               <S.DataFase>
                 <S.NumberTextData>
                   <S.NumberName>

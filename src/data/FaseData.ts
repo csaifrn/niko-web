@@ -11,12 +11,12 @@ const FaseData = [
     },
     {
         id: 1,
-        titulo:'Catalogacao',
-        icone: '/icon-page/Catalogacao_icon.png'
+        titulo:'Catalogação',
+        icone: '/icon-page/Catalogação_icon.png'
     },
     {
         id: 2,
-        titulo:'Digitalizacao',
+        titulo:'Digitalização',
         icone: '/icon-page/Digitalização_icon.png'
     },
     {

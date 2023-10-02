@@ -32,13 +32,25 @@ const Fechar = styled.button``;
 
 const ChooseUser = styled.div`
   width: 100%;
-  height: 40vh;
+  height: 30vh;
   border-radius: 5px;
   display: flex;
   flex-direction: column;
   gap: 1em;
   overflow: auto;
   scroll-behavior: auto;
+  &::-webkit-scrollbar {
+    width: 0.6em;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: #2a2e38;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color:#191c24 ;
+    border-radius: 20px;
+  }
 `;
 
 const User = styled.div`

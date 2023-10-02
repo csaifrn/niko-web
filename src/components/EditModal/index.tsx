@@ -84,6 +84,7 @@ export const EditModal = () => {
       arquivosFisicos: arquivFis,
       arquivosDigitais: arquivDig
     }
+    navigate(-1)
     console.log(LoteAtualizado)
   }
 
@@ -92,9 +93,9 @@ export const EditModal = () => {
     <>
       <Menu area="/"></Menu>
       <MenuCoord/>
-          <S.ModalContent id="modal-content">
+        <S.ModalContent id="modal-content">
             <S.NameClose>
-              <h1>Editar Lote {task.numero}</h1> 
+              <h1>Editar lote {task.numero}</h1> 
               <button onClick={() => navigate(-1)} style={{ width: 'auto', backgroundColor: 'transparent', border: 'none' , cursor: 'pointer' }}>
                 <img
                   src="/close.svg"
@@ -156,7 +157,7 @@ export const EditModal = () => {
                     <p>Digitais</p>
                     <S.ArquivosInput      
                       style={{ backgroundColor: '#393E4B' }}
-                      type="text"
+                      type="number"
                       name="nome"
                       placeholder={``}
                       onChange={handleArquivosDigitais}

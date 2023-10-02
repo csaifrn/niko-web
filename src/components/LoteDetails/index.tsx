@@ -11,7 +11,6 @@ import { VoltarModal } from '../VoltarModal';
 import { LoteData } from '../../data/LoteData';
 import FaseData from '../../data/FaseData';
 import { ModalResolverPendencia } from '../ModalResolverPendencia';
-import Select from 'react-select';
 
 export const LoteDetails = () => {
   const optionsFases = FaseData.map((fase) => ({ id: fase.id, label: fase.titulo }));
@@ -253,6 +252,7 @@ export const LoteDetails = () => {
             </S.Observações>
           </S.PendObservacao>
 
+          {/* BOTÕES PRINCIPAIS */}
           <S.Botoes>
             {/* ATRIBUIR À ALGUÉM */}
             <S.Botao onClick={handleAtribuirAlguem}>
@@ -261,53 +261,55 @@ export const LoteDetails = () => {
             </S.Botao>
 
             {/* VOLTAR FASE */}
-            <S.BotaoMudarFase>
-              {/* BOTÃO DE VOLTAR FASE*/}
-              {ComPendencia == true && task.fase_atual != 'Preparo' && (
+            {ComPendencia == true && task.fase_atual != 'Preparo' && (
+              <S.BotaoMudarFase>
+
+                {/* BOTÃO DE VOLTAR FASE*/}
                 <S.VoltarAvancar onClick={handleVoltar} style={{ cursor: 'pointer' }}>
                   <img src={'/voltar.svg'} alt="ícone circular com uma seta para a esquerda ao centro" />
                   <p style={{ color: '#FFFFFF' }}>Voltar Fase</p>
                 </S.VoltarAvancar>
-              )}
-
-              {/* BOTÃO DE ESCOLHER FASE PARA VOLTAR*/}
-              {ComPendencia == true && task.fase_atual != 'Preparo' && (
+              
+                {/* BOTÃO DE ESCOLHER FASE PARA VOLTAR*/}
                 <S.EscolherFaseSelect
                   options={optionsFases}
                   className="react-select-container"
                   classNamePrefix="react-select"
                 />
-              )}
-            </S.BotaoMudarFase>
+
+              </S.BotaoMudarFase>
+            )}
+
 
             {/* AVANÇAR FASE */}
-            <S.BotaoMudarFase>
-              {/* BOTÃO DE AVANÇAR FASE*/}
+            {task.fase_atual != 'Arquivamento' && (
+              <S.BotaoMudarFase>
 
-              {task.fase_atual != 'Arquivamento' && (
+                {/* BOTÃO DE AVANÇAR FASE*/}
                 <S.VoltarAvancar onClick={handleAvancar} style={{ cursor: 'pointer' }}>
                   <img src={'/avancar.svg'} alt="ícone circular com uma seta para a direita ao centro" />
                   <p style={{ color: '#FFFFFF' }}>Avancar Fase</p>
                 </S.VoltarAvancar>
-              )}
+ 
 
-              {/* BOTÃO DE ESCOLHER FASE PARA AVANÇAR*/}
-
-              {task.fase_atual != 'Arquivamento' && (
+                {/* BOTÃO DE ESCOLHER FASE PARA AVANÇAR*/}
                 <S.EscolherFaseSelect
                   options={optionsFases}
                   className="react-select-container"
                   classNamePrefix="react-select"
                 />
-              )}
-            </S.BotaoMudarFase>
+                
+              </S.BotaoMudarFase>
+            )}
 
             {/* DELETAR LOTE */}
             <S.BotaoDeletarLote onClick={handleDelete}>
               <img src={`/trash.svg`} alt="Botão de deletar Lote" />
               <p>Excluir lote</p>
             </S.BotaoDeletarLote>
+
           </S.Botoes>
+
         </S.PendObservacaoBotoes>
 
         {/* DETALHAMENTO POR FASE */}
@@ -319,7 +321,7 @@ export const LoteDetails = () => {
               {task.detalhamento_por_fase.map((fase: any) => (
                 <S.Fase key={fase.id}>
                   <S.FaseIconDiv>
-                    <img src={fase.icone} alt={'icone da fase' + fase.nome} />
+                    <img src={fase.icone} alt={'icone da fase ' + fase.nome} />
                     <S.NomeDaFase>{fase.nome}</S.NomeDaFase>
                   </S.FaseIconDiv>
 

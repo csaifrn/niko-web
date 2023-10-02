@@ -20,10 +20,14 @@ export const ModalContent = styled.div`
   h2 {
     font-weight: normal;
   }
+  ${media.greaterThan('large')`
+    margin: 8em 40em 4em 40em;
+    //margin: 8em 0em 4em 0em;
+  `}
 `;
 
 export const SearchDiv = styled.div`
-  width: 19.5%;
+  width: 98%;
 `;
 
 export const NameClose = styled.div`
@@ -85,7 +89,7 @@ export const ArquivosInput = styled.input`
   justify-content: flex-start;
   align-items: flex-start;
   padding: 15px;
-  width: 56px;
+  width: 60px;
   background-color: #393e4b;
   color: white;
   font-family: 'Rubik', Helvetica, sans-serif;
@@ -188,7 +192,6 @@ export const ChooseCatTipol = styled.div`
     margin: 0em;
   }
   ${media.greaterThan('large')`
-    width: 20%;
     height: 30vh;
   `}
 `;

@@ -4,7 +4,7 @@ export interface DeleteBatcheParams {
 
 export interface DeleteResponseBatche {
   id: string;
-  settlement_project: string;
+  titile: string;
   created_at: Date;
   updated_at: Date;
   created_by: {

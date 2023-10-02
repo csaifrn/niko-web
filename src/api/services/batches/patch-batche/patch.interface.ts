@@ -1,6 +1,6 @@
 export interface PatchBatcheParams {
   id: string;
-  settlement_project?: string;
+  title?: string;
   digital_files_count?: number;
   physical_files_count?: number;
   priority?: boolean;
@@ -8,12 +8,14 @@ export interface PatchBatcheParams {
 
 export interface PatchResponseBatche {
   id: string;
-  priority: string;
+  priority: boolean;
 }
 
 export interface PatchResponseEditBatch {
   id: string;
-  settlement_project: string;
-  digital_files_count: number;
+  title: string;
   physical_files_count: number;
+  digital_files_count: number;
+  priority: boolean;
+  updated_at: string;
 }

@@ -67,8 +67,6 @@ export const LoteDetails = () => {
     }
   }, []);
 
-  const [prioridadeState] = useState(task?.priority);
-
   // const handlePChange = () => {
   //   setPrioridadeState(prioridadeState === 1 ? 0 : 1);
   // };
@@ -95,7 +93,7 @@ export const LoteDetails = () => {
           <S.LoteInfos>
             <S.LoteEditConfig>
               {/* TÍTULO */}
-              <S.TituloLote>{`${task?.settlement_project}`}</S.TituloLote>
+              <S.TituloLote>{`${task?.title}`}</S.TituloLote>
               <S.EditConfig>
                 {/* EDITAR */}
                 <S.Edit href={`/Lote/${task?.id}/Edit`}>
@@ -138,7 +136,7 @@ export const LoteDetails = () => {
 
             {/* MOSTRA CATEGORIAS QUANDO O LOTE É PRIORIDADE */}
             <S.CategoriaPrioridade>
-              {prioridadeState === 1 && (
+              {task?.priority && (
                 <S.Prioridade>
                   <p>Prioridade</p>
                 </S.Prioridade>

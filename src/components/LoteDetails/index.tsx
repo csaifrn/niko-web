@@ -181,7 +181,7 @@ export const LoteDetails = () => {
 
           <S.FaseEnvolvAtual>
             {/* FASE ATUAL DO LOTE */}
-            <S.Icons src={`/icon-medium/${task.fase_atual}.png`} />
+            <S.Icons src={`/icon-medium/${task.fase_atual}.svg`} />
 
             {/* ENVOLVIDOS  */}
             {usuarios != null &&

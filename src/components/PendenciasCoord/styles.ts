@@ -76,6 +76,23 @@ export const ContainerDataDependencias = styled.div`
   gap: 1rem;
   border-radius: 5px;
   overflow-x: auto;
+  &::-webkit-scrollbar {
+    width: 0.6em;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: #191c24;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: #2a2e38;
+    border-radius: 20px;
+  }
+  ${media.greaterThan('large')`
+    justify-content: center;
+    width: 20vh;
+    height: 60vh;
+  `}
   ${media.greaterThan('large')`
   `}
 `;

@@ -55,11 +55,11 @@ export const Board = (props: BoardProps) => {
     <>
 
       <S.divImg>
-        <S.IconeFase src={`/icon-medium/${fase.titulo}.png`} alt={`icone da fase ${fase.titulo}`} />
+        <S.IconeFase src={`/icon-medium/${fase.titulo}.svg`} alt={`icone da fase ${fase.titulo}`} />
       </S.divImg>
 
       <S.divImgMaior>
-        <S.IconeFase src={`/icon-big/${fase.titulo}_icon.svg`} alt={`icone da fase ${fase.titulo}`} />
+        <S.IconeFase src={`/icon-big/${fase.titulo}.svg`} alt={`icone da fase ${fase.titulo}`} />
       </S.divImgMaior>
 
       <S.kanban className="board">

@@ -95,17 +95,17 @@ export const ModalResolverPendencia = (props: ModalPendencia) => {
             <S.DataAcao>
               {props.pendencia.fase_final && props.pendencia.fase_final.length > 0 ? (
                 <S.DataAcao>
-                  <S.ContainerImg src={`/icon-page/${props.pendencia.fase_atual}_icon.png`} />
+                  <S.ContainerImg src={`/icon-medium/${props.pendencia.fase_atual}.svg`} />
                   {props.pendencia.voltar ? (
                     <ArrowCircleLeft size={32} weight="fill" color={theme.colors['red/500']} />
                   ) : (
                     <ArrowCircleRight size={32} weight="fill" color={theme.colors['green/400']} />
                   )}
-                  <S.ContainerImg src={`/icon-page/${props.pendencia.fase_final}_icon.png`} />
+                  <S.ContainerImg src={`/icon-medium/${props.pendencia.fase_final}.svg`} />
                 </S.DataAcao>
               ) : (
                 <S.Fase>
-                  <S.ContainerImg src={`/icon-page/${props.pendencia.fase_atual}_icon.png`} />
+                  <S.ContainerImg src={`/icon-medium/${props.pendencia.fase_atual}.svg`} />
                 </S.Fase>
               )}
               {props.pendencia.fase_final && props.pendencia.fase_final.length > 0 && (

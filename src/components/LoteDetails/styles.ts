@@ -11,6 +11,7 @@ export const areaClick = styled.div`
   gap: 24px;
   margin: 8em 0em 8em 0em;
   font-family: 'Rubik', Helvetica, sans-serif;
+  max-width: 1140px;
   filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
   &::-webkit-scrollbar {
     width: 0.8em;
@@ -32,7 +33,7 @@ export const areaClick = styled.div`
   }
 
   ${media.greaterThan('large')`
-    margin: 8em 15em 4em 15em;
+    justify-content: center;
     //margin: 8em 0em 4em 0em;
   `}
 `;
@@ -166,7 +167,7 @@ export const CategoriaPrioridade = styled.div`
 export const Prioridade = styled.div`
   width: 72px;
   height: 24px;
-  background-color: #f32d2d;
+  background-color: ${({ theme }) => theme.colors['red/700']};
   height: 2em;
   display: flex;
   align-items: center;
@@ -214,6 +215,9 @@ export const FaseEnvolvAtual = styled.div`
   display: flex;
   justify-content: flex-start;
   gap: 8px;
+`;
+
+export const TituloFaseAtual = styled.h2`
 `;
 
 export const Envolvidos = styled.div`
@@ -345,6 +349,7 @@ export const Botoes = styled.div`
   flex-direction: column;
   gap: 16px;
   ${media.greaterThan('large')`
+    gap: 27px;
     /* display: grid;
     grid-template-columns: 1fr 2fr 2fr 1fr; */
   `}

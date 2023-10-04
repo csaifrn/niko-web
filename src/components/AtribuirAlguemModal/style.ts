@@ -41,6 +41,7 @@ const ChooseUser = styled.div`
   scroll-behavior: auto;
   &::-webkit-scrollbar {
     width: 0.6em;
+    height: 1em; 
   }
 
   &::-webkit-scrollbar-track {

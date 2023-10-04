@@ -21,13 +21,31 @@ export const ModalContent = styled.div`
     font-weight: normal;
   }
   ${media.greaterThan('large')`
-    margin: 8em 40em 4em 40em;
-    //margin: 8em 0em 4em 0em;
+    width: 500px;
   `}
 `;
 
+export const CloseDiv = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  padding: '5px 5px';
+  border-radius: '5px';
+`;
+
+export const Exit = styled.button`
+  height: 2em;
+  width: 2em;
+  background-color: #393e4b;
+  border-radius: 3px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  cursor: pointer;
+`;
+
 export const SearchDiv = styled.div`
-  width: 98%;
+  width: 100%;
 `;
 
 export const NameClose = styled.div`
@@ -160,7 +178,6 @@ export const Tipologia = styled.div`
 `;
 
 export const ChooseCatTipol = styled.div`
-  width: 100%;
   height: 20vh;
   border-radius: 5px;
   display: flex;
@@ -192,7 +209,6 @@ export const ChooseCatTipol = styled.div`
     margin: 0em;
   }
   ${media.greaterThan('large')`
-    height: 30vh;
   `}
 `;
 

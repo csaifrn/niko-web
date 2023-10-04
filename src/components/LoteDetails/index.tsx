@@ -80,7 +80,7 @@ export const LoteDetails = () => {
   console.log(optionsFasesTeste);
 
   return (
-    <>
+    <div style={{display: 'flex' , justifyContent: 'center'}}> 
       <Menu area={`/Painel/${id}`} id_projeto={id}></Menu>
       <MenuCoord />
       <S.areaClick>
@@ -392,7 +392,7 @@ export const LoteDetails = () => {
           close={handleConfig}
         ></ConfigModal>
       )}
-    </>
+    </div>
   );
 };
 

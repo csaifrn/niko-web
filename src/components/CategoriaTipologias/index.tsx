@@ -46,7 +46,7 @@ export const CategoriasTipologias = (props: CategoriasTipologiasProps) => {
     (catg) => catg.name.toLowerCase().includes(searchTerm.toLowerCase()) || catg.name.includes(searchTerm),
   );
 
-  const [closing, setClosing] = useState(false);
+  const [closing] = useState(false);
 
   useEffect(() => {
     // Ao renderizar o modal, aplicar um escalonamento gradual para exibi-lo

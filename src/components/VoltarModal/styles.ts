@@ -124,6 +124,12 @@ export const RecusedVoltar = styled.div`
   gap: 16px;
 `;
 
+export const RecusedAvancar = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+`;
+
 export const IconeVoltar = styled.img``;
 
 export const Voltar = styled.button`
@@ -146,7 +152,7 @@ export const ModalBackdrop = styled.div`
   height: 100%;
   top: 0;
   left: 0;
-  z-index: 1040;
+  z-index: 100;
   background-color: rgba(25, 28, 36, 0.5);
   display: flex;
   flex-direction: column;

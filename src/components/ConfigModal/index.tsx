@@ -1,31 +1,47 @@
 import React, { useEffect, useState } from 'react';
 import * as S from './style';
+import { useMutation } from 'react-query';
+import { PatchBatchePriority } from '../../api/services/batches/patch-batche';
+import { PatchResponseBatche } from '../../api/services/batches/patch-batche/patch.interface';
+import toast from 'react-hot-toast';
+import { ApiError } from '../../api/services/authentication/signIn/signIn.interface';
+import { Boleano } from '../../utils/bolean.util';
 
 interface ConfigModalProps {
+  id: string;
+  prioridade: number;
   close: () => void;
-  handlePrioridade: () => void;
-  valor_prioridade: boolean;
-  valor_compart: boolean;
-  handleCompart: () => void;
 }
 
 export const ConfigModal = (props: ConfigModalProps) => {
-  const [Pchecked, setPChecked] = useState(props.valor_prioridade);
+  const [Pchecked, setPChecked] = useState(props.prioridade);
+
+  const Priority = useMutation(PatchBatchePriority, {
+    onSuccess: (data: PatchResponseBatche) => {
+      toast.success(`Prioride ${Pchecked == 0 ? 'foi ativada' : 'foi desativada'}!`);
+      console.log(data);
+    },
+    onError: (error: ApiError) => {
+      toast.error(error.response!.data.message);
+    },
+  });
+
   const handlePrioridadeCheck = () => {
-    setPChecked(!Pchecked);
-    props.handlePrioridade();
+    setPChecked(Pchecked == 0 ? 1 : 0);
+    Priority.mutate({
+      id: props.id,
+      priority: Boleano(Pchecked == 0 ? 1 : 0),
+    });
   };
 
-  const [compartChecked, setCompartChecked] = useState(props.valor_compart);
-  const handlePCompartilhamentoCheck = () => {
-    setCompartChecked(!compartChecked);
-    props.handleCompart();
-  };
-  console.log(props.valor_compart);
+  // const [compartChecked, setCompartChecked] = useState(props.valor_compart);
+  // const handlePCompartilhamentoCheck = () => {
+  //   setCompartChecked(!compartChecked);
+  //   props.handleCompart();
+  // };
 
   const [closing, setClosing] = useState(false);
   useEffect(() => {
-    // Ao renderizar o modal, aplicar um escalonamento gradual para exibi-lo
     const timer = setTimeout(() => {
       const modal = document.getElementById('modal-scaling');
       if (closing === false && modal) {
@@ -77,18 +93,18 @@ export const ConfigModal = (props: ConfigModalProps) => {
               </button>
             </S.NameClose>
 
-            <S.Compartilhamento>
+            {/* <S.Compartilhamento>
               <p>Compartilhamento</p>
               <S.SwitchButton>
                 <S.Input checked={compartChecked} onChange={handlePCompartilhamentoCheck} />
                 <S.Slider />
               </S.SwitchButton>
-            </S.Compartilhamento>
+            </S.Compartilhamento> */}
 
             <S.Prioridade>
               <p>Prioridade</p>
               <S.SwitchButton>
-                <S.Input checked={Pchecked} onChange={handlePrioridadeCheck} />
+                <S.Input checked={Boleano(Pchecked)} onChange={handlePrioridadeCheck} />
                 <S.Slider />
               </S.SwitchButton>
             </S.Prioridade>

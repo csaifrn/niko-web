@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import Users from '../../data/UserData';
 import { MembrosModal } from '../MembrosModal';
 import { Membros } from '../../data/ProjetoData';
@@ -23,7 +23,6 @@ export const CardProjeto = (Props: CardProps) => {
   const users = Users;
   const projeto = Props.projeto;
   const membros = Membros.filter((membro) => membro.id_Projeto === projeto.id);
-  console.log(membros);
 
   return (
     <>
@@ -98,4 +97,3 @@ export const CardProjeto = (Props: CardProps) => {
     </>
   );
 };
-// teste

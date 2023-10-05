@@ -49,8 +49,6 @@ export const Board = (props: BoardProps) => {
     }
   }, []);
 
-  console.log(fase.titulo);
-
   return (
     <>
 

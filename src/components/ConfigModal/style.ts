@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const ModalArea = styled.div`
   font-family: 'Rubik';
@@ -28,7 +28,7 @@ export const NameClose = styled.div`
 `;
 
 export const TituloDiv = styled.div`
-  display:flex;
+  display: flex;
   flex-direction: column;
   gap: 1em;
 `;
@@ -36,13 +36,13 @@ export const TituloDiv = styled.div`
 export const Titulo = styled.input`
   padding: 1.5em 2em;
   border-radius: 5px;
-  color:white;
+  color: white;
   border: none;
-  font-family: "Rubik";
+  font-family: 'Rubik';
 `;
 
 export const LocalDiv = styled.div`
-  display:flex;
+  display: flex;
   flex-direction: column;
   gap: 1em;
 `;
@@ -50,22 +50,21 @@ export const LocalDiv = styled.div`
 export const Local = styled.input`
   padding: 1.5em 2em;
   border-radius: 5px;
-  color:white;
+  color: white;
   border: none;
-  font-family: "Rubik";
+  font-family: 'Rubik';
 `;
 
-export const Categorias = styled.div`
-`;
+export const Categorias = styled.div``;
 
 export const Categoria = styled.div`
-  display:flex;
+  display: flex;
   align-items: center;
   gap: 1em;
   padding: 1.5em 2em;
   border-radius: 5px;
   cursor: pointer;
-`; 
+`;
 
 export const ChooseUser = styled.div`
   width: 100%;
@@ -86,10 +85,10 @@ export const ChooseUser = styled.div`
 export const AtribuirButton = styled.button`
   height: 44px;
   border-radius: 5px;
-  background-color: #43DB6D;
+  background-color: #43db6d;
   border: none;
   color: white;
-  font-family: "Rubik";
+  font-family: 'Rubik';
   bottom: 0;
   left: 0;
 `;
@@ -104,22 +103,22 @@ export const ModalBackdrop = styled.div`
   height: 100%;
   top: 0;
   left: 0;
-  z-index: 999999999999999999;
-  background-color: rgba(25, 28, 36, 0.5);;
+  z-index: 100;
+  background-color: rgba(25, 28, 36, 0.5);
 `;
 
 export const Compartilhamento = styled.div`
-  display:flex;
+  display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top:0.5em;
+  margin-top: 0.5em;
 `;
 
 export const Prioridade = styled.div`
-  display:flex;
+  display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top:0.5em;
+  margin-top: 0.5em;
 `;
 
 export const SwitchButton = styled.label`
@@ -135,13 +134,13 @@ export const Slider = styled.span`
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: #0A090E;
+  background-color: #0a090e;
   border-radius: 34px;
   cursor: pointer;
 
   &:before {
     position: absolute;
-    content: "";
+    content: '';
     height: 26px;
     width: 26px;
     left: 4px;
@@ -155,7 +154,7 @@ export const Slider = styled.span`
 export const Input = styled.input.attrs({ type: 'checkbox' })`
   display: none;
   &:checked + ${Slider} {
-    background-color: #43DB6D
+    background-color: #43db6d;
   }
 
   &:checked + ${Slider}:before {

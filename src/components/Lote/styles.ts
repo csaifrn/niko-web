@@ -119,24 +119,22 @@ const Btn = styled.button`
   }
 `;
 
-export const Icone = styled.img`
-
-`
+export const Icone = styled.img``;
 
 export const AtribuirAlguem = styled.div`
-  display:flex;
+  display: flex;
   gap: 8px;
   align-items: center;
   padding: 16px;
   background-color: #000000;
   border: none;
   border-radius: 5px;
-`
+`;
 export const AtribuirButton = styled.button`
   border: none;
   border-radius: 5px;
   color: white;
-  font-family: 'Rubik'
-`
+  font-family: 'Rubik';
+`;
 
 export { Lote, LoteArea, LoteNumAvisos, Prioridade, Envolvido, Categoria, CategoriaTextDiv, fotoEnv, LoteEdit, Btn };

@@ -1,4 +1,3 @@
-
 import { Check, X } from '@phosphor-icons/react';
 import { useState, ChangeEvent } from 'react';
 import * as S from './styles';
@@ -23,7 +22,7 @@ export const EditImage = (props: EditImageProps) => {
 
   const onSubmit = (e: any) => {
     e.preventDefault();
-    console.log('mudou');
+    console.log('Mudar imagem');
   };
   return (
     <>

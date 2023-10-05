@@ -88,9 +88,9 @@ export const ModalResolverPendencia = (props: ModalPendencia) => {
           <S.ContainerData>
             <S.ContainerNumber>
               <S.QtdLotes>Resolver Pêndencia</S.QtdLotes>
-                <S.Exit type="button" onClick={handleClose}>
-                  <img src="/close.svg" alt="" height={18} width={18} />
-                </S.Exit>
+              <S.Exit type="button" onClick={handleClose}>
+                <img src="/close.svg" alt="" height={18} width={18} />
+              </S.Exit>
             </S.ContainerNumber>
             <S.DataAcao>
               {props.pendencia.fase_final && props.pendencia.fase_final.length > 0 ? (
@@ -150,7 +150,6 @@ export const ModalResolverPendencia = (props: ModalPendencia) => {
                 <Warning size={24} color={theme.colors['yellow/300']} weight="fill" />
                 <S.DataFaseTxt>{props.pendencia.comment}</S.DataFaseTxt>
               </S.PendIconText>
-              
             </S.TextComment>
             <S.ErrorMessage>{validationFormError.comment}</S.ErrorMessage>
             <S.TextAlerta placeholder="comment" id="comment" name="comment" maxLength={100} />

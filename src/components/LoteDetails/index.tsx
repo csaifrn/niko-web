@@ -1,16 +1,20 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import * as S from './styles';
 import { useParams, useNavigate } from 'react-router-dom';
 import Menu from '../Menu';
 import MenuCoord from '../MenuCoord';
-import { AtribuirAlguemModal } from '../AtribuirAlguemModal';
-import { AvancarModal } from '../AvancarModal';
 import { ConfigModal } from '../ConfigModal';
 import { DeletarLoteModal } from '../DeletarLoteModal';
-import { VoltarModal } from '../VoltarModal';
-import { LoteData } from '../../data/LoteData';
+import { useMutation } from 'react-query';
+import { GetBatche } from '../../api/services/batches/get-batche';
+import { GetResponseBatche } from '../../api/services/batches/get-batche/get.interface';
+import { ApiError } from '../../api/services/authentication/signIn/signIn.interface';
+import toast from 'react-hot-toast';
+import { Empty } from '../EmptyPage';
+import Splash from '../../pages/Splash';
 import FaseData from '../../data/FaseData';
-import { ModalResolverPendencia } from '../ModalResolverPendencia';
+import React from 'react';
+import { LoteData } from '../../data/LoteData';
 
 export const LoteDetails = () => {
   const optionsFases = FaseData.map((fase) => ({ id: fase.id, label: fase.titulo }));
@@ -35,12 +39,6 @@ export const LoteDetails = () => {
     setAvancar(!avancar);
   };
 
-  const [modal, setModal] = useState(false);
-  const handleAtribuirAlguem = () => {
-    setModal(!modal);
-  };
-
-  //Estado de uma pendência
   const [pend, setPend] = useState(false);
   const handleResolverPend = (p: any) => {
     setPend(!pend);
@@ -48,39 +46,53 @@ export const LoteDetails = () => {
   };
   const [pendencia, setPendencia] = useState<any>(null);
 
-  const navigate = useNavigate();
-  const { id } = useParams();
-  const [lote] = useState(LoteData);
-  const task = lote.filter((task) => task.id == id)[0];
-
-  const [prioridadeState, setPrioridadeState] = useState(task.prioridade);
-  const handlePChange = () => {
-    setPrioridadeState(!prioridadeState);
-  };
-
-  const [compartState, setCompartState] = useState(task.envolvidos.length >= 2);
-  const handleCompartCheck = () => {
-    setCompartState(!compartState);
-  };
-
   const [ComPendencia, setComPendencia] = useState(false);
 
   useEffect(() => {
-    if (task.pendencias.length > 0) {
+    if (taskData.pendencias.length > 0) {
       setComPendencia(true);
     }
   }, []);
 
-  const [usuarios, setUsuarios] = useState(task.envolvidos);
+  const [modal, setModal] = useState(false);
+  const handleAtribuirAlguem = () => {
+    setModal(!modal);
+  };
 
-  const optionsFasesTeste = FaseData.map(
-    (fase) => LoteData[Number(task.id) - 1].id_fase_atual === fase.id && { label: fase.titulo },
-  );
+  const [error, setError] = useState<string | null>(null);
 
-  console.log(optionsFasesTeste);
+  const navigate = useNavigate();
+  const { id } = useParams();
+  const beforeTask = useMutation(GetBatche, {
+    onSuccess: (data: GetResponseBatche) => {
+      setTask(data);
+    },
+    onError: (error: ApiError) => {
+      if (error.response) {
+        toast.error(error.response.data.message);
+        setError(error.response.data.message);
+      }
+    },
+  });
+
+  const [task, setTask] = useState<GetResponseBatche | null>();
+
+  useEffect(() => {
+    if (typeof id === 'string') {
+      beforeTask.mutate({
+        id,
+      });
+    } else {
+      navigate(-1);
+    }
+  }, []);
+
+  const taskData = LoteData[0];
+
+  //const [usuarios, setUsuarios] = useState(task.envolvidos);
 
   return (
-    <div style={{display: 'flex' , justifyContent: 'center'}}> 
+    <>
       <Menu area={`/Painel/${id}`} id_projeto={id}></Menu>
       <MenuCoord />
       <S.areaClick>
@@ -94,10 +106,10 @@ export const LoteDetails = () => {
         <S.LoteInfos>
           <S.LoteEditConfig>
             {/* TÍTULO */}
-            <S.TituloLote>{`${task.titulo} ${task.numero} `}</S.TituloLote>
+            <S.TituloLote>{`${task?.settlement_project}`}</S.TituloLote>
             <S.EditConfig>
               {/* EDITAR */}
-              <S.Edit href={`/Lote/${task.id}/Edit`}>
+              <S.Edit href={`/Lote/${task?.id}/Edit`}>
                 {''}
                 <S.Icons src={`/pen.svg`}></S.Icons>
                 {''}
@@ -113,52 +125,45 @@ export const LoteDetails = () => {
 
           <S.DetalhesLote>
             {/* PROTOCOLO */}
-            <S.Protocolo>
+            {/* <S.Protocolo>
               <p style={{ padding: '0 0.5em' }}>{task.protocolo}</p>
-            </S.Protocolo>
+            </S.Protocolo> */}
 
-            {task.estante !== null && <S.Estante>{task.estante}</S.Estante>}
+            {task?.shelf_number !== null && <S.Estante>{task?.shelf_number}</S.Estante>}
 
             {/* ARQUIVOS FÍSICOS */}
-            {task.arquiv_fisicos != 0 && (
+            {task?.physical_files_count != 0 && (
               <S.ArquivFisicos>
                 <img src={`/arquivos_fisicos.svg`} alt="arquivos fisicos" />
-                {task.arquiv_fisicos}
+                {task?.physical_files_count}
               </S.ArquivFisicos>
             )}
             {/* ARQUIVOS DIGITAIS */}
-            {task.arquiv_digitais != 0 && (
+            {task?.digital_files_count != 0 && (
               <S.ArquivDigitais>
                 <img src={`/arquivos_digitais.svg`} alt="arquivos digitais" />
-                {task.arquiv_digitais}
+                {task?.digital_files_count}
               </S.ArquivDigitais>
             )}
           </S.DetalhesLote>
 
           {/* MOSTRA CATEGORIAS QUANDO O LOTE É PRIORIDADE */}
-          {task.categorias.length >= 0 && prioridadeState == true && (
-            <S.CategoriaPrioridade>
-              {/* PRIORIDADE */}
+          <S.CategoriaPrioridade>
+            {task?.priority === 1 && (
               <S.Prioridade>
                 <p>Prioridade</p>
               </S.Prioridade>
-
-              {/* CATEGORIAS */}
-              {task.categorias.map((categoria: any) => (
-                <React.Fragment key={categoria.id}>
-                  <S.Categoria>
-                    <p>{categoria.name}</p>
-                  </S.Categoria>
-                </React.Fragment>
-              ))}
-            </S.CategoriaPrioridade>
-          )}
+            )}
+            {/* <S.Categoria>
+              <p>{task?.category.name}</p>
+            </S.Categoria> */}
+          </S.CategoriaPrioridade>
 
           {/* MOSTRA CATEGORIAS QUANDO O LOTE NÃO É PRIORIDADE */}
-          {task.categorias.length > 0 && prioridadeState == false && (
+          {taskData.categorias.length > 0 && task?.priority == 0 && (
             <S.CategoriaPrioridade>
               {/* CATEGORIAS */}
-              {task.categorias.map((categoria: any) => (
+              {taskData.categorias.map((categoria: any) => (
                 <React.Fragment key={categoria.id}>
                   <S.Categoria>
                     <p>{categoria.name}</p>
@@ -169,9 +174,9 @@ export const LoteDetails = () => {
           )}
 
           {/* TIPOLOGIAS */}
-          {task.tipologias.length > 0 && (
+          {taskData.tipologias.length > 0 && (
             <S.Tipologias>
-              {task.tipologias.map((tipol: any) => (
+              {taskData.tipologias.map((tipol: any) => (
                 <S.Tipologia key={tipol.id}>
                   <p>{tipol.name}</p>
                 </S.Tipologia>
@@ -181,10 +186,10 @@ export const LoteDetails = () => {
 
           <S.FaseEnvolvAtual>
             {/* FASE ATUAL DO LOTE */}
-              <S.Icons src={`/icon-medium/${task.fase_atual}.png`} />
-              
+            <S.Icons src={`/icon-medium/${taskData.fase_atual}.png`} />
+
             {/* ENVOLVIDOS  */}
-            {usuarios != null &&
+            {/* {usuarios != null &&
               usuarios.map((env: any) => (
                 <S.Envolvidos key={env.id}>
                   {env.andamento == true && (
@@ -214,7 +219,7 @@ export const LoteDetails = () => {
                     />
                   )}
                 </S.Envolvidos>
-              ))}
+              ))} */}
           </S.FaseEnvolvAtual>
         </S.LoteInfos>
 
@@ -225,7 +230,7 @@ export const LoteDetails = () => {
               <S.PendenciaTitulo>Pendências</S.PendenciaTitulo>
 
               <S.TodasAsPendencias>
-                {task.pendencias.map((pen: any) => (
+                {taskData.pendencias.map((pen: any) => (
                   <S.PendDivBlack key={pen.id}>
                     <S.PendenciaTextIcon>
                       {<img src="/warning.svg" alt="ícone de alerta" />}
@@ -245,7 +250,7 @@ export const LoteDetails = () => {
               <S.ObservacaoTitulo>Observações</S.ObservacaoTitulo>
 
               <S.TodasAsObservacoes>
-                {task.observacoes.map((obs: any) => (
+                {taskData.observacoes.map((obs: any) => (
                   <S.ObsDivBlack key={obs.ObsId}>{obs.titulo}</S.ObsDivBlack>
                 ))}
               </S.TodasAsObservacoes>
@@ -261,36 +266,31 @@ export const LoteDetails = () => {
             </S.Botao>
 
             {/* VOLTAR FASE */}
-            {ComPendencia == true && task.fase_atual != 'Preparo' && (
+            {ComPendencia == true && taskData.fase_atual != 'Preparo' && (
               <S.BotaoMudarFase>
-
                 {/* BOTÃO DE VOLTAR FASE*/}
                 <S.VoltarAvancar onClick={handleVoltar} style={{ cursor: 'pointer' }}>
                   <img src={'/voltar.svg'} alt="ícone circular com uma seta para a esquerda ao centro" />
                   <p style={{ color: '#FFFFFF' }}>Voltar Fase</p>
                 </S.VoltarAvancar>
-              
+
                 {/* BOTÃO DE ESCOLHER FASE PARA VOLTAR*/}
                 <S.EscolherFaseSelect
                   options={optionsFases}
                   className="react-select-container"
                   classNamePrefix="react-select"
                 />
-
               </S.BotaoMudarFase>
             )}
 
-
             {/* AVANÇAR FASE */}
-            {task.fase_atual != 'Arquivamento' && (
+            {taskData.fase_atual != 'Arquivamento' && (
               <S.BotaoMudarFase>
-
                 {/* BOTÃO DE AVANÇAR FASE*/}
                 <S.VoltarAvancar onClick={handleAvancar} style={{ cursor: 'pointer' }}>
                   <img src={'/avancar.svg'} alt="ícone circular com uma seta para a direita ao centro" />
                   <p style={{ color: '#FFFFFF' }}>Avancar Fase</p>
                 </S.VoltarAvancar>
- 
 
                 {/* BOTÃO DE ESCOLHER FASE PARA AVANÇAR*/}
                 <S.EscolherFaseSelect
@@ -298,7 +298,6 @@ export const LoteDetails = () => {
                   className="react-select-container"
                   classNamePrefix="react-select"
                 />
-                
               </S.BotaoMudarFase>
             )}
 
@@ -307,18 +306,16 @@ export const LoteDetails = () => {
               <img src={`/trash.svg`} alt="Botão de deletar Lote" />
               <p>Excluir lote</p>
             </S.BotaoDeletarLote>
-
           </S.Botoes>
-
         </S.PendObservacaoBotoes>
 
         {/* DETALHAMENTO POR FASE */}
 
-        {task.detalhamento_por_fase != null && (
+        {taskData.detalhamento_por_fase != null && (
           <S.DetalFase>
             <S.DetalhamentoTitulo>Detalhamento por fase</S.DetalhamentoTitulo>
             <S.DetalhamentoGrid>
-              {task.detalhamento_por_fase.map((fase: any) => (
+              {taskData.detalhamento_por_fase.map((fase: any) => (
                 <S.Fase key={fase.id}>
                   <S.FaseIconDiv>
                     <img src={fase.icone} alt={'icone da fase ' + fase.nome} />
@@ -375,24 +372,25 @@ export const LoteDetails = () => {
           </S.DetalFase>
         )}
       </S.areaClick>
+      {/* {pend && <ModalResolverPendencia pendencia={pendencia} close={() => setPend(!pend)}></ModalResolverPendencia>}
 
       {pend && <ModalResolverPendencia pendencia={pendencia} close={() => setPend(!pend)}></ModalResolverPendencia>}
       {modal && (
         <AtribuirAlguemModal user={usuarios} setUser={setUsuarios} close={handleAtribuirAlguem}></AtribuirAlguemModal>
       )}
       {voltar && <VoltarModal close={handleVoltar}></VoltarModal>}
-      {avancar && <AvancarModal close={handleAvancar}></AvancarModal>}
-      {delete_modal && <DeletarLoteModal close={handleDelete}></DeletarLoteModal>}
+      {avancar && <AvancarModal close={handleAvancar}></AvancarModal>}*/}
+      {delete_modal && <DeletarLoteModal delete={() => console.log(id)} close={handleDelete}></DeletarLoteModal>}
       {config_modal && (
         <ConfigModal
-          valor_prioridade={prioridadeState}
-          handlePrioridade={handlePChange}
-          valor_compart={compartState}
-          handleCompart={handleCompartCheck}
-          close={handleConfig}
+          id={id!}
+          prioridade={task!.priority}
+          close={() => {
+            setConfigModal(!config_modal);
+          }}
         ></ConfigModal>
       )}
-    </div>
+    </>
   );
 };
 

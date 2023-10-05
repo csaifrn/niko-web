@@ -31,10 +31,8 @@ const Recebidos = () => {
   const { id } = useParams();
   const [openCriarModal, setOpenCriarModal] = useState(false);
   const remessas = EntradaData.filter((entrada) => entrada.id_projeto === id);
-  const auth = useAuthUser();
   const membros = Membros.filter((membro) => membro.id_Projeto === id);
   const membrosClientes = membros.filter((mem) => mem.roleProjeto === 'Cliente');
-  console.log(membrosClientes);
 
   return (
     <>
@@ -51,7 +49,7 @@ const Recebidos = () => {
         </S.IconeRecepDivMobile>
 
         <S.RemessasDiv>
-          {auth()?.role.filter((role: string) => role === 'Coordenador')[0] === 'Coordenador' && (
+          {[{ role: ['coordenador'] }][0].role.filter((role: string) => role === 'Coordenador')[0] === 'Coordenador' && (
             <S.Btn
               onClick={() => {
                 setOpenCriarModal(!openCriarModal);

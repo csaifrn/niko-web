@@ -73,7 +73,6 @@ export const CreateRemessa = (props: EditModalProps) => {
     SelectedClientes.name.toLowerCase().includes(searchTerm.toLowerCase()),
   );
 
-
   return (
     <>
       <S.ModalBackdrop>

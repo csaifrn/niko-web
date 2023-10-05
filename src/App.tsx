@@ -20,7 +20,7 @@ import AtividadeEdit from './pages/Coordenador/Atividade/atividade-edit';
 import Painel from './pages/Coordenador/Painel';
 import Perfil from './pages/Perfil';
 import LoteDetails from './components/LoteDetails';
-import { EditModal } from './components/EditModal';
+import LoteEdit from './components/LoteEdit';
 import Cadastro from './pages/Cadastro';
 import RecuperarSenha from './pages/Recuperar';
 import ChangePassword from './pages/ChangePassword';
@@ -39,6 +39,7 @@ const App = () => {
         <Route path="/recuperar-senha" element={<RecuperarSenha />} />
         <Route path="/recuperar-senha/:id" element={<ChangePassword />} />
         <Route path="/" element={<Login />} />
+
         <Route path="/unauthorized" element={<Unauthorized />} />
         <Route path="/Projetos" element={<Projetos />} />
         <Route path="/CriarProjeto" element={<CreateProjeto />} />
@@ -55,7 +56,7 @@ const App = () => {
         <Route path="/Categorias/:id" element={<Categoria />} />
         <Route path="Fase/:id/Board/Upload" element={<Upload />} />
         <Route path={`/Lote/:id`} element={<LoteDetails />} />
-        <Route path={`/Lote/:id/Edit`} element={<EditModal />} />
+        <Route path={`/Lote/:id/Edit`} element={<LoteEdit />} />
         <Route path="*" element={<Erro404 />} />
       </Routes>
     </Suspense>

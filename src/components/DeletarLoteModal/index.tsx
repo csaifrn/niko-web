@@ -3,12 +3,13 @@ import * as S from './styles';
 
 interface DeletarModalProps {
   close: () => void;
+  delete?: () => void;
 }
 
 export const DeletarLoteModal = (props: DeletarModalProps) => {
   const [closing, setClosing] = useState(false);
+
   useEffect(() => {
-    // Ao renderizar o modal, aplicar um escalonamento gradual para exibi-lo
     const timer = setTimeout(() => {
       const modal = document.getElementById('modal-scaling');
       if (closing === false && modal) {
@@ -26,6 +27,13 @@ export const DeletarLoteModal = (props: DeletarModalProps) => {
     setTimeout(() => {
       props.close();
     }, 300);
+  };
+
+  const handleDelete = () => {
+    if (props.delete) {
+      props.delete();
+    }
+    handleClose();
   };
   return (
     <>

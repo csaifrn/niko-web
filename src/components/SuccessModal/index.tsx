@@ -98,14 +98,12 @@ export const SuccessModal = (props: DeletarModalProps) => {
                 <img src="/close.svg" alt="" height={18} width={18} />
               </S.Exit>
             </S.NameClose>
-            <LabelField>Observação</LabelField>
             <InputText
-              placeholder="digite aqui o relato!"
+              placeholder="digite aqui a observação!"
               value={observation}
               onChange={(e) => setObservation(e.currentTarget.value)}
             />
             <ErrorMessage>{validationFormError.observation}</ErrorMessage>
-            <S.Recused onClick={props.close}>Não, não quero.</S.Recused>
             <S.Green onClick={handleSave}>Salvar</S.Green>
           </S.ModalContent>
         </S.ModalArea>

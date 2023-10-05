@@ -38,9 +38,9 @@ const CategoriaCard = (Categoria: typeof CategoriaData[0]) => {
 
   return (
     <>
-      <S.totalArea>
+      <S.totalArea onClick={open}>
         <S.CardA>
-          <S.CategoriaClick onClick={open}>
+          <S.CategoriaClick >
             <S.CabecarioCategoria>
               <p>{categoria.name}</p>
               {prioridade && (

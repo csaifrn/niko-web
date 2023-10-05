@@ -1,9 +1,9 @@
 import styled from 'styled-components';
+import media from 'styled-media-query';
 
 export const Wrapper = styled.div`
   height: 100%;
   width: 100%;
-  margin: 6.5em 2em 2em 2em;
   gap: 2em;
   select {
     -webkit-appearance: none;
@@ -34,6 +34,10 @@ export const ContainerFilterNumber = styled.div`
   justify-content: space-between;
   align-items: center;
   align-self: stretch;
+  /* @media (min-width: 520px) {
+    justify-content: flex-start;
+    gap: 16px;
+  } */
 `;
 
 export const Filter = styled.input`
@@ -58,17 +62,7 @@ export const Opiton = styled.option`
   gap: 1rem;
 `;
 
-export const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 1.5em;
-  width: 100%;
-  @media (min-width: 520px) {
-    display: grid;
-    gap: 1.5em;
-    grid-template-columns: 1fr 1fr;
-  }
-`;
+
 
 export const ContainerDataFase = styled.div`
   background-color: ${({ theme }) => theme.colors['gray/700']};
@@ -106,7 +100,10 @@ export const NumberRed = styled.span`
 export const NumberTextData = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 0.5em;
+  gap: 16px;
+  ${media.greaterThan('large')`
+    flex-direction: row;
+  `}
 `;
 
 export const NumberTextDataUnic = styled.div`
@@ -126,7 +123,7 @@ export const NumberTextDataUnic = styled.div`
 export const NumberName = styled.div`
   display: flex;
   align-items: center;
-  gap: 1em;
+  gap: 8px;
 `;
 
 export const ContainerImg = styled.img``;
@@ -138,16 +135,47 @@ export const DataFase = styled.div`
   align-items: center;
 `;
 
+export const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+  @media (min-width: 520px) {
+    flex-direction: column;
+  }
+  @media (min-width: 620px) {
+    flex-direction: row;
+  }
+`;
+
 export const DataFaseDois = styled.div`
   display: grid;
   width: 100%;
   grid-template-columns: 1fr 1fr;
-  gap: 1em;
+  grid-column: span 2;
+  gap: 16px;
+  @media (min-width: 620px) {
+    display: flex;
+    width: 50%;
+    flex-direction: column;
+  }
+`;
+
+export const FasesDoMeio = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  @media (min-width: 620px) {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    width: 100%;
+  }
 `;
 
 export const QtdLotes = styled.p`
   color: ${({ theme }) => theme.colors.white};
-  font-family: Rubik;
+  font-family: 'Rubik';
   font-style: normal;
   font-weight: 500;
   font-size: 20px;
@@ -155,21 +183,21 @@ export const QtdLotes = styled.p`
 
 export const DataFaseTxt = styled.div`
   color: ${({ theme }) => theme.colors.white};
-  font-family: Rubik;
+  font-family: 'Rubik';
   font-style: normal;
   font-weight: 500;
 `;
 
 export const NumberTxt = styled.p`
   color: ${({ theme }) => theme.colors.white};
-  font-family: Rubik;
+  font-family: 'Rubik';
   font-style: normal;
   font-weight: 500;
 `;
 
 export const DataFaseTxtCenter = styled.p`
   color: ${({ theme }) => theme.colors.white};
-  font-family: Rubik;
+  font-family: 'Rubik';
   font-style: normal;
   text-align: center;
   font-weight: 500;

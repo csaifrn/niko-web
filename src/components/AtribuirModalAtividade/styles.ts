@@ -90,6 +90,9 @@ export const Categorias = styled.div`
   margin-bottom: 1em;
 `;
 
+export const Nome = styled.p`
+`;
+
 export const Categoria = styled.div<CategoriaProps>`
   padding: 0.5em;
   border-radius: 4px;

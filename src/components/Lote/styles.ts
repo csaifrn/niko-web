@@ -9,9 +9,9 @@ const Lote = styled.div`
   border-radius: 5px;
   color: white;
   min-height: 80px;
-  max-width: 400px;
+  width: 100%;
+  height: 100%;
   min-width: 230px;
-
   filter: drop-shadow(0px 4px 1px rgba(0, 0, 0, 0.25));
 `;
 
@@ -29,8 +29,17 @@ const LoteEdit = styled.div`
 
 const LoteArea = styled.div`
   display: flex;
+  gap: 1em;
+  justify-content: space-between;
+  flex-direction: column;
+  width: 100%;
+`;
+
+export const LoteDetalhes = styled.div`
+  display: flex;
   flex-direction: column;
   gap: 1em;
+  justify-content: space-between;
 `;
 
 const LoteNumAvisos = styled.div`
@@ -56,7 +65,7 @@ const Prioridade = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  p {
+  p{
     color: white;
     margin-bottom: 0;
     padding: 0 0.5em;
@@ -80,7 +89,6 @@ const CategoriaTextDiv = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-
   p {
     color: 'white';
     margin-bottom: '0';

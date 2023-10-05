@@ -9,6 +9,7 @@ import CategoriaData from '../../../../data/CategoriaData';
 import { TipologiaData } from '../../../../data/TipologiaData';
 import { IUserFase, UserModalAtividade } from '../../../../components/UserAtividadeModal';
 import { AtribuirModalAtividade, ILoteUser } from '../../../../components/AtribuirModalAtividade';
+import * as S from './style';
 
 const AtividadeCreate = () => {
   const { id } = useParams();
@@ -17,6 +18,8 @@ const AtividadeCreate = () => {
   const [data, setData] = useState(new Date());
 
   const [tarefas, setTarefas] = useState<typeof FaseData>([]);
+
+  
   const [tarefasData, setTarefasData] = useState<any>([[], []]);
 
   const [categorias, setCategorias] = useState<typeof CategoriaData>([]);
@@ -92,7 +95,6 @@ const AtividadeCreate = () => {
       atividade: [...faseDatas],
     };
 
-    console.log(atividadeFinal);
     navigate(`/Atividades/${id}`);
   };
 
@@ -100,17 +102,7 @@ const AtividadeCreate = () => {
     <>
       <Menu area={`/Categoria/${id}`} id_projeto={id}></Menu>
       <MenuCoord />
-      <div
-        style={{
-          margin: 16,
-          borderRadius: 5,
-          flexDirection: 'column',
-          display: 'flex',
-          gap: '2em',
-          marginBottom: '10em',
-          marginTop: '10em',
-        }}
-      >
+      <S.CriarAtivArea>
         <div
           style={{
             alignSelf: 'stretch',
@@ -139,18 +131,7 @@ const AtividadeCreate = () => {
                 display: 'inline-flex',
               }}
             >
-              <div
-                style={{
-                  textAlign: 'right',
-                  color: 'white',
-                  fontSize: 24,
-                  fontFamily: 'Rubik',
-                  fontWeight: '700',
-                  wordWrap: 'break-word',
-                }}
-              >
-                Adicionar Atividade
-              </div>
+              <S.Titulo> Adicionar Atividade </S.Titulo>
             </div>
           </div>
           <button
@@ -180,503 +161,385 @@ const AtividadeCreate = () => {
             </div>
           </button>
         </div>
-        <div
-          style={{
-            alignSelf: 'stretch',
-            height: 71,
-            flexDirection: 'column',
-            justifyContent: 'flex-start',
-            alignItems: 'flex-start',
-            gap: 8,
-            display: 'flex',
-          }}
-        >
-          <h2 style={{ color: 'white', fontSize: 16, fontFamily: 'Rubik', fontWeight: '500', wordWrap: 'break-word' }}>
-            Data
-          </h2>
-          <div style={{ justifyContent: 'flex-start', alignItems: 'flex-start', gap: 8, display: 'inline-flex' }}>
-            <input
-              type="date"
-              name="Data"
-              onChange={handleData}
-              style={{
-                fontFamily: 'Rubik',
-                width: 150,
-                height: 44,
-                padding: 10,
-                background: '#393E4B',
-                borderRadius: 5,
-                justifyContent: 'center',
-                alignItems: 'center',
-                display: 'flex',
-                border: 'none',
-                color: 'white',
-              }}
-            />
-          </div>
-        </div>
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '1em' }}>
-          <div
+        <S.EspecificacoesAtiv>
+          <S.Data
             style={{
               alignSelf: 'stretch',
-              justifyContent: 'space-between',
-              alignItems: 'center',
-              gap: 8,
-              display: 'inline-flex',
-            }}
-          >
-            <div
-              style={{ color: 'white', fontSize: 16, fontFamily: 'Rubik', fontWeight: '500', wordWrap: 'break-word' }}
-            >
-              Tarefas
-            </div>
-            <button
-              style={{
-                border: 'none',
-                backgroundColor: 'transparent',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-              }}
-              onClick={() => {
-                setModalTarefas(!modalTarefas);
-              }}
-            >
-              <img src="/plus.svg" alt="adicionar atividade" />
-            </button>
-          </div>
-          <div
-            style={{
-              width: 344,
+              height: 71,
+              flexDirection: 'column',
               justifyContent: 'flex-start',
-              alignItems: 'center',
+              alignItems: 'flex-start',
               gap: 8,
-              display: 'inline-flex',
-              flexWrap: 'wrap',
+              display: 'flex',
             }}
           >
-            {tarefas.length > 0 &&
-              tarefas.map((fase) => {
-                return (
-                  <div
-                    key={fase.id}
-                    style={{
-                      paddingRight: 8,
-                      background: '#393E4B',
-                      borderRadius: 5,
-                      justifyContent: 'flex-start',
-                      alignItems: 'center',
-                      gap: 3,
-                      display: 'flex',
-                    }}
-                  >
+            <S.Titulo2> Data </S.Titulo2>
+            <div style={{ justifyContent: 'flex-start', alignItems: 'flex-start', gap: 8, display: 'inline-flex' }}>
+              <input
+                type="date"
+                name="Data"
+                onChange={handleData}
+                style={{
+                  fontFamily: 'Rubik',
+                  width: 150,
+                  height: 44,
+                  padding: 10,
+                  background: '#393E4B',
+                  borderRadius: 5,
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  display: 'flex',
+                  border: 'none',
+                  color: 'white',
+                }}
+              />
+            </div>
+          </S.Data>
+          <S.Tarefas>
+            <S.TituloBotaoAdd>
+              <S.Titulo2>Tarefas</S.Titulo2>
+
+              <S.BotaoAdd
+                onClick={() => {
+                  setModalTarefas(!modalTarefas);
+                }}
+              >
+                <img src="/plus.svg" alt="adicionar atividade" />
+              </S.BotaoAdd>
+
+            </S.TituloBotaoAdd>
+
+            <S.TarefasCardsArea>
+
+              {tarefas.length > 0 &&
+                tarefas.map((fase) => {
+                  return (
                     <div
+                      key={fase.id}
                       style={{
-                        padding: 6,
-                        borderRadius: 2,
-                        justifyContent: 'flex-end',
+                        paddingRight: 8,
+                        background: '#393E4B',
+                        borderRadius: 5,
+                        justifyContent: 'flex-start',
+                        alignItems: 'center',
+                        gap: 3,
+                        display: 'flex',
+                      }}
+                    >
+                      <div
+                        style={{
+                          padding: 6,
+                          borderRadius: 2,
+                          justifyContent: 'flex-end',
+                          alignItems: 'flex-start',
+                          gap: 10,
+                          display: 'flex',
+                        }}
+                      >
+                        {fase.icone === '/icon-small/new.png' ? 
+                        <img src={'/icon-small/new.png'} width={28} height={28} alt=""/> : 
+                        <img src={`/icon-medium/${fase.titulo}.svg`} alt="" />
+                        }
+
+                      </div>
+                      <h2
+                        style={{
+                          color: 'white',
+                          fontSize: 12,
+                          fontFamily: 'Rubik',
+                          fontWeight: '500',
+                          wordWrap: 'break-word',
+                        }}
+                      >
+                        {fase.titulo}
+                      </h2>
+                    </div>
+                  );
+                })}
+            </S.TarefasCardsArea>
+          </S.Tarefas>
+
+          <S.CategTipol>
+            <S.TituloBotaoAdd>
+              <S.Titulo2>Categorias e Tipologias</S.Titulo2>
+
+              <S.BotaoAdd
+                onClick={() => {
+                  SetModalCatTipo(!modalCatTipo);
+                }}
+              >
+                <img src="/plus.svg" alt="adicionar atividade" />
+              </S.BotaoAdd>
+              
+            </S.TituloBotaoAdd>
+            <div
+              style={{
+                justifyContent: 'flex-start',
+                alignItems: 'flex-start',
+                gap: 8,
+                display: 'flex',
+                flexWrap: 'wrap',
+              }}
+            >
+              {categorias.length > 0 &&
+                categorias.map((catg) => {
+                  return (
+                    <div
+                      key={catg.id}
+                      style={{
+                        paddingLeft: 8,
+                        paddingRight: 8,
+                        paddingTop: 5,
+                        paddingBottom: 5,
+                        background: '#393E4B',
+                        borderRadius: 3,
+                        justifyContent: 'flex-start',
                         alignItems: 'flex-start',
                         gap: 10,
                         display: 'flex',
                       }}
                     >
-                      <img src={`${fase.icone}`} alt="" />
-                    </div>
-                    <h2
-                      style={{
-                        color: 'white',
-                        fontSize: 12,
-                        fontFamily: 'Rubik',
-                        fontWeight: '500',
-                        wordWrap: 'break-word',
-                      }}
-                    >
-                      {fase.titulo}
-                    </h2>
-                  </div>
-                );
-              })}
-          </div>
-        </div>
-
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '1em' }}>
-          <div
-            style={{
-              alignSelf: 'stretch',
-              justifyContent: 'space-between',
-              alignItems: 'center',
-              gap: 8,
-              display: 'flex',
-            }}
-          >
-            <div
-              style={{ color: 'white', fontSize: 16, fontFamily: 'Rubik', fontWeight: '500', wordWrap: 'break-word' }}
-            >
-              Categorias e Tipologias
-            </div>
-            <button
-              style={{
-                border: 'none',
-                backgroundColor: 'transparent',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-              }}
-              onClick={() => {
-                SetModalCatTipo(!modalCatTipo);
-              }}
-            >
-              <img src="/plus.svg" alt="adicionar atividade" />
-            </button>
-          </div>
-          <div
-            style={{
-              justifyContent: 'flex-start',
-              alignItems: 'flex-start',
-              gap: 8,
-              display: 'flex',
-              flexWrap: 'wrap',
-            }}
-          >
-            {categorias.length > 0 &&
-              categorias.map((catg) => {
-                return (
-                  <div
-                    key={catg.id}
-                    style={{
-                      paddingLeft: 8,
-                      paddingRight: 8,
-                      paddingTop: 5,
-                      paddingBottom: 5,
-                      background: '#393E4B',
-                      borderRadius: 3,
-                      justifyContent: 'flex-start',
-                      alignItems: 'flex-start',
-                      gap: 10,
-                      display: 'flex',
-                    }}
-                  >
-                    <div
-                      style={{
-                        textAlign: 'right',
-                        color: 'white',
-                        fontSize: 12,
-                        fontFamily: 'Rubik',
-                        fontWeight: '500',
-                        wordWrap: 'break-word',
-                      }}
-                    >
-                      {catg.name}
-                    </div>
-                  </div>
-                );
-              })}
-            {tipologias.length > 0 &&
-              tipologias.map((tipo) => {
-                return (
-                  <div
-                    key={tipo.id}
-                    style={{
-                      paddingLeft: 8,
-                      paddingRight: 8,
-                      paddingTop: 5,
-                      paddingBottom: 5,
-                      background: '#626A7D',
-                      borderRadius: 3,
-                      justifyContent: 'flex-start',
-                      alignItems: 'flex-start',
-                      gap: 10,
-                      display: 'flex',
-                    }}
-                  >
-                    <div
-                      style={{
-                        textAlign: 'right',
-                        color: 'white',
-                        fontSize: 12,
-                        fontFamily: 'Rubik',
-                        fontWeight: '500',
-                        wordWrap: 'break-word',
-                      }}
-                    >
-                      {tipo.name}
-                    </div>
-                  </div>
-                );
-              })}
-          </div>
-        </div>
-
-        <div
-          style={{
-            alignSelf: 'stretch',
-            flexDirection: 'column',
-            gap: 16,
-            display: 'flex',
-          }}
-        >
-          <div
-            style={{
-              alignSelf: 'stretch',
-              justifyContent: 'space-between',
-              alignItems: 'center',
-              gap: 8,
-              display: 'flex',
-            }}
-          >
-            <div
-              style={{ color: 'white', fontSize: 16, fontFamily: 'Rubik', fontWeight: '500', wordWrap: 'break-word' }}
-            >
-              Usuários
-            </div>
-            {tarefas.length > 0 && (
-              <button
-                style={{
-                  border: 'none',
-                  backgroundColor: 'transparent',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                }}
-                onClick={() => {
-                  SetModalUsers(!modalUsers);
-                }}
-              >
-                <img src="/plus.svg" alt="adicionar atividade" />
-              </button>
-            )}
-            {tarefas.length === 0 && (
-              <button
-                style={{
-                  border: 'none',
-                  backgroundColor: 'transparent',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                }}
-              >
-                <img src="/plus.svg" alt="adicionar atividade" style={{ opacity: '50%' }} />
-              </button>
-            )}
-          </div>
-          <div
-            style={{
-              width: '100%',
-              flexDirection: 'column',
-              gap: '2em',
-              display: 'flex',
-            }}
-          >
-            {UserFase.map((f) => {
-              return (
-                <>
-                  <div
-                    key={f.id_fase}
-                    style={{
-                      display: 'flex',
-                      color: 'white',
-                      fontFamily: 'Rubik',
-                      gap: 16,
-                      alignItems: 'center',
-                    }}
-                  >
-                    <img
-                      height={24}
-                      width={24}
-                      src={`${tarefas.filter((tarefa) => tarefa.id === f.id_fase)[0].icone}`}
-                      alt="Icone de Etapa"
-                    />
-                    <h3>{tarefas.filter((tarefa) => tarefa.id === f.id_fase)[0].titulo}</h3>
-                  </div>
-
-                  {f.users.map((user: any) => {
-                    return (
                       <div
-                        key={user.id}
                         style={{
-                          width: '100%',
-                          padding: 16,
-                          background: '#393E4B',
-                          borderRadius: 5,
-                          flexDirection: 'column',
-                          gap: '2em',
-                          display: 'flex',
+                          textAlign: 'right',
+                          color: 'white',
+                          fontSize: 12,
+                          fontFamily: 'Rubik',
+                          fontWeight: '500',
+                          wordWrap: 'break-word',
                         }}
                       >
+                        {catg.name}
+                      </div>
+                    </div>
+                  );
+                })}
+              {tipologias.length > 0 &&
+                tipologias.map((tipo) => {
+                  return (
+                    <div
+                      key={tipo.id}
+                      style={{
+                        paddingLeft: 8,
+                        paddingRight: 8,
+                        paddingTop: 5,
+                        paddingBottom: 5,
+                        background: '#626A7D',
+                        borderRadius: 3,
+                        justifyContent: 'flex-start',
+                        alignItems: 'flex-start',
+                        gap: 10,
+                        display: 'flex',
+                      }}
+                    >
+                      <div
+                        style={{
+                          textAlign: 'right',
+                          color: 'white',
+                          fontSize: 12,
+                          fontFamily: 'Rubik',
+                          fontWeight: '500',
+                          wordWrap: 'break-word',
+                        }}
+                      >
+                        {tipo.name}
+                      </div>
+                    </div>
+                  );
+                })}
+            </div>
+          </S.CategTipol>
+
+          <S.Usuarios>
+            <S.TituloBotaoAdd>
+              <S.Titulo2>Usuários</S.Titulo2>
+
+              {/* BOTÃO ATIVADO */}
+              {tarefas.length > 0 && (
+                <S.BotaoAdd
+                  onClick={() => {
+                    SetModalUsers(!modalUsers);
+                  }}
+                >
+                  <img src="/plus.svg" alt="adicionar atividade" />
+                </S.BotaoAdd>
+              )}
+
+              {/* BOTÃO DESATIVADO */}
+              {tarefas.length === 0 && (
+                <S.BotaoAdd>
+                  <img src="/plus.svg" alt="adicionar atividade" style={{ opacity: '50%' }} />
+                </S.BotaoAdd>
+              )}
+
+            </S.TituloBotaoAdd>
+
+            <S.UsuariosPorFase>
+
+              {UserFase.map((f) => {
+                return (
+                  <S.UsuariosDeUmaFase key={f.id_fase}>
+                    <S.IconeTituloFase >
+                      <img src={`/icon-medium/${tarefas.filter((tarefa) => tarefa.id === f.id_fase)[0].titulo}.svg`} alt="" />
+
+                      {tarefas.filter((tarefa) => tarefa.id === f.id_fase)[0].icone === '/icon-small/new.png' &&
+                        <img src={'/icon-small/new.png'} style={{marginLeft: '-16px'}} width={28} height={28} alt=''></img>
+                      }
+          
+                      <h3>{tarefas.filter((tarefa) => tarefa.id === f.id_fase)[0].titulo}</h3>
+                    </S.IconeTituloFase>
+
+                    {f.users.map((user: any) => {
+                      return (
                         <div
+                          key={user.id}
                           style={{
-                            justifyContent: 'space-between',
-                            alignItems: 'center',
-                            gap: 16,
+                            width: '100%',
+                            padding: 16,
+                            background: '#393E4B',
+                            borderRadius: 5,
+                            flexDirection: 'column',
+                            gap: '2em',
                             display: 'flex',
                           }}
                         >
-                          <div style={{ justifyContent: 'flex-start', alignItems: 'center', gap: 16, display: 'flex' }}>
-                            <img
-                              style={{
-                                width: 32,
-                                height: 32,
-                                background: 'linear-gradient(0deg, #D9D9D9 0%, #D9D9D9 100%)',
-                                borderRadius: 9999,
-                                border: '0.50px #191C24 solid',
-                                objectFit: 'cover',
-                              }}
-                              src={user.url}
-                              alt=""
-                            />
-                            <div
-                              style={{
-                                color: 'white',
-                                fontSize: 12,
-                                fontFamily: 'Rubik',
-                                fontWeight: '500',
-                                wordWrap: 'break-word',
-                              }}
-                            >
-                              {user.name}
-                            </div>
-                          </div>
-                          <div style={{ gap: 16, display: 'flex' }}>
-                            <button
-                              style={{
-                                padding: 8,
-                                background: '#43DB6D',
-                                borderRadius: 5,
-                                gap: 10,
-                                display: 'flex',
-                                border: 'none',
-                              }}
-                            >
-                              <button
-                                onClick={() => {
-                                  setFaseName(tarefas.filter((tarefa) => tarefa.id === f.id_fase)[0].icone);
-                                  setName(user.name);
-                                  setIdUser(user.id);
-                                  setIdFase(f.id_fase);
-                                  SetModalAtribuirLote(true);
-                                }}
+                          <div
+                            style={{
+                              justifyContent: 'space-between',
+                              alignItems: 'center',
+                              gap: 16,
+                              display: 'flex',
+                            }}
+                          >
+                            <div style={{ justifyContent: 'flex-start', alignItems: 'center', gap: 16, display: 'flex' }}>
+                              <img
                                 style={{
-                                  color: '#191C24',
+                                  width: 32,
+                                  height: 32,
+                                  background: 'linear-gradient(0deg, #D9D9D9 0%, #D9D9D9 100%)',
+                                  borderRadius: 9999,
+                                  border: '0.50px #191C24 solid',
+                                  objectFit: 'cover',
+                                }}
+                                src={user.url}
+                                alt=""
+                              />
+                              <div
+                                style={{
+                                  color: 'white',
                                   fontSize: 12,
                                   fontFamily: 'Rubik',
                                   fontWeight: '500',
                                   wordWrap: 'break-word',
-                                  border: 'none',
-                                  backgroundColor: 'transparent',
                                 }}
                               >
-                                Atribuir Lote
-                              </button>
-                            </button>
+                                {user.name}
+                              </div>
+                            </div>
+                            <div style={{ gap: 16, display: 'flex' }}>
+                              <div
+                                style={{
+                                  padding: 8,
+                                  background: '#43DB6D',
+                                  borderRadius: 5,
+                                  gap: 10,
+                                  display: 'flex',
+                                  border: 'none',
+                                }}
+                              >
+                                <button
+                                  onClick={() => {
+                                    setFaseName(tarefas.filter((tarefa) => tarefa.id === f.id_fase)[0].icone);
+                                    setName(user.name);
+                                    setIdUser(user.id);
+                                    setIdFase(f.id_fase);
+                                    SetModalAtribuirLote(true);
+                                  }}
+                                  style={{
+                                    color: '#191C24',
+                                    fontSize: 12,
+                                    fontFamily: 'Rubik',
+                                    fontWeight: '500',
+                                    wordWrap: 'break-word',
+                                    border: 'none',
+                                    backgroundColor: 'transparent',
+                                  }}
+                                >
+                                  Atribuir Lote
+                                </button>
+                              </div>
+                            </div>
                           </div>
-                        </div>
-                        <div style={{ gap: 8, display: 'flex', flexWrap: 'wrap' }}>
-                          {LoteUser.filter((lote) => lote.id_user === user.id && lote.id_fase === f.id_fase).length >
-                            0 &&
-                            LoteUser.filter((lote) => lote.id_user === user.id && lote.id_fase === f.id_fase).map(
-                              (lote) => {
-                                return (
-                                  <div key={lote.id_fase} style={{ gap: 8, display: 'flex', flexWrap: 'wrap' }}>
-                                    {lote.lotes.map((loteUser: any) => {
-                                      return (
-                                        <div
-                                          key={loteUser.id}
-                                          style={{
-                                            height: 30,
-                                            paddingLeft: 9,
-                                            paddingRight: 9,
-                                            paddingTop: 8,
-                                            paddingBottom: 8,
-                                            background: '#191C24',
-                                            borderRadius: 5,
-                                            justifyContent: 'center',
-                                            alignItems: 'center',
-                                            gap: 10,
-                                            display: 'flex',
-                                          }}
-                                        >
+
+
+
+                          <div style={{ gap: 8, display: 'flex', flexWrap: 'wrap' }}>
+                            {LoteUser.filter((lote) => lote.id_user === user.id && lote.id_fase === f.id_fase).length >
+                              0 &&
+                              LoteUser.filter((lote) => lote.id_user === user.id && lote.id_fase === f.id_fase).map(
+                                (lote) => {
+                                  return (
+                                    <div key={lote.id_fase} style={{ gap: 8, display: 'flex', flexWrap: 'wrap' }}>
+                                      {lote.lotes.map((loteUser: any) => {
+                                        return (
                                           <div
+                                            key={loteUser.id}
                                             style={{
-                                              color: 'white',
-                                              fontSize: 12,
-                                              fontFamily: 'Rubik',
-                                              fontWeight: '500',
+                                              height: 30,
+                                              paddingLeft: 9,
+                                              paddingRight: 9,
+                                              paddingTop: 8,
+                                              paddingBottom: 8,
+                                              background: '#191C24',
+                                              borderRadius: 5,
+                                              justifyContent: 'center',
+                                              alignItems: 'center',
+                                              gap: 10,
+                                              display: 'flex',
                                             }}
                                           >
-                                            {`Lote ${loteUser.numero}`}
+                                            <div
+                                              style={{
+                                                color: 'white',
+                                                fontSize: 12,
+                                                fontFamily: 'Rubik',
+                                                fontWeight: '500',
+                                              }}
+                                            >
+                                              {`Lote ${loteUser.numero}`}
+                                            </div>
                                           </div>
-                                        </div>
-                                      );
-                                    })}
-                                  </div>
-                                );
-                              },
-                            )}
+                                        );
+                                      })}
+                                    </div>
+                                  );
+                                },
+                              )}
+                          </div>
                         </div>
-                      </div>
-                    );
-                  })}
-                </>
-              );
-            })}
-          </div>
-        </div>
+                      );
+                    })}
+                  </S.UsuariosDeUmaFase>
+                );
+              })}
+            </S.UsuariosPorFase>
+          </S.Usuarios>
+
+        </S.EspecificacoesAtiv>
+        {/* BOTÃO DE SALVAR */}
         {UserFase.length > 0 && (
-          <button
-            onClick={handleSave}
-            style={{
-              alignSelf: 'stretch',
-              height: 44,
-              padding: 10,
-              background: '#43DB6D',
-              boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)',
-              borderRadius: 5,
-              justifyContent: 'center',
-              alignItems: 'center',
-              gap: 10,
-              display: 'flex',
-              border: 'none',
-            }}
-          >
-            <div
-              style={{ color: '#191C24', fontSize: 12, fontFamily: 'Rubik', fontWeight: '500', wordWrap: 'break-word' }}
-            >
-              Adicionar Atividade
-            </div>
-          </button>
+          <S.AddAtivAtivado onClick={handleSave}>
+            Adicionar Atividade
+          </S.AddAtivAtivado>
         )}
         {UserFase.length === 0 && (
-          <button
-            style={{
-              alignSelf: 'stretch',
-              height: 44,
-              padding: 10,
-              background: '#43DB6D',
-              boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)',
-              borderRadius: 5,
-              justifyContent: 'center',
-              alignItems: 'center',
-              gap: 10,
-              display: 'flex',
-              border: 'none',
-              opacity: '50%',
-            }}
-          >
-            <div
-              style={{
-                color: '#191C24',
-                fontSize: 12,
-                fontFamily: 'Rubik',
-                fontWeight: '500',
-                wordWrap: 'break-word',
-                opacity: '50%',
-              }}
-            >
-              Adicionar Atividade
-            </div>
-          </button>
+          <S.AddAtivDesativado>
+            Adicionar Atividade
+          </S.AddAtivDesativado>
         )}
-      </div>
+      </S.CriarAtivArea>
+
+
       {modalTarefas && (
         <CreateAtividade
           close={() => {

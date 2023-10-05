@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import media from 'styled-media-query';
 
 export const Wrapper = styled.div`
   height: 100%;
@@ -12,10 +13,10 @@ export const ContainerValorGeral = styled.div`
   display: flex;
   flex-direction: column;
   gap: 1em;
-  @media (min-width: 520px) {
+  ${media.greaterThan('large')`
     display: grid;
-    grid-template-columns: 1fr 1fr;
-  }
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  `}
 `;
 
 export const ValorGeral = styled.div`
@@ -51,7 +52,6 @@ export const TextPurple = styled.span`
 `;
 
 export const TituloH2 = styled.p`
-  margin-top: 1em;
   color: ${({ theme }) => theme.colors.white};
   font-family: Rubik;
   font-size: 22px;

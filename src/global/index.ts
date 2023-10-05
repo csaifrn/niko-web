@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import media from 'styled-media-query';
 
 interface paDiv {
   children?: JSX.Element | JSX.Element[];
@@ -16,11 +17,14 @@ const Title = styled.a`
 const Wrapper = styled.div`
   font-family: 'Rubik';
   background-color: #0a090e;
-  height: 100vh;
+  height: 170vh;
   width: 100vw;
   margin-top: 8em;
   overflow: hidden;
   min-height: 550px;
+  ${media.greaterThan('large')`
+    height: 80vh;
+  `}
 `;
 
 const AlignCenter = styled.div`

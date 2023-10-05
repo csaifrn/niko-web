@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import media from 'styled-media-query';
 
 const SearchDiv = styled.div`
   display: flex;
@@ -29,6 +30,9 @@ const InputSearch = styled.input`
   :-ms-input-placeholder {  
     color: white;  
   }
+  ${media.greaterThan('large')`
+    width: 100%;
+  `}
 `;
 
 const ImgSearch = styled.img`

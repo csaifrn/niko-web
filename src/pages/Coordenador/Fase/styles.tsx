@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import media from 'styled-media-query';
 
 // Create a Title component that'll render an <h1> tag with some styles
 const Title = styled.a`
@@ -9,19 +10,30 @@ const Title = styled.a`
   color: white;
 `;
 
-const Wrapper = styled.section`
-  background-color: #0a090e;
-  width: 100vw;
+export const FasePage = styled.div`
+  height: 80vh;
+
+  ${media.greaterThan('large')`
+
+  `}
 `;
 
+
 const Main = styled.section`
-  margin: 2em 0;
-  margin-top: 8em;
+  margin: 2em 8em;
+  margin-top: 8.5em;
   display: grid;
   grid-template-columns: auto auto;
   justify-items: center;
   justify-content: center;
   grid-gap: 1.25em;
+
+  ${media.greaterThan('large')`
+    margin: 40em;
+    margin-top: 14em;
+    grid-gap: 2.5em;
+    grid-template-columns: 1fr 1fr 1fr;
+  `}
 `;
 
 const FooterHome = styled.footer`
@@ -50,4 +62,4 @@ const Btn = styled.button`
   }
 `;
 
-export { Title, Wrapper, Main, FooterHome, spanLinear, Btn };
+export { Title, Main, FooterHome, spanLinear, Btn };

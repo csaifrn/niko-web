@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import media from 'styled-media-query';
 
 export const Wrapper = styled.div`
   height: 100%;
@@ -75,6 +76,25 @@ export const ContainerDataDependencias = styled.div`
   gap: 1rem;
   border-radius: 5px;
   overflow-x: auto;
+  &::-webkit-scrollbar {
+    width: 0.6em;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: #191c24;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: #2a2e38;
+    border-radius: 20px;
+  }
+  ${media.greaterThan('large')`
+    justify-content: center;
+    width: 20vh;
+    height: 60vh;
+  `}
+  ${media.greaterThan('large')`
+  `}
 `;
 
 export const NumberOrange = styled.span`
@@ -152,7 +172,7 @@ export const Prioridade = styled.p`
 
 export const YelloButton = styled.button`
   background-color: ${({ theme }) => theme.colors['yellow/300']};
-  font-family: Rubik;
+  font-family: 'Rubik';
   color: ${({ theme }) => theme.colors['gray/700']};
   padding: 2em;
   width: 100%;

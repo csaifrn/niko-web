@@ -69,33 +69,27 @@ export const ConfigModal = (props: ConfigModalProps) => {
             <S.NameClose>
               <h2>Configurações do lote</h2>
               <button onClick={handleClose} style={{ border: 'none', backgroundColor: 'transparent' }}>
-                <div
+                <button
                   style={{
-                    paddingLeft: 8,
-                    paddingRight: 8,
-                    paddingTop: 5,
-                    paddingBottom: 5,
+                    padding: '4px',
                     background: '#191C24',
+                    border: 'none',
                     borderRadius: 3,
-                    flexDirection: 'column',
-                    justifyContent: 'flex-start',
-                    alignItems: 'flex-start',
-                    gap: 10,
-                    display: 'inline-flex',
+
+                    cursor: 'pointer',
                   }}
                 >
                   <div
-                    style={{
-                      color: 'white',
-                      fontSize: 12,
-                      fontFamily: 'Rubik',
-                      fontWeight: '700',
-                      wordWrap: 'break-word',
+                    style={{                    
+                      flexDirection: 'column',
+                      justifyContent: 'center',
+                      alignItems: 'center',
+                      display: 'flex',
                     }}
                   >
-                    X
+                    <img src="/close.svg" alt="" height={18} width={18} />
                   </div>
-                </div>
+                </button>
               </button>
             </S.NameClose>
 

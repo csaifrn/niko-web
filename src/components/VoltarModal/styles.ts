@@ -3,14 +3,53 @@ import styled from 'styled-components';
 export const Texto = styled.p``;
 
 const ModalArea = styled.div`
-  width: 85vw;
-  padding: 16px;
-  position: relative;
-  background: #393e4b;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  width: 80vw;
+  max-width: 400px;
+  background-color: ${({ theme }) => theme.colors['gray/500']};
   border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  padding: 2em;
+  gap: 2em;
+  transform: scale(0);
+  transition: transform 0.3s ease-in-out;
   color: white;
   font-family: 'Rubik';
+`;
+
+export const InputCheck = styled.input`
+  all: unset;
+  border: 1px solid #fff;
+  width: 18px;
+  height: 18px;
+  display: inline-block;
+  border-radius: 4px;
+  transition: all 0.3s;
+
+  &:checked {
+    background-color: ${({ theme }) => theme.colors['green/400']};
+    width: 18px;
+    height: 18px;
+  }
+`;
+
+export const LabelCheck = styled.label`
+  display: flex;
+`;
+
+export const CheckContainer = styled.div`
+  width: 100%;
+  display: grid;
+  grid-template-columns: 18px 1fr;
+  gap: 1em;
+  cursor: pointer;
+  span {
+    position: relative;
+    background-color: ${({ theme }) => theme.colors['gray/500']};
+    width: 20px;
+    height: 20px;
+    border-radius: 4px;
+  }
 `;
 
 const ModalContent = styled.div`
@@ -76,6 +115,13 @@ const Recused = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
+  cursor: pointer;
+`;
+
+export const RecusedVoltar = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 `;
 
 export const RecusedAvancar = styled.div`
@@ -100,7 +146,7 @@ export const Voltar = styled.button`
   gap: 16px;
 `;
 
-const ModalBackdrop = styled.div`
+export const ModalBackdrop = styled.div`
   position: fixed;
   width: 100%;
   height: 100%;
@@ -114,4 +160,4 @@ const ModalBackdrop = styled.div`
   align-items: center;
 `;
 
-export { ModalArea, ModalContent, NameClose, Recused, ModalBackdrop };
+export { ModalArea, ModalContent, NameClose, Recused };

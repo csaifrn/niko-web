@@ -1,13 +1,15 @@
 import styled from 'styled-components';
+import media from 'styled-media-query';
 
 const kanban = styled.div`
   font-family: 'Rubik';
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: start;
+  flex-direction: column;
   gap: 16px;
-  margin: 0 2em 2em 2em;
-  padding: 16px;
+  margin: 0em 2em 2em 2em;
+  padding: 16px 0px 16px;
   scroll-behavior: auto;
   scrollbar-width: thin;
   overflow-x: scroll;
@@ -32,13 +34,15 @@ const kanban = styled.div`
 
   @media screen and (min-width: 1008px) {
     justify-content: center;
+    flex-direction: row;
   }
 `;
 
 const kanbanSection = styled.div`
-  min-width: 280px;
+  min-width: 308px;
+  width: 100%;
   gap: 1em;
-  height: 60vh;
+  height: 35vh;
   padding: 1em;
   color: white;
   background-color: #191c24;
@@ -57,14 +61,16 @@ const kanbanSection = styled.div`
     background-color: #2a2e38;
     border-radius: 20px;
   }
-  @media screen and (min-width: 1008px) {
-    width: 100%;
-  }
+  ${media.greaterThan('large')`
+    justify-content: center;
+    width: 20vh;
+    height: 60vh;
+  `}
 `;
 
 const kanbanSectionContent = styled.div`
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   gap: 1em;
   padding: 0.5em;
   padding-left: 1.1em;
@@ -85,12 +91,14 @@ const kanbanSectionContent = styled.div`
     background-color: transparent;
     border-radius: 20px;
   }
-  @media screen and (min-width: 1008px) {
+  ${media.greaterThan('large')`
+    flex-direction: column;
     &::-webkit-scrollbar-thumb {
       background-color: #2a2e38;
       border-radius: 20px;
+      flex-direction: column;
     }
-  }
+  `}
 `;
 
 const btnPrioridade = styled.button`
@@ -116,11 +124,33 @@ const inputPrioridade = styled.input`
 `;
 
 export const divImg = styled.div`
-  margin: 0em 2em 0em 3em;
+  margin: 0em 2em 0em 2em;
   display: flex;
-  justify-content: flex-end;
+  justify-content: flex-start;
   gap: 0.5em;
+  ${media.greaterThan('large')`
+    display: none;
+  `}
 `;
+
+export const divImgMaior = styled.div`
+  margin: 0em 2em 0em 2em;
+  display: none;
+  justify-content: flex-start;
+  gap: 0.5em;
+  ${media.greaterThan('large')`
+    display: flex;
+    justify-content: center;
+  `}
+`;
+
+export const IconeFase = styled.img`
+  ${media.greaterThan('large')`
+  `}
+`;
+
+
+
 
 export const divTitulo = styled.div`
   display: flex;

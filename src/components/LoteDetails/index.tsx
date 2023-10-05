@@ -12,8 +12,13 @@ import { ApiError } from '../../api/services/authentication/signIn/signIn.interf
 import toast from 'react-hot-toast';
 import { Empty } from '../EmptyPage';
 import Splash from '../../pages/Splash';
+import FaseData from '../../data/FaseData';
+import React from 'react';
+import { LoteData } from '../../data/LoteData';
 
 export const LoteDetails = () => {
+  const optionsFases = FaseData.map((fase) => ({ id: fase.id, label: fase.titulo }));
+
   const [config_modal, setConfigModal] = useState(false);
   const handleConfig = () => {
     setConfigModal(!config_modal);
@@ -24,15 +29,30 @@ export const LoteDetails = () => {
     setDeleteModal(!delete_modal);
   };
 
-  // const [voltar, setVoltar] = useState(false);
-  // const handleVoltar = () => {
-  //   setVoltar(!voltar);
-  // };
+  const [voltar, setVoltar] = useState(false);
+  const handleVoltar = () => {
+    setVoltar(!voltar);
+  };
 
-  // const [avancar, setAvancar] = useState(false);
-  // const handleAvancar = () => {
-  //   setAvancar(!avancar);
-  // };
+  const [avancar, setAvancar] = useState(false);
+  const handleAvancar = () => {
+    setAvancar(!avancar);
+  };
+
+  const [pend, setPend] = useState(false);
+  const handleResolverPend = (p: any) => {
+    setPend(!pend);
+    setPendencia(p);
+  };
+  const [pendencia, setPendencia] = useState<any>(null);
+
+  const [ComPendencia, setComPendencia] = useState(false);
+
+  useEffect(() => {
+    if (taskData.pendencias.length > 0) {
+      setComPendencia(true);
+    }
+  }, []);
 
   const [modal, setModal] = useState(false);
   const handleAtribuirAlguem = () => {
@@ -67,90 +87,83 @@ export const LoteDetails = () => {
     }
   }, []);
 
-  const [prioridadeState] = useState(task?.priority);
+  const taskData = LoteData[0];
 
-  // const handlePChange = () => {
-  //   setPrioridadeState(prioridadeState === 1 ? 0 : 1);
-  // };
+  //const [usuarios, setUsuarios] = useState(task.envolvidos);
 
-  // const [compartState, setCompartState] = useState(task.envolvidos.length >= 2);
-  //const handleCompartCheck = () => {
-  //  setCompartState(!compartState);
-  //};
-  if (beforeTask.isLoading) {
-    return <Splash />;
-  } else if (error === null) {
-    return (
-      <>
-        <Menu area={`/Painel/${id}`} id_projeto={id}></Menu>
-        <MenuCoord />
-        <S.areaClick>
-          {/* BOTÃO DE FECHAR */}
-          <S.CloseDiv>
-            <S.Exit onClick={() => navigate(-1)}>
-              <img src="/close.svg" alt="" height={18} width={18} />
-            </S.Exit>
-          </S.CloseDiv>
+  return (
+    <>
+      <Menu area={`/Painel/${id}`} id_projeto={id}></Menu>
+      <MenuCoord />
+      <S.areaClick>
+        {/* BOTÃO DE FECHAR */}
+        <S.CloseDiv>
+          <S.Exit onClick={() => navigate(-1)}>
+            <img src="/close.svg" alt="" height={18} width={18} />
+          </S.Exit>
+        </S.CloseDiv>
 
-          <S.LoteInfos>
-            <S.LoteEditConfig>
-              {/* TÍTULO */}
-              <S.TituloLote>{`${task?.settlement_project}`}</S.TituloLote>
-              <S.EditConfig>
-                {/* EDITAR */}
-                <S.Edit href={`/Lote/${task?.id}/Edit`}>
-                  {''}
-                  <S.Icons src={`/pen.svg`}></S.Icons>
-                  {''}
-                </S.Edit>
-                {/* CONFIGURAÇÕES */}
-                <S.Config onClick={handleConfig}>
-                  {''}
-                  <S.Icons src={`/config.svg`}></S.Icons>
-                  {''}
-                </S.Config>
-              </S.EditConfig>
-            </S.LoteEditConfig>
+        <S.LoteInfos>
+          <S.LoteEditConfig>
+            {/* TÍTULO */}
+            <S.TituloLote>{`${task?.settlement_project}`}</S.TituloLote>
+            <S.EditConfig>
+              {/* EDITAR */}
+              <S.Edit href={`/Lote/${task?.id}/Edit`}>
+                {''}
+                <S.Icons src={`/pen.svg`}></S.Icons>
+                {''}
+              </S.Edit>
+              {/* CONFIGURAÇÕES */}
+              <S.Config onClick={handleConfig}>
+                {''}
+                <S.Icons src={`/config.svg`}></S.Icons>
+                {''}
+              </S.Config>
+            </S.EditConfig>
+          </S.LoteEditConfig>
 
-            <S.DetalhesLote>
-              {/* PROTOCOLO */}
-              {/* <S.Protocolo>
+          <S.DetalhesLote>
+            {/* PROTOCOLO */}
+            {/* <S.Protocolo>
               <p style={{ padding: '0 0.5em' }}>{task.protocolo}</p>
             </S.Protocolo> */}
 
-              {task?.shelf_number !== null && <S.Estante>{task?.shelf_number}</S.Estante>}
+            {task?.shelf_number !== null && <S.Estante>{task?.shelf_number}</S.Estante>}
 
-              {/* ARQUIVOS FÍSICOS */}
-              {task?.physical_files_count != 0 && (
-                <S.ArquivFisicos>
-                  <img src={`/arquivos_fisicos.svg`} alt="arquivos fisicos" />
-                  {task?.physical_files_count}
-                </S.ArquivFisicos>
-              )}
-              {/* ARQUIVOS DIGITAIS */}
-              {task?.digital_files_count != 0 && (
-                <S.ArquivDigitais>
-                  <img src={`/arquivos_digitais.svg`} alt="arquivos digitais" />
-                  {task?.digital_files_count}
-                </S.ArquivDigitais>
-              )}
-            </S.DetalhesLote>
+            {/* ARQUIVOS FÍSICOS */}
+            {task?.physical_files_count != 0 && (
+              <S.ArquivFisicos>
+                <img src={`/arquivos_fisicos.svg`} alt="arquivos fisicos" />
+                {task?.physical_files_count}
+              </S.ArquivFisicos>
+            )}
+            {/* ARQUIVOS DIGITAIS */}
+            {task?.digital_files_count != 0 && (
+              <S.ArquivDigitais>
+                <img src={`/arquivos_digitais.svg`} alt="arquivos digitais" />
+                {task?.digital_files_count}
+              </S.ArquivDigitais>
+            )}
+          </S.DetalhesLote>
 
-            {/* MOSTRA CATEGORIAS QUANDO O LOTE É PRIORIDADE */}
+          {/* MOSTRA CATEGORIAS QUANDO O LOTE É PRIORIDADE */}
+          <S.CategoriaPrioridade>
+            {task?.priority === 1 && (
+              <S.Prioridade>
+                <p>Prioridade</p>
+              </S.Prioridade>
+            )}
+            {/* <S.Categoria>
+              <p>{task?.category.name}</p>
+            </S.Categoria> */}
+          </S.CategoriaPrioridade>
+
+          {/* MOSTRA CATEGORIAS QUANDO O LOTE NÃO É PRIORIDADE */}
+          {taskData.categorias.length > 0 && task?.priority == 0 && (
             <S.CategoriaPrioridade>
-              {prioridadeState === 1 && (
-                <S.Prioridade>
-                  <p>Prioridade</p>
-                </S.Prioridade>
-              )}
-              <S.Categoria>
-                <p>{task?.category.name}</p>
-              </S.Categoria>
-            </S.CategoriaPrioridade>
-
-            {/* {task.categorias.length > 0 && prioridadeState == false && (
-            <S.CategoriaPrioridade>
-              {task.categorias.map((categoria: any) => (
+              {/* CATEGORIAS */}
+              {taskData.categorias.map((categoria: any) => (
                 <React.Fragment key={categoria.id}>
                   <S.Categoria>
                     <p>{categoria.name}</p>
@@ -158,24 +171,25 @@ export const LoteDetails = () => {
                 </React.Fragment>
               ))}
             </S.CategoriaPrioridade>
-          )} */}
+          )}
 
-            {/* {task.tipologias.length > 0 && (
+          {/* TIPOLOGIAS */}
+          {taskData.tipologias.length > 0 && (
             <S.Tipologias>
-              {task.tipologias.map((tipol: any) => (
+              {taskData.tipologias.map((tipol: any) => (
                 <S.Tipologia key={tipol.id}>
                   <p>{tipol.name}</p>
                 </S.Tipologia>
               ))}
             </S.Tipologias>
-          )} */}
+          )}
 
-            <S.FaseEnvolvAtual>
-              {/* FASE ATUAL DO LOTE */}
-              {/* <S.Icons src={`/icon-medium/${task.}.png`} /> */}
+          <S.FaseEnvolvAtual>
+            {/* FASE ATUAL DO LOTE */}
+            <S.Icons src={`/icon-medium/${taskData.fase_atual}.png`} />
 
-              {/* ENVOLVIDOS  */}
-              {/* {usuarios != null &&
+            {/* ENVOLVIDOS  */}
+            {/* {usuarios != null &&
               usuarios.map((env: any) => (
                 <S.Envolvidos key={env.id}>
                   {env.andamento == true && (
@@ -206,34 +220,44 @@ export const LoteDetails = () => {
                   )}
                 </S.Envolvidos>
               ))} */}
-            </S.FaseEnvolvAtual>
-          </S.LoteInfos>
+          </S.FaseEnvolvAtual>
+        </S.LoteInfos>
 
-          {/* <S.PendObservacao>
-          <S.Pendencias>
-            <p>Pendências</p>
-            {task.pendencias.map((pen: any) => (
-              <S.PendDivBlack key={pen.id}>
-                <S.PendenciaTextIcon>
-                  {<img src="/warning.svg" alt="ícone de alerta" />}
-                  {pen.comment}
-                </S.PendenciaTextIcon>
+        <S.PendObservacaoBotoes>
+          <S.PendObservacao>
+            {/* PENDÊNCIAS */}
+            <S.Pendencias>
+              <S.PendenciaTitulo>Pendências</S.PendenciaTitulo>
 
-                <S.ResolverPend onClick={() => handleResolverPend(pen)}>
-                  <S.Texto>Resolver pendência</S.Texto>
-                </S.ResolverPend>
-              </S.PendDivBlack>
-            ))}
-          </S.Pendencias>
+              <S.TodasAsPendencias>
+                {taskData.pendencias.map((pen: any) => (
+                  <S.PendDivBlack key={pen.id}>
+                    <S.PendenciaTextIcon>
+                      {<img src="/warning.svg" alt="ícone de alerta" />}
+                      {pen.comment}
+                    </S.PendenciaTextIcon>
 
-          <S.Observações>
-            <p>Observações</p>
-            {observacoes.map((obs: any) => (
-              <S.ObsDivBlack key={obs.ObsId}>{obs.titulo}</S.ObsDivBlack>
-            ))}
-          </S.Observações>
-        </S.PendObservacao> */}
+                    <S.BotaoResolverPend onClick={() => handleResolverPend(pen)}>
+                      <S.Texto>Resolver pendência</S.Texto>
+                    </S.BotaoResolverPend>
+                  </S.PendDivBlack>
+                ))}
+              </S.TodasAsPendencias>
+            </S.Pendencias>
 
+            {/* OBSERVAÇÕES */}
+            <S.Observações>
+              <S.ObservacaoTitulo>Observações</S.ObservacaoTitulo>
+
+              <S.TodasAsObservacoes>
+                {taskData.observacoes.map((obs: any) => (
+                  <S.ObsDivBlack key={obs.ObsId}>{obs.titulo}</S.ObsDivBlack>
+                ))}
+              </S.TodasAsObservacoes>
+            </S.Observações>
+          </S.PendObservacao>
+
+          {/* BOTÕES PRINCIPAIS */}
           <S.Botoes>
             {/* ATRIBUIR À ALGUÉM */}
             <S.Botao onClick={handleAtribuirAlguem}>
@@ -242,112 +266,60 @@ export const LoteDetails = () => {
             </S.Botao>
 
             {/* VOLTAR FASE */}
-            {/* <S.BotaoMudarFase>
-            {indisponivel == false && (
-              <S.VoltarAvancar onClick={handleVoltar} style={{ background: '#393E4B' }}>
-                <img src={'/voltar.svg'} alt="ícone circular com uma seta para a esquerda ao centro" />
-                <p style={{ color: indisponivel ? 'rgba(255, 255, 255, 0.50)' : '#FFFFFF' }}>Voltar Fase</p>
-              </S.VoltarAvancar>
-            )}
+            {ComPendencia == true && taskData.fase_atual != 'Preparo' && (
+              <S.BotaoMudarFase>
+                {/* BOTÃO DE VOLTAR FASE*/}
+                <S.VoltarAvancar onClick={handleVoltar} style={{ cursor: 'pointer' }}>
+                  <img src={'/voltar.svg'} alt="ícone circular com uma seta para a esquerda ao centro" />
+                  <p style={{ color: '#FFFFFF' }}>Voltar Fase</p>
+                </S.VoltarAvancar>
 
-            {indisponivel == true && (
-              <S.VoltarAvancar style={{ background: 'rgba(57, 62, 75, 0.50)' }}>
-                <img src={'/voltar-desativado.svg'} alt="ícone circular com uma seta para a esquerda ao centro" />
-                <p style={{ color: indisponivel ? 'rgba(255, 255, 255, 0.50)' : '#FFFFFF' }}>Voltar Fase</p>
-              </S.VoltarAvancar>
+                {/* BOTÃO DE ESCOLHER FASE PARA VOLTAR*/}
+                <S.EscolherFaseSelect
+                  options={optionsFases}
+                  className="react-select-container"
+                  classNamePrefix="react-select"
+                />
+              </S.BotaoMudarFase>
             )}
-
-            {indisponivel == false && (
-              <S.EscolherFase
-                className="custom-select"
-                style={{ background: indisponivel ? 'rgba(57, 62, 75, 0.50)' : '#393E4B' }}
-              >
-                {FaseData.map((fase) => (
-                  <S.OptionFases className="fase" value="fase" key={fase.id}>
-                    {fase.titulo}
-                  </S.OptionFases>
-                ))}
-              </S.EscolherFase>
-            )}
-
-            {indisponivel == true && (
-              <S.EscolherFase
-                className="custom-select"
-                style={{ background: indisponivel ? 'rgba(57, 62, 75, 0.50)' : '#393E4B' }}
-                disabled
-              >
-                {FaseData.map((fase) => (
-                  <S.OptionFases className="fase" value="fase" key={fase.id}>
-                    {fase.titulo}
-                  </S.OptionFases>
-                ))}
-              </S.EscolherFase>
-            )}
-          </S.BotaoMudarFase> */}
 
             {/* AVANÇAR FASE */}
-            {/* <S.BotaoMudarFase>
-            {indisponivel == false && (
-              <S.VoltarAvancar onClick={handleAvancar} style={{ background: '#393E4B' }}>
-                <img src={'/avancar.svg'} alt="ícone circular com uma seta para a direita ao centro" />
-                <p style={{ color: indisponivel ? 'rgba(255, 255, 255, 0.50)' : '#FFFFFF' }}>Avancar Fase</p>
-              </S.VoltarAvancar>
-            )}
+            {taskData.fase_atual != 'Arquivamento' && (
+              <S.BotaoMudarFase>
+                {/* BOTÃO DE AVANÇAR FASE*/}
+                <S.VoltarAvancar onClick={handleAvancar} style={{ cursor: 'pointer' }}>
+                  <img src={'/avancar.svg'} alt="ícone circular com uma seta para a direita ao centro" />
+                  <p style={{ color: '#FFFFFF' }}>Avancar Fase</p>
+                </S.VoltarAvancar>
 
-            {indisponivel == true && (
-              <S.VoltarAvancar style={{ background: 'rgba(57, 62, 75, 0.50)' }}>
-                <img src={'/avancar-desativado.svg'} alt="ícone circular com uma seta para a direita ao centro" />
-                <p style={{ color: indisponivel ? 'rgba(255, 255, 255, 0.50)' : '#FFFFFF' }}>Avancar Fase</p>
-              </S.VoltarAvancar>
+                {/* BOTÃO DE ESCOLHER FASE PARA AVANÇAR*/}
+                <S.EscolherFaseSelect
+                  options={optionsFases}
+                  className="react-select-container"
+                  classNamePrefix="react-select"
+                />
+              </S.BotaoMudarFase>
             )}
-
-            {indisponivel == false && (
-              <S.EscolherFase
-                className="custom-select"
-                style={{ background: indisponivel ? 'rgba(57, 62, 75, 0.50)' : '#393E4B' }}
-                onChange={(e) => handleDebug(e)}
-              >
-                {FaseData.map((fase) => (
-                  <S.OptionFases className="fase" value={fase.titulo} key={fase.id}>
-                    {fase.titulo}
-                  </S.OptionFases>
-                ))}
-              </S.EscolherFase>
-            )}
-
-            {indisponivel == true && (
-              <S.EscolherFase
-                className="custom-select"
-                style={{ background: indisponivel ? 'rgba(57, 62, 75, 0.50)' : '#393E4B' }}
-                disabled
-              >
-                {FaseData.map((fase) => (
-                  <S.OptionFases className="fase" value={fase.titulo} key={fase.id}>
-                    {fase.titulo}
-                  </S.OptionFases>
-                ))}
-              </S.EscolherFase>
-            )}
-          </S.BotaoMudarFase> */}
 
             {/* DELETAR LOTE */}
-            <S.Botao onClick={handleDelete} style={{ backgroundColor: '#F32D2D' }}>
-              <img src={`/trash.svg`} alt="Deletar Lote" />
-              <p>Deletar lote</p>
-            </S.Botao>
+            <S.BotaoDeletarLote onClick={handleDelete}>
+              <img src={`/trash.svg`} alt="Botão de deletar Lote" />
+              <p>Excluir lote</p>
+            </S.BotaoDeletarLote>
           </S.Botoes>
+        </S.PendObservacaoBotoes>
 
-          {/* DETALHAMENTO POR FASE */}
+        {/* DETALHAMENTO POR FASE */}
 
-          {/* {task.detalhamento_por_fase != null && (
+        {taskData.detalhamento_por_fase != null && (
           <S.DetalFase>
             <S.DetalhamentoTitulo>Detalhamento por fase</S.DetalhamentoTitulo>
             <S.DetalhamentoGrid>
-              {task.detalhamento_por_fase.map((fase: any) => (
+              {taskData.detalhamento_por_fase.map((fase: any) => (
                 <S.Fase key={fase.id}>
                   <S.FaseIconDiv>
-                    <img src={fase.icone} alt={'icone da fase' + fase.nome} />
-                    <h2>{fase.nome}</h2>
+                    <img src={fase.icone} alt={'icone da fase ' + fase.nome} />
+                    <S.NomeDaFase>{fase.nome}</S.NomeDaFase>
                   </S.FaseIconDiv>
 
                   {fase.inicio !== null && (
@@ -398,30 +370,28 @@ export const LoteDetails = () => {
               ))}
             </S.DetalhamentoGrid>
           </S.DetalFase>
-        )} */}
-        </S.areaClick>
-        {/* {pend && <ModalResolverPendencia pendencia={pendencia} close={() => setPend(!pend)}></ModalResolverPendencia>}
+        )}
+      </S.areaClick>
+      {/* {pend && <ModalResolverPendencia pendencia={pendencia} close={() => setPend(!pend)}></ModalResolverPendencia>}
 
-        {modal && (
-          <AtribuirAlguemModal user={usuarios} setUser={setUsuarios} close={handleAtribuirAlguem}></AtribuirAlguemModal>
-        )}
-        {voltar && <VoltarModal close={handleVoltar}></VoltarModal>}
-        {avancar && <AvancarModal close={handleAvancar}></AvancarModal>} */}
-        {delete_modal && <DeletarLoteModal delete={() => console.log(id)} close={handleDelete}></DeletarLoteModal>}
-        {config_modal && (
-          <ConfigModal
-            id={id!}
-            prioridade={task!.priority}
-            close={() => {
-              setConfigModal(!config_modal);
-            }}
-          ></ConfigModal>
-        )}
-      </>
-    );
-  } else {
-    return <Empty error={error} />;
-  }
+      {pend && <ModalResolverPendencia pendencia={pendencia} close={() => setPend(!pend)}></ModalResolverPendencia>}
+      {modal && (
+        <AtribuirAlguemModal user={usuarios} setUser={setUsuarios} close={handleAtribuirAlguem}></AtribuirAlguemModal>
+      )}
+      {voltar && <VoltarModal close={handleVoltar}></VoltarModal>}
+      {avancar && <AvancarModal close={handleAvancar}></AvancarModal>}*/}
+      {delete_modal && <DeletarLoteModal delete={() => console.log(id)} close={handleDelete}></DeletarLoteModal>}
+      {config_modal && (
+        <ConfigModal
+          id={id!}
+          prioridade={task!.priority}
+          close={() => {
+            setConfigModal(!config_modal);
+          }}
+        ></ConfigModal>
+      )}
+    </>
+  );
 };
 
 export default LoteDetails;

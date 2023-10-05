@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import * as S from './styles';
 import Menu from '../../../../components/Menu';
 import MenuCoord from '../../../../components/MenuCoord';
@@ -62,8 +62,9 @@ const Atividade = () => {
     <>
       <Menu area={`/Categoria/${id}`} id_projeto={id}></Menu>
       <MenuCoord />
-      <S.CardsArea>
-        <div
+      <S.AtividadesPage>
+
+        <S.AtivsCabecalho
           style={{
             position: 'sticky',
             top: '40px',
@@ -76,9 +77,9 @@ const Atividade = () => {
             backgroundColor: '#0a090e',
           }}
         >
-          <h1 style={{ color: 'white', fontFamily: 'Rubik' }}>Atividades</h1>
+          <S.TituloAtividades style={{ color: 'white', fontFamily: 'Rubik' }}>Atividades</S.TituloAtividades>
           {auth.role == 'Coordenador' && (
-            <a
+            <S.CriarAtiv
               href={`/Atividades/${id}/CriarAtividade`}
               style={{
                 border: 'none',
@@ -89,10 +90,11 @@ const Atividade = () => {
               }}
             >
               <img src="/plus.svg" alt="adicionar atividade" />
-            </a>
+            </S.CriarAtiv>
           )}
-        </div>
-        <div
+        </S.AtivsCabecalho>
+
+        <S.AtivsPorDiaDiv
           style={{
             borderRadius: '5px',
             display: 'flex',
@@ -104,52 +106,52 @@ const Atividade = () => {
           {atividades.map((atividade, indexatv) => {
             if (auth.role === 'Coordenador') {
               return (
-                <div
+                <S.AtivPorDia
                   key={indexatv}
                   ref={atividade === atividadesOrdenadas[0] ? atividadeMaisProximaRef : null}
                   style={{ color: 'white', fontFamily: 'Rubik' }}
                 >
-                  <h2 style={{ padding: '0 0 0.5em 0' }}>{`${atividade.data.getDate()}/${
+                  <S.DataAtiv style={{ padding: '0 0 0.5em 0' }}>{`${atividade.data.getDate()}/${
                     atividade.data.getMonth() + 1
-                  }/${atividade.data.getFullYear()}`}</h2>
-                  <div style={{ display: 'flex', flexDirection: 'column', gap: '2em' }}>
+                  }/${atividade.data.getFullYear()}`}
+                  </S.DataAtiv>
+                  
+                  <S.Atividades>
+
                     {atividade.atividades.map((atv, index) => {
                       return (
-                        <div
-                          key={index}
-                          style={{
-                            padding: '2em',
-                            backgroundColor: '#393E4B',
-                            display: 'flex',
-                            flexDirection: 'column',
-                            gap: '2em',
-                            borderRadius: '5px',
-                            position: 'relative',
-                          }}
-                        >
-                          <a
-                            href={`/Atividades/${id}/Edit/${atividade.id}/${atv.id}`}
-                            style={{
-                              display: 'flex',
-                              backgroundColor: '#191C24',
-                              height: '24px',
-                              width: '24px',
-                              alignItems: 'center',
-                              justifyContent: 'center',
-                              borderRadius: '5px',
-                              position: 'absolute',
-                              right: '2em',
-                              border: 'none',
-                            }}
-                          >
-                            <PencilSimple size={16} weight="fill" color="#fff" />
-                          </a>
+
+                        <>
+
+                        <S.AtivCard key={index}>
+
+                          <S.EditDiv>
+                            <S.Edit
+                              href={`/Atividades/${id}/Edit/${atividade.id}/${atv.id}`}
+                              style={{
+                                display: 'flex',
+                                backgroundColor: '#191C24',
+                                height: '24px',
+                                width: '24px',
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                borderRadius: '5px',
+                                right: '2em',
+                                border: 'none',
+                              }}
+                              
+                            >
+                              <PencilSimple size={16} weight="fill" color="#fff" />
+                            </S.Edit>
+                          </S.EditDiv>
+
+                          <S.AtivsDetails>
                           {atv.faseData.map((fase, indexfase) => {
                             return (
-                              <div key={indexfase} style={{ display: 'flex', flexDirection: 'column', gap: '1em' }}>
+                              <S.AtivPorFase key={indexfase}>
                                 <div style={{ display: 'flex', alignItems: 'center', gap: '1em' }}>
-                                  <img src={`${fase.faseData.icone}`} alt="" />
-                                  <h3>{fase.faseData.titulo}</h3>
+                                  <S.IconeFase src={`/icon-medium/${fase.faseData.titulo}.svg`} alt="" />
+                                  <S.TituloFase>{fase.faseData.titulo}</S.TituloFase>
                                 </div>
 
                                 {fase.categoriasTipologias?.length != undefined && (
@@ -175,18 +177,34 @@ const Atividade = () => {
                                 )}
 
                                 {fase.users?.map((user) => {
-                                  return (
+                                  // useEffect(() =>{
+                                  //   const operadores = document.getElementById('operador')
+                                  //   console.log(operadores);
+                                  //   operadores?.addEventListener('mouseenter', handleNomedoOperador)
+                                  // },[])
+
+                                   return (
                                     <div
                                       key={user.user.id}
                                       style={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap', gap: '0.5em' }}
                                     >
-                                      <img
-                                        src={user.user.url}
-                                        height={32}
-                                        width={32}
-                                        style={{ objectFit: 'cover', borderRadius: '100%' }}
-                                        alt=""
-                                      />
+
+                                      <S.Operador>
+                                        <S.FotoOperador
+                                          src={user.user.url}
+                                          height={32}
+                                          width={32}
+                                          style={{ objectFit: 'cover', borderRadius: '100%' }}
+                                          alt=""
+                                        />
+
+                                        <S.NomeOperador>
+                                          <p>{user.user.name}</p>
+                                        </S.NomeOperador>
+                                       
+                                      </S.Operador>
+
+
 
                                       {user.Lotes?.map((lote) => {
                                         return (
@@ -213,14 +231,17 @@ const Atividade = () => {
                                     </div>
                                   );
                                 })}
-                              </div>
+                              </S.AtivPorFase>
                             );
                           })}
-                        </div>
+                          </S.AtivsDetails>
+                          
+                        </S.AtivCard>
+                        </>
                       );
                     })}
-                  </div>
-                </div>
+                  </S.Atividades>
+                </S.AtivPorDia>
               );
             } else {
               return (
@@ -392,8 +413,8 @@ const Atividade = () => {
               );
             }
           })}
-        </div>
-      </S.CardsArea>
+        </S.AtivsPorDiaDiv>
+      </S.AtividadesPage>
     </>
   );
 };

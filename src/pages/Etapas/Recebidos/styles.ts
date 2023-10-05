@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import media from 'styled-media-query';
 
 // Create a Title component that'll render an <h1> tag with some styles
 
@@ -27,23 +28,66 @@ const LoteArea = styled.section`
   }
 `;
 
+export const RemessasDiv = styled.div`
+  margin: 2em 2em 2em 2em; 
+  display: flex; 
+  flex-direction: column; 
+  gap: 1em; 
+  justify-content: center ;
+  align-items: center;
+  ${media.greaterThan('large')`
+  `}
+`;
+
 const Main = styled.section`
   background-color: #191c24;
   display: flex;
   flex-direction: column;
-  justify-items: center;
   padding: 2em;
+  margin: 0em 3em 0em 3em;
   grid-gap: 1em;
   border-radius: 5px;
-
-  @media (max-width: 768px) {
+  overflow-y: scroll;
+  scroll-behavior: auto;
+  scrollbar-width: thin;
+  height: 60vh;
+  width: 100%;
+  
+  ${media.greaterThan('large')`
+    justify-items: center;
+    width: 80vh;
+    height: 70vh;
     overflow-y: scroll;
     scroll-behavior: auto;
     scrollbar-width: thin;
-    height: 50vh;
-  }
-  @media (min-width: 1000px) {
-  }
+  `}
+`;
+
+export const IconeRecepDivMobile = styled.div`
+   
+  display: flex;
+  margin: 1em 0em 0em 2em; 
+  justify-content: flex-start;
+  gap: 0.5em ;
+  ${media.greaterThan('large')`
+    display: none;
+  `}
+`;
+
+export const IconeRecepDivDesktop = styled.div`
+   
+  display: none;
+  margin: 1em 0em 0em 2em; 
+  justify-content: center;
+  gap: 0.5em ;
+  ${media.greaterThan('large')`
+    display: flex;
+  `}
+
+`;
+
+export const IconeRecepcao = styled.img`
+
 `;
 
 const FooterHome = styled.footer`

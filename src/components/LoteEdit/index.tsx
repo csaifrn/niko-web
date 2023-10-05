@@ -57,7 +57,7 @@ const LoteEdit = () => {
 
   const beforeBatch = useMutation(GetBatche, {
     onSuccess: (data: GetResponseBatche) => {
-      setTitle(data.settlement_project);
+      setTitle(data.title);
       setName(data.category.name);
       setPhysical_files_count(data.physical_files_count);
       setDigital_files_count(data.digital_files_count);
@@ -89,8 +89,8 @@ const LoteEdit = () => {
 
     if (isValid && id) {
       patchBatch.mutate({
-        id: id,
-        settlement_project: title,
+        id,
+        title,
         digital_files_count,
         physical_files_count,
       });

@@ -4,10 +4,10 @@ export interface GetBatcheParams {
 
 export interface GetResponseBatche {
   id: string;
-  settlement_project: string;
+  title: string;
   digital_files_count: number;
   physical_files_count: number;
-  priority: number;
+  priority: boolean;
   shelf_number: any;
   created_at: string;
   updated_at: string;

@@ -174,6 +174,10 @@ export const ArquivosInput = styled.input`
     top: 0;
     right: 0;
     bottom: 0;
+    transition: all 0.5s;
+    &:hover {
+      opacity: 0.8;
+    }
   }
 
   ::-webkit-inner-spin-button,

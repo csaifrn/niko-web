@@ -1,5 +1,5 @@
 export interface CreateBatcheParams {
-  settlement_project: string;
+  title: string;
   settlement_project_category_id: string;
   physical_files_count?: number;
   digital_files_count?: number;
@@ -8,7 +8,7 @@ export interface CreateBatcheParams {
 
 export interface CreateResponseBatche {
   id: string;
-  settlement_project: string;
+  title: string;
   physical_files_count: number;
   digital_files_count: number;
   priority: boolean;

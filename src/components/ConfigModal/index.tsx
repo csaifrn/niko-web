@@ -1,15 +1,14 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import * as S from './style';
 import { useMutation } from 'react-query';
 import { PatchBatchePriority } from '../../api/services/batches/patch-batche';
 import { PatchResponseBatche } from '../../api/services/batches/patch-batche/patch.interface';
 import toast from 'react-hot-toast';
 import { ApiError } from '../../api/services/authentication/signIn/signIn.interface';
-import { Boleano } from '../../utils/bolean.util';
 
 interface ConfigModalProps {
   id: string;
-  prioridade: number;
+  prioridade: boolean;
   close: () => void;
 }
 
@@ -18,7 +17,7 @@ export const ConfigModal = (props: ConfigModalProps) => {
 
   const Priority = useMutation(PatchBatchePriority, {
     onSuccess: (data: PatchResponseBatche) => {
-      toast.success(`Prioride ${Pchecked == 0 ? 'foi ativada' : 'foi desativada'}!`);
+      toast.success(`Prioride ${Pchecked ? 'foi ativada' : 'foi desativada'}!`);
       console.log(data);
     },
     onError: (error: ApiError) => {
@@ -27,10 +26,10 @@ export const ConfigModal = (props: ConfigModalProps) => {
   });
 
   const handlePrioridadeCheck = () => {
-    setPChecked(Pchecked == 0 ? 1 : 0);
+    setPChecked(Pchecked!);
     Priority.mutate({
       id: props.id,
-      priority: Boleano(Pchecked == 0 ? 1 : 0),
+      priority: Pchecked,
     });
   };
 
@@ -104,7 +103,7 @@ export const ConfigModal = (props: ConfigModalProps) => {
             <S.Prioridade>
               <p>Prioridade</p>
               <S.SwitchButton>
-                <S.Input checked={Boleano(Pchecked)} onChange={handlePrioridadeCheck} />
+                <S.Input checked={Pchecked} onChange={handlePrioridadeCheck} />
                 <S.Slider />
               </S.SwitchButton>
             </S.Prioridade>

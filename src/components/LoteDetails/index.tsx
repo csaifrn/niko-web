@@ -12,12 +12,17 @@ import { ApiError } from '../../api/services/authentication/signIn/signIn.interf
 import toast from 'react-hot-toast';
 import { Empty } from '../EmptyPage';
 import Splash from '../../pages/Splash';
+import { Plus } from '@phosphor-icons/react';
+import theme from '../../global/theme';
+import { SuccessModal } from '../SuccessModal';
 
 export const LoteDetails = () => {
   const [config_modal, setConfigModal] = useState(false);
   const handleConfig = () => {
     setConfigModal(!config_modal);
   };
+
+  const [observacao, setObservacao] = useState(false);
 
   const [delete_modal, setDeleteModal] = useState(false);
   const handleDelete = () => {
@@ -209,8 +214,8 @@ export const LoteDetails = () => {
             </S.FaseEnvolvAtual>
           </S.LoteInfos>
 
-          {/* <S.PendObservacao>
-          <S.Pendencias>
+          <S.PendObservacao>
+            {/* <S.Pendencias>
             <p>Pendências</p>
             {task.pendencias.map((pen: any) => (
               <S.PendDivBlack key={pen.id}>
@@ -224,15 +229,35 @@ export const LoteDetails = () => {
                 </S.ResolverPend>
               </S.PendDivBlack>
             ))}
-          </S.Pendencias>
+          </S.Pendencias> */}
 
-          <S.Observações>
-            <p>Observações</p>
-            {observacoes.map((obs: any) => (
+            <S.Observações>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                <p>Observações</p>
+                <button
+                  onClick={() => {
+                    setObservacao(!observacao);
+                  }}
+                  style={{
+                    backgroundColor: theme.colors['green/500'],
+                    borderRadius: '100%',
+                    height: '28px',
+                    width: '28px',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    border: 'none',
+                  }}
+                >
+                  <Plus size={18} color={theme.colors['gray/900']} />
+                </button>
+              </div>
+
+              {/* {observacoes.map((obs: any) => (
               <S.ObsDivBlack key={obs.ObsId}>{obs.titulo}</S.ObsDivBlack>
-            ))}
-          </S.Observações>
-        </S.PendObservacao> */}
+            ))} */}
+            </S.Observações>
+          </S.PendObservacao>
 
           <S.Botoes>
             {/* ATRIBUIR À ALGUÉM */}
@@ -417,6 +442,9 @@ export const LoteDetails = () => {
             }}
           ></ConfigModal>
         )}
+        {observacao &&
+          <SuccessModal close={() => {setObservacao(!observacao)}} title='Criar observação'/>
+        }
       </>
     );
   } else {

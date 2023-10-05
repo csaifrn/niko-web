@@ -25,6 +25,66 @@ export const Pend = [
     voltar: true,
     decisao: false,
   },
+  {
+    id: '1',
+    id_projeto: '2',
+    lote: '117',
+    fase_atual: 'Catalogação',
+    fase_final: 'Digitalização',
+    comment: 'Lote possui vários processos com páginas não numeradas',
+    voltar: false,
+    decisao: false,
+  },
+  {
+    id: '2',
+    id_projeto: '1',
+    lote: '120',
+    fase_atual: 'Upload',
+    fase_final: '',
+    comment: 'Lote possui vários processos com páginas não numeradas...',
+    voltar: true,
+    decisao: false,
+  },
+  {
+    id: '1',
+    id_projeto: '2',
+    lote: '117',
+    fase_atual: 'Catalogação',
+    fase_final: 'Digitalização',
+    comment: 'Lote possui vários processos com páginas não numeradas',
+    voltar: false,
+    decisao: false,
+  },
+  {
+    id: '2',
+    id_projeto: '1',
+    lote: '120',
+    fase_atual: 'Upload',
+    fase_final: '',
+    comment: 'Lote possui vários processos com páginas não numeradas...',
+    voltar: true,
+    decisao: false,
+  },
+  {
+    id: '1',
+    id_projeto: '2',
+    lote: '117',
+    fase_atual: 'Catalogação',
+    fase_final: 'Digitalização',
+    comment: 'Lote possui vários processos com páginas não numeradas',
+    voltar: false,
+    decisao: false,
+  },
+  {
+    id: '2',
+    id_projeto: '1',
+    lote: '120',
+    fase_atual: 'Upload',
+    fase_final: '',
+    comment: 'Lote possui vários processos com páginas não numeradas...',
+    voltar: true,
+    decisao: false,
+  },
 ];
 
 export const PendenciaCoord = () => {
@@ -45,17 +105,17 @@ export const PendenciaCoord = () => {
                 </S.ContainerNumber>
                 {pendencia.fase_final.length > 0 ? (
                   <S.DataAcao>
-                    <S.ContainerImg src={`/icon-medium/${pendencia.fase_atual}.png`} />
+                    <S.ContainerImg src={`/icon-medium/${pendencia.fase_atual}.svg`} />
                     {pendencia.voltar ? (
                       <ArrowCircleLeft size={2} weight="fill" color={theme.colors['red/500']} />
                     ) : (
                       <ArrowCircleRight size={32} weight="fill" color={theme.colors['green/400']} />
                     )}
-                    <S.ContainerImg src={`/icon-medium/${pendencia.fase_final}.png`} />
+                    <S.ContainerImg src={`/icon-medium/${pendencia.fase_final}.svg`} />
                   </S.DataAcao>
                 ) : (
                   <S.Fase>
-                    <S.ContainerImg src={`/icon-medium/${pendencia.fase_atual}.png`} />
+                    <S.ContainerImg src={`/icon-medium/${pendencia.fase_atual}.svg`} />
                   </S.Fase>
                 )}
 

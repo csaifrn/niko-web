@@ -150,7 +150,7 @@ const Atividade = () => {
                             return (
                               <S.AtivPorFase key={indexfase}>
                                 <div style={{ display: 'flex', alignItems: 'center', gap: '1em' }}>
-                                  <S.IconeFase src={`/icon-medium/${fase.faseData.titulo}.png`} alt="" />
+                                  <S.IconeFase src={`/icon-medium/${fase.faseData.titulo}.svg`} alt="" />
                                   <S.TituloFase>{fase.faseData.titulo}</S.TituloFase>
                                 </div>
 

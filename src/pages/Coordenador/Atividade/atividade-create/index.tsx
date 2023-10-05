@@ -236,9 +236,9 @@ const AtividadeCreate = () => {
                           display: 'flex',
                         }}
                       >
-                        {fase.icone === '/icon-page/new.png' ? 
-                        <img src={'/icon-page/new.png'} width={28} height={28} alt=""/> : 
-                        <img src={`/icon-medium/${fase.titulo}.png`} alt="" />
+                        {fase.icone === '/icon-small/new.png' ? 
+                        <img src={'/icon-small/new.png'} width={28} height={28} alt=""/> : 
+                        <img src={`/icon-medium/${fase.titulo}.svg`} alt="" />
                         }
 
                       </div>
@@ -380,10 +380,10 @@ const AtividadeCreate = () => {
                 return (
                   <S.UsuariosDeUmaFase key={f.id_fase}>
                     <S.IconeTituloFase >
-                      <img src={`/icon-medium/${tarefas.filter((tarefa) => tarefa.id === f.id_fase)[0].titulo}.png`} alt="" />
+                      <img src={`/icon-medium/${tarefas.filter((tarefa) => tarefa.id === f.id_fase)[0].titulo}.svg`} alt="" />
 
-                      {tarefas.filter((tarefa) => tarefa.id === f.id_fase)[0].icone === '/icon-page/new.png' &&
-                        <img src={'/icon-page/new.png'} style={{marginLeft: '-16px'}} width={28} height={28} alt=''></img>
+                      {tarefas.filter((tarefa) => tarefa.id === f.id_fase)[0].icone === '/icon-small/new.png' &&
+                        <img src={'/icon-small/new.png'} style={{marginLeft: '-16px'}} width={28} height={28} alt=''></img>
                       }
           
                       <h3>{tarefas.filter((tarefa) => tarefa.id === f.id_fase)[0].titulo}</h3>

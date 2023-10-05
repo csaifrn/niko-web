@@ -7,22 +7,22 @@ const FaseData = [
     {
         id: 0,
         titulo:'Preparo',
-        icone: '/icon-page/Preparo_icon.png'
+        icone: '/icon-small/Preparo.svg'
     },
     {
         id: 1,
         titulo:'Catalogação',
-        icone: '/icon-page/Catalogação_icon.png'
+        icone: '/icon-small/Catalogação.svg'
     },
     {
         id: 2,
         titulo:'Digitalização',
-        icone: '/icon-page/Digitalização_icon.png'
+        icone: '/icon-small/Digitalização.svg'
     },
     {
         id: 3,
         titulo:'Upload',
-        icone: '/icon-page/Upload_icon.png'
+        icone: '/icon-small/Upload.svg'
     },
     {
         id: 4,

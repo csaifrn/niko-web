@@ -45,7 +45,7 @@ export const PainelPorFase = () => {
         <S.Container>
           <S.DataFaseDois>
             <S.ContainerDataFase>
-              <S.ContainerImg src="/icon-big/Recebimento_icon.svg" />
+              <S.ContainerImg src="/icon-big/Recepção.svg" />
               <S.DataFase>
                 <S.NumberTextDataUnic>
                   <S.DataFaseTxtCenter>
@@ -56,7 +56,7 @@ export const PainelPorFase = () => {
               </S.DataFase>
             </S.ContainerDataFase>
             <S.ContainerDataFase>
-              <S.ContainerImg src="/icon-big/Arquivamento_icon.svg" />
+              <S.ContainerImg src="/icon-big/Arquivamento.svg" />
               <S.DataFase>
                 <S.NumberTextDataUnic>
                   <S.DataFaseTxtCenter>
@@ -70,7 +70,7 @@ export const PainelPorFase = () => {
 
           <S.FasesDoMeio>
             <S.ContainerDataFase>
-              <S.ContainerImg src="/icon-big/Preparo_icon.svg" />
+              <S.ContainerImg src="/icon-big/Preparo.svg" />
               <S.DataFase>
                 <S.NumberTextData>
                   <S.NumberName>
@@ -93,7 +93,7 @@ export const PainelPorFase = () => {
             </S.ContainerDataFase>
 
             <S.ContainerDataFase>
-              <S.ContainerImg src="/icon-big/Catalogação_icon.svg" />
+              <S.ContainerImg src="/icon-big/Catalogação.svg" />
               <S.DataFase>
                 <S.NumberTextData>
                   <S.NumberName>
@@ -115,7 +115,7 @@ export const PainelPorFase = () => {
               </S.DataFase>
             </S.ContainerDataFase>
             <S.ContainerDataFase>
-              <S.ContainerImg src="/icon-big/Digitalização_icon.svg" />
+              <S.ContainerImg src="/icon-big/Digitalização.svg" />
               <S.DataFase>
                 <S.NumberTextData>
                   <S.NumberName>
@@ -137,7 +137,7 @@ export const PainelPorFase = () => {
               </S.DataFase>
             </S.ContainerDataFase>
             <S.ContainerDataFase>
-              <S.ContainerImg src="/icon-big/Upload_icon.svg" />
+              <S.ContainerImg src="/icon-big/Upload.svg" />
               <S.DataFase>
                 <S.NumberTextData>
                   <S.NumberName>

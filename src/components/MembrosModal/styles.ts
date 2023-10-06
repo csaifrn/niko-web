@@ -1,3 +1,4 @@
+import Select from 'react-select';
 import styled from 'styled-components';
 
 const ModalArea = styled.div`
@@ -34,6 +35,7 @@ export const Exit = styled.button`
   justify-content: center;
   align-items: center;
   border: none;
+  cursor: pointer;
 `;
 
 const ModalContent = styled.div`
@@ -46,6 +48,55 @@ const NameClose = styled.div`
   display: flex;
   justify-content: space-between;
 `;
+
+export const Email = styled.div`
+`;
+
+export const EscolherFuncao = styled(Select)`
+  width: 180px;
+  .react-select__control {
+    border: none;
+    background-color: ${({ theme }) => theme.colors['gray/700']} !important; /* Cor de fundo do controle */
+    color: ${({ theme }) => theme.colors.white} !important;
+    min-height: 44px;
+  }
+
+  .react-select__placeholder {
+    color: #ffffff;
+  }
+
+  .react-select__single-value {
+    color: ${({ theme }) => theme.colors.white};
+  }
+
+  .react-select__menu {
+    background-color: ${({ theme }) => theme.colors['gray/500']} !important;
+  }
+
+  .react-select__option {
+    background-color: ${({ theme }) => theme.colors['gray/500']};
+    color: ${({ theme }) => theme.colors.white}; /* Cor do texto das opções */
+  }
+
+  .react-select__option--is-selected {
+    background-color: ${({ theme }) => theme.colors['gray/500']}; /* Cor de fundo da opção selecionada */
+  }
+
+  .react-select__option--is-focused {
+    background-color: ${({ theme }) => theme.colors['gray/700']}; /* Cor de fundo da opção selecionada */
+  }
+
+  .react-select__indicator-separator {
+    background-color: ${({ theme }) => theme.colors['gray/200']}; /* Cor do separador entre indicadores */
+  }
+
+  .react-select__value-container .react-select__input {
+    color: ${({ theme }) => theme.colors.white} !important;
+  }
+`;
+
+
+
 
 const ChooseLote = styled.div`
   width: 100%;
@@ -99,7 +150,7 @@ const AtribuirButton = styled.button`
   border-radius: 5px;
   background-color: #43db6d;
   border: none;
-  color: white;
+  color: ${({ theme }) => theme.colors['gray/900']};
   font-family: 'Rubik';
 `;
 
@@ -114,6 +165,19 @@ const ModalBackdrop = styled.div`
   left: 0;
   z-index: 100;
   background-color: rgba(25, 28, 36, 0.5);
+`;
+
+export const EnviarEmail = styled.button`
+  font-size: 10px;
+  border: none;
+  height: 44px;
+  width: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+  overflow: hidden;
+  background-color: #f3802d;
 `;
 
 export { ModalArea, ModalContent, NameClose, ChooseLote, Lote, AtribuirButton, ModalBackdrop };

@@ -17,6 +17,7 @@ import React from 'react';
 import { LoteData } from '../../data/LoteData';
 
 export const LoteDetails = () => {
+  
   const optionsFases = FaseData.map((fase) => ({ id: fase.id, label: fase.titulo }));
 
   const [config_modal, setConfigModal] = useState(false);

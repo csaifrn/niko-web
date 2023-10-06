@@ -132,7 +132,7 @@ const CreateProjeto = () => {
   };
 
   return (
-    <>
+    <div style={{display: 'flex' , justifyContent: 'center'}}>
       <Menu area="/Projetos"></Menu>
       <S.Wrapper>
         <h1>Criar projeto</h1>
@@ -168,7 +168,10 @@ const CreateProjeto = () => {
                 <h2>Nome</h2>
               </label>
               <S.InputText type="text" placeholder="nome" />
-              <S.ButtonGreen onClick={() => setContador(contador + 1)}>Avançar</S.ButtonGreen>
+              <S.ContentButtonGreen>
+                <S.ButtonGreen onClick={() => setContador(contador + 1)}>Avançar</S.ButtonGreen>
+              </S.ContentButtonGreen>
+              
             </S.ContainerForm>
           )}
           {contador === 1 && (
@@ -320,7 +323,7 @@ const CreateProjeto = () => {
           )}
         </form>
       </S.Wrapper>
-    </>
+    </div>
   );
 };
 

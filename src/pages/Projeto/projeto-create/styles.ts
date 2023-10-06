@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import media from 'styled-media-query';
 
 const Main = styled.section`
   transition: 1s all;
@@ -21,10 +22,14 @@ export const Wrapper = styled.div`
   font-family: Rubik;
   padding: 2em;
   display: grid;
+  flex-direction: column;
   grid-template-columns: 1fr;
   gap: 2em;
-  color: #fff;
+  color: #ffffff;
   margin-top: 6em;
+  margin: 8em 2em 8em 2em;
+  width: 100%;
+  max-width: 700px;
 `;
 
 export const Head = styled.div`
@@ -53,7 +58,9 @@ export const BallStatus = styled.div`
 `;
 
 export const ContainerForm = styled.div`
-  display: grid;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   gap: 2em;
 `;
 
@@ -75,6 +82,9 @@ export const InputText = styled.input`
   border-radius: 5px;
   border: none;
   background-color: #5c6170;
+  color: white;
+  ${media.greaterThan('large')`
+  `}
 `;
 
 export const ButtonGreen = styled.button`
@@ -85,6 +95,18 @@ export const ButtonGreen = styled.button`
   width: 100%;
   font-family: Rubik;
   background-color: #43db6d;
+  cursor: pointer;
+  ${media.greaterThan('large')`
+    width: 20%;
+  `}
+`;
+
+export const ContentButtonGreen = styled.div`
+  display: flex;
+  justify-content: center;
+  ${media.greaterThan('large')`
+    
+  `}
 `;
 
 export const AdressContainer = styled.div`

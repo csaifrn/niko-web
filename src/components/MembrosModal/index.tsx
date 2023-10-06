@@ -32,6 +32,7 @@ export const MembrosModal = (props: MembrosModalProps) => {
   const [projetoMembros, setProjetoMembros] = useState<UserMembro[]>(props.membros);
 
   const role = ['Coordenador', 'Operador'];
+  const optionFuncoes = [{id: 1 , label: 'Operador'} , {id: 2 , label: 'Coordenador'}]
 
   const emailRef = useRef<HTMLInputElement>(null);
 
@@ -146,11 +147,13 @@ export const MembrosModal = (props: MembrosModalProps) => {
                 <img src="/close.svg" alt="" height={18} width={18} />
               </S.Exit>
             </S.NameClose>
-            <h3>Editar Mebros</h3>
+
+            <h2>Editar Mebros</h2>
+
             <form action="">
               <h3>Email</h3>
-              <div style={{ display: 'flex', height: '44px', gap: '2em', padding: '1em 0em' }}>
-                <div style={{ display: 'flex', borderRadius: '5px', height: '44px' }}>
+              <div style={{ display: 'flex', gap: '2em', padding: '1em 0em'}}>
+                <div style={{ display: 'flex', borderRadius: '10px', height: '44px' }}>
                   <input
                     type="text"
                     ref={emailRef}
@@ -160,12 +163,20 @@ export const MembrosModal = (props: MembrosModalProps) => {
                       paddingLeft: '0.5em',
                       height: '44px',
                       border: 'none',
-                      backgroundColor: '#5C6170',
+                      backgroundColor: '#191C24',
                       color: 'white',
+                      fontFamily: 'Rubik',
                     }}
                     required
                   />
-                  <select
+
+                  <S.EscolherFuncao 
+                    options={optionFuncoes}
+                    className="react-select-container"
+                    classNamePrefix="react-select"
+                  />
+
+                  {/* <select
                     value={selectedRole}
                     onChange={handleRoleChange}
                     className={!isRoleSelected ? 'error' : ''}
@@ -186,32 +197,23 @@ export const MembrosModal = (props: MembrosModalProps) => {
                         {roles}
                       </option>
                     ))}
-                  </select>
+                  </select> */}
+                  
                 </div>
 
-                <button
-                  style={{
-                    fontSize: '10px',
-                    border: 'none',
-                    height: '44px',
-                    width: '44px',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    borderRadius: '5px',
-                    overflow: 'hidden',
-                    backgroundColor: '#F3802D',
-                  }}
+                <S.EnviarEmail
                   type="button"
                   onClick={() => {
                     handleEnviar();
                   }}
                 >
                   <img src="VectorSend.svg" alt="" style={{ marginLeft: '0.25em' }} />
-                </button>
+                </S.EnviarEmail>
               </div>
+
               {showError && <p style={{ color: 'red', padding: '2em 0 0 0' }}>{errorMessage}</p>}
             </form>
+
             <S.ChooseLote style={{ marginTop: '2em' }}>
               {selectedUsers.map((user: any) => {
                 const projetoMembro = projetoMembros.find((membro) => membro.email === user.email);

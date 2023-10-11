@@ -40,6 +40,11 @@ const CreateProjeto = () => {
 
   const role = ['Coordenador', 'Operador'];
 
+  const roleFuncoes = [
+    { id: 1, label: 'Coordenador' },
+    { id: 2, label: 'Operador' },
+  ];
+
   const emailRef = useRef<HTMLInputElement>(null);
   const navigate = useNavigate();
 
@@ -77,8 +82,7 @@ const CreateProjeto = () => {
   const handleEnviar = () => {
     const emailValue = emailRef.current?.value;
 
-    if
-     (selectedRole === '') {
+    if (selectedRole === '') {
       setShowError(true);
       setErrorMessage('Por favor, selecione uma função.');
       return;
@@ -132,7 +136,7 @@ const CreateProjeto = () => {
   };
 
   return (
-    <div style={{display: 'flex' , justifyContent: 'center'}}>
+    <div style={{ display: 'flex', justifyContent: 'center' }}>
       <Menu area="/Projetos"></Menu>
       <S.Wrapper>
         <h1>Criar projeto</h1>
@@ -167,11 +171,10 @@ const CreateProjeto = () => {
               <label htmlFor="nome">
                 <h2>Nome</h2>
               </label>
-              <S.InputText type="text" placeholder="nome" />
+              <S.InputText type="text" placeholder="Projeto de digitalização..." />
               <S.ContentButtonGreen>
                 <S.ButtonGreen onClick={() => setContador(contador + 1)}>Avançar</S.ButtonGreen>
               </S.ContentButtonGreen>
-              
             </S.ContainerForm>
           )}
           {contador === 1 && (
@@ -190,11 +193,19 @@ const CreateProjeto = () => {
                         width: '100%',
                         backgroundColor: '#5C6170',
                         color: 'white',
+                        fontFamily: 'Rubik',
                         borderRadius: '5px 0 0 5px',
                       }}
                       required
                     />
-                    <select
+
+                    <S.EscolherFuncao
+                      options={roleFuncoes}
+                      className="react-select-container"
+                      classNamePrefix="react-select"
+                    />
+
+                    {/* <select
                       value={selectedRole}
                       onChange={handleRoleChange}
                       className={!isRoleSelected ? 'error' : ''}
@@ -216,108 +227,28 @@ const CreateProjeto = () => {
                           {roles}
                         </option>
                       ))}
-                    </select>
+                    </select> */}
                   </div>
 
-                  <button
-                    style={{
-                      fontSize: '10px',
-                      border: 'none',
-                      height: '44px',
-                      width: '44px',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      borderRadius: '5px',
-                      backgroundColor: '#F3802D',
-                    }}
+                  <S.ButtonEnviar
                     type="button"
                     onClick={() => {
                       handleEnviar();
                     }}
                   >
                     <img src="VectorSend.svg" alt="" style={{ marginLeft: '0.25em' }} />
-                  </button>
+                  </S.ButtonEnviar>
                 </S.AdressContainer>
                 {showError && <p style={{ color: 'red' }}>{errorMessage}</p>}
-                <Sm.ChooseLote>
-                  {selectedUsers.map((user: any) => {
-                    const projetoMembro = projetoMembros.find((membro) => membro.email === user.email);
-                    const roleProjeto = projetoMembro ? projetoMembro.roleProjeto : '';
-                    const creator = projetoMembro ? projetoMembro.creator : false;
-
-                    return (
-                      <Sm.Lote
-                        key={user.id}
-                        style={{
-                          backgroundColor: '#393E4B',
-                          display: 'flex',
-                          alignItems: 'center',
-                          gap: '2em',
-                        }}
-                      >
-                        <div>
-                          <img
-                            src={user.url}
-                            alt=""
-                            height={32}
-                            width={32}
-                            style={{ objectFit: 'cover', borderRadius: '100%' }}
-                          />
-                          <p style={{ color: 'white' }}>{user.name}</p>
-                        </div>
-                        <div style={{ display: 'flex', justifyContent: 'flex-end', width: '100%' }}>
-                          <select value={roleProjeto} onChange={(event) => handleRoleChanges(event, user.email)}>
-                            {role.map((roles, index) => (
-                              <option key={index + 3} value={roles}>
-                                {roles}
-                              </option>
-                            ))}
-                          </select>
-                          {!creator && (
-                            <button
-                              onClick={() => {
-                                handleDeleteUser(user.email);
-                              }}
-                              style={{ backgroundColor: 'transparent', border: 'none' }}
-                            >
-                              <img src="VectorDelete.svg" alt="" />
-                            </button>
-                          )}
-                          {creator && <p style={{ color: 'white' }}>Dono</p>}
-                        </div>
-                      </Sm.Lote>
-                    );
-                  })}
-                </Sm.ChooseLote>
-                <button
-                  onClick={() => setContador(contador - 1)}
-                  style={{
-                    border: 'none',
-                    color: '#fff',
-                    borderRadius: '5px',
-                    height: '44px',
-                    fontFamily: 'Rubik',
-                    backgroundColor: '#393E4B',
-                  }}
-                >
-                  Voltar
-                </button>
-                <button
+                <Sm.ChooseLote></Sm.ChooseLote>
+                <S.ButtonGray onClick={() => setContador(contador - 1)}>Voltar</S.ButtonGray>
+                <S.ButtonGreen
                   onClick={() => {
                     navigate('/Projetos');
                   }}
-                  style={{
-                    border: 'none',
-                    color: '#191C24',
-                    borderRadius: '5px',
-                    height: '44px',
-                    fontFamily: 'Rubik',
-                    backgroundColor: '#43DB6D',
-                  }}
                 >
                   Criar Projeto
-                </button>
+                </S.ButtonGreen>
               </S.ContainerForm>
             </S.ContainerForm>
           )}

@@ -8,12 +8,12 @@ const Projetos = () => {
   const [projetos] = useState<typeof Projeto>(Projeto);
 
   return (
-    <>
+    <div style={{display: 'flex' , justifyContent: 'center'}}>
       <Menu area="/"></Menu>
       <S.Wrapper>
         <S.ContainerCriarProjeto>
           <S.Link href={`/CriarProjeto`}>
-            <img src="plus.svg" alt="" />
+            <img src="adicionar.svg" alt="" />
           </S.Link>
         </S.ContainerCriarProjeto>
         <S.Main style={{ margin: '16px 0' }}>
@@ -22,7 +22,7 @@ const Projetos = () => {
           })}
         </S.Main>
       </S.Wrapper>
-    </>
+    </div>
   );
 };
 

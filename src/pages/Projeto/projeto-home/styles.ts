@@ -17,13 +17,14 @@ const Main = styled.section`
 export const Wrapper = styled.div`
   font-family: Rubik;
   padding: 2em;
-  margin-top: 6em;
+  margin-top: 8em;
+  max-width: 1140px;
 `;
 
 export const ContainerCriarProjeto = styled.div`
   display: flex;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: flex-start;
 `;
 
 export const Link = styled.a`

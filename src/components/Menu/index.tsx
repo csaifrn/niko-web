@@ -41,6 +41,8 @@ export const Menu = (props: MenuProps) => {
   }, []);
 
   return (
+    <div >
+
     <S.MenuArea>
       {props.id_projeto && (
         <S.ContainerA>
@@ -189,6 +191,7 @@ export const Menu = (props: MenuProps) => {
         </div>
       </S.MenuLeft>
     </S.MenuArea>
+    </div>
   );
 };
 

@@ -19,6 +19,11 @@ export const MenuLupaMobile = styled.img`
   }
 `;
 
+const MenuWrapper = styled.div`
+  display: flex;
+  background: #191c24;
+`;
+
 const MenuLeft = styled.div`
   display: flex;
   gap: 1em;
@@ -30,13 +35,14 @@ const MenuArea = styled.nav`
   top: 0;
   left: 0;
   display: flex;
-  padding: 2em;
-  background: #191c24;
+  //padding: 2em 175px 2em 175px;
+  //background: #191c24;
   align-items: center;
   justify-content: space-between;
   gap: 20px;
   height: 80px;
   z-index: 99;
+  background-color: red;
 `;
 
 interface BurgerProps {
@@ -95,6 +101,7 @@ const ContainerA = styled.div`
   display: flex;
   gap: 4em;
   align-items: center;
+  
 `;
 
 export const ContainerLogo = styled.div`
@@ -112,7 +119,6 @@ export { MenuImg, MenuArea, MenuLeft, ButtonBurger, StyledMenu, ContainerA };
 export const MenuDesk = styled.div`
   display: none;
   gap: 2em;
-
   @media screen and (min-width: 1008px) {
     display: flex;
   }

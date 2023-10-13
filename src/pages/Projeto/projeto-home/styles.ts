@@ -27,6 +27,22 @@ export const ContainerCriarProjeto = styled.div`
   justify-content: flex-start;
 `;
 
+export const BotaoCriarProjeto = styled.div`
+  width: 24px;
+  height: 24px;
+  border-radius: 100%;
+  &:hover {
+    background-color: ${({ theme }) => theme.colors['gray/300']};
+  }
+  &:active {
+    background-color: ${({ theme }) => theme.colors['gray/300']};
+    transform: translateY(-5%) translateX(2%);
+  }
+`;
+
+
+
+
 export const Link = styled.a`
   border: none;
   color: #191c24;

@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 
-const MenuImg = styled.img``;
+const MenuImg = styled.img`
+`;
+
 export const MenuLupa = styled.img`
   @media screen and (min-width: 1008px) {
     width: 24px;
@@ -19,30 +21,35 @@ export const MenuLupaMobile = styled.img`
   }
 `;
 
-const MenuWrapper = styled.div`
+export const MenuWrapper = styled.div`
+  background-color: #191c24;
   display: flex;
-  background: #191c24;
+  top: 0;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  width: 100%;
+  height: 80px;
+  z-index: 99;
+  //padding: 0em 2em 0em 2em;
+`;
+
+
+const MenuArea = styled.nav`
+  //position: fixed;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1140px;
+  margin: 0em 2em 0em 2em;
 `;
 
 const MenuLeft = styled.div`
   display: flex;
   gap: 1em;
-`;
-
-const MenuArea = styled.nav`
-  position: fixed;
-  width: 100vw;
-  top: 0;
-  left: 0;
-  display: flex;
-  //padding: 2em 175px 2em 175px;
-  //background: #191c24;
-  align-items: center;
-  justify-content: space-between;
-  gap: 20px;
-  height: 80px;
-  z-index: 99;
-  background-color: red;
+  border-radius: 100%;
+  border: solid 1px #393E4B;
 `;
 
 interface BurgerProps {

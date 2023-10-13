@@ -3,9 +3,11 @@ import media from 'styled-media-query';
 
 export const PainelArea = styled.div`
   display: flex;
+  width: 100%;
   margin: 10em 2em 10em 2em;
   gap: 32px;
   flex-direction: column;
+  max-width: 1140px;
 `;
 
 export const DetalFasesPendencias = styled.div`

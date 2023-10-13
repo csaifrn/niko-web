@@ -2,8 +2,6 @@ import styled from 'styled-components';
 import media from 'styled-media-query';
 
 export const Wrapper = styled.div`
-  height: 100%;
-  width: 100%;
   display: flex;
   flex-direction: column;
   gap: 2em;
@@ -89,11 +87,9 @@ export const ContainerDataDependencias = styled.div`
     border-radius: 20px;
   }
   ${media.greaterThan('large')`
-    justify-content: center;
-    width: 20vh;
-    height: 60vh;
-  `}
-  ${media.greaterThan('large')`
+    //justify-content: center;
+    //width: 20vh;
+    height: 50vh;
   `}
 `;
 

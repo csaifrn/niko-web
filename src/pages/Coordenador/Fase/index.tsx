@@ -1,4 +1,4 @@
-import { Wrapper, Main } from './styles';
+import { Main , FasePage} from './styles';
 import { CardFase } from '../../../components/Card';
 import MenuCoord from '../../../components/MenuCoord';
 import Menu from '../../../components/Menu';
@@ -63,7 +63,7 @@ const Home = () => {
   });
 
   return (
-    <Wrapper>
+    <FasePage>
       <Menu area={`/Fase/${id}`} id_projeto={id}></Menu>
       <MenuCoord />
       <Main>
@@ -117,7 +117,7 @@ const Home = () => {
           dispo={arquivamento.dispo}
         />
       </Main>
-    </Wrapper>
+    </FasePage>
   );
 };
 

@@ -51,11 +51,15 @@ export const Board = (props: BoardProps) => {
 
   return (
     <>
-      <>
-        <S.divImg>
-          <img src={`/icon-medium/${fase.titulo}.png`} alt={`icone da fase ${fase.titulo}`} />
-        </S.divImg>
-      </>
+
+      <S.divImg>
+        <S.IconeFase src={`/icon-medium/${fase.titulo}.svg`} alt={`icone da fase ${fase.titulo}`} />
+      </S.divImg>
+
+      <S.divImgMaior>
+        <S.IconeFase src={`/icon-big/${fase.titulo}.svg`} alt={`icone da fase ${fase.titulo}`} />
+      </S.divImgMaior>
+
       <S.kanban className="board">
         {etapas.map((section) => (
           <S.kanbanSection key={section.id}>

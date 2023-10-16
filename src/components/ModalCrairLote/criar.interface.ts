@@ -1,4 +1,4 @@
 export interface ErrorsForm {
-  settlement_project?: string;
+  title?: string;
   settlement_project_category_id?: string;
 }

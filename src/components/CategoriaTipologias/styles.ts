@@ -95,4 +95,8 @@ export const DivCatTipol = styled.div`
   width: 15.3em;
 `;
 
+export const Nome = styled.p`
+  font-family: 'Rubik';
+`;
+
 export { ModalContent, NameClose, ChooseLote, Lote, AtribuirButton };

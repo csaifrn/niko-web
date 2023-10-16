@@ -67,7 +67,7 @@ export const AtribuirAlguemModal = (props: AtribuirAlguemModalProps) => {
             <S.NameClose>
               <h2>Atribuir para</h2>
 
-              <button onClick={handleClose} style={{ width: 'auto', backgroundColor: 'transparent', border: 'none' }}>
+              <button onClick={handleClose} style={{ width: 'auto', backgroundColor: 'transparent', border: 'none' , cursor: 'pointer'}}>
                 <img
                   src="/close.svg"
                   alt=""
@@ -112,7 +112,7 @@ export const AtribuirAlguemModal = (props: AtribuirAlguemModalProps) => {
                 </S.User>
               ))}
             </S.ChooseUser>
-            <S.AtribuirButton onClick={handleAtualizarUser}>Atribuir</S.AtribuirButton>
+            <S.AtribuirButton onClick={handleAtualizarUser}> Atribuir</S.AtribuirButton>
           </S.ModalContent>
         </S.ModalArea>
       </S.ModalBackdrop>

@@ -5,6 +5,8 @@ import { useEffect, useRef, useState } from 'react';
 import { validationLoginSchema } from './validation';
 import * as Yup from 'yup';
 import { ErrorsForm } from './modalresolver.interface';
+
+
 //import { Pend } from '../PendenciasCoord';
 
 interface ModalPendencia {
@@ -93,17 +95,17 @@ export const ModalResolverPendencia = (props: ModalPendencia) => {
             <S.DataAcao>
               {props.pendencia.fase_final && props.pendencia.fase_final.length > 0 ? (
                 <S.DataAcao>
-                  <S.ContainerImg src={`/icon-page/${props.pendencia.fase_atual}_icon.png`} />
+                  <S.ContainerImg src={`/icon-medium/${props.pendencia.fase_atual}.svg`} />
                   {props.pendencia.voltar ? (
                     <ArrowCircleLeft size={32} weight="fill" color={theme.colors['red/500']} />
                   ) : (
                     <ArrowCircleRight size={32} weight="fill" color={theme.colors['green/400']} />
                   )}
-                  <S.ContainerImg src={`/icon-page/${props.pendencia.fase_final}_icon.png`} />
+                  <S.ContainerImg src={`/icon-medium/${props.pendencia.fase_final}.svg`} />
                 </S.DataAcao>
               ) : (
                 <S.Fase>
-                  <S.ContainerImg src={`/icon-page/${props.pendencia.fase_atual}_icon.png`} />
+                  <S.ContainerImg src={`/icon-medium/${props.pendencia.fase_atual}.svg`} />
                 </S.Fase>
               )}
               {props.pendencia.fase_final && props.pendencia.fase_final.length > 0 && (
@@ -121,7 +123,7 @@ export const ModalResolverPendencia = (props: ModalPendencia) => {
                       weight="fill"
                       color={selected === 'ok' ? theme.colors['green/400'] : theme.colors['gray/700']}
                       onClick={() => selectedA('ok')}
-                      style={{ transition: 'all 0.2s' }}
+                      style={{ transition: 'all 0.2s' , cursor: 'pointer'}}
                     />
                   </S.LabelRadio>
                   <S.LabelRadio>
@@ -137,7 +139,7 @@ export const ModalResolverPendencia = (props: ModalPendencia) => {
                       weight="fill"
                       color={selected === 'x' ? theme.colors['red/500'] : theme.colors['gray/700']}
                       onClick={() => selectedA('x')}
-                      style={{ transition: 'all 0.2s' }}
+                      style={{ transition: 'all 0.2s' , cursor: 'pointer'}}
                     />
                   </S.LabelRadio>
                 </S.DataOkX>

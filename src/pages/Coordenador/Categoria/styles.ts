@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import media from 'styled-media-query';
 
 const CardsArea = styled.div`
   display: flex;
@@ -10,18 +11,19 @@ const CardsArea = styled.div`
 `;
 
 const SearchDiv = styled.div`
-  display: flex;
-  position: relative;
+  ${media.greaterThan('large')`
+    width: 24.4%;
+  `}
 `;
 
-const InputSearch = styled.input`
-  height: 44px;
-  padding: 0 4.2em;
-  border-radius: 5px;
-  background-color: rgb(57, 62, 75);
-  color: #fff;
-  border: none;
-  width: 100%;
+export const CategoriaCardsArea = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  ${media.greaterThan('large')`
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  `}
 `;
 
 const ImgSearch = styled.img`
@@ -30,4 +32,4 @@ const ImgSearch = styled.img`
   left: 16px;
 `;
 
-export { CardsArea, InputSearch, ImgSearch, SearchDiv };
+export { CardsArea, ImgSearch, SearchDiv };

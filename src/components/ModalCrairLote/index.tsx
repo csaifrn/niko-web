@@ -37,10 +37,10 @@ export const ModalCriarLote = (props: ModalCriarProps) => {
     },
   });
 
-  const [settlement_project, setSettlement_project] = useState('');
+  const [title, setTitle] = useState('');
   const [responseError] = useState('');
   const [validationFormError, setValidationFormError] = useState<ErrorsForm>({
-    settlement_project: '',
+    title: '',
     settlement_project_category_id: '',
   });
 
@@ -58,7 +58,7 @@ export const ModalCriarLote = (props: ModalCriarProps) => {
   }, [closing]);
 
   const handleSucess = () => {
-    setSettlement_project('');
+    setTitle('');
     handleClose();
   };
 
@@ -86,7 +86,7 @@ export const ModalCriarLote = (props: ModalCriarProps) => {
     try {
       await validationLoginSchema.validate(
         {
-          settlement_project,
+          title,
           settlement_project_category_id: categoria?.value,
         },
         {
@@ -127,10 +127,10 @@ export const ModalCriarLote = (props: ModalCriarProps) => {
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const isValid = await validateForm();
-
+    console.log('Foi', isValid);
     if (isValid) {
       loginMutation.mutate({
-        settlement_project,
+        title,
         settlement_project_category_id: categoria!.value,
       });
     }
@@ -164,14 +164,12 @@ export const ModalCriarLote = (props: ModalCriarProps) => {
             <S.FormCriar onSubmit={onSubmit}>
               <S.InputText
                 placeholder="Nome do Lote"
-                onChange={(e) => setSettlement_project(e.currentTarget.value)}
-                value={settlement_project}
-                name="settlement_project"
-                className="settlement_project"
+                onChange={(e) => setTitle(e.currentTarget.value)}
+                value={title}
+                name="title"
+                className="title"
               />
-              {validationFormError.settlement_project && (
-                <ErrorMessage>{validationFormError.settlement_project}</ErrorMessage>
-              )}
+              {validationFormError.title && <ErrorMessage>{validationFormError.title}</ErrorMessage>}
               <S.CustomSelect
                 onInputChange={(e) => setName(e)}
                 placeholder={'Digite no mínimo 3 caracteres...'}

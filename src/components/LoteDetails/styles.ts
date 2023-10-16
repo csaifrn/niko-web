@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import media from 'styled-media-query';
+import Select from 'react-select';
 
 export const areaClick = styled.div`
   color: white;
@@ -10,6 +11,7 @@ export const areaClick = styled.div`
   gap: 24px;
   margin: 8em 0em 8em 0em;
   font-family: 'Rubik', Helvetica, sans-serif;
+  max-width: 1140px;
   filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
   &::-webkit-scrollbar {
     width: 0.8em;
@@ -29,6 +31,11 @@ export const areaClick = styled.div`
     background-color: transparent;
     margin: 0em;
   }
+
+  ${media.greaterThan('large')`
+    justify-content: center;
+    //margin: 8em 0em 4em 0em;
+  `}
 `;
 
 export const Texto = styled.p`
@@ -52,7 +59,7 @@ export const CloseDiv = styled.div`
   border-radius: '5px';
 `;
 
-export const Exit = styled.div`
+export const Exit = styled.button`
   height: 2em;
   width: 2em;
   background-color: #393e4b;
@@ -60,6 +67,8 @@ export const Exit = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  border: none;
+  cursor: pointer;
 `;
 
 export const LoteInfos = styled.div`
@@ -77,12 +86,12 @@ export const LoteEditConfig = styled.div`
 
 export const EditConfig = styled.div`
   display: flex;
-  gap: 0.5em;
+  gap: 8px;
 `;
 
 export const Edit = styled.a`
-  height: 2em;
-  width: 2em;
+  height: 2.25em;
+  width: 2.25em;
   background-color: #393e4b;
   border-radius: 3px;
   margin-bottom: 0.5em;
@@ -91,7 +100,7 @@ export const Edit = styled.a`
   align-items: center;
 `;
 
-export const Config = styled.div`
+export const Config = styled.button`
   height: 2em;
   width: 2em;
   background-color: #393e4b;
@@ -100,6 +109,8 @@ export const Config = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  border: none;
+  cursor: pointer;
 `;
 
 export const DetalhesLote = styled.div`
@@ -156,7 +167,7 @@ export const CategoriaPrioridade = styled.div`
 export const Prioridade = styled.div`
   width: 72px;
   height: 24px;
-  background-color: #f32d2d;
+  background-color: ${({ theme }) => theme.colors['red/700']};
   height: 2em;
   display: flex;
   align-items: center;
@@ -206,9 +217,23 @@ export const FaseEnvolvAtual = styled.div`
   gap: 8px;
 `;
 
+export const TituloFaseAtual = styled.h2`
+`;
+
 export const Envolvidos = styled.div`
   display: flex;
   gap: 0px;
+`;
+
+export const PendObservacaoBotoes = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  grid-template-columns: repeat(auto-fit, minmax(21rem, 1fr));
+  ${media.greaterThan('large')`
+    display:grid;
+    grid-template-columns: 2fr 1fr;
+  `}
 `;
 
 export const PendObservacao = styled.div`
@@ -216,40 +241,59 @@ export const PendObservacao = styled.div`
   flex-direction: column;
   gap: 16px;
   grid-template-columns: repeat(auto-fit, minmax(21rem, 1fr));
-  ${media.greaterThan("large")`
-    display: flex;
+  ${media.greaterThan('large')`
     flex-direction: row;
-    justify-content: space-between;
+    width: 100%;
+  `}
+`;
+
+export const PendenciaTitulo = styled.p`
+  font-size: 12px;
+  ${media.greaterThan('large')`
+    font-size: 16px;
+  `}
+`;
+
+export const ObservacaoTitulo = styled.p`
+  font-size: 12px;
+  ${media.greaterThan('large')`
+    font-size: 16px;
   `}
 `;
 
 export const Pendencias = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 16px;
   background: #393e4b;
   border-radius: 5px;
   order: 0;
   flex-grow: 0;
   padding: 16px;
+  ${media.greaterThan('large')`
+    width: 100%;
+  `}
 `;
 
 export const Observações = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 16px;
   background: #393e4b;
   border-radius: 5px;
   order: 0;
   flex-grow: 0;
   padding: 16px;
+  ${media.greaterThan('large')`
+    width: 100%;
+  `}
 `;
 
 export const PendDivBlack = styled.div`
   background-color: #191c24;
   border-radius: 5px;
   gap: 10px;
-  padding: 10px;
+  padding: 15px;
   display: flex;
   align-items: flex-start;
   justify-content: flex-start;
@@ -262,7 +306,7 @@ export const PendenciaTextIcon = styled.div`
   gap: 10px;
 `;
 
-export const ResolverPend = styled.div`
+export const BotaoResolverPend = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -273,6 +317,17 @@ export const ResolverPend = styled.div`
   color: #191c24;
   padding: 1.5em;
   width: 100%;
+  border: none;
+  font-family: 'Rubik';
+  color: #ffffff;
+  cursor: pointer;
+  &:hover {
+    background-color: ${({ theme }) => theme.colors['yellow/300']};
+  }
+  &:active {
+    background-color: ${({ theme }) => theme.colors['yellow/200']};
+    transform: translateY(-5%) translateX(2%);
+  }
 `;
 
 export const ObsDivBlack = styled.div`
@@ -280,7 +335,7 @@ export const ObsDivBlack = styled.div`
   border-radius: 5px;
   display: flex;
   gap: 10px;
-  padding: 10px;
+  padding: 15px;
   width: calc(100%-2em);
   display: flex;
   align-items: center;
@@ -289,62 +344,18 @@ export const ObsDivBlack = styled.div`
   flex-grow: 0;
 `;
 
-export const BotaoMudarFase = styled.div`
-  display: flex;
-`;
-
 export const Botoes = styled.div`
   display: flex;
   flex-direction: column;
   gap: 16px;
-  grid-template-columns: repeat(auto-fit, minmax(21rem, 1fr));
-  ${media.greaterThan("large")`
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    gap: 160px;
+  ${media.greaterThan('large')`
+    gap: 27px;
+    /* display: grid;
+    grid-template-columns: 1fr 2fr 2fr 1fr; */
   `}
 `;
 
-export const VoltarAvancar = styled.div`
-  background-color: #393e4b;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 0em 15px;
-  height: 44px;
-  width: calc(50%);
-  border-radius: 5px 0px 0px 5px;
-  p {
-    color: 'white';
-    margin-bottom: '0';
-  }
-`;
-
-export const EscolherFase = styled.select`
-  background-color: #393e4b;
-  width: calc(50%);
-  display: flex;
-  padding: 0em 2em;
-  height: 44px;
-  border: none;
-  border-radius: 0px 5px 5px 0px;
-  border-left: 1px solid #888c99;
-  color: white;
-  font-family: 'Rubik', Helvetica, sans-serif;
-`;
-
-export const OptionFases = styled.option`
-  background-color: #393e4b;
-  width: calc(50%);
-  display: flex;
-  padding: 2em;
-  :hover {
-    background-color: red;
-  }
-`;
-
-export const Botao = styled.div`
+export const Botao = styled.button`
   background-color: #393e4b;
   display: flex;
   align-items: center;
@@ -353,6 +364,87 @@ export const Botao = styled.div`
   height: 44px;
   width: calc(100%-6em);
   border-radius: 5px;
+  border: none;
+  font-family: 'Rubik';
+  color: #ffffff;
+  cursor: pointer;
+  &:hover {
+    background-color: ${({ theme }) => theme.colors['gray/400']};
+  }
+  &:active {
+    background-color: ${({ theme }) => theme.colors['gray/400']};
+    transform: translateY(-5%) translateX(2%);
+  }
+`;
+
+export const BotaoDeletarLote = styled.button`
+  background-color: ${({ theme }) => theme.colors['red/700']};
+  display: flex;
+  align-items: center;
+  gap: 1em;
+  padding: 0em 15px;
+  height: 44px;
+  width: calc(100%-6em);
+  border-radius: 5px;
+  border: none;
+  font-family: 'Rubik';
+  color: #ffffff;
+  cursor: pointer;
+  &:hover {
+    background-color: ${({ theme }) => theme.colors['red/400']};
+  }
+  &:active {
+    background-color: ${({ theme }) => theme.colors['red/400']};
+    transform: translateY(-5%) translateX(2%);
+  }
+`;
+
+export const BotaoMudarFase = styled.div`
+  display: flex;
+  border: none;
+  font-family: 'Rubik';
+  color: #ffffff;
+  border-radius: 5px;
+`;
+
+export const VoltarAvancar = styled.button`
+  background-color: #393e4b;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0em 15px;
+  height: 44px;
+  width: calc(50%);
+  border-radius: 5px 0px 0px 5px;
+  border: none;
+  font-family: 'Rubik';
+  &:hover {
+    background-color: ${({ theme }) => theme.colors['gray/400']};
+  }
+  &:active {
+    background-color: ${({ theme }) => theme.colors['gray/400']};
+    transform: translateY(-5%) translateX(2%);
+  } 
+`;
+
+export const VoltarAvancarDesativado = styled.button`
+  background-color: ${({ theme }) => theme.colors['gray/700']};
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0em 15px;
+  height: 44px;
+  width: calc(50%);
+  border-radius: 5px 0px 0px 5px;
+  border: none;
+  font-family: 'Rubik';
+`;
+
+export const OptionFases = styled.option`
+  background-color: #393e4b;
+  width: calc(50%);
+  display: flex;
+  padding: 2em;
 `;
 
 export const DetalFase = styled.div`
@@ -360,19 +452,81 @@ export const DetalFase = styled.div`
   flex-direction: column;
 `;
 
-export const DetalhamentoTitulo = styled.h2`
+export const DetalhamentoTitulo = styled.p`
+  font-size: 20px;
   margin-bottom: 10px;
-`
+`;
 
 export const DetalhamentoGrid = styled.div`
   display: grid;
   grid-gap: 2rem;
   grid-template-columns: repeat(auto-fit, minmax(21rem, 1fr));
-  ${media.greaterThan("large")`
-    grid-gap: 2rem;
+  ${media.greaterThan('large')`
+    grid-template-columns: 2fr 2fr 2fr;
   `}
 `;
 
+export const NomeDaFase = styled.h2``;
+
+export const TodasAsPendencias = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  ${media.greaterThan('large')`
+    height: 20vh;
+    overflow-y: scroll;
+    scroll-behavior: auto;
+    scrollbar-width: thin;
+    &::-webkit-scrollbar {
+      width: 0.3em;
+      height: 0.5em;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: #191c24;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: #2a2e38;
+      border-radius: 20px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background-color: transparent;
+      margin: 0em 2em;
+    }
+  `}
+`;
+
+export const TodasAsObservacoes = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  ${media.greaterThan('large')`
+    height: 20vh;
+    overflow-y: scroll;
+    scroll-behavior: auto;
+    scrollbar-width: thin;
+    &::-webkit-scrollbar {
+      width: 0.3em;
+      height: 0.5em;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: #191c24;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: #2a2e38;
+      border-radius: 20px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background-color: transparent;
+      margin: 0em 2em;
+    }
+  `}
+`;
 
 export const Fase = styled.div`
   display: flex;
@@ -432,4 +586,92 @@ export const EnvolvidosDiv = styled.div`
   align-items: center;
   flex-wrap: wrap;
   gap: 0.5em;
+`;
+
+export const EscolherFaseSelect = styled(Select)`
+  width: calc(50%);
+  border-left: 1px solid #888c99;
+  .react-select__control {
+    border: none;
+    background-color: ${({ theme }) => theme.colors['gray/500']} !important; /* Cor de fundo do controle */
+    color: ${({ theme }) => theme.colors.white} !important;
+    min-height: 44px;
+  }
+
+  .react-select__placeholder {
+    color: #ffffff;
+  }
+
+  .react-select__single-value {
+    color: ${({ theme }) => theme.colors.white};
+  }
+
+  .react-select__menu {
+    background-color: ${({ theme }) => theme.colors['gray/500']} !important;
+  }
+
+  .react-select__option {
+    background-color: ${({ theme }) => theme.colors['gray/500']};
+    color: ${({ theme }) => theme.colors.white}; /* Cor do texto das opções */
+  }
+
+  .react-select__option--is-selected {
+    background-color: ${({ theme }) => theme.colors['gray/500']}; /* Cor de fundo da opção selecionada */
+  }
+
+  .react-select__option--is-focused {
+    background-color: ${({ theme }) => theme.colors['gray/700']}; /* Cor de fundo da opção selecionada */
+  }
+
+  .react-select__indicator-separator {
+    background-color: ${({ theme }) => theme.colors['gray/200']}; /* Cor do separador entre indicadores */
+  }
+
+  .react-select__value-container .react-select__input {
+    color: ${({ theme }) => theme.colors.white} !important;
+  }
+`;
+
+export const EscolherFaseSelectDesativado = styled(Select)`
+  width: calc(50%);
+  border-left: 1px solid #888c99;
+  .react-select__control {
+    border: none;
+    background-color: ${({ theme }) => theme.colors['gray/500']} !important; /* Cor de fundo do controle */
+    color: ${({ theme }) => theme.colors.white} !important;
+    min-height: 44px;
+  }
+
+  .react-select__placeholder {
+    color: #ffffff;
+  }
+
+  .react-select__single-value {
+    color: ${({ theme }) => theme.colors.white};
+  }
+
+  .react-select__menu {
+    background-color: ${({ theme }) => theme.colors['gray/500']} !important;
+  }
+
+  .react-select__option {
+    background-color: ${({ theme }) => theme.colors['gray/500']};
+    color: ${({ theme }) => theme.colors.white}; /* Cor do texto das opções */
+  }
+
+  .react-select__option--is-selected {
+    background-color: ${({ theme }) => theme.colors['gray/500']}; /* Cor de fundo da opção selecionada */
+  }
+
+  .react-select__option--is-focused {
+    background-color: ${({ theme }) => theme.colors['gray/700']}; /* Cor de fundo da opção selecionada */
+  }
+
+  .react-select__indicator-separator {
+    background-color: ${({ theme }) => theme.colors['gray/200']}; /* Cor do separador entre indicadores */
+  }
+
+  .react-select__value-container .react-select__input {
+    color: ${({ theme }) => theme.colors.white} !important;
+  }
 `;

@@ -1,8 +1,11 @@
 import Select from 'react-select';
 import styled from 'styled-components';
+import media from 'styled-media-query';
 
-export const Titulo2 = styled.h2`
+export const Titulo2 = styled.p`
   font-weight: normal;
+  font-family: 'Rubik';
+  font-size: 18px;
 `;
 
 export const CustomSelect = styled(Select)`
@@ -65,6 +68,32 @@ export const ModalContent = styled.form`
   h2 {
     font-weight: normal;
   }
+  ${media.greaterThan('large')`
+    width: 500px;
+  `}
+`;
+
+export const CloseDiv = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  padding: '5px 5px';
+  border-radius: '5px';
+`;
+
+export const Exit = styled.button`
+  height: 2em;
+  width: 2em;
+  background-color: #393e4b;
+  border-radius: 3px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  cursor: pointer;
+`;
+
+export const SearchDiv = styled.div`
+  width: 100%;
 `;
 
 export const NameClose = styled.div`
@@ -126,7 +155,7 @@ export const ArquivosInput = styled.input`
   justify-content: flex-start;
   align-items: flex-start;
   padding: 15px;
-  width: 56px;
+  width: 60px;
   background-color: #393e4b;
   color: white;
   font-family: 'Rubik', Helvetica, sans-serif;
@@ -145,6 +174,10 @@ export const ArquivosInput = styled.input`
     top: 0;
     right: 0;
     bottom: 0;
+    transition: all 0.5s;
+    &:hover {
+      opacity: 0.8;
+    }
   }
 
   ::-webkit-inner-spin-button,
@@ -189,7 +222,10 @@ export const CatTipol = styled.div`
 
 export const FilterCatTipol = styled.div``;
 
-export const ButtonCatTipol = styled.div``;
+export const ButtonCatTipol = styled.button`
+  border: none;
+  cursor: pointer;
+`;
 
 export const MostrarCategTipolEscolhida = styled.div`
   display: flex;
@@ -227,7 +263,6 @@ export const Tipologia = styled.div`
 `;
 
 export const ChooseCatTipol = styled.div`
-  width: 100%;
   height: 20vh;
   border-radius: 5px;
   display: flex;
@@ -240,6 +275,26 @@ export const ChooseCatTipol = styled.div`
   overflow-y: scroll;
   scroll-behavior: auto;
   scrollbar-width: thin;
+  &::-webkit-scrollbar {
+    width: 0.8em;
+    height: 0.5em;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: #191c24;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: #2a2e38;
+    border-radius: 20px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background-color: transparent;
+    margin: 0em;
+  }
+  ${media.greaterThan('large')`
+  `}
 `;
 
 export const SalvarEditButton = styled.button`
@@ -247,10 +302,14 @@ export const SalvarEditButton = styled.button`
   border-radius: 5px;
   background-color: #43db6d;
   border: none;
-  color: white;
+  color: #0A090E;
   font-family: 'Rubik';
   bottom: 0;
   left: 0;
+  cursor: pointer;
+  ${media.greaterThan('large')`
+    width: 110px;
+  `}
 `;
 
 export const Switch = styled.input`

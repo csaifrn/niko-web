@@ -200,6 +200,7 @@ export const Exit = styled.button`
   justify-content: center;
   align-items: center;
   border: none;
+  cursor: pointer;
 `;
 
 export const Prioridade = styled.p`

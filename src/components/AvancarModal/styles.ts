@@ -42,7 +42,7 @@ export const CheckContainer = styled.div`
   display: grid;
   grid-template-columns: 18px 1fr;
   gap: 1em;
-
+  cursor: pointer;
   span {
     position: relative;
     background-color: ${({ theme }) => theme.colors['gray/500']};
@@ -110,6 +110,7 @@ const Recused = styled.button`
   padding: 0 16px;
   background-color: #fcde42;
   border: none;
+  cursor: pointer;
   color: #191c24;
   font-family: 'Rubik';
   display: flex;
@@ -120,7 +121,7 @@ const Recused = styled.button`
 export const RecusedAvancar = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 16px;
 `;
 
 export const IconeAvancar = styled.img``;
@@ -137,6 +138,7 @@ const Avancar = styled.button`
   justify-content: flex-start;
   padding: 0 16px;
   gap: 16px;
+  cursor: pointer;
 `;
 
 const ModalBackdrop = styled.div`

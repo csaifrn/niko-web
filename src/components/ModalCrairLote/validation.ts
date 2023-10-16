@@ -1,7 +1,7 @@
 import * as Yup from 'yup';
 
 export const validationLoginSchema = Yup.object().shape({
-  settlement_project: Yup.string()
+  title: Yup.string()
     .min(3, 'Projeto de assentamento deve ter ao menos 3 caracteres.')
     .required('Preencha com um nome.'),
   settlement_project_category_id: Yup.string().required('Escolha uma categoria.'),

@@ -1,15 +1,14 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import * as S from './style';
 import { useMutation } from 'react-query';
 import { PatchBatchePriority } from '../../api/services/batches/patch-batche';
 import { PatchResponseBatche } from '../../api/services/batches/patch-batche/patch.interface';
 import toast from 'react-hot-toast';
 import { ApiError } from '../../api/services/authentication/signIn/signIn.interface';
-import { Boleano } from '../../utils/bolean.util';
 
 interface ConfigModalProps {
   id: string;
-  prioridade: number;
+  prioridade: boolean;
   close: () => void;
 }
 
@@ -18,7 +17,7 @@ export const ConfigModal = (props: ConfigModalProps) => {
 
   const Priority = useMutation(PatchBatchePriority, {
     onSuccess: (data: PatchResponseBatche) => {
-      toast.success(`Prioride ${Pchecked == 0 ? 'foi ativada' : 'foi desativada'}!`);
+      toast.success(`Prioride ${Pchecked ? 'foi ativada' : 'foi desativada'}!`);
       console.log(data);
     },
     onError: (error: ApiError) => {
@@ -27,10 +26,10 @@ export const ConfigModal = (props: ConfigModalProps) => {
   });
 
   const handlePrioridadeCheck = () => {
-    setPChecked(Pchecked == 0 ? 1 : 0);
+    setPChecked(Pchecked!);
     Priority.mutate({
       id: props.id,
-      priority: Boleano(Pchecked == 0 ? 1 : 0),
+      priority: Pchecked,
     });
   };
 
@@ -69,33 +68,27 @@ export const ConfigModal = (props: ConfigModalProps) => {
             <S.NameClose>
               <h2>Configurações do lote</h2>
               <button onClick={handleClose} style={{ border: 'none', backgroundColor: 'transparent' }}>
-                <div
+                <button
                   style={{
-                    paddingLeft: 8,
-                    paddingRight: 8,
-                    paddingTop: 5,
-                    paddingBottom: 5,
+                    padding: '4px',
                     background: '#191C24',
+                    border: 'none',
                     borderRadius: 3,
-                    flexDirection: 'column',
-                    justifyContent: 'flex-start',
-                    alignItems: 'flex-start',
-                    gap: 10,
-                    display: 'inline-flex',
+
+                    cursor: 'pointer',
                   }}
                 >
                   <div
-                    style={{
-                      color: 'white',
-                      fontSize: 12,
-                      fontFamily: 'Rubik',
-                      fontWeight: '700',
-                      wordWrap: 'break-word',
+                    style={{                    
+                      flexDirection: 'column',
+                      justifyContent: 'center',
+                      alignItems: 'center',
+                      display: 'flex',
                     }}
                   >
-                    X
+                    <img src="/close.svg" alt="" height={18} width={18} />
                   </div>
-                </div>
+                </button>
               </button>
             </S.NameClose>
 
@@ -110,7 +103,7 @@ export const ConfigModal = (props: ConfigModalProps) => {
             <S.Prioridade>
               <p>Prioridade</p>
               <S.SwitchButton>
-                <S.Input checked={Boleano(Pchecked)} onChange={handlePrioridadeCheck} />
+                <S.Input checked={Pchecked} onChange={handlePrioridadeCheck} />
                 <S.Slider />
               </S.SwitchButton>
             </S.Prioridade>

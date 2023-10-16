@@ -31,6 +31,7 @@ export const PainelPorFase = () => {
       concluidos: 12,
     },
   ];
+  
   return (
     <S.Wrapper>
       <S.ContainerData>

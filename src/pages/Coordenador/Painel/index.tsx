@@ -14,11 +14,11 @@ const Painel = () => {
       <Menu area={`/Painel/${id}`} id_projeto={id}></Menu>
       <MenuCoord />
       <S.PainelArea>
-        <S.DetalFasesPendencias>
-          <PainelPorFase/>
-          <PendenciaCoord />
-        </S.DetalFasesPendencias>
+
+        <PainelPorFase/>
+        <PendenciaCoord />
         <ValoresGerais />
+        
       </S.PainelArea>
     </div>
   );

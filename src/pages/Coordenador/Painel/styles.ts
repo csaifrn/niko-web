@@ -4,17 +4,19 @@ import media from 'styled-media-query';
 export const PainelArea = styled.div`
   display: flex;
   width: 100%;
-  margin: 10em 2em 10em 2em;
+  padding: 10em 2em;
   gap: 32px;
   flex-direction: column;
   max-width: 1140px;
+  ${media.greaterThan('large')`
+    padding: 10em 0em 2em 0em;
+  `}
 `;
 
 export const DetalFasesPendencias = styled.div`
   display: flex;
   flex-direction: column;
   gap: 32px;
-  
 `;
 
 export const NotFoundImg = styled.img`

@@ -9,7 +9,6 @@ export const Projeto = [
     name: 'Caern',
     url: 'Caern.png',
   },
-  
 ];
 
 export const Membros = [

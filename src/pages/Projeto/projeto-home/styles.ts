@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import media from 'styled-media-query';
 
 const Main = styled.section`
   transition: 1s all;
@@ -16,15 +17,22 @@ const Main = styled.section`
 
 export const Wrapper = styled.div`
   font-family: Rubik;
-  padding: 2em;
-  margin-top: 8em;
   max-width: 1140px;
+  margin: 10em 2em 2em 2em;
+`;
+
+export const TituloProjetos = styled.h1`
+  color: #ffffff;
 `;
 
 export const ContainerCriarProjeto = styled.div`
   display: flex;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  ${media.greaterThan('large')`
+    justify-content: flex-start;
+  `}
 `;
 
 export const BotaoCriarProjeto = styled.div`

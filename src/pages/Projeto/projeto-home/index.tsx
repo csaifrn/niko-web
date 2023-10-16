@@ -11,19 +11,24 @@ const Projetos = () => {
     <div style={{display: 'flex' , justifyContent: 'center'}}>
       <Menu area="/"></Menu>
       <S.Wrapper>
-      <S.ContainerCriarProjeto>
-        <S.Link href={`/CriarProjeto`}>
-          <S.BotaoCriarProjeto>
-            <img src="adicionar.svg" alt="" />
-          </S.BotaoCriarProjeto> 
-             
-        </S.Link>
-      </S.ContainerCriarProjeto>  
+        <S.ContainerCriarProjeto>
+
+          <S.TituloProjetos> Projetos </S.TituloProjetos>
+
+          <S.Link href={`/CriarProjeto`}>
+            <S.BotaoCriarProjeto>
+              <img src="adicionar.svg" alt="" />
+            </S.BotaoCriarProjeto>               
+          </S.Link>
+
+        </S.ContainerCriarProjeto>
+
         <S.Main style={{ margin: '16px 0' }}>
           {projetos.map((projeto, index) => {
             return <CardProjeto projeto={projeto} key={index} />;
           })}
         </S.Main>
+
       </S.Wrapper>
     </div>
   );

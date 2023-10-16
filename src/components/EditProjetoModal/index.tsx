@@ -107,6 +107,7 @@ export const EditProjetoModal = (props: EditProjetoModalProps) => {
                   borderRadius: '5px',
                   border: 'none',
                   backgroundColor: '#5C6170',
+                  fontFamily: 'Rubik'
                 }}
               />
             </div>

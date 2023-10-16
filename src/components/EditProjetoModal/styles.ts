@@ -35,6 +35,7 @@ export const Exit = styled.button`
   justify-content: center;
   align-items: center;
   border: none;
+  cursor: pointer;
 `;
 
 const ModalContent = styled.div`
@@ -100,8 +101,16 @@ const AtribuirButton = styled.button`
   border-radius: 5px;
   background-color: #43db6d;
   border: none;
-  color: white;
+  color: #191c24;
   font-family: 'Rubik';
+  cursor: pointer;
+  &:hover {
+    background-color: ${({ theme }) => theme.colors['green/600']};
+  }
+  &:active {
+    background-color: ${({ theme }) => theme.colors['green/600']};
+    transform: translateY(-5%) translateX(2%);
+  }
 `;
 
 const ModalBackdrop = styled.div`

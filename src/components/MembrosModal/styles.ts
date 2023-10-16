@@ -1,8 +1,9 @@
+import Select from 'react-select';
 import styled from 'styled-components';
+import media from 'styled-media-query';
 
 const ModalArea = styled.div`
-  width: 80vw;
-  max-width: 400px;
+  width: 90vw;
   background-color: ${({ theme }) => theme.colors['gray/500']};
   border-radius: 5px;
   display: flex;
@@ -25,6 +26,7 @@ const ModalArea = styled.div`
     padding: 0 3em 0 1em;
   }
 `;
+
 export const Exit = styled.button`
   height: 2em;
   width: 2em;
@@ -34,6 +36,7 @@ export const Exit = styled.button`
   justify-content: center;
   align-items: center;
   border: none;
+  cursor: pointer;
 `;
 
 const ModalContent = styled.div`
@@ -47,9 +50,126 @@ const NameClose = styled.div`
   justify-content: space-between;
 `;
 
+export const EmailTodo = styled.div`
+  display: flex;
+  padding: 1em 0em;
+  width: 100% ;
+  justify-content: space-between;
+  ${media.greaterThan('large')`
+  `}
+
+`;
+
+export const EmailInputSelect = styled.div`
+  display: flex; 
+  border-radius: 10px; 
+  height: 44px;
+  width: 80%;
+  ${media.greaterThan('large')`
+    width: 87%;
+  `}
+`;
+
+export const EscolherFuncao = styled(Select)`
+  width: 180px;
+  border-left: 1px solid #888c99;
+  .react-select__control {
+    border: none;
+    border-radius: 0px 5px 5px 0px;
+    background-color: ${({ theme }) => theme.colors['gray/700']} !important; /* Cor de fundo do controle */
+    color: ${({ theme }) => theme.colors.white} !important;
+    min-height: 44px;
+  }
+
+  .react-select__placeholder {
+    color: #ffffff;
+  }
+
+  .react-select__single-value {
+    color: ${({ theme }) => theme.colors.white};
+  }
+
+  .react-select__menu {
+    background-color: ${({ theme }) => theme.colors['gray/500']} !important;
+  }
+
+  .react-select__option {
+    background-color: ${({ theme }) => theme.colors['gray/500']};
+    color: ${({ theme }) => theme.colors.white}; /* Cor do texto das opções */
+  }
+
+  .react-select__option--is-selected {
+    background-color: ${({ theme }) => theme.colors['gray/500']}; /* Cor de fundo da opção selecionada */
+  }
+
+  .react-select__option--is-focused {
+    background-color: ${({ theme }) => theme.colors['gray/700']}; /* Cor de fundo da opção selecionada */
+  }
+
+  .react-select__indicator-separator {
+    background-color: ${({ theme }) => theme.colors['gray/200']}; /* Cor do separador entre indicadores */
+  }
+
+  .react-select__value-container .react-select__input {
+    color: ${({ theme }) => theme.colors.white} !important;
+  }
+  ${media.greaterThan('large')`
+    width: 220px;
+  `}
+`;
+
+export const EscolherFuncaoBlack = styled(Select)`
+  width: 180px;
+  .react-select__control {
+    //z-index: 98;
+    border: none;
+    border-radius: 0px 5px 5px 0px;
+    background-color: ${({ theme }) => theme.colors['gray/900']} !important; /* Cor de fundo do controle */
+    color: ${({ theme }) => theme.colors.white} !important;
+    min-height: 44px;
+  }
+
+  .react-select__placeholder {
+    color: #ffffff;
+  }
+
+  .react-select__single-value {
+    color: ${({ theme }) => theme.colors.white};
+  }
+
+  .react-select__menu {
+    background-color: ${({ theme }) => theme.colors['gray/500']} !important;
+  }
+
+  .react-select__option {
+    background-color: ${({ theme }) => theme.colors['gray/500']};
+    color: ${({ theme }) => theme.colors.white}; /* Cor do texto das opções */
+  }
+
+  .react-select__option--is-selected {
+    background-color: ${({ theme }) => theme.colors['gray/500']}; /* Cor de fundo da opção selecionada */
+  }
+
+  .react-select__option--is-focused {
+
+    background-color: ${({ theme }) => theme.colors['gray/700']}; /* Cor de fundo da opção selecionada */
+  }
+
+  .react-select__indicator-separator {
+    background-color: ${({ theme }) => theme.colors['gray/200']}; /* Cor do separador entre indicadores */
+  }
+
+  .react-select__value-container .react-select__input {
+    color: ${({ theme }) => theme.colors.white} !important;
+  }
+  ${media.greaterThan('large')`
+    width: 220px;
+  `}
+`;
+
 const ChooseLote = styled.div`
   width: 100%;
-  max-height: 50vh;
+  max-height: 30vh;
   border-radius: 5px;
   display: flex;
   flex-direction: column;
@@ -70,16 +190,19 @@ const ChooseLote = styled.div`
   }
 `;
 
-const Lote = styled.div`
+export const User = styled.div`
+  background-color: ${({ theme }) => theme.colors['gray/900']};
   padding: 1em 1em;
   border-radius: 5px;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1em;
+  display: flex;
   align-items: center;
   justify-content: space-between;
+  width: 120%;
+  ${media.greaterThan('large')`
+    width: 100%;
+  `}
 
-  div {
+  /* div {
     width: 50%;
     display: flex;
     gap: 1em;
@@ -91,16 +214,25 @@ const Lote = styled.div`
   }
   .error {
     border: 1px solid red;
-  }
+  } */
 `;
 
 const AtribuirButton = styled.button`
+  z-index: 0;
   height: 44px;
   border-radius: 5px;
   background-color: #43db6d;
   border: none;
-  color: white;
+  color: ${({ theme }) => theme.colors['gray/900']};
   font-family: 'Rubik';
+  cursor: pointer;
+  &:hover {
+    background-color: ${({ theme }) => theme.colors['green/600']};
+  }
+  &:active {
+    background-color: ${({ theme }) => theme.colors['green/600']};
+    transform: translateY(-5%) translateX(2%);
+  }
 `;
 
 const ModalBackdrop = styled.div`
@@ -116,4 +248,25 @@ const ModalBackdrop = styled.div`
   background-color: rgba(25, 28, 36, 0.5);
 `;
 
-export { ModalArea, ModalContent, NameClose, ChooseLote, Lote, AtribuirButton, ModalBackdrop };
+export const EnviarEmail = styled.button`
+  font-size: 10px;
+  border: none;
+  height: 44px;
+  width: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+  overflow: hidden;
+  background-color: #f3802d;
+  cursor: pointer;
+  &:hover {
+    background-color: ${({ theme }) => theme.colors['orange/500']};
+  }
+  &:active {
+    background-color: ${({ theme }) => theme.colors['orange/500']};
+    transform: translateY(-5%) translateX(2%);
+  }
+`;
+
+export { ModalArea, ModalContent, NameClose, ChooseLote, AtribuirButton, ModalBackdrop };

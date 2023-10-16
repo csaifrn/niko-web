@@ -32,6 +32,10 @@ export const MembrosModal = (props: MembrosModalProps) => {
   const [projetoMembros, setProjetoMembros] = useState<UserMembro[]>(props.membros);
 
   const role = ['Coordenador', 'Operador'];
+  const optionFuncoes = [
+    { id: 1, label: 'Operador' },
+    { id: 2, label: 'Coordenador' },
+  ];
 
   const emailRef = useRef<HTMLInputElement>(null);
 
@@ -146,11 +150,13 @@ export const MembrosModal = (props: MembrosModalProps) => {
                 <img src="/close.svg" alt="" height={18} width={18} />
               </S.Exit>
             </S.NameClose>
-            <h3>Editar Mebros</h3>
+
+            <h2>Editar Mebros</h2>
+
             <form action="">
               <h3>Email</h3>
-              <div style={{ display: 'flex', height: '44px', gap: '2em', padding: '1em 0em' }}>
-                <div style={{ display: 'flex', borderRadius: '5px', height: '44px' }}>
+              <S.EmailTodo>
+                <S.EmailInputSelect>
                   <input
                     type="text"
                     ref={emailRef}
@@ -160,75 +166,44 @@ export const MembrosModal = (props: MembrosModalProps) => {
                       paddingLeft: '0.5em',
                       height: '44px',
                       border: 'none',
-                      backgroundColor: '#5C6170',
+                      borderRadius: '5px 0px 0px 5px',
+                      backgroundColor: '#191C24',
                       color: 'white',
+                      fontFamily: 'Rubik',
                     }}
                     required
                   />
-                  <select
-                    value={selectedRole}
-                    onChange={handleRoleChange}
-                    className={!isRoleSelected ? 'error' : ''}
-                    style={{
-                      color: 'white',
-                      fontSize: '10px',
-                      border: 'none',
-                      height: '44px',
-                      width: 'auto',
-                      backgroundColor: '#5C6170',
-                    }}
-                  >
-                    <option value="" disabled>
-                      Função
-                    </option>
-                    {role.map((roles, index) => (
-                      <option key={index} value={roles}>
-                        {roles}
-                      </option>
-                    ))}
-                  </select>
-                </div>
 
-                <button
-                  style={{
-                    fontSize: '10px',
-                    border: 'none',
-                    height: '44px',
-                    width: '44px',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    borderRadius: '5px',
-                    overflow: 'hidden',
-                    backgroundColor: '#F3802D',
-                  }}
+                  <S.EscolherFuncao
+                    options={optionFuncoes}
+                    className="react-select-container"
+                    classNamePrefix="react-select"
+                  />
+                </S.EmailInputSelect>
+
+                <S.EnviarEmail
                   type="button"
                   onClick={() => {
                     handleEnviar();
                   }}
                 >
                   <img src="VectorSend.svg" alt="" style={{ marginLeft: '0.25em' }} />
-                </button>
-              </div>
+                </S.EnviarEmail>
+              </S.EmailTodo>
+
               {showError && <p style={{ color: 'red', padding: '2em 0 0 0' }}>{errorMessage}</p>}
             </form>
-            <S.ChooseLote style={{ marginTop: '2em' }}>
+
+            <S.ChooseLote>
               {selectedUsers.map((user: any) => {
                 const projetoMembro = projetoMembros.find((membro) => membro.email === user.email);
                 const roleProjeto = projetoMembro ? projetoMembro.roleProjeto : '';
                 const creator = projetoMembro ? projetoMembro.creator : '';
 
                 return (
-                  <S.Lote
-                    key={user.id}
-                    style={{
-                      backgroundColor: '#090E09',
-                      display: 'flex',
-                      alignItems: 'center',
-                      gap: '2em',
-                    }}
-                  >
-                    <div>
+                  <S.User key={user.id}>
+
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '1em' }}>
                       <img
                         src={user.url}
                         alt=""
@@ -238,37 +213,25 @@ export const MembrosModal = (props: MembrosModalProps) => {
                       />
                       <p style={{ color: 'white' }}>{user.name}</p>
                     </div>
-                    <div>
-                      <select
-                        value={roleProjeto}
-                        onChange={(event) => handleRoleChanges(event, user.email)}
-                        style={{
-                          color: 'white',
-                          padding: '0em 1em',
-                          fontSize: '10px',
-                          border: 'none',
-                          backgroundColor: '#090E09',
+
+                    <div style={{ display: 'flex', gap: '1em' }}>
+                      <S.EscolherFuncaoBlack
+                        options={optionFuncoes}
+                        className="react-select-container"
+                        classNamePrefix="react-select"
+                      />
+
+                      <button
+                        onClick={() => {
+                          handleDeleteUser(user.email);
                         }}
+                        style={{ backgroundColor: 'transparent', border: 'none' , cursor: 'pointer' }}
                       >
-                        {role.map((roles, index) => (
-                          <option key={index + 3} value={roles}>
-                            {roles}
-                          </option>
-                        ))}
-                      </select>
-                      {!creator && (
-                        <button
-                          onClick={() => {
-                            handleDeleteUser(user.email);
-                          }}
-                          style={{ backgroundColor: 'transparent', border: 'none' }}
-                        >
-                          <img src="VectorDelete.svg" alt="" />
-                        </button>
-                      )}
-                      {creator && <p style={{ color: 'white' }}>Dono</p>}
+                        <img src="VectorDelete.svg" alt="" />
+                      </button>
                     </div>
-                  </S.Lote>
+                    
+                  </S.User>
                 );
               })}
             </S.ChooseLote>

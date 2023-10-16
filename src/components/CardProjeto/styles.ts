@@ -83,6 +83,7 @@ export const ButtonMenuThree = styled.button`
   text-decoration: none;
   display: block;
   text-align: left;
+  cursor: pointer;
 `;
 
 export const DivButtonMenuThree = styled.div`

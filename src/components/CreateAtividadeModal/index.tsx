@@ -66,8 +66,15 @@ export const CreateAtividade = (props: CreateAtividadeProps) => {
         <S.ModalArea id="modal-scaling">
           <S.ModalContent>
             <S.NameClose>
-              <h2>Configurações do lote</h2>
-              <button onClick={props.close} style={{ border: 'none', backgroundColor: 'transparent' }}>
+              <h2>Tarefas</h2>
+
+                <S.Exit
+                  onClick={props.close}
+                >
+                  <img src="/close.svg" alt="" height={18} width={18} />
+                </S.Exit>
+
+              {/* <button onClick={props.close} style={{ border: 'none', backgroundColor: 'transparent' , cursor: 'pointer'}}>
                 <div
                   style={{
                     paddingLeft: 8,
@@ -92,10 +99,10 @@ export const CreateAtividade = (props: CreateAtividadeProps) => {
                       wordWrap: 'break-word',
                     }}
                   >
-                    X
+                    <img src="/close.svg" alt="" height={18} width={18} />
                   </div>
                 </div>
-              </button>
+              </button> */}
             </S.NameClose>
             <Search searchTerm={searchTerm} handleSearchChange={handleSearchChange} />
             <S.ChooseUser>
@@ -141,7 +148,7 @@ export const CreateAtividade = (props: CreateAtividadeProps) => {
                   if (newAtividade.length >= 0 && newAtividade != '') {
                     setListNewAtividades((old) => [
                       ...old,
-                      { icone: '/icon-page/new.png', titulo: newAtividade, id: 1111 + listNewAtividades.length },
+                      { icone: '/icon-small/new.png', titulo: newAtividade, id: 1111 + listNewAtividades.length },
                     ]);
                   }
                 }}
@@ -152,9 +159,10 @@ export const CreateAtividade = (props: CreateAtividadeProps) => {
                   top: '0',
                   border: 'none',
                   backgroundColor: 'transparent',
+                  cursor: 'pointer',
                 }}
               >
-                <img src="/plus.svg" alt="" />
+                <img src="/adicionar.svg" alt="" />
               </button>
             </div>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '1em' }}>
@@ -190,6 +198,7 @@ export const CreateAtividade = (props: CreateAtividadeProps) => {
                         top: '0',
                         border: 'none',
                         backgroundColor: 'transparent',
+                        cursor: 'pointer',
                       }}
                     >
                       <img src="/VectorDelete.svg" alt="" />

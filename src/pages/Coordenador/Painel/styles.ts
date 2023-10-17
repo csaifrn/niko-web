@@ -13,6 +13,11 @@ export const PainelArea = styled.div`
   `}
 `;
 
+export const PainelTitulo = styled.h1`
+  font-family: 'Rubik';
+  color: #ffffff;
+`;
+
 export const DetalFasesPendencias = styled.div`
   display: flex;
   flex-direction: column;

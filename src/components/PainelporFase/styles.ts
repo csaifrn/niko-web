@@ -2,6 +2,8 @@ import styled from 'styled-components';
 import media from 'styled-media-query';
 
 export const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
   height: 100%;
   width: 100%;
   gap: 2em;
@@ -17,6 +19,12 @@ export const Wrapper = styled.div`
     border-radius: 4px;
   }
 `;
+
+export const PainelTitulo = styled.h1`
+  font-family: 'Rubik';
+  color: #ffffff;
+`;
+
 
 export const ContainerData = styled.div`
   border-radius: 5px;

@@ -99,9 +99,10 @@ const AtividadeCreate = () => {
   };
 
   return (
-    <>
+    <div style={{display: 'flex' , justifyContent: 'center'}}>
       <Menu area={`/Categoria/${id}`} id_projeto={id}></Menu>
       <MenuCoord />
+
       <S.CriarAtivArea>
         <div
           style={{
@@ -134,32 +135,17 @@ const AtividadeCreate = () => {
               <S.Titulo> Adicionar Atividade </S.Titulo>
             </div>
           </div>
-          <button
-            onClick={() => {
-              navigate(`/Atividades/${id}`);
-            }}
-            style={{
-              paddingLeft: 8,
-              paddingRight: 8,
-              paddingTop: 5,
-              paddingBottom: 5,
-              background: '#393E4B',
-              borderRadius: 3,
-              flexDirection: 'column',
-              justifyContent: 'flex-start',
-              alignItems: 'flex-start',
-              gap: 10,
-              display: 'inline-flex',
-              border: 'none',
-              backgroundColor: 'none',
-            }}
-          >
-            <div
-              style={{ color: 'white', fontSize: 12, fontFamily: 'Rubik', fontWeight: '700', wordWrap: 'break-word' }}
+
+          <S.CloseDiv>
+            <S.Exit 
+              onClick={() => {
+                navigate(`/Atividades/${id}`);
+              }}
             >
-              X
-            </div>
-          </button>
+              <img src="/close.svg" alt="" height={18} width={18} />
+            </S.Exit>
+          </S.CloseDiv>
+
         </div>
         <S.EspecificacoesAtiv>
           <S.Data
@@ -204,7 +190,7 @@ const AtividadeCreate = () => {
                   setModalTarefas(!modalTarefas);
                 }}
               >
-                <img src="/plus.svg" alt="adicionar atividade" />
+                <img src="/adicionar.svg" alt="adicionar atividade" />
               </S.BotaoAdd>
 
             </S.TituloBotaoAdd>
@@ -268,7 +254,7 @@ const AtividadeCreate = () => {
                   SetModalCatTipo(!modalCatTipo);
                 }}
               >
-                <img src="/plus.svg" alt="adicionar atividade" />
+                <img src="/adicionar.svg" alt="adicionar atividade" />
               </S.BotaoAdd>
               
             </S.TituloBotaoAdd>
@@ -361,14 +347,14 @@ const AtividadeCreate = () => {
                     SetModalUsers(!modalUsers);
                   }}
                 >
-                  <img src="/plus.svg" alt="adicionar atividade" />
+                  <img src="/adicionar.svg" alt="adicionar atividade" />
                 </S.BotaoAdd>
               )}
 
               {/* BOTÃO DESATIVADO */}
               {tarefas.length === 0 && (
                 <S.BotaoAdd>
-                  <img src="/plus.svg" alt="adicionar atividade" style={{ opacity: '50%' }} />
+                  <img src="/adicionar.svg" alt="adicionar atividade" style={{ opacity: '50%' }} />
                 </S.BotaoAdd>
               )}
 
@@ -593,7 +579,7 @@ const AtividadeCreate = () => {
           loteUser={LoteUser.filter((loteUser) => loteUser.id_user === idUser && loteUser.id_fase === idFase)[0]}
         />
       )}
-    </>
+    </div>
   );
 };
 

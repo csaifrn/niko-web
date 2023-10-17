@@ -2,8 +2,6 @@ import styled from 'styled-components';
 import media from 'styled-media-query';
 
 export const Wrapper = styled.div`
-  height: 100%;
-  width: 100%;
   display: flex;
   flex-direction: column;
   gap: 2em;
@@ -89,11 +87,8 @@ export const ContainerDataDependencias = styled.div`
     border-radius: 20px;
   }
   ${media.greaterThan('large')`
-    justify-content: center;
-    width: 20vh;
-    height: 60vh;
-  `}
-  ${media.greaterThan('large')`
+    //justify-content: center;
+    //width: 20vh;
   `}
 `;
 
@@ -141,11 +136,25 @@ export const TextAlerta = styled.div`
   background-color: ${({ theme }) => theme.colors['gray/700']};
   display: flex;
   width: 100%;
-  height: 120px;
+  height: 90px;
   gap: 1em;
   padding: 1em;
-
   border-radius: 5px;
+  overflow-y: scroll;
+  scroll-behavior: auto;
+  scrollbar-width: thin;
+  &::-webkit-scrollbar {
+    width: 0.6em;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: #191c24;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: #2a2e38;
+    border-radius: 20px;
+  }
 `;
 
 export const DataFaseDois = styled.div`
@@ -163,7 +172,7 @@ export const QtdLotes = styled.p`
 `;
 
 export const Prioridade = styled.p`
-  background-color: ${({ theme }) => theme.colors['red/500']};
+  background-color: ${({ theme }) => theme.colors['red/700']};
   font-family: Rubik;
   color: ${({ theme }) => theme.colors.white};
   padding: 0.5em 1em;

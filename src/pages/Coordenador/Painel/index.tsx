@@ -10,17 +10,17 @@ const Painel = () => {
   const { id } = useParams();
 
   return (
-    <>
+    <div style={{display: 'flex' , justifyContent: 'center'}}>
       <Menu area={`/Painel/${id}`} id_projeto={id}></Menu>
       <MenuCoord />
       <S.PainelArea>
-        <S.DetalFasesPendencias>
-          <PainelPorFase/>
-          <PendenciaCoord />
-        </S.DetalFasesPendencias>
+
+        <PainelPorFase/>
+        <PendenciaCoord />
         <ValoresGerais />
+        
       </S.PainelArea>
-    </>
+    </div>
   );
 };
 

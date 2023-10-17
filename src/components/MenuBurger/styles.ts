@@ -39,6 +39,7 @@ const MenuImg = styled.img``;
 const FecharMenu = styled.button`
   background-color: transparent;
   border: none;
+  cursor: pointer;
 `;
 
 export { StyledMenu, MenuImg, areaClick, FecharMenu };

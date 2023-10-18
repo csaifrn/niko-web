@@ -186,6 +186,7 @@ const AtividadeCreate = () => {
               <S.Titulo2>Tarefas</S.Titulo2>
 
               <S.BotaoAdd
+                style={{cursor: 'pointer'}}
                 onClick={() => {
                   setModalTarefas(!modalTarefas);
                 }}
@@ -250,6 +251,7 @@ const AtividadeCreate = () => {
               <S.Titulo2>Categorias e Tipologias</S.Titulo2>
 
               <S.BotaoAdd
+                style={{cursor: 'pointer'}}
                 onClick={() => {
                   SetModalCatTipo(!modalCatTipo);
                 }}
@@ -343,6 +345,7 @@ const AtividadeCreate = () => {
               {/* BOTÃO ATIVADO */}
               {tarefas.length > 0 && (
                 <S.BotaoAdd
+                  style={{cursor: 'pointer'}}
                   onClick={() => {
                     SetModalUsers(!modalUsers);
                   }}
@@ -431,6 +434,7 @@ const AtividadeCreate = () => {
                                   gap: 10,
                                   display: 'flex',
                                   border: 'none',
+                                  cursor: 'pointer'
                                 }}
                               >
                                 <button
@@ -449,6 +453,7 @@ const AtividadeCreate = () => {
                                     wordWrap: 'break-word',
                                     border: 'none',
                                     backgroundColor: 'transparent',
+                                    cursor: 'pointer'
                                   }}
                                 >
                                   Atribuir Lote

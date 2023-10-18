@@ -66,9 +66,6 @@ export const BotaoAdd = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
-  cursor: pointer;
-  ${media.greaterThan('large')`
-  `}
 `;
 
 export const Tarefas = styled.div`

@@ -4,7 +4,7 @@ import { DataFase } from '../DataFase';
 import { DeletarModal } from '../DeletarModal';
 import CategoriaData from '../../data/CategoriaData';
 
-const CategoriaCard = (Categoria: typeof CategoriaData[0]) => {
+const CategoriaCard = (Categoria: (typeof CategoriaData)[0]) => {
   const [expanded, setExpanded] = useState(false);
   const [accodionHeight, setAccodionHeight] = useState(0);
   const [modal, setModal] = useState(false);
@@ -40,7 +40,7 @@ const CategoriaCard = (Categoria: typeof CategoriaData[0]) => {
     <>
       <S.totalArea onClick={open}>
         <S.CardA>
-          <S.CategoriaClick >
+          <S.CategoriaClick>
             <S.CabecarioCategoria>
               <p>{categoria.name}</p>
               {prioridade && (

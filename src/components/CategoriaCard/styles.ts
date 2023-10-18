@@ -20,6 +20,7 @@ const CardArea = styled.div`
   overflow: hidden;
 `;
 const CardA = styled.div`
+  cursor: pointer;
   display: flex;
   flex-direction: column;
   padding: 1.5em 2em;

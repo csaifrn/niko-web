@@ -25,10 +25,10 @@ const OperadorCard = (user: any) => {
   const User: any = user.User;
   return (
     <>
-      <S.totalArea>
+      <S.totalArea onClick={open}>
         <S.CardA>
           {User.fase !== '' && (
-            <S.CardArea onClick={open}>
+            <S.CardArea>
               <S.dataUser>
                 <img
                   src={User.url}
@@ -44,7 +44,7 @@ const OperadorCard = (user: any) => {
                 <p style={{ color: '#43DB6D' }}>{User.name}</p>
               </S.dataUser>
               <S.dataLote>
-                <img src={`/icon-page/${User.fase}_icon.png`} height={28} width={28} alt="" />
+                <img src={`/icon-medium/${User.fase}.svg`} height={28} width={28} alt="" />
                 <div>
                   <S.textLote>{User.lote}</S.textLote>
                 </div>
@@ -52,7 +52,7 @@ const OperadorCard = (user: any) => {
             </S.CardArea>
           )}
           {User.fase === '' && (
-            <S.CardArea onClick={open}>
+            <S.CardArea>
               <S.dataUser>
                 <img
                   src={User.url}

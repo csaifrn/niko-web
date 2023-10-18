@@ -61,15 +61,17 @@ const Operador = (): JSX.Element => {
 
   return (
     <>
-      <Menu area={`/Operadores/${id}`} id_projeto={id}></Menu>
-      <MenuCoord />
-      <S.CardsArea>
-        <Search searchTerm={searchTerm} handleSearchChange={handleSearchChange} />
+      <div style={{ display: 'flex', justifyContent: 'center' }}>
+        <Menu area={`/Operadores/${id}`} id_projeto={id}></Menu>
+        <MenuCoord />
+        <S.CardsArea>
+          <Search searchTerm={searchTerm} handleSearchChange={handleSearchChange} />
 
-        {sortedAndFilteredUsers.map((user: User) => (
-          <OperadorCard User={user} key={user.id} />
-        ))}
-      </S.CardsArea>
+          {sortedAndFilteredUsers.map((user: User) => (
+            <OperadorCard User={user} key={user.id} />
+          ))}
+        </S.CardsArea>
+      </div>
     </>
   );
 };

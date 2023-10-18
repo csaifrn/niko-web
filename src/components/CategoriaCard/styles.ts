@@ -154,6 +154,21 @@ const ButtonAtribuir = styled.button`
   font-family: 'Rubik';
 `;
 
+export const ButtonDelete = styled.button`
+  height: 44px;
+  width: 100%;
+  border: none;
+  border-radius: 5px;
+  background-color: ${({ theme }) => theme.colors['red/500']};
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0em 1em;
+  gap: 1em;
+  font-family: 'Rubik';
+`;
+
 const BarOut = styled.div`
   background-color: #191c24;
   width: 100%;

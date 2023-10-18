@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import media from 'styled-media-query';
 
 const DataUser = styled.div`
   display: flex;
@@ -7,12 +8,20 @@ const DataUser = styled.div`
   justify-content: space-between;
   gap: 3em;
   padding: 2em;
+  ${media.greaterThan('large')`
+    justify-content: start;
+    gap: 1em;
+  `}
 `;
 
 const SideUser = styled.div`
   display: flex;
   flex-direction: column;
   gap: 1em;
+  ${media.greaterThan('large')`
+    display: grid;
+    grid-template-columns: repeat(3, 1fr)
+  `}
 `;
 
 const Fase = styled.div`
@@ -23,6 +32,10 @@ const Fase = styled.div`
 const Icon = styled.img`
   height: 28px;
   width: 28px;
+  ${media.greaterThan('large')`
+    height: 46px;
+    width: 46px;
+  `}
 `;
 
 const TotalFase = styled.p`

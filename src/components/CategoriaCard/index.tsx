@@ -84,23 +84,7 @@ const CategoriaCard = (Categoria: (typeof CategoriaData)[0]) => {
             >
               {prioridade ? 'Tirar Prioridade' : 'Marcar Prioridade'}
             </button>
-            <button
-              onClick={handleDeletar}
-              style={{
-                border: 'none',
-                fontFamily: 'Rubik',
-                height: '44px',
-                width: '100%',
-                display: 'flex',
-                justifyContent: 'center',
-                backgroundColor: '#F32D2D',
-                alignItems: 'center',
-                borderRadius: '5px',
-                color: '#fff',
-              }}
-            >
-              Deletar Categoria
-            </button>
+            <S.ButtonDelete onClick={handleDeletar}>Deletar Categoria</S.ButtonDelete>
           </S.BtnsDiv>
         </S.Footer>
       </S.totalArea>

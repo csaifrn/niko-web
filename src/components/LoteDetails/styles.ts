@@ -217,8 +217,7 @@ export const FaseEnvolvAtual = styled.div`
   gap: 8px;
 `;
 
-export const TituloFaseAtual = styled.h2`
-`;
+export const TituloFaseAtual = styled.h2``;
 
 export const Envolvidos = styled.div`
   display: flex;
@@ -276,6 +275,7 @@ export const Pendencias = styled.div`
 `;
 
 export const Observações = styled.div`
+  overflow: hidden;
   display: flex;
   flex-direction: column;
   gap: 16px;
@@ -330,19 +330,7 @@ export const BotaoResolverPend = styled.button`
   }
 `;
 
-export const ObsDivBlack = styled.div`
-  background-color: #191c24;
-  border-radius: 5px;
-  display: flex;
-  gap: 10px;
-  padding: 15px;
-  width: calc(100%-2em);
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  order: 1;
-  flex-grow: 0;
-`;
+
 
 export const Botoes = styled.div`
   display: flex;
@@ -424,7 +412,7 @@ export const VoltarAvancar = styled.button`
   &:active {
     background-color: ${({ theme }) => theme.colors['gray/400']};
     transform: translateY(-5%) translateX(2%);
-  } 
+  }
 `;
 
 export const VoltarAvancarDesativado = styled.button`

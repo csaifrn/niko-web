@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import * as S from './styles';
 import { useParams, useNavigate } from 'react-router-dom';
 import Menu from '../Menu';
@@ -7,7 +7,7 @@ import { ConfigModal } from '../ConfigModal';
 import { DeletarLoteModal } from '../DeletarLoteModal';
 import { useMutation } from 'react-query';
 import { GetBatche } from '../../api/services/batches/get-batche';
-import { GetResponseBatche } from '../../api/services/batches/get-batche/get.interface';
+import { GetResponseBatche, Observation } from '../../api/services/batches/get-batche/get.interface';
 import { ApiError } from '../../api/services/authentication/signIn/signIn.interface';
 import toast from 'react-hot-toast';
 import { Empty } from '../EmptyPage';
@@ -17,10 +17,10 @@ import theme from '../../global/theme';
 import { SuccessModal } from '../SuccessModal';
 import { LoteData } from '../../data/LoteData';
 import FaseData from '../../data/FaseData';
-import React from 'react';
+
+import { BoxObservation } from '../Observation';
 
 export const LoteDetails = () => {
-  
   const optionsFases = FaseData.map((fase) => ({ id: fase.id, label: fase.titulo }));
 
   const [config_modal, setConfigModal] = useState(false);
@@ -45,45 +45,31 @@ export const LoteDetails = () => {
     setAvancar(!avancar);
   };
 
-  const [pend, setPend] = useState(false);
-  const handleResolverPend = (p: any) => {
-    setPend(!pend);
-    setPendencia(p);
-  };
-  const [pendencia, setPendencia] = useState<any>(null);
-
-  const [ComPendencia, setComPendencia] = useState(false);
-
-  useEffect(() => {
-    if (taskData.pendencias.length > 0) {
-      setComPendencia(true);
-    }
-  }, []);
-
   const [modal, setModal] = useState(false);
   const handleAtribuirAlguem = () => {
     setModal(!modal);
   };
-
-  const [error, setError] = useState<string | null>(null);
 
   const navigate = useNavigate();
   const { id } = useParams();
   const beforeTask = useMutation(GetBatche, {
     onSuccess: (data: GetResponseBatche) => {
       setTask(data);
+      setObservations(data.observations);
+      setPriority(data.priority);
     },
     onError: (error: ApiError) => {
       if (error.response) {
         toast.error(error.response.data.message);
-        setError(error.response.data.message);
       }
     },
   });
 
   const [task, setTask] = useState<GetResponseBatche | null>();
+  const [observations, setObservations] = useState<Observation[] | null>();
+  const [priority, setPriority] = useState<boolean>(false);
 
-  useEffect(() => {
+  const CheckIdForGetBatch = () => {
     if (typeof id === 'string') {
       beforeTask.mutate({
         id,
@@ -91,11 +77,13 @@ export const LoteDetails = () => {
     } else {
       navigate(-1);
     }
+  };
+
+  useEffect(() => {
+    CheckIdForGetBatch();
   }, []);
 
   const taskData = LoteData[0];
-
-  //const [usuarios, setUsuarios] = useState(task.envolvidos);
 
   if (beforeTask.isLoading) {
     return <Splash />;
@@ -160,7 +148,7 @@ export const LoteDetails = () => {
 
             {/* MOSTRA CATEGORIAS QUANDO O LOTE É PRIORIDADE */}
             <S.CategoriaPrioridade>
-              {task?.priority === true && (
+              {priority === true && (
                 <S.Prioridade>
                   <p>Prioridade</p>
                 </S.Prioridade>
@@ -171,7 +159,7 @@ export const LoteDetails = () => {
             </S.CategoriaPrioridade>
 
             {/* MOSTRA CATEGORIAS QUANDO O LOTE NÃO É PRIORIDADE */}
-            {taskData.categorias.length > 0 && task?.priority == false && (
+            {taskData.categorias.length > 0 && priority == false && (
               <S.CategoriaPrioridade>
                 {/* CATEGORIAS */}
                 {taskData.categorias.map((categoria: any) => (
@@ -237,7 +225,7 @@ export const LoteDetails = () => {
           <S.PendObservacaoBotoes>
             <S.PendObservacao>
               {/* PENDÊNCIAS */}
-              <S.Pendencias>
+              {/* <S.Pendencias>
                 <S.PendenciaTitulo>Pendências</S.PendenciaTitulo>
 
                 <S.TodasAsPendencias>
@@ -254,12 +242,12 @@ export const LoteDetails = () => {
                     </S.PendDivBlack>
                   ))}
                 </S.TodasAsPendencias>
-              </S.Pendencias>
+              </S.Pendencias> */}
 
               {/* OBSERVAÇÕES */}
               <S.Observações>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                  <p>Observações</p>
+                  <S.PendenciaTitulo>Observações</S.PendenciaTitulo>
                   <button
                     onClick={() => {
                       setObservacao(!observacao);
@@ -279,9 +267,19 @@ export const LoteDetails = () => {
                   </button>
                 </div>
 
-                {/* {observacoes.map((obs: any) => (
-              <S.ObsDivBlack key={obs.ObsId}>{obs.titulo}</S.ObsDivBlack>
-            ))} */}
+                {observations &&
+                  observations.map((obs, index: number) => (
+                    <BoxObservation
+                      id={obs.id}
+                      key={obs.id}
+                      index={index}
+                      observation={obs.observation}
+                      observations={observations!}
+                      refetch={(Obs: Observation[]) => {
+                        setObservations(Obs);
+                      }}
+                    />
+                  ))}
               </S.Observações>
             </S.PendObservacao>
 
@@ -294,7 +292,7 @@ export const LoteDetails = () => {
               </S.Botao>
 
               {/* VOLTAR FASE */}
-              {ComPendencia == true && taskData.fase_atual != 'Preparo' && (
+              {observations && taskData.fase_atual != 'Preparo' && (
                 <S.BotaoMudarFase>
                   {/* BOTÃO DE VOLTAR FASE*/}
                   <S.VoltarAvancar onClick={handleVoltar} style={{ cursor: 'pointer' }}>
@@ -412,7 +410,7 @@ export const LoteDetails = () => {
         {config_modal && (
           <ConfigModal
             id={id!}
-            prioridade={task!.priority}
+            prioridade={task?.priority ? task.priority : false}
             close={() => {
               setConfigModal(!config_modal);
             }}
@@ -420,6 +418,10 @@ export const LoteDetails = () => {
         )}
         {observacao && (
           <SuccessModal
+            observations={observations!}
+            refetch={(Obs: Observation[]) => {
+              setObservations(Obs);
+            }}
             close={() => {
               setObservacao(!observacao);
             }}

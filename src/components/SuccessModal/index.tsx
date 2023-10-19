@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import * as S from './styles';
 import { InputText } from '../ModalCrairLote/styles';
-import { LabelField } from '../../pages/Login/styles';
 import { ErrorsForm } from './successmodal.interface';
 import { validationObservation } from './validation';
 import * as Yup from 'yup';
@@ -12,10 +11,15 @@ import { CreateObservationResponse } from '../../api/services/batches/observatio
 import toast from 'react-hot-toast';
 import { ApiError } from '../../api/services/authentication/signIn/signIn.interface';
 import { ErrorMessage } from '../UltimoLote/styles';
+import { Observation } from '../../api/services/batches/get-batche/get.interface';
+
 
 interface DeletarModalProps {
   title: string;
   close: () => void;
+  // eslint-disable-next-line no-unused-vars
+  refetch: (Obs: Observation[]) => void;
+  observations: Observation[];
 }
 
 export const SuccessModal = (props: DeletarModalProps) => {
@@ -39,7 +43,16 @@ export const SuccessModal = (props: DeletarModalProps) => {
 
   const ObservationMutate = useMutation(CreateObservation, {
     onSuccess(data: CreateObservationResponse) {
-      console.log(data);
+      toast.success(`Observação adicionada: ${data.observation}`);
+      props.refetch([
+        ...props.observations,
+        {
+          id: data.id,
+          observation: data.observation,
+          created_at: String(new Date()),
+          created_by: { name: 'Random', user_id: '1' },
+        },
+      ]);
       handleClose();
     },
     onError(error: ApiError) {

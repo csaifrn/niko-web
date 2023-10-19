@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react';
 import * as S from './style';
 import { useMutation } from 'react-query';
 import { PatchBatchePriority } from '../../api/services/batches/patch-batche';
-import { PatchResponseBatche } from '../../api/services/batches/patch-batche/patch.interface';
 import toast from 'react-hot-toast';
 import { ApiError } from '../../api/services/authentication/signIn/signIn.interface';
 
@@ -16,9 +15,8 @@ export const ConfigModal = (props: ConfigModalProps) => {
   const [Pchecked, setPChecked] = useState(props.prioridade);
 
   const Priority = useMutation(PatchBatchePriority, {
-    onSuccess: (data: PatchResponseBatche) => {
+    onSuccess: () => {
       toast.success(`Prioride ${Pchecked ? 'foi ativada' : 'foi desativada'}!`);
-      console.log(data);
     },
     onError: (error: ApiError) => {
       toast.error(error.response!.data.message);
@@ -26,7 +24,7 @@ export const ConfigModal = (props: ConfigModalProps) => {
   });
 
   const handlePrioridadeCheck = () => {
-    setPChecked(Pchecked!);
+    setPChecked(!Pchecked);
     Priority.mutate({
       id: props.id,
       priority: Pchecked,
@@ -79,7 +77,7 @@ export const ConfigModal = (props: ConfigModalProps) => {
                   }}
                 >
                   <div
-                    style={{                    
+                    style={{
                       flexDirection: 'column',
                       justifyContent: 'center',
                       alignItems: 'center',

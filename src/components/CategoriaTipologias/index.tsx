@@ -82,30 +82,36 @@ export const CategoriasTipologias = (props: CategoriasTipologiasProps) => {
         <S.ModalArea id="modal-scaling">
           <S.ModalContent id="modal-content">
             <S.NameClose>
-              <h2>Atribuir Lote</h2>
+              <h2>Categorias e Tipologias</h2>
               <S.Exit type="button" onClick={props.close}>
                 <img src="/close.svg" alt="" height={18} width={18} />
               </S.Exit>
             </S.NameClose>
-            <S.DivCatTipol>
+
+            <S.DivEscolherCatTipol>
+
               <S.ButtonCatTipol
                 onClick={() => setCatTipo(false)}
                 style={{
                   backgroundColor: CatTipo ? '#2D303B' : '#191C24',
                 }}
               >
-                <p>Categorias</p>
+                <p style={{fontFamily: 'Rubik'}}>Categorias</p>
               </S.ButtonCatTipol>
+
               <S.ButtonCatTipol
                 onClick={() => setCatTipo(true)}
                 style={{
                   backgroundColor: CatTipo ? '#191C24' : '#2D303B',
                 }}
               >
-                <p>Tipologia</p>
+                <p style={{fontFamily: 'Rubik'}}>Tipologias</p>
               </S.ButtonCatTipol>
-            </S.DivCatTipol>
+
+            </S.DivEscolherCatTipol>
+
             <Search searchTerm={searchTerm} handleSearchChange={handleSearchChange} />
+
             <S.ChooseLote>
               {filteredCategorias.map((cat: any) => {
                 if (!CatTipo) {
@@ -147,6 +153,7 @@ export const CategoriasTipologias = (props: CategoriasTipologiasProps) => {
                 }
               })}
             </S.ChooseLote>
+
             <S.AtribuirButton onClick={handleSave}>Salvar</S.AtribuirButton>
           </S.ModalContent>
         </S.ModalArea>

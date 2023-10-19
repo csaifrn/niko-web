@@ -14,7 +14,6 @@ const Painel = () => {
       <Menu area={`/Painel/${id}`} id_projeto={id}></Menu>
       <MenuCoord />
       <S.PainelArea>
-
         <PainelPorFase/>
         <PendenciaCoord />
         <ValoresGerais />

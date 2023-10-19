@@ -23,6 +23,7 @@ const CategoriaData = [
     prioridade: true,
     percentage: 12,
   },
+  
 ];
 
 export default CategoriaData;

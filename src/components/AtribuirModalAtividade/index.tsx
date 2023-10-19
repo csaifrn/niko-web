@@ -138,19 +138,25 @@ export const AtribuirModalAtividade = (props: AtribuirModalAtividadeProps) => {
                 <img src="/close.svg" alt="" height={18} width={18} />
               </S.Exit>
             </S.NameClose>
+
             <img height={24} width={24} src={`${props.nameFase}`} alt="Icone de Etapa" />
+
             <Search searchTerm={searchTerm} handleSearchChange={handleSearchChange} />
-            <S.Categorias>
-              {props.categorias.map((categoria) => (
-                <S.Categoria
-                  key={categoria.id}
-                  selected={selectedCategoria === categoria.id}
-                  onClick={() => handleCategoriaClick(categoria.id)}
-                >
-                  <p>{categoria.name}</p>
-                </S.Categoria>
-              ))}
-            </S.Categorias>
+
+            {props.categorias.length > 0 && (
+              <S.Categorias>
+                {props.categorias.map((categoria) => (
+                  <S.Categoria
+                    key={categoria.id}
+                    selected={selectedCategoria === categoria.id}
+                    onClick={() => handleCategoriaClick(categoria.id)}
+                  >
+                    <p>{categoria.name}</p>
+                  </S.Categoria>
+                ))}
+              </S.Categorias>
+            )}
+
             <S.ChooseLote>
               {filteredLotes.map((lote: any) => {
                 const isLoteAssigned = props.loteUsers.some((userLote) =>

@@ -10,8 +10,29 @@ export const CriarAtivArea = styled.div`
   gap: 2em;
   margin-bottom: 10em;
   margin-top: 10em;
+  max-width: 1140px;
+  width: 100%;
   ${media.greaterThan('large')`
   `}
+`;
+
+export const CloseDiv = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  padding: '5px 5px';
+  border-radius: '5px';
+`;
+
+export const Exit = styled.button`
+  height: 2em;
+  width: 2em;
+  background-color: #393e4b;
+  border-radius: 3px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  cursor: pointer;
 `;
 
 export const Titulo = styled.h1`
@@ -45,8 +66,6 @@ export const BotaoAdd = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
-  ${media.greaterThan('large')`
-  `}
 `;
 
 export const Tarefas = styled.div`
@@ -144,6 +163,7 @@ export const AddAtivAtivado = styled.button`
   display: flex;
   border: none;
   width: 100%;
+  cursor: pointer;
   ${media.greaterThan('large')`
     width: fit-content;
     `}

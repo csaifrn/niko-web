@@ -10,6 +10,8 @@ export const EditarAtivArea = styled.div`
   gap: 2em;
   margin-bottom: 10em;
   margin-top: 10em;
+  max-width: 1140px;
+  width: 100%;
   ${media.greaterThan('large')`
   `}
 `;
@@ -19,6 +21,19 @@ export const Titulo = styled.h1`
   ${media.greaterThan('large')`
   `}
 `;
+
+export const Exit = styled.button`
+  height: 2em;
+  width: 2em;
+  background-color: #393e4b;
+  border-radius: 3px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  cursor: pointer;
+`;
+
 
 export const Titulo2 = styled.h2`
   color: #ffffff;
@@ -144,6 +159,7 @@ export const EditAtivAtivado = styled.button`
   display: flex;
   border: none;
   width: 100%;
+  cursor: pointer;
   ${media.greaterThan('large')`
     width: fit-content;
     `}

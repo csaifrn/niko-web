@@ -4,7 +4,7 @@ import { DataFase } from '../DataFase';
 import { DeletarModal } from '../DeletarModal';
 import CategoriaData from '../../data/CategoriaData';
 
-const CategoriaCard = (Categoria: typeof CategoriaData[0]) => {
+const CategoriaCard = (Categoria: (typeof CategoriaData)[0]) => {
   const [expanded, setExpanded] = useState(false);
   const [accodionHeight, setAccodionHeight] = useState(0);
   const [modal, setModal] = useState(false);
@@ -13,11 +13,17 @@ const CategoriaCard = (Categoria: typeof CategoriaData[0]) => {
 
   const [prioridade, setPrioridade] = useState(false);
 
-  const handlePrioridade = () => {
+  const handlePrioridade = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.stopPropagation();
     setPrioridade(!prioridade);
   };
 
-  const handleDeletar = () => {
+  const handleDeletar = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.stopPropagation();
+    setModal(!modal);
+  };
+
+  const handleClose = () => {
     setModal(!modal);
   };
 
@@ -40,7 +46,7 @@ const CategoriaCard = (Categoria: typeof CategoriaData[0]) => {
     <>
       <S.totalArea onClick={open}>
         <S.CardA>
-          <S.CategoriaClick >
+          <S.CategoriaClick>
             <S.CabecarioCategoria>
               <p>{categoria.name}</p>
               {prioridade && (
@@ -67,44 +73,14 @@ const CategoriaCard = (Categoria: typeof CategoriaData[0]) => {
             percentageCallback={handlePercentage}
           />
           <S.BtnsDiv>
-            <button
-              onClick={handlePrioridade}
-              style={{
-                border: 'none',
-                fontFamily: 'Rubik',
-                height: '44px',
-                width: '100%',
-                display: 'flex',
-                justifyContent: 'center',
-                backgroundColor: '#120F1F',
-                alignItems: 'center',
-                borderRadius: '5px',
-                color: prioridade ? '#F32D2D' : '#fff',
-              }}
-            >
+            <S.ButtonPrioridade onClick={(e) => handlePrioridade(e)}>
               {prioridade ? 'Tirar Prioridade' : 'Marcar Prioridade'}
-            </button>
-            <button
-              onClick={handleDeletar}
-              style={{
-                border: 'none',
-                fontFamily: 'Rubik',
-                height: '44px',
-                width: '100%',
-                display: 'flex',
-                justifyContent: 'center',
-                backgroundColor: '#F32D2D',
-                alignItems: 'center',
-                borderRadius: '5px',
-                color: '#fff',
-              }}
-            >
-              Deletar Categoria
-            </button>
+            </S.ButtonPrioridade>
+            <S.ButtonDelete onClick={(e) => handleDeletar(e)}>Deletar Categoria</S.ButtonDelete>
           </S.BtnsDiv>
         </S.Footer>
       </S.totalArea>
-      {modal && <DeletarModal title={'Deletar Categoria?'} close={handleDeletar}></DeletarModal>}
+      {modal && <DeletarModal title={'Deletar Categoria?'} close={handleClose}></DeletarModal>}
     </>
   );
 };

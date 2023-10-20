@@ -2,12 +2,16 @@ import styled from 'styled-components';
 import media from 'styled-media-query';
 
 const CardsArea = styled.div`
-  display: flex;
-  margin: 2em;
-  margin-top: 8em;
-  margin-bottom: 8em;
-  gap: 1em;
+  display: grid;
+  grid-template-columns: 1fr;
+  width: 100%;
+  padding: 10em 2em;
+  gap: 16px;
   flex-direction: column;
+  max-width: 1140px;
+  ${media.greaterThan('large')`
+    padding: 10em 0em 2em 0em;
+  `}
 `;
 
 const SearchDiv = styled.div`

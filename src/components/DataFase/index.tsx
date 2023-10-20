@@ -53,7 +53,7 @@ export const DataFase = (Props: IDataFaseProps) => {
           <S.Fase>
             <S.Icon src="/icon-small/Catalogação.svg"></S.Icon>
             <div>
-              <S.TotalFase>{Props.catalogacao}Lotes</S.TotalFase>
+              <S.TotalFase>{Props.catalogacao} Lotes</S.TotalFase>
               <S.PerecentageFase>{calPercentage(Props.catalogacao)}%</S.PerecentageFase>
             </div>
           </S.Fase>

@@ -20,6 +20,7 @@ const CardArea = styled.div`
   overflow: hidden;
 `;
 const CardA = styled.div`
+  cursor: pointer;
   display: flex;
   flex-direction: column;
   padding: 1.5em 2em;
@@ -151,6 +152,53 @@ const ButtonAtribuir = styled.button`
   padding: 0em 1em;
   gap: 1em;
   font-family: 'Rubik';
+`;
+
+export const ButtonDelete = styled.button`
+  height: 44px;
+  width: 100%;
+  border: none;
+  border-radius: 5px;
+  background-color: ${({ theme }) => theme.colors['red/500']};
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0em 1em;
+  gap: 1em;
+  font-family: 'Rubik';
+  background-color: ${({ theme }) => theme.colors['red/700']};
+  cursor: pointer;
+  &:hover {
+    background-color: ${({ theme }) => theme.colors['red/500']};
+  }
+  &:active {
+    background-color: ${({ theme }) => theme.colors['red/600']};
+    transform: translateY(-5%) translateX(2%);
+  }
+`;
+
+export const ButtonPrioridade = styled.button`
+  height: 44px;
+  width: 100%;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0em 1em;
+  gap: 1em;
+  font-family: 'Rubik';
+  background-color: ${({ theme }) => theme.colors['gray/700']};
+  cursor: pointer;
+  &:hover {
+    background-color: ${({ theme }) => theme.colors['gray/900']};
+  }
+  &:active {
+    background-color: ${({ theme }) => theme.colors['gray/600']};
+    transform: translateY(-5%) translateX(2%);
+  }
 `;
 
 const BarOut = styled.div`

@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 const totalArea = styled.div`
+  cursor: pointer;
   background-color: #393e4b;
   align-items: center;
   color: white;
@@ -9,6 +10,7 @@ const totalArea = styled.div`
 `;
 
 const CardArea = styled.div`
+  cursor: pointer;
   display: flex;
   background-color: #393e4b;
   align-items: center;

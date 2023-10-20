@@ -14,6 +14,7 @@ interface CardProps {
 export const CardFase = ({ remes = 0, dispo = 0, anda = 0, empausa = 0, ...props }: CardProps) => {
   return (
     <CardContainer href={props.link}>
+
       <FigureIconCard backgroundColor={props.color}>
         <ImgIconCard src={props.srcImgIcon}></ImgIconCard>
       </FigureIconCard>
@@ -26,6 +27,7 @@ export const CardFase = ({ remes = 0, dispo = 0, anda = 0, empausa = 0, ...props
           </DataStrongCard>
         </TextBoxCard>
       )}
+
       {props.fase == 'Preparo' && (
         <TextBoxCard>
           <DataStrongCard>

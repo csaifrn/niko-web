@@ -72,6 +72,24 @@ export const UserModalAtividade = (props: UserModalAtividadeProps) => {
     (f) => f.name.toLowerCase().includes(searchTerm.toLowerCase()) || f.name.includes(searchTerm),
   );
 
+  const [closing , setClosing] = useState(false);
+
+  useEffect(() => {
+    // Ao renderizar o modal, aplicar um escalonamento gradual para exibi-lo
+    const timer = setTimeout(() => {
+      const modal = document.getElementById('modal-scaling');
+      if (closing === false && modal) {
+        modal.style.transform = 'scale(1)';
+      } else if (modal && closing) {
+        modal.style.transform = 'scale(0)';
+      }
+    }, 10);
+
+    return () => clearTimeout(timer);
+  }, [closing]);
+
+  
+
   const handleSave = () => {
     // Verifica se alguma lista de usuários em UserFase está vazia
     const isAnyUserFaseEmpty = UserFase.some((uf) => uf.users.length === 0);
@@ -84,18 +102,26 @@ export const UserModalAtividade = (props: UserModalAtividadeProps) => {
       }, 3000);
       return; // Aborta a função handleSave
     }
+    
     props.setUserFase(UserFase);
-    props.close();
+    handleClose();
+  };
+
+  const handleClose = () => {
+    setClosing(true);
+    setTimeout(() => {
+      props.close();
+    }, 300);
   };
 
   return (
     <>
       <S.ModalBackdrop>
-        <S.ModalArea>
+        <S.ModalArea id="modal-scaling">
           <S.ModalContent id="modal-content">
             <S.NameClose>
               <h2>Atribuir Lote</h2>
-              <S.Exit onClick={props.close}>
+              <S.Exit onClick={handleClose}>
                 <img src="/close.svg" alt="" height={18} width={18} />
               </S.Exit>
             </S.NameClose>

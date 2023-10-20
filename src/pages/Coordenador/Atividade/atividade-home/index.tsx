@@ -2,7 +2,7 @@ import { useState, useRef, useEffect } from 'react';
 import * as S from './styles';
 import Menu from '../../../../components/Menu';
 import MenuCoord from '../../../../components/MenuCoord';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import AtividadeData from '../../../../data/AtividadeData';
 import moment from 'moment';
 import { ArrowCircleRight, Check, PencilSimple } from '@phosphor-icons/react';
@@ -59,28 +59,21 @@ const Atividade = () => {
   }, [atividadesOrdenadas]);
 
   return (
-    <div style={{display:'flex' , justifyContent: 'center'}}>
+    <div style={{ display: 'flex', justifyContent: 'center' }}>
       <Menu area={`/Categoria/${id}`} id_projeto={id}></Menu>
       <MenuCoord />
       <S.AtividadesPage>
-
-        <S.AtivsCabecalho
-        >
+        <S.AtivsCabecalho>
           <S.TituloAtividades style={{ color: 'white', fontFamily: 'Rubik' }}>Atividades</S.TituloAtividades>
-          {auth.role == 'Coordenador' && (
-            <S.CriarAtiv
-              href={`/Atividades/${id}/CriarAtividade`}
-              style={{
-                border: 'none',
-                color: '#191C24',
 
-                borderRadius: '5px',
-                fontFamily: 'Rubik',
-              }}
-            >
-              <img src="/adicionar.svg" alt="adicionar atividade" />
-            </S.CriarAtiv>
+          {auth.role == 'Coordenador' && (
+            <Link to={`/Atividades/${id}/CriarAtividade`}>
+              <S.CriarAtiv>
+                <img src="/adicionar.svg" alt="botão de adicionar atividade" />
+              </S.CriarAtiv>
+            </Link>
           )}
+          
         </S.AtivsCabecalho>
 
         <S.AtivsPorDiaDiv
@@ -100,132 +93,117 @@ const Atividade = () => {
                   ref={atividade === atividadesOrdenadas[0] ? atividadeMaisProximaRef : null}
                   style={{ color: 'white', fontFamily: 'Rubik' }}
                 >
-                  <S.DataAtiv style={{ padding: '0 0 0.5em 0' }}>{`${atividade.data.getDate()}/${
-                    atividade.data.getMonth() + 1
-                  }/${atividade.data.getFullYear()}`}
+                  <S.DataAtiv style={{ padding: '0 0 0.5em 0' }}>
+                    {`${atividade.data.getDate()}/${atividade.data.getMonth() + 1}/${atividade.data.getFullYear()}`}
                   </S.DataAtiv>
-                  
-                  <S.Atividades>
 
+                  <S.Atividades>
                     {atividade.atividades.map((atv, index) => {
                       return (
-
                         <>
+                          <S.AtivCard key={index}>
+                            <S.EditDiv>
+                              <Link to={`/Atividades/${id}/Edit/${atividade.id}/${atv.id}`}>
+                                <S.Edit>
+                                  <PencilSimple size={16} weight="fill" color="#fff" />
+                                </S.Edit>
+                              </Link>
+                            </S.EditDiv>
 
-                        <S.AtivCard key={index}>
+                            <S.AtivsDetails>
+                              {atv.faseData.map((fase, indexfase) => {
+                                return (
+                                  <S.AtivPorFase key={indexfase}>
+                                    <div style={{ display: 'flex', alignItems: 'center', gap: '1em' }}>
+                                      <S.IconeFase src={`/icon-medium/${fase.faseData.titulo}.svg`} alt="" />
+                                      <S.TituloFase>{fase.faseData.titulo}</S.TituloFase>
+                                    </div>
 
-                          <S.EditDiv>
-                            <S.Edit
-                              href={`/Atividades/${id}/Edit/${atividade.id}/${atv.id}`}
-                              style={{
-                                display: 'flex',
-                                backgroundColor: '#191C24',
-                                height: '24px',
-                                width: '24px',
-                                alignItems: 'center',
-                                justifyContent: 'center',
-                                borderRadius: '5px',
-                                right: '2em',
-                                border: 'none',
-                              }}
-                              
-                            >
-                              <PencilSimple size={16} weight="fill" color="#fff" />
-                            </S.Edit>
-                          </S.EditDiv>
+                                    {fase.categoriasTipologias?.length != undefined && (
+                                      <div style={{ display: 'flex', gap: '0.5em' }}>
+                                        {fase.categoriasTipologias?.map((catTip) => {
+                                          return (
+                                            <div
+                                              key={catTip.id}
+                                              style={{
+                                                background: '#191C24',
+                                                padding: '5px 6px',
+                                                display: 'flex',
+                                                alignItems: 'center',
+                                                flexWrap: 'wrap',
+                                                borderRadius: '3px',
+                                              }}
+                                            >
+                                              {catTip.name}
+                                            </div>
+                                          );
+                                        })}
+                                      </div>
+                                    )}
 
-                          <S.AtivsDetails>
-                          {atv.faseData.map((fase, indexfase) => {
-                            return (
-                              <S.AtivPorFase key={indexfase}>
-                                <div style={{ display: 'flex', alignItems: 'center', gap: '1em' }}>
-                                  <S.IconeFase src={`/icon-medium/${fase.faseData.titulo}.svg`} alt="" />
-                                  <S.TituloFase>{fase.faseData.titulo}</S.TituloFase>
-                                </div>
+                                    {fase.users?.map((user) => {
+                                      // useEffect(() =>{
+                                      //   const operadores = document.getElementById('operador')
+                                      //   console.log(operadores);
+                                      //   operadores?.addEventListener('mouseenter', handleNomedoOperador)
+                                      // },[])
 
-                                {fase.categoriasTipologias?.length != undefined && (
-                                  <div style={{ display: 'flex', gap: '0.5em' }}>
-                                    {fase.categoriasTipologias?.map((catTip) => {
                                       return (
                                         <div
-                                          key={catTip.id}
+                                          key={user.user.id}
                                           style={{
-                                            background: '#191C24',
-                                            padding: '5px 6px',
                                             display: 'flex',
                                             alignItems: 'center',
                                             flexWrap: 'wrap',
-                                            borderRadius: '3px',
+                                            gap: '0.5em',
                                           }}
                                         >
-                                          {catTip.name}
+                                          <S.Operador>
+                                            <S.FotoOperador
+                                              src={user.user.url}
+                                              height={32}
+                                              width={32}
+                                              style={{ objectFit: 'cover', borderRadius: '100%' }}
+                                              alt=""
+                                            />
+
+                                            <S.NomeOperador>
+                                              <p>{user.user.name}</p>
+                                            </S.NomeOperador>
+                                          </S.Operador>
+
+                                          {user.Lotes?.map((lote) => {
+                                            return (
+                                              <div
+                                                key={lote.lote.id}
+                                                style={{
+                                                  background: '#191C24',
+                                                  padding: '5px 6px',
+                                                  height: '24px',
+                                                  display: 'flex',
+                                                  alignItems: 'center',
+                                                  flexWrap: 'wrap',
+                                                  borderRadius: '3px',
+                                                  gap: '0.5em',
+                                                }}
+                                              >
+                                                <p>{`Lote ${lote.lote.numero}`}</p>
+                                                {EtapaData.filter((etapa) => lote.lote.id_etapa === etapa.id)[0] &&
+                                                  EtapaData.filter((etapa) => lote.lote.id_etapa === etapa.id)[0]
+                                                    .id_fase !== fase.faseData.id && (
+                                                    <Check size={12} color="#43DB6D" />
+                                                  )}
+                                              </div>
+                                            );
+                                          })}
                                         </div>
                                       );
                                     })}
-                                  </div>
-                                )}
-
-                                {fase.users?.map((user) => {
-                                  // useEffect(() =>{
-                                  //   const operadores = document.getElementById('operador')
-                                  //   console.log(operadores);
-                                  //   operadores?.addEventListener('mouseenter', handleNomedoOperador)
-                                  // },[])
-
-                                   return (
-                                    <div
-                                      key={user.user.id}
-                                      style={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap', gap: '0.5em' }}
-                                    >
-
-                                      <S.Operador>
-                                        <S.FotoOperador
-                                          src={user.user.url}
-                                          height={32}
-                                          width={32}
-                                          style={{ objectFit: 'cover', borderRadius: '100%' }}
-                                          alt=""
-                                        />
-
-                                        <S.NomeOperador>
-                                          <p>{user.user.name}</p>
-                                        </S.NomeOperador>
-                                       
-                                      </S.Operador>
-
-
-
-                                      {user.Lotes?.map((lote) => {
-                                        return (
-                                          <div
-                                            key={lote.lote.id}
-                                            style={{
-                                              background: '#191C24',
-                                              padding: '5px 6px',
-                                              height: '24px',
-                                              display: 'flex',
-                                              alignItems: 'center',
-                                              flexWrap: 'wrap',
-                                              borderRadius: '3px',
-                                              gap: '0.5em',
-                                            }}
-                                          >
-                                            <p>{`Lote ${lote.lote.numero}`}</p>
-                                            {EtapaData.filter((etapa) => lote.lote.id_etapa === etapa.id)[0] &&
-                                              EtapaData.filter((etapa) => lote.lote.id_etapa === etapa.id)[0]
-                                                .id_fase !== fase.faseData.id && <Check size={12} color="#43DB6D" />}
-                                          </div>
-                                        );
-                                      })}
-                                    </div>
-                                  );
-                                })}
-                              </S.AtivPorFase>
-                            );
-                          })}
-                          </S.AtivsDetails>
-                          
-                        </S.AtivCard>
+                                  </S.AtivPorFase>
+                                );
+                              })}
+                            </S.AtivsDetails>
+                          </S.AtivCard>
                         </>
                       );
                     })}

@@ -149,6 +149,7 @@ const AtividadeEdit = () => {
     <div style={{ display: 'flex', justifyContent: 'center' }}>
       <Menu area={`/Categoria/${id}`} id_projeto={id}></Menu>
       <MenuCoord />
+
       <S.EditarAtivArea>
         <div
           style={{
@@ -228,8 +229,9 @@ const AtividadeEdit = () => {
           <S.Tarefas>
             <S.TituloBotaoAdd>
               <S.Titulo2>Tarefas</S.Titulo2>
+
               <S.BotaoAdd
-                style={{cursor: 'pointer'}}
+                style={{ cursor: 'pointer' }}
                 onClick={() => {
                   setModalTarefas(!modalTarefas);
                 }}
@@ -289,7 +291,7 @@ const AtividadeEdit = () => {
             <S.TituloBotaoAdd>
               <S.Titulo2>Categorias e Tipologias</S.Titulo2>
               <S.BotaoAdd
-                style={{cursor: 'pointer'}}
+                style={{ cursor: 'pointer' }}
                 onClick={() => {
                   SetModalCatTipo(!modalCatTipo);
                 }}
@@ -381,7 +383,7 @@ const AtividadeEdit = () => {
               {/* BOTÃO ATIVADO */}
               {tarefas.length > 0 && (
                 <S.BotaoAdd
-                  style={{cursor: 'pointer'}}
+                  style={{ cursor: 'pointer' }}
                   onClick={() => {
                     SetModalUsers(!modalUsers);
                   }}
@@ -470,38 +472,29 @@ const AtividadeEdit = () => {
                                   {user.name}
                                 </div>
                               </div>
-                              <div style={{ gap: 16, display: 'flex' }}>
-                                <button
-                                  onClick={() => {
-                                    setFaseName(tarefas.filter((tarefa: any) => tarefa.id === f.id_fase)[0].icone);
-                                    setName(user.name);
-                                    setIdUser(user.id);
-                                    setIdFase(f.id_fase);
-                                    SetModalAtribuirLote(true);
-                                  }}
+
+                              <S.AtribuirLoteButton
+                                onClick={() => {
+                                  setFaseName(tarefas.filter((tarefa: any) => tarefa.id === f.id_fase)[0].icone);
+                                  setName(user.name);
+                                  setIdUser(user.id);
+                                  setIdFase(f.id_fase);
+                                  SetModalAtribuirLote(true);
+                                }}
+                              >
+                                <p
                                   style={{
-                                    padding: 8,
-                                    background: '#43DB6D',
-                                    borderRadius: 5,
-                                    gap: 10,
-                                    display: 'flex',
-                                    border: 'none',
-                                    cursor: 'pointer'
+                                    color: '#191C24',
+                                    fontSize: 12,
+                                    fontFamily: 'Rubik',
+                                    fontWeight: '500',
+                                    wordWrap: 'break-word',
                                   }}
                                 >
-                                  <div
-                                    style={{
-                                      color: '#191C24',
-                                      fontSize: 12,
-                                      fontFamily: 'Rubik',
-                                      fontWeight: '500',
-                                      wordWrap: 'break-word',
-                                    }}
-                                  >
-                                    Atribuir Lote
-                                  </div>
-                                </button>
-                              </div>
+                                  Atribuir Lote
+                                </p>
+                              </S.AtribuirLoteButton>
+
                             </div>
                             <div style={{ gap: 8, display: 'flex', flexWrap: 'wrap' }}>
                               {LoteUser.filter((lote) => lote.id_user === user.id && lote.id_fase === f.id_fase)
@@ -569,6 +562,8 @@ const AtividadeEdit = () => {
         {UserFase.length > 0 && <S.EditAtivAtivado onClick={handleSave}>Editar Atividade</S.EditAtivAtivado>}
         {UserFase.length === 0 && <S.EditAtivDesativado>Editar Atividade</S.EditAtivDesativado>}
       </S.EditarAtivArea>
+
+      {/* MODAIS */}
       {modalTarefas && (
         <CreateAtividade
           close={() => {

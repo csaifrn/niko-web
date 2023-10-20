@@ -15,7 +15,21 @@ export const AtividadesPage = styled.div`
 
 export const TituloAtividades = styled.h1``;
 
-export const CriarAtiv = styled.a``;
+export const CriarAtiv = styled.button`
+  border: none;
+  border-radius: 100%;
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+  background-color: ${({ theme }) => theme.colors['gray/700']};
+  &:hover {
+    background-color: ${({ theme }) => theme.colors['gray/300']};
+  }
+  &:active {
+    background-color: ${({ theme }) => theme.colors['gray/300']};
+    transform: translateY(-5%) translateX(2%);
+  }
+`;
 
 export const AtivsCabecalho = styled.div`
   position: sticky;
@@ -26,7 +40,6 @@ export const AtivsCabecalho = styled.div`
   align-items: center;
   z-index: 98;
   justify-content: space-between;
-  
   background-color: #0a090e;
   ${media.greaterThan('large')`
     gap: 16px;
@@ -100,7 +113,25 @@ export const EditDiv = styled.div`
   `}
 `;
 
-export const Edit = styled.a``;
+export const Edit = styled.button`
+  display: flex;
+  background-color: #191c24;
+  height: 24px;
+  width: 24px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+  right: 2em;
+  border: none;
+  cursor: pointer;
+  &:hover {
+    background-color: ${({ theme }) => theme.colors['gray/400']};
+  }
+  &:active {
+    background-color: ${({ theme }) => theme.colors['gray/400']};
+    transform: translateY(-5%) translateX(2%);
+  }
+`;
 
 export const IconeFase = styled.img``;
 

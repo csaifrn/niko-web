@@ -35,10 +35,13 @@ export const ContainerCriarProjeto = styled.div`
   `}
 `;
 
-export const BotaoCriarProjeto = styled.div`
+export const BotaoCriarProjeto = styled.button`
   width: 24px;
   height: 24px;
   border-radius: 100%;
+  border: none;
+  cursor: pointer;
+  background-color: ${({ theme }) => theme.colors['gray/700']};
   &:hover {
     background-color: ${({ theme }) => theme.colors['gray/300']};
   }

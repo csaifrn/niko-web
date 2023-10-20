@@ -18,8 +18,6 @@ export const EditarAtivArea = styled.div`
 
 export const Titulo = styled.h1`
   color: #ffffff;
-  ${media.greaterThan('large')`
-  `}
 `;
 
 export const Exit = styled.button`
@@ -32,8 +30,14 @@ export const Exit = styled.button`
   align-items: center;
   border: none;
   cursor: pointer;
+  &:hover {
+    background-color: ${({ theme }) => theme.colors['gray/400']};
+  }
+  &:active {
+    background-color: ${({ theme }) => theme.colors['gray/400']};
+    transform: translateY(-5%) translateX(2%);
+  }
 `;
-
 
 export const Titulo2 = styled.h2`
   color: #ffffff;
@@ -54,14 +58,37 @@ export const TituloBotaoAdd = styled.div`
   `}
 `;
 
+export const AtribuirLoteButton = styled.button`
+  padding: 8px;
+  background-color: #43db6d;
+  border-radius: 5px;
+  gap: 10;
+  display: flex;
+  border: none;
+  cursor: pointer;
+  &:hover {
+    background-color: ${({ theme }) => theme.colors['green/600']};
+  }
+  &:active {
+    background-color: ${({ theme }) => theme.colors['green/600']};
+    transform: translateY(-5%) translateX(2%);
+  }
+`;
+
 export const BotaoAdd = styled.button`
   border: none;
   background-color: transparent;
   display: flex;
   align-items: center;
   justify-content: center;
-  ${media.greaterThan('large')`
-  `}
+  border-radius: 100%;
+  &:hover {
+    background-color: ${({ theme }) => theme.colors['gray/300']};
+  }
+  &:active {
+    background-color: ${({ theme }) => theme.colors['gray/300']};
+    transform: translateY(-5%) translateX(2%);
+  }
 `;
 
 export const Tarefas = styled.div`
@@ -160,6 +187,13 @@ export const EditAtivAtivado = styled.button`
   border: none;
   width: 100%;
   cursor: pointer;
+  &:hover {
+    background-color: ${({ theme }) => theme.colors['green/600']};
+  }
+  &:active {
+    background-color: ${({ theme }) => theme.colors['green/600']};
+    transform: translateY(-5%) translateX(2%);
+  }
   ${media.greaterThan('large')`
     width: fit-content;
     `}

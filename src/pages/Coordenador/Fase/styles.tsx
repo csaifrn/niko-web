@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 import media from 'styled-media-query';
 
-// Create a Title component that'll render an <h1> tag with some styles
 const Title = styled.a`
   font-family: 'Rubik';
   text-decoration: none;
@@ -18,21 +17,24 @@ export const FasePage = styled.div`
   `}
 `;
 
-
-const Main = styled.section`
-  margin: 2em 8em;
-  margin-top: 8.5em;
+const Main = styled.div`
+  //Tem nos 2
   display: grid;
-  grid-template-columns: auto auto;
   justify-items: center;
   justify-content: center;
-  grid-gap: 1.25em;
 
-  ${media.greaterThan('large')`
-    margin: 40em;
-    margin-top: 14em;
-    grid-gap: 2.5em;
-    grid-template-columns: 1fr 1fr 1fr;
+  //só do desktop
+  margin: 40em;
+  margin-top: 14em;
+  grid-gap: 2.5em;
+  grid-template-columns: 1fr 1fr 1fr;
+
+  ${media.lessThan('small')`
+    // só do mobile
+    margin: 2em 8em;
+    margin-top: 8.5em;
+    grid-gap: 1.25em;
+    grid-template-columns: auto auto;
   `}
 `;
 

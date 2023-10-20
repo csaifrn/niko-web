@@ -15,7 +15,7 @@ interface CreateAtividadeProps {
 export const CreateAtividade = (props: CreateAtividadeProps) => {
   const [searchTerm, setSearchTerm] = useState<string>('');
   const [newAtividade, setNewAtividade] = useState<string>('');
-  const [closing] = useState(false);
+  const [closing, setClosing] = useState(false);
 
   useEffect(() => {
     // Ao renderizar o modal, aplicar um escalonamento gradual para exibi-lo
@@ -53,7 +53,14 @@ export const CreateAtividade = (props: CreateAtividadeProps) => {
   const handleSave = () => {
     props.setTarefas([...tarefasFase, ...listNewAtividades]);
     props.setTarefasData([tarefasFase, listNewAtividades]);
-    props.close();
+    handleClose();
+  };
+
+  const handleClose = () => {
+    setClosing(true);
+    setTimeout(() => {
+      props.close();
+    }, 300);
   };
 
   const filteredTitulo = FaseData.filter((faseData) =>
@@ -68,41 +75,9 @@ export const CreateAtividade = (props: CreateAtividadeProps) => {
             <S.NameClose>
               <h2>Tarefas</h2>
 
-                <S.Exit
-                  onClick={props.close}
-                >
-                  <img src="/close.svg" alt="" height={18} width={18} />
-                </S.Exit>
-
-              {/* <button onClick={props.close} style={{ border: 'none', backgroundColor: 'transparent' , cursor: 'pointer'}}>
-                <div
-                  style={{
-                    paddingLeft: 8,
-                    paddingRight: 8,
-                    paddingTop: 5,
-                    paddingBottom: 5,
-                    background: '#191C24',
-                    borderRadius: 3,
-                    flexDirection: 'column',
-                    justifyContent: 'flex-start',
-                    alignItems: 'flex-start',
-                    gap: 10,
-                    display: 'inline-flex',
-                  }}
-                >
-                  <div
-                    style={{
-                      color: 'white',
-                      fontSize: 12,
-                      fontFamily: 'Rubik',
-                      fontWeight: '700',
-                      wordWrap: 'break-word',
-                    }}
-                  >
-                    <img src="/close.svg" alt="" height={18} width={18} />
-                  </div>
-                </div>
-              </button> */}
+              <S.Exit onClick={handleClose}>
+                <img src="/close.svg" alt="" height={18} width={18} />
+              </S.Exit>
             </S.NameClose>
             <Search searchTerm={searchTerm} handleSearchChange={handleSearchChange} />
             <S.ChooseUser>
@@ -143,7 +118,8 @@ export const CreateAtividade = (props: CreateAtividadeProps) => {
                   width: '100%',
                 }}
               />
-              <button
+
+              <S.BotaoAdd
                 onClick={() => {
                   if (newAtividade.length >= 0 && newAtividade != '') {
                     setListNewAtividades((old) => [
@@ -163,7 +139,7 @@ export const CreateAtividade = (props: CreateAtividadeProps) => {
                 }}
               >
                 <img src="/adicionar.svg" alt="" />
-              </button>
+              </S.BotaoAdd>
             </div>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '1em' }}>
               {listNewAtividades.map((categ: any) => {

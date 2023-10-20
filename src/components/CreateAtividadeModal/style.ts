@@ -34,13 +34,20 @@ export const NameClose = styled.div`
 export const Exit = styled.button`
   height: 2em;
   width: 2em;
-  background-color: #191C24;
+  background-color: #191c24;
   border-radius: 3px;
   display: flex;
   justify-content: center;
   align-items: center;
   border: none;
   cursor: pointer;
+  &:hover {
+    background-color: ${({ theme }) => theme.colors['gray/400']};
+  }
+  &:active {
+    background-color: ${({ theme }) => theme.colors['gray/400']};
+    transform: translateY(-5%) translateX(2%);
+  }
 `;
 
 export const TituloDiv = styled.div`
@@ -55,6 +62,22 @@ export const Titulo = styled.input`
   color: white;
   border: none;
   font-family: 'Rubik';
+`;
+
+export const BotaoAdd = styled.button`
+  border: none;
+  background-color: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 100%;
+  &:hover {
+    background-color: ${({ theme }) => theme.colors['gray/300']};
+  }
+  &:active {
+    background-color: ${({ theme }) => theme.colors['gray/300']};
+    transform: translateY(-5%) translateX(2%);
+  }
 `;
 
 export const LocalDiv = styled.div`
@@ -102,11 +125,18 @@ export const AtribuirButton = styled.button`
   border-radius: 5px;
   background-color: #43db6d;
   border: none;
-  color: #191C24;
+  color: #191c24;
   font-family: 'Rubik';
   bottom: 0;
   left: 0;
   cursor: pointer;
+  &:hover {
+    background-color: ${({ theme }) => theme.colors['green/600']};
+  }
+  &:active {
+    background-color: ${({ theme }) => theme.colors['green/600']};
+    transform: translateY(-5%) translateX(2%);
+  }
 `;
 
 export const ModalBackdrop = styled.div`

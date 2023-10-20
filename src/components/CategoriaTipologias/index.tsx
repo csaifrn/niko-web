@@ -46,7 +46,7 @@ export const CategoriasTipologias = (props: CategoriasTipologiasProps) => {
     (catg) => catg.name.toLowerCase().includes(searchTerm.toLowerCase()) || catg.name.includes(searchTerm),
   );
 
-  const [closing] = useState(false);
+  const [closing , setClosing] = useState(false);
 
   useEffect(() => {
     // Ao renderizar o modal, aplicar um escalonamento gradual para exibi-lo
@@ -65,7 +65,14 @@ export const CategoriasTipologias = (props: CategoriasTipologiasProps) => {
   const handleSave = () => {
     props.setCategoria(categorias);
     props.setTipologia(tipologias);
-    props.close();
+    handleClose();
+  };
+
+  const handleClose = () => {
+    setClosing(true);
+    setTimeout(() => {
+      props.close();
+    }, 300);
   };
 
   useEffect(() => {
@@ -83,7 +90,7 @@ export const CategoriasTipologias = (props: CategoriasTipologiasProps) => {
           <S.ModalContent id="modal-content">
             <S.NameClose>
               <h2>Categorias e Tipologias</h2>
-              <S.Exit type="button" onClick={props.close}>
+              <S.Exit type="button" onClick={handleClose}>
                 <img src="/close.svg" alt="" height={18} width={18} />
               </S.Exit>
             </S.NameClose>

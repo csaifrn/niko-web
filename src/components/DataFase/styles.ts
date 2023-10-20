@@ -8,9 +8,9 @@ const DataUser = styled.div`
   justify-content: space-between;
   gap: 3em;
   padding: 2em;
-  ${media.greaterThan('large')`
+  ${media.greaterThan('medium')`
     justify-content: start;
-    gap: 1em;
+    gap: 2em;
   `}
 `;
 
@@ -18,15 +18,20 @@ const SideUser = styled.div`
   display: flex;
   flex-direction: column;
   gap: 1em;
-  ${media.greaterThan('large')`
-    display: grid;
-    grid-template-columns: repeat(3, 1fr)
+  ${media.greaterThan('medium')`
+  flex-direction: row;
+  gap: 2em;
   `}
 `;
 
 const Fase = styled.div`
   display: flex;
   gap: 1em;
+  ${media.greaterThan('large')`
+    flex-direction: column;
+    gap: 1em;
+    width: 70px;
+  `}
 `;
 
 const Icon = styled.img`

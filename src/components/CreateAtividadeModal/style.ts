@@ -112,12 +112,29 @@ export const ChooseUser = styled.div`
   display: flex;
   flex-direction: column;
   gap: 1em;
-  overflow: auto;
-  scroll-behavior: auto;
   padding: 0;
   margin: 1em 0;
+  overflow: auto;
   scroll-behavior: auto;
   scrollbar-width: thin;
+  &::-webkit-scrollbar {
+    width: 0.8em;
+    height: 0.5em;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: #191c24;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: #2a2e38;
+    border-radius: 20px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background-color: transparent;
+    margin: 0em;
+  }
 `;
 
 export const AtribuirButton = styled.button`

@@ -196,7 +196,7 @@ export const EditAtivAtivado = styled.button`
   }
   ${media.greaterThan('large')`
     width: fit-content;
-    `}
+  `}
 `;
 
 export const EditAtivDesativado = styled.button`

@@ -139,7 +139,7 @@ export const AtribuirModalAtividade = (props: AtribuirModalAtividadeProps) => {
               </S.Exit>
             </S.NameClose>
 
-            <img height={24} width={24} src={`${props.nameFase}`} alt="Icone de Etapa" />
+            <img height={32} width={32} src={`${props.nameFase}`} alt="Icone da fase" />
 
             <Search searchTerm={searchTerm} handleSearchChange={handleSearchChange} />
 

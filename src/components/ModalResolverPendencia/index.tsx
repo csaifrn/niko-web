@@ -86,13 +86,18 @@ export const ModalResolverPendencia = (props: ModalPendencia) => {
       <S.Wrapper id="modal-scaling">
         <S.ContainerDataDependencias onSubmit={handleSave}>
           <S.ContainerData>
+
             <S.ContainerNumber>
               <S.QtdLotes>Resolver Pêndencia</S.QtdLotes>
+
               <S.Exit type="button" onClick={handleClose}>
                 <img src="/close.svg" alt="" height={18} width={18} />
               </S.Exit>
+
             </S.ContainerNumber>
+
             <S.DataAcao>
+
               {props.pendencia.fase_final && props.pendencia.fase_final.length > 0 ? (
                 <S.DataAcao>
                   <S.ContainerImg src={`/icon-medium/${props.pendencia.fase_atual}.svg`} />
@@ -108,6 +113,7 @@ export const ModalResolverPendencia = (props: ModalPendencia) => {
                   <S.ContainerImg src={`/icon-medium/${props.pendencia.fase_atual}.svg`} />
                 </S.Fase>
               )}
+
               {props.pendencia.fase_final && props.pendencia.fase_final.length > 0 && (
                 <S.DataOkX>
                   <S.LabelRadio>
@@ -145,14 +151,16 @@ export const ModalResolverPendencia = (props: ModalPendencia) => {
                 </S.DataOkX>
               )}
             </S.DataAcao>
+
             <S.TextComment>
               <S.PendIconText>
                 <Warning size={24} color={theme.colors['yellow/300']} weight="fill" />
                 <S.DataFaseTxt>{props.pendencia.comment}</S.DataFaseTxt>
               </S.PendIconText>
             </S.TextComment>
+            
             <S.ErrorMessage>{validationFormError.comment}</S.ErrorMessage>
-            <S.TextAlerta placeholder="comment" id="comment" name="comment" maxLength={100} />
+            <S.TextAlerta placeholder="Comentário" id="comment" name="comment" maxLength={100} />
             <S.ErrorMessage>{validationFormError.decision}</S.ErrorMessage>
             <S.YelloButton type="submit">Resolver Pendencia</S.YelloButton>
           </S.ContainerData>

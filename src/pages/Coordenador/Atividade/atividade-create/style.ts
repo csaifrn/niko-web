@@ -179,9 +179,16 @@ export const AddAtivAtivado = styled.button`
   border: none;
   width: 100%;
   cursor: pointer;
+  &:hover {
+    background-color: ${({ theme }) => theme.colors['green/600']};
+  }
+  &:active {
+    background-color: ${({ theme }) => theme.colors['green/600']};
+    transform: translateY(-5%) translateX(2%);
+  }
   ${media.greaterThan('large')`
     width: fit-content;
-    `}
+  `}
 `;
 
 export const AddAtivDesativado = styled.button`

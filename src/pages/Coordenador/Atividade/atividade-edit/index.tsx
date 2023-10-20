@@ -475,7 +475,7 @@ const AtividadeEdit = () => {
 
                               <S.AtribuirLoteButton
                                 onClick={() => {
-                                  setFaseName(tarefas.filter((tarefa: any) => tarefa.id === f.id_fase)[0].icone);
+                                  setFaseName(tarefas.filter((tarefa: any) => tarefa.id === f.id_fase)[0].titulo);
                                   setName(user.name);
                                   setIdUser(user.id);
                                   setIdFase(f.id_fase);

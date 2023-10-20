@@ -106,7 +106,7 @@ export const CreateAtividade = (props: CreateAtividadeProps) => {
               <input
                 type="text"
                 onChange={handleNewAtividade}
-                placeholder="Adicionar Outro"
+                placeholder="Adicionar outra tarefa"
                 style={{
                   color: '#fff',
                   fontFamily: 'Rubik',

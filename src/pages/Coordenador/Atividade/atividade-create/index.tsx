@@ -431,26 +431,26 @@ const AtividadeCreate = () => {
                             </div>
 
                             <S.AtribuirLoteButton
-                              onClick={() => {
-                                setFaseName(tarefas.filter((tarefa) => tarefa.id === f.id_fase)[0].icone);
-                                setName(user.name);
-                                setIdUser(user.id);
-                                setIdFase(f.id_fase);
-                                SetModalAtribuirLote(true);
-                              }}
-                              style={{
-                                color: '#191C24',
-                                fontSize: 12,
-                                fontFamily: 'Rubik',
-                                fontWeight: '500',
-                                wordWrap: 'break-word',
-                                border: 'none',
-                                backgroundColor: 'transparent',
-                                cursor: 'pointer',
-                              }}
-                            >
-                              Atribuir Lote
-                            </S.AtribuirLoteButton>
+                                onClick={() => {
+                                  setFaseName(tarefas.filter((tarefa: any) => tarefa.id === f.id_fase)[0].icone);
+                                  setName(user.name);
+                                  setIdUser(user.id);
+                                  setIdFase(f.id_fase);
+                                  SetModalAtribuirLote(true);
+                                }}
+                              >
+                                <p
+                                  style={{
+                                    color: '#191C24',
+                                    fontSize: 12,
+                                    fontFamily: 'Rubik',
+                                    fontWeight: '500',
+                                    wordWrap: 'break-word',
+                                  }}
+                                >
+                                  Atribuir Lote
+                                </p>
+                              </S.AtribuirLoteButton>
 
                           </div>
 

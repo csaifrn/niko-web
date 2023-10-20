@@ -13,11 +13,17 @@ const CategoriaCard = (Categoria: (typeof CategoriaData)[0]) => {
 
   const [prioridade, setPrioridade] = useState(false);
 
-  const handlePrioridade = () => {
+  const handlePrioridade = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.stopPropagation();
     setPrioridade(!prioridade);
   };
 
-  const handleDeletar = () => {
+  const handleDeletar = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.stopPropagation();
+    setModal(!modal);
+  };
+
+  const handleClose = () => {
     setModal(!modal);
   };
 
@@ -67,28 +73,14 @@ const CategoriaCard = (Categoria: (typeof CategoriaData)[0]) => {
             percentageCallback={handlePercentage}
           />
           <S.BtnsDiv>
-            <button
-              onClick={handlePrioridade}
-              style={{
-                border: 'none',
-                fontFamily: 'Rubik',
-                height: '44px',
-                width: '100%',
-                display: 'flex',
-                justifyContent: 'center',
-                backgroundColor: '#120F1F',
-                alignItems: 'center',
-                borderRadius: '5px',
-                color: prioridade ? '#F32D2D' : '#fff',
-              }}
-            >
+            <S.ButtonPrioridade onClick={(e) => handlePrioridade(e)}>
               {prioridade ? 'Tirar Prioridade' : 'Marcar Prioridade'}
-            </button>
-            <S.ButtonDelete onClick={handleDeletar}>Deletar Categoria</S.ButtonDelete>
+            </S.ButtonPrioridade>
+            <S.ButtonDelete onClick={(e) => handleDeletar(e)}>Deletar Categoria</S.ButtonDelete>
           </S.BtnsDiv>
         </S.Footer>
       </S.totalArea>
-      {modal && <DeletarModal title={'Deletar Categoria?'} close={handleDeletar}></DeletarModal>}
+      {modal && <DeletarModal title={'Deletar Categoria?'} close={handleClose}></DeletarModal>}
     </>
   );
 };

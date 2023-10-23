@@ -9,14 +9,15 @@ interface ConfigModalProps {
   id: string;
   prioridade: boolean;
   close: () => void;
+  priorityOnChange: (e: boolean) => void;
 }
 
 export const ConfigModal = (props: ConfigModalProps) => {
   const [Pchecked, setPChecked] = useState(props.prioridade);
 
   const Priority = useMutation(PatchBatchePriority, {
-    onSuccess: () => {
-      toast.success(`Prioride ${Pchecked ? 'foi ativada' : 'foi desativada'}!`);
+    onSuccess: (data) => {
+      toast.success(`Prioride ${data.priority ? 'foi ativada' : 'foi desativada'}!`);
     },
     onError: (error: ApiError) => {
       toast.error(error.response!.data.message);
@@ -24,11 +25,21 @@ export const ConfigModal = (props: ConfigModalProps) => {
   });
 
   const handlePrioridadeCheck = () => {
-    setPChecked(!Pchecked);
-    Priority.mutate({
-      id: props.id,
-      priority: Pchecked,
-    });
+    if (Pchecked) {
+      setPChecked(false);
+      props.priorityOnChange(false);
+      Priority.mutate({
+        id: props.id,
+        priority: false,
+      });
+    } else {
+      setPChecked(true);
+      props.priorityOnChange(true);
+      Priority.mutate({
+        id: props.id,
+        priority: true,
+      });
+    }
   };
 
   // const [compartChecked, setCompartChecked] = useState(props.valor_compart);

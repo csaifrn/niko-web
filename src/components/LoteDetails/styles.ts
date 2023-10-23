@@ -275,9 +275,9 @@ export const Pendencias = styled.div`
 `;
 
 export const Observações = styled.div`
-  overflow: hidden;
   display: flex;
   flex-direction: column;
+  transition: all;
   gap: 16px;
   background: #393e4b;
   border-radius: 5px;
@@ -329,8 +329,6 @@ export const BotaoResolverPend = styled.button`
     transform: translateY(-5%) translateX(2%);
   }
 `;
-
-
 
 export const Botoes = styled.div`
   display: flex;

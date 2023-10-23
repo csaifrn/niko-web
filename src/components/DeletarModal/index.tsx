@@ -4,6 +4,7 @@ import * as S from './styles';
 interface DeletarModalProps {
   title: string;
   close: () => void;
+  deleteFunction?: () => void;
 }
 
 export const DeletarModal = (props: DeletarModalProps) => {
@@ -23,6 +24,10 @@ export const DeletarModal = (props: DeletarModalProps) => {
   }, [closing]);
 
   const handleClose = () => {
+    if (props.deleteFunction) {
+      props.deleteFunction();
+    }
+
     setClosing(true);
     setTimeout(() => {
       props.close();

@@ -10,9 +10,9 @@ import { CreateObservation } from '../../api/services/batches/observation/post-o
 import { CreateObservationResponse } from '../../api/services/batches/observation/post-observation/post.interface';
 import toast from 'react-hot-toast';
 import { ApiError } from '../../api/services/authentication/signIn/signIn.interface';
-import { ErrorMessage } from '../UltimoLote/styles';
-import { Observation } from '../../api/services/batches/get-batche/get.interface';
 
+import { Observation } from '../../api/services/batches/get-batche/get.interface';
+import { ErrorMessage } from '../../pages/Login/styles';
 
 interface DeletarModalProps {
   title: string;
@@ -22,7 +22,7 @@ interface DeletarModalProps {
   observations: Observation[];
 }
 
-export const SuccessModal = (props: DeletarModalProps) => {
+export const CreateObservationModal = (props: DeletarModalProps) => {
   const [closing, setClosing] = useState(false);
   const [observation, setObservation] = useState('');
   const { id } = useParams();
@@ -116,7 +116,8 @@ export const SuccessModal = (props: DeletarModalProps) => {
               value={observation}
               onChange={(e) => setObservation(e.currentTarget.value)}
             />
-            <ErrorMessage>{validationFormError.observation}</ErrorMessage>
+            {validationFormError.observation && <ErrorMessage>{validationFormError.observation}</ErrorMessage>}
+
             <S.Green onClick={handleSave}>Salvar</S.Green>
           </S.ModalContent>
         </S.ModalArea>

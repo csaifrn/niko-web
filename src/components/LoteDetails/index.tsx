@@ -14,7 +14,7 @@ import { Empty } from '../EmptyPage';
 import Splash from '../../pages/Splash';
 import { Plus } from '@phosphor-icons/react';
 import theme from '../../global/theme';
-import { SuccessModal } from '../SuccessModal';
+import { CreateObservationModal } from '../Observation-modal-create';
 import { LoteData } from '../../data/LoteData';
 import FaseData from '../../data/FaseData';
 
@@ -414,10 +414,11 @@ export const LoteDetails = () => {
             close={() => {
               setConfigModal(!config_modal);
             }}
+            priorityOnChange={(e: boolean) => setPriority(e)}
           ></ConfigModal>
         )}
         {observacao && (
-          <SuccessModal
+          <CreateObservationModal
             observations={observations!}
             refetch={(Obs: Observation[]) => {
               setObservations(Obs);

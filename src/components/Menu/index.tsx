@@ -46,17 +46,21 @@ export const Menu = (props: MenuProps) => {
       <S.MenuArea>
         {props.id_projeto && (
           <S.ContainerA>
+
             <S.ButtonBurger open={open} onClick={handleClickButton}>
               <S.MenuImg src="/menu.svg" />
             </S.ButtonBurger>
+            
             <S.LinkLogo href={`/Painel/${id}`}>
               <S.MenuImg src="/Logo_Niko.svg" />
             </S.LinkLogo>
+
             {open && props.id_projeto != undefined && (
               <MenuBurger area={props.area} id_projeto={props.id_projeto} onClose={() => setOpen(false)} />
             )}
 
             <S.MenuDesk>
+              
               <MenuC.link href={`/Painel/${id}`}>
                 <MenuC.MenuImg
                   src={
@@ -68,6 +72,7 @@ export const Menu = (props: MenuProps) => {
                 {pathname === `/Painel/${id}` && <MenuC.textIcon style={{ color: '#F3802D' }}>Painel</MenuC.textIcon>}
                 {pathname !== `/Painel/${id}` && <MenuC.textIcon>Painel</MenuC.textIcon>}
               </MenuC.link>
+
               <MenuC.link href={`/Atividades/${id}`}>
                 <MenuC.MenuImg
                   src={
@@ -79,6 +84,7 @@ export const Menu = (props: MenuProps) => {
                 )}
                 {pathname !== `/Atividades/${id}` && <MenuC.textIcon>Atividades</MenuC.textIcon>}
               </MenuC.link>
+
               <MenuC.link href={`/Fase/${id}`}>
                 <MenuC.MenuImg
                   src={
@@ -112,17 +118,21 @@ export const Menu = (props: MenuProps) => {
             </S.MenuDesk>
           </S.ContainerA>
         )}
+
         {props.id_projeto == undefined && (
           <S.LinkLogo href={`/Projetos`}>
             <S.MenuImg src="/Logo_Niko.svg" />
           </S.LinkLogo>
         )}
+
         <S.ContainerLogo>
           <a href={props.id_projeto ? `/Fase/${id}` : '/Projetos'}>
             <S.MenuImg src="/Logo_Niko.svg" />
           </a>
         </S.ContainerLogo>
+        
         <S.MenuLeft>
+
           {/* <S.MenuLupaMobile src="/Lupa.svg" /> */}
           {/* <S.InputSearch>
             <p>Em desenvolvimento..</p>
@@ -139,6 +149,7 @@ export const Menu = (props: MenuProps) => {
                 setDropDown(!DropDown);
               }}
             />
+
             <div
               style={{
                 display: `${DropDown ? 'block' : 'none'}`,

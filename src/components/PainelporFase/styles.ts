@@ -148,9 +148,6 @@ export const Container = styled.div`
   flex-direction: column;
   gap: 16px;
   width: 100%;
-  @media (min-width: 520px) {
-    flex-direction: column;
-  }
   @media (min-width: 620px) {
     flex-direction: row;
   }

@@ -41,6 +41,7 @@ export const CardFase = ({ remes = 0, dispo = 0, anda = 0, empausa = 0, ...props
           </DataStrongCard>
         </TextBoxCard>
       )}
+
       {props.fase != 'Preparo' && props.fase != 'Recepcao' && props.fase != 'Arquivamento' && (
         <TextBoxCard>
           <DataStrongCard>
@@ -59,6 +60,7 @@ export const CardFase = ({ remes = 0, dispo = 0, anda = 0, empausa = 0, ...props
           </DataStrongCard>
         </TextBoxCard>
       )}
+
       {props.fase == 'Arquivamento' && (
         <TextBoxCard>
           <DataStrongCard>
@@ -67,7 +69,7 @@ export const CardFase = ({ remes = 0, dispo = 0, anda = 0, empausa = 0, ...props
           </DataStrongCard>
         </TextBoxCard>
       )}
+      
     </CardContainer>
   );
 };
-// teste

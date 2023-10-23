@@ -7,8 +7,10 @@ interface ColorProps {
 
 const CardContainer = styled.a`
   text-decoration: none;
-  width: 9.6em;
+  /* width: 9.6em; */
   height: 9em;
+  width: 100%;
+  //height: 100%;
   overflow: hidden;
   border-radius: 20px;
   display: flex;
@@ -17,39 +19,55 @@ const CardContainer = styled.a`
   &:hover {
     filter: brightness(0.9);
   }
-  ${media.greaterThan('large')`
-    width: 20.6em;
+  @media screen and (min-width: 767px) {
+    //margin: 40em;
+    width: 100%;
+    height: 100%;    
+    min-height: 15em;
+  }
+  /* ${media.greaterThan('large')`
+    width: 100%;
     height: 17em;
-  `}
+  `} */
 `;
 
 const FigureIconCard = styled.figure<ColorProps>`
   display: flex;
-  width: 9.6em;
+  width: 100%;
   height: 100%;
   background-color: ${(props) => props.backgroundColor};
   align-items: center;
   justify-content: center;
-  ${media.greaterThan('large')`
+  @media screen and (min-width: 767px) {
     width: 18.6em;
-  `}
+  }
+  /* ${media.greaterThan('large')`
+    width: 18.6em;
+  `} */
 `;
 
 const ImgIconCard = styled.img`
   width: 2.8em;
   height: 2.8em;
-  ${media.greaterThan('large')`
+  @media screen and (min-width: 767px) {
     width: 4.8em;
     height: 4.8em;
-  `}
+  }
+  /* ${media.greaterThan('large')`
+    width: 4.8em;
+    height: 4.8em;
+  `} */
 `;
 
 const NumberCard = styled.span<ColorProps>`
   font-size: 24px;
   color: ${(props) => props.backgroundColor};
-  ${media.greaterThan('large')`
+  @media screen and (min-width: 767px) {
+    font-size: 36px;
+  }
+  /* ${media.greaterThan('large')`
   font-size: 36px;
-  `}
+  `} */
 `;
 
 const DataStrongCard = styled.strong`
@@ -66,18 +84,22 @@ const TextBoxCard = styled.div`
   font-size: 8px;
   background-color: #191c24;
   width: 100%;
-  ${media.greaterThan('large')`
+  @media screen and (min-width: 767px) {
     gap: 20px;
-  `}
+  }
+  /* ${media.greaterThan('large')`
+    gap: 20px;
+  `} */
 `;
 
 export const NomeEtapa = styled.p`
-
   font-size: 8px;
-
-  ${media.greaterThan('large')`
+  @media screen and (min-width: 767px) {
     font-size: 12px;
-  `}
+  }
+  /* ${media.greaterThan('large')`
+    font-size: 12px;
+  `} */
 `;
 
 export { CardContainer, FigureIconCard, NumberCard, TextBoxCard, DataStrongCard, ImgIconCard };

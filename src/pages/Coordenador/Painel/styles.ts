@@ -8,9 +8,12 @@ export const PainelArea = styled.div`
   gap: 32px;
   flex-direction: column;
   max-width: 1140px;
-  ${media.greaterThan('large')`
+  /* ${media.greaterThan('large')`
     padding: 10em 0em 2em 0em;
-  `}
+  `} */
+  @media screen and (min-width: 767px) {
+    padding: 10em 0em 2em 0em;
+  }
 `;
 
 export const PainelTitulo = styled.h1`

@@ -62,6 +62,7 @@ const Atividade = () => {
     <div style={{ display: 'flex', justifyContent: 'center' }}>
       <Menu area={`/Categoria/${id}`} id_projeto={id}></Menu>
       <MenuCoord />
+      
       <S.AtividadesPage>
         <S.AtivsCabecalho>
           <S.TituloAtividades style={{ color: 'white', fontFamily: 'Rubik' }}>Atividades</S.TituloAtividades>

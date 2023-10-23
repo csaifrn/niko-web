@@ -8,9 +8,13 @@ export const AtividadesPage = styled.div`
   max-width: 1140px;
   width: 100%;
   padding: 3em 2em 10em 2em;
-  ${media.greaterThan('large')`
+
+  @media screen and (min-width: 767px) {
     padding: 3em 0em 2em 0em;
-  `}
+  }
+  /* ${media.greaterThan('large')`
+    padding: 3em 0em 2em 0em;
+  `} */
 `;
 
 export const TituloAtividades = styled.h1``;
@@ -41,10 +45,14 @@ export const AtivsCabecalho = styled.div`
   z-index: 98;
   justify-content: space-between;
   background-color: #0a090e;
-  ${media.greaterThan('large')`
+  /* ${media.greaterThan('large')`
     gap: 16px;
     justify-content: flex-start;
-  `}
+  `} */
+  @media screen and (min-width: 767px) {
+    gap: 16px;
+    justify-content: flex-start;
+  }
 `;
 
 export const AtivsPorDiaDiv = styled.div``;
@@ -60,57 +68,83 @@ export const Atividades = styled.div`
   display: flex;
   flex-direction: column;
   gap: 2em;
-  ${media.greaterThan('large')`
+  /* ${media.greaterThan('large')`
     display:flex;
     flex-direction: row;
     gap:2em;
-  `}
+  `} */
+  @media screen and (min-width: 767px) {
+    display:flex;
+    flex-direction: row;
+    gap:2em;
+  }
 `;
 
 export const AtivCard = styled.div`
   padding: 2em;
+
   background-color: #393e4b;
   display: flex;
   flex-direction: column;
   gap: 2em;
   border-radius: 5px;
   position: relative;
-  ${media.greaterThan('large')`
+  /* ${media.greaterThan('large')`
     display:flex;
     flex-direction: column;
-  `}
+  `} */
+  @media screen and (min-width: 767px) {
+    display:flex;
+    flex-direction: column;
+  }
 `;
 
 export const AtivsDetails = styled.div`
   display: flex;
   flex-direction: column;
   gap: 24px;
-  ${media.greaterThan('large')`
+  /* ${media.greaterThan('large')`
     display:flex;
     flex-direction: row;
     gap: 32px;
     align-items: start;
-  `}
+  `} */
+  @media screen and (min-width: 767px) {
+    display:flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    gap: 32px;
+    align-items: start;
+  }
 `;
 
 export const AtivPorFase = styled.div`
   display: flex;
   flex-direction: column;
   gap: 16px;
-  ${media.greaterThan('large')`
+  /* ${media.greaterThan('large')`
     display:flex;
     flex-direction: column;
     gap: 16px;
-  `}
+  `} */
+  @media screen and (min-width: 767px) {
+    display:flex;
+    flex-direction: column;
+    gap: 16px;
+  }
 `;
 
 export const EditDiv = styled.div`
   display: flex;
   justify-content: flex-end;
-  ${media.greaterThan('large')`
+  /* ${media.greaterThan('large')`
     display: flex;
     justify-content: flex-end;
-  `}
+  `} */
+  @media screen and (min-width: 767px) {
+    display: flex;
+    justify-content: flex-end;
+  }
 `;
 
 export const Edit = styled.button`

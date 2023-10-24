@@ -44,21 +44,23 @@ const Categoria = () => {
 
   return (
     <>
-      <Menu area={`/Categoria/${id}`} id_projeto={id}></Menu>
-      <MenuCoord />
-      <S.CardsArea>
-        <Search searchTerm={searchTerm} handleSearchChange={handleSearchChange} />
+      <div style={{ display: 'flex', justifyContent: 'center' }}>
+        <Menu area={`/Categoria/${id}`} id_projeto={id}></Menu>
+        <MenuCoord />
+        <S.CardsArea>
+          <Search searchTerm={searchTerm} handleSearchChange={handleSearchChange} />
 
-        {sortedAndFilteredCategorias.map((categoria: Categoria) => (
-          <CategoriaCard
-            key={categoria.id}
-            id={categoria.id}
-            name={categoria.name}
-            percentage={categoria.percentage}
-            prioridade={categoria.prioridade}
-          />
-        ))}
-      </S.CardsArea>
+          {sortedAndFilteredCategorias.map((categoria: Categoria) => (
+            <CategoriaCard
+              key={categoria.id}
+              id={categoria.id}
+              name={categoria.name}
+              percentage={categoria.percentage}
+              prioridade={categoria.prioridade}
+            />
+          ))}
+        </S.CardsArea>
+      </div>
     </>
   );
 };

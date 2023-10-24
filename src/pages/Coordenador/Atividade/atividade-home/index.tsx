@@ -59,23 +59,12 @@ const Atividade = () => {
   }, [atividadesOrdenadas]);
 
   return (
-    <>
+    <div style={{display:'flex' , justifyContent: 'center'}}>
       <Menu area={`/Categoria/${id}`} id_projeto={id}></Menu>
       <MenuCoord />
       <S.AtividadesPage>
 
         <S.AtivsCabecalho
-          style={{
-            position: 'sticky',
-            top: '40px',
-            padding: '2em 0em',
-            paddingTop: '80px',
-            display: 'flex',
-            alignItems: 'center',
-            zIndex: '98',
-            justifyContent: 'space-between',
-            backgroundColor: '#0a090e',
-          }}
         >
           <S.TituloAtividades style={{ color: 'white', fontFamily: 'Rubik' }}>Atividades</S.TituloAtividades>
           {auth.role == 'Coordenador' && (
@@ -89,7 +78,7 @@ const Atividade = () => {
                 fontFamily: 'Rubik',
               }}
             >
-              <img src="/plus.svg" alt="adicionar atividade" />
+              <img src="/adicionar.svg" alt="adicionar atividade" />
             </S.CriarAtiv>
           )}
         </S.AtivsCabecalho>
@@ -415,7 +404,7 @@ const Atividade = () => {
           })}
         </S.AtivsPorDiaDiv>
       </S.AtividadesPage>
-    </>
+    </div>
   );
 };
 

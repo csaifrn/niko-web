@@ -95,36 +95,11 @@ export const UserModalAtividade = (props: UserModalAtividadeProps) => {
           <S.ModalContent id="modal-content">
             <S.NameClose>
               <h2>Atribuir Lote</h2>
-              <button onClick={props.close} style={{ border: 'none', backgroundColor: 'transparent' }}>
-                <div
-                  style={{
-                    paddingLeft: 8,
-                    paddingRight: 8,
-                    paddingTop: 5,
-                    paddingBottom: 5,
-                    background: '#191C24',
-                    borderRadius: 3,
-                    flexDirection: 'column',
-                    justifyContent: 'flex-start',
-                    alignItems: 'flex-start',
-                    gap: 10,
-                    display: 'inline-flex',
-                  }}
-                >
-                  <div
-                    style={{
-                      color: 'white',
-                      fontSize: 12,
-                      fontFamily: 'Rubik',
-                      fontWeight: '700',
-                      wordWrap: 'break-word',
-                    }}
-                  >
-                    X
-                  </div>
-                </div>
-              </button>
+              <S.Exit onClick={props.close}>
+                <img src="/close.svg" alt="" height={18} width={18} />
+              </S.Exit>
             </S.NameClose>
+
             <div
               style={{
                 color: 'white',
@@ -147,15 +122,18 @@ export const UserModalAtividade = (props: UserModalAtividadeProps) => {
                         borderRadius: '5px',
                         backgroundColor: faseSelected === index ? '#191C24 ' : '#2D303B',
                         padding: '8px 8px',
+                        cursor: 'pointer',
                       }}
                     >
-                      {fase.filter((f: any) => f.id === Fase.id_fase)[0].titulo}
+                      <p style={{ fontFamily: 'Rubik' }}>{fase.filter((f: any) => f.id === Fase.id_fase)[0].titulo}</p>
                     </button>
                   </div>
                 );
               })}
             </div>
+
             <Search searchTerm={searchTerm} handleSearchChange={handleSearchChange} />
+
             <S.ChooseLote>
               {filteredCategorias.map((f) => {
                 const isSelected = UserFase[faseSelected]?.users.includes(f);
@@ -182,7 +160,7 @@ export const UserModalAtividade = (props: UserModalAtividadeProps) => {
                       {f.name}
                     </p>
                     {isPresentInOtherFase && (
-                      <p style={{ color: '#FCDE42', fontSize: '12px' }}>Usuário presente em outra tarefa</p>
+                      <p style={{ color: '#F3802D', fontSize: '12px' }}>Usuário presente em outra tarefa</p>
                     )}
                   </S.Lote>
                 );

@@ -12,15 +12,23 @@ const Projetos = () => {
       <Menu area="/"></Menu>
       <S.Wrapper>
         <S.ContainerCriarProjeto>
+
+          <S.TituloProjetos> Projetos </S.TituloProjetos>
+
           <S.Link href={`/CriarProjeto`}>
-            <img src="adicionar.svg" alt="" />
+            <S.BotaoCriarProjeto>
+              <img src="adicionar.svg" alt="" />
+            </S.BotaoCriarProjeto>               
           </S.Link>
+
         </S.ContainerCriarProjeto>
+
         <S.Main style={{ margin: '16px 0' }}>
           {projetos.map((projeto, index) => {
             return <CardProjeto projeto={projeto} key={index} />;
           })}
         </S.Main>
+
       </S.Wrapper>
     </div>
   );

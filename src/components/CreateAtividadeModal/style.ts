@@ -31,6 +31,18 @@ export const NameClose = styled.div`
   justify-content: space-between;
 `;
 
+export const Exit = styled.button`
+  height: 2em;
+  width: 2em;
+  background-color: #191C24;
+  border-radius: 3px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  cursor: pointer;
+`;
+
 export const TituloDiv = styled.div`
   display: flex;
   flex-direction: column;
@@ -90,10 +102,11 @@ export const AtribuirButton = styled.button`
   border-radius: 5px;
   background-color: #43db6d;
   border: none;
-  color: white;
+  color: #191C24;
   font-family: 'Rubik';
   bottom: 0;
   left: 0;
+  cursor: pointer;
 `;
 
 export const ModalBackdrop = styled.div`

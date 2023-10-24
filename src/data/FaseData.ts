@@ -27,7 +27,7 @@ const FaseData = [
     {
         id: 4,
         titulo:'Arquivamento',
-        icone: '/icon-page/Arquivamento_icon.png'
+        icone: '/icon-small/Arquivamento.svg'
     },
 ]
 

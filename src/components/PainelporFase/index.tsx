@@ -31,8 +31,10 @@ export const PainelPorFase = () => {
       concluidos: 12,
     },
   ];
+  
   return (
     <S.Wrapper>
+      <S.PainelTitulo>Painel por fase</S.PainelTitulo>
       <S.ContainerData>
         <S.ContainerFilterNumber>
           <S.QtdLotes>

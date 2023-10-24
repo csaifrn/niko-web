@@ -5,7 +5,7 @@ const Users = [
     url: 'https://th.bing.com/th/id/OIP.jTpsrJxMrIRi5qsxX8RWRQHaLJ?pid=ImgDet&rs=1',
     email: 'pedro@email.com.br',
     lote: 'Lote 201',
-    fase: 'catalogacao',
+    fase: 'Catalogação',
     andamento: false,
   },
   {
@@ -23,7 +23,7 @@ const Users = [
     url: 'https://th.bing.com/th/id/OIP.jTpsrJxMrIRi5qsxX8RWRQHaLJ?pid=ImgDet&rs=1',
     email: 'jose.lucas@gmail.com',
     lote: 'Lote 220',
-    fase: 'upload',
+    fase: 'Upload',
     andamento: false,
   },
   {

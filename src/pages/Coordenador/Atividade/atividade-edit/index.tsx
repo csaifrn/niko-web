@@ -20,7 +20,7 @@ const AtividadeEdit = () => {
   const atv = atividade.atividades.filter((atv) => {
     return atv.id === idatv;
   })[0];
-  const [tarefas, setTarefas] = useState<any>(atv?.faseData.map((fase:any) => fase.faseData));
+  const [tarefas, setTarefas] = useState<any>(atv?.faseData.map((fase: any) => fase.faseData));
   const [tarefasData, setTarefasData] = useState<any>([[...tarefas], []]);
   const [categorias, setCategorias] = useState<typeof CategoriaData>([]);
   const [tipologias, setTipologias] = useState<typeof TipologiaData>([]);
@@ -146,7 +146,7 @@ const AtividadeEdit = () => {
   }
 
   return (
-    <>
+    <div style={{ display: 'flex', justifyContent: 'center' }}>
       <Menu area={`/Categoria/${id}`} id_projeto={id}></Menu>
       <MenuCoord />
       <S.EditarAtivArea>
@@ -181,33 +181,14 @@ const AtividadeEdit = () => {
               <S.Titulo> Editar Atividade </S.Titulo>
             </div>
           </div>
-          <button
+          <S.Exit
             onClick={() => {
               navigate(`/Atividades/${id}`);
             }}
-            style={{
-              paddingLeft: 8,
-              paddingRight: 8,
-              paddingTop: 5,
-              paddingBottom: 5,
-              background: '#393E4B',
-              borderRadius: 3,
-              flexDirection: 'column',
-              justifyContent: 'flex-start',
-              alignItems: 'flex-start',
-              gap: 10,
-              display: 'inline-flex',
-              border: 'none',
-            }}
           >
-            <div
-              style={{ color: 'white', fontSize: 12, fontFamily: 'Rubik', fontWeight: '700', wordWrap: 'break-word' }}
-            >
-              X
-            </div>
-          </button>
+            <img src="/close.svg" alt="" height={18} width={18} />
+          </S.Exit>
         </div>
-
 
         <S.EspecificacoesAtiv>
           <S.Data
@@ -247,13 +228,14 @@ const AtividadeEdit = () => {
           <S.Tarefas>
             <S.TituloBotaoAdd>
               <S.Titulo2>Tarefas</S.Titulo2>
-                <S.BotaoAdd
-                  onClick={() => {
-                    setModalTarefas(!modalTarefas);
-                  }}
-                >
-                  <img src="/plus.svg" alt="adicionar atividade" />
-                </S.BotaoAdd>
+              <S.BotaoAdd
+                style={{cursor: 'pointer'}}
+                onClick={() => {
+                  setModalTarefas(!modalTarefas);
+                }}
+              >
+                <img src="/adicionar.svg" alt="adicionar atividade" />
+              </S.BotaoAdd>
             </S.TituloBotaoAdd>
             <S.TarefasCardsArea>
               {tarefas.length > 0 &&
@@ -281,9 +263,9 @@ const AtividadeEdit = () => {
                           display: 'flex',
                         }}
                       >
-                        {fase.icone === '/icon-small/new.png' && 
-                          <img src={'/icon-small/new.png'} width={28} height={28} alt=""/>
-                        }
+                        {fase.icone === '/icon-small/new.png' && (
+                          <img src={'/icon-small/new.png'} width={28} height={28} alt="" />
+                        )}
                         <img src={`/icon-medium/${fase.titulo}.svg`} alt="" />
                       </div>
                       <h2
@@ -307,11 +289,12 @@ const AtividadeEdit = () => {
             <S.TituloBotaoAdd>
               <S.Titulo2>Categorias e Tipologias</S.Titulo2>
               <S.BotaoAdd
+                style={{cursor: 'pointer'}}
                 onClick={() => {
                   SetModalCatTipo(!modalCatTipo);
                 }}
               >
-                <img src="/plus.svg" alt="adicionar atividade" />
+                <img src="/adicionar.svg" alt="adicionar atividade" />
               </S.BotaoAdd>
             </S.TituloBotaoAdd>
             <div
@@ -398,18 +381,19 @@ const AtividadeEdit = () => {
               {/* BOTÃO ATIVADO */}
               {tarefas.length > 0 && (
                 <S.BotaoAdd
+                  style={{cursor: 'pointer'}}
                   onClick={() => {
                     SetModalUsers(!modalUsers);
                   }}
                 >
-                  <img src="/plus.svg" alt="adicionar atividade" />
+                  <img src="/adicionar.svg" alt="adicionar atividade" />
                 </S.BotaoAdd>
               )}
 
               {/* BOTÃO DESATIVADO */}
               {tarefas.length === 0 && (
                 <S.BotaoAdd>
-                  <img src="/plus.svg" alt="adicionar atividade" style={{ opacity: '50%' }} />
+                  <img src="/adicionar.svg" alt="adicionar atividade" style={{ opacity: '50%' }} />
                 </S.BotaoAdd>
               )}
             </S.TituloBotaoAdd>
@@ -417,14 +401,23 @@ const AtividadeEdit = () => {
               {UserFase.map((f, index) => {
                 return (
                   <S.UsuariosDeUmaFase key={f.id_fase}>
-                    <S.IconeTituloFase >
-                      <img src={`/icon-medium/${tarefas.filter((tarefa:any) => tarefa.id === f.id_fase)[0].titulo}.svg`} alt="" />
+                    <S.IconeTituloFase>
+                      <img
+                        src={`/icon-medium/${tarefas.filter((tarefa: any) => tarefa.id === f.id_fase)[0].titulo}.svg`}
+                        alt=""
+                      />
 
-                      {tarefas.filter((tarefa:any) => tarefa.id === f.id_fase)[0].icone === '/icon-small/new.png' &&
-                        <img src={'/icon-small/new.png'} style={{marginLeft: '-16px'}} width={28} height={28} alt=''></img>
-                      }
+                      {tarefas.filter((tarefa: any) => tarefa.id === f.id_fase)[0].icone === '/icon-small/new.png' && (
+                        <img
+                          src={'/icon-small/new.png'}
+                          style={{ marginLeft: '-16px' }}
+                          width={28}
+                          height={28}
+                          alt=""
+                        ></img>
+                      )}
 
-                      <h3>{tarefas.filter((tarefa:any) => tarefa.id === f.id_fase)[0].titulo}</h3>
+                      <h3>{tarefas.filter((tarefa: any) => tarefa.id === f.id_fase)[0].titulo}</h3>
                     </S.IconeTituloFase>
 
                     {f.users.map((user: any) => {
@@ -493,6 +486,7 @@ const AtividadeEdit = () => {
                                     gap: 10,
                                     display: 'flex',
                                     border: 'none',
+                                    cursor: 'pointer'
                                   }}
                                 >
                                   <div
@@ -510,55 +504,56 @@ const AtividadeEdit = () => {
                               </div>
                             </div>
                             <div style={{ gap: 8, display: 'flex', flexWrap: 'wrap' }}>
-                              {LoteUser.filter((lote) => lote.id_user === user.id && lote.id_fase === f.id_fase).length >
-                                0 &&
-                                LoteUser.filter((lotes) => lotes.id_user === user.id && lotes.id_fase === f.id_fase).map(
-                                  (lote) => {
-                                    return (
-                                      <div key={lote.id_fase} style={{ gap: 8, display: 'flex', flexWrap: 'wrap' }}>
-                                        {lote.lotes &&
-                                          lote.lotes.map((loteUser: any) => {
-                                            if (loteUser != undefined) {
-                                              return (
+                              {LoteUser.filter((lote) => lote.id_user === user.id && lote.id_fase === f.id_fase)
+                                .length > 0 &&
+                                LoteUser.filter(
+                                  (lotes) => lotes.id_user === user.id && lotes.id_fase === f.id_fase,
+                                ).map((lote) => {
+                                  return (
+                                    <div key={lote.id_fase} style={{ gap: 8, display: 'flex', flexWrap: 'wrap' }}>
+                                      {lote.lotes &&
+                                        lote.lotes.map((loteUser: any) => {
+                                          if (loteUser != undefined) {
+                                            return (
+                                              <div
+                                                key={loteUser.id}
+                                                style={{
+                                                  height: 30,
+                                                  paddingLeft: 9,
+                                                  paddingRight: 9,
+                                                  paddingTop: 8,
+                                                  paddingBottom: 8,
+                                                  background: '#191C24',
+                                                  borderRadius: 5,
+                                                  justifyContent: 'center',
+                                                  alignItems: 'center',
+                                                  gap: 10,
+                                                  display: 'flex',
+                                                }}
+                                              >
                                                 <div
-                                                  key={loteUser.id}
                                                   style={{
-                                                    height: 30,
-                                                    paddingLeft: 9,
-                                                    paddingRight: 9,
-                                                    paddingTop: 8,
-                                                    paddingBottom: 8,
-                                                    background: '#191C24',
-                                                    borderRadius: 5,
-                                                    justifyContent: 'center',
-                                                    alignItems: 'center',
-                                                    gap: 10,
-                                                    display: 'flex',
+                                                    color: 'white',
+                                                    fontSize: 12,
+                                                    fontFamily: 'Rubik',
+                                                    fontWeight: '500',
                                                   }}
                                                 >
-                                                  <div
-                                                    style={{
-                                                      color: 'white',
-                                                      fontSize: 12,
-                                                      fontFamily: 'Rubik',
-                                                      fontWeight: '500',
-                                                    }}
-                                                  >
-                                                    {`Lote ${loteUser.numero}`}
-                                                  </div>
+                                                  {`Lote ${loteUser.numero}`}
+                                                </div>
 
-                                                  {EtapaData.filter((etapa) => loteUser.id_etapa === etapa.id)[0] && EtapaData.filter((etapa) => loteUser.id_etapa === etapa.id)[0]
+                                                {EtapaData.filter((etapa) => loteUser.id_etapa === etapa.id)[0] &&
+                                                  EtapaData.filter((etapa) => loteUser.id_etapa === etapa.id)[0]
                                                     .id_fase !== f.id_fase && (
                                                     <img src="/ok.svg" alt="" height={12} width={12} />
                                                   )}
-                                                </div>
-                                              );
-                                            }
-                                          })}
-                                      </div>
-                                    );
-                                  },
-                                )}
+                                              </div>
+                                            );
+                                          }
+                                        })}
+                                    </div>
+                                  );
+                                })}
                             </div>
                           </div>
                         );
@@ -571,16 +566,8 @@ const AtividadeEdit = () => {
           </S.Usuarios>
         </S.EspecificacoesAtiv>
         {/* BOTÃO DE SALVAR */}
-        {UserFase.length > 0 && (
-          <S.EditAtivAtivado onClick={handleSave}>
-            Editar Atividade
-          </S.EditAtivAtivado>
-        )}
-        {UserFase.length === 0 && (
-          <S.EditAtivDesativado>
-            Editar Atividade
-          </S.EditAtivDesativado>
-        )}
+        {UserFase.length > 0 && <S.EditAtivAtivado onClick={handleSave}>Editar Atividade</S.EditAtivAtivado>}
+        {UserFase.length === 0 && <S.EditAtivDesativado>Editar Atividade</S.EditAtivDesativado>}
       </S.EditarAtivArea>
       {modalTarefas && (
         <CreateAtividade
@@ -635,7 +622,7 @@ const AtividadeEdit = () => {
           loteUser={LoteUser.filter((loteUser) => loteUser.id_user === idUser && loteUser.id_fase === idFase)[0]}
         />
       )}
-    </>
+    </div>
   );
 };
 

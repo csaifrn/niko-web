@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import media from 'styled-media-query';
 
 const ModalArea = styled.div`
   position: fixed;
@@ -13,6 +14,9 @@ const ModalArea = styled.div`
   font-family: 'Rubik';
   border-radius: 5px;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  ${media.greaterThan('large')`
+    width: 20vw;
+  `}
 `;
 
 const ModalContent = styled.div`
@@ -24,6 +28,19 @@ const ModalContent = styled.div`
 const NameClose = styled.div`
   display: flex;
   justify-content: space-between;
+  align-items: center;
+`;
+
+export const Exit = styled.button`
+  height: 2em;
+  width: 2em;
+  background-color: #191c24;
+  border-radius: 3px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  cursor: pointer;
 `;
 
 const ChooseLote = styled.div`
@@ -35,6 +52,24 @@ const ChooseLote = styled.div`
   gap: 1em;
   overflow: auto;
   scroll-behavior: auto;
+  &::-webkit-scrollbar {
+    width: 0.8em;
+    height: 0.5em;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: #191c24;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: #2a2e38;
+    border-radius: 20px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background-color: transparent;
+    margin: 0em;
+  }
 `;
 
 const Lote = styled.div`
@@ -48,8 +83,9 @@ const AtribuirButton = styled.button`
   border-radius: 5px;
   background-color: #43db6d;
   border: none;
-  color: white;
+  color: #191c24;
   font-family: 'Rubik';
+  cursor: pointer;
 `;
 
 const ModalBackdrop = styled.div`

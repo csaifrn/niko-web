@@ -12,88 +12,54 @@ import { DeletarModal } from '../DeletarModal';
 import { ObservationModal } from './Observation-modal-update';
 
 export interface PropsObservation {
-  id: string;
   index?: number;
-  observation: string;
+  observation: Observation;
   // eslint-disable-next-line no-unused-vars
   refetch: (Obs: Observation[]) => void;
   observations: Observation[];
+  setObservation: (e: Observation) => void;
+  setId: (e: string) => void;
+  openDelete: () => void;
+  openEdit: () => void;
 }
 
-export const BoxObservation = ({ id, index, observation, refetch, observations }: PropsObservation) => {
-  // const [isPresent] = usePresence();
-  // const [scope, animate] = useAnimate();
+export const BoxObservation = ({
+  index,
+  observation,
+  refetch,
+  observations,
+  openDelete,
+  openEdit,
+  setId,
+  setObservation,
+}: PropsObservation) => {
   const [obs, setObs] = useState(observation);
-  const [deleteModal, setDeleteModal] = useState(false);
-  const [observationModal, setObservationModal] = useState(false);
 
-  const [read, setReadOnly] = useState(false);
+  const handleClickEdit = () => {
+    setId(obs.id);
+    setObservation(obs);
+    openEdit();
+  };
 
-  // useEffect(() => {
-  //   if (isPresent) {
-  //     const enterAnimation = async () => {
-  //       await animate(scope.current, { opacity: [0, 1] }, { duration: 0.3, delay: 0.1 * index });
-  //     };
-  //     enterAnimation();
-  //   }
-  // }),
-  //   [];
-
-  const deleteObs = useMutation(DeleteObservation, {
-    onSuccess: (data) => {
-      toast.success('Observação excluida');
-      refetch(observations.filter((obs) => obs.id != data.id));
-    },
-    onError: (error: ApiError) => {
-      if (error.response) {
-        toast.error(error.response.data.message);
-      }
-    },
-  });
-
-  const DeleteObs = (id: string) => {
-    deleteObs.mutate({
-      id,
-    });
+  const handleClickDelete = () => {
+    setId(obs.id);
+    setObservation(obs);
+    openDelete();
   };
 
   return (
     <>
       <S.ObsDivBlack>
-        {obs}
-        <S.ButtonEdit
-          onClick={() => {
-            setObservationModal(!observationModal);
-          }}
-        >
+        {obs.observation}
+        <S.ButtonEdit onClick={handleClickEdit}>
           <PencilSimple size={24} weight="fill" color={theme.colors['white']} />
           <S.ToolTip>Editar</S.ToolTip>
         </S.ButtonEdit>
-        <S.ButtonDelete
-          onClick={() => {
-            setDeleteModal(!deleteModal);
-          }}
-        >
+        <S.ButtonDelete onClick={handleClickDelete}>
           <MinusCircle size={28} weight="fill" color={theme.colors['red/500']} />
           <S.ToolTip>Deletar</S.ToolTip>
         </S.ButtonDelete>
       </S.ObsDivBlack>
-      {deleteModal && (
-        <DeletarModal
-          title="Deletar observação?"
-          close={() => setDeleteModal(!deleteModal)}
-          deleteFunction={() => DeleteObs(id)}
-        />
-      )}
-      {observationModal && (
-        <ObservationModal
-          id={id}
-          observation={observation}
-          refetch={(e: string) => setObs(e)}
-          title="Mudar observação"
-          close={() => setObservationModal(!observationModal)}
-        />
-      )}
     </>
   );
 };

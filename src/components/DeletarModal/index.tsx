@@ -33,6 +33,13 @@ export const DeletarModal = (props: DeletarModalProps) => {
       props.close();
     }, 300);
   };
+
+  const close = () => {
+    setClosing(true);
+    setTimeout(() => {
+      props.close();
+    }, 300);
+  };
   return (
     <>
       <S.ModalBackdrop>
@@ -40,11 +47,11 @@ export const DeletarModal = (props: DeletarModalProps) => {
           <S.ModalContent>
             <S.NameClose>
               <h2>{props.title}</h2>
-              <S.Exit type="button" onClick={handleClose}>
+              <S.Exit type="button" onClick={close}>
                 <img src="/close.svg" alt="" height={18} width={18} />
               </S.Exit>
             </S.NameClose>
-            <S.Recused onClick={props.close}>Não, não quero.</S.Recused>
+            <S.Recused onClick={close}>Não, não quero.</S.Recused>
             <S.Delete onClick={handleClose}>Deletar</S.Delete>
           </S.ModalContent>
         </S.ModalArea>

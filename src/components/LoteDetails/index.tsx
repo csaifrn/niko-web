@@ -19,39 +19,48 @@ import { LoteData } from '../../data/LoteData';
 import FaseData from '../../data/FaseData';
 
 import { BoxObservation } from '../Observation';
+import { DeletarModal } from '../DeletarModal';
+import { ObservationModal } from '../Observation/Observation-modal-update';
+import { DeleteObservation } from '../../api/services/batches/observation/delete-obsevation';
 
 export const LoteDetails = () => {
   const optionsFases = FaseData.map((fase) => ({ id: fase.id, label: fase.titulo }));
-
+  const [task, setTask] = useState<GetResponseBatche | null>();
+  const [observations, setObservations] = useState<Observation[]>();
+  const [priority, setPriority] = useState<boolean>(false);
+  const navigate = useNavigate();
+  const { id } = useParams();
+  const [observacao, setObservacao] = useState(false);
+  const [observationModal, setObservationModal] = useState(false);
+  const [delete_modal, setDeleteModal] = useState(false);
   const [config_modal, setConfigModal] = useState(false);
+  const [avancar, setAvancar] = useState(false);
+  const [voltar, setVoltar] = useState(false);
+  const [modal, setModal] = useState(false);
+  const [observation, setObservation] = useState<Observation>();
+  const [observationId, setObservationId] = useState<string>();
+  const [edit_modal, setEditModal] = useState<boolean>(false);
+
   const handleConfig = () => {
     setConfigModal(!config_modal);
   };
 
-  const [observacao, setObservacao] = useState(false);
-
-  const [delete_modal, setDeleteModal] = useState(false);
   const handleDelete = () => {
     setDeleteModal(!delete_modal);
   };
 
-  const [voltar, setVoltar] = useState(false);
   const handleVoltar = () => {
     setVoltar(!voltar);
   };
 
-  const [avancar, setAvancar] = useState(false);
   const handleAvancar = () => {
     setAvancar(!avancar);
   };
 
-  const [modal, setModal] = useState(false);
   const handleAtribuirAlguem = () => {
     setModal(!modal);
   };
 
-  const navigate = useNavigate();
-  const { id } = useParams();
   const beforeTask = useMutation(GetBatche, {
     onSuccess: (data: GetResponseBatche) => {
       setTask(data);
@@ -65,9 +74,27 @@ export const LoteDetails = () => {
     },
   });
 
-  const [task, setTask] = useState<GetResponseBatche | null>();
-  const [observations, setObservations] = useState<Observation[] | null>();
-  const [priority, setPriority] = useState<boolean>(false);
+  const deleteObs = useMutation(DeleteObservation, {
+    onSuccess: (data) => {
+      toast.success('Observação excluida');
+      if (observations) {
+        observations.filter((obs) => obs.id != data.id);
+      }
+    },
+    onError: (error: ApiError) => {
+      if (error.response) {
+        toast.error(error.response.data.message);
+      }
+    },
+  });
+
+  const DeleteObs = (id: string | undefined) => {
+    if (id) {
+      deleteObs.mutate({
+        id,
+      });
+    }
+  };
 
   const CheckIdForGetBatch = () => {
     if (typeof id === 'string') {
@@ -270,14 +297,17 @@ export const LoteDetails = () => {
                 {observations &&
                   observations.map((obs, index: number) => (
                     <BoxObservation
-                      id={obs.id}
                       key={obs.id}
                       index={index}
-                      observation={obs.observation}
+                      observation={obs}
+                      setObservation={(e: Observation) => setObservation(e)}
+                      setId={(e) => setObservationId(e)}
                       observations={observations!}
                       refetch={(Obs: Observation[]) => {
                         setObservations(Obs);
                       }}
+                      openDelete={() => setDeleteModal(!delete_modal)}
+                      openEdit={() => setEditModal(!edit_modal)}
                     />
                   ))}
               </S.Observações>
@@ -406,7 +436,6 @@ export const LoteDetails = () => {
     )}
     {voltar && <VoltarModal close={handleVoltar}></VoltarModal>}
     {avancar && <AvancarModal close={handleAvancar}></AvancarModal>}*/}
-        {delete_modal && <DeletarLoteModal delete={() => console.log(id)} close={handleDelete}></DeletarLoteModal>}
         {config_modal && (
           <ConfigModal
             id={id!}
@@ -427,6 +456,23 @@ export const LoteDetails = () => {
               setObservacao(!observacao);
             }}
             title="Criar observação"
+          />
+        )}
+        {delete_modal && (
+          <DeletarModal
+            title="Deletar observação?"
+            close={() => setDeleteModal(!delete_modal)}
+            deleteFunction={() => DeleteObs(observationId)}
+          />
+        )}
+        {edit_modal && (
+          <ObservationModal
+            id={observationId}
+            observation={observation?.observation}
+            observations={observations}
+            refetch={(e: Observation[] | undefined) => setObservations(e)}
+            title="Mudar observação"
+            close={() => setEditModal(!edit_modal)}
           />
         )}
       </>

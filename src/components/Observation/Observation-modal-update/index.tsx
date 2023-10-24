@@ -11,18 +11,20 @@ import { ErrorsForm } from '../interface.observation';
 import * as Yup from 'yup';
 import { ErrorMessage } from '../../../pages/Login/styles';
 import { PropsObservation } from '..';
+import { Observation } from '../../../api/services/batches/get-batche/get.interface';
 
 interface DeletarModalProps {
-  refetch: (e: string) => void;
+  refetch: (e: Observation[] | undefined) => void;
   title: string;
-  id: string;
+  id: string | undefined;
   close: () => void;
-  observation: string;
+  observation: string | undefined;
+  observations: Observation[] | undefined;
 }
 
 export const ObservationModal = (props: DeletarModalProps) => {
   const [closing, setClosing] = useState(false);
-  const [obs, setObs] = useState<string>(props.observation);
+  const [obs, setObs] = useState<string>(props.observation ? props.observation : '');
   const [responseError, setResponseError] = useState('');
 
   const [validationFormError, setValidationFormError] = useState<ErrorsForm>({ observation: '' });
@@ -30,7 +32,30 @@ export const ObservationModal = (props: DeletarModalProps) => {
   const updateMutate = useMutation(UpdateObservation, {
     onSuccess: (data) => {
       toast.success('Observação atualizada!');
-      props.refetch(obs);
+      console.log(obs, props.id);
+      console.log(
+        props.observations
+          ? props.observations.filter((e) => {
+              if (e.id === props.id) {
+                console.log(props.id);
+                return { id: e.id, observation: obs, created_at: e.created_at, created_by: e.created_by };
+              } else {
+                return e;
+              }
+            })
+          : undefined,
+      );
+      props.refetch(
+        props.observations
+          ? props.observations.filter((e) => {
+              if (e.id === props.id) {
+                return { id: e.id, observation: obs, created_at: e.created_at, created_by: e.created_by };
+              } else {
+                return e;
+              }
+            })
+          : undefined,
+      );
     },
     onError: (error: ApiError) => {
       if (error.response) {
@@ -41,7 +66,7 @@ export const ObservationModal = (props: DeletarModalProps) => {
 
   const updateObservation = async () => {
     const isValid = await validateForm();
-    if (isValid) {
+    if (isValid && props.id) {
       updateMutate.mutate({
         id: props.id,
         observation: obs,
@@ -107,7 +132,9 @@ export const ObservationModal = (props: DeletarModalProps) => {
             <S.InputObservation value={obs} onChange={(e) => setObs(e.currentTarget.value)} />
             {validationFormError.observation && <ErrorMessage>{validationFormError.observation}</ErrorMessage>}
             <S.ButtonBlack onClick={props.close}>Não, não quero.</S.ButtonBlack>
-            <ButtonGreen onClick={updateObservation}>Salvar</ButtonGreen>
+            <ButtonGreen onClick={updateObservation} type="button">
+              Salvar
+            </ButtonGreen>
           </S.ModalContent>
         </S.ModalArea>
       </S.ModalBackdrop>

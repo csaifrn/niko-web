@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 const ModalArea = styled.div`
+  z-index: 101;
   width: 80vw;
   max-width: 400px;
   background-color: ${({ theme }) => theme.colors['gray/500']};

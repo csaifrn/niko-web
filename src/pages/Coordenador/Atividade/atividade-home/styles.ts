@@ -9,7 +9,7 @@ export const AtividadesPage = styled.div`
   width: 100%;
   padding: 3em 2em 10em 2em;
 
-  @media screen and (min-width: 767px) {
+  @media screen and (min-width: 1140px) {
     padding: 3em 0em 2em 0em;
   }
   /* ${media.greaterThan('large')`

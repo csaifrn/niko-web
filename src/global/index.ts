@@ -16,15 +16,15 @@ const Title = styled.a`
 
 const Wrapper = styled.div`
   font-family: 'Rubik';
-  background-color: #0a090e;
-  height: 170vh;
-  width: 100vw;
-  margin-top: 8em;
+  //background-color: #0a090e;
+  //height: 170vh;
+  //min-height: 550px;
+  //width: 100vw;
   overflow: hidden;
-  min-height: 550px;
-  ${media.greaterThan('large')`
-    height: 80vh;
-  `}
+  margin: 8em 2em 0em 2em;
+  @media screen and (min-width: 767px) {
+    margin: 10em 2em 0em 2em;
+  }
 `;
 
 const AlignCenter = styled.div`

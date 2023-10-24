@@ -14,7 +14,6 @@ const Catalogacao = () => {
       <Menu area={`/Fase/${id}/Board/Catalogacao`} id_projeto={id}></Menu>
       <MenuCoord />
       <Style.Wrapper>
-        <p>Catalogação</p>
         <Board fase={FaseData[1]} titulo="Catalogacao" />
         <Style.Footer></Style.Footer>
       </Style.Wrapper>

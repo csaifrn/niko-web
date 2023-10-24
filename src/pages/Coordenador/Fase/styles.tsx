@@ -16,19 +16,24 @@ export const FasePage = styled.div`
 `;
 
 const Main = styled.div`
-  display: grid;
-  //justify-items: center;
-  //justify-content: center;
   margin: 8.5em 2em 0em 2em;
+  display: grid;
   grid-gap: 1.25em;
   grid-template-columns: 1fr 1fr;
   width: 100%;
   max-width: 1140px;
+  //justify-items: center;
+  //justify-content: center;
   @media screen and (min-width: 767px) {
     //margin: 40em;
-    margin: 10em 0em 0em 0em;
+    margin: 10em 2em 0em 2em;
     grid-gap: 2.5em;
     grid-template-columns: 1fr 1fr 1fr;
+  }
+  @media screen and (min-width: 1140px) {
+    margin: 10em 0em 0em 0em;
+    /* grid-gap: 2.5em;
+    grid-template-columns: 1fr 1fr 1fr; */
   }
   /* ${media.lessThan('small')`
     //só do mobile

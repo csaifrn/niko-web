@@ -14,7 +14,6 @@ const Digitalizacao = () => {
       <Menu area={`/Fase/${id}/Board/Digitalizacao`} id_projeto={id}></Menu>
       <MenuCoord />
       <Style.Wrapper>
-        <p>Digitalização</p>
         <Board fase={FaseData[2]} titulo="Digitalizacao" />
         <Style.Footer></Style.Footer>
       </Style.Wrapper>

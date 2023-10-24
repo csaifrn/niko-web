@@ -50,78 +50,82 @@ export const Board = (props: BoardProps) => {
   }, []);
 
   return (
-    <>
+    <div style={{ display:'flex' , justifyContent: 'center' }}>
+      <S.FaseKanbanPage>
 
-      <S.divImg>
-        <S.IconeFase src={`/icon-medium/${fase.titulo}.svg`} alt={`icone da fase ${fase.titulo}`} />
-      </S.divImg>
+        <S.divImg>
+          <S.IconeFase src={`/icon-medium/${fase.titulo}.svg`} alt={`icone da fase ${fase.titulo}`} />
+          <h1 style={{color: '#ffffff'}}>{fase.titulo}</h1>
+        </S.divImg>
 
-      <S.divImgMaior>
-        <S.IconeFase src={`/icon-big/${fase.titulo}.svg`} alt={`icone da fase ${fase.titulo}`} />
-      </S.divImgMaior>
+        <S.divImgMaior>
+          <S.IconeFase src={`/icon-big/${fase.titulo}.svg`} alt={`icone da fase ${fase.titulo}`} />
+          <h1 style={{color: '#ffffff'}}>{fase.titulo}</h1>
+        </S.divImgMaior>
 
-      <S.kanban className="board">
-        {etapas.map((section) => (
-          <S.kanbanSection key={section.id}>
-            <S.divTitulo>
-              <h2 className="kanbanSectionTititle">{section.title}</h2>
-              {section.title == 'Disponíveis' && (
-                <h2
-                  style={{
-                    color: '#43DB6D',
-                  }}
-                >
-                  {section.tasks.filter((lote:any) => lote.id_projeto === id) ? section.tasks.filter((lote:any) => lote.id_projeto === id).length : 0}
-                </h2>
-              )}
-              {section.title == 'Em pausa' && (
-                <h2
-                  style={{
-                    color: '#F32D2D',
-                  }}
-                >
-                  {section.tasks.filter((lote:any) => lote.id_projeto === id) ? section.tasks.filter((lote:any) => lote.id_projeto === id).length : 0}
-                </h2>
-              )}
-              {section.title == 'Em andamento' && (
-                <h2
-                  style={{
-                    color: '#FCDE42',
-                  }}
-                >
-                  {section.tasks.filter((lote:any) => lote.id_projeto === id) ? section.tasks.filter((lote:any) => lote.id_projeto === id).length : 0}
-                </h2>
-              )}
-              {section.title == 'Concluídos' && (
-                <h2
-                  style={{
-                    color: '#43DB6D',
-                  }}
-                >
-                  {section.tasks.filter((lote:any) => lote.id_projeto === id) ? section.tasks.filter((lote:any) => lote.id_projeto === id).length : 0}
-                </h2>
-              )}
-            </S.divTitulo>
+        <S.kanban className="board">
+          {etapas.map((section) => (
+            <S.kanbanSection key={section.id}>
+              <S.divTitulo>
+                <h2 className="kanbanSectionTititle">{section.title}</h2>
+                {section.title == 'Disponíveis' && (
+                  <h2
+                    style={{
+                      color: '#43DB6D',
+                    }}
+                  >
+                    {section.tasks.filter((lote:any) => lote.id_projeto === id) ? section.tasks.filter((lote:any) => lote.id_projeto === id).length : 0}
+                  </h2>
+                )}
+                {section.title == 'Em pausa' && (
+                  <h2
+                    style={{
+                      color: '#F32D2D',
+                    }}
+                  >
+                    {section.tasks.filter((lote:any) => lote.id_projeto === id) ? section.tasks.filter((lote:any) => lote.id_projeto === id).length : 0}
+                  </h2>
+                )}
+                {section.title == 'Em andamento' && (
+                  <h2
+                    style={{
+                      color: '#FCDE42',
+                    }}
+                  >
+                    {section.tasks.filter((lote:any) => lote.id_projeto === id) ? section.tasks.filter((lote:any) => lote.id_projeto === id).length : 0}
+                  </h2>
+                )}
+                {section.title == 'Concluídos' && (
+                  <h2
+                    style={{
+                      color: '#43DB6D',
+                    }}
+                  >
+                    {section.tasks.filter((lote:any) => lote.id_projeto === id) ? section.tasks.filter((lote:any) => lote.id_projeto === id).length : 0}
+                  </h2>
+                )}
+              </S.divTitulo>
 
-            <S.kanbanSectionContent>
-              {section.tasks.map((task: any) => (
-                task.id_projeto === id &&
-                  <a href={`/Lote/${task.id}`} key={task.id} style={{ textDecoration: 'none' }}>
-                    <Lote
-                      task={task}
-                      value={`${task.titulo} ${task.numero}`}
-                      pendencia={task.pendencias.length}
-                      prioridade={task.prioridade}
-                      categoria={task.categorias}
-                      envolvidos={task.envolvidos}
-                    ></Lote>
-                  </a>
-              ))}
-            </S.kanbanSectionContent>
-          </S.kanbanSection>
-        ))}
-      </S.kanban>
-    </>
+              <S.kanbanSectionContent>
+                {section.tasks.map((task: any) => (
+                  task.id_projeto === id &&
+                    <a href={`/Lote/${task.id}`} key={task.id} style={{ textDecoration: 'none' }}>
+                      <Lote
+                        task={task}
+                        value={`${task.titulo} ${task.numero}`}
+                        pendencia={task.pendencias.length}
+                        prioridade={task.prioridade}
+                        categoria={task.categorias}
+                        envolvidos={task.envolvidos}
+                      ></Lote>
+                    </a>
+                ))}
+              </S.kanbanSectionContent>
+            </S.kanbanSection>
+          ))}
+        </S.kanban>
+      </S.FaseKanbanPage>
+    </div>
   );
 };
 

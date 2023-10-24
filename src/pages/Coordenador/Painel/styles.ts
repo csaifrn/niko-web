@@ -11,7 +11,7 @@ export const PainelArea = styled.div`
   /* ${media.greaterThan('large')`
     padding: 10em 0em 2em 0em;
   `} */
-  @media screen and (min-width: 767px) {
+  @media screen and (min-width: 1140px) {
     padding: 10em 0em 2em 0em;
   }
 `;

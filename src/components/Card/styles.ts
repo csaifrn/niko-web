@@ -7,9 +7,9 @@ interface ColorProps {
 
 const CardContainer = styled.a`
   text-decoration: none;
-  /* width: 9.6em; */
-  height: 9em;
+  min-height: 9em;
   width: 100%;
+  //width: 9.6em;
   //height: 100%;
   overflow: hidden;
   border-radius: 20px;
@@ -39,7 +39,7 @@ const FigureIconCard = styled.figure<ColorProps>`
   align-items: center;
   justify-content: center;
   @media screen and (min-width: 767px) {
-    width: 18.6em;
+    //width: 18.6em;
   }
   /* ${media.greaterThan('large')`
     width: 18.6em;

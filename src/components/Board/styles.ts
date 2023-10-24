@@ -1,18 +1,31 @@
 import styled from 'styled-components';
 import media from 'styled-media-query';
 
+export const FaseKanbanPage = styled.div`
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  max-width: 1140px;
+  gap: 2em;
+
+  //Mobile
+  @media screen and (max-width: 767px) {
+    width: 100%;
+  }
+  
+`;
+
 const kanban = styled.div`
   font-family: 'Rubik';
   display: flex;
-  align-items: flex-start;
-  justify-content: start;
+  justify-content: flex-start;
   flex-direction: column;
+  padding: 0em 0em 1em 0em;
   gap: 16px;
-  margin: 0em 2em 2em 2em;
-  padding: 16px 0px 16px;
   scroll-behavior: auto;
   scrollbar-width: thin;
   overflow-x: scroll;
+  width: 100%;
   &::-webkit-scrollbar {
     width: 0.3em;
     height: 0.5em;
@@ -32,9 +45,10 @@ const kanban = styled.div`
     margin: 0em 2em;
   }
 
-  @media screen and (min-width: 1008px) {
-    justify-content: center;
+  @media screen and (min-width: 767px) {
+    //justify-content: center;
     flex-direction: row;
+    margin: 0em 0em 2em 0em;
   }
 `;
 
@@ -61,11 +75,16 @@ const kanbanSection = styled.div`
     background-color: #2a2e38;
     border-radius: 20px;
   }
-  ${media.greaterThan('large')`
+  @media screen and (min-width: 767px) {
     justify-content: center;
     width: 20vh;
     height: 60vh;
-  `}
+  }
+  /* ${media.greaterThan('large')`
+    justify-content: center;
+    width: 20vh;
+    height: 60vh;
+  `} */
 `;
 
 const kanbanSectionContent = styled.div`
@@ -91,14 +110,23 @@ const kanbanSectionContent = styled.div`
     background-color: transparent;
     border-radius: 20px;
   }
-  ${media.greaterThan('large')`
+  @media screen and (min-width: 767px) {
     flex-direction: column;
     &::-webkit-scrollbar-thumb {
       background-color: #2a2e38;
       border-radius: 20px;
       flex-direction: column;
     }
-  `}
+  }
+
+  /* ${media.greaterThan('large')`
+    flex-direction: column;
+    &::-webkit-scrollbar-thumb {
+      background-color: #2a2e38;
+      border-radius: 20px;
+      flex-direction: column;
+    }
+  `} */
 `;
 
 const btnPrioridade = styled.button`
@@ -124,29 +152,34 @@ const inputPrioridade = styled.input`
 `;
 
 export const divImg = styled.div`
-  margin: 0em 2em 0em 2em;
+  //margin: 0em 2em 0em 2em;
   display: flex;
   justify-content: flex-start;
-  gap: 0.5em;
-  ${media.greaterThan('large')`
+  align-items: center;
+  gap: 16px;
+  /* ${media.greaterThan('large')`
     display: none;
-  `}
+  `} */
+  @media screen and (min-width: 767px) {
+    display: none;
+  }
 `;
 
 export const divImgMaior = styled.div`
-  margin: 0em 2em 0em 2em;
+  //margin: 0em 2em 0em 2em;
   display: none;
-  justify-content: flex-start;
-  gap: 0.5em;
-  ${media.greaterThan('large')`
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  /* ${media.greaterThan('large')`
     display: flex;
-    justify-content: center;
-  `}
+  `} */
+  @media screen and (min-width: 767px) {
+    display: flex;
+  }
 `;
 
 export const IconeFase = styled.img`
-  ${media.greaterThan('large')`
-  `}
 `;
 
 

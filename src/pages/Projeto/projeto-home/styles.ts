@@ -19,6 +19,7 @@ export const Wrapper = styled.div`
   font-family: Rubik;
   max-width: 1140px;
   margin: 10em 2em 2em 2em;
+  width: 100%;
 `;
 
 export const TituloProjetos = styled.h1`
@@ -30,9 +31,12 @@ export const ContainerCriarProjeto = styled.div`
   align-items: center;
   justify-content: space-between;
   gap: 16px;
-  ${media.greaterThan('large')`
+  /* ${media.greaterThan('large')`
     justify-content: flex-start;
-  `}
+  `} */
+  @media (min-width: 767px) {
+    justify-content: flex-start;
+  }
 `;
 
 export const BotaoCriarProjeto = styled.button`

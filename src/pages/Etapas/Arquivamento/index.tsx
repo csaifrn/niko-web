@@ -15,8 +15,7 @@ const Arquivamento = () => {
       <Menu area={`/Fase/${id}/Board/Arquivamento`} id_projeto={id}></Menu>
       <MenuCoord />
       <Style.Wrapper>
-        <p>Arquivamento</p>
-        <Board fase={FaseData[4]} titulo="arquivamento" />
+        <Board fase={FaseData[4]} titulo="arquivamento"/>
         <Style.Footer></Style.Footer>
       </Style.Wrapper>
     </>

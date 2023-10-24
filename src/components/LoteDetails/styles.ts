@@ -113,18 +113,24 @@ export const EditConfig = styled.div`
 export const Edit = styled.a`
   height: 2.25em;
   width: 2.25em;
-  background-color: #393e4b;
   border-radius: 3px;
   margin-bottom: 0.5em;
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: ${({ theme }) => theme.colors['gray/500']};
+  &:hover {
+    background-color: ${({ theme }) => theme.colors['gray/200']};
+  }
+  &:active {
+    background-color: ${({ theme }) => theme.colors['gray/300']};
+    transform: translateY(-5%) translateX(2%);
+  }
 `;
 
 export const Config = styled.button`
   height: 2em;
   width: 2em;
-  background-color: #393e4b;
   border-radius: 3px;
   margin-bottom: 0.5em;
   display: flex;
@@ -132,6 +138,14 @@ export const Config = styled.button`
   align-items: center;
   border: none;
   cursor: pointer;
+  background-color: ${({ theme }) => theme.colors['gray/500']};
+  &:hover {
+    background-color: ${({ theme }) => theme.colors['gray/200']};
+  }
+  &:active {
+    background-color: ${({ theme }) => theme.colors['gray/300']};
+    transform: translateY(-5%) translateX(2%);
+  }
 `;
 
 export const DetalhesLote = styled.div`

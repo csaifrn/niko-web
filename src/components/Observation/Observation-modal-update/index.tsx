@@ -1,20 +1,19 @@
 import { useState, useEffect } from 'react';
 import * as S from './styles';
-import { ButtonGray, ButtonGreen } from '../../../pages/Projeto/projeto-create/styles';
+import { ButtonGreen } from '../../../pages/Projeto/projeto-create/styles';
 import { ApiError } from '../../../api/services/authentication/signIn/signIn.interface';
 import toast from 'react-hot-toast';
 import { useMutation } from 'react-query';
 import { DeleteObservation } from '../../../api/services/batches/observation/delete-obsevation';
 import { UpdateObservation } from '../../../api/services/batches/observation/update-obsevation';
-import { validationObservationSchema } from '../validation.observation';
-import { ErrorsForm } from '../interface.observation';
 import * as Yup from 'yup';
 import { ErrorMessage } from '../../../pages/Login/styles';
-import { PropsObservation } from '..';
 import { Observation } from '../../../api/services/batches/get-batche/get.interface';
+import { ErrorsForm } from '../ObservationBox/interface.observation';
+import { validationObservationSchema } from '../ObservationBox/validation.observation';
 
 interface DeletarModalProps {
-  refetch: (e: Observation[] | undefined) => void;
+  refetch: (e: Observation[]) => void;
   title: string;
   id: string | undefined;
   close: () => void;
@@ -32,30 +31,18 @@ export const ObservationModal = (props: DeletarModalProps) => {
   const updateMutate = useMutation(UpdateObservation, {
     onSuccess: (data) => {
       toast.success('Observação atualizada!');
-      console.log(obs, props.id);
-      console.log(
-        props.observations
-          ? props.observations.filter((e) => {
-              if (e.id === props.id) {
-                console.log(props.id);
-                return { id: e.id, observation: obs, created_at: e.created_at, created_by: e.created_by };
-              } else {
-                return e;
-              }
-            })
-          : undefined,
-      );
-      props.refetch(
-        props.observations
-          ? props.observations.filter((e) => {
-              if (e.id === props.id) {
-                return { id: e.id, observation: obs, created_at: e.created_at, created_by: e.created_by };
-              } else {
-                return e;
-              }
-            })
-          : undefined,
-      );
+      const updatedObservations = props.observations?.map((observation) => {
+        if (observation.id === props.id) {
+          return {
+            id: observation.id,
+            observation: obs, // Usando o valor atualizado
+            created_at: observation.created_at,
+            created_by: observation.created_by,
+          };
+        }
+        return observation;
+      });
+      props.refetch(updatedObservations ? updatedObservations : []);
     },
     onError: (error: ApiError) => {
       if (error.response) {

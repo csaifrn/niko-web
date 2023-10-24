@@ -2,6 +2,26 @@ import styled from 'styled-components';
 import media from 'styled-media-query';
 import Select from 'react-select';
 
+export const BotaoCriarProjeto = styled.button`
+  width: 24px;
+  height: 24px;
+  border-radius: 100%;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+  background-color: ${({ theme }) => theme.colors['gray/700']};
+  &:hover {
+    background-color: ${({ theme }) => theme.colors['gray/300']};
+  }
+  &:active {
+    background-color: ${({ theme }) => theme.colors['gray/300']};
+    transform: translateY(-5%) translateX(2%);
+  }
+`;
+
 export const areaClick = styled.div`
   color: white;
   padding: 2em;
@@ -11,6 +31,7 @@ export const areaClick = styled.div`
   gap: 24px;
   margin: 8em 0em 8em 0em;
   font-family: 'Rubik', Helvetica, sans-serif;
+  width: 100%;
   max-width: 1140px;
   filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
   &::-webkit-scrollbar {
@@ -577,8 +598,12 @@ export const EnvolvidosDiv = styled.div`
 export const EscolherFaseSelect = styled(Select)`
   width: calc(50%);
   border-left: 1px solid #888c99;
+
   .react-select__control {
     border: none;
+    border-radius: 0;
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
     background-color: ${({ theme }) => theme.colors['gray/500']} !important; /* Cor de fundo do controle */
     color: ${({ theme }) => theme.colors.white} !important;
     min-height: 44px;

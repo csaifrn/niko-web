@@ -112,7 +112,8 @@ export const ButtonGreen = styled.button`
   color: #191c24;
   border-radius: 5px;
   height: 44px;
-  width: 100%;
+  width: 80px;
+  align-self: flex-end;
   font-family: Rubik;
   background-color: #43db6d;
   cursor: pointer;

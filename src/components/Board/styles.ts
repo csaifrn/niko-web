@@ -30,7 +30,7 @@ const kanban = styled.div`
   overflow-x: scroll;
   &::-webkit-scrollbar {
     width: 0.3em;
-    height: 1em;
+    height: 2em;
   }
 
   &::-webkit-scrollbar-track {

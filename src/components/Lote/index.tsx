@@ -88,6 +88,25 @@ const Lote = (props: any) => {
               </S.LoteNumAvisos>
 
               <S.LoteNumAvisos>
+
+                <S.Categoria>
+                  {props.categoria &&
+                    props.categoria.map((categoria: any, index: number) => (
+                      <React.Fragment key={generateUUID()}>
+                        {index >= 1 && (
+                          <S.CategoriaTextDiv style={{ borderRadius: '100%', width: '2em' }}>
+                            <p>+{index}</p>
+                          </S.CategoriaTextDiv>
+                        )}
+                        {index == 0 && (
+                          <S.CategoriaTextDiv style={{ borderRadius: '3px' }}>
+                            <p style={{ padding: '0 0.5em' }}>{categoria.name}</p>
+                          </S.CategoriaTextDiv>
+                        )}
+                      </React.Fragment>
+                    ))}
+                </S.Categoria>
+
                 <S.Envolvido style={{ display: 'flex', marginLeft: '10px' }}>
                   {props.envolvidos &&
                     props.envolvidos.map((envolvidos: any, index: number) => (
@@ -115,37 +134,18 @@ const Lote = (props: any) => {
                       </React.Fragment>
                     ))}
                 </S.Envolvido>
-
-                <S.Categoria>
-                  {props.categoria &&
-                    props.categoria.map((categoria: any, index: number) => (
-                      <React.Fragment key={generateUUID()}>
-                        {index >= 1 && (
-                          <S.CategoriaTextDiv style={{ borderRadius: '100%', width: '2em' }}>
-                            <p>+{index}</p>
-                          </S.CategoriaTextDiv>
-                        )}
-                        {index == 0 && (
-                          <S.CategoriaTextDiv style={{ borderRadius: '3px' }}>
-                            <p style={{ padding: '0 0.5em' }}>{categoria.name}</p>
-                          </S.CategoriaTextDiv>
-                        )}
-                      </React.Fragment>
-                    ))}
-                </S.Categoria>
                 
               </S.LoteNumAvisos>
             </S.LoteDetalhes>
 
             {/* BOTÃO DE ATRIBUIR ALGUÉM */}
-            {props.prioridade == true && (
               <S.AtribuirButton type="button" onClick={handleAtribuirAlguem}>
                 <S.AtribuirAlguem>
                   <ArrowCircleUp weight="fill" color="#FCDE42" width={20} height={20} />
                   <p>Atribuir à alguém</p>
                 </S.AtribuirAlguem>
               </S.AtribuirButton>
-            )}
+
 
             {/* <div>{props.children}</div> */}
           </S.LoteArea>

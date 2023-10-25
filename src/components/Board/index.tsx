@@ -50,7 +50,7 @@ export const Board = (props: BoardProps) => {
   }, []);
 
   return (
-    <div style={{ display:'flex' , justifyContent: 'center' }}>
+    <div>
       <S.FaseKanbanPage>
 
         <S.divImg>

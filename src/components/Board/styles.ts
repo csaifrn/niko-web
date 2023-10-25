@@ -7,6 +7,7 @@ export const FaseKanbanPage = styled.div`
   flex-direction: column;
   max-width: 1140px;
   gap: 2em;
+  margin: 0 auto;
 
   //Mobile
   @media screen and (max-width: 767px) {
@@ -22,13 +23,14 @@ const kanban = styled.div`
   flex-direction: column;
   padding: 0em 0em 1em 0em;
   gap: 16px;
+  width: 100%;
+  margin: 0em 0em 6em 0em;
   scroll-behavior: auto;
   scrollbar-width: thin;
   overflow-x: scroll;
-  width: 100%;
   &::-webkit-scrollbar {
     width: 0.3em;
-    height: 0.5em;
+    height: 1em;
   }
 
   &::-webkit-scrollbar-track {
@@ -56,27 +58,15 @@ const kanbanSection = styled.div`
   min-width: 308px;
   width: 100%;
   gap: 1em;
-  height: 35vh;
-  padding: 1em;
-  color: white;
+  //height: 100%;
+  padding: 2em;
+  color: #ffffff;
   background-color: #191c24;
   border-radius: 5px;
   display: flex;
   flex-direction: column;
-  &::-webkit-scrollbar {
-    width: 0.6em;
-  }
-
-  &::-webkit-scrollbar-track {
-    background: #191c24;
-  }
-
-  &::-webkit-scrollbar-thumb {
-    background-color: #2a2e38;
-    border-radius: 20px;
-  }
   @media screen and (min-width: 767px) {
-    justify-content: center;
+    justify-content: flex-start;
     width: 20vh;
     height: 60vh;
   }
@@ -91,25 +81,27 @@ const kanbanSectionContent = styled.div`
   display: flex;
   flex-direction: row;
   gap: 1em;
-  padding: 0.5em;
-  padding-left: 1.1em;
-  color: white;
-  height: 65vh;
-  overflow-y: scroll;
+  //padding: 0.5em;
+  //padding-bottom: 1em;
+  color: #ffffff;
+  //height: 65vh;
+  overflow-x: scroll;
   scroll-behavior: auto;
   scrollbar-width: thin;
-  &::-webkit-scrollbar {
+  //background-color: green;
+  /* &::-webkit-scrollbar {
     width: 0.6em;
-  }
+  } */
 
   &::-webkit-scrollbar-track {
-    background: transparent;
+    background: #191c24;
   }
 
   &::-webkit-scrollbar-thumb {
-    background-color: transparent;
+    background-color: #2a2e38;
     border-radius: 20px;
   }
+
   @media screen and (min-width: 767px) {
     flex-direction: column;
     &::-webkit-scrollbar-thumb {
@@ -182,13 +174,9 @@ export const divImgMaior = styled.div`
 export const IconeFase = styled.img`
 `;
 
-
-
-
 export const divTitulo = styled.div`
   display: flex;
   gap: 1em;
-  margin-left: 1em;
 `;
 
 export { kanban, kanbanSection, kanbanSectionContent, btnPrioridade, inputPrioridade };

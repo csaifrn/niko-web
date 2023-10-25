@@ -7,12 +7,15 @@ const Lote = styled.div`
   padding: 0.8em;
   background-color: #393e4b;
   border-radius: 5px;
-  color: white;
-  min-height: 80px;
+  color: #ffffff;
+  min-height: 145.19px; 
   width: 100%;
   height: 100%;
   min-width: 230px;
   filter: drop-shadow(0px 4px 1px rgba(0, 0, 0, 0.25));
+  @media screen and (max-width: 767px) {
+    min-height: 145.19px;
+  }
 `;
 
 const LoteEdit = styled.div`
@@ -29,10 +32,13 @@ const LoteEdit = styled.div`
 
 const LoteArea = styled.div`
   display: flex;
-  gap: 1em;
+  //gap: 1em;
   justify-content: space-between;
+  align-content: space-between;
   flex-direction: column;
   width: 100%;
+  height: 100%;
+  //background-color: green;
 `;
 
 export const LoteDetalhes = styled.div`
@@ -40,6 +46,8 @@ export const LoteDetalhes = styled.div`
   flex-direction: column;
   gap: 1em;
   justify-content: space-between;
+  //background-color: red;
+  //height: 100%;
 `;
 
 const LoteNumAvisos = styled.div`

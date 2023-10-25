@@ -20,6 +20,7 @@ import { BoxObservation } from '../Observation/ObservationBox';
 import { DeletarModal } from '../DeletarModal';
 import { ObservationModal } from '../Observation/Observation-modal-update';
 import { DeleteObservation } from '../../api/services/batches/observation/delete-obsevation';
+import { number } from 'yup';
 
 export const LoteDetails = () => {
   const optionsFases = FaseData.map((fase) => ({ id: fase.id, label: fase.titulo }));
@@ -38,6 +39,7 @@ export const LoteDetails = () => {
   const [observation, setObservation] = useState<Observation>();
   const [observationId, setObservationId] = useState<string>();
   const [edit_modal, setEditModal] = useState<boolean>(false);
+  const [createDate, setCreateDate] = useState<Date>();
 
   const handleConfig = () => {
     setConfigModal(!config_modal);
@@ -64,6 +66,7 @@ export const LoteDetails = () => {
       setTask(data);
       setObservations(data.observations);
       setPriority(data.priority);
+      setCreateDate(new Date(data.created_at));
     },
     onError: (error: ApiError) => {
       if (error.response) {
@@ -153,7 +156,13 @@ export const LoteDetails = () => {
                 {/* <S.Protocolo>
             <p style={{ padding: '0 0.5em' }}>{task.protocolo}</p>
           </S.Protocolo> */}
-
+                <S.BlockGray>Criado por {task?.created_by.name}</S.BlockGray>
+                <S.BlockGray>
+                  Criado em{' '}
+                  {createDate?.toLocaleString('pt-br', {
+                    timeZone: 'America/Sao_paulo',
+                  })}
+                </S.BlockGray>
                 {task?.shelf_number !== null && <S.Estante>{task?.shelf_number}</S.Estante>}
 
                 {/* ARQUIVOS FÍSICOS */}
@@ -170,6 +179,9 @@ export const LoteDetails = () => {
                     {task?.digital_files_count}
                   </S.ArquivDigitais>
                 )}
+              </S.DetalhesLote>
+              <S.DetalhesLote>
+                <S.BlockGrayBorder>{task?.category.name}</S.BlockGrayBorder>
               </S.DetalhesLote>
 
               {/* MOSTRA CATEGORIAS QUANDO O LOTE É PRIORIDADE */}
@@ -284,9 +296,10 @@ export const LoteDetails = () => {
                   </div>
 
                   {observations &&
-                    observations.map((obs) => {
+                    observations.map((obs, index) => {
                       return (
                         <BoxObservation
+                          index={index}
                           key={obs.id}
                           observation={obs}
                           setObservation={(e: Observation) => setObservation(e)}
@@ -304,7 +317,7 @@ export const LoteDetails = () => {
                 {/* ATRIBUIR À ALGUÉM */}
                 <S.Botao onClick={handleAtribuirAlguem}>
                   <img src={`/atribuir.svg`} alt="botão para atribuir lote a algum operador " />
-                  <p>Atribuir à alguém</p>
+                  Atribuir à alguém
                 </S.Botao>
 
                 {/* VOLTAR FASE */}
@@ -321,6 +334,7 @@ export const LoteDetails = () => {
                       options={optionsFases}
                       className="react-select-container"
                       classNamePrefix="react-select"
+                      placeholder="Escolher fase"
                     />
                   </S.BotaoMudarFase>
                 )}
@@ -339,6 +353,7 @@ export const LoteDetails = () => {
                       options={optionsFases}
                       className="react-select-container"
                       classNamePrefix="react-select"
+                      placeholder="Escolher fase"
                     />
                   </S.BotaoMudarFase>
                 )}
@@ -346,7 +361,7 @@ export const LoteDetails = () => {
                 {/* DELETAR LOTE */}
                 <S.BotaoDeletarLote onClick={handleDelete}>
                   <img src={`/trash.svg`} alt="Botão de deletar Lote" />
-                  <p>Excluir lote</p>
+                  Excluir lote
                 </S.BotaoDeletarLote>
               </S.Botoes>
             </S.PendObservacaoBotoes>

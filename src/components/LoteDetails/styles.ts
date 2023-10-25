@@ -193,6 +193,29 @@ export const ArquivDigitais = styled.div`
   border-radius: 3px;
 `;
 
+export const BlockGray = styled.div`
+  background-color: ${({ theme }) => theme.colors['gray/500']};
+  height: 2em;
+  padding: 0 0.5em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5em;
+  border-radius: 3px;
+`;
+
+export const BlockGrayBorder = styled.div`
+  background-color: ${({ theme }) => theme.colors['gray/500']};
+  border: ${({ theme }) => theme.colors['gray/300']} solid 2px;
+  height: 2em;
+  padding: 0 0.5em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5em;
+  border-radius: 3px;
+`;
+
 export const CategoriaPrioridade = styled.div`
   display: flex;
   flex-wrap: wrap;

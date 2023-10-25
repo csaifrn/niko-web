@@ -90,19 +90,18 @@ const ModalBackdrop = styled.div`
 `;
 
 export const InputObservation = styled.textarea`
-  padding: 1em;
+  font-size: 16px;
   border-radius: 4px;
+  border: none;
+  outline: none;
   min-height: 120px;
-  overflow: auto;
-  box-sizing: border-box;
-  ::before ::after {
-    box-sizing: border-box;
-  }
-  resize: vertical;
+  overflow: hidden;
+  resize: none;
+  display: grid;
   font-family: 'Rubik';
-  background-color: ${({ theme }) => theme.colors['gray/700']};
-  color: ${({ theme }) => theme.colors['white']};
-  border: 1px solid ${({ theme }) => theme.colors['gray/300']};
+  background-color: transparent; /* ${({ theme }) => theme.colors['gray/700']}; */
+  color: #cccccc;
+  font: inherit;
 `;
 
 export const ButtonBlack = styled.button`

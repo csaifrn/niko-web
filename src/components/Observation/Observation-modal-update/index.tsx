@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, ChangeEvent, useLayoutEffect, useRef } from 'react';
 import * as S from './styles';
 import { ButtonGreen } from '../../../pages/Projeto/projeto-create/styles';
 import { ApiError } from '../../../api/services/authentication/signIn/signIn.interface';
@@ -11,6 +11,8 @@ import { ErrorMessage } from '../../../pages/Login/styles';
 import { Observation } from '../../../api/services/batches/get-batche/get.interface';
 import { ErrorsForm } from '../ObservationBox/interface.observation';
 import { validationObservationSchema } from '../ObservationBox/validation.observation';
+
+const MIN_TEXTAREA_HEIGHT = 32;
 
 interface DeletarModalProps {
   refetch: (e: Observation[]) => void;
@@ -27,6 +29,22 @@ export const ObservationModal = (props: DeletarModalProps) => {
   const [responseError, setResponseError] = useState('');
 
   const [validationFormError, setValidationFormError] = useState<ErrorsForm>({ observation: '' });
+
+  const textareaRef = useRef<HTMLTextAreaElement | null>(null);
+  const [value, setValue] = useState<string>('');
+
+  const onChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
+    setValue(event.target.value);
+  };
+
+  useLayoutEffect(() => {
+    if (textareaRef.current) {
+      // Reset height - important to shrink on delete
+      textareaRef.current.style.height = 'inherit';
+      // Set height
+      textareaRef.current.style.height = `${Math.max(textareaRef.current.scrollHeight, MIN_TEXTAREA_HEIGHT)}px`;
+    }
+  }, [value]);
 
   const updateMutate = useMutation(UpdateObservation, {
     onSuccess: (data) => {
@@ -116,9 +134,26 @@ export const ObservationModal = (props: DeletarModalProps) => {
                 <img src="/close.svg" alt="" height={18} width={18} />
               </S.Exit>
             </S.NameClose>
-            <S.InputObservation value={obs} onChange={(e) => setObs(e.currentTarget.value)} />
+            <S.InputObservation
+              autoFocus
+              ref={textareaRef}
+              style={{
+                minHeight: MIN_TEXTAREA_HEIGHT,
+                resize: 'none',
+              }}
+              value={obs}
+              onChange={(e) => {
+                setObs(e.currentTarget.value);
+                onChange(e);
+              }}
+              onFocus={function (e) {
+                var val = e.target.value;
+                e.target.value = '';
+                e.target.value = val;
+              }}
+              placeholder="Edite sua observação..."
+            />
             {validationFormError.observation && <ErrorMessage>{validationFormError.observation}</ErrorMessage>}
-            <S.ButtonBlack onClick={props.close}>Não, não quero.</S.ButtonBlack>
             <ButtonGreen onClick={updateObservation} type="button">
               Salvar
             </ButtonGreen>

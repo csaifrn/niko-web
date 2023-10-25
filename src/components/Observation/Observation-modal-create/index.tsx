@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useLayoutEffect, ChangeEvent, useRef } from 'react';
 import * as S from './styles';
 import { InputText } from '../../ModalCrairLote/styles';
 import { ErrorsForm } from './successmodal.interface';
@@ -13,7 +13,9 @@ import { ApiError } from '../../../api/services/authentication/signIn/signIn.int
 
 import { Observation } from '../../../api/services/batches/get-batche/get.interface';
 import { ErrorMessage } from '../../../pages/Login/styles';
+import { InputObservation } from '../Observation-modal-update/styles';
 
+const MIN_TEXTAREA_HEIGHT = 32;
 interface DeletarModalProps {
   title: string;
   close: () => void;
@@ -27,6 +29,23 @@ export const CreateObservationModal = (props: DeletarModalProps) => {
   const [observation, setObservation] = useState('');
   const { id } = useParams();
   const [validationFormError, setValidationFormError] = useState<ErrorsForm>({ observation: '' });
+
+  const textareaRef = useRef<HTMLTextAreaElement | null>(null);
+  const [value, setValue] = useState<string>('');
+
+  const onChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
+    setValue(event.target.value);
+  };
+
+  useLayoutEffect(() => {
+    if (textareaRef.current) {
+      // Reset height - important to shrink on delete
+      textareaRef.current.style.height = 'inherit';
+      // Set height
+      textareaRef.current.style.height = `${Math.max(textareaRef.current.scrollHeight, MIN_TEXTAREA_HEIGHT)}px`;
+    }
+  }, [value]);
+
   useEffect(() => {
     // Ao renderizar o modal, aplicar um escalonamento gradual para exibi-lo
     const timer = setTimeout(() => {
@@ -111,10 +130,24 @@ export const CreateObservationModal = (props: DeletarModalProps) => {
                 <img src="/close.svg" alt="" height={18} width={18} />
               </S.Exit>
             </S.NameClose>
-            <InputText
-              placeholder="digite aqui a observação!"
+            <InputObservation
+              autoFocus
+              ref={textareaRef}
+              style={{
+                minHeight: MIN_TEXTAREA_HEIGHT,
+                resize: 'none',
+              }}
               value={observation}
-              onChange={(e) => setObservation(e.currentTarget.value)}
+              onChange={(e) => {
+                setObservation(e.currentTarget.value);
+                onChange(e);
+              }}
+              onFocus={function (e) {
+                var val = e.target.value;
+                e.target.value = '';
+                e.target.value = val;
+              }}
+              placeholder="Escreva uma observação..."
             />
             {validationFormError.observation && <ErrorMessage>{validationFormError.observation}</ErrorMessage>}
 

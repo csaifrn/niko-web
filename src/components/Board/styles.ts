@@ -89,9 +89,10 @@ const kanbanSectionContent = styled.div`
   scroll-behavior: auto;
   scrollbar-width: thin;
   //background-color: green;
-  /* &::-webkit-scrollbar {
-    width: 0.6em;
-  } */
+
+  &::-webkit-scrollbar {
+    width: 0em;
+  }
 
   &::-webkit-scrollbar-track {
     background: #191c24;

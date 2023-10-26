@@ -20,7 +20,7 @@ const Preparo = () => {
       <MenuCoord />
       <S.Wrapper>
 
-        {true && (
+        {/* {true && (
             <S.Btn
               onClick={() => {
                 setOpenCriarModal(!openCriarModal);
@@ -28,7 +28,7 @@ const Preparo = () => {
             >
               <p>Criar Lote</p>
             </S.Btn>
-        )}
+        )} */}
 
         <Board fase={FaseData[0]} titulo="preparo" />
 

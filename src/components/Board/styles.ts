@@ -5,7 +5,7 @@ export const FaseKanbanPage = styled.div`
   display: flex;
   justify-content: center;
   flex-direction: column;
-  max-width: 1140px;
+  //max-width: 1140px;
   gap: 2em;
   margin: 0 auto;
 
@@ -19,12 +19,14 @@ export const FaseKanbanPage = styled.div`
 const kanban = styled.div`
   font-family: 'Rubik';
   display: flex;
-  justify-content: flex-start;
+  justify-content: center;
+  //justify-content: flex-start;
+  flex-wrap: wrap;
   flex-direction: column;
   padding: 0em 0em 1em 0em;
   gap: 16px;
   width: 100%;
-  margin: 0em 0em 6em 0em;
+  //margin: 0em 0em 0em 0em;
   scroll-behavior: auto;
   scrollbar-width: thin;
   overflow-x: scroll;
@@ -50,7 +52,7 @@ const kanban = styled.div`
   @media screen and (min-width: 767px) {
     //justify-content: center;
     flex-direction: row;
-    margin: 0em 0em 2em 0em;
+    margin-bottom: 2em;
   }
 `;
 
@@ -68,7 +70,7 @@ const kanbanSection = styled.div`
   @media screen and (min-width: 767px) {
     justify-content: flex-start;
     width: 20vh;
-    height: 60vh;
+    min-height: 60vh;
   }
   /* ${media.greaterThan('large')`
     justify-content: center;
@@ -92,14 +94,15 @@ const kanbanSectionContent = styled.div`
 
   &::-webkit-scrollbar {
     width: 0em;
+    height: 0em;
   }
 
   &::-webkit-scrollbar-track {
-    background: #191c24;
+    //background: #191c24;
   }
 
   &::-webkit-scrollbar-thumb {
-    background-color: #2a2e38;
+    //background-color: #2a2e38;
     border-radius: 20px;
   }
 

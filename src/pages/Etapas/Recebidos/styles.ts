@@ -1,89 +1,100 @@
 import styled from 'styled-components';
 import media from 'styled-media-query';
 
-// Create a Title component that'll render an <h1> tag with some styles
-
-const LoteArea = styled.section`
-  width: calc(100% -2em);
-  height: 50vh;
-  background-color: #191c24;
+export const RecepcaoPage = styled.div`
   display: flex;
   flex-direction: column;
-  justify-items: center;
-  padding: 2em;
-  grid-gap: 1em;
-  border-radius: 5px;
-  overflow-y: scroll;
-  scroll-behavior: auto;
-  scrollbar-width: thin;
-  @media screen and (min-width: 500px) {
-    flex-wrap: wrap;
+  gap: 16px;
+  max-width: 1140px;
+  margin: 8em 2em 2em 2em;
+  font-family: 'Rubik';
+  @media screen and (max-width: 767px) {
+    width: 100%;
   }
-  @media screen and (min-width: 1000px) {
-    justify-content: flex-start;
-    flex-wrap: wrap;
-  }
-  @media screen and (min-height: 650px) {
-    max-height: 60vh;
+  @media screen and (min-width: 767px) {
+    justify-content: center;
+    margin: 10em 0em 2em 0em;
   }
 `;
 
-export const RemessasDiv = styled.div`
-  margin: 2em 2em 2em 2em; 
-  display: flex; 
-  flex-direction: column; 
-  gap: 1em; 
-  justify-content: center ;
-  align-items: center;
-  ${media.greaterThan('large')`
-  `}
+export const RecepçãoTitle = styled.h1`
+  color: #ffffff;
+  font-family: 'Rubik';
 `;
+
+// export const RemessasDiv = styled.div`
+//   //margin: 2em 2em 2em 2em; 
+//   display: flex; 
+//   flex-direction: column; 
+//   gap: 1em; 
+//   justify-content: center ;
+//   align-items: center;
+//   &::-webkit-scrollbar {
+//     width: 0.3em;
+//     height: 2em;
+//   }
+
+//   &::-webkit-scrollbar-track {
+//     background: #191c24;
+//   }
+
+//   &::-webkit-scrollbar-thumb {
+//     background-color: #2a2e38;
+//     border-radius: 20px;
+//   }
+
+//   &::-webkit-scrollbar-track {
+//     background-color: transparent;
+//     margin: 0em 2em;
+//   }
+// `;
 
 const Main = styled.section`
   background-color: #191c24;
   display: flex;
   flex-direction: column;
   padding: 2em;
-  margin: 0em 3em 0em 3em;
-  grid-gap: 1em;
+  gap: 1em;
   border-radius: 5px;
+  height: 60vh;
+  width: 100%;
   overflow-y: scroll;
   scroll-behavior: auto;
   scrollbar-width: thin;
-  height: 60vh;
-  width: 100%;
-  
-  ${media.greaterThan('large')`
-    justify-items: center;
-    width: 80vh;
-    height: 70vh;
-    overflow-y: scroll;
-    scroll-behavior: auto;
-    scrollbar-width: thin;
-  `}
+  @media screen and (min-width: 767px) {
+    height: 70vh; 
+    width: 70vh;
+  }
 `;
 
 export const IconeRecepDivMobile = styled.div`
    
   display: flex;
-  margin: 1em 0em 0em 2em; 
+  //margin: 1em 0em 0em 2em; 
   justify-content: flex-start;
-  gap: 0.5em ;
-  ${media.greaterThan('large')`
+  gap: 16px ;
+  /* ${media.greaterThan('large')`
     display: none;
-  `}
+  `} */
+  @media screen and (min-width: 767px) {
+    display: none; 
+  }
 `;
 
 export const IconeRecepDivDesktop = styled.div`
    
   display: none;
-  margin: 1em 0em 0em 2em; 
+  //margin: 1em 0em 0em 2em; 
   justify-content: center;
-  gap: 0.5em ;
-  ${media.greaterThan('large')`
+  gap: 16px ;
+  /* ${media.greaterThan('large')`
     display: flex;
-  `}
-
+    align-items: center;
+  `} */
+  @media screen and (min-width: 767px) {
+    display: flex;
+    align-items: center;
+  }
 `;
 
 export const IconeRecepcao = styled.img`
@@ -114,7 +125,7 @@ const Btn = styled.button`
   font-weight: bold;
   :hover {
   }
-  @media screen and (min-width: 700px) {
+  @media screen and (min-width: 767px) {
     width: 20%;
   }
   p {
@@ -122,4 +133,4 @@ const Btn = styled.button`
   }
 `;
 
-export { LoteArea, FooterHome, spanLinear, Btn, Main };
+export {FooterHome, spanLinear, Btn, Main };

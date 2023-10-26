@@ -62,7 +62,7 @@ export const Board = (props: BoardProps) => {
           <h1 style={{ color: '#ffffff' }}>{fase.titulo}</h1>
         </S.divImgMaior>
 
-        {fase.titulo == 'Arquivamento' ? 
+        {fase.titulo == 'Arquivamento' || fase.titulo == 'Preparo' ? 
         (
           <S.kanban className="board" style={{ justifyContent: 'center' }}>
             {etapas.map((section) => (

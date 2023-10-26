@@ -20,10 +20,10 @@ const Wrapper = styled.div`
   //height: 170vh;
   //min-height: 550px;
   //width: 100vw;
-  overflow: hidden;
+  //overflow: hidden;
   margin: 8em 2em 0em 2em;
   @media screen and (min-width: 767px) {
-    margin: 10em 2em 0em 2em;
+    margin: 10em 0em 0em 0em;
   }
 `;
 

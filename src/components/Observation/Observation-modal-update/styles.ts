@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 
 const ModalArea = styled.div`
-  z-index: 101;
   width: 80vw;
   max-width: 400px;
   background-color: ${({ theme }) => theme.colors['gray/500']};
@@ -67,28 +66,13 @@ const Recused = styled.button`
   font-family: 'Rubik';
 `;
 
-export const Delete = styled.button`
+const Delete = styled.button`
   height: 44px;
-  width: 100%;
-  border: none;
   border-radius: 5px;
-  background-color: ${({ theme }) => theme.colors['red/500']};
+  background-color: #f32d2d;
+  border: none;
   color: white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0em 1em;
-  gap: 1em;
   font-family: 'Rubik';
-  background-color: ${({ theme }) => theme.colors['red/700']};
-  cursor: pointer;
-  &:hover {
-    background-color: ${({ theme }) => theme.colors['red/500']};
-  }
-  &:active {
-    background-color: ${({ theme }) => theme.colors['red/600']};
-    transform: translateY(-5%) translateX(2%);
-  }
 `;
 
 const ModalBackdrop = styled.div`
@@ -105,4 +89,37 @@ const ModalBackdrop = styled.div`
   transition: transform 1s;
 `;
 
-export { ModalArea, ModalContent, NameClose, ChooseLote, Lote, Recused, ModalBackdrop };
+export const InputObservation = styled.textarea`
+  font-size: 16px;
+  border-radius: 4px;
+  border: none;
+  outline: none;
+  min-height: 120px;
+  overflow: hidden;
+  resize: none;
+  display: grid;
+  font-family: 'Rubik';
+  background-color: transparent; /* ${({ theme }) => theme.colors['gray/700']}; */
+  color: #cccccc;
+  font: inherit;
+`;
+
+export const ButtonBlack = styled.button`
+  border: none;
+  color: ${({ theme }) => theme.colors['white']};
+  border-radius: 5px;
+  height: 44px;
+  width: 100%;
+  font-family: Rubik;
+  background-color: ${({ theme }) => theme.colors['gray/700']};
+  cursor: pointer;
+  &:hover {
+    background-color: ${({ theme }) => theme.colors['gray/500S']};
+  }
+  &:active {
+    background-color: ${({ theme }) => theme.colors['gray/600']};
+    transform: translateY(-5%) translateX(2%);
+  }
+`;
+
+export { ModalArea, ModalContent, NameClose, ChooseLote, Lote, Recused, Delete, ModalBackdrop };

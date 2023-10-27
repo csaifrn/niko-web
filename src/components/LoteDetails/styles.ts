@@ -2,6 +2,26 @@ import styled from 'styled-components';
 import media from 'styled-media-query';
 import Select from 'react-select';
 
+export const BotaoCriarProjeto = styled.button`
+  width: 24px;
+  height: 24px;
+  border-radius: 100%;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+  background-color: ${({ theme }) => theme.colors['gray/700']};
+  &:hover {
+    background-color: ${({ theme }) => theme.colors['gray/300']};
+  }
+  &:active {
+    background-color: ${({ theme }) => theme.colors['gray/300']};
+    transform: translateY(-5%) translateX(2%);
+  }
+`;
+
 export const areaClick = styled.div`
   color: white;
   padding: 2em;
@@ -11,6 +31,7 @@ export const areaClick = styled.div`
   gap: 24px;
   margin: 8em 0em 8em 0em;
   font-family: 'Rubik', Helvetica, sans-serif;
+  width: 100%;
   max-width: 1140px;
   filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
   &::-webkit-scrollbar {
@@ -92,18 +113,24 @@ export const EditConfig = styled.div`
 export const Edit = styled.a`
   height: 2.25em;
   width: 2.25em;
-  background-color: #393e4b;
   border-radius: 3px;
   margin-bottom: 0.5em;
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: ${({ theme }) => theme.colors['gray/500']};
+  &:hover {
+    background-color: ${({ theme }) => theme.colors['gray/200']};
+  }
+  &:active {
+    background-color: ${({ theme }) => theme.colors['gray/300']};
+    transform: translateY(-5%) translateX(2%);
+  }
 `;
 
 export const Config = styled.button`
   height: 2em;
   width: 2em;
-  background-color: #393e4b;
   border-radius: 3px;
   margin-bottom: 0.5em;
   display: flex;
@@ -111,6 +138,14 @@ export const Config = styled.button`
   align-items: center;
   border: none;
   cursor: pointer;
+  background-color: ${({ theme }) => theme.colors['gray/500']};
+  &:hover {
+    background-color: ${({ theme }) => theme.colors['gray/200']};
+  }
+  &:active {
+    background-color: ${({ theme }) => theme.colors['gray/300']};
+    transform: translateY(-5%) translateX(2%);
+  }
 `;
 
 export const DetalhesLote = styled.div`
@@ -151,6 +186,29 @@ export const ArquivDigitais = styled.div`
   background-color: #393e4b;
   height: 2em;
   width: 4em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5em;
+  border-radius: 3px;
+`;
+
+export const BlockGray = styled.div`
+  background-color: ${({ theme }) => theme.colors['gray/500']};
+  height: 2em;
+  padding: 0 0.5em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5em;
+  border-radius: 3px;
+`;
+
+export const BlockGrayBorder = styled.div`
+  background-color: ${({ theme }) => theme.colors['gray/500']};
+  border: ${({ theme }) => theme.colors['gray/300']} solid 2px;
+  height: 2em;
+  padding: 0 0.5em;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -217,8 +275,7 @@ export const FaseEnvolvAtual = styled.div`
   gap: 8px;
 `;
 
-export const TituloFaseAtual = styled.h2`
-`;
+export const TituloFaseAtual = styled.h2``;
 
 export const Envolvidos = styled.div`
   display: flex;
@@ -278,6 +335,7 @@ export const Pendencias = styled.div`
 export const Observações = styled.div`
   display: flex;
   flex-direction: column;
+  transition: all;
   gap: 16px;
   background: #393e4b;
   border-radius: 5px;
@@ -328,20 +386,6 @@ export const BotaoResolverPend = styled.button`
     background-color: ${({ theme }) => theme.colors['yellow/200']};
     transform: translateY(-5%) translateX(2%);
   }
-`;
-
-export const ObsDivBlack = styled.div`
-  background-color: #191c24;
-  border-radius: 5px;
-  display: flex;
-  gap: 10px;
-  padding: 15px;
-  width: calc(100%-2em);
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  order: 1;
-  flex-grow: 0;
 `;
 
 export const Botoes = styled.div`
@@ -424,7 +468,7 @@ export const VoltarAvancar = styled.button`
   &:active {
     background-color: ${({ theme }) => theme.colors['gray/400']};
     transform: translateY(-5%) translateX(2%);
-  } 
+  }
 `;
 
 export const VoltarAvancarDesativado = styled.button`
@@ -591,8 +635,12 @@ export const EnvolvidosDiv = styled.div`
 export const EscolherFaseSelect = styled(Select)`
   width: calc(50%);
   border-left: 1px solid #888c99;
+
   .react-select__control {
     border: none;
+    border-radius: 0;
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
     background-color: ${({ theme }) => theme.colors['gray/500']} !important; /* Cor de fundo do controle */
     color: ${({ theme }) => theme.colors.white} !important;
     min-height: 44px;

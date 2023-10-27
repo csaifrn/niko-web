@@ -4,6 +4,7 @@ import * as S from './styles';
 interface DeletarModalProps {
   title: string;
   close: () => void;
+  deleteFunction?: () => void;
 }
 
 export const DeletarModal = (props: DeletarModalProps) => {
@@ -23,6 +24,17 @@ export const DeletarModal = (props: DeletarModalProps) => {
   }, [closing]);
 
   const handleClose = () => {
+    if (props.deleteFunction) {
+      props.deleteFunction();
+    }
+
+    setClosing(true);
+    setTimeout(() => {
+      props.close();
+    }, 300);
+  };
+
+  const close = () => {
     setClosing(true);
     setTimeout(() => {
       props.close();
@@ -35,11 +47,11 @@ export const DeletarModal = (props: DeletarModalProps) => {
           <S.ModalContent>
             <S.NameClose>
               <h2>{props.title}</h2>
-              <S.Exit type="button" onClick={handleClose}>
+              <S.Exit type="button" onClick={close}>
                 <img src="/close.svg" alt="" height={18} width={18} />
               </S.Exit>
             </S.NameClose>
-            <S.Recused onClick={props.close}>Não, não quero.</S.Recused>
+            <S.Recused onClick={close}>Não, não quero.</S.Recused>
             <S.Delete onClick={handleClose}>Deletar</S.Delete>
           </S.ModalContent>
         </S.ModalArea>

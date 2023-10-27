@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 
 const ModalArea = styled.div`
-  z-index: 101;
   width: 80vw;
   max-width: 400px;
   background-color: ${({ theme }) => theme.colors['gray/500']};
@@ -67,27 +66,15 @@ const Recused = styled.button`
   font-family: 'Rubik';
 `;
 
-export const Delete = styled.button`
+export const Green = styled.button`
   height: 44px;
-  width: 100%;
-  border: none;
   border-radius: 5px;
-  background-color: ${({ theme }) => theme.colors['red/500']};
+  background-color: ${({ theme }) => theme.colors['green/500']};
+  border: none;
   color: white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0em 1em;
-  gap: 1em;
   font-family: 'Rubik';
-  background-color: ${({ theme }) => theme.colors['red/700']};
-  cursor: pointer;
-  &:hover {
-    background-color: ${({ theme }) => theme.colors['red/500']};
-  }
-  &:active {
-    background-color: ${({ theme }) => theme.colors['red/600']};
-    transform: translateY(-5%) translateX(2%);
+  :hover {
+    background-color: ${({ theme }) => theme.colors['gray/600']};
   }
 `;
 

@@ -4,7 +4,7 @@ import media from 'styled-media-query';
 export const PainelArea = styled.div`
   display: flex;
   width: 100%;
-  padding: 10em 2em;
+  padding: 8em 2em;
   gap: 32px;
   flex-direction: column;
   max-width: 1140px;

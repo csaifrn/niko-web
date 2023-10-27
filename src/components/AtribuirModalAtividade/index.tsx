@@ -118,6 +118,7 @@ export const AtribuirModalAtividade = (props: AtribuirModalAtividadeProps) => {
     }, 10);
 
     return () => clearTimeout(timer);
+
   }, [closing]);
 
   const handleClose = () => {
@@ -126,6 +127,8 @@ export const AtribuirModalAtividade = (props: AtribuirModalAtividadeProps) => {
       props.close();
     }, 300);
   };
+
+  console.log(props.nameFase)
 
   return (
     <>
@@ -139,7 +142,7 @@ export const AtribuirModalAtividade = (props: AtribuirModalAtividadeProps) => {
               </S.Exit>
             </S.NameClose>
 
-            <img height={32} width={32} src={`${props.nameFase}`} alt="Icone da fase" />
+            <img height={32} width={32} src={`/icon-medium/${props.nameFase}.svg`} alt="Icone da fase" />
 
             <Search searchTerm={searchTerm} handleSearchChange={handleSearchChange} />
 

@@ -7,7 +7,7 @@ export const AtividadesPage = styled.div`
   flex-direction: column;
   max-width: 1140px;
   width: 100%;
-  padding: 3em 2em 10em 2em;
+  padding: 2em 2em 10em 2em;
 
   @media screen and (min-width: 1140px) {
     padding: 3em 0em 2em 0em;
@@ -39,7 +39,7 @@ export const AtivsCabecalho = styled.div`
   position: sticky;
   top: 40px;
   padding: 2em 0em;
-  padding-top: 70px;
+  padding-top: 55px;
   display: flex;
   align-items: center;
   z-index: 98;
@@ -52,6 +52,7 @@ export const AtivsCabecalho = styled.div`
   @media screen and (min-width: 767px) {
     gap: 16px;
     justify-content: flex-start;
+    padding-top: 70px;
   }
 `;
 

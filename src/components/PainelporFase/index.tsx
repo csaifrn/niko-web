@@ -31,24 +31,42 @@ export const PainelPorFase = () => {
       concluidos: 12,
     },
   ];
-  
+
   return (
     <S.Wrapper>
       <S.PainelTitulo>Painel por fase</S.PainelTitulo>
-      
+
       <S.ContainerData>
+        <S.FiltrarPorPeriodo>
+
+          <S.FiltrarTitulo> Filtrar por período: </S.FiltrarTitulo>
+
+          <S.EscolherDatas>
+
+            <S.DataInicial>
+              <S.DataText>De:</S.DataText>
+              <S.Filter type="date" />
+            </S.DataInicial>
+
+            <S.DataFinal>
+              <S.DataText>A:</S.DataText>
+              <S.Filter type="date" />
+            </S.DataFinal>
+
+            <S.BotaoFiltrar> Filtrar </S.BotaoFiltrar>
+
+          </S.EscolherDatas>
+
+        </S.FiltrarPorPeriodo>
 
         <S.ContainerFilterNumber>
           <S.QtdLotes>
             <S.NumberOrangeTitle>172</S.NumberOrangeTitle> Lotes
           </S.QtdLotes>
-
-          <S.Filter type="week" />
         </S.ContainerFilterNumber>
 
         <S.Container>
           <S.DataFaseDois>
-
             <S.ContainerDataFase>
               <S.ContainerImg src="/icon-big/Recepção.svg" />
               <S.DataFase>
@@ -60,7 +78,7 @@ export const PainelPorFase = () => {
                 </S.NumberTextDataUnic>
               </S.DataFase>
             </S.ContainerDataFase>
-            
+
             <S.ContainerDataFase>
               <S.ContainerImg src="/icon-big/Arquivamento.svg" />
               <S.DataFase>

@@ -20,6 +20,53 @@ export const Wrapper = styled.div`
   }
 `;
 
+export const FiltrarPorPeriodo = styled.div`
+  display: flex; 
+  gap: 16px; 
+  flex-direction: column ;
+`;
+
+export const FiltrarTitulo = styled.h2`
+`;
+
+export const EscolherDatas = styled.div`
+  display: flex; 
+  gap: 16px;
+`;
+
+export const DataInicial = styled.div`
+  display: flex;
+  gap: 8px; 
+  align-items: center;
+`;
+
+export const DataFinal = styled.div`
+  display: flex;
+  gap: 8px; 
+  align-items: center;
+`;
+
+export const DataText = styled.h3`
+  
+`;
+
+export const BotaoFiltrar = styled.button`
+  border-radius: 3px;
+  font-family: 'Rubik';
+  color: #ffffff;
+  background-color: #F3802D;
+  border: none;
+  padding: 8px;
+  cursor: pointer;
+  &:hover {
+    background-color: ${({ theme }) => theme.colors['orange/500']};
+  }
+  &:active {
+    background-color: ${({ theme }) => theme.colors['orange/500']};
+    transform: translateY(-5%) translateX(2%);
+  }
+`;
+
 export const PainelTitulo = styled.h1`
   font-family: 'Rubik';
   color: #ffffff;
@@ -35,6 +82,8 @@ export const ContainerData = styled.div`
   align-items: flex-start;
   gap: 1rem;
   align-self: stretch;
+  font-family: 'Rubik';
+  color: #ffffff;
 `;
 
 export const ContainerFilterNumber = styled.div`

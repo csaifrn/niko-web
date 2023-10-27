@@ -15,7 +15,6 @@ const Upload = () => {
       <Menu area={`/Fase/${id}/Board/Upload`} id_projeto={id}></Menu>
       <MenuCoord />
       <Style.Wrapper>
-        <p>Upload</p>
         <Board fase={FaseData[3]} titulo="upload" />
         <Style.Footer></Style.Footer>
       </Style.Wrapper>

@@ -33,6 +33,14 @@ export const Exit = styled.button`
   justify-content: center;
   align-items: center;
   border: none;
+  cursor: pointer;
+  &:hover {
+    background-color: ${({ theme }) => theme.colors['gray/400']};
+  }
+  &:active {
+    background-color: ${({ theme }) => theme.colors['gray/400']};
+    transform: translateY(-5%) translateX(2%);
+  }
 `;
 
 const NameClose = styled.div`
@@ -79,6 +87,14 @@ export const Criar = styled.button`
   font-family: 'Rubik';
   color: ${({ theme }) => theme.colors['gray/700']};
   font-weight: bold;
+  cursor: pointer;
+  &:hover {
+    background-color: ${({ theme }) => theme.colors['green/600']};
+  }
+  &:active {
+    background-color: ${({ theme }) => theme.colors['green/600']};
+    transform: translateY(-5%) translateX(2%);
+  }
 `;
 
 export const Toaster = styled.div`

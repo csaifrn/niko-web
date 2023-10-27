@@ -72,6 +72,13 @@ const AtribuirButton = styled.button`
   color: #191C24;
   font-family: 'Rubik';
   cursor: pointer;
+  &:hover {
+    background-color: ${({ theme }) => theme.colors['green/600']};
+  }
+  &:active {
+    background-color: ${({ theme }) => theme.colors['green/600']};
+    transform: translateY(-5%) translateX(2%);
+  }
 `;
 
 export const ModalBackdrop = styled.div`
@@ -98,6 +105,13 @@ export const Exit = styled.button`
   align-items: center;
   border: none;
   cursor: pointer;
+  &:hover {
+    background-color: ${({ theme }) => theme.colors['gray/400']};
+  }
+  &:active {
+    background-color: ${({ theme }) => theme.colors['gray/400']};
+    transform: translateY(-5%) translateX(2%);
+  }
 `;
 
 export const ButtonCatTipol = styled.button`

@@ -19,7 +19,6 @@ const AtividadeCreate = () => {
 
   const [tarefas, setTarefas] = useState<typeof FaseData>([]);
 
-  
   const [tarefasData, setTarefasData] = useState<any>([[], []]);
 
   const [categorias, setCategorias] = useState<typeof CategoriaData>([]);
@@ -99,7 +98,7 @@ const AtividadeCreate = () => {
   };
 
   return (
-    <div style={{display: 'flex' , justifyContent: 'center'}}>
+    <div style={{ display: 'flex', justifyContent: 'center' }}>
       <Menu area={`/Categoria/${id}`} id_projeto={id}></Menu>
       <MenuCoord />
 
@@ -137,7 +136,7 @@ const AtividadeCreate = () => {
           </div>
 
           <S.CloseDiv>
-            <S.Exit 
+            <S.Exit
               onClick={() => {
                 navigate(`/Atividades/${id}`);
               }}
@@ -145,7 +144,6 @@ const AtividadeCreate = () => {
               <img src="/close.svg" alt="" height={18} width={18} />
             </S.Exit>
           </S.CloseDiv>
-
         </div>
         <S.EspecificacoesAtiv>
           <S.Data
@@ -186,18 +184,16 @@ const AtividadeCreate = () => {
               <S.Titulo2>Tarefas</S.Titulo2>
 
               <S.BotaoAdd
-                style={{cursor: 'pointer'}}
+                style={{ cursor: 'pointer' }}
                 onClick={() => {
                   setModalTarefas(!modalTarefas);
                 }}
               >
                 <img src="/adicionar.svg" alt="adicionar atividade" />
               </S.BotaoAdd>
-
             </S.TituloBotaoAdd>
 
             <S.TarefasCardsArea>
-
               {tarefas.length > 0 &&
                 tarefas.map((fase) => {
                   return (
@@ -223,11 +219,11 @@ const AtividadeCreate = () => {
                           display: 'flex',
                         }}
                       >
-                        {fase.icone === '/icon-small/new.png' ? 
-                        <img src={'/icon-small/new.png'} width={28} height={28} alt=""/> : 
-                        <img src={`/icon-medium/${fase.titulo}.svg`} alt="" />
-                        }
-
+                        {fase.icone === '/icon-small/new.png' ? (
+                          <img src={'/icon-small/new.png'} width={28} height={28} alt="" />
+                        ) : (
+                          <img src={`/icon-medium/${fase.titulo}.svg`} alt="" />
+                        )}
                       </div>
                       <h2
                         style={{
@@ -251,14 +247,13 @@ const AtividadeCreate = () => {
               <S.Titulo2>Categorias e Tipologias</S.Titulo2>
 
               <S.BotaoAdd
-                style={{cursor: 'pointer'}}
+                style={{ cursor: 'pointer' }}
                 onClick={() => {
                   SetModalCatTipo(!modalCatTipo);
                 }}
               >
                 <img src="/adicionar.svg" alt="adicionar atividade" />
               </S.BotaoAdd>
-              
             </S.TituloBotaoAdd>
             <div
               style={{
@@ -345,7 +340,7 @@ const AtividadeCreate = () => {
               {/* BOTÃO ATIVADO */}
               {tarefas.length > 0 && (
                 <S.BotaoAdd
-                  style={{cursor: 'pointer'}}
+                  style={{ cursor: 'pointer' }}
                   onClick={() => {
                     SetModalUsers(!modalUsers);
                   }}
@@ -360,21 +355,28 @@ const AtividadeCreate = () => {
                   <img src="/adicionar.svg" alt="adicionar atividade" style={{ opacity: '50%' }} />
                 </S.BotaoAdd>
               )}
-
             </S.TituloBotaoAdd>
 
             <S.UsuariosPorFase>
-
               {UserFase.map((f) => {
                 return (
                   <S.UsuariosDeUmaFase key={f.id_fase}>
-                    <S.IconeTituloFase >
-                      <img src={`/icon-medium/${tarefas.filter((tarefa) => tarefa.id === f.id_fase)[0].titulo}.svg`} alt="" />
+                    <S.IconeTituloFase>
+                      <img
+                        src={`/icon-medium/${tarefas.filter((tarefa) => tarefa.id === f.id_fase)[0].titulo}.svg`}
+                        alt=""
+                      />
 
-                      {tarefas.filter((tarefa) => tarefa.id === f.id_fase)[0].icone === '/icon-small/new.png' &&
-                        <img src={'/icon-small/new.png'} style={{marginLeft: '-16px'}} width={28} height={28} alt=''></img>
-                      }
-          
+                      {tarefas.filter((tarefa) => tarefa.id === f.id_fase)[0].icone === '/icon-small/new.png' && (
+                        <img
+                          src={'/icon-small/new.png'}
+                          style={{ marginLeft: '-16px' }}
+                          width={28}
+                          height={28}
+                          alt=""
+                        ></img>
+                      )}
+
                       <h3>{tarefas.filter((tarefa) => tarefa.id === f.id_fase)[0].titulo}</h3>
                     </S.IconeTituloFase>
 
@@ -400,7 +402,9 @@ const AtividadeCreate = () => {
                               display: 'flex',
                             }}
                           >
-                            <div style={{ justifyContent: 'flex-start', alignItems: 'center', gap: 16, display: 'flex' }}>
+                            <div
+                              style={{ justifyContent: 'flex-start', alignItems: 'center', gap: 16, display: 'flex' }}
+                            >
                               <img
                                 style={{
                                   width: 32,
@@ -425,44 +429,30 @@ const AtividadeCreate = () => {
                                 {user.name}
                               </div>
                             </div>
-                            <div style={{ gap: 16, display: 'flex' }}>
-                              <div
-                                style={{
-                                  padding: 8,
-                                  background: '#43DB6D',
-                                  borderRadius: 5,
-                                  gap: 10,
-                                  display: 'flex',
-                                  border: 'none',
-                                  cursor: 'pointer'
+
+                            <S.AtribuirLoteButton
+                                onClick={() => {
+                                  setFaseName(tarefas.filter((tarefa: any) => tarefa.id === f.id_fase)[0].icone);
+                                  setName(user.name);
+                                  setIdUser(user.id);
+                                  setIdFase(f.id_fase);
+                                  SetModalAtribuirLote(true);
                                 }}
                               >
-                                <button
-                                  onClick={() => {
-                                    setFaseName(tarefas.filter((tarefa) => tarefa.id === f.id_fase)[0].icone);
-                                    setName(user.name);
-                                    setIdUser(user.id);
-                                    setIdFase(f.id_fase);
-                                    SetModalAtribuirLote(true);
-                                  }}
+                                <p
                                   style={{
                                     color: '#191C24',
                                     fontSize: 12,
                                     fontFamily: 'Rubik',
                                     fontWeight: '500',
                                     wordWrap: 'break-word',
-                                    border: 'none',
-                                    backgroundColor: 'transparent',
-                                    cursor: 'pointer'
                                   }}
                                 >
                                   Atribuir Lote
-                                </button>
-                              </div>
-                            </div>
+                                </p>
+                              </S.AtribuirLoteButton>
+
                           </div>
-
-
 
                           <div style={{ gap: 8, display: 'flex', flexWrap: 'wrap' }}>
                             {LoteUser.filter((lote) => lote.id_user === user.id && lote.id_fase === f.id_fase).length >
@@ -515,21 +505,11 @@ const AtividadeCreate = () => {
               })}
             </S.UsuariosPorFase>
           </S.Usuarios>
-
         </S.EspecificacoesAtiv>
         {/* BOTÃO DE SALVAR */}
-        {UserFase.length > 0 && (
-          <S.AddAtivAtivado onClick={handleSave}>
-            Adicionar Atividade
-          </S.AddAtivAtivado>
-        )}
-        {UserFase.length === 0 && (
-          <S.AddAtivDesativado>
-            Adicionar Atividade
-          </S.AddAtivDesativado>
-        )}
+        {UserFase.length > 0 && <S.AddAtivAtivado onClick={handleSave}>Adicionar Atividade</S.AddAtivAtivado>}
+        {UserFase.length === 0 && <S.AddAtivDesativado>Adicionar Atividade</S.AddAtivDesativado>}
       </S.CriarAtivArea>
-
 
       {modalTarefas && (
         <CreateAtividade

@@ -89,6 +89,7 @@ export const AtribuirModal = (props: AtribuirModalProps) => {
           <S.ModalContent id="modal-content">
             <S.NameClose>
               <h2>Atribuir Lote</h2>
+
               <button onClick={handleClose} style={{ width: 'auto', backgroundColor: 'transparent', border: 'none' }}>
                 <img
                   src="/close.svg"
@@ -102,7 +103,9 @@ export const AtribuirModal = (props: AtribuirModalProps) => {
                   }}
                 />
               </button>
+
             </S.NameClose>
+
             <Search searchTerm={searchTerm} handleSearchChange={handleSearchChange} />
             <S.ChooseLote>
               {filteredLotes.map((lote) => (

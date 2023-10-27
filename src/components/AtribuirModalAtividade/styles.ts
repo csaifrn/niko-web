@@ -32,6 +32,13 @@ export const Exit = styled.button`
   align-items: center;
   border: none;
   cursor: pointer;
+  &:hover {
+    background-color: ${({ theme }) => theme.colors['gray/400']};
+  }
+  &:active {
+    background-color: ${({ theme }) => theme.colors['gray/400']};
+    transform: translateY(-5%) translateX(2%);
+  }
 `;
 
 const ModalContent = styled.div`
@@ -89,6 +96,13 @@ const AtribuirButton = styled.button`
   font-family: 'Rubik';
   color: #191C24;
   cursor: pointer;
+  &:hover {
+    background-color: ${({ theme }) => theme.colors['green/600']};
+  }
+  &:active {
+    background-color: ${({ theme }) => theme.colors['green/600']};
+    transform: translateY(-5%) translateX(2%);
+  }
 `;
 
 export const ModalBackdrop = styled.div`

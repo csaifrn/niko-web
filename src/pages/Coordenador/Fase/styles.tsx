@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 import media from 'styled-media-query';
 
-// Create a Title component that'll render an <h1> tag with some styles
 const Title = styled.a`
   font-family: 'Rubik';
   text-decoration: none;
@@ -12,28 +11,37 @@ const Title = styled.a`
 
 export const FasePage = styled.div`
   height: 80vh;
-
-  ${media.greaterThan('large')`
-
-  `}
+  display: flex;
+  justify-content: center;
 `;
 
-
-const Main = styled.section`
-  margin: 2em 8em;
-  margin-top: 8.5em;
+const Main = styled.div`
+  margin: 8em 2em 0em 2em;
   display: grid;
-  grid-template-columns: auto auto;
-  justify-items: center;
-  justify-content: center;
   grid-gap: 1.25em;
-
-  ${media.greaterThan('large')`
-    margin: 40em;
-    margin-top: 14em;
+  grid-template-columns: 1fr 1fr;
+  width: 100%;
+  max-width: 1140px;
+  //justify-items: center;
+  //justify-content: center;
+  @media screen and (min-width: 767px) {
+    //margin: 40em;
+    margin: 10em 2em 0em 2em;
     grid-gap: 2.5em;
     grid-template-columns: 1fr 1fr 1fr;
-  `}
+  }
+  @media screen and (min-width: 1140px) {
+    margin: 10em 0em 0em 0em;
+    /* grid-gap: 2.5em;
+    grid-template-columns: 1fr 1fr 1fr; */
+  }
+  /* ${media.lessThan('small')`
+    //só do mobile
+    margin: 2em 8em;
+    margin-top: 8.5em;
+    grid-gap: 1.25em;
+    grid-template-columns: auto auto;
+  `} */
 `;
 
 const FooterHome = styled.footer`

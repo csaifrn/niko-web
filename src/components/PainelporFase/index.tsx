@@ -35,7 +35,9 @@ export const PainelPorFase = () => {
   return (
     <S.Wrapper>
       <S.PainelTitulo>Painel por fase</S.PainelTitulo>
+      
       <S.ContainerData>
+
         <S.ContainerFilterNumber>
           <S.QtdLotes>
             <S.NumberOrangeTitle>172</S.NumberOrangeTitle> Lotes
@@ -46,6 +48,7 @@ export const PainelPorFase = () => {
 
         <S.Container>
           <S.DataFaseDois>
+
             <S.ContainerDataFase>
               <S.ContainerImg src="/icon-big/Recepção.svg" />
               <S.DataFase>
@@ -57,6 +60,7 @@ export const PainelPorFase = () => {
                 </S.NumberTextDataUnic>
               </S.DataFase>
             </S.ContainerDataFase>
+            
             <S.ContainerDataFase>
               <S.ContainerImg src="/icon-big/Arquivamento.svg" />
               <S.DataFase>

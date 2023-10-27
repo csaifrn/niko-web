@@ -4,19 +4,19 @@ const MenuImg = styled.img`
 `;
 
 export const MenuLupa = styled.img`
-  @media screen and (min-width: 1008px) {
+  @media screen and (min-width: 767px) {
     width: 24px;
   }
 `;
 
 export const LinkLogo = styled.a`
-  @media screen and (max-width: 1008px) {
+  @media screen and (max-width: 767px) {
     display: none;
   }
 `;
 
 export const MenuLupaMobile = styled.img`
-  @media screen and (min-width: 1008px) {
+  @media screen and (min-width: 767px) {
     display: none;
   }
 `;
@@ -108,7 +108,6 @@ const ContainerA = styled.div`
   display: flex;
   gap: 4em;
   align-items: center;
-  
 `;
 
 export const ContainerLogo = styled.div`
@@ -116,7 +115,7 @@ export const ContainerLogo = styled.div`
   display: flex;
   gap: 2em;
   align-items: center;
-  @media screen and (min-width: 1008px) {
+  @media screen and (min-width: 767px) {
     display: none;
   }
 `;
@@ -126,7 +125,7 @@ export { MenuImg, MenuArea, MenuLeft, ButtonBurger, StyledMenu, ContainerA };
 export const MenuDesk = styled.div`
   display: none;
   gap: 2em;
-  @media screen and (min-width: 1008px) {
+  @media screen and (min-width: 767px){
     display: flex;
   }
 `;
@@ -148,7 +147,7 @@ export const InputSearch = styled.button`
     background-color: #12141a;
   }
 
-  @media screen and (max-width: 1008px) {
+  @media screen and (max-width: 767px) {
     display: none;
   }
 `;

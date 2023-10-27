@@ -12,8 +12,6 @@ export const CriarAtivArea = styled.div`
   margin-top: 10em;
   max-width: 1140px;
   width: 100%;
-  ${media.greaterThan('large')`
-  `}
 `;
 
 export const CloseDiv = styled.div`
@@ -33,19 +31,22 @@ export const Exit = styled.button`
   align-items: center;
   border: none;
   cursor: pointer;
+  &:hover {
+    background-color: ${({ theme }) => theme.colors['gray/400']};
+  }
+  &:active {
+    background-color: ${({ theme }) => theme.colors['gray/400']};
+    transform: translateY(-5%) translateX(2%);
+  }
 `;
 
 export const Titulo = styled.h1`
   color: #ffffff;
-  ${media.greaterThan('large')`
-  `}
 `;
 
 export const Titulo2 = styled.h2`
   color: #ffffff;
   font-weight: 400;
-  ${media.greaterThan('large')`
-  `}
 `;
 
 export const TituloBotaoAdd = styled.div`
@@ -54,10 +55,14 @@ export const TituloBotaoAdd = styled.div`
   align-items: center;
   gap: 8;
   display: inline-flex;
-  ${media.greaterThan('large')`
+  /* ${media.greaterThan('large')`
     justify-content: flex-start;
     gap: 16px;
-  `}
+  `} */
+  @media screen and (min-width: 767px) {
+    justify-content: flex-start;
+    gap: 16px;
+  }
 `;
 
 export const BotaoAdd = styled.button`
@@ -66,14 +71,20 @@ export const BotaoAdd = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
+  border-radius: 100%;
+  &:hover {
+    background-color: ${({ theme }) => theme.colors['gray/300']};
+  }
+  &:active {
+    background-color: ${({ theme }) => theme.colors['gray/300']};
+    transform: translateY(-5%) translateX(2%);
+  }
 `;
 
 export const Tarefas = styled.div`
   display: flex;
   flex-direction: column;
   gap: 1em;
-  ${media.greaterThan('large')`
-  `}
 `;
 
 export const TarefasCardsArea = styled.div`
@@ -82,18 +93,20 @@ export const TarefasCardsArea = styled.div`
   gap: 8px;
   display: inline-flex;
   flex-wrap: wrap;
-  ${media.greaterThan('large')`
+  /* ${media.greaterThan('large')`
     display: flex;
     flex-wrap: none;
-  `}
+  `} */
+  @media screen and (min-width: 767px) {
+    display: flex;
+    flex-wrap: none;
+  }
 `;
 
 export const CategTipol = styled.div`
   display: flex;
   flex-direction: column;
   gap: 1em;
-  ${media.greaterThan('large')`
-  `}
 `;
 
 export const Usuarios = styled.div`
@@ -101,8 +114,6 @@ export const Usuarios = styled.div`
   flex-direction: column;
   gap: 16px;
   display: flex;
-  ${media.greaterThan('large')`
-  `}
 `;
 
 export const IconeTituloFase = styled.div`
@@ -111,8 +122,6 @@ export const IconeTituloFase = styled.div`
   font-family: 'Rubik';
   gap: 16px;
   align-items: center;
-  ${media.greaterThan('large')`
-  `}
 `;
 
 export const UsuariosPorFase = styled.div`
@@ -120,11 +129,16 @@ export const UsuariosPorFase = styled.div`
   flex-direction: column;
   gap: 32px;
   display: flex;
-  ${media.greaterThan('large')`
+  /* ${media.greaterThan('large')`
     display: grid;
     grid-template-columns: repeat(3 , 1fr);
     flex-direction: row;
-  `}
+  `} */
+  @media screen and (min-width: 767px) {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    flex-direction: row;
+  }
 `;
 
 export const UsuariosDeUmaFase = styled.div`
@@ -132,18 +146,12 @@ export const UsuariosDeUmaFase = styled.div`
   display: flex;
   gap: 16px;
   width: 100%;
-  ${media.greaterThan('large')`
-  `}
 `;
 
 export const EspecificacoesAtiv = styled.div`
   display: flex;
   flex-direction: column;
   gap: 32px;
-  ${media.greaterThan('large')`
-    /* display: grid;
-    grid-template-columns: 1fr 1fr; */
-  `}
 `;
 
 export const Data = styled.div``;
@@ -164,9 +172,19 @@ export const AddAtivAtivado = styled.button`
   border: none;
   width: 100%;
   cursor: pointer;
-  ${media.greaterThan('large')`
+  &:hover {
+    background-color: ${({ theme }) => theme.colors['green/600']};
+  }
+  &:active {
+    background-color: ${({ theme }) => theme.colors['green/600']};
+    transform: translateY(-5%) translateX(2%);
+  }
+  /* ${media.greaterThan('large')`
     width: fit-content;
-    `}
+  `} */
+  @media screen and (min-width: 767px) {
+    width: fit-content;
+  }
 `;
 
 export const AddAtivDesativado = styled.button`
@@ -185,7 +203,27 @@ export const AddAtivDesativado = styled.button`
   border: none;
   opacity: 50%;
   width: 100%;
-  ${media.greaterThan('large')`
+  /* ${media.greaterThan('large')`
     width: fit-content;
-    `}
+  `} */
+  @media screen and (min-width: 767px) {
+    width: fit-content;
+  }
+`;
+
+export const AtribuirLoteButton = styled.button`
+  padding: 8px;
+  background-color: #43db6d;
+  border-radius: 5px;
+  gap: 10;
+  display: flex;
+  border: none;
+  cursor: pointer;
+  &:hover {
+    background-color: ${({ theme }) => theme.colors['green/600']};
+  }
+  &:active {
+    background-color: ${({ theme }) => theme.colors['green/600']};
+    transform: translateY(-5%) translateX(2%);
+  }
 `;

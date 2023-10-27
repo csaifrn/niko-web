@@ -25,6 +25,7 @@ export const Wrapper = styled.div`
   gap: 2em;
   transform: scale(0);
   transition: transform 0.3s ease-in-out;
+  
 `;
 
 export const ContainerData = styled.div`
@@ -82,7 +83,6 @@ export const ContainerDataDependencias = styled.form`
   width: 100%;
   gap: 1rem;
   border-radius: 5px;
-  overflow-x: auto;
 `;
 
 export const NumberOrange = styled.span`
@@ -117,6 +117,8 @@ export const DataAcao = styled.div`
   width: 100%;
   gap: 1em;
   align-items: center;
+  margin-top: 5px;
+  margin-bottom: 5px;
 `;
 
 export const DataOkX = styled.div`
@@ -194,13 +196,20 @@ export const QtdLotes = styled.p`
 export const Exit = styled.button`
   height: 2em;
   width: 2em;
-  background-color: #090e09;
+  background-color: #191c24;
   border-radius: 3px;
   display: flex;
   justify-content: center;
   align-items: center;
   border: none;
   cursor: pointer;
+  &:hover {
+    background-color: ${({ theme }) => theme.colors['gray/400']};
+  }
+  &:active {
+    background-color: ${({ theme }) => theme.colors['gray/400']};
+    transform: translateY(-5%) translateX(2%);
+  }
 `;
 
 export const Prioridade = styled.p`
@@ -227,6 +236,10 @@ export const YelloButton = styled.button`
   transition: all 300ms;
   &:hover {
     filter: brightness(110%);
+  }
+  &:active {
+    filter: brightness(110%);
+    transform: translateY(-5%) translateX(2%);
   }
 `;
 

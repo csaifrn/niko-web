@@ -19,6 +19,7 @@ export const Wrapper = styled.div`
   font-family: Rubik;
   max-width: 1140px;
   margin: 10em 2em 2em 2em;
+  width: 100%;
 `;
 
 export const TituloProjetos = styled.h1`
@@ -30,15 +31,21 @@ export const ContainerCriarProjeto = styled.div`
   align-items: center;
   justify-content: space-between;
   gap: 16px;
-  ${media.greaterThan('large')`
+  /* ${media.greaterThan('large')`
     justify-content: flex-start;
-  `}
+  `} */
+  @media (min-width: 767px) {
+    justify-content: flex-start;
+  }
 `;
 
-export const BotaoCriarProjeto = styled.div`
+export const BotaoCriarProjeto = styled.button`
   width: 24px;
   height: 24px;
   border-radius: 100%;
+  border: none;
+  cursor: pointer;
+  background-color: ${({ theme }) => theme.colors['gray/700']};
   &:hover {
     background-color: ${({ theme }) => theme.colors['gray/300']};
   }

@@ -17,7 +17,6 @@ const Painel = () => {
         <PainelPorFase/>
         <PendenciaCoord />
         <ValoresGerais />
-        
       </S.PainelArea>
     </div>
   );

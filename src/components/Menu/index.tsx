@@ -4,6 +4,7 @@ import * as S from './styles';
 import * as MenuC from '../MenuCoord/styles';
 import { useNavigate, useParams } from 'react-router-dom';
 import { User } from '@phosphor-icons/react';
+import { SharedState } from '../../context/SharedContext';
 
 interface MenuProps {
   area: string;
@@ -11,6 +12,7 @@ interface MenuProps {
 }
 
 export const Menu = (props: MenuProps) => {
+  const { setUser } = SharedState();
   const { id } = useParams();
   const pathname = window.location.pathname;
   const [open, setOpen] = useState(false);
@@ -30,6 +32,7 @@ export const Menu = (props: MenuProps) => {
 
   const handleSignOut = () => {
     localStorage.removeItem('token');
+    setUser(null);
   };
 
   useEffect(() => {

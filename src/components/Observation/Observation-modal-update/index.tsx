@@ -47,7 +47,7 @@ export const ObservationModal = (props: DeletarModalProps) => {
   }, [value]);
 
   const updateMutate = useMutation(UpdateObservation, {
-    onSuccess: (data) => {
+    onSuccess: () => {
       toast.success('Observação atualizada!');
       const updatedObservations = props.observations?.map((observation) => {
         if (observation.id === props.id) {
@@ -61,6 +61,7 @@ export const ObservationModal = (props: DeletarModalProps) => {
         return observation;
       });
       props.refetch(updatedObservations ? updatedObservations : []);
+      handleClose();
     },
     onError: (error: ApiError) => {
       if (error.response) {
@@ -154,7 +155,11 @@ export const ObservationModal = (props: DeletarModalProps) => {
               placeholder="Edite sua observação..."
             />
             {validationFormError.observation && <ErrorMessage>{validationFormError.observation}</ErrorMessage>}
-            <ButtonGreen onClick={updateObservation} type="button">
+            <ButtonGreen
+              onClick={updateObservation}
+              type="button"
+              disabled={updateMutate.isLoading || updateMutate.isSuccess}
+            >
               Salvar
             </ButtonGreen>
           </S.ModalContent>

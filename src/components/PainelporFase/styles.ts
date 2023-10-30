@@ -40,6 +40,10 @@ export const DataInicial = styled.div`
   align-items: center;
 `;
 
+export const DataInvalidaMessage = styled.p`
+  color: ${({ theme }) => theme.colors['red/700']};
+`;
+
 export const DataFinal = styled.div`
   display: flex;
   gap: 8px; 
@@ -65,6 +69,16 @@ export const BotaoFiltrar = styled.button`
     background-color: ${({ theme }) => theme.colors['orange/500']};
     transform: translateY(-5%) translateX(2%);
   }
+`;
+
+export const BotaoFiltrarDesativado = styled.button`
+  border-radius: 3px;
+  font-family: 'Rubik';
+  color: #4A4A4A;
+  background-color: #734625;
+  border: none;
+  padding: 8px;
+
 `;
 
 export const PainelTitulo = styled.h1`

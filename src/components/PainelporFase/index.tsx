@@ -1,4 +1,6 @@
+import { useState } from 'react';
 import * as S from './styles';
+import { date } from 'yup';
 
 export const PainelPorFase = () => {
   const valores = [
@@ -32,31 +34,97 @@ export const PainelPorFase = () => {
     },
   ];
 
+  const [dataInicial, setDataInicial] = useState(new Date());
+
+  const [dtIncialInvalida, setDtIncialInvalida] = useState(false);
+
+  const [dtFinalInvalida, setDtFinalInvalida] = useState(false);
+
+  const dataHoje = new Date();
+
+  const handlePegarDataInicial = (e: any) => {
+    const dia = e.target.value.split('-')[0];
+    const mes = e.target.value.split('-')[1];
+    const ano = e.target.value.split('-')[2];
+    const dataEscolhida = new Date(`${dia}/${mes}/${ano}`);
+
+    if (dataEscolhida <= dataHoje) {
+      setDataInicial(dataEscolhida);
+      setDtIncialInvalida(false);
+    } else {
+      setDtIncialInvalida(true);
+    }
+    //else {
+    //   console.log('dataEscolhida é igual a dataHoje');
+    // }
+  };
+
+  const [dataFinal, setDataFinal] = useState(new Date());
+
+  const handlePegarDataFinal = (e: any) => {
+    const dia = e.target.value.split('-')[0];
+    const mes = e.target.value.split('-')[1];
+    const ano = e.target.value.split('-')[2];
+    const dataEscolhida = new Date(`${dia}/${mes}/${ano}`);
+
+    if (dataEscolhida > dataInicial && dataEscolhida <= dataHoje) {
+      setDataFinal(dataEscolhida);
+      setDtFinalInvalida(false);
+    } else {
+      setDtFinalInvalida(true);
+    }
+  };
+
   return (
     <S.Wrapper>
       <S.PainelTitulo>Painel por fase</S.PainelTitulo>
 
       <S.ContainerData>
         <S.FiltrarPorPeriodo>
-
           <S.FiltrarTitulo> Filtrar por período: </S.FiltrarTitulo>
 
           <S.EscolherDatas>
-
             <S.DataInicial>
               <S.DataText>De:</S.DataText>
-              <S.Filter type="date" />
+              <S.Filter onChange={handlePegarDataInicial} type="date" />
             </S.DataInicial>
 
             <S.DataFinal>
               <S.DataText>A:</S.DataText>
-              <S.Filter type="date" />
+              <S.Filter onChange={handlePegarDataFinal} type="date" />
             </S.DataFinal>
 
-            <S.BotaoFiltrar> Filtrar </S.BotaoFiltrar>
+            {/* Quando as datas estiverem ok */}
+            {dtIncialInvalida == false && dtFinalInvalida == false && <S.BotaoFiltrar> Filtrar </S.BotaoFiltrar>}
+
+            {/* Quando as duas datas estiverem inválidas */}
+            {dtIncialInvalida == true && dtFinalInvalida == true && (
+              <S.BotaoFiltrarDesativado> Filtrar </S.BotaoFiltrarDesativado>
+            )}
+
+            {/* Quando apenas a data inicial estiver inválida */}
+            {dtIncialInvalida == true && dtFinalInvalida == false && (
+              <S.BotaoFiltrarDesativado> Filtrar </S.BotaoFiltrarDesativado>
+            )}
+
+            {/* Quando apenas a data final estiver inválida */}
+            {dtIncialInvalida == false && dtFinalInvalida == true && (
+              <S.BotaoFiltrarDesativado> Filtrar </S.BotaoFiltrarDesativado>
+            )}
 
           </S.EscolherDatas>
 
+          {dtIncialInvalida && (
+            <S.DataInvalidaMessage>
+              A data inicial inserida é inválida , insira uma data igual ou mais antiga que a de hoje
+            </S.DataInvalidaMessage>
+          )}
+
+          {dtFinalInvalida && (
+            <S.DataInvalidaMessage>
+              A data final inserida é inválida , insira uma data que seja igual ou mais antiga que a de hoje,  e posterior à data inicial
+            </S.DataInvalidaMessage>
+          )}
         </S.FiltrarPorPeriodo>
 
         <S.ContainerFilterNumber>

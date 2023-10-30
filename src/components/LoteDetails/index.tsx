@@ -11,8 +11,6 @@ import { ApiError } from '../../api/services/authentication/signIn/signIn.interf
 import toast from 'react-hot-toast';
 import { Empty } from '../EmptyPage';
 import Splash from '../../pages/Splash';
-import { PlusCircle } from '@phosphor-icons/react';
-import theme from '../../global/theme';
 import { CreateObservationModal } from '../Observation/Observation-modal-create';
 import { LoteData } from '../../data/LoteData';
 import FaseData from '../../data/FaseData';
@@ -20,7 +18,6 @@ import { BoxObservation } from '../Observation/ObservationBox';
 import { DeletarModal } from '../DeletarModal';
 import { ObservationModal } from '../Observation/Observation-modal-update';
 import { DeleteObservation } from '../../api/services/batches/observation/delete-obsevation';
-import { number } from 'yup';
 
 export const LoteDetails = () => {
   const optionsFases = FaseData.map((fase) => ({ id: fase.id, label: fase.titulo }));
@@ -116,7 +113,7 @@ export const LoteDetails = () => {
   if (beforeTask.isLoading) {
     return <Splash />;
   } else if (beforeTask.error) {
-    return <Empty error="Show" />;
+    return <Empty error="Infelizmente esta página está vazia" />;
   } else {
     return (
       <>
@@ -156,13 +153,6 @@ export const LoteDetails = () => {
                 {/* <S.Protocolo>
             <p style={{ padding: '0 0.5em' }}>{task.protocolo}</p>
           </S.Protocolo> */}
-                <S.BlockGray>Criado por {task?.created_by.name}</S.BlockGray>
-                <S.BlockGray>
-                  Criado em{' '}
-                  {createDate?.toLocaleString('pt-br', {
-                    timeZone: 'America/Sao_paulo',
-                  })}
-                </S.BlockGray>
                 {task?.shelf_number !== null && <S.Estante>{task?.shelf_number}</S.Estante>}
 
                 {/* ARQUIVOS FÍSICOS */}
@@ -179,6 +169,12 @@ export const LoteDetails = () => {
                     {task?.digital_files_count}
                   </S.ArquivDigitais>
                 )}
+                <S.BlockGray>
+                  Criado por {task?.created_by.name} em{' '}
+                  {createDate?.toLocaleString('pt-br', {
+                    timeZone: 'America/Sao_paulo',
+                  })}
+                </S.BlockGray>
               </S.DetalhesLote>
               <S.DetalhesLote>
                 <S.BlockGrayBorder>{task?.category.name}</S.BlockGrayBorder>
@@ -291,7 +287,7 @@ export const LoteDetails = () => {
                         setObservacao(!observacao);
                       }}
                     >
-                      <PlusCircle size={24} weight="fill" color={theme.colors['white']} />
+                      <img src="/adicionar.svg" />
                     </S.BotaoCriarProjeto>
                   </div>
 

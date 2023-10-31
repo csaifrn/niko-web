@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import * as S from './styles';
-import { date } from 'yup';
+import { date, string } from 'yup';
 
 export const PainelPorFase = () => {
   const valores = [
@@ -34,44 +34,60 @@ export const PainelPorFase = () => {
     },
   ];
 
-  const [dataInicial, setDataInicial] = useState(new Date());
-
-  const [dtIncialInvalida, setDtIncialInvalida] = useState(false);
+  const [dtInicialInvalida, setDtIncialInvalida] = useState(false);
 
   const [dtFinalInvalida, setDtFinalInvalida] = useState(false);
 
-  const dataHoje = new Date();
+  const [msgErroDataInicial, setmsgErroDataInicial] = useState<string>();
 
+  const [msgErro, setMsgErro] = useState<string>();
+
+  const dataAtual = new Date();
+  const dia = dataAtual.getDate();
+  const mes = dataAtual.getMonth();
+  const ano = dataAtual.getFullYear();
+  const dataHoje = new Date(ano, mes, dia, 0, 0, 0);
+
+  const [dataInicial, setDataInicial] = useState<Date>();
+
+  //Função pra pegar a data inicial escolhida pelo usuário
   const handlePegarDataInicial = (e: any) => {
     const dia = e.target.value.split('-')[0];
     const mes = e.target.value.split('-')[1];
     const ano = e.target.value.split('-')[2];
     const dataEscolhida = new Date(`${dia}/${mes}/${ano}`);
 
-    if (dataEscolhida <= dataHoje) {
-      setDataInicial(dataEscolhida);
-      setDtIncialInvalida(false);
-    } else {
+    // Verifica se a data inicial escolhida é mais nova que a data de hoje
+    if (dataEscolhida > dataHoje) {
+      //A data passa a ser inválida
       setDtIncialInvalida(true);
+      setmsgErroDataInicial('A data inicial é invalida. Por favor insira uma data igual ou mais antiga que a de hoje');
+    } else {
+      setDtIncialInvalida(false);
+      setDataInicial(dataEscolhida);
     }
-    //else {
-    //   console.log('dataEscolhida é igual a dataHoje');
-    // }
   };
 
-  const [dataFinal, setDataFinal] = useState(new Date());
+  const [dataFinal, setDataFinal] = useState<Date>();
 
+  //Função pra pegar a data final escolhida pelo usuário
   const handlePegarDataFinal = (e: any) => {
     const dia = e.target.value.split('-')[0];
     const mes = e.target.value.split('-')[1];
     const ano = e.target.value.split('-')[2];
     const dataEscolhida = new Date(`${dia}/${mes}/${ano}`);
 
-    if (dataEscolhida > dataInicial && dataEscolhida <= dataHoje) {
-      setDataFinal(dataEscolhida);
-      setDtFinalInvalida(false);
-    } else {
+    // Verifica se a data final escolhida é mais nova que a data de hoje
+    if (dataEscolhida > dataHoje) {
       setDtFinalInvalida(true);
+      setMsgErro('Por favor insira uma data igual ou mais recente que a de hoje')
+    }
+    // Verifica se a data final escolhida é mais nova que a data inicial escolhida
+    else if (dataInicial != undefined && dataInicial > dataEscolhida) {
+      setDtFinalInvalida(true);
+      setMsgErro('Por favor insira uma data igual ou mais recente que a inicial')
+    } else {
+      setDtFinalInvalida(false);
     }
   };
 
@@ -86,45 +102,43 @@ export const PainelPorFase = () => {
           <S.EscolherDatas>
             <S.DataInicial>
               <S.DataText>De:</S.DataText>
-              <S.Filter onChange={handlePegarDataInicial} type="date" />
+
+              <S.Filter disabled={dtFinalInvalida} style={{}} onChange={handlePegarDataInicial} type="date" />
             </S.DataInicial>
 
             <S.DataFinal>
               <S.DataText>A:</S.DataText>
-              <S.Filter onChange={handlePegarDataFinal} type="date" />
+              <S.Filter disabled={dtInicialInvalida} onChange={handlePegarDataFinal} type="date" />
             </S.DataFinal>
 
+            {/* BOTÃO DE FILTRAR */}
+
             {/* Quando as datas estiverem ok */}
-            {dtIncialInvalida == false && dtFinalInvalida == false && <S.BotaoFiltrar> Filtrar </S.BotaoFiltrar>}
+            {dtInicialInvalida == false && dtFinalInvalida == false && <S.BotaoFiltrar> Filtrar </S.BotaoFiltrar>}
 
             {/* Quando as duas datas estiverem inválidas */}
-            {dtIncialInvalida == true && dtFinalInvalida == true && (
+            {dtInicialInvalida == true && dtFinalInvalida == true && (
               <S.BotaoFiltrarDesativado> Filtrar </S.BotaoFiltrarDesativado>
             )}
 
             {/* Quando apenas a data inicial estiver inválida */}
-            {dtIncialInvalida == true && dtFinalInvalida == false && (
+            {dtInicialInvalida == true && dtFinalInvalida == false && (
               <S.BotaoFiltrarDesativado> Filtrar </S.BotaoFiltrarDesativado>
             )}
 
             {/* Quando apenas a data final estiver inválida */}
-            {dtIncialInvalida == false && dtFinalInvalida == true && (
+            {dtInicialInvalida == false && dtFinalInvalida == true && (
               <S.BotaoFiltrarDesativado> Filtrar </S.BotaoFiltrarDesativado>
             )}
-
           </S.EscolherDatas>
 
-          {dtIncialInvalida && (
-            <S.DataInvalidaMessage>
-              A data inicial inserida é inválida , insira uma data igual ou mais antiga que a de hoje
-            </S.DataInvalidaMessage>
-          )}
+          {/* MENSAGEM DE ERRO MOSTRADA EM CASO DE DATA INVÁLIDA */}
 
-          {dtFinalInvalida && (
-            <S.DataInvalidaMessage>
-              A data final inserida é inválida , insira uma data que seja igual ou mais antiga que a de hoje,  e posterior à data inicial
-            </S.DataInvalidaMessage>
-          )}
+          {dtInicialInvalida && <S.DataInvalidaMessage>{msgErroDataInicial}</S.DataInvalidaMessage>}
+
+          {dtFinalInvalida && 
+            <S.DataInvalidaMessage>A data final é inválida. {msgErro}</S.DataInvalidaMessage>
+          }
         </S.FiltrarPorPeriodo>
 
         <S.ContainerFilterNumber>

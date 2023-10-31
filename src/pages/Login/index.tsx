@@ -8,9 +8,12 @@ import { SignInResponse, ApiError } from '../../api/services/authentication/sign
 import { validationLoginSchema } from './validation';
 import { ErrorsForm } from './login.interface';
 import * as Yup from 'yup';
+import jwtDecode from 'jwt-decode';
 import { Eye, EyeSlash } from '@phosphor-icons/react';
+import { SharedState } from '../../context/SharedContext';
 
 const Login = () => {
+  const { setUser } = SharedState();
   const emailInputRef = useRef<HTMLInputElement>(null);
   const passwordInputRef = useRef<HTMLInputElement>(null);
   const [responseError, setResponseError] = useState('');
@@ -24,8 +27,8 @@ const Login = () => {
   const loginMutation = useMutation(signIn, {
     onSuccess: (data: SignInResponse) => {
       localStorage.setItem('token', data.token);
+      setUser(jwtDecode(data.token));
       navigate('/Projetos');
-      // TODO: store user on context state
     },
     onError: (error: ApiError) => {
       setResponseError(error.response?.data.message || 'Um erro inesperado ocorreu.');

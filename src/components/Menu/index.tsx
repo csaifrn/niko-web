@@ -1,24 +1,22 @@
-import React, { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import MenuBurger from '../MenuBurger';
 import * as S from './styles';
 import * as MenuC from '../MenuCoord/styles';
-import { useSignOut } from 'react-auth-kit';
 import { useNavigate, useParams } from 'react-router-dom';
 import { User } from '@phosphor-icons/react';
-// import { useNavigate } from 'react-router-dom';
+import { SharedState } from '../../context/SharedContext';
 
 interface MenuProps {
   area: string;
   id_projeto?: string;
 }
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars, no-unused-vars
 export const Menu = (props: MenuProps) => {
+  const { setUser } = SharedState();
   const { id } = useParams();
   const pathname = window.location.pathname;
   const [open, setOpen] = useState(false);
   const [DropDown, setDropDown] = useState(false);
-  const signOut = useSignOut();
   const navigate = useNavigate();
   const dropDownRef = useRef(null);
 
@@ -32,6 +30,11 @@ export const Menu = (props: MenuProps) => {
     }
   };
 
+  const handleSignOut = () => {
+    localStorage.removeItem('token');
+    setUser(null);
+  };
+
   useEffect(() => {
     document.addEventListener('mousedown', handleClickOutside);
 
@@ -42,15 +45,13 @@ export const Menu = (props: MenuProps) => {
 
   return (
     <S.MenuWrapper>
-
       <S.MenuArea>
         {props.id_projeto && (
           <S.ContainerA>
-
             <S.ButtonBurger open={open} onClick={handleClickButton}>
               <S.MenuImg src="/menu.svg" />
             </S.ButtonBurger>
-            
+
             <S.LinkLogo href={`/Painel/${id}`}>
               <S.MenuImg src="/Logo_Niko.svg" />
             </S.LinkLogo>
@@ -60,7 +61,6 @@ export const Menu = (props: MenuProps) => {
             )}
 
             <S.MenuDesk>
-              
               <MenuC.link href={`/Painel/${id}`}>
                 <MenuC.MenuImg
                   src={
@@ -114,7 +114,6 @@ export const Menu = (props: MenuProps) => {
                 )}
                 {pathname !== `/Categorias/${id}` && <MenuC.textIcon>Categorias</MenuC.textIcon>}
               </MenuC.link>
-
             </S.MenuDesk>
           </S.ContainerA>
         )}
@@ -130,20 +129,19 @@ export const Menu = (props: MenuProps) => {
             <S.MenuImg src="/Logo_Niko.svg" />
           </a>
         </S.ContainerLogo>
-        
-        <S.MenuLeft>
 
+        <S.MenuLeft>
           {/* <S.MenuLupaMobile src="/Lupa.svg" /> */}
           {/* <S.InputSearch>
             <p>Em desenvolvimento..</p>
             <S.MenuLupa src="/Lupa.svg" />
           </S.InputSearch> */}
 
-          <div style={{ position: 'relative'}} ref={dropDownRef}>
+          <div style={{ position: 'relative' }} ref={dropDownRef}>
             <User
               size={44}
               color="#fff"
-              style={{borderRadius: '100%', padding: '8px' ,cursor: 'pointer' }}
+              style={{ borderRadius: '100%', padding: '8px', cursor: 'pointer' }}
               weight="fill"
               onClick={() => {
                 setDropDown(!DropDown);
@@ -180,7 +178,7 @@ export const Menu = (props: MenuProps) => {
               </a>
               <button
                 onClick={() => {
-                  signOut();
+                  handleSignOut();
                   navigate('/');
                 }}
                 style={{
@@ -203,9 +201,7 @@ export const Menu = (props: MenuProps) => {
             </div>
           </div>
         </S.MenuLeft>
-
       </S.MenuArea>
-    
     </S.MenuWrapper>
   );
 };

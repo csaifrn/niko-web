@@ -13,7 +13,7 @@ import { Eye, EyeSlash } from '@phosphor-icons/react';
 import { SharedState } from '../../context/SharedContext';
 
 const Login = () => {
-  const { setUser } = SharedState();
+  const { setUser, user } = SharedState();
   const emailInputRef = useRef<HTMLInputElement>(null);
   const passwordInputRef = useRef<HTMLInputElement>(null);
   const [responseError, setResponseError] = useState('');
@@ -74,7 +74,7 @@ const Login = () => {
   };
 
   useEffect(() => {
-    if (localStorage.getItem('token')) {
+    if (user) {
       navigate('/Projetos');
     }
   }, []);

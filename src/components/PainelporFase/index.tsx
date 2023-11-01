@@ -48,7 +48,9 @@ export const PainelPorFase = () => {
   const ano = dataAtual.getFullYear();
   const dataHoje = new Date(ano, mes, dia, 0, 0, 0);
 
-  const [dataInicial, setDataInicial] = useState<Date>();
+  const [dataInicial, setDataInicial] = useState<Date>(new Date());
+  
+  console.log(dataInicial)
 
   //Função pra pegar a data inicial escolhida pelo usuário
   const handlePegarDataInicial = (e: any) => {
@@ -103,12 +105,12 @@ export const PainelPorFase = () => {
             <S.DataInicial>
               <S.DataText>De:</S.DataText>
 
-              <S.Filter disabled={dtFinalInvalida} style={{}} onChange={handlePegarDataInicial} type="date" />
+              <S.Filter disabled={dtFinalInvalida} onChange={handlePegarDataInicial} value={String(dataInicial)} type="date"/>
             </S.DataInicial>
 
             <S.DataFinal>
-              <S.DataText>A:</S.DataText>
-              <S.Filter disabled={dtInicialInvalida} onChange={handlePegarDataFinal} type="date" />
+              <S.DataText>Até:</S.DataText>
+              <S.Filter disabled={dtInicialInvalida} onChange={handlePegarDataFinal} type="date"/>
             </S.DataFinal>
 
             {/* BOTÃO DE FILTRAR */}

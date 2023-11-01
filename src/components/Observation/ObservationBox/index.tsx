@@ -1,8 +1,9 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import * as S from './styles';
 import { MinusCircle, PencilSimple } from '@phosphor-icons/react';
 import { Observation } from '../../../api/services/batches/get-batche/get.interface';
 import theme from '../../../global/theme';
+import { SharedState } from '../../../context/SharedContext';
 
 export interface PropsObservation {
   observation: Observation;
@@ -21,6 +22,7 @@ export const BoxObservation = ({
   setObservation,
   index,
 }: PropsObservation) => {
+  const { user } = SharedState();
   const [obs, setObs] = useState(observation);
 
   const handleClickEdit = () => {
@@ -34,6 +36,8 @@ export const BoxObservation = ({
     setObservation(observation);
     openDelete();
   };
+
+  console.log('Usuário logado', user);
 
   return (
     <>

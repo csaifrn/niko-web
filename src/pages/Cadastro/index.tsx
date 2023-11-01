@@ -30,7 +30,6 @@ const Cadastro = () => {
 
   const [showPassword, setShowPassword] = useState(false);
   const [isPasswordWithContent, setIsPasswordWithContent] = useState(false);
-
   const [showCPassword, setCShowPassword] = useState(false);
   const [isCPasswordWithContent, setIsCPasswordWithContent] = useState(false);
 
@@ -38,7 +37,6 @@ const Cadastro = () => {
     onSuccess: (data: SignInResponse) => {
       localStorage.setItem('token', data.token);
       navigate('/Projetos');
-      // TODO: store user on context state
     },
     onError: (error: ApiError) => {
       setResponseError(error.response?.data.message || 'Um erro inesperado ocorreu.');
@@ -51,8 +49,6 @@ const Cadastro = () => {
         email: data.email,
         password: passwordInputRef.current!.value,
       });
-
-      // TODO: store user on context state
     },
     onError: (error: ApiError) => {
       setResponseError(error.response?.data.message || 'Um erro inesperado ocorreu.');

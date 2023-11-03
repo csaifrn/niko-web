@@ -9,8 +9,6 @@ const Projetos = () => {
   const { user } = SharedState();
   const [projetos] = useState<typeof Projeto>(Projeto);
 
-  console.log('Usuário logado', user);
-
   return (
     <div style={{ display: 'flex', justifyContent: 'center' }}>
       <Menu area="/"></Menu>

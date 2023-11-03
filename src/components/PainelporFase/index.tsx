@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import * as S from './styles';
 import { date, string } from 'yup';
 
@@ -48,7 +48,21 @@ export const PainelPorFase = () => {
   const ano = dataAtual.getFullYear();
   const dataHoje = new Date(ano, mes, dia, 0, 0, 0);
 
-  const [dataInicial, setDataInicial] = useState<Date>();
+  const [dataInicial, setDataInicial] = useState<Date>(new Date());
+
+  const [dataInicialEmString , setDataInicialEmString] = useState<string>()
+
+  const [dataFinalEmString , setDataFinalEmString] = useState<string>()
+
+  useEffect(() => {
+    if(String(dia).length == 1){
+      setDataInicialEmString(`${ano}-${mes+1}-0${dia}`)
+      setDataFinalEmString(`${ano}-${mes+1}-0${dia}`)
+    }else{
+      setDataInicialEmString(`${ano}-${mes+1}-${dia}`)
+      setDataFinalEmString(`${ano}-${mes+1}-${dia}`)
+    }
+  }, []);
 
   //Função pra pegar a data inicial escolhida pelo usuário
   const handlePegarDataInicial = (e: any) => {
@@ -56,7 +70,7 @@ export const PainelPorFase = () => {
     const mes = e.target.value.split('-')[1];
     const ano = e.target.value.split('-')[2];
     const dataEscolhida = new Date(`${dia}/${mes}/${ano}`);
-
+    setDataInicialEmString(`${dia}-${mes}-${ano}`)
     // Verifica se a data inicial escolhida é mais nova que a data de hoje
     if (dataEscolhida > dataHoje) {
       //A data passa a ser inválida
@@ -76,7 +90,7 @@ export const PainelPorFase = () => {
     const mes = e.target.value.split('-')[1];
     const ano = e.target.value.split('-')[2];
     const dataEscolhida = new Date(`${dia}/${mes}/${ano}`);
-
+    setDataFinalEmString(`${dia}-${mes}-${ano}`)
     // Verifica se a data final escolhida é mais nova que a data de hoje
     if (dataEscolhida > dataHoje) {
       setDtFinalInvalida(true);
@@ -103,12 +117,12 @@ export const PainelPorFase = () => {
             <S.DataInicial>
               <S.DataText>De:</S.DataText>
 
-              <S.Filter disabled={dtFinalInvalida} style={{}} onChange={handlePegarDataInicial} type="date" />
+              <S.Filter disabled={dtFinalInvalida} onChange={handlePegarDataInicial} value={dataInicialEmString || ''} type="date"/>
             </S.DataInicial>
 
             <S.DataFinal>
-              <S.DataText>A:</S.DataText>
-              <S.Filter disabled={dtInicialInvalida} onChange={handlePegarDataFinal} type="date" />
+              <S.DataText>Até:</S.DataText>
+              <S.Filter disabled={dtInicialInvalida} onChange={handlePegarDataFinal} value={dataFinalEmString || ''} type="date"/>
             </S.DataFinal>
 
             {/* BOTÃO DE FILTRAR */}

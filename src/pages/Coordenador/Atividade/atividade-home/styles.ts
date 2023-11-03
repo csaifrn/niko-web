@@ -52,7 +52,7 @@ export const AtivsCabecalho = styled.div`
   @media screen and (min-width: 767px) {
     gap: 16px;
     justify-content: flex-start;
-    padding-top: 70px;
+    padding-top: 80px;
   }
 `;
 

@@ -94,12 +94,13 @@ export const InputObservation = styled.textarea`
   border-radius: 4px;
   border: none;
   outline: none;
-  min-height: 120px;
+  min-height: 44px;
   overflow: hidden;
   resize: none;
   display: grid;
   font-family: 'Rubik';
-  background-color: transparent; /* ${({ theme }) => theme.colors['gray/700']}; */
+  padding: 1em;
+  background-color: ${({ theme }) => theme.colors['gray/700']}; /* ${({ theme }) => theme.colors['gray/700']}; */
   color: #cccccc;
   font: inherit;
 `;

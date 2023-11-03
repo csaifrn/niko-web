@@ -1,6 +1,5 @@
 import { useState, useEffect, useLayoutEffect, ChangeEvent, useRef } from 'react';
 import * as S from './styles';
-import { InputText } from '../../ModalCrairLote/styles';
 import { ErrorsForm } from './successmodal.interface';
 import { validationObservation } from './validation';
 import * as Yup from 'yup';
@@ -10,10 +9,10 @@ import { CreateObservation } from '../../../api/services/batches/observation/pos
 import { CreateObservationResponse } from '../../../api/services/batches/observation/post-observation/post.interface';
 import toast from 'react-hot-toast';
 import { ApiError } from '../../../api/services/authentication/signIn/signIn.interface';
-
 import { Observation } from '../../../api/services/batches/get-batche/get.interface';
 import { ErrorMessage } from '../../../pages/Login/styles';
 import { InputObservation } from '../Observation-modal-update/styles';
+import { SharedState } from '../../../context/SharedContext';
 
 const MIN_TEXTAREA_HEIGHT = 32;
 interface DeletarModalProps {
@@ -25,11 +24,11 @@ interface DeletarModalProps {
 }
 
 export const CreateObservationModal = (props: DeletarModalProps) => {
+  const { user } = SharedState();
   const [closing, setClosing] = useState(false);
   const [observation, setObservation] = useState('');
   const { id } = useParams();
   const [validationFormError, setValidationFormError] = useState<ErrorsForm>({ observation: '' });
-
   const textareaRef = useRef<HTMLTextAreaElement | null>(null);
   const [value, setValue] = useState<string>('');
 
@@ -64,13 +63,13 @@ export const CreateObservationModal = (props: DeletarModalProps) => {
     onSuccess(data: CreateObservationResponse) {
       toast.success(`Observação adicionada: ${data.observation}`);
       props.refetch([
-        ...props.observations,
         {
           id: data.id,
           observation: data.observation,
           created_at: String(new Date()),
-          created_by: { name: 'Random', user_id: '1' },
+          created_by: { name: user!.name, user_id: user!.sub },
         },
+        ...props.observations,
       ]);
       handleClose();
     },
@@ -83,7 +82,7 @@ export const CreateObservationModal = (props: DeletarModalProps) => {
     try {
       await validationObservation.validate(
         {
-          observation,
+          observation: observation.trim(),
         },
         {
           abortEarly: false,
@@ -108,7 +107,7 @@ export const CreateObservationModal = (props: DeletarModalProps) => {
     if (isValid) {
       ObservationMutate.mutate({
         id: id!,
-        observation,
+        observation: observation.trim(),
       });
     }
   };
@@ -151,7 +150,9 @@ export const CreateObservationModal = (props: DeletarModalProps) => {
             />
             {validationFormError.observation && <ErrorMessage>{validationFormError.observation}</ErrorMessage>}
 
-            <S.Green onClick={handleSave}>Salvar</S.Green>
+            <S.Green onClick={handleSave} disabled={ObservationMutate.isLoading || ObservationMutate.isSuccess}>
+              Salvar
+            </S.Green>
           </S.ModalContent>
         </S.ModalArea>
       </S.ModalBackdrop>

@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import * as S from './styles';
 import { useMutation } from 'react-query';
 import { signIn } from '../../api/services/authentication/signIn';
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { SignInResponse, ApiError } from '../../api/services/authentication/signIn/signIn.interface';
 import { validationLoginSchema } from './validation';
 import { ErrorsForm } from './login.interface';
@@ -13,7 +13,7 @@ import { Eye, EyeSlash } from '@phosphor-icons/react';
 import { SharedState } from '../../context/SharedContext';
 
 const Login = () => {
-  const { setUser } = SharedState();
+  const { setUser, user } = SharedState();
   const emailInputRef = useRef<HTMLInputElement>(null);
   const passwordInputRef = useRef<HTMLInputElement>(null);
   const [responseError, setResponseError] = useState('');
@@ -72,6 +72,12 @@ const Login = () => {
       });
     }
   };
+
+  useEffect(() => {
+    if (user) {
+      navigate('/Projetos');
+    }
+  }, []);
 
   return (
     <S.Wrapper>

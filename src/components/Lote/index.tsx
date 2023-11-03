@@ -5,13 +5,7 @@ import { AtribuirAlguemModal } from '../AtribuirAlguemModal';
 import { ArrowCircleUp } from '@phosphor-icons/react';
 
 const Lote = (props: any) => {
-  //console.log(props.pendencia.lenght > 0)
-
   const [modal, setModal] = useState(false);
-  const handleAtribuirAlguem = (e: any) => {
-    e.preventDefault();
-    setModal(!modal);
-  };
 
   const close = () => {
     setModal(!modal);
@@ -64,9 +58,7 @@ const Lote = (props: any) => {
       {props.edit == null && (
         <S.Lote className="Lote">
           <S.LoteArea>
-
             <S.LoteDetalhes>
-
               <S.LoteNumAvisos>
                 <h2>{props.value}</h2>
 
@@ -88,7 +80,6 @@ const Lote = (props: any) => {
               </S.LoteNumAvisos>
 
               <S.LoteNumAvisos>
-
                 <S.Categoria>
                   {props.categoria &&
                     props.categoria.map((categoria: any, index: number) => (
@@ -134,25 +125,15 @@ const Lote = (props: any) => {
                       </React.Fragment>
                     ))}
                 </S.Envolvido>
-                
               </S.LoteNumAvisos>
             </S.LoteDetalhes>
 
             {/* BOTÃO DE ATRIBUIR ALGUÉM */}
-              <S.AtribuirButton type="button" onClick={handleAtribuirAlguem}>
-                <S.AtribuirAlguem>
-                  <ArrowCircleUp weight="fill" color="#FCDE42" width={20} height={20} />
-                  <p>Atribuir à alguém</p>
-                </S.AtribuirAlguem>
-              </S.AtribuirButton>
 
-
-            {/* <div>{props.children}</div> */}
+            {props.children && props.children}
           </S.LoteArea>
         </S.Lote>
       )}
-
-      {modal && <AtribuirAlguemModal user={usuarios} setUser={setUsuarios} close={close}></AtribuirAlguemModal>}
     </>
   );
 };

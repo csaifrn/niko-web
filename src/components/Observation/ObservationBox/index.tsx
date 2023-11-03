@@ -37,8 +37,6 @@ export const BoxObservation = ({
     openDelete();
   };
 
-  console.log('Usuário logado', user);
-
   return (
     <>
       <S.ObsDivBlack index={index}>
@@ -52,16 +50,18 @@ export const BoxObservation = ({
           </S.Data>
         </S.BottomContent>
         <S.DivObservation>{observation.observation}</S.DivObservation>
-        <S.DivButtons>
-          <S.ButtonEdit onClick={handleClickEdit}>
-            <PencilSimple size={18} weight="fill" color={theme.colors['white']} />
-            <S.ToolTip>Editar</S.ToolTip>
-          </S.ButtonEdit>
-          <S.ButtonDelete onClick={handleClickDelete}>
-            <MinusCircle size={18} weight="fill" color={theme.colors['red/500']} />
-            <S.ToolTip>Deletar</S.ToolTip>
-          </S.ButtonDelete>
-        </S.DivButtons>
+        {observation.created_by.user_id === user?.sub && (
+          <S.DivButtons>
+            <S.ButtonEdit onClick={handleClickEdit}>
+              <PencilSimple size={18} weight="fill" color={theme.colors['white']} />
+              <S.ToolTip>Editar</S.ToolTip>
+            </S.ButtonEdit>
+            <S.ButtonDelete onClick={handleClickDelete}>
+              <MinusCircle size={18} weight="fill" color={theme.colors['red/500']} />
+              <S.ToolTip>Deletar</S.ToolTip>
+            </S.ButtonDelete>
+          </S.DivButtons>
+        )}
       </S.ObsDivBlack>
     </>
   );

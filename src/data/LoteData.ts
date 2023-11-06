@@ -288,6 +288,49 @@ export const LoteData = [
     ],
   },
 
+  //LOTE 5
+  {
+    id: '5',
+    titulo: 'Lote',
+    numero: 5,
+    id_projeto: '4398f464-c1b0-4814-905a-b97adc207d5a',
+    estante: null,
+    protocolo: '0005',
+    arquiv_fisicos: 0,
+    arquiv_digitais: 0,
+    id_etapa: [EtapaData[2].id, EtapaData[3].id],
+    prioridade: false,
+    fase_atual: 'Catalogação',
+    id_fase_atual: 1,
+    pendencias: [],
+    observacoes: [],
+    categorias: [],
+    tipologias: [],
+    envolvidos: [],
+    detalhamento_por_fase: [
+      // PREPARO
+      {
+        id: FaseData[0].id,
+        nome: FaseData[0].titulo,
+        icone: FaseData[0].icone,
+        inicio: '01/06/23',
+        hora_inicio: '13:15',
+        conclusao: '01/06/23',
+        hora_conclusao: '16:45',
+        tempo: '3:30 horas',
+        envolvidos: [
+          {
+            id: UserData[0].id,
+            nome: UserData[0].name,
+            foto: UserData[0].url,
+          },
+        ],
+      },
+    ],
+  },
+
+  
+
   //LOTE 6
   {
     id: '6',

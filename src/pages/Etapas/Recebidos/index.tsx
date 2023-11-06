@@ -9,6 +9,7 @@ import { useParams } from 'react-router-dom';
 import Users from '../../../data/UserData';
 import { CreateRemessa } from '../../../components/CriarRemessa';
 import { Membros } from '../../../data/ProjetoData';
+import { BoardChanger } from '../../../components/BoardChanger';
 
 export interface Categoria {
   id: string;
@@ -37,17 +38,10 @@ const Recebidos = () => {
     <div style={{ display: 'flex', justifyContent: 'center' }}>
       <Menu area={`/Fase/${id}/Board/Recebidos`} id_projeto={id}></Menu>
       <MenuCoord />
+      
       <S.RecepcaoPage>
-        
-        <S.IconeRecepDivDesktop>
-          <S.IconeRecepcao src={`/icon-big/Recepção.svg`} alt={`icone da etapa recepção`} />
-          <S.RecepçãoTitle>Recepção</S.RecepçãoTitle>
-        </S.IconeRecepDivDesktop>
 
-        <S.IconeRecepDivMobile>
-          <S.IconeRecepcao src={`/icon-medium/Recepção.svg`} />
-          <S.RecepçãoTitle>Recepção</S.RecepçãoTitle>
-        </S.IconeRecepDivMobile>
+        <BoardChanger />
 
         {[{ role: ['coordenador'] }][0].role.filter((role: string) => role === 'Coordenador')[0] === 'Coordenador' && (
           <S.Btn
@@ -59,59 +53,59 @@ const Recebidos = () => {
           </S.Btn>
         )}
 
-        <S.Main>
-          {remessas.map((remessa) => {
-            const user = Users.filter((user) => user.id === remessa.id_cliente)[0];
-            return (
-              <div
-                key={remessa.id}
-                style={{
-                  color: 'white',
-                  backgroundColor: '#393E4B',
-                  padding: '2em',
-                  borderRadius: '5px',
-                  display: 'flex',
-                  flexDirection: 'column',
-                  gap: '1em',
-                  height: '100%',
-                }}
-              >
-                <div
-                  style={{
-                    display: 'flex',
-                    justifyContent: 'space-between',
-                    alignItems: 'center',
-                  }}
-                >
-                  <h1>{`${remessa.Qtd_caixa} Caixas`}</h1>
-                  <img
-                    src={user.url}
-                    alt=""
-                    height={32}
-                    width={32}
-                    style={{ objectFit: 'cover', borderRadius: '100%' }}
-                  />
-                </div>
+        <S.RemessasMain>
 
-                {remessa.Observacao.length > 0 && (
+          <S.NumeroDeRemessasDiv>
+            <S.RemessasTitle> Remessas recebidas</S.RemessasTitle>
+            <S.NumDeRemessasGreen>{remessas.length}</S.NumDeRemessasGreen>
+          </S.NumeroDeRemessasDiv>
+
+          <S.RemessasCards>
+            {remessas.map((remessa) => {
+              const user = Users.filter((user) => user.id === remessa.id_cliente)[0];
+              return (
+                <S.RemessaCardCinzaClaro
+                  key={remessa.id}
+                >
                   <div
                     style={{
                       display: 'flex',
-                      flexDirection: 'column',
-                      gap: '1em',
+                      justifyContent: 'space-between',
+                      alignItems: 'center',
                     }}
                   >
-                    <p>Observações</p>
-                    <p style={{ backgroundColor: '#191C24', padding: '1em', borderRadius: '3px' }}>
-                      {remessa.Observacao}
-                    </p>
+                    <h2>{`${remessa.Qtd_caixa} Caixas`}</h2>
+                    <img
+                      src={user.url}
+                      alt=""
+                      height={32}
+                      width={32}
+                      style={{ objectFit: 'cover', borderRadius: '100%' }}
+                    />
                   </div>
-                )}
-                <p>{remessa.data}</p>
-              </div>
-            );
-          })}
-        </S.Main>
+
+                  {remessa.Observacao.length > 0 && (
+                    <div
+                      style={{
+                        display: 'flex',
+                        flexDirection: 'column',
+                        gap: '1em',
+                      }}
+                    >
+                      <p>Observações</p>
+                      <p style={{ backgroundColor: '#191C24', padding: '1em', borderRadius: '3px' }}>
+                        {remessa.Observacao}
+                      </p>
+                    </div>
+                  )}
+                  {remessa.data != undefined &&
+                    <p>{remessa.data}</p>
+                  }
+                </S.RemessaCardCinzaClaro>
+              );
+            })}
+          </S.RemessasCards>
+        </S.RemessasMain>
       </S.RecepcaoPage>
 
       {openCriarModal && (

@@ -10,13 +10,13 @@ export const BoardChanger = () => {
       <S.ChangeContainer>
         <S.Title>
           {url.search('Recebidos') > -1
-            ? 'Recebidos'
+            ? 'Recepção'
             : url.search('Preparo') > -1
             ? 'Preparo'
             : url.search('Catalogacao') > -1
             ? 'Catalogação'
             : url.search('Digitalizacao') > -1
-            ? 'Digitalizacao'
+            ? 'Digitalização'
             : url.search('Upload') > -1
             ? 'Upload'
             : 'Arquivamento'}

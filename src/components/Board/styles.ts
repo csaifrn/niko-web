@@ -25,33 +25,10 @@ const kanban = styled.div`
   padding: 0em 0em 1em 0em;
   gap: 16px;
   width: 100%;
-  //margin: 0em 0em 0em 0em;
-  scroll-behavior: auto;
-  scrollbar-width: thin;
-  overflow-x: scroll;
-  &::-webkit-scrollbar {
-    width: 0.3em;
-    height: 2em;
-  }
-
-  &::-webkit-scrollbar-track {
-    background: #191c24;
-  }
-
-  &::-webkit-scrollbar-thumb {
-    background-color: #2a2e38;
-    border-radius: 20px;
-  }
-
-  &::-webkit-scrollbar-track {
-    background-color: transparent;
-    margin: 0em 2em;
-  }
-
   @media screen and (min-width: 767px) {
     //justify-content: center;
     flex-direction: row;
-    margin-bottom: 2em;
+    //margin-bottom: 2em;
   }
 `;
 
@@ -59,7 +36,6 @@ const kanbanSection = styled.div`
   min-width: 308px;
   width: 100%;
   gap: 1em;
-  //height: 100%;
   padding: 2em;
   color: #ffffff;
   background-color: #191c24;
@@ -69,59 +45,40 @@ const kanbanSection = styled.div`
   @media screen and (min-width: 767px) {
     justify-content: flex-start;
     width: 20vh;
-    min-height: 60vh;
-  }
-  /* ${media.greaterThan('large')`
-    justify-content: center;
-    width: 20vh;
     height: 60vh;
-  `} */
+  }
 `;
 
 const kanbanSectionContent = styled.div`
   display: flex;
   flex-direction: row;
   gap: 1em;
-  //padding: 0.5em;
-  //padding-bottom: 1em;
   color: #ffffff;
-  //height: 65vh;
   overflow-x: scroll;
   scroll-behavior: auto;
   scrollbar-width: thin;
-  //background-color: green;
 
   &::-webkit-scrollbar {
-    width: 0em;
-    height: 0em;
+    width: 0.5em;
+    height: 1em;
   }
 
+  // O caminho (barra de progresso) da barra de rolagem
   &::-webkit-scrollbar-track {
-    //background: #191c24;
+    background-color: transparent;
   }
 
+  // A barra arrastável de rolagem
   &::-webkit-scrollbar-thumb {
-    //background-color: #2a2e38;
+    background-color: ${({ theme }) => theme.colors['gray/400']};
     border-radius: 20px;
   }
 
   @media screen and (min-width: 767px) {
     flex-direction: column;
-    &::-webkit-scrollbar-thumb {
-      background-color: #2a2e38;
-      border-radius: 20px;
-      flex-direction: column;
-    }
+    overflow-x: auto;
+    overflow-y: scroll;
   }
-
-  /* ${media.greaterThan('large')`
-    flex-direction: column;
-    &::-webkit-scrollbar-thumb {
-      background-color: #2a2e38;
-      border-radius: 20px;
-      flex-direction: column;
-    }
-  `} */
 `;
 
 const btnPrioridade = styled.button`

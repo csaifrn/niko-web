@@ -17,39 +17,21 @@ export const RecepcaoPage = styled.div`
   }
 `;
 
-export const RecepçãoTitle = styled.h1`
-  color: #ffffff;
-  font-family: 'Rubik';
+export const  NumeroDeRemessasDiv = styled.div`
+  display: flex;
+  gap: 8px;
 `;
 
-// export const RemessasDiv = styled.div`
-//   //margin: 2em 2em 2em 2em; 
-//   display: flex; 
-//   flex-direction: column; 
-//   gap: 1em; 
-//   justify-content: center ;
-//   align-items: center;
-//   &::-webkit-scrollbar {
-//     width: 0.3em;
-//     height: 2em;
-//   }
+export const  NumDeRemessasGreen = styled.h2`
+  display: flex;
+  color: #43DB6D; 
+`;
 
-//   &::-webkit-scrollbar-track {
-//     background: #191c24;
-//   }
+export const  RemessasTitle = styled.h2`
+  color: ${({ theme }) => theme.colors['white']};
+`;
 
-//   &::-webkit-scrollbar-thumb {
-//     background-color: #2a2e38;
-//     border-radius: 20px;
-//   }
-
-//   &::-webkit-scrollbar-track {
-//     background-color: transparent;
-//     margin: 0em 2em;
-//   }
-// `;
-
-const Main = styled.section`
+export const RemessasMain = styled.div`
   background-color: #191c24;
   display: flex;
   flex-direction: column;
@@ -58,47 +40,48 @@ const Main = styled.section`
   border-radius: 5px;
   height: 60vh;
   width: 100%;
-  overflow-y: scroll;
-  scroll-behavior: auto;
-  scrollbar-width: thin;
   @media screen and (min-width: 767px) {
-    height: 70vh; 
+    min-height: 50vh; 
     width: 70vh;
   }
 `;
 
-export const IconeRecepDivMobile = styled.div`
-   
+ export const RemessasCards = styled.div`
+  display: flex; 
+  flex-direction: column; 
+  gap: 1em;
+  overflow-y: scroll;
+  scroll-behavior: auto;
+  scrollbar-width: thin;
+
+  // A barra de rolagem inteira
+  &::-webkit-scrollbar {
+    width: 0.5em;
+    height: 1em;
+  }
+
+  // O caminho (barra de progresso) da barra de rolagem
+  &::-webkit-scrollbar-track {
+    background-color: transparent;
+  }
+
+  // A barra arrastável de rolagem
+  &::-webkit-scrollbar-thumb {
+    background-color: ${({ theme }) => theme.colors['gray/400']};
+    border-radius: 20px;
+  }
+ `;
+
+export const RemessaCardCinzaClaro = styled.div`
+  color: white;
+  background-color: #393E4B;
+  padding: 2em;
+  border-radius: 5px;
   display: flex;
-  //margin: 1em 0em 0em 2em; 
-  justify-content: flex-start;
-  gap: 16px ;
-  /* ${media.greaterThan('large')`
-    display: none;
-  `} */
-  @media screen and (min-width: 767px) {
-    display: none; 
-  }
-`;
-
-export const IconeRecepDivDesktop = styled.div`
-   
-  display: none;
-  //margin: 1em 0em 0em 2em; 
-  justify-content: center;
-  gap: 16px ;
-  /* ${media.greaterThan('large')`
-    display: flex;
-    align-items: center;
-  `} */
-  @media screen and (min-width: 767px) {
-    display: flex;
-    align-items: center;
-  }
-`;
-
-export const IconeRecepcao = styled.img`
-
+  flex-direction: column;
+  gap: 1em;
+  height: 100%;
+  width: 100%;
 `;
 
 const FooterHome = styled.footer`
@@ -133,4 +116,4 @@ const Btn = styled.button`
   }
 `;
 
-export {FooterHome, spanLinear, Btn, Main };
+export {FooterHome, spanLinear, Btn };

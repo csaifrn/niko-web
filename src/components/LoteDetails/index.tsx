@@ -183,11 +183,17 @@ export const LoteDetails = () => {
               <S.DetalhesLote>
                 <S.BlockGrayBorder>{task?.category.name}</S.BlockGrayBorder>
               </S.DetalhesLote>
-              {assigners && 'Atribuidos'}
-              <S.DetalhesLote>
-                {assigners &&
-                  assigners.map((assigned) => <S.BlockGrayLight key={assigned.id}>{assigned.name}</S.BlockGrayLight>)}
-              </S.DetalhesLote>
+              {assigners.length > 0 && (
+                <React.Fragment>
+                  Atribuidos
+                  <S.DetalhesLote>
+                    {assigners &&
+                      assigners.map((assigned) => (
+                        <S.BlockGrayLight key={assigned.id}>{assigned.name}</S.BlockGrayLight>
+                      ))}
+                  </S.DetalhesLote>
+                </React.Fragment>
+              )}
               {/* MOSTRA CATEGORIAS QUANDO O LOTE É PRIORIDADE */}
               <S.CategoriaPrioridade>
                 {priority === true && (

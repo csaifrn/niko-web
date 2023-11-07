@@ -25,7 +25,7 @@ export const ModalArea = styled.div`
 export const Exit = styled.button`
   height: 2em;
   width: 2em;
-  background-color: #090e09;
+  background-color: #393e4b;
   border-radius: 3px;
   display: flex;
   justify-content: center;

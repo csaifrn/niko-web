@@ -4,9 +4,9 @@ import media from 'styled-media-query';
 export const RecepcaoPage = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 0px;
   max-width: 1140px;
-  margin: 8em 2em 2em 2em;
+  margin: 8em 2em 5em 2em;
   font-family: 'Rubik';
   @media screen and (max-width: 767px) {
     width: 100%;
@@ -38,7 +38,7 @@ export const RemessasMain = styled.div`
   padding: 2em;
   gap: 1em;
   border-radius: 5px;
-  height: 60vh;
+  height: 55vh;
   width: 100%;
   @media screen and (min-width: 767px) {
     min-height: 50vh; 

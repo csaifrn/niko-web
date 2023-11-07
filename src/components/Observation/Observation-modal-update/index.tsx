@@ -132,7 +132,7 @@ export const ObservationModal = (props: DeletarModalProps) => {
             <S.NameClose>
               <h2>{props.title}</h2>
               <S.Exit type="button" onClick={handleClose}>
-                <img src="/close.svg" alt="" height={18} width={18} />
+                <img src="/close.svg" alt="" height={24} width={24} />
               </S.Exit>
             </S.NameClose>
             <S.InputObservation

@@ -8,7 +8,6 @@ export const FaseKanbanPage = styled.div`
   //max-width: 1140px;
   gap: 2em;
   margin: 0 auto;
-
   //Mobile
   @media screen and (max-width: 767px) {
     width: 100%;
@@ -23,6 +22,7 @@ const kanban = styled.div`
   flex-wrap: wrap;
   flex-direction: column;
   padding: 0em 0em 1em 0em;
+  margin-bottom: 8em;
   gap: 16px;
   width: 100%;
   @media screen and (min-width: 767px) {

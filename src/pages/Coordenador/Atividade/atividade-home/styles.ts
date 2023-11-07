@@ -20,17 +20,19 @@ export const AtividadesPage = styled.div`
 export const TituloAtividades = styled.h1``;
 
 export const CriarAtiv = styled.button`
-  border: none;
   border-radius: 100%;
-  width: 24px;
-  height: 24px;
+  border: none;
   cursor: pointer;
-  background-color: ${({ theme }) => theme.colors['gray/700']};
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 8px;
+  background-color: transparent;
   &:hover {
-    background-color: ${({ theme }) => theme.colors['gray/300']};
+    background-color: ${({ theme }) => theme.colors['gray/400']};
   }
   &:active {
-    background-color: ${({ theme }) => theme.colors['gray/300']};
+    background-color: ${({ theme }) => theme.colors['gray/400']};
     transform: translateY(-5%) translateX(2%);
   }
 `;
@@ -75,9 +77,9 @@ export const Atividades = styled.div`
     gap:2em;
   `} */
   @media screen and (min-width: 767px) {
-    display:flex;
+    display: flex;
     flex-direction: row;
-    gap:2em;
+    gap: 2em;
   }
 `;
 
@@ -95,7 +97,7 @@ export const AtivCard = styled.div`
     flex-direction: column;
   `} */
   @media screen and (min-width: 767px) {
-    display:flex;
+    display: flex;
     flex-direction: column;
   }
 `;
@@ -111,7 +113,7 @@ export const AtivsDetails = styled.div`
     align-items: start;
   `} */
   @media screen and (min-width: 767px) {
-    display:flex;
+    display: flex;
     flex-wrap: wrap;
     flex-direction: row;
     gap: 32px;
@@ -129,7 +131,7 @@ export const AtivPorFase = styled.div`
     gap: 16px;
   `} */
   @media screen and (min-width: 767px) {
-    display:flex;
+    display: flex;
     flex-direction: column;
     gap: 16px;
   }
@@ -150,10 +152,9 @@ export const EditDiv = styled.div`
 
 export const Edit = styled.button`
   display: flex;
-  background-color: #191c24;
-  height: 24px;
-  width: 24px;
+  background-color: transparent;
   align-items: center;
+  padding: 5px;
   justify-content: center;
   border-radius: 5px;
   right: 2em;

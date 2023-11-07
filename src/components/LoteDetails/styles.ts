@@ -3,21 +3,19 @@ import media from 'styled-media-query';
 import Select from 'react-select';
 
 export const BotaoCriarObservacao = styled.button`
-  width: 24px;
-  height: 24px;
   border-radius: 100%;
   border: none;
   cursor: pointer;
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 0;
-  background-color: ${({ theme }) => theme.colors['gray/700']};
+  padding: 8px;
+  background-color: transparent;
   &:hover {
-    background-color: ${({ theme }) => theme.colors['gray/300']};
+    background-color: ${({ theme }) => theme.colors['gray/400']};
   }
   &:active {
-    background-color: ${({ theme }) => theme.colors['gray/300']};
+    background-color: ${({ theme }) => theme.colors['gray/400']};
     transform: translateY(-5%) translateX(2%);
   }
 `;
@@ -55,7 +53,7 @@ export const areaClick = styled.div`
 
   @media screen and (min-width: 1140px) {
     justify-content: center;
-    margin: 8em 0em 8em 0em;
+    margin: 10em 0em 2em 0em;
   }
 `;
 
@@ -90,6 +88,13 @@ export const Exit = styled.button`
   align-items: center;
   border: none;
   cursor: pointer;
+  &:hover {
+    background-color: ${({ theme }) => theme.colors['gray/400']};
+  }
+  &:active {
+    background-color: ${({ theme }) => theme.colors['gray/400']};
+    transform: translateY(-5%) translateX(2%);
+  }
 `;
 
 export const LoteInfos = styled.div`
@@ -120,10 +125,10 @@ export const Edit = styled.a`
   align-items: center;
   background-color: ${({ theme }) => theme.colors['gray/500']};
   &:hover {
-    background-color: ${({ theme }) => theme.colors['gray/200']};
+    background-color: ${({ theme }) => theme.colors['gray/400']};
   }
   &:active {
-    background-color: ${({ theme }) => theme.colors['gray/300']};
+    background-color: ${({ theme }) => theme.colors['gray/400']};
     transform: translateY(-5%) translateX(2%);
   }
 `;
@@ -140,10 +145,10 @@ export const Config = styled.button`
   cursor: pointer;
   background-color: ${({ theme }) => theme.colors['gray/500']};
   &:hover {
-    background-color: ${({ theme }) => theme.colors['gray/200']};
+    background-color: ${({ theme }) => theme.colors['gray/400']};
   }
   &:active {
-    background-color: ${({ theme }) => theme.colors['gray/300']};
+    background-color: ${({ theme }) => theme.colors['gray/400']};
     transform: translateY(-5%) translateX(2%);
   }
 `;
@@ -204,9 +209,7 @@ export const BlockGray = styled.div`
   border-radius: 3px;
   display: flex;
   justify-content: center;
-  width: 100%;
   @media screen and (min-width: 767px) {
-    width: 25%;
   }
 `;
 

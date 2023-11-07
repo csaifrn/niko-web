@@ -91,7 +91,7 @@ export const CategoriasTipologias = (props: CategoriasTipologiasProps) => {
             <S.NameClose>
               <h2>Categorias e Tipologias</h2>
               <S.Exit type="button" onClick={handleClose}>
-                <img src="/close.svg" alt="" height={18} width={18} />
+                <img src="/close.svg" alt="" height={24} width={24} />
               </S.Exit>
             </S.NameClose>
 

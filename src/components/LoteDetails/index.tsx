@@ -18,6 +18,7 @@ import { BoxObservation } from '../Observation/ObservationBox';
 import { DeletarModal } from '../DeletarModal';
 import { ObservationModal } from '../Observation/Observation-modal-update';
 import { DeleteObservation } from '../../api/services/batches/observation/delete-obsevation';
+import { Link } from 'react-router-dom';
 
 export const LoteDetails = () => {
   const optionsFases = FaseData.map((fase) => ({ id: fase.id, label: fase.titulo }));
@@ -135,11 +136,13 @@ export const LoteDetails = () => {
                 <S.TituloLote>{`${task?.title}`}</S.TituloLote>
                 <S.EditConfig>
                   {/* EDITAR */}
-                  <S.Edit href={`/Lote/${task?.id}/Edit`}>
-                    {''}
-                    <S.Icons src={`/pen.svg`}></S.Icons>
-                    {''}
-                  </S.Edit>
+                  <Link to={`/Lote/${task?.id}/Edit`}>
+                    <S.Edit>
+                      {''}
+                      <S.Icons src={`/pen.svg`}></S.Icons>
+                      {''}
+                    </S.Edit>
+                  </Link>
                   {/* CONFIGURAÇÕES */}
                   <S.Config onClick={handleConfig}>
                     {''}
@@ -282,6 +285,8 @@ export const LoteDetails = () => {
 
                 {/* OBSERVAÇÕES */}
                 <S.Observações>
+
+
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                     <S.PendenciaTitulo>Observações</S.PendenciaTitulo>
                     <S.BotaoCriarObservacao
@@ -357,7 +362,7 @@ export const LoteDetails = () => {
                 )}
 
                 {/* DELETAR LOTE */}
-                <S.BotaoDeletarLote onClick={handleDelete}>
+                <S.BotaoDeletarLote>
                   <img src={`/trash.svg`} alt="Botão de deletar Lote" />
                   Excluir lote
                 </S.BotaoDeletarLote>

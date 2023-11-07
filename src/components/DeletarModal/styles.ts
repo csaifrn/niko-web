@@ -27,12 +27,20 @@ const ModalContent = styled.div`
 export const Exit = styled.button`
   height: 2em;
   width: 2em;
-  background-color: #090e09;
+  background-color: #393e4b;
   border-radius: 3px;
   display: flex;
   justify-content: center;
   align-items: center;
   border: none;
+  cursor: pointer;
+  &:hover {
+    background-color: ${({ theme }) => theme.colors['gray/400']};
+  }
+  &:active {
+    background-color: ${({ theme }) => theme.colors['gray/400']};
+    transform: translateY(-5%) translateX(2%);
+  }
 `;
 
 const NameClose = styled.div`
@@ -65,6 +73,14 @@ const Recused = styled.button`
   border: none;
   color: white;
   font-family: 'Rubik';
+  cursor: pointer;
+  &:hover {
+    background-color: ${({ theme }) => theme.colors['gray/900']};
+  }
+  &:active {
+    background-color: ${({ theme }) => theme.colors['gray/900']};
+    transform: translateY(-5%) translateX(2%);
+  }
 `;
 
 export const Delete = styled.button`

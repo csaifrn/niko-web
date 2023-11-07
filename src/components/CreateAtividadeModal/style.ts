@@ -34,7 +34,7 @@ export const NameClose = styled.div`
 export const Exit = styled.button`
   height: 2em;
   width: 2em;
-  background-color: #191c24;
+  background-color: #393e4b;
   border-radius: 3px;
   display: flex;
   justify-content: center;

@@ -66,6 +66,7 @@ export const BotaoFiltrar = styled.button`
   border: none;
   padding: 8px;
   cursor: pointer;
+  width: 4em;
   &:hover {
     background-color: ${({ theme }) => theme.colors['orange/500']};
   }

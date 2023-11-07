@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import * as S from './styles';
 import { date, string } from 'yup';
+import { Link, useParams } from 'react-router-dom';
 
 export const PainelPorFase = () => {
   const valores = [
@@ -50,17 +51,17 @@ export const PainelPorFase = () => {
 
   const [dataInicial, setDataInicial] = useState<Date>(new Date());
 
-  const [dataInicialEmString , setDataInicialEmString] = useState<string>()
+  const [dataInicialEmString, setDataInicialEmString] = useState<string>();
 
-  const [dataFinalEmString , setDataFinalEmString] = useState<string>()
+  const [dataFinalEmString, setDataFinalEmString] = useState<string>();
 
   useEffect(() => {
-    if(String(dia).length == 1){
-      setDataInicialEmString(`${ano}-${mes+1}-0${dia}`)
-      setDataFinalEmString(`${ano}-${mes+1}-0${dia}`)
-    }else{
-      setDataInicialEmString(`${ano}-${mes+1}-${dia}`)
-      setDataFinalEmString(`${ano}-${mes+1}-${dia}`)
+    if (String(dia).length == 1) {
+      setDataInicialEmString(`${ano}-${mes + 1}-0${dia}`);
+      setDataFinalEmString(`${ano}-${mes + 1}-0${dia}`);
+    } else {
+      setDataInicialEmString(`${ano}-${mes + 1}-${dia}`);
+      setDataFinalEmString(`${ano}-${mes + 1}-${dia}`);
     }
   }, []);
 
@@ -70,7 +71,7 @@ export const PainelPorFase = () => {
     const mes = e.target.value.split('-')[1];
     const ano = e.target.value.split('-')[2];
     const dataEscolhida = new Date(`${dia}/${mes}/${ano}`);
-    setDataInicialEmString(`${dia}-${mes}-${ano}`)
+    setDataInicialEmString(`${dia}-${mes}-${ano}`);
     // Verifica se a data inicial escolhida é mais nova que a data de hoje
     if (dataEscolhida > dataHoje) {
       //A data passa a ser inválida
@@ -90,20 +91,22 @@ export const PainelPorFase = () => {
     const mes = e.target.value.split('-')[1];
     const ano = e.target.value.split('-')[2];
     const dataEscolhida = new Date(`${dia}/${mes}/${ano}`);
-    setDataFinalEmString(`${dia}-${mes}-${ano}`)
+    setDataFinalEmString(`${dia}-${mes}-${ano}`);
     // Verifica se a data final escolhida é mais nova que a data de hoje
     if (dataEscolhida > dataHoje) {
       setDtFinalInvalida(true);
-      setMsgErro('Por favor insira uma data igual ou mais recente que a de hoje')
+      setMsgErro('Por favor insira uma data igual ou mais recente que a de hoje');
     }
     // Verifica se a data final escolhida é mais nova que a data inicial escolhida
     else if (dataInicial != undefined && dataInicial > dataEscolhida) {
       setDtFinalInvalida(true);
-      setMsgErro('Por favor insira uma data igual ou mais recente que a inicial')
+      setMsgErro('Por favor insira uma data igual ou mais recente que a inicial');
     } else {
       setDtFinalInvalida(false);
     }
   };
+
+  const { id } = useParams();
 
   return (
     <S.Wrapper>
@@ -117,12 +120,22 @@ export const PainelPorFase = () => {
             <S.DataInicial>
               <S.DataText>De:</S.DataText>
 
-              <S.Filter disabled={dtFinalInvalida} onChange={handlePegarDataInicial} value={dataInicialEmString || ''} type="date"/>
+              <S.Filter
+                disabled={dtFinalInvalida}
+                onChange={handlePegarDataInicial}
+                value={dataInicialEmString || ''}
+                type="date"
+              />
             </S.DataInicial>
 
             <S.DataFinal>
               <S.DataText>Até:</S.DataText>
-              <S.Filter disabled={dtInicialInvalida} onChange={handlePegarDataFinal} value={dataFinalEmString || ''} type="date"/>
+              <S.Filter
+                disabled={dtInicialInvalida}
+                onChange={handlePegarDataFinal}
+                value={dataFinalEmString || ''}
+                type="date"
+              />
             </S.DataFinal>
 
             {/* BOTÃO DE FILTRAR */}
@@ -150,9 +163,7 @@ export const PainelPorFase = () => {
 
           {dtInicialInvalida && <S.DataInvalidaMessage>{msgErroDataInicial}</S.DataInvalidaMessage>}
 
-          {dtFinalInvalida && 
-            <S.DataInvalidaMessage>A data final é inválida. {msgErro}</S.DataInvalidaMessage>
-          }
+          {dtFinalInvalida && <S.DataInvalidaMessage>A data final é inválida. {msgErro}</S.DataInvalidaMessage>}
         </S.FiltrarPorPeriodo>
 
         <S.ContainerFilterNumber>
@@ -164,7 +175,9 @@ export const PainelPorFase = () => {
         <S.Container>
           <S.DataFaseDois>
             <S.ContainerDataFase>
-              <S.ContainerImg src="/icon-big/Recepção.svg" />
+              <Link to={`/Fase/${id}/Board/Recebidos`}>
+                <S.ContainerImg src="/icon-big/Recepção.svg" />
+              </Link>
               <S.DataFase>
                 <S.NumberTextDataUnic>
                   <S.DataFaseTxtCenter>
@@ -176,7 +189,10 @@ export const PainelPorFase = () => {
             </S.ContainerDataFase>
 
             <S.ContainerDataFase>
-              <S.ContainerImg src="/icon-big/Arquivamento.svg" />
+              <Link to={`/Fase/${id}/Board/Arquivamento`}>
+                <S.ContainerImg src="/icon-big/Arquivamento.svg" />
+              </Link>
+
               <S.DataFase>
                 <S.NumberTextDataUnic>
                   <S.DataFaseTxtCenter>
@@ -190,7 +206,10 @@ export const PainelPorFase = () => {
 
           <S.FasesDoMeio>
             <S.ContainerDataFase>
-              <S.ContainerImg src="/icon-big/Preparo.svg" />
+              <Link to={`/Fase/${id}/Board/Preparo`}>
+                <S.ContainerImg src="/icon-big/Preparo.svg" />
+              </Link>
+
               <S.DataFase>
                 <S.NumberTextData>
                   <S.NumberName>
@@ -213,7 +232,9 @@ export const PainelPorFase = () => {
             </S.ContainerDataFase>
 
             <S.ContainerDataFase>
-              <S.ContainerImg src="/icon-big/Catalogação.svg" />
+              <Link to={`/Fase/${id}/Board/Catalogacao`}>
+                <S.ContainerImg src="/icon-big/Catalogação.svg" />
+              </Link>
               <S.DataFase>
                 <S.NumberTextData>
                   <S.NumberName>
@@ -235,7 +256,9 @@ export const PainelPorFase = () => {
               </S.DataFase>
             </S.ContainerDataFase>
             <S.ContainerDataFase>
-              <S.ContainerImg src="/icon-big/Digitalização.svg" />
+              <Link to={`/Fase/${id}/Board/Digitalizacao`}>
+                <S.ContainerImg src="/icon-big/Digitalização.svg" />
+              </Link>
               <S.DataFase>
                 <S.NumberTextData>
                   <S.NumberName>
@@ -257,7 +280,10 @@ export const PainelPorFase = () => {
               </S.DataFase>
             </S.ContainerDataFase>
             <S.ContainerDataFase>
+              <Link to={`/Fase/${id}/Board/Upload`}>
               <S.ContainerImg src="/icon-big/Upload.svg" />
+              </Link>
+              
               <S.DataFase>
                 <S.NumberTextData>
                   <S.NumberName>

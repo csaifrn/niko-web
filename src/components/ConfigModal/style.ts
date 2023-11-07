@@ -33,6 +33,25 @@ export const TituloDiv = styled.div`
   gap: 1em;
 `;
 
+export const Exit = styled.button`
+  height: 2em;
+  width: 2em;
+  background-color: #393e4b;
+  border-radius: 3px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  cursor: pointer;
+  &:hover {
+    background-color: ${({ theme }) => theme.colors['gray/400']};
+  }
+  &:active {
+    background-color: ${({ theme }) => theme.colors['gray/400']};
+    transform: translateY(-5%) translateX(2%);
+  }
+`;
+
 export const Titulo = styled.input`
   padding: 1.5em 2em;
   border-radius: 5px;

@@ -351,9 +351,9 @@ const AtividadeCreate = () => {
 
               {/* BOTÃO DESATIVADO */}
               {tarefas.length === 0 && (
-                <S.BotaoAdd>
+                <S.BotaoAddDesativado>
                   <img src="/adicionar.svg" alt="adicionar atividade" style={{ opacity: '50%' }} />
-                </S.BotaoAdd>
+                </S.BotaoAddDesativado>
               )}
             </S.TituloBotaoAdd>
 

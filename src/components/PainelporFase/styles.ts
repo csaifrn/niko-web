@@ -31,7 +31,11 @@ export const FiltrarTitulo = styled.h2`
 
 export const EscolherDatas = styled.div`
   display: flex; 
+  flex-direction: column;
   gap: 16px;
+  @media (min-width: 767px) {
+    flex-direction: row;
+  }
 `;
 
 export const DataInicial = styled.div`
@@ -62,6 +66,7 @@ export const BotaoFiltrar = styled.button`
   border: none;
   padding: 8px;
   cursor: pointer;
+  width: 4em;
   &:hover {
     background-color: ${({ theme }) => theme.colors['orange/500']};
   }
@@ -172,9 +177,9 @@ export const NumberTextData = styled.div`
   display: flex;
   flex-direction: column;
   gap: 16px;
-  ${media.greaterThan('large')`
+  @media (min-width: 767px) {
     flex-direction: row;
-  `}
+  }
 `;
 
 export const NumberTextDataUnic = styled.div`

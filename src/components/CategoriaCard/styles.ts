@@ -128,7 +128,7 @@ const PerecentageFase = styled.p`
 const Prioridade = styled.div`
   height: 24px;
   background-color: #dd3b3b;
-  border-radius: 5px;
+  border-radius: 3px;
   display: flex;
   justify-content: center;
   align-items: center;

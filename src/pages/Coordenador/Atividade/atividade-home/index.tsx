@@ -62,7 +62,7 @@ const Atividade = () => {
     <div style={{ display: 'flex', justifyContent: 'center' }}>
       <Menu area={`/Categoria/${id}`} id_projeto={id}></Menu>
       <MenuCoord />
-      
+
       <S.AtividadesPage>
         <S.AtivsCabecalho>
           <S.TituloAtividades style={{ color: 'white', fontFamily: 'Rubik' }}>Atividades</S.TituloAtividades>
@@ -74,7 +74,6 @@ const Atividade = () => {
               </S.CriarAtiv>
             </Link>
           )}
-          
         </S.AtivsCabecalho>
 
         <S.AtivsPorDiaDiv
@@ -106,7 +105,7 @@ const Atividade = () => {
                             <S.EditDiv>
                               <Link to={`/Atividades/${id}/Edit/${atividade.id}/${atv.id}`}>
                                 <S.Edit>
-                                  <PencilSimple size={16} weight="fill" color="#fff" />
+                                  <PencilSimple size={20} weight="fill" color="#fff" />
                                 </S.Edit>
                               </Link>
                             </S.EditDiv>

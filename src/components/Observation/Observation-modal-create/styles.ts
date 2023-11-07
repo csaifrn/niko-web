@@ -26,12 +26,20 @@ const ModalContent = styled.div`
 export const Exit = styled.button`
   height: 2em;
   width: 2em;
-  background-color: #090e09;
+  background-color: transparent;
   border-radius: 3px;
   display: flex;
   justify-content: center;
   align-items: center;
   border: none;
+  cursor: pointer;
+  &:hover {
+    background-color: ${({ theme }) => theme.colors['gray/400']};
+  }
+  &:active {
+    background-color: ${({ theme }) => theme.colors['gray/400']};
+    transform: translateY(-5%) translateX(2%);
+  }
 `;
 
 const NameClose = styled.div`
@@ -69,12 +77,17 @@ const Recused = styled.button`
 export const Green = styled.button`
   height: 44px;
   border-radius: 5px;
-  background-color: ${({ theme }) => theme.colors['green/500']};
+  background-color: ${({ theme }) => theme.colors['green/400']};
   border: none;
-  color: white;
+  color: ${({ theme }) => theme.colors['gray/900']};
   font-family: 'Rubik';
-  :hover {
-    background-color: ${({ theme }) => theme.colors['gray/600']};
+  cursor: pointer;
+  &:hover {
+    background-color: ${({ theme }) => theme.colors['green/600']};
+  }
+  &:active {
+    background-color: ${({ theme }) => theme.colors['green/600']};
+    transform: translateY(-5%) translateX(2%);
   }
 `;
 

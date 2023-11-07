@@ -57,25 +57,26 @@ export const CustomSelect = styled(Select)`
 
 export const ModalContent = styled.form`
   z-index: 100;
-  padding: 2em;
   color: white;
   transition: transform 0.9s ease-in-out;
   display: flex;
   flex-direction: column;
   gap: 16px;
-  margin: 8em 0em 8em 0em;
+  margin: 10em 2em 8em 2em;
   font-family: 'Rubik', Helvetica, sans-serif;
+  width: 100%;
+  max-width: 1140px;
   h2 {
     font-weight: normal;
   }
-  ${media.greaterThan('large')`
-    width: 500px;
-  `}
+  @media screen and (min-width: 1140px) {
+    margin: 10em 0em 8em 0em;
+  }
 `;
 
 export const CloseDiv = styled.div`
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
   padding: '5px 5px';
   border-radius: '5px';
 `;
@@ -90,6 +91,13 @@ export const Exit = styled.button`
   align-items: center;
   border: none;
   cursor: pointer;
+  &:hover {
+    background-color: ${({ theme }) => theme.colors['gray/400']};
+  }
+  &:active {
+    background-color: ${({ theme }) => theme.colors['gray/400']};
+    transform: translateY(-5%) translateX(2%);
+  }
 `;
 
 export const SearchDiv = styled.div`
@@ -198,6 +206,9 @@ export const NameInput = styled.input`
   border: none;
   border-radius: 5px;
   width: 100%;
+  @media screen and (min-width: 767px) {
+    width: 15em;
+  }
 `;
 
 export const LocalDiv = styled.div`
@@ -307,9 +318,16 @@ export const SalvarEditButton = styled.button`
   bottom: 0;
   left: 0;
   cursor: pointer;
-  ${media.greaterThan('large')`
+  &:hover {
+    background-color: ${({ theme }) => theme.colors['green/600']};
+  }
+  &:active {
+    background-color: ${({ theme }) => theme.colors['green/600']};
+    transform: translateY(-5%) translateX(2%);
+  }
+  @media screen and (min-width: 767px) {
     width: 110px;
-  `}
+  }
 `;
 
 export const Switch = styled.input`

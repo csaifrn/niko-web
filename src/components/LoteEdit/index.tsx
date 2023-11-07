@@ -145,29 +145,19 @@ const LoteEdit = () => {
     return <Splash />;
   } else {
     return (
-      <>
-        <Menu area="/"></Menu>
+      <div style={{display: 'flex' , justifyContent: 'center'} }>
+        <Menu area={`/Painel/${id}`} id_projeto={id}/>
         <MenuCoord />
+
         <S.ModalContent id="modal-content" onSubmit={(e) => handleSave(e)}>
-          <S.NameClose>
-            <h1>{title}</h1>
-            <button
-              onClick={() => navigate(-1)}
-              style={{ width: 'auto', backgroundColor: 'transparent', border: 'none' }}
-            >
-              <img
-                src="/close.svg"
-                alt=""
-                height={24}
-                width={24}
-                style={{
-                  padding: '5px 5px',
-                  backgroundColor: '#393E4B',
-                  borderRadius: '3px',
-                }}
-              />
-            </button>
-          </S.NameClose>
+
+          <S.CloseDiv>
+
+            <h1>Editar {title}</h1>
+            <S.Exit onClick={() => navigate(-1)}>
+              <img src="/close.svg" alt="" height={18} width={18} />
+            </S.Exit>
+          </S.CloseDiv>
 
           {/* PROTOCOLO */}
           {/* <S.ProtocoloDiv>
@@ -188,6 +178,7 @@ const LoteEdit = () => {
               ></S.Local>
             </S.LocalDiv>
           )} */}
+          
           <h2>Título</h2>
           <S.NameInput type="text" value={title} onChange={(e) => setTitle(e.currentTarget.value)} />
 
@@ -246,7 +237,7 @@ const LoteEdit = () => {
             Salvar
           </S.SalvarEditButton>
         </S.ModalContent>
-      </>
+      </div>
     );
   }
 };

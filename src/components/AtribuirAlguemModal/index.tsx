@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import * as S from './style';
-import { AssignedUser, GetResponseBatche } from '../../api/services/batches/get-batche/get.interface';
-import Select from 'react-select';
+import { AssignedUser } from '../../api/services/batches/get-batche/get.interface';
 import { MultiValue } from 'react-select';
 import { validationSearch } from './validation';
 import toast from 'react-hot-toast';
@@ -11,6 +10,10 @@ import { useMutation } from 'react-query';
 import { PostAssigners } from '../../api/services/batches/assigners/post-assigners';
 import { ApiError } from '../../api/services/authentication/signIn/signIn.interface';
 import { useParams } from 'react-router-dom';
+import { DeleteAssigner } from '../../api/services/batches/assigners/delete-assigners';
+import { PostResponseAssigners } from '../../api/services/batches/assigners/post-assigners/post.interface';
+
+import ReactLoading from 'react-loading';
 
 export interface AtribuirAlguemModalProps {
   close: () => void;
@@ -27,6 +30,8 @@ export const AtribuirAlguemModal = (props: AtribuirAlguemModalProps) => {
   const { id } = useParams();
   const [closing, setClosing] = useState(false);
   const [options, setOptions] = useState<MultiValue<Options | null>>([]);
+  const [presentAssigners, setPresentAssigners] = useState<AssignedUser[]>(props.assigners ? props.assigners : []);
+  const [userRemoved, setUserRemoved] = useState<string>('');
   const [optionsSelected, setOptionsSelected] = useState<MultiValue<Options | null>>(
     props.assigners ? props.assigners.map((e) => ({ value: e.id, label: e.name })) : [],
   );
@@ -53,17 +58,6 @@ export const AtribuirAlguemModal = (props: AtribuirAlguemModalProps) => {
     }, 300);
   };
 
-  const assignMutate = useMutation(PostAssigners, {
-    onSuccess: (data: GetResponseBatche) => {
-      console.log(data);
-    },
-    onError: (error: ApiError) => {
-      if (error.response) {
-        toast.error(error.response!.data.message);
-      }
-    },
-  });
-
   const validateSearch = async (): Promise<boolean> => {
     try {
       await validationSearch.validate(
@@ -80,19 +74,18 @@ export const AtribuirAlguemModal = (props: AtribuirAlguemModalProps) => {
     return true;
   };
 
-  const onSubmit = async (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.preventDefault();
-    toast.success('Deu certo!');
-    if (optionsSelected.length > 0 && id)
-      assignMutate.mutate({
-        batch_id: id,
-        assignment_users_ids: [...optionsSelected.map((ass) => ass?.value!)],
-      });
-  };
-
-  useEffect(() => {
-    onChange();
-  }, [userInput]);
+  const assignMutate = useMutation(PostAssigners, {
+    onSuccess: (data: PostResponseAssigners) => {
+      toast.success('Mudanças salvas!');
+      setPresentAssigners(data.assignedUsers);
+      handleClose();
+    },
+    onError: (error: ApiError) => {
+      if (error.response) {
+        toast.error(error.response!.data.message);
+      }
+    },
+  });
 
   const users = useMutation(SearchUser, {
     onSuccess: (data: SearchUserResponseBatche) => {
@@ -103,6 +96,36 @@ export const AtribuirAlguemModal = (props: AtribuirAlguemModalProps) => {
     },
   });
 
+  const removeAssigner = useMutation(DeleteAssigner, {
+    onSuccess: () => {
+      toast.success(`Você removeu este responsável do lote.`);
+      setPresentAssigners((assigner) => [...assigner.filter((a) => a.id != userRemoved)]);
+    },
+  });
+
+  useEffect(() => {
+    props.setAssigners(presentAssigners ? presentAssigners : []);
+  }, [presentAssigners]);
+
+  useEffect(() => {
+    onChange();
+  }, [userInput]);
+
+  useEffect(() => {
+    if (userRemoved && id) {
+      removeAssigner.mutate({
+        batch_id: id,
+        assignment_user_id: userRemoved,
+      });
+    }
+  }, [userRemoved]);
+
+  const onRemove = (e: Options | null | undefined) => {
+    if (e && presentAssigners.map((a) => a.id === e?.value)) {
+      setUserRemoved(e?.value ? e.value : '');
+    }
+  };
+
   const onChange = async () => {
     const isValid = await validateSearch();
 
@@ -110,6 +133,36 @@ export const AtribuirAlguemModal = (props: AtribuirAlguemModalProps) => {
       users.mutate({
         name: userInput,
       });
+    }
+  };
+
+  const onSubmit = async (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    const newAssigner = optionsSelected
+      .map((ass) => {
+        if (presentAssigners) {
+          const isAlready = presentAssigners.some((a) => a.id === ass?.value);
+          if (!isAlready) {
+            return ass?.value;
+          }
+        } else {
+          return ass?.value;
+        }
+      })
+      .filter((value) => value !== undefined); // Filtrar valores undefined
+
+    if (newAssigner.length > 0 && id) {
+      assignMutate.mutate({
+        batch_id: id,
+        assignment_users_ids: newAssigner as string[],
+      });
+    }
+    if (newAssigner.length === 0) {
+      if (presentAssigners.length > 0) {
+        toast.error('O usuários escolhidos já estão atribuidos.');
+      } else {
+        toast.error('Você não escolheu nenhum usuário.');
+      }
     }
   };
 
@@ -138,21 +191,35 @@ export const AtribuirAlguemModal = (props: AtribuirAlguemModalProps) => {
                 />
               </button>
             </S.NameClose>
-            <Select
+            <S.CustomSelect
               isMulti
               autoFocus
               placeholder={'Digite no mínimo 3 caracteres...'}
               onInputChange={setUserinput}
               inputValue={userInput}
-              onChange={(e) => setOptionsSelected(e)}
+              onChange={(e: any, action: any) => {
+                if ((action.action = 'remove-value')) {
+                  onRemove(action.removedValue);
+                }
+                setOptionsSelected(e);
+              }}
               options={options}
               name="colors"
-              className="basic-multi-select"
-              classNamePrefix="select"
+              className="react-select-container"
+              classNamePrefix="react-select"
               value={optionsSelected}
               isLoading={users.isLoading}
+              required
             />
-            <S.AtribuirButton onClick={onSubmit}>Salvar</S.AtribuirButton>
+            <S.ButtonGreen disabled={assignMutate.isLoading || assignMutate.isSuccess} onClick={onSubmit}>
+              {assignMutate.isLoading ? (
+                <ReactLoading type="cylon" color="white" height={32} width={32} />
+              ) : assignMutate.isSuccess ? (
+                'Ok'
+              ) : (
+                'Salvar'
+              )}
+            </S.ButtonGreen>
           </S.ModalContent>
         </S.ModalArea>
       </S.ModalBackdrop>

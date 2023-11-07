@@ -8,11 +8,12 @@ export interface GetResponseBatche {
   digital_files_count: number;
   physical_files_count: number;
   priority: boolean;
-  shelf_number: number | null;
+  shelf_number: any;
   created_at: string;
   updated_at: string;
   created_by: CreatedBy;
   category: Category;
+  assigned_users: AssignedUser[];
   observations: Observation[];
 }
 
@@ -23,6 +24,11 @@ export interface CreatedBy {
 
 export interface Category {
   settlement_project_category_id: string;
+  name: string;
+}
+
+export interface AssignedUser {
+  id: string;
   name: string;
 }
 

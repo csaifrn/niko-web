@@ -41,7 +41,7 @@ const ChooseUser = styled.div`
   scroll-behavior: auto;
   &::-webkit-scrollbar {
     width: 0.6em;
-    height: 1em; 
+    height: 1em;
   }
 
   &::-webkit-scrollbar-track {
@@ -49,7 +49,7 @@ const ChooseUser = styled.div`
   }
 
   &::-webkit-scrollbar-thumb {
-    background-color:#191c24 ;
+    background-color: #191c24;
     border-radius: 20px;
   }
 `;
@@ -71,7 +71,7 @@ const AtribuirButton = styled.button`
   border-radius: 5px;
   background-color: #43db6d;
   border: none;
-  color: #0A090E;
+  color: #0a090e;
   font-family: 'Rubik';
   cursor: pointer;
 `;

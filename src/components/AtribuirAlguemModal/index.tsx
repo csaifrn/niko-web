@@ -1,19 +1,36 @@
 import React, { useEffect, useState } from 'react';
 import * as S from './style';
-import Search from '../Search';
-import Users from '../../data/UserData';
+import { AssignedUser, GetResponseBatche } from '../../api/services/batches/get-batche/get.interface';
+import Select from 'react-select';
+import { MultiValue } from 'react-select';
+import { validationSearch } from './validation';
+import toast from 'react-hot-toast';
+import { SearchUserResponseBatche } from '../../api/services/batches/assigners/get-user-autocomplete/get.interface';
+import { SearchUser } from '../../api/services/batches/assigners/get-user-autocomplete';
+import { useMutation } from 'react-query';
+import { PostAssigners } from '../../api/services/batches/assigners/post-assigners';
+import { ApiError } from '../../api/services/authentication/signIn/signIn.interface';
+import { useParams } from 'react-router-dom';
 
 export interface AtribuirAlguemModalProps {
   close: () => void;
-  user: any;
-  // eslint-disable-next-line no-unused-vars
-  setUser: (e: any) => void;
+  assigners: AssignedUser[] | undefined;
+  setAssigners: React.Dispatch<React.SetStateAction<AssignedUser[]>>;
+}
+
+interface Options {
+  value: string;
+  label: string;
 }
 
 export const AtribuirAlguemModal = (props: AtribuirAlguemModalProps) => {
-  const [selectedUsers, setSelectedUsers] = useState<string[]>([]);
-  const [searchTerm, setSearchTerm] = useState<string>('');
+  const { id } = useParams();
   const [closing, setClosing] = useState(false);
+  const [options, setOptions] = useState<MultiValue<Options | null>>([]);
+  const [optionsSelected, setOptionsSelected] = useState<MultiValue<Options | null>>(
+    props.assigners ? props.assigners.map((e) => ({ value: e.id, label: e.name })) : [],
+  );
+  const [userInput, setUserinput] = useState<string>('');
 
   useEffect(() => {
     // Ao renderizar o modal, aplicar um escalonamento gradual para exibi-lo
@@ -36,28 +53,65 @@ export const AtribuirAlguemModal = (props: AtribuirAlguemModalProps) => {
     }, 300);
   };
 
-  const handleLoteClick = (userId: string) => {
-    if (selectedUsers.includes(userId)) {
-      setSelectedUsers(selectedUsers.filter((id) => id !== userId));
-    } else {
-      setSelectedUsers([...selectedUsers, userId]);
+  const assignMutate = useMutation(PostAssigners, {
+    onSuccess: (data: GetResponseBatche) => {
+      console.log(data);
+    },
+    onError: (error: ApiError) => {
+      if (error.response) {
+        toast.error(error.response!.data.message);
+      }
+    },
+  });
+
+  const validateSearch = async (): Promise<boolean> => {
+    try {
+      await validationSearch.validate(
+        {
+          name: userInput,
+        },
+        {
+          abortEarly: false,
+        },
+      );
+    } catch (error) {
+      return false;
+    }
+    return true;
+  };
+
+  const onSubmit = async (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    toast.success('Deu certo!');
+    if (optionsSelected.length > 0 && id)
+      assignMutate.mutate({
+        batch_id: id,
+        assignment_users_ids: [...optionsSelected.map((ass) => ass?.value!)],
+      });
+  };
+
+  useEffect(() => {
+    onChange();
+  }, [userInput]);
+
+  const users = useMutation(SearchUser, {
+    onSuccess: (data: SearchUserResponseBatche) => {
+      setOptions([]);
+      const opt = data.users;
+      const response: Options[] = opt.map((e) => ({ value: e.id, label: e.name }));
+      setOptions(response);
+    },
+  });
+
+  const onChange = async () => {
+    const isValid = await validateSearch();
+
+    if (isValid) {
+      users.mutate({
+        name: userInput,
+      });
     }
   };
-
-  const handleAtualizarUser = () => {
-    if (selectedUsers) {
-      props.setUser(selectedUsers.map((userId) => Users.filter((user) => user.id === userId)[0]));
-      handleClose();
-    } else {
-      console.log('nenhum item está selecionado');
-    }
-  };
-
-  const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchTerm(event.target.value);
-  };
-
-  const filteredUsers = Users.filter((Users) => Users.name.toLowerCase().includes(searchTerm.toLowerCase()));
 
   return (
     <>
@@ -67,7 +121,10 @@ export const AtribuirAlguemModal = (props: AtribuirAlguemModalProps) => {
             <S.NameClose>
               <h2>Atribuir para</h2>
 
-              <button onClick={handleClose} style={{ width: 'auto', backgroundColor: 'transparent', border: 'none' , cursor: 'pointer'}}>
+              <button
+                onClick={handleClose}
+                style={{ width: 'auto', backgroundColor: 'transparent', border: 'none', cursor: 'pointer' }}
+              >
                 <img
                   src="/close.svg"
                   alt=""
@@ -81,38 +138,21 @@ export const AtribuirAlguemModal = (props: AtribuirAlguemModalProps) => {
                 />
               </button>
             </S.NameClose>
-            <Search searchTerm={searchTerm} handleSearchChange={handleSearchChange} />
-            <S.ChooseUser>
-              {filteredUsers.map((user: any) => (
-                // Botão que mostra cada operador
-                <S.User
-                  key={user.id}
-                  onClick={() => handleLoteClick(user.id)}
-                  style={{
-                    backgroundColor: selectedUsers.includes(user.id) ? '#090E09' : '#2D303B',
-                  }}
-                >
-                  <S.NameFotoUser>
-                    <img
-                      src={user.url}
-                      alt=""
-                      width={28}
-                      height={28}
-                      style={{ objectFit: 'cover', borderRadius: '100%' }}
-                    ></img>
-
-                    <p
-                      style={{
-                        color: selectedUsers.includes(user.id) ? '#FFFFFF' : '#838383',
-                      }}
-                    >
-                      {user.name}
-                    </p>
-                  </S.NameFotoUser>
-                </S.User>
-              ))}
-            </S.ChooseUser>
-            <S.AtribuirButton onClick={handleAtualizarUser}> Atribuir</S.AtribuirButton>
+            <Select
+              isMulti
+              autoFocus
+              placeholder={'Digite no mínimo 3 caracteres...'}
+              onInputChange={setUserinput}
+              inputValue={userInput}
+              onChange={(e) => setOptionsSelected(e)}
+              options={options}
+              name="colors"
+              className="basic-multi-select"
+              classNamePrefix="select"
+              value={optionsSelected}
+              isLoading={users.isLoading}
+            />
+            <S.AtribuirButton onClick={onSubmit}>Salvar</S.AtribuirButton>
           </S.ModalContent>
         </S.ModalArea>
       </S.ModalBackdrop>

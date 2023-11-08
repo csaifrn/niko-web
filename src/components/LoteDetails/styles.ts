@@ -33,7 +33,6 @@ export const areaClick = styled.div`
   font-family: 'Rubik', Helvetica, sans-serif;
   width: 100%;
   max-width: 1140px;
-  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
   &::-webkit-scrollbar {
     width: 0.8em;
     height: 0.5em;
@@ -195,18 +194,6 @@ export const ArquivDigitais = styled.div`
 
 export const BlockGray = styled.div`
   background-color: ${({ theme }) => theme.colors['gray/500']};
-  height: 2em;
-  padding: 0 0.5em;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5em;
-  border-radius: 3px;
-`;
-
-export const BlockGrayLight = styled.div`
-  background-color: ${({ theme }) => theme.colors['gray/300']};
-  color: ${({ theme }) => theme.colors['gray/700']};
   height: 2em;
   padding: 0 0.5em;
   display: flex;

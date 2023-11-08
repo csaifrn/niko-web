@@ -22,6 +22,7 @@ import { DeletarModal } from '../DeletarModal';
 import { ObservationModal } from '../Observation/Observation-modal-update';
 import { DeleteObservation } from '../../api/services/batches/observation/delete-obsevation';
 import { AtribuirAlguemModal } from '../AtribuirAlguemModal';
+import { BlockAssigner } from '../BatchBlocks/BlockAssigner';
 
 export const LoteDetails = () => {
   const optionsFases = FaseData.map((fase) => ({ id: fase.id, label: fase.titulo }));
@@ -189,7 +190,11 @@ export const LoteDetails = () => {
                   <S.DetalhesLote>
                     {assigners &&
                       assigners.map((assigned) => (
-                        <S.BlockGrayLight key={assigned.id}>{assigned.name}</S.BlockGrayLight>
+                        <BlockAssigner
+                          key={assigned.id}
+                          assigner={assigned}
+                          setAssigners={setAssigners}
+                        />
                       ))}
                   </S.DetalhesLote>
                 </React.Fragment>

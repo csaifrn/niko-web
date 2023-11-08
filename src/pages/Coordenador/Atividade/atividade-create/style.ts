@@ -66,19 +66,31 @@ export const TituloBotaoAdd = styled.div`
 `;
 
 export const BotaoAdd = styled.button`
-  border: none;
-  background-color: transparent;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   border-radius: 100%;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 8px;
+  background-color: transparent;
   &:hover {
-    background-color: ${({ theme }) => theme.colors['gray/300']};
+    background-color: ${({ theme }) => theme.colors['gray/400']};
   }
   &:active {
-    background-color: ${({ theme }) => theme.colors['gray/300']};
+    background-color: ${({ theme }) => theme.colors['gray/400']};
     transform: translateY(-5%) translateX(2%);
   }
+`;
+
+export const BotaoAddDesativado = styled.button`
+  border-radius: 100%;
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 8px;
+  background-color: transparent;
 `;
 
 export const Tarefas = styled.div`

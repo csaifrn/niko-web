@@ -247,6 +247,7 @@ export const LoteData = [
     ],
   },
 
+
   //LOTE 5
   {
     id: '5',
@@ -287,6 +288,8 @@ export const LoteData = [
       },
     ],
   },
+
+  
 
   //LOTE 6
   {

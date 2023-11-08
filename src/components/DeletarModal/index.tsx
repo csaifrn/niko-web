@@ -48,7 +48,7 @@ export const DeletarModal = (props: DeletarModalProps) => {
             <S.NameClose>
               <h2>{props.title}</h2>
               <S.Exit type="button" onClick={close}>
-                <img src="/close.svg" alt="" height={18} width={18} />
+                <img src="/close.svg" alt="" height={24} width={24} />
               </S.Exit>
             </S.NameClose>
             <S.Recused onClick={close}>Não, não quero.</S.Recused>

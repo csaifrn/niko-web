@@ -8,7 +8,7 @@ import { CategoriasTipologias } from '../../../../components/CategoriaTipologias
 import CategoriaData from '../../../../data/CategoriaData';
 import { TipologiaData } from '../../../../data/TipologiaData';
 import { IUserFase, UserModalAtividade } from '../../../../components/UserAtividadeModal';
-import { AtribuirModalAtividade, ILoteUser } from '../../../../components/AtribuirModalAtividade';
+import { AtribuirLoteModal, ILoteUser } from '../../../../components/AtribuirLoteModal';
 import * as S from './style';
 
 const AtividadeCreate = () => {
@@ -431,27 +431,26 @@ const AtividadeCreate = () => {
                             </div>
 
                             <S.AtribuirLoteButton
-                                onClick={() => {
-                                  setFaseName(tarefas.filter((tarefa: any) => tarefa.id === f.id_fase)[0].icone);
-                                  setName(user.name);
-                                  setIdUser(user.id);
-                                  setIdFase(f.id_fase);
-                                  SetModalAtribuirLote(true);
+                              onClick={() => {
+                                setFaseName(tarefas.filter((tarefa: any) => tarefa.id === f.id_fase)[0].icone);
+                                setName(user.name);
+                                setIdUser(user.id);
+                                setIdFase(f.id_fase);
+                                SetModalAtribuirLote(true);
+                              }}
+                            >
+                              <p
+                                style={{
+                                  color: '#191C24',
+                                  fontSize: 12,
+                                  fontFamily: 'Rubik',
+                                  fontWeight: '500',
+                                  wordWrap: 'break-word',
                                 }}
                               >
-                                <p
-                                  style={{
-                                    color: '#191C24',
-                                    fontSize: 12,
-                                    fontFamily: 'Rubik',
-                                    fontWeight: '500',
-                                    wordWrap: 'break-word',
-                                  }}
-                                >
-                                  Atribuir Lote
-                                </p>
-                              </S.AtribuirLoteButton>
-
+                                Atribuir Lote
+                              </p>
+                            </S.AtribuirLoteButton>
                           </div>
 
                           <div style={{ gap: 8, display: 'flex', flexWrap: 'wrap' }}>
@@ -549,7 +548,7 @@ const AtividadeCreate = () => {
         />
       )}
       {modalAtribuirLote && (
-        <AtribuirModalAtividade
+        <AtribuirLoteModal
           close={() => {
             SetModalAtribuirLote(!modalAtribuirLote);
           }}

@@ -6,7 +6,7 @@ import Menu from '../../../components/Menu';
 import FaseData from '../../../data/FaseData';
 import { useParams } from 'react-router-dom';
 import * as S from './styles';
-import { ModalCriarLote } from '../../../components/ModalCrairLote';
+import { ModalCriarLote } from '../../../components/ModalCriarLote';
 
 // import { Container } from './styles';
 

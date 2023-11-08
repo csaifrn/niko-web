@@ -12,6 +12,9 @@ export const EditarAtivArea = styled.div`
   margin-top: 10em;
   max-width: 1140px;
   width: 100%;
+  @media screen and (min-width: 767px) {
+    margin-bottom: 0em;
+  }
 `;
 
 export const Titulo = styled.h1`

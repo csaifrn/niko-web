@@ -61,15 +61,18 @@ export const CreateObservationModal = (props: DeletarModalProps) => {
 
   const ObservationMutate = useMutation(CreateObservation, {
     onSuccess(data: CreateObservationResponse) {
+      let date = new Date();
+      date.setHours(date.getHours() + 3);
+
       toast.success(`Observação adicionada: ${data.observation}`);
       props.refetch([
+        ...props.observations,
         {
           id: data.id,
           observation: data.observation,
-          created_at: String(new Date()),
+          created_at: String(date),
           created_by: { name: user!.name, user_id: user!.sub },
         },
-        ...props.observations,
       ]);
       handleClose();
     },

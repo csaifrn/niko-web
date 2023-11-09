@@ -23,6 +23,8 @@ import { ObservationModal } from '../Observation/Observation-modal-update';
 import { DeleteObservation } from '../../api/services/batches/observation/delete-obsevation';
 import { AtribuirAlguemModal } from '../AtribuirAlguemModal';
 import { BlockAssigner } from '../BatchBlocks/BlockAssigner';
+import { Link } from 'react-router-dom';
+
 
 export const LoteDetails = () => {
   const optionsFases = FaseData.map((fase) => ({ id: fase.id, label: fase.titulo }));
@@ -135,16 +137,19 @@ export const LoteDetails = () => {
             </S.CloseDiv>
 
             <S.LoteInfos>
+
               <S.LoteEditConfig>
                 {/* TÍTULO */}
                 <S.TituloLote>{`${task?.title}`}</S.TituloLote>
                 <S.EditConfig>
                   {/* EDITAR */}
-                  <S.Edit href={`/Lote/${task?.id}/Edit`}>
-                    {''}
-                    <S.Icons src={`/pen.svg`}></S.Icons>
-                    {''}
-                  </S.Edit>
+                  <Link to={`/Lote/${task?.id}/Edit`}>
+                    <S.Edit>
+                      {''}
+                      <S.Icons src={`/pen.svg`}></S.Icons>
+                      {''}
+                    </S.Edit>
+                  </Link>
                   {/* CONFIGURAÇÕES */}
                   <S.Config onClick={handleConfig}>
                     {''}
@@ -153,11 +158,16 @@ export const LoteDetails = () => {
                   </S.Config>
                 </S.EditConfig>
               </S.LoteEditConfig>
+              <S.DadosCriacaoLoteDiv>
+                <S.BlockGray>
+                  Criado por {task?.created_by.name} em{' '}
+                  {createDate?.toLocaleString('pt-br', {
+                    timeZone: 'America/Sao_paulo',
+                  })}
+                </S.BlockGray>
+              </S.DadosCriacaoLoteDiv>
               <S.DetalhesLote>
-                {/* PROTOCOLO */}
-                {/* <S.Protocolo>
-            <p style={{ padding: '0 0.5em' }}>{task.protocolo}</p>
-          </S.Protocolo> */}
+
                 {task?.shelf_number !== null && <S.Estante>{task?.shelf_number}</S.Estante>}
 
                 {/* ARQUIVOS FÍSICOS */}
@@ -174,13 +184,8 @@ export const LoteDetails = () => {
                     {task?.digital_files_count}
                   </S.ArquivDigitais>
                 )}
-                <S.BlockGray>
-                  Criado por {task?.created_by.name} em{' '}
-                  {createDate?.toLocaleString('pt-br', {
-                    timeZone: 'America/Sao_paulo',
-                  })}
-                </S.BlockGray>
               </S.DetalhesLote>
+
               <S.DetalhesLote>
                 <S.BlockGrayBorder>{task?.category.name}</S.BlockGrayBorder>
               </S.DetalhesLote>
@@ -296,15 +301,17 @@ export const LoteDetails = () => {
 
                 {/* OBSERVAÇÕES */}
                 <S.Observações>
+
+
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                     <S.PendenciaTitulo>Observações</S.PendenciaTitulo>
-                    <S.BotaoCriarProjeto
+                    <S.BotaoCriarObservacao
                       onClick={() => {
                         setObservacao(!observacao);
                       }}
                     >
                       <img src="/adicionar.svg" />
-                    </S.BotaoCriarProjeto>
+                    </S.BotaoCriarObservacao>
                   </div>
 
                   {observations &&
@@ -371,7 +378,7 @@ export const LoteDetails = () => {
                 )}
 
                 {/* DELETAR LOTE */}
-                <S.BotaoDeletarLote onClick={handleDelete}>
+                <S.BotaoDeletarLote>
                   <img src={`/trash.svg`} alt="Botão de deletar Lote" />
                   Excluir lote
                 </S.BotaoDeletarLote>

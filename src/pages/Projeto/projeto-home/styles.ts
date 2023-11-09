@@ -40,17 +40,19 @@ export const ContainerCriarProjeto = styled.div`
 `;
 
 export const BotaoCriarProjeto = styled.button`
-  width: 24px;
-  height: 24px;
   border-radius: 100%;
   border: none;
   cursor: pointer;
-  background-color: ${({ theme }) => theme.colors['gray/700']};
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 8px;
+  background-color: transparent;
   &:hover {
-    background-color: ${({ theme }) => theme.colors['gray/300']};
+    background-color: ${({ theme }) => theme.colors['gray/400']};
   }
   &:active {
-    background-color: ${({ theme }) => theme.colors['gray/300']};
+    background-color: ${({ theme }) => theme.colors['gray/400']};
     transform: translateY(-5%) translateX(2%);
   }
 `;

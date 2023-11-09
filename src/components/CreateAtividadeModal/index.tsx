@@ -76,7 +76,7 @@ export const CreateAtividade = (props: CreateAtividadeProps) => {
               <h2>Tarefas</h2>
 
               <S.Exit onClick={handleClose}>
-                <img src="/close.svg" alt="" height={18} width={18} />
+                <img src="/close.svg" alt="" height={24} width={24} />
               </S.Exit>
             </S.NameClose>
             <Search searchTerm={searchTerm} handleSearchChange={handleSearchChange} />

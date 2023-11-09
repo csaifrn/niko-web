@@ -75,30 +75,10 @@ export const ConfigModal = (props: ConfigModalProps) => {
         <S.ModalArea id="modal-scaling">
           <S.ModalContent id="modal-content">
             <S.NameClose>
-              <h2>Configurações do lote</h2>
-              <button onClick={handleClose} style={{ border: 'none', backgroundColor: 'transparent' }}>
-                <button
-                  style={{
-                    padding: '4px',
-                    background: '#191C24',
-                    border: 'none',
-                    borderRadius: 3,
-
-                    cursor: 'pointer',
-                  }}
-                >
-                  <div
-                    style={{
-                      flexDirection: 'column',
-                      justifyContent: 'center',
-                      alignItems: 'center',
-                      display: 'flex',
-                    }}
-                  >
-                    <img src="/close.svg" alt="" height={18} width={18} />
-                  </div>
-                </button>
-              </button>
+              <h2>Configurações</h2>
+              <S.Exit type="button" onClick={handleClose}>
+                <img src="/close.svg" alt="" height={24} width={24} />
+              </S.Exit>
             </S.NameClose>
 
             {/* <S.Compartilhamento>

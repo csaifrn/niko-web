@@ -14,6 +14,7 @@ import { DeleteAssigner } from '../../api/services/batches/assigners/delete-assi
 import { PostResponseAssigners } from '../../api/services/batches/assigners/post-assigners/post.interface';
 
 import ReactLoading from 'react-loading';
+import { ErrorMessage } from '../../pages/Login/styles';
 
 export interface AtribuirAlguemModalProps {
   close: () => void;
@@ -29,6 +30,7 @@ interface Options {
 export const AtribuirAlguemModal = (props: AtribuirAlguemModalProps) => {
   const { id } = useParams();
   const [closing, setClosing] = useState(false);
+  const [errorInput, setErrorInput] = useState('');
   const [options, setOptions] = useState<MultiValue<Options | null>>([]);
   const [presentAssigners, setPresentAssigners] = useState<AssignedUser[]>(props.assigners ? props.assigners : []);
   const [userRemoved, setUserRemoved] = useState<string>('');
@@ -151,7 +153,8 @@ export const AtribuirAlguemModal = (props: AtribuirAlguemModalProps) => {
       })
       .filter((value) => value !== undefined); // Filtrar valores undefined
 
-    if (newAssigner.length > 0 && id) {
+    if (newAssigner.length > 0 && newAssigner.length + presentAssigners.length <= 5 && id) {
+      setErrorInput('');
       assignMutate.mutate({
         batch_id: id,
         assignment_users_ids: newAssigner as string[],
@@ -159,10 +162,18 @@ export const AtribuirAlguemModal = (props: AtribuirAlguemModalProps) => {
     }
     if (newAssigner.length === 0) {
       if (presentAssigners.length > 0) {
-        toast.error('O usuários escolhidos já estão atribuidos.');
+        if (presentAssigners.length === 5) {
+          setErrorInput(
+            'O usuários escolhidos já estão atribuidos. O número máximo é 5 retire um operador ou cancele.',
+          );
+        } else {
+          setErrorInput('O usuários escolhidos já estão atribuidos. Adicione um operador novo.');
+        }
       } else {
-        toast.error('Você não escolheu nenhum usuário.');
+        setErrorInput('Adicione um operador novo');
       }
+    } else if (newAssigner.length + presentAssigners.length > 5) {
+      setErrorInput('O número máximo de usuários é 5.');
     }
   };
 
@@ -201,6 +212,7 @@ export const AtribuirAlguemModal = (props: AtribuirAlguemModalProps) => {
                 if ((action.action = 'remove-value')) {
                   onRemove(action.removedValue);
                 }
+
                 setOptionsSelected(e);
               }}
               options={options}
@@ -211,6 +223,8 @@ export const AtribuirAlguemModal = (props: AtribuirAlguemModalProps) => {
               isLoading={users.isLoading}
               required
             />
+            {errorInput != '' && <ErrorMessage>{errorInput}</ErrorMessage>}
+
             <S.ButtonGreen disabled={assignMutate.isLoading || assignMutate.isSuccess} onClick={onSubmit}>
               {assignMutate.isLoading ? (
                 <ReactLoading type="cylon" color="white" height={32} width={32} />

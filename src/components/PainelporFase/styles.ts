@@ -202,7 +202,11 @@ export const NumberName = styled.div`
   gap: 8px;
 `;
 
-export const ContainerImg = styled.img``;
+export const ContainerImg = styled.img`
+  &:hover {
+    filter: brightness(0.9);
+  }
+`;
 
 export const DataFase = styled.div`
   display: flex;

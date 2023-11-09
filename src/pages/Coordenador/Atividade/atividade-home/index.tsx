@@ -9,6 +9,8 @@ import { ArrowCircleRight, Check, PencilSimple } from '@phosphor-icons/react';
 import EtapaData from '../../../../data/EtapaData';
 import Lote from '../../../../components/Lote';
 import theme from '../../../../global/theme';
+import { DeletarModal } from '../../../../components/DeletarModal';
+import { ToolTip } from '../../../../components/Observation/ObservationBox/styles';
 
 const Atividade = () => {
   const auth = { role: 'Coordenador', email: 'andre.sousa@gmail.com' };
@@ -58,6 +60,8 @@ const Atividade = () => {
     }
   }, [atividadesOrdenadas]);
 
+  const [modalExcluirAtiv , setModalExcluirAtiv] = useState(false)
+
   return (
     <div style={{ display: 'flex', justifyContent: 'center' }}>
       <Menu area={`/Categoria/${id}`} id_projeto={id}></Menu>
@@ -73,6 +77,8 @@ const Atividade = () => {
                 <img src="/adicionar.svg" alt="botão de adicionar atividade" />
               </S.CriarAtiv>
             </Link>
+
+            
           )}
         </S.AtivsCabecalho>
 
@@ -88,7 +94,7 @@ const Atividade = () => {
           {atividades.map((atividade, indexatv) => {
             if (auth.role === 'Coordenador') {
               return (
-                <S.AtivPorDia
+                <S.AtivsCardEscuro
                   key={indexatv}
                   ref={atividade === atividadesOrdenadas[0] ? atividadeMaisProximaRef : null}
                   style={{ color: 'white', fontFamily: 'Rubik' }}
@@ -97,18 +103,32 @@ const Atividade = () => {
                     {`${atividade.data.getDate()}/${atividade.data.getMonth() + 1}/${atividade.data.getFullYear()}`}
                   </S.DataAtiv>
 
-                  <S.Atividades>
+                  <S.AtividadesMesmoDia>
                     {atividade.atividades.map((atv, index) => {
                       return (
                         <>
-                          <S.AtivCard key={index}>
-                            <S.EditDiv>
+                          <S.AtivCardCinza key={index}>
+                            <S.EditRemoveDiv>
+
+                              {/* Botão de editar atividade */}
                               <Link to={`/Atividades/${id}/Edit/${atividade.id}/${atv.id}`}>
-                                <S.Edit>
+                                <S.ButtonTransparent>
                                   <PencilSimple size={20} weight="fill" color="#fff" />
-                                </S.Edit>
+                                  <S.Tooltip>Editar</S.Tooltip>
+                                </S.ButtonTransparent>
                               </Link>
-                            </S.EditDiv>
+
+                              {/* Botão de excluir atividade */}
+                              <S.ButtonTransparent 
+                                onClick={() => setModalExcluirAtiv(!modalExcluirAtiv)}
+                              >
+                                <S.ExcluirIcon src={'/trash.svg'}/>
+                                
+                                <S.Tooltip>Excluir</S.Tooltip>
+                              
+                              </S.ButtonTransparent>
+
+                            </S.EditRemoveDiv>
 
                             <S.AtivsDetails>
                               {atv.faseData.map((fase, indexfase) => {
@@ -167,9 +187,10 @@ const Atividade = () => {
                                               alt=""
                                             />
 
-                                            <S.NomeOperador>
+                                            {/* Tooltip para mostrar o nome do operador */}
+                                            <S.TooltipOperador>
                                               <p>{user.user.name}</p>
-                                            </S.NomeOperador>
+                                            </S.TooltipOperador>
                                           </S.Operador>
 
                                           {user.Lotes?.map((lote) => {
@@ -203,12 +224,12 @@ const Atividade = () => {
                                 );
                               })}
                             </S.AtivsDetails>
-                          </S.AtivCard>
+                          </S.AtivCardCinza>
                         </>
                       );
                     })}
-                  </S.Atividades>
-                </S.AtivPorDia>
+                  </S.AtividadesMesmoDia>
+                </S.AtivsCardEscuro>
               );
             } else {
               return (
@@ -382,6 +403,19 @@ const Atividade = () => {
           })}
         </S.AtivsPorDiaDiv>
       </S.AtividadesPage>
+
+      {/* Modal de confirmação de exclusão de atividade */}
+      {modalExcluirAtiv &&
+        <DeletarModal
+          title='Deseja excluir essa atividade? Essa ação não poderá ser desfeita'
+          close={() => {
+            setModalExcluirAtiv(!modalExcluirAtiv);
+          }}
+        />
+        
+      }
+
+
     </div>
   );
 };

@@ -44,14 +44,12 @@ export const SairSemSalvarModal = (props: DeletarModalProps) => {
         <S.ModalArea id="modal-scaling">
           <S.ModalContent>
             <S.NameClose>
-              <h2>Deseja sair sem salvar as informações?</h2>
+              <h2>Deseja sair sem salvar? Todas as alterações serão descartadas</h2>
             </S.NameClose>
             <S.Recused onClick={handleClose}>Não, não quero.</S.Recused>
-
             <Link to={`/Atividades/${id}`}>
               <S.Delete>Sair</S.Delete>
             </Link>
-            
           </S.ModalContent>
         </S.ModalArea>
       </S.ModalBackdrop>

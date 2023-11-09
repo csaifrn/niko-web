@@ -2,7 +2,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import Menu from '../../../../components/Menu';
 import MenuCoord from '../../../../components/MenuCoord';
 import { useEffect, useState } from 'react';
-import { CreateAtividade } from '../../../../components/CreateAtividadeModal';
+import {CreateTarefaAtividade } from '../../../../components/CreateTarefaModal';
 import { CategoriasTipologias } from '../../../../components/CategoriaTipologias';
 import CategoriaData from '../../../../data/CategoriaData';
 import { TipologiaData } from '../../../../data/TipologiaData';
@@ -132,7 +132,7 @@ const AtividadeEdit = () => {
       atividade: [...faseDatas],
     };
 
-    console.log(atividadeFinal);
+    //console.log(atividadeFinal);
     navigate(`/Atividades/${id}`);
   };
 
@@ -187,9 +187,6 @@ const AtividadeEdit = () => {
           </div>
           
           <S.Exit
-            // onClick={() => {
-            //   navigate(`/Atividades/${id}`);
-            // }}
             onClick={() => setModalSairSemSalvar(!modalSairSemSalvar)}
           >
             <img src="/close.svg" alt="" height={18} width={18} />
@@ -569,7 +566,7 @@ const AtividadeEdit = () => {
 
       {/* MODAIS */}
       {modalTarefas && (
-        <CreateAtividade
+        <CreateTarefaAtividade
           close={() => {
             setModalTarefas(!modalTarefas);
           }}

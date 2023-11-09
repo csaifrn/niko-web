@@ -1,24 +1,9 @@
 import styled from 'styled-components';
 import media from 'styled-media-query';
 
-const ModalBackdrop = styled.div`
-  position: fixed;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-  z-index: 100;
-  background-color: rgba(25, 28, 36, 0.7);
-  transition: transform 1s;
-`;
-
-const ModalAreaCard = styled.div`
+export const ModalArea = styled.div`
   width: 80vw;
-  max-height: 90vh;
-  overflow-y: auto;
+  max-height: 80vh;
   max-width: 400px;
   background-color: ${({ theme }) => theme.colors['gray/500']};
   border-radius: 5px;
@@ -32,24 +17,9 @@ const ModalAreaCard = styled.div`
   font-family: 'Rubik';
   border-radius: 5px;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  /* ${media.greaterThan('large')`
-    width: 20vw;
-  `} */
-  @media screen and (min-width: 767px) {
-    width: 50vw;
-  }
-`;
-
-const ModalContent = styled.div`
-  display: flex;
-  gap: 1em;
-  flex-direction: column;
-`;
-
-const NameClose = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  ${media.greaterThan('large')`
+    max-height: 70vh;
+  `}
 `;
 
 export const Exit = styled.button`
@@ -71,9 +41,20 @@ export const Exit = styled.button`
   }
 `;
 
+const ModalContent = styled.div`
+  display: flex;
+  gap: 1em;
+  flex-direction: column;
+`;
+
+const NameClose = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
+
 const ChooseLote = styled.div`
   width: 100%;
-  height: 40vh;
+  height: 20vh;
   border-radius: 5px;
   display: flex;
   flex-direction: column;
@@ -111,8 +92,9 @@ const AtribuirButton = styled.button`
   border-radius: 5px;
   background-color: #43db6d;
   border: none;
-  color: #191c24;
+  color: white;
   font-family: 'Rubik';
+  color: #191C24;
   cursor: pointer;
   &:hover {
     background-color: ${({ theme }) => theme.colors['green/600']};
@@ -123,4 +105,39 @@ const AtribuirButton = styled.button`
   }
 `;
 
-export { ModalAreaCard, ModalContent, NameClose, ChooseLote, Lote, AtribuirButton, ModalBackdrop };
+export const ModalBackdrop = styled.div`
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  background-color: rgba(25, 28, 36, 0.7);
+  transition: transform 1s;
+`;
+interface CategoriaProps {
+  selected: boolean;
+}
+
+export const Categorias = styled.div`
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+  //margin-bottom: 1em;
+`;
+
+export const Nome = styled.p`
+`;
+
+export const Categoria = styled.div<CategoriaProps>`
+  padding: 0.5em;
+  border-radius: 4px;
+  background-color: ${(props) => (props.selected ? '#090E09' : '#2D303B')};
+  color: ${(props) => (props.selected ? '#fff' : '#838383')};
+  cursor: pointer;
+`;
+
+export { ModalContent, NameClose, ChooseLote, Lote, AtribuirButton };

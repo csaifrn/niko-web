@@ -13,6 +13,7 @@ import { SeachCategoriaResponseBatche } from '../../api/services/categoria/get-c
 import { SeachCategoria } from '../../api/services/categoria/get-categoria';
 import { validationPatch, validationSearch } from './validation';
 import { PatchBatcheEdit } from '../../api/services/batches/patch-batche';
+import { SairSemSalvarModal } from '../SairSemSalvarModal';
 
 interface Options {
   value: string;
@@ -27,6 +28,7 @@ const LoteEdit = () => {
   const [title, setTitle] = useState<string>('');
   const [physical_files_count, setPhysical_files_count] = useState<number>(0);
   const [digital_files_count, setDigital_files_count] = useState<number>(0);
+  const [modalSairSemSalvar, setModalSairSemSalvar] = useState(false);
 
   const categorias = useMutation(SeachCategoria, {
     onSuccess: (data: SeachCategoriaResponseBatche) => {
@@ -154,9 +156,11 @@ const LoteEdit = () => {
           <S.CloseDiv>
 
             <h1>Editar {title}</h1>
-            <S.Exit onClick={() => navigate(-1)}>
+
+            <S.Exit onClick={() => setModalSairSemSalvar(!modalSairSemSalvar) }>
               <img src="/close.svg" alt="" height={18} width={18} />
             </S.Exit>
+
           </S.CloseDiv>
 
           {/* PROTOCOLO */}
@@ -237,6 +241,15 @@ const LoteEdit = () => {
             Salvar
           </S.SalvarEditButton>
         </S.ModalContent>
+
+        {modalSairSemSalvar && (
+        <SairSemSalvarModal
+          close={() => {
+            setModalSairSemSalvar(!modalSairSemSalvar);
+          }}
+        />
+      )}
+      
       </div>
     );
   }

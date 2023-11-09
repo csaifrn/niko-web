@@ -13,7 +13,7 @@ export const EditarAtivArea = styled.div`
   max-width: 1140px;
   width: 100%;
   @media screen and (min-width: 767px) {
-    margin-bottom: 0em;
+    margin-bottom: 2em;
   }
 `;
 

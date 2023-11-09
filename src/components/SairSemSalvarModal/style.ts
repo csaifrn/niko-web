@@ -65,6 +65,13 @@ const Recused = styled.button`
   color: white;
   font-family: 'Rubik';
   cursor: pointer;
+  &:hover {
+    background-color: ${({ theme }) => theme.colors['red/500']};
+  }
+  &:active {
+    background-color: ${({ theme }) => theme.colors['red/500']};
+    transform: translateY(-5%) translateX(2%);
+  }
 `;
 
 const Delete = styled.button`
@@ -76,6 +83,13 @@ const Delete = styled.button`
   font-family: 'Rubik';
   width: 100%;
   cursor: pointer;
+  &:hover {
+    background-color: ${({ theme }) => theme.colors['gray/900']};
+  }
+  &:active {
+    background-color: ${({ theme }) => theme.colors['gray/900']};
+    transform: translateY(-5%) translateX(2%);
+  }
 `;
 
 const ModalBackdrop = styled.div`

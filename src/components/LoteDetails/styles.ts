@@ -31,7 +31,6 @@ export const areaClick = styled.div`
   font-family: 'Rubik', Helvetica, sans-serif;
   width: 100%;
   max-width: 1140px;
-  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
   &::-webkit-scrollbar {
     width: 0.8em;
     height: 0.5em;

@@ -1,3 +1,5 @@
+import StateManagedSelect, { ActionMeta, MultiValue } from 'react-select';
+import Select from 'react-select';
 import styled from 'styled-components';
 
 const ModalArea = styled.div`
@@ -17,10 +19,86 @@ const ModalArea = styled.div`
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 `;
 
+interface Options {
+  value: string;
+  label: string;
+}
+
+export const CustomSelect = styled(Select)`
+  .react-select__multi-value {
+    background-color: ${({ theme }) => theme.colors['gray/500']} !important;
+  }
+
+  .react-select__multi-value__label {
+    color: white;
+  }
+
+  .react-select__control {
+    border: none;
+    background-color: ${({ theme }) => theme.colors['gray/700']} !important; /* Cor de fundo do controle */
+    color: ${({ theme }) => theme.colors.white} !important;
+    min-height: 44px;
+  }
+
+  .react-select__placeholder {
+    color: ${({ theme }) => theme.colors.white / 10} !important;
+  }
+
+  .react-select__single-value {
+    color: ${({ theme }) => theme.colors['gray/200']};
+  }
+
+  .react-select__menu {
+    background-color: ${({ theme }) => theme.colors['gray/700']} !important;
+  }
+
+  .react-select__option {
+    background-color: ${({ theme }) => theme.colors['gray/700']};
+    color: ${({ theme }) => theme.colors.white}; /* Cor do texto das opções */
+  }
+
+  .react-select__option--is-selected {
+    background-color: ${({ theme }) => theme.colors['gray/500']}; /* Cor de fundo da opção selecionada */
+  }
+
+  .react-select__option--is-focused {
+    background-color: ${({ theme }) => theme.colors['gray/500']}; /* Cor de fundo da opção selecionada */
+  }
+
+  .react-select__indicator-separator {
+    background-color: ${({ theme }) => theme.colors['gray/500']}; /* Cor do separador entre indicadores */
+  }
+
+  .react-select__value-container .react-select__input {
+    color: ${({ theme }) => theme.colors.white} !important;
+  }
+`;
+
 const ModalContent = styled.div`
   display: flex;
   gap: 1em;
   flex-direction: column;
+`;
+
+export const ButtonGreen = styled.button`
+  border: none;
+  color: #191c24;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 44px;
+  width: 100%;
+  font-family: Rubik;
+  background-color: #43db6d;
+  cursor: pointer;
+  &:hover {
+    background-color: ${({ theme }) => theme.colors['green/600']};
+  }
+  &:active {
+    background-color: ${({ theme }) => theme.colors['green/600']};
+    transform: translateY(-5%) translateX(2%);
+  }
 `;
 
 const NameClose = styled.div`
@@ -41,7 +119,7 @@ const ChooseUser = styled.div`
   scroll-behavior: auto;
   &::-webkit-scrollbar {
     width: 0.6em;
-    height: 1em; 
+    height: 1em;
   }
 
   &::-webkit-scrollbar-track {
@@ -49,7 +127,7 @@ const ChooseUser = styled.div`
   }
 
   &::-webkit-scrollbar-thumb {
-    background-color:#191c24 ;
+    background-color: #191c24;
     border-radius: 20px;
   }
 `;
@@ -71,7 +149,7 @@ const AtribuirButton = styled.button`
   border-radius: 5px;
   background-color: #43db6d;
   border: none;
-  color: #0A090E;
+  color: #0a090e;
   font-family: 'Rubik';
   cursor: pointer;
 `;

@@ -49,8 +49,11 @@ export const InputText = styled.input`
   border-radius: 0.5em;
   border: 1px solid ${({ theme }) => theme.colors['gray/500']};
   color: white;
-  :hover {
+  &:hover {
     border: 1px solid ${({ theme }) => theme.colors['gray/300']};
+  }
+  &::-ms-reveal {
+    display: none;
   }
 `;
 

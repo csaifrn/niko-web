@@ -1,24 +1,30 @@
-import React, { useEffect, useState } from 'react';
 import * as S from './styles';
-import { useParams, useNavigate } from 'react-router-dom';
+
+import React, { useEffect, useState } from 'react';
+
 import Menu from '../Menu';
 import MenuCoord from '../MenuCoord';
+import FaseData from '../../data/FaseData';
+import Splash from '../../pages/Splash';
+import toast from 'react-hot-toast';
+
+import { useParams, useNavigate } from 'react-router-dom';
 import { ConfigModal } from '../ConfigModal';
 import { useMutation } from 'react-query';
 import { GetBatche } from '../../api/services/batches/get-batche';
-import { GetResponseBatche, Observation } from '../../api/services/batches/get-batche/get.interface';
+import { AssignedUser, GetResponseBatche, Observation } from '../../api/services/batches/get-batche/get.interface';
 import { ApiError } from '../../api/services/authentication/signIn/signIn.interface';
-import toast from 'react-hot-toast';
 import { Empty } from '../EmptyPage';
-import Splash from '../../pages/Splash';
 import { CreateObservationModal } from '../Observation/Observation-modal-create';
 import { LoteData } from '../../data/LoteData';
-import FaseData from '../../data/FaseData';
 import { BoxObservation } from '../Observation/ObservationBox';
 import { DeletarModal } from '../DeletarModal';
 import { ObservationModal } from '../Observation/Observation-modal-update';
 import { DeleteObservation } from '../../api/services/batches/observation/delete-obsevation';
+import { AtribuirAlguemModal } from '../AtribuirAlguemModal';
+import { BlockAssigner } from '../BatchBlocks/BlockAssigner';
 import { Link } from 'react-router-dom';
+
 
 export const LoteDetails = () => {
   const optionsFases = FaseData.map((fase) => ({ id: fase.id, label: fase.titulo }));
@@ -28,16 +34,16 @@ export const LoteDetails = () => {
   const navigate = useNavigate();
   const { id } = useParams();
   const [observacao, setObservacao] = useState(false);
-  const [observationModal, setObservationModal] = useState(false);
   const [delete_modal, setDeleteModal] = useState(false);
   const [config_modal, setConfigModal] = useState(false);
   const [avancar, setAvancar] = useState(false);
   const [voltar, setVoltar] = useState(false);
-  const [modal, setModal] = useState(false);
   const [observation, setObservation] = useState<Observation>();
   const [observationId, setObservationId] = useState<string>();
   const [edit_modal, setEditModal] = useState<boolean>(false);
+  const [atribuir_modal, setAtribuirModal] = useState<boolean>(false);
   const [createDate, setCreateDate] = useState<Date>();
+  const [assigners, setAssigners] = useState<AssignedUser[]>([]);
 
   const handleConfig = () => {
     setConfigModal(!config_modal);
@@ -56,7 +62,7 @@ export const LoteDetails = () => {
   };
 
   const handleAtribuirAlguem = () => {
-    setModal(!modal);
+    setAtribuirModal(!atribuir_modal);
   };
 
   const beforeTask = useMutation(GetBatche, {
@@ -65,6 +71,7 @@ export const LoteDetails = () => {
       setObservations(data.observations);
       setPriority(data.priority);
       setCreateDate(new Date(data.created_at));
+      setAssigners(data.assigned_users);
     },
     onError: (error: ApiError) => {
       if (error.response) {
@@ -151,7 +158,6 @@ export const LoteDetails = () => {
                   </S.Config>
                 </S.EditConfig>
               </S.LoteEditConfig>
-
               <S.DadosCriacaoLoteDiv>
                 <S.BlockGray>
                   Criado por {task?.created_by.name} em{' '}
@@ -160,7 +166,6 @@ export const LoteDetails = () => {
                   })}
                 </S.BlockGray>
               </S.DadosCriacaoLoteDiv>
-
               <S.DetalhesLote>
 
                 {task?.shelf_number !== null && <S.Estante>{task?.shelf_number}</S.Estante>}
@@ -184,7 +189,21 @@ export const LoteDetails = () => {
               <S.DetalhesLote>
                 <S.BlockGrayBorder>{task?.category.name}</S.BlockGrayBorder>
               </S.DetalhesLote>
-
+              {assigners.length > 0 && (
+                <React.Fragment>
+                  Atribuidos
+                  <S.DetalhesLote>
+                    {assigners &&
+                      assigners.map((assigned) => (
+                        <BlockAssigner
+                          key={assigned.id}
+                          assigner={assigned}
+                          setAssigners={setAssigners}
+                        />
+                      ))}
+                  </S.DetalhesLote>
+                </React.Fragment>
+              )}
               {/* MOSTRA CATEGORIAS QUANDO O LOTE É PRIORIDADE */}
               <S.CategoriaPrioridade>
                 {priority === true && (
@@ -196,7 +215,6 @@ export const LoteDetails = () => {
             <p>{task?.category.name}</p>
           </S.Categoria> */}
               </S.CategoriaPrioridade>
-
               {/* MOSTRA CATEGORIAS QUANDO O LOTE NÃO É PRIORIDADE */}
               {taskData.categorias.length > 0 && priority == false && (
                 <S.CategoriaPrioridade>
@@ -210,7 +228,6 @@ export const LoteDetails = () => {
                   ))}
                 </S.CategoriaPrioridade>
               )}
-
               {/* TIPOLOGIAS */}
               {taskData.tipologias.length > 0 && (
                 <S.Tipologias>
@@ -221,7 +238,6 @@ export const LoteDetails = () => {
                   ))}
                 </S.Tipologias>
               )}
-
               <S.FaseEnvolvAtual>
                 {/* FASE ATUAL DO LOTE */}
                 <S.Icons src={`/icon-medium/${taskData.fase_atual}.svg`} />
@@ -481,6 +497,9 @@ export const LoteDetails = () => {
             title="Mudar observação"
             close={() => setEditModal(!edit_modal)}
           />
+        )}
+        {atribuir_modal && (
+          <AtribuirAlguemModal setAssigners={setAssigners} assigners={assigners} close={handleAtribuirAlguem} />
         )}
       </>
     );

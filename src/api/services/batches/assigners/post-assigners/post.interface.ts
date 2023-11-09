@@ -1,8 +1,9 @@
-export interface GetBatcheParams {
-  id: string;
+export interface PostAssignersParams {
+  batch_id: string;
+  assignment_users_ids: string[];
 }
 
-export interface GetResponseBatche {
+export interface PostResponseAssigners {
   id: string;
   title: string;
   digital_files_count: number;
@@ -13,7 +14,7 @@ export interface GetResponseBatche {
   updated_at: string;
   created_by: CreatedBy;
   category: Category;
-  assigned_users: AssignedUser[];
+  assignedUsers: AssignedUser[];
   observations: Observation[];
 }
 

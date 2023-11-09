@@ -15,25 +15,21 @@ const Preparo = () => {
   const [openCriarModal, setOpenCriarModal] = useState(false);
 
   return (
-    <div style={{ display:'flex' , justifyContent: 'center' }}>
+    <div style={{ display: 'flex', justifyContent: 'center' }}>
       <Menu area={`/Fase/${id}/Board/Preparo`} id_projeto={id}></Menu>
       <MenuCoord />
       <S.Wrapper>
-
-        {/* {true && (
-            <S.Btn
-              onClick={() => {
-                setOpenCriarModal(!openCriarModal);
-              }}
-            >
-              <p>Criar Lote</p>
-            </S.Btn>
-        )} */}
+        <S.Btn
+          onClick={() => {
+            setOpenCriarModal(!openCriarModal);
+          }}
+        >
+          <p>Criar Lote</p>
+        </S.Btn>
 
         <Board fase={FaseData[0]} titulo="preparo" />
 
         <Style.Footer></Style.Footer>
-
       </S.Wrapper>
       {openCriarModal && <ModalCriarLote close={() => setOpenCriarModal(!openCriarModal)} />}
     </div>

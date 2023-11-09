@@ -23,7 +23,7 @@ interface BoardProps {
 export const Board = (props: BoardProps) => {
   const { id } = useParams();
   const [etapas, setEtapas] = useState<any[]>([]);
-  const user = { email: Users[1].email, role: 'Coordenador' };
+  const user = { email: Users[1].email, role: 'Operador' };
 
   const fase = props.fase;
   const etapasTemp = EtapaData.filter((Etapa) => Etapa.id_fase === Number(fase.id));
@@ -209,7 +209,7 @@ export const Board = (props: BoardProps) => {
     );
   } else {
     return (
-      <div>
+      <>
         <BoardChanger />
         <S.FaseKanbanPage>
           {/* <S.divImg>
@@ -375,7 +375,7 @@ export const Board = (props: BoardProps) => {
             </S.kanban>
           )}
         </S.FaseKanbanPage>
-      </div>
+      </>
     );
   }
 };

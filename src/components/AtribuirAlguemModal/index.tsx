@@ -1,19 +1,43 @@
 import React, { useEffect, useState } from 'react';
 import * as S from './style';
-import Search from '../Search';
-import Users from '../../data/UserData';
+import { AssignedUser } from '../../api/services/batches/get-batche/get.interface';
+import { MultiValue } from 'react-select';
+import { validationSearch } from './validation';
+import toast from 'react-hot-toast';
+import { SearchUserResponseBatche } from '../../api/services/batches/assigners/get-user-autocomplete/get.interface';
+import { SearchUser } from '../../api/services/batches/assigners/get-user-autocomplete';
+import { useMutation } from 'react-query';
+import { PostAssigners } from '../../api/services/batches/assigners/post-assigners';
+import { ApiError } from '../../api/services/authentication/signIn/signIn.interface';
+import { useParams } from 'react-router-dom';
+import { DeleteAssigner } from '../../api/services/batches/assigners/delete-assigners';
+import { PostResponseAssigners } from '../../api/services/batches/assigners/post-assigners/post.interface';
+
+import ReactLoading from 'react-loading';
+import { ErrorMessage } from '../../pages/Login/styles';
 
 export interface AtribuirAlguemModalProps {
   close: () => void;
-  user: any;
-  // eslint-disable-next-line no-unused-vars
-  setUser: (e: any) => void;
+  assigners: AssignedUser[] | undefined;
+  setAssigners: React.Dispatch<React.SetStateAction<AssignedUser[]>>;
+}
+
+interface Options {
+  value: string;
+  label: string;
 }
 
 export const AtribuirAlguemModal = (props: AtribuirAlguemModalProps) => {
-  const [selectedUsers, setSelectedUsers] = useState<string[]>([]);
-  const [searchTerm, setSearchTerm] = useState<string>('');
+  const { id } = useParams();
   const [closing, setClosing] = useState(false);
+  const [errorInput, setErrorInput] = useState('');
+  const [options, setOptions] = useState<MultiValue<Options | null>>([]);
+  const [presentAssigners, setPresentAssigners] = useState<AssignedUser[]>(props.assigners ? props.assigners : []);
+  const [userRemoved, setUserRemoved] = useState<string>('');
+  const [optionsSelected, setOptionsSelected] = useState<MultiValue<Options | null>>(
+    props.assigners ? props.assigners.map((e) => ({ value: e.id, label: e.name })) : [],
+  );
+  const [userInput, setUserinput] = useState<string>('');
 
   useEffect(() => {
     // Ao renderizar o modal, aplicar um escalonamento gradual para exibi-lo
@@ -36,28 +60,122 @@ export const AtribuirAlguemModal = (props: AtribuirAlguemModalProps) => {
     }, 300);
   };
 
-  const handleLoteClick = (userId: string) => {
-    if (selectedUsers.includes(userId)) {
-      setSelectedUsers(selectedUsers.filter((id) => id !== userId));
-    } else {
-      setSelectedUsers([...selectedUsers, userId]);
+  const validateSearch = async (): Promise<boolean> => {
+    try {
+      await validationSearch.validate(
+        {
+          name: userInput,
+        },
+        {
+          abortEarly: false,
+        },
+      );
+    } catch (error) {
+      return false;
     }
+    return true;
   };
 
-  const handleAtualizarUser = () => {
-    if (selectedUsers) {
-      props.setUser(selectedUsers.map((userId) => Users.filter((user) => user.id === userId)[0]));
+  const assignMutate = useMutation(PostAssigners, {
+    onSuccess: (data: PostResponseAssigners) => {
+      toast.success('Mudanças salvas!');
+      setPresentAssigners(data.assignedUsers);
       handleClose();
-    } else {
-      console.log('nenhum item está selecionado');
+    },
+    onError: (error: ApiError) => {
+      if (error.response) {
+        toast.error(error.response!.data.message);
+      }
+    },
+  });
+
+  const users = useMutation(SearchUser, {
+    onSuccess: (data: SearchUserResponseBatche) => {
+      setOptions([]);
+      const opt = data.users;
+      const response: Options[] = opt.map((e) => ({ value: e.id, label: e.name }));
+      setOptions(response);
+    },
+  });
+
+  const removeAssigner = useMutation(DeleteAssigner, {
+    onSuccess: () => {
+      toast.success(`Você removeu este responsável do lote.`);
+      setPresentAssigners((assigner) => [...assigner.filter((a) => a.id != userRemoved)]);
+    },
+  });
+
+  useEffect(() => {
+    props.setAssigners(presentAssigners ? presentAssigners : []);
+  }, [presentAssigners]);
+
+  useEffect(() => {
+    onChange();
+  }, [userInput]);
+
+  useEffect(() => {
+    if (userRemoved && id) {
+      removeAssigner.mutate({
+        batch_id: id,
+        assignment_user_id: userRemoved,
+      });
+    }
+  }, [userRemoved]);
+
+  const onRemove = (e: Options | null | undefined) => {
+    if (e && presentAssigners.map((a) => a.id === e?.value)) {
+      setUserRemoved(e?.value ? e.value : '');
     }
   };
 
-  const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchTerm(event.target.value);
+  const onChange = async () => {
+    const isValid = await validateSearch();
+
+    if (isValid) {
+      users.mutate({
+        name: userInput,
+      });
+    }
   };
 
-  const filteredUsers = Users.filter((Users) => Users.name.toLowerCase().includes(searchTerm.toLowerCase()));
+  const onSubmit = async (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    const newAssigner = optionsSelected
+      .map((ass) => {
+        if (presentAssigners) {
+          const isAlready = presentAssigners.some((a) => a.id === ass?.value);
+          if (!isAlready) {
+            return ass?.value;
+          }
+        } else {
+          return ass?.value;
+        }
+      })
+      .filter((value) => value !== undefined); // Filtrar valores undefined
+
+    if (newAssigner.length > 0 && newAssigner.length + presentAssigners.length <= 5 && id) {
+      setErrorInput('');
+      assignMutate.mutate({
+        batch_id: id,
+        assignment_users_ids: newAssigner as string[],
+      });
+    }
+    if (newAssigner.length === 0) {
+      if (presentAssigners.length > 0) {
+        if (presentAssigners.length === 5) {
+          setErrorInput(
+            'O usuários escolhidos já estão atribuidos. O número máximo é 5 retire um operador ou cancele.',
+          );
+        } else {
+          setErrorInput('O usuários escolhidos já estão atribuidos. Adicione um operador novo.');
+        }
+      } else {
+        setErrorInput('Adicione um operador novo');
+      }
+    } else if (newAssigner.length + presentAssigners.length > 5) {
+      setErrorInput('O número máximo de usuários é 5.');
+    }
+  };
 
   return (
     <>
@@ -67,7 +185,10 @@ export const AtribuirAlguemModal = (props: AtribuirAlguemModalProps) => {
             <S.NameClose>
               <h2>Atribuir para</h2>
 
-              <button onClick={handleClose} style={{ width: 'auto', backgroundColor: 'transparent', border: 'none' , cursor: 'pointer'}}>
+              <button
+                onClick={handleClose}
+                style={{ width: 'auto', backgroundColor: 'transparent', border: 'none', cursor: 'pointer' }}
+              >
                 <img
                   src="/close.svg"
                   alt=""
@@ -81,38 +202,38 @@ export const AtribuirAlguemModal = (props: AtribuirAlguemModalProps) => {
                 />
               </button>
             </S.NameClose>
-            <Search searchTerm={searchTerm} handleSearchChange={handleSearchChange} />
-            <S.ChooseUser>
-              {filteredUsers.map((user: any) => (
-                // Botão que mostra cada operador
-                <S.User
-                  key={user.id}
-                  onClick={() => handleLoteClick(user.id)}
-                  style={{
-                    backgroundColor: selectedUsers.includes(user.id) ? '#090E09' : '#2D303B',
-                  }}
-                >
-                  <S.NameFotoUser>
-                    <img
-                      src={user.url}
-                      alt=""
-                      width={28}
-                      height={28}
-                      style={{ objectFit: 'cover', borderRadius: '100%' }}
-                    ></img>
+            <S.CustomSelect
+              isMulti
+              autoFocus
+              placeholder={'Digite no mínimo 3 caracteres...'}
+              onInputChange={setUserinput}
+              inputValue={userInput}
+              onChange={(e: any, action: any) => {
+                if ((action.action = 'remove-value')) {
+                  onRemove(action.removedValue);
+                }
 
-                    <p
-                      style={{
-                        color: selectedUsers.includes(user.id) ? '#FFFFFF' : '#838383',
-                      }}
-                    >
-                      {user.name}
-                    </p>
-                  </S.NameFotoUser>
-                </S.User>
-              ))}
-            </S.ChooseUser>
-            <S.AtribuirButton onClick={handleAtualizarUser}> Atribuir</S.AtribuirButton>
+                setOptionsSelected(e);
+              }}
+              options={options}
+              name="colors"
+              className="react-select-container"
+              classNamePrefix="react-select"
+              value={optionsSelected}
+              isLoading={users.isLoading}
+              required
+            />
+            {errorInput != '' && <ErrorMessage>{errorInput}</ErrorMessage>}
+
+            <S.ButtonGreen disabled={assignMutate.isLoading || assignMutate.isSuccess} onClick={onSubmit}>
+              {assignMutate.isLoading ? (
+                <ReactLoading type="cylon" color="white" height={32} width={32} />
+              ) : assignMutate.isSuccess ? (
+                'Ok'
+              ) : (
+                'Salvar'
+              )}
+            </S.ButtonGreen>
           </S.ModalContent>
         </S.ModalArea>
       </S.ModalBackdrop>

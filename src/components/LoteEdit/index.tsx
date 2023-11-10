@@ -143,34 +143,34 @@ const LoteEdit = () => {
     }
   };
 
+  console.log(modalSairSemSalvar);
+
   if (beforeBatch.isLoading) {
     return <Splash />;
   } else {
     return (
-      <div style={{display: 'flex' , justifyContent: 'center'} }>
-        <Menu area={`/Painel/${id}`} id_projeto={id}/>
+      <div style={{ display: 'flex', justifyContent: 'center' }}>
+        <Menu area={`/Painel/${id}`} id_projeto={id} />
         <MenuCoord />
 
-        <S.ModalContent id="modal-content" onSubmit={(e) => handleSave(e)}>
-
+        <S.EditLoteArea>
           <S.CloseDiv>
-
             <h1>Editar {title}</h1>
 
-            <S.Exit onClick={() => setModalSairSemSalvar(!modalSairSemSalvar) }>
+            <S.Exit onClick={() => setModalSairSemSalvar(!modalSairSemSalvar)}>
               <img src="/close.svg" alt="" height={18} width={18} />
             </S.Exit>
-
           </S.CloseDiv>
 
-          {/* PROTOCOLO */}
-          {/* <S.ProtocoloDiv>
+          <S.FormContent id="modal-content" onSubmit={(e) => handleSave(e)}>
+            {/* PROTOCOLO */}
+            {/* <S.ProtocoloDiv>
             <h2>Protocolo</h2>
             <S.Protocolo>{task.protocolo}</S.Protocolo>
           </S.ProtocoloDiv> */}
 
-          {/* LOCAL */}
-          {/* {batch.shelf_number !== null && (
+            {/* LOCAL */}
+            {/* {batch.shelf_number !== null && (
             <S.LocalDiv>
               <p>Local</p>
               <S.Local
@@ -182,50 +182,50 @@ const LoteEdit = () => {
               ></S.Local>
             </S.LocalDiv>
           )} */}
-          
-          <h2>Título</h2>
-          <S.NameInput type="text" value={title} onChange={(e) => setTitle(e.currentTarget.value)} />
 
-          {/* ARQUIVOS */}
-          <S.Arquivos>
-            <h2>Arquivos</h2>
-            <S.ArquivosDiv>
-              {/* ARQUIVOS FÍSICOS */}
-              {physical_files_count !== null && (
-                <S.ArquivosFisicos>
-                  <p>Físicos</p>
-                  <S.ArquivosInput
-                    style={{ backgroundColor: '#393E4B' }}
-                    type="number"
-                    name="Arquivos físicos"
-                    placeholder={``}
-                    onChange={(e) => setPhysical_files_count(Number(e.currentTarget.value))}
-                    value={physical_files_count}
-                    min={0}
-                  ></S.ArquivosInput>
-                </S.ArquivosFisicos>
-              )}
+            <h2>Título</h2>
+            <S.NameInput type="text" value={title} onChange={(e) => setTitle(e.currentTarget.value)} />
 
-              {/* ARQUIVOS DIGITAIS */}
-              {digital_files_count !== null && (
-                <S.ArquivosDigitais>
-                  <p>Digitais</p>
-                  <S.ArquivosInput
-                    style={{ backgroundColor: '#393E4B' }}
-                    type="number"
-                    name="Arquivos digitais"
-                    placeholder={``}
-                    onChange={(e) => setDigital_files_count(Number(e.currentTarget.value))}
-                    value={digital_files_count}
-                    min={0}
-                  ></S.ArquivosInput>
-                </S.ArquivosDigitais>
-              )}
-            </S.ArquivosDiv>
-          </S.Arquivos>
+            {/* ARQUIVOS */}
+            <S.Arquivos>
+              <h2>Arquivos</h2>
+              <S.ArquivosDiv>
+                {/* ARQUIVOS FÍSICOS */}
+                {physical_files_count !== null && (
+                  <S.ArquivosFisicos>
+                    <p>Físicos</p>
+                    <S.ArquivosInput
+                      style={{ backgroundColor: '#393E4B' }}
+                      type="number"
+                      name="Arquivos físicos"
+                      placeholder={``}
+                      onChange={(e) => setPhysical_files_count(Number(e.currentTarget.value))}
+                      value={physical_files_count}
+                      min={0}
+                    ></S.ArquivosInput>
+                  </S.ArquivosFisicos>
+                )}
 
-          {/*CATEGORIAS E TIPOLOGIAS*/}
-          {/* <h2>Categoria</h2>
+                {/* ARQUIVOS DIGITAIS */}
+                {digital_files_count !== null && (
+                  <S.ArquivosDigitais>
+                    <p>Digitais</p>
+                    <S.ArquivosInput
+                      style={{ backgroundColor: '#393E4B' }}
+                      type="number"
+                      name="Arquivos digitais"
+                      placeholder={``}
+                      onChange={(e) => setDigital_files_count(Number(e.currentTarget.value))}
+                      value={digital_files_count}
+                      min={0}
+                    ></S.ArquivosInput>
+                  </S.ArquivosDigitais>
+                )}
+              </S.ArquivosDiv>
+            </S.Arquivos>
+
+            {/*CATEGORIAS E TIPOLOGIAS*/}
+            {/* <h2>Categoria</h2>
           <S.CustomSelect
             onInputChange={(e) => setName(e)}
             placeholder={'Digite no mínimo 3 caracteres...'}
@@ -237,19 +237,19 @@ const LoteEdit = () => {
             classNamePrefix="react-select"
           /> */}
 
-          <S.SalvarEditButton type="submit" onClick={(e) => e.preventDefault}>
-            Salvar
-          </S.SalvarEditButton>
-        </S.ModalContent>
+            <S.SalvarEditButton type="submit" onClick={(e) => e.preventDefault}>
+              Salvar alterações
+            </S.SalvarEditButton>
+          </S.FormContent>
+        </S.EditLoteArea>
 
         {modalSairSemSalvar && (
-        <SairSemSalvarModal
-          close={() => {
-            setModalSairSemSalvar(!modalSairSemSalvar);
-          }}
-        />
-      )}
-      
+          <SairSemSalvarModal
+            close={() => {
+              setModalSairSemSalvar(!modalSairSemSalvar);
+            }}
+          />
+        )}
       </div>
     );
   }

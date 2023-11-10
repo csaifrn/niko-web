@@ -55,14 +55,14 @@ export const CustomSelect = styled(Select)`
   }
 `;
 
-export const ModalContent = styled.form`
+export const EditLoteArea = styled.div`
   z-index: 100;
   color: white;
   transition: transform 0.9s ease-in-out;
   display: flex;
   flex-direction: column;
   gap: 16px;
-  margin: 10em 2em 8em 2em;
+  margin: 8em 2em 8em 2em;
   font-family: 'Rubik', Helvetica, sans-serif;
   width: 100%;
   max-width: 1140px;
@@ -71,6 +71,14 @@ export const ModalContent = styled.form`
   }
   @media screen and (min-width: 1140px) {
     margin: 10em 0em 8em 0em;
+  }
+`;
+
+export const FormContent = styled.form`
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  @media screen and (min-width: 1140px) {
   }
 `;
 
@@ -304,8 +312,6 @@ export const ChooseCatTipol = styled.div`
     background-color: transparent;
     margin: 0em;
   }
-  ${media.greaterThan('large')`
-  `}
 `;
 
 export const SalvarEditButton = styled.button`

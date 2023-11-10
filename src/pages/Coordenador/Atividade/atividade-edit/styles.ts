@@ -187,7 +187,7 @@ export const EditAtivAtivado = styled.button`
   align-self: stretch;
   height: 44px;
   padding: 10px;
-  background: #43db6d;
+  background-color: #43db6d;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 5px;
   justify-content: center;
@@ -204,9 +204,6 @@ export const EditAtivAtivado = styled.button`
     background-color: ${({ theme }) => theme.colors['green/600']};
     transform: translateY(-5%) translateX(2%);
   }
-  /* ${media.greaterThan('large')`
-    width: fit-content;
-  `} */
   @media screen and (min-width: 767px) {
     width: fit-content;
   }

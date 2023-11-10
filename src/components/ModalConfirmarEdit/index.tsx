@@ -4,9 +4,10 @@ import { Link, useNavigate, useParams } from 'react-router-dom';
 
 interface SairSemSalvarModalProps {
   close: () => void;
+  salvar: any;
 }
 
-export const SairSemSalvarModal = (props: SairSemSalvarModalProps) => {
+export const ModalConfirmarEdit = (props: SairSemSalvarModalProps) => {
   const [closing, setClosing] = useState(false);
 
   const { id } = useParams();
@@ -39,17 +40,17 @@ export const SairSemSalvarModal = (props: SairSemSalvarModalProps) => {
   //   }
   //   handleClose();
   // };
-  
+
   return (
     <>
       <S.ModalBackdrop>
         <S.ModalArea id="modal-scaling">
           <S.ModalContent>
             <S.NameClose>
-              <h2>Deseja sair sem salvar? Todas as alterações serão descartadas</h2>
+              <h2>Deseja confirmar as alterações feitas?</h2>
             </S.NameClose>
             <S.Recused onClick={handleClose}>Não, não quero.</S.Recused>
-            <S.Delete onClick={() => navigate(-1)}>Sair</S.Delete>
+            <S.ConfirmAlterações onClick={() => console.log(props.salvar)}>Confirmar alterações</S.ConfirmAlterações>
           </S.ModalContent>
         </S.ModalArea>
       </S.ModalBackdrop>

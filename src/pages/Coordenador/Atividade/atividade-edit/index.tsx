@@ -560,7 +560,7 @@ const AtividadeEdit = () => {
           </S.Usuarios>
         </S.EspecificacoesAtiv>
         {/* BOTÃO DE SALVAR */}
-        {UserFase.length > 0 && <S.EditAtivAtivado onClick={() => setModalConfirmEdit(!modalConfirmEdit)}>Salvar alterações</S.EditAtivAtivado>}
+        {UserFase.length > 0 && <S.EditAtivAtivado >Salvar alterações</S.EditAtivAtivado>}
         {UserFase.length === 0 && <S.EditAtivDesativado>Salvar alterações</S.EditAtivDesativado>}
       </S.EditarAtivArea>
 
@@ -625,14 +625,14 @@ const AtividadeEdit = () => {
           }}
         />
       )}
-      {modalConfirmEdit && (
+      {/* {modalConfirmEdit && (
         <ModalConfirmarEdit
           close={() => {
             setModalConfirmEdit(!modalConfirmEdit);
           }}
           salvar={handleSave}
         />
-      )}
+      )} */}
     </div>
   );
 };

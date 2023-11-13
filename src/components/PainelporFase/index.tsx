@@ -49,7 +49,7 @@ export const PainelPorFase = () => {
   const ano = dataAtual.getFullYear();
   const dataHoje = new Date(ano, mes, dia, 0, 0, 0);
 
-  const [dataInicial, setDataInicial] = useState<Date>(new Date());
+  const [dataInicial, setDataInicial] = useState<Date>(new Date(dataHoje));
 
   const [dataInicialEmString, setDataInicialEmString] = useState<string>();
 
@@ -71,6 +71,8 @@ export const PainelPorFase = () => {
     const mes = e.target.value.split('-')[1];
     const ano = e.target.value.split('-')[2];
     const dataEscolhida = new Date(`${dia}/${mes}/${ano}`);
+    
+    dataEscolhida.setHours(0, 0, 0)
     setDataInicialEmString(`${dia}-${mes}-${ano}`);
     // Verifica se a data inicial escolhida é mais nova que a data de hoje
     if (dataEscolhida > dataHoje) {
@@ -83,7 +85,7 @@ export const PainelPorFase = () => {
     }
   };
 
-  const [dataFinal, setDataFinal] = useState<Date>();
+  const [dataFinal, setDataFinal] = useState<Date>(new Date(dataHoje));
 
   //Função pra pegar a data final escolhida pelo usuário
   const handlePegarDataFinal = (e: any) => {
@@ -91,6 +93,7 @@ export const PainelPorFase = () => {
     const mes = e.target.value.split('-')[1];
     const ano = e.target.value.split('-')[2];
     const dataEscolhida = new Date(`${dia}/${mes}/${ano}`);
+    dataEscolhida.setHours(0, 0, 0)
 
     console.log('A data escolhida foi:' + dataEscolhida)
     setDataFinalEmString(`${dia}-${mes}-${ano}`);

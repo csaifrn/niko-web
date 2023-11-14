@@ -237,7 +237,7 @@ const LoteEdit = () => {
             classNamePrefix="react-select"
           /> */}
 
-            <S.SalvarEditButton type="submit" onClick={(e) => e.preventDefault}>
+            <S.SalvarEditButton type="submit">
               Salvar alterações
             </S.SalvarEditButton>
           </S.FormContent>
@@ -249,7 +249,8 @@ const LoteEdit = () => {
               setModalSairSemSalvar(!modalSairSemSalvar);
             }}
           />
-        )}
+        )} 
+        
       </div>
     );
   }

@@ -332,7 +332,7 @@ export const SalvarEditButton = styled.button`
     transform: translateY(-5%) translateX(2%);
   }
   @media screen and (min-width: 767px) {
-    width: 110px;
+    width: 125px;
   }
 `;
 

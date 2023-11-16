@@ -460,7 +460,9 @@ export const BotaoMudarFase = styled.div`
 `;
 
 export const VoltarAvancar = styled.button`
+  cursor: pointer;
   background-color: #393e4b;
+
   display: flex;
   align-items: center;
   gap: 10px;
@@ -476,6 +478,11 @@ export const VoltarAvancar = styled.button`
   &:active {
     background-color: ${({ theme }) => theme.colors['gray/400']};
     transform: translateY(-5%) translateX(2%);
+  }
+  :disabled {
+    cursor: not-allowed;
+    opacity: 0.8;
+    pointer-events: none;
   }
 `;
 
@@ -645,6 +652,7 @@ export const EscolherFaseSelect = styled(Select)`
   border-left: 1px solid #888c99;
 
   .react-select__control {
+    cursor: pointer;
     border: none;
     border-radius: 0;
     border-top-right-radius: 4px;
@@ -667,6 +675,7 @@ export const EscolherFaseSelect = styled(Select)`
   }
 
   .react-select__option {
+    cursor: pointer;
     background-color: ${({ theme }) => theme.colors['gray/500']};
     color: ${({ theme }) => theme.colors.white}; /* Cor do texto das opções */
   }

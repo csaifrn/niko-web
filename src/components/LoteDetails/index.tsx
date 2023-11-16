@@ -8,7 +8,7 @@ import FaseData from '../../data/FaseData';
 import Splash from '../../pages/Splash';
 import toast from 'react-hot-toast';
 
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate, Link } from 'react-router-dom';
 import { ConfigModal } from '../ConfigModal';
 import { useMutation } from 'react-query';
 import { GetBatche } from '../../api/services/batches/get-batche';
@@ -23,11 +23,17 @@ import { ObservationModal } from '../Observation/Observation-modal-update';
 import { DeleteObservation } from '../../api/services/batches/observation/delete-obsevation';
 import { AtribuirAlguemModal } from '../AtribuirAlguemModal';
 import { BlockAssigner } from '../BatchBlocks/BlockAssigner';
-import { Link } from 'react-router-dom';
+import { PatchBatcheStatusStatus } from '../../api/services/batches/patch-status';
+import { X } from '@phosphor-icons/react';
+import theme from '../../global/theme';
 
+interface Option {
+  label: string;
+  value: number;
+}
 
 export const LoteDetails = () => {
-  const optionsFases = FaseData.map((fase) => ({ id: fase.id, label: fase.titulo }));
+  const optionsFases = FaseData.map((fase, index) => ({ value: index, label: fase.titulo }));
   const [task, setTask] = useState<GetResponseBatche | null>();
   const [observations, setObservations] = useState<Observation[]>([]);
   const [priority, setPriority] = useState<boolean>(false);
@@ -44,13 +50,11 @@ export const LoteDetails = () => {
   const [atribuir_modal, setAtribuirModal] = useState<boolean>(false);
   const [createDate, setCreateDate] = useState<Date>();
   const [assigners, setAssigners] = useState<AssignedUser[]>([]);
+  const [status, setStatus] = useState<number>(0);
+  const [option, setOption] = useState<Option>();
 
   const handleConfig = () => {
     setConfigModal(!config_modal);
-  };
-
-  const handleDelete = () => {
-    setDeleteModal(!delete_modal);
   };
 
   const handleVoltar = () => {
@@ -59,11 +63,29 @@ export const LoteDetails = () => {
 
   const handleAvancar = () => {
     setAvancar(!avancar);
+
+    if (option?.value && id && option?.value === status + 1) {
+      mutateStatus.mutate({
+        status: option.value,
+        id,
+      });
+    } else {
+      toast.error('Você não pode fazer isso.');
+    }
   };
 
   const handleAtribuirAlguem = () => {
     setAtribuirModal(!atribuir_modal);
   };
+
+  const mutateStatus = useMutation(PatchBatcheStatusStatus, {
+    onSuccess: () => {
+      setStatus(status + 1);
+    },
+    onError: (err: ApiError) => {
+      toast.error(err.response?.data.message ? err.response?.data.message : 'Erro na execução');
+    },
+  });
 
   const beforeTask = useMutation(GetBatche, {
     onSuccess: (data: GetResponseBatche) => {
@@ -72,6 +94,12 @@ export const LoteDetails = () => {
       setPriority(data.priority);
       setCreateDate(new Date(data.created_at));
       setAssigners(data.assigned_users);
+      setStatus(data.status);
+      console.log(data.status);
+      setOption({
+        value: data.status + 1,
+        label: optionsFases ? optionsFases[data.status + 1].label : 'Houve um problema',
+      });
     },
     onError: (error: ApiError) => {
       if (error.response) {
@@ -137,7 +165,6 @@ export const LoteDetails = () => {
             </S.CloseDiv>
 
             <S.LoteInfos>
-
               <S.LoteEditConfig>
                 {/* TÍTULO */}
                 <S.TituloLote>{`${task?.title}`}</S.TituloLote>
@@ -167,7 +194,6 @@ export const LoteDetails = () => {
                 </S.BlockGray>
               </S.DadosCriacaoLoteDiv>
               <S.DetalhesLote>
-
                 {task?.shelf_number !== null && <S.Estante>{task?.shelf_number}</S.Estante>}
 
                 {/* ARQUIVOS FÍSICOS */}
@@ -189,32 +215,30 @@ export const LoteDetails = () => {
               <S.DetalhesLote>
                 <S.BlockGrayBorder>{task?.category.name}</S.BlockGrayBorder>
               </S.DetalhesLote>
+              {priority === true && (
+                <S.CategoriaPrioridade>
+                  <S.Prioridade>
+                    <p>Prioridade</p>
+                  </S.Prioridade>
+
+                  {/* <S.Categoria>
+            <p>{task?.category.name}</p>
+          </S.Categoria> */}
+                </S.CategoriaPrioridade>
+              )}
               {assigners.length > 0 && (
                 <React.Fragment>
                   Atribuidos
                   <S.DetalhesLote>
                     {assigners &&
                       assigners.map((assigned) => (
-                        <BlockAssigner
-                          key={assigned.id}
-                          assigner={assigned}
-                          setAssigners={setAssigners}
-                        />
+                        <BlockAssigner key={assigned.id} assigner={assigned} setAssigners={setAssigners} />
                       ))}
                   </S.DetalhesLote>
                 </React.Fragment>
               )}
               {/* MOSTRA CATEGORIAS QUANDO O LOTE É PRIORIDADE */}
-              <S.CategoriaPrioridade>
-                {priority === true && (
-                  <S.Prioridade>
-                    <p>Prioridade</p>
-                  </S.Prioridade>
-                )}
-                {/* <S.Categoria>
-            <p>{task?.category.name}</p>
-          </S.Categoria> */}
-              </S.CategoriaPrioridade>
+
               {/* MOSTRA CATEGORIAS QUANDO O LOTE NÃO É PRIORIDADE */}
               {taskData.categorias.length > 0 && priority == false && (
                 <S.CategoriaPrioridade>
@@ -240,7 +264,7 @@ export const LoteDetails = () => {
               )}
               <S.FaseEnvolvAtual>
                 {/* FASE ATUAL DO LOTE */}
-                <S.Icons src={`/icon-medium/${taskData.fase_atual}.svg`} />
+                <S.Icons src={`/icon-medium/${optionsFases[status].label}.svg`} />
 
                 {/* ENVOLVIDOS  */}
                 {/* {usuarios != null &&
@@ -301,8 +325,6 @@ export const LoteDetails = () => {
 
                 {/* OBSERVAÇÕES */}
                 <S.Observações>
-
-
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                     <S.PendenciaTitulo>Observações</S.PendenciaTitulo>
                     <S.BotaoCriarObservacao
@@ -310,7 +332,7 @@ export const LoteDetails = () => {
                         setObservacao(!observacao);
                       }}
                     >
-                      <img src="/adicionar.svg" />
+                      <img src="/adicionar.svg" alt="" />
                     </S.BotaoCriarObservacao>
                   </div>
 
@@ -362,14 +384,33 @@ export const LoteDetails = () => {
                 {taskData.fase_atual != 'Arquivamento' && (
                   <S.BotaoMudarFase>
                     {/* BOTÃO DE AVANÇAR FASE*/}
-                    <S.VoltarAvancar onClick={handleAvancar} style={{ cursor: 'pointer' }}>
-                      <img src={'/avancar.svg'} alt="ícone circular com uma seta para a direita ao centro" />
-                      <p style={{ color: '#FFFFFF' }}>Avancar Fase</p>
+
+                    <S.VoltarAvancar
+                      disabled={option?.value ? option?.value === status : false}
+                      onClick={handleAvancar}
+                      style={{ cursor: 'pointer' }}
+                    >
+                      {option?.value && option?.value < status ? (
+                        <img src={'/voltar.svg'} alt="ícone circular com uma seta para a esquerda ao centro" />
+                      ) : option?.value === status ? (
+                        <X size={24} color={theme.colors.white} />
+                      ) : (
+                        <img src={'/avancar.svg'} alt="ícone circular com uma seta para a direita ao centro" />
+                      )}
+                      {option?.value && option?.value < status ? (
+                        <p style={{ color: '#FFFFFF' }}>Voltar Fase</p>
+                      ) : option?.value === status ? (
+                        <p style={{ color: '#FFFFFF' }}>Você escolheu a mesma fase</p>
+                      ) : (
+                        <p style={{ color: '#FFFFFF' }}>Avancar Fase</p>
+                      )}
                     </S.VoltarAvancar>
 
                     {/* BOTÃO DE ESCOLHER FASE PARA AVANÇAR*/}
                     <S.EscolherFaseSelect
                       options={optionsFases}
+                      onChange={(o: any) => setOption(o)}
+                      value={option}
                       className="react-select-container"
                       classNamePrefix="react-select"
                       placeholder="Escolher fase"

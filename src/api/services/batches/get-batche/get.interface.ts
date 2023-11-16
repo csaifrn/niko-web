@@ -5,6 +5,7 @@ export interface GetBatcheParams {
 export interface GetResponseBatche {
   id: string;
   title: string;
+  status: number;
   digital_files_count: number;
   physical_files_count: number;
   priority: boolean;

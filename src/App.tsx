@@ -1,6 +1,7 @@
 import { Routes, Route } from 'react-router-dom';
 import { Suspense, lazy } from 'react';
 import Login from './pages/Login';
+import TokenValidation from './components/TokenValidation';
 
 const Projetos = lazy(() => import('./pages/Projeto/projeto-home'));
 const CreateProjeto = lazy(() => import('./pages/Projeto/projeto-create'));
@@ -32,31 +33,38 @@ const App = () => {
     <Suspense fallback={<Splash />}>
       <Routes>
         <Route path="/Cadastro" element={<Cadastro />} />
-        <Route path="/Perfil/:id" element={<Perfil />} />
-        <Route path="Painel/:id" element={<Painel />} />
-        <Route path="/splash" element={<Splash />} />
-        <Route path="/login" element={<Login />} />
         <Route path="/recuperar-senha" element={<RecuperarSenha />} />
         <Route path="/recuperar-senha/:id" element={<EscolherNovaSenha />} />
         <Route path="/" element={<Login />} />
+        <Route path="/splash" element={<Splash />} />
+        <Route path="/login" element={<Login />} />
         <Route path="/unauthorized" element={<Unauthorized />} />
-        <Route path="/Projetos" element={<Projetos />} />
-        <Route path="/CriarProjeto" element={<CreateProjeto />} />
-        <Route path="/Fase/:id" element={<FasesHome/>} />
-        <Route path="/Atividades/:id" element={<AtividadesHome/>} />
-        <Route path={`/Atividades/:id/CriarAtividade`} element={<AtividadeCreate />} />
-        <Route path={`/Atividades/:id/Edit/:iday/:idatv`} element={<AtividadeEdit />} />
-        <Route path="Fase/:id/Board/Arquivamento" element={<Arquivamento />} />
-        <Route path="Fase/:id/Board/Recebidos" element={<Recepcao />} />
-        <Route path="Fase/:id/Board/Preparo" element={<Preparo />} />
-        <Route path="Fase/:id/Board/Catalogacao" element={<Catalogacao />} />
-        <Route path="Fase/:id/Board/Digitalizacao" element={<Digitalizacao />} />
-        <Route path="/Operadores/:id" element={<Operadores />} />
-        <Route path="/Categorias/:id" element={<Categorias />} />
-        <Route path="Fase/:id/Board/Upload" element={<Upload />} />
-        <Route path={`/Lote/:id`} element={<LoteDetails />} />
-        <Route path={`/Lote/:id/Edit`} element={<LoteEdit />} />
         <Route path="*" element={<Erro404 />} />
+
+        <Route
+          element={
+            <TokenValidation>
+              <Route path="/Perfil/:id" element={<Perfil />} />
+              <Route path="Painel/:id" element={<Painel />} />
+              <Route path="/Projetos" element={<Projetos />} />
+              <Route path="/CriarProjeto" element={<CreateProjeto />} />
+              <Route path="/Fase/:id" element={<FasesHome />} />
+              <Route path="/Atividades/:id" element={<AtividadesHome />} />
+              <Route path={`/Atividades/:id/CriarAtividade`} element={<AtividadeCreate />} />
+              <Route path={`/Atividades/:id/Edit/:iday/:idatv`} element={<AtividadeEdit />} />
+              <Route path="Fase/:id/Board/Arquivamento" element={<Arquivamento />} />
+              <Route path="Fase/:id/Board/Recebidos" element={<Recepcao />} />
+              <Route path="Fase/:id/Board/Preparo" element={<Preparo />} />
+              <Route path="Fase/:id/Board/Catalogacao" element={<Catalogacao />} />
+              <Route path="Fase/:id/Board/Digitalizacao" element={<Digitalizacao />} />
+              <Route path="/Operadores/:id" element={<Operadores />} />
+              <Route path="/Categorias/:id" element={<Categorias />} />
+              <Route path="Fase/:id/Board/Upload" element={<Upload />} />
+              <Route path={`/Lote/:id`} element={<LoteDetails />} />
+              <Route path={`/Lote/:id/Edit`} element={<LoteEdit />} />
+            </TokenValidation>
+          }
+        />
       </Routes>
     </Suspense>
   );

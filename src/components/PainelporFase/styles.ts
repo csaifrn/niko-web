@@ -77,13 +77,13 @@ export const BotaoFiltrar = styled.button`
 `;
 
 export const BotaoFiltrarDesativado = styled.button`
-  border-radius: 3px;
-  font-family: 'Rubik';
   color: #4A4A4A;
   background-color: #734625;
+  border-radius: 3px;
+  font-family: 'Rubik';
   border: none;
+  width: 4em;
   padding: 8px;
-
 `;
 
 export const PainelTitulo = styled.h1`
@@ -202,7 +202,11 @@ export const NumberName = styled.div`
   gap: 8px;
 `;
 
-export const ContainerImg = styled.img``;
+export const ContainerImg = styled.img`
+  &:hover {
+    filter: brightness(0.9);
+  }
+`;
 
 export const DataFase = styled.div`
   display: flex;

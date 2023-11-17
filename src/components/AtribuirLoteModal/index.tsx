@@ -28,7 +28,7 @@ export interface ILoteUser {
   lotes: (typeof LoteData)[];
 }
 
-export const AtribuirModalAtividade = (props: AtribuirModalAtividadeProps) => {
+export const AtribuirLoteModal = (props: AtribuirModalAtividadeProps) => {
   const [selectedLotes, setSelectedLotes] = useState<(typeof LoteData)[]>([]);
   const [searchTerm, setSearchTerm] = useState<string>('');
   const [selectedCategoria, setSelectedCategoria] = useState<number | null>(null);
@@ -118,7 +118,6 @@ export const AtribuirModalAtividade = (props: AtribuirModalAtividadeProps) => {
     }, 10);
 
     return () => clearTimeout(timer);
-
   }, [closing]);
 
   const handleClose = () => {
@@ -128,7 +127,7 @@ export const AtribuirModalAtividade = (props: AtribuirModalAtividadeProps) => {
     }, 300);
   };
 
-  console.log(props.nameFase)
+  console.log(props.nameFase);
 
   return (
     <>
@@ -142,7 +141,48 @@ export const AtribuirModalAtividade = (props: AtribuirModalAtividadeProps) => {
               </S.Exit>
             </S.NameClose>
 
-            <img height={32} width={32} src={`/icon-medium/${props.nameFase}.svg`} alt="Icone da fase" />
+            {/* Mostra o ícone da fase escolhida para aquele usuário */}
+            {props.nameFase == 'Preparo' && (
+              <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
+                <img height={32} width={32} src={`/icon-medium/Preparo.svg`} alt="Icone da fase" />
+                <h3>{props.nameFase}</h3>
+              </div>
+            )}
+            {props.nameFase == 'Catalogação' && (
+              <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
+                <img height={32} width={32} src={`/icon-medium/Catalogação.svg`} alt="Icone da fase" />
+                <h3>{props.nameFase}</h3>
+              </div>
+            )}
+            {props.nameFase == 'Digitalização' && (
+              <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
+                <img height={32} width={32} src={`/icon-medium/Digitalização.svg`} alt="Icone da fase" />
+                <h3>{props.nameFase}</h3>
+              </div>
+            )}
+            {props.nameFase == 'Upload' && (
+              <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
+                <img height={32} width={32} src={`/icon-medium/Upload.svg`} alt="Icone da fase" />
+                <h3>{props.nameFase}</h3>
+              </div>
+            )}
+            {props.nameFase == 'Arquivamento' && (
+              <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
+                <img height={32} width={32} src={`/icon-medium/Arquivamento.svg`} alt="Icone da fase" />
+                <h3>{props.nameFase}</h3>
+              </div>
+            )}
+
+            {props.nameFase != 'Preparo' &&
+              props.nameFase != 'Catalogação' &&
+              props.nameFase != 'Digitalização' &&
+              props.nameFase != 'Upload' &&
+              props.nameFase != 'Arquivamento' && (
+                <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
+                  <img height={32} width={32} src={`/icon-small/new.png`} alt="Icone da fase" />
+                  <h3>{props.nameFase}</h3>
+                </div>
+              )}
 
             <Search searchTerm={searchTerm} handleSearchChange={handleSearchChange} />
 

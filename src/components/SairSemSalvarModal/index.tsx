@@ -1,16 +1,17 @@
 import { useState, useEffect } from 'react';
-import * as S from './styles';
+import * as S from './style';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 
-interface DeletarModalProps {
-  title: string;
+interface SairSemSalvarModalProps {
   close: () => void;
-  deleteFunction?: () => void;
 }
 
-export const DeletarModal = (props: DeletarModalProps) => {
+export const SairSemSalvarModal = (props: SairSemSalvarModalProps) => {
   const [closing, setClosing] = useState(false);
+
+  const { id } = useParams();
+
   useEffect(() => {
-    // Ao renderizar o modal, aplicar um escalonamento gradual para exibi-lo
     const timer = setTimeout(() => {
       const modal = document.getElementById('modal-scaling');
       if (closing === false && modal) {
@@ -24,32 +25,31 @@ export const DeletarModal = (props: DeletarModalProps) => {
   }, [closing]);
 
   const handleClose = () => {
-    if (props.deleteFunction) {
-      props.deleteFunction();
-    }
-
     setClosing(true);
     setTimeout(() => {
       props.close();
     }, 300);
   };
 
-  const close = () => {
-    setClosing(true);
-    setTimeout(() => {
-      props.close();
-    }, 300);
-  };
+  const navigate = useNavigate();
+
+  // const handleDelete = () => {
+  //   if (props.delete) {
+  //     props.delete();
+  //   }
+  //   handleClose();
+  // };
+  
   return (
     <>
       <S.ModalBackdrop>
         <S.ModalArea id="modal-scaling">
           <S.ModalContent>
             <S.NameClose>
-              <h2>{props.title}</h2>
+              <h2>Deseja sair sem salvar? Todas as alterações serão descartadas</h2>
             </S.NameClose>
-            <S.Recused onClick={close}>Não, não quero.</S.Recused>
-            <S.Delete onClick={handleClose}>Excluir</S.Delete>
+            <S.Recused onClick={handleClose}>Não, não quero.</S.Recused>
+            <S.Delete onClick={() => navigate(-1)}>Sair</S.Delete>
           </S.ModalContent>
         </S.ModalArea>
       </S.ModalBackdrop>

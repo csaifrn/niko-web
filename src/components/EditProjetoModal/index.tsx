@@ -60,7 +60,7 @@ export const EditProjetoModal = (props: EditProjetoModalProps) => {
         <S.ModalArea id="modal-scaling">
           <S.ModalContent>
             <S.NameClose>
-              <h1>{name}</h1>
+              <h1>Foto</h1>
               <S.Exit type="button" onClick={handleClose}>
                 <img src="/close.svg" alt="" height={24} width={24} />
               </S.Exit>
@@ -80,6 +80,8 @@ export const EditProjetoModal = (props: EditProjetoModalProps) => {
                   overflow: 'hidden',
                 }}
               >
+                
+                
                 {url != '' && (
                   <img
                     src={url}

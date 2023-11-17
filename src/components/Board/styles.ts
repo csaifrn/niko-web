@@ -26,9 +26,8 @@ const kanban = styled.div`
   gap: 16px;
   width: 100%;
   @media screen and (min-width: 767px) {
-    //justify-content: center;
     flex-direction: row;
-    //margin-bottom: 2em;
+    margin-bottom: 2em;
   }
 `;
 

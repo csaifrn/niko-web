@@ -60,21 +60,18 @@ const NameClose = styled.div`
 export const EmailTodo = styled.div`
   display: flex;
   padding: 1em 0em;
-  width: 100% ;
+  width: 100%;
   justify-content: space-between;
-  ${media.greaterThan('large')`
-  `}
-
 `;
 
 export const EmailInputSelect = styled.div`
-  display: flex; 
-  border-radius: 10px; 
+  display: flex;
+  border-radius: 10px;
   height: 44px;
   width: 80%;
-  ${media.greaterThan('large')`
+  @media screen and (min-width: 767px) {
     width: 87%;
-  `}
+  }
 `;
 
 export const EscolherFuncao = styled(Select)`
@@ -120,9 +117,9 @@ export const EscolherFuncao = styled(Select)`
   .react-select__value-container .react-select__input {
     color: ${({ theme }) => theme.colors.white} !important;
   }
-  ${media.greaterThan('large')`
+  @media screen and (min-width: 767px) {
     width: 220px;
-  `}
+  }
 `;
 
 export const EscolherFuncaoBlack = styled(Select)`
@@ -158,7 +155,6 @@ export const EscolherFuncaoBlack = styled(Select)`
   }
 
   .react-select__option--is-focused {
-
     background-color: ${({ theme }) => theme.colors['gray/700']}; /* Cor de fundo da opção selecionada */
   }
 
@@ -169,19 +165,19 @@ export const EscolherFuncaoBlack = styled(Select)`
   .react-select__value-container .react-select__input {
     color: ${({ theme }) => theme.colors.white} !important;
   }
-  ${media.greaterThan('large')`
+  @media screen and (min-width: 767px) {
     width: 220px;
-  `}
+  }
 `;
 
-const ChooseLote = styled.div`
+export const MembrosDiv = styled.div`
   width: 100%;
   max-height: 30vh;
   border-radius: 5px;
   display: flex;
   flex-direction: column;
   gap: 1em;
-  overflow: auto;
+  overflow-y: scroll;
   scroll-behavior: auto;
   scrollbar-width: thin;
   ::-webkit-scrollbar {
@@ -199,29 +195,47 @@ const ChooseLote = styled.div`
 
 export const User = styled.div`
   background-color: ${({ theme }) => theme.colors['gray/900']};
-  padding: 1em 1em;
+  padding: 16px;
   border-radius: 5px;
   display: flex;
+  gap: 16px;
   align-items: center;
   justify-content: space-between;
-  width: 120%;
-  ${media.greaterThan('large')`
+  flex-direction: row;
+  @media screen and (min-width: 767px) {
     width: 100%;
-  `}
-
-  /* div {
-    width: 50%;
-    display: flex;
-    gap: 1em;
+    flex-direction: row;
     align-items: center;
-    select {
-      width: 10em;
-      height: 44px;
-    }
   }
-  .error {
-    border: 1px solid red;
-  } */
+`;
+
+export const ButtonX = styled.button`
+  border-radius: 100%;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 8px;
+  background-color: transparent;
+  &:hover {
+    background-color: ${({ theme }) => theme.colors['gray/400']};
+  }
+  &:active {
+    background-color: ${({ theme }) => theme.colors['gray/400']};
+    transform: translateY(-5%) translateX(2%);
+  }
+`;
+
+export const MembroNomeESelect = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+  @media screen and (min-width: 767px) {
+    flex-direction: row;
+    justify-content: space-between;
+  }
 `;
 
 const AtribuirButton = styled.button`
@@ -276,4 +290,4 @@ export const EnviarEmail = styled.button`
   }
 `;
 
-export { ModalArea, ModalContent, NameClose, ChooseLote, AtribuirButton, ModalBackdrop };
+export { ModalArea, ModalContent, NameClose, AtribuirButton, ModalBackdrop };

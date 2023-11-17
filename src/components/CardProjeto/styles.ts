@@ -5,11 +5,11 @@ const CardContainer = styled.a`
   font-family: 'Rubik';
   font-size: 16px;
   background-color: #393e4b;
+  text-decoration: none;
+  color: white;
   &:hover {
     filter: brightness(0.9);
   }
-  text-decoration: none;
-  color: white;
 `;
 
 export const CardProjeto = styled.div`
@@ -29,6 +29,9 @@ export const ImgProjeto = styled.img`
   display: flex;
   border-radius: 5px 5px 0 0;
   object-fit: cover;
+  &:hover {
+    filter: brightness(0.9);
+  }
 `;
 
 export const DivContentProjeto = styled.div`
@@ -42,11 +45,15 @@ export const DivContentProjeto = styled.div`
 
 export const ThreeDotProjeto = styled.div`
   border-radius: 100%;
-  padding: 1em;
+  padding: 8px;
   background-color: transparent;
   border: none;
   &:hover {
-    filter: brightness(0.9);
+    background-color: ${({ theme }) => theme.colors['gray/400']};
+  }
+  &:active {
+    background-color: ${({ theme }) => theme.colors['gray/400']};
+    transform: translateY(-5%) translateX(2%);
   }
 `;
 
@@ -91,6 +98,9 @@ export const DivButtonMenuThree = styled.div`
   flex-direction: row;
   align-items: center;
   gap: 0.5em;
+  &:hover {
+    filter: brightness(0.9);
+  }
 `;
 
 export { CardContainer };

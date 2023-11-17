@@ -22,7 +22,7 @@ const MenuArea = styled.div`
   justify-content: space-between;
   gap: 20px;
 
-  @media screen and (min-width: 767px) {
+  @media screen and (min-width: 1008px) {
     display: none;
   }
 `;

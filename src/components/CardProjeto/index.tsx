@@ -68,7 +68,7 @@ export const CardProjeto = (Props: CardProps) => {
                   }}
                 >
                   <S.DivButtonMenuThree>
-                    <p>Editar</p>{' '}
+                    <p>Detalhes</p>{' '}
                   </S.DivButtonMenuThree>
                 </S.ButtonMenuThree>
               </S.MenuThreeDots>
@@ -84,6 +84,7 @@ export const CardProjeto = (Props: CardProps) => {
           users={users}
           membros={membros}
           id_projeto={projeto.id}
+          nome_projeto={projeto.name}
         />
       )}
       {ModalEdit && (

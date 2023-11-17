@@ -1,5 +1,5 @@
 import * as S from './styles';
-import { Link, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars, no-unused-vars
 interface MenuProps {
@@ -11,8 +11,7 @@ export const MenuCoord = () => {
   const pathname = window.location.pathname;
   return (
     <S.MenuArea>
-
-      <Link to={`/Painel/${id}`}>
+      <S.link href={`/Painel/${id}`}>
         <S.MenuImg
           src={
             pathname === `/Painel/${id}` ? '/IconMenu/ChartDonut/fillicon.png' : '/IconMenu/ChartDonut/regularicon.png'
@@ -20,17 +19,15 @@ export const MenuCoord = () => {
         />
         {pathname === `/Painel/${id}` && <S.textIcon style={{ color: '#F3802D' }}>Painel</S.textIcon>}
         {pathname !== `/Painel/${id}` && <S.textIcon>Painel</S.textIcon>}
-      </Link>
-
-      <Link to={`/Atividades/${id}`}>
+      </S.link>
+      <S.link href={`/Atividades/${id}`}>
         <S.MenuImg
           src={pathname === `/Atividades/${id}` ? '/IconMenu/Activity/Fill.svg' : '/IconMenu/Activity/Regular.svg'}
         />
         {pathname === `/Atividades/${id}` && <S.textIcon style={{ color: '#F3802D' }}>Atividades</S.textIcon>}
         {pathname !== `/Atividades/${id}` && <S.textIcon>Atividades</S.textIcon>}
-      </Link>
-
-      <Link to={`/Fase/${id}`}>
+      </S.link>
+      <S.link href={`/Fase/${id}`}>
         <S.MenuImg
           src={
             pathname === `/Fase/${id}` || pathname.search('Board') >= 0 || pathname.search('Lote') >= 0
@@ -44,9 +41,9 @@ export const MenuCoord = () => {
         {pathname !== `/Fase/${id}` && pathname.search('Board') < 0 && pathname.search('Lote') < 0 && (
           <S.textIcon>Fases</S.textIcon>
         )}
-      </Link>
+      </S.link>
 
-      <Link to={`/Categorias/${id}`}>
+      <S.link href={`/Categorias/${id}`}>
         <S.MenuImg
           src={
             pathname === `/Categorias/${id}`
@@ -56,7 +53,7 @@ export const MenuCoord = () => {
         />
         {pathname === `/Categorias/${id}` && <S.textIcon style={{ color: '#F3802D' }}>Categorias</S.textIcon>}
         {pathname !== `/Categorias/${id}` && <S.textIcon>Categorias</S.textIcon>}
-      </Link>
+      </S.link>
     </S.MenuArea>
   );
 };

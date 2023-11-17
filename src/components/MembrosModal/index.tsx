@@ -26,6 +26,7 @@ interface MembrosModalProps {
   close: () => void;
   membros: UserMembro[];
   id_projeto: string;
+  nome_projeto: string;
 }
 
 export const MembrosModal = (props: MembrosModalProps) => {
@@ -145,16 +146,16 @@ export const MembrosModal = (props: MembrosModalProps) => {
         <S.ModalArea id="modal-scaling">
           <S.ModalContent>
             <S.NameClose>
-              <h1>+Incra</h1>
+              <h1>{props.nome_projeto}</h1>
               <S.Exit type="button" onClick={handleClose}>
                 <img src="/close.svg" alt="" height={24} width={24} />
               </S.Exit>
             </S.NameClose>
 
-            <h2>Editar Mebros</h2>
+            <h2>Membros</h2>
 
             <form action="">
-              <h3>Email</h3>
+              <h3>Adicionar novo membro</h3>
               <S.EmailTodo>
                 <S.EmailInputSelect>
                   <input
@@ -178,6 +179,7 @@ export const MembrosModal = (props: MembrosModalProps) => {
                     options={optionFuncoes}
                     className="react-select-container"
                     classNamePrefix="react-select"
+                    placeholder={'Escolha uma função'}
                   />
                 </S.EmailInputSelect>
 
@@ -194,47 +196,45 @@ export const MembrosModal = (props: MembrosModalProps) => {
               {showError && <p style={{ color: 'red', padding: '2em 0 0 0' }}>{errorMessage}</p>}
             </form>
 
-            <S.ChooseLote>
-              {selectedUsers.map((user: any) => {
+            <S.MembrosDiv>
+              {selectedUsers.map((user: any, index) => {
                 const projetoMembro = projetoMembros.find((membro) => membro.email === user.email);
                 const roleProjeto = projetoMembro ? projetoMembro.roleProjeto : '';
                 const creator = projetoMembro ? projetoMembro.creator : '';
 
                 return (
                   <S.User key={user.id}>
+                    <S.MembroNomeESelect>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '1em' }}>
+                        <img
+                          src={user.url}
+                          alt=""
+                          height={32}
+                          width={32}
+                          style={{ objectFit: 'cover', borderRadius: '100%' }}
+                        />
+                        <p style={{ color: 'white' }}>{user.name}</p>
+                      </div>
 
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '1em' }}>
-                      <img
-                        src={user.url}
-                        alt=""
-                        height={32}
-                        width={32}
-                        style={{ objectFit: 'cover', borderRadius: '100%' }}
-                      />
-                      <p style={{ color: 'white' }}>{user.name}</p>
-                    </div>
-
-                    <div style={{ display: 'flex', gap: '1em' }}>
                       <S.EscolherFuncaoBlack
                         options={optionFuncoes}
                         className="react-select-container"
                         classNamePrefix="react-select"
+                        placeholder={'Escolha uma função'}
                       />
+                    </S.MembroNomeESelect>
 
-                      <button
-                        onClick={() => {
-                          handleDeleteUser(user.email);
-                        }}
-                        style={{ backgroundColor: 'transparent', border: 'none' , cursor: 'pointer' }}
-                      >
-                        <img src="VectorDelete.svg" alt="" />
-                      </button>
-                    </div>
-                    
+                    <S.ButtonX
+                      onClick={() => {
+                        handleDeleteUser(user.email);
+                      }}
+                    >
+                      <img src="VectorDelete.svg" alt="" />
+                    </S.ButtonX>
                   </S.User>
                 );
               })}
-            </S.ChooseLote>
+            </S.MembrosDiv>
             <S.AtribuirButton
               onClick={() => {
                 handleClose();

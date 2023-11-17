@@ -8,7 +8,7 @@ import { useState } from 'react';
 const Projetos = () => {
   const { user } = SharedState();
   const [projetos] = useState<typeof Projeto>(Projeto);
-
+  
   return (
     <div style={{ display: 'flex', justifyContent: 'center' }}>
       <Menu area="/"></Menu>

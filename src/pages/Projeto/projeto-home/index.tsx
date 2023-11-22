@@ -1,14 +1,14 @@
+import { useNavigate } from 'react-router-dom';
 import { CardProjeto } from '../../../components/CardProjeto';
 import Menu from '../../../components/Menu';
 import { SharedState } from '../../../context/SharedContext';
 import { Projeto } from '../../../data/ProjetoData';
 import * as S from './styles';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 const Projetos = () => {
-  const { user } = SharedState();
   const [projetos] = useState<typeof Projeto>(Projeto);
-  
+
   return (
     <div style={{ display: 'flex', justifyContent: 'center' }}>
       <Menu area="/"></Menu>

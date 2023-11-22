@@ -4,13 +4,12 @@ import media from 'styled-media-query';
 export const FaseKanbanPage = styled.div`
   display: flex;
   justify-content: center;
-  flex-direction: column;
+  flex-direction: row;
   //max-width: 1140px;
   gap: 2em;
-  margin: 0 auto;
   //Mobile
   @media screen and (max-width: 767px) {
-    width: 100%;
+    flex-direction: column;
   }
 `;
 
@@ -22,14 +21,36 @@ const kanban = styled.div`
   flex-wrap: wrap;
   flex-direction: column;
   padding: 0em 0em 1em 0em;
-  margin-bottom: 8em;
   gap: 16px;
-  width: 100%;
+
   @media screen and (min-width: 767px) {
     //justify-content: center;
-    flex-direction: row;
+    align-items: center;
+    flex-direction: column;
+    margin-bottom: 0;
     //margin-bottom: 2em;
   }
+`;
+
+export const WrapperEmpty = styled.div`
+  font-family: 'Rubik';
+  background-color: ${({ theme }) => theme.colors['gray/900']};
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 2em;
+  padding: 4em;
+`;
+
+export const WrapperEmptyKanban = styled.div`
+  font-family: 'Rubik';
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 2em;
+  padding: 4em;
 `;
 
 const kanbanSection = styled.div`
@@ -57,6 +78,9 @@ const kanbanSectionContent = styled.div`
   overflow-x: scroll;
   scroll-behavior: auto;
   scrollbar-width: thin;
+  height: 150px;
+  padding: 1em;
+  background-color: ${({ theme }) => theme.colors['gray/700']};
 
   &::-webkit-scrollbar {
     width: 0.5em;
@@ -78,6 +102,9 @@ const kanbanSectionContent = styled.div`
     flex-direction: column;
     overflow-x: auto;
     overflow-y: scroll;
+    max-width: 300px;
+    height: 60vh;
+    width: 100%;
   }
 `;
 
@@ -136,6 +163,16 @@ export const IconeFase = styled.img``;
 export const divTitulo = styled.div`
   display: flex;
   gap: 1em;
+`;
+
+export const divChildren = styled.div`
+  display: flex;
+
+  @media screen and (min-width: 768px) {
+    flex-direction: row;
+    justify-content: center;
+    align-items: start;
+  }
 `;
 
 export { kanban, kanbanSection, kanbanSectionContent, btnPrioridade, inputPrioridade };

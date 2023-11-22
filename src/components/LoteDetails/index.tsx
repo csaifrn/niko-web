@@ -23,7 +23,7 @@ import { ObservationModal } from '../Observation/Observation-modal-update';
 import { DeleteObservation } from '../../api/services/batches/observation/delete-obsevation';
 import { AtribuirAlguemModal } from '../AtribuirAlguemModal';
 import { BlockAssigner } from '../BatchBlocks/BlockAssigner';
-import { PatchBatcheStatusStatus } from '../../api/services/batches/patch-status';
+import { PatchBatcheMainStatus } from '../../api/services/batches/patch-status';
 import { X } from '@phosphor-icons/react';
 import theme from '../../global/theme';
 
@@ -51,6 +51,8 @@ export const LoteDetails = () => {
   const [createDate, setCreateDate] = useState<Date>();
   const [assigners, setAssigners] = useState<AssignedUser[]>([]);
   const [status, setStatus] = useState<number>(0);
+  const [specificStatus, setSpecificStatus] = useState<number>(0);
+
   const [option, setOption] = useState<Option>();
 
   const handleConfig = () => {
@@ -66,7 +68,7 @@ export const LoteDetails = () => {
 
     if (option?.value && id && option?.value === status + 1) {
       mutateStatus.mutate({
-        status: option.value,
+        main_status: option.value,
         id,
       });
     } else {
@@ -78,7 +80,7 @@ export const LoteDetails = () => {
     setAtribuirModal(!atribuir_modal);
   };
 
-  const mutateStatus = useMutation(PatchBatcheStatusStatus, {
+  const mutateStatus = useMutation(PatchBatcheMainStatus, {
     onSuccess: () => {
       setStatus(status + 1);
     },
@@ -94,11 +96,12 @@ export const LoteDetails = () => {
       setPriority(data.priority);
       setCreateDate(new Date(data.created_at));
       setAssigners(data.assigned_users);
-      setStatus(data.status);
-      console.log(data.status);
+      setStatus(data.main_status);
+      setSpecificStatus(data.specific_status);
+      console.log(data);
       setOption({
-        value: data.status + 1,
-        label: optionsFases ? optionsFases[data.status + 1].label : 'Houve um problema',
+        value: data.main_status + 1,
+        label: optionsFases ? optionsFases[data.main_status + 1].label : 'Houve um problema',
       });
     },
     onError: (error: ApiError) => {
@@ -356,6 +359,12 @@ export const LoteDetails = () => {
               {/* BOTÕES PRINCIPAIS */}
               <S.Botoes>
                 {/* ATRIBUIR À ALGUÉM */}
+                {specificStatus === 0 && (
+                  <S.Botao disabled={specificStatus > 0} onClick={() => console.log('Opa')}>
+                    <p style={{ color: '#FFFFFF' }}>Pegar lote</p>
+                  </S.Botao>
+                )}
+
                 <S.Botao onClick={handleAtribuirAlguem}>
                   <img src={`/atribuir.svg`} alt="botão para atribuir lote a algum operador " />
                   Atribuir à alguém

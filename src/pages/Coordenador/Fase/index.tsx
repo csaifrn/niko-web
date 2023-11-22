@@ -1,4 +1,4 @@
-import { Main , FasePage} from './styles';
+import { Main, FasePage } from './styles';
 import { CardFase } from '../../../components/Card';
 import MenuCoord from '../../../components/MenuCoord';
 import Menu from '../../../components/Menu';

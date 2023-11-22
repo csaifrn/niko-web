@@ -3,7 +3,6 @@ import Board from '../../../components/Board';
 import * as Style from '../../../global/index';
 import MenuCoord from '../../../components/MenuCoord';
 import Menu from '../../../components/Menu';
-import FaseData from '../../../data/FaseData';
 import { useParams } from 'react-router-dom';
 import * as S from './styles';
 import { ModalCriarLote } from '../../../components/ModalCrairLote';
@@ -19,15 +18,15 @@ const Preparo = () => {
       <Menu area={`/Fase/${id}/Board/Preparo`} id_projeto={id}></Menu>
       <MenuCoord />
       <S.Wrapper>
-        <S.Btn
-          onClick={() => {
-            setOpenCriarModal(!openCriarModal);
-          }}
-        >
-          <p>Criar Lote</p>
-        </S.Btn>
-
-        <Board fase={FaseData[0]} titulo="preparo" />
+        <Board main_status={0}>
+          <S.Btn
+            onClick={() => {
+              setOpenCriarModal(!openCriarModal);
+            }}
+          >
+            <p>Criar Lote</p>
+          </S.Btn>
+        </Board>
 
         <Style.Footer></Style.Footer>
       </S.Wrapper>

@@ -14,7 +14,7 @@ export const Btn = styled.button`
   cursor: pointer;
   :hover {
   }
-  p{
+  p {
     font-family: 'Rubik';
     color: ${({ theme }) => theme.colors['gray/700']};
   }
@@ -24,7 +24,7 @@ export const Btn = styled.button`
 `;
 
 export const Wrapper = styled.div`
-  @media screen and (min-width: 767px) {   
+  @media screen and (min-width: 767px) {
     margin: 10em 0em 0em 0em;
   }
   margin: 8em 2em 0em 2em;
@@ -36,5 +36,4 @@ export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: 3em
 `;

@@ -2,7 +2,6 @@ import Board from '../../../components/Board';
 import { Menu } from '../../../components/Menu';
 import * as Style from '../../../global/index';
 import MenuCoord from '../../../components/MenuCoord';
-import FaseData from '../../../data/FaseData';
 import { useParams } from 'react-router-dom';
 
 // import { Container } from './styles';
@@ -14,7 +13,7 @@ const Digitalizacao = () => {
       <Menu area={`/Fase/${id}/Board/Digitalizacao`} id_projeto={id}></Menu>
       <MenuCoord />
       <Style.Wrapper>
-        <Board fase={FaseData[2]} titulo="Digitalizacao" />
+        <Board main_status={2} />
         <Style.Footer></Style.Footer>
       </Style.Wrapper>
     </>

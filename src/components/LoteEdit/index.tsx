@@ -30,10 +30,10 @@ const LoteEdit = () => {
 
   const categorias = useMutation(SeachCategoria, {
     onSuccess: (data: SeachCategoriaResponseBatche) => {
+      console.log(data);
       setOptions([]);
       const opt = data.categories;
       const response: Options[] = opt.map((e) => ({ value: e.id, label: e.name }));
-
       setOptions(response);
     },
     onError: (error: ApiError) => {
@@ -145,14 +145,12 @@ const LoteEdit = () => {
     return <Splash />;
   } else {
     return (
-      <div style={{display: 'flex' , justifyContent: 'center'} }>
-        <Menu area={`/Painel/${id}`} id_projeto={id}/>
+      <div style={{ display: 'flex', justifyContent: 'center' }}>
+        <Menu area={`/Painel/${id}`} id_projeto={id} />
         <MenuCoord />
 
         <S.ModalContent id="modal-content" onSubmit={(e) => handleSave(e)}>
-
           <S.CloseDiv>
-
             <h1>Editar {title}</h1>
             <S.Exit onClick={() => navigate(-1)}>
               <img src="/close.svg" alt="" height={18} width={18} />
@@ -178,7 +176,7 @@ const LoteEdit = () => {
               ></S.Local>
             </S.LocalDiv>
           )} */}
-          
+
           <h2>Título</h2>
           <S.NameInput type="text" value={title} onChange={(e) => setTitle(e.currentTarget.value)} />
 

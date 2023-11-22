@@ -2,7 +2,7 @@ import { Routes, Route } from 'react-router-dom';
 import { Suspense, lazy } from 'react';
 import Login from './pages/Login';
 
-const Projetos = lazy(() => import('./pages/Projeto/projeto-home'));
+// const Projetos = lazy(() => import('./pages/Projeto/projeto-home'));
 const CreateProjeto = lazy(() => import('./pages/Projeto/projeto-create'));
 const Painel = lazy(() => import('./pages/Coordenador/Painel'));
 const AtividadesHome = lazy(() => import('./pages/Coordenador/Atividade/atividade-home'));
@@ -40,10 +40,10 @@ const App = () => {
         <Route path="/recuperar-senha/:id" element={<EscolherNovaSenha />} />
         <Route path="/" element={<Login />} />
         <Route path="/unauthorized" element={<Unauthorized />} />
-        <Route path="/Projetos" element={<Projetos />} />
+        {/* <Route path="/Projetos" element={<Projetos />} /> */}
         <Route path="/CriarProjeto" element={<CreateProjeto />} />
-        <Route path="/Fase/:id" element={<FasesHome/>} />
-        <Route path="/Atividades/:id" element={<AtividadesHome/>} />
+        <Route path="/Fase/:id" element={<FasesHome />} />
+        <Route path="/Atividades/:id" element={<AtividadesHome />} />
         <Route path={`/Atividades/:id/CriarAtividade`} element={<AtividadeCreate />} />
         <Route path={`/Atividades/:id/Edit/:iday/:idatv`} element={<AtividadeEdit />} />
         <Route path="Fase/:id/Board/Arquivamento" element={<Arquivamento />} />

@@ -1,12 +1,12 @@
 import axiosInstance from '../../../axiosInstance';
 import { PatchResponseBatcheStatus, PatchBatcheStatusParams } from './patch.interface';
 
-export const PatchBatcheStatusStatus = async ({
+export const PatchBatcheMainStatus = async ({
   id,
-  status,
+  main_status,
 }: PatchBatcheStatusParams): Promise<PatchResponseBatcheStatus> => {
-  const BatcheStatus = await axiosInstance.patch<PatchResponseBatcheStatus>(`/Batches/${id}/status`, {
-    status,
+  const BatcheStatus = await axiosInstance.patch<PatchResponseBatcheStatus>(`/Batches/${id}/main-status`, {
+    main_status,
   });
 
   return BatcheStatus.data;

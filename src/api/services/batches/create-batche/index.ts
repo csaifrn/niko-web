@@ -1,11 +1,12 @@
 import axiosInstance from '../../../axiosInstance';
-import { CreateResponseBatche, CreateBatcheParams } from './create.interface';
+import { GetResponseBatche } from '../get-batche/get.interface';
+import { CreateBatcheParams } from './create.interface';
 
 export const CreateBatche = async ({
   title,
   settlement_project_category_id,
-}: CreateBatcheParams): Promise<CreateResponseBatche> => {
-  const Batche = await axiosInstance.post<CreateResponseBatche>('/Batches', {
+}: CreateBatcheParams): Promise<GetResponseBatche> => {
+  const Batche = await axiosInstance.post<GetResponseBatche>('/Batches', {
     title,
     settlement_project_category_id,
   });

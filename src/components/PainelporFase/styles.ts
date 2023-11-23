@@ -138,19 +138,38 @@ export const Opiton = styled.option`
   gap: 1rem;
 `;
 
-
-
 export const ContainerDataFase = styled.div`
-  background-color: ${({ theme }) => theme.colors['gray/700']};
+  
   color: ${({ theme }) => theme.colors.white};
   display: flex;
   padding: 0.5rem;
   height: 100%;
   align-items: center;
   width: 100%;
-  gap: 1rem;
   border-radius: 5px;
 `;
+
+export const ContainerDataFaseRecepcao = styled.div`
+  
+  color: ${({ theme }) => theme.colors.white};
+  display: flex;
+  padding: 0.5rem;
+  height: 100%;
+  align-items: center;
+  width: 33%;
+  border-radius: 5px;
+`;
+
+export const DivIconeFase = styled.div`
+  
+  color: ${({ theme }) => theme.colors.white};
+  display: flex;
+  height: 100%;
+  align-items: center;
+  width: 100%;
+  border-radius: 5px 0px 0px 5px;
+`;
+
 export const NumberOrangeTitle = styled.span`
   color: ${({ theme }) => theme.colors['orange/400']};
   font-size: 18px;
@@ -178,7 +197,6 @@ export const NumberTextData = styled.div`
   flex-direction: column;
   gap: 16px;
   @media (min-width: 767px) {
-    flex-direction: row;
   }
 `;
 
@@ -186,7 +204,7 @@ export const NumberTextDataUnic = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   width: 100%;
   gap: 0.5em;
 
@@ -209,10 +227,15 @@ export const ContainerImg = styled.img`
 `;
 
 export const DataFase = styled.div`
+  background-color: ${({ theme }) => theme.colors['gray/700']};
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
+  border-radius: 0px 5px 5px 0px;
+  padding-left: 16px;
+  height: 100%;
+  width: 100%;
 `;
 
 export const Container = styled.div`
@@ -244,8 +267,18 @@ export const FasesDoMeio = styled.div`
   gap: 16px;
   @media (min-width: 767px) {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 16px;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 0px;
+    width: 100%;
+    height: 100%;
+  }
+`;
+
+export const PainelPorFaseLotes = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  @media (min-width: 767px) {
     width: 100%;
   }
 `;
@@ -276,8 +309,8 @@ export const DataFaseTxtCenter = styled.p`
   color: ${({ theme }) => theme.colors.white};
   font-family: 'Rubik';
   font-style: normal;
-  text-align: center;
   font-weight: 500;
+  font-size: 20px;
 
   @media (max-width: 370px) {
     word-break: break-all;

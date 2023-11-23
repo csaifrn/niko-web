@@ -455,14 +455,20 @@ export const BotaoMudarFase = styled.div`
   display: flex;
   border: none;
   font-family: 'Rubik';
+  position: relative;
   color: #ffffff;
   border-radius: 5px;
+  &:hover #tool {
+    visibility: visible;
+    opacity: 1;
+    display: block;
+  }
 `;
 
 export const VoltarAvancar = styled.button`
   cursor: pointer;
   background-color: #393e4b;
-
+  position: relative;
   display: flex;
   align-items: center;
   gap: 10px;
@@ -479,7 +485,7 @@ export const VoltarAvancar = styled.button`
     background-color: ${({ theme }) => theme.colors['gray/400']};
     transform: translateY(-5%) translateX(2%);
   }
-  :disabled {
+  &:disabled {
     cursor: not-allowed;
     opacity: 0.8;
     pointer-events: none;

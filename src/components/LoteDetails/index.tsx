@@ -24,8 +24,11 @@ import { DeleteObservation } from '../../api/services/batches/observation/delete
 import { AtribuirAlguemModal } from '../AtribuirAlguemModal';
 import { BlockAssigner } from '../BatchBlocks/BlockAssigner';
 import { PatchBatcheMainStatus } from '../../api/services/batches/patch-status';
-import { X } from '@phosphor-icons/react';
+import { ArrowCircleLeft, X } from '@phosphor-icons/react';
 import theme from '../../global/theme';
+import { PatchBatcheSpecifStatus } from '../../api/services/batches/patch-status-specific';
+import { ToolTip } from '../Observation/ObservationBox/styles';
+import { AtribuirButton } from '../../pages/Coordenador/Atividade/atividade-home/styles';
 
 interface Option {
   label: string;
@@ -67,6 +70,10 @@ export const LoteDetails = () => {
     setAvancar(!avancar);
 
     if (option?.value && id && option?.value === status + 1) {
+      mutateEspecific.mutate({
+        id,
+        specific_status: 0,
+      });
       mutateStatus.mutate({
         main_status: option.value,
         id,
@@ -83,10 +90,15 @@ export const LoteDetails = () => {
   const mutateStatus = useMutation(PatchBatcheMainStatus, {
     onSuccess: () => {
       setStatus(status + 1);
+      toast.success('Fase atualizada!');
     },
     onError: (err: ApiError) => {
       toast.error(err.response?.data.message ? err.response?.data.message : 'Erro na execução');
     },
+  });
+
+  const mutateEspecific = useMutation(PatchBatcheSpecifStatus, {
+    onSuccess: () => {},
   });
 
   const beforeTask = useMutation(GetBatche, {
@@ -98,7 +110,6 @@ export const LoteDetails = () => {
       setAssigners(data.assigned_users);
       setStatus(data.main_status);
       setSpecificStatus(data.specific_status);
-      console.log(data);
       setOption({
         value: data.main_status + 1,
         label: optionsFases ? optionsFases[data.main_status + 1].label : 'Houve um problema',
@@ -364,7 +375,13 @@ export const LoteDetails = () => {
                     <p style={{ color: '#FFFFFF' }}>Pegar lote</p>
                   </S.Botao>
                 )}
-
+                <AtribuirButton
+                  onClick={(e) => {
+                    e.preventDefault();
+                  }}
+                >
+                  <ArrowCircleLeft weight="fill" size={24} /> Pegar Lote
+                </AtribuirButton>
                 <S.Botao onClick={handleAtribuirAlguem}>
                   <img src={`/atribuir.svg`} alt="botão para atribuir lote a algum operador " />
                   Atribuir à alguém
@@ -395,7 +412,15 @@ export const LoteDetails = () => {
                     {/* BOTÃO DE AVANÇAR FASE*/}
 
                     <S.VoltarAvancar
-                      disabled={option?.value ? option?.value === status : false}
+                      disabled={(() => {
+                        const isDisabled =
+                          (option?.value !== undefined && option?.value === status) ||
+                          task?.specific_status === 0 ||
+                          task?.specific_status === 2 ||
+                          (option?.value !== undefined && option?.value > status + 1);
+
+                        return isDisabled;
+                      })()}
                       onClick={handleAvancar}
                       style={{ cursor: 'pointer' }}
                     >
@@ -424,6 +449,7 @@ export const LoteDetails = () => {
                       classNamePrefix="react-select"
                       placeholder="Escolher fase"
                     />
+                    {task?.specific_status === 0 && <ToolTip id="tool">É necessário pegar o lote antes</ToolTip>}
                   </S.BotaoMudarFase>
                 )}
 

@@ -5,14 +5,19 @@ import { GetResponseBatche } from '../../api/services/batches/get-batche/get.int
 import { Mutation, useMutation } from 'react-query';
 import { PatchBatcheSpecifStatus } from '../../api/services/batches/patch-status-specific';
 import toast from 'react-hot-toast';
+import { KabanContext } from '../Board';
 
 interface EspecifModalProps {
   close: () => void;
   batche: GetResponseBatche;
+  title: string;
+  button: string;
 }
 
 export const EspecifcModal = (props: EspecifModalProps) => {
   const { id } = useParams();
+  const kanban = useContext(KabanContext);
+
   const [closing, setClosing] = useState(false);
   useEffect(() => {
     // Ao renderizar o modal, aplicar um escalonamento gradual para exibi-lo
@@ -38,6 +43,15 @@ export const EspecifcModal = (props: EspecifModalProps) => {
   const mutateEspecific = useMutation(PatchBatcheSpecifStatus, {
     onSuccess: () => {
       toast.success('Status atualizado!');
+      if (props.batche.specific_status + 1 === 1) {
+        kanban?.setBatchesDispo((dispo) => dispo.filter((d) => d.id !== props.batche.id));
+        kanban?.setBatchesAnda((anda) => [...anda, props.batche]);
+      } else if (props.batche.specific_status + 1 === 2) {
+        kanban?.setBatchesAnda((anda) => anda.filter((a) => a.id !== props.batche.id));
+        kanban?.setBatchesConc((conc) => [...conc, props.batche]);
+      } else {
+        console.log('Erro', props.batche.specific_status + 1 === 2);
+      }
     },
   });
 
@@ -55,7 +69,7 @@ export const EspecifcModal = (props: EspecifModalProps) => {
         <S.ModalArea id="modal-scaling">
           <S.ModalContent>
             <S.NameClose>
-              <S.Titulo> Deseja pegar esse lote? </S.Titulo>
+              <S.Titulo> {props.title} </S.Titulo>
             </S.NameClose>
             <S.RecusedAvancar>
               <S.Recused onClick={handleClose}>
@@ -63,7 +77,7 @@ export const EspecifcModal = (props: EspecifModalProps) => {
               </S.Recused>
               <S.Avancar onClick={handlePegar}>
                 <S.IconeAvancar src="/avancar.svg"></S.IconeAvancar>
-                <S.Texto style={{ color: '#FFFFFF' }}>Pegar lote</S.Texto>
+                <S.Texto style={{ color: '#FFFFFF' }}>{props.button}</S.Texto>
               </S.Avancar>
             </S.RecusedAvancar>
           </S.ModalContent>

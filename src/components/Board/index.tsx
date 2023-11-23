@@ -41,6 +41,8 @@ export const Board = (props: BoardProps) => {
   const [batchesAnda, setBatchesAnda] = useState<GetResponseBatche[]>([]);
   const [batchesConc, setBatchesConc] = useState<GetResponseBatche[]>([]);
 
+  const [titleModal, setTitleModal] = useState({ button: 'pegar lote', title: 'Deseja pegar o lote?' });
+
   const [batche_data, setBatche] = useState<GetResponseBatche>();
 
   const [atribuirModal, setAtribuirModal] = useState<boolean>(false);
@@ -125,6 +127,7 @@ export const Board = (props: BoardProps) => {
                               onClick={(e) => {
                                 e.preventDefault();
                                 setOpenEspecifModal(!openEspecifModal);
+                                setTitleModal({ button: 'pegar lote', title: 'Deseja pegar o lote?' });
                                 setBatche(batche);
                               }}
                             >
@@ -180,9 +183,15 @@ export const Board = (props: BoardProps) => {
                           //envolvidos={batche.envolvidos}
                         >
                           {user.role === 'Operador' && (
-                            <S.BlackButton onClick={(e) => e.preventDefault()}>
-                              <UsersThree weight="fill" size={24} color="#00D25B" />
-                              Participar do Lote
+                            <S.BlackButton
+                              onClick={(e) => {
+                                e.preventDefault();
+                                setOpenEspecifModal(!openEspecifModal);
+                                setBatche(batche);
+                                setTitleModal({ button: 'Concluir o lote', title: 'Deseja concluir o lote?' });
+                              }}
+                            >
+                              Concluir lote
                             </S.BlackButton>
                           )}
                         </Lote>
@@ -235,7 +244,12 @@ export const Board = (props: BoardProps) => {
       )}
       {openCriarModal && <ModalCriarLote close={() => setOpenCriarModal(!openCriarModal)} />}
       {openEspecifModal && batche_data && (
-        <EspecifcModal close={() => setOpenEspecifModal(!openEspecifModal)} batche={batche_data} />
+        <EspecifcModal
+          close={() => setOpenEspecifModal(!openEspecifModal)}
+          batche={batche_data}
+          title={titleModal.title}
+          button={titleModal.button}
+        />
       )}
     </KabanContext.Provider>
   );

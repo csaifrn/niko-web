@@ -6,10 +6,12 @@ export const FaseKanbanPage = styled.div`
   justify-content: center;
   flex-direction: row;
   //max-width: 1140px;
+
   gap: 2em;
   //Mobile
   @media screen and (max-width: 767px) {
     flex-direction: column;
+    margin-bottom: 8em;
   }
 `;
 
@@ -79,12 +81,13 @@ const kanbanSectionContent = styled.div`
   scroll-behavior: auto;
   scrollbar-width: thin;
   height: 150px;
+  width: 100%;
   padding: 1em;
   background-color: ${({ theme }) => theme.colors['gray/700']};
 
   &::-webkit-scrollbar {
     width: 0.5em;
-    height: 1em;
+    height: 0.5em;
   }
 
   // O caminho (barra de progresso) da barra de rolagem
@@ -100,8 +103,6 @@ const kanbanSectionContent = styled.div`
 
   @media screen and (min-width: 767px) {
     flex-direction: column;
-    overflow-x: auto;
-    overflow-y: scroll;
     max-width: 300px;
     height: 60vh;
     width: 100%;

@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import MenuBurger from '../MenuBurger';
 import * as S from './styles';
 import * as MenuC from '../MenuCoord/styles';
-import { useNavigate, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import { User } from '@phosphor-icons/react';
 import { SharedState } from '../../context/SharedContext';
 
@@ -52,7 +52,7 @@ export const Menu = (props: MenuProps) => {
               <S.MenuImg src="/menu.svg" />
             </S.ButtonBurger>
 
-            <S.LinkLogo href={`/Painel/${id}`}>
+            <S.LinkLogo to={`/Painel/${id}`}>
               <S.MenuImg src="/Logo_Niko.svg" />
             </S.LinkLogo>
 
@@ -119,15 +119,15 @@ export const Menu = (props: MenuProps) => {
         )}
 
         {props.id_projeto == undefined && (
-          <S.LinkLogo href={`/Projetos`}>
+          <S.LinkLogo to={`/Projetos`}>
             <S.MenuImg src="/Logo_Niko.svg" />
           </S.LinkLogo>
         )}
 
         <S.ContainerLogo>
-          <a href={props.id_projeto ? `/Fase/${id}` : '/Projetos'}>
+          <Link to={props.id_projeto ? `/Fase/${id}` : '/Projetos'}>
             <S.MenuImg src="/Logo_Niko.svg" />
-          </a>
+          </Link>
         </S.ContainerLogo>
 
         <S.MenuLeft>

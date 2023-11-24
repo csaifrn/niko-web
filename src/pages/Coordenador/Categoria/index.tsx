@@ -41,11 +41,13 @@ const Categoria = () => {
     setSearchTerm(event.target.value);
   };
 
-  const filteredTag: Tags = tags!.filter((tag: Tag) => {
-    const tagName = removeDiacritics(tag.name.toLowerCase());
-    const search = removeDiacritics(searchTerm.toLowerCase());
-    return tagName.includes(search);
-  });
+  const filteredTag: Tags = tags
+    ? tags.filter((tag: Tag) => {
+        const tagName = removeDiacritics(tag.name.toLowerCase());
+        const search = removeDiacritics(searchTerm.toLowerCase());
+        return tagName.includes(search);
+      })
+    : [];
 
   const sortedTags: Tags = filteredTag.sort((a: Tag, b: Tag) => {
     const nameA = removeDiacritics(a.name.toLowerCase());

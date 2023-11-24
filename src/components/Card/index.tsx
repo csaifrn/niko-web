@@ -29,7 +29,6 @@ export const CardFase = ({ ...props }: CardProps) => {
 
   const mutateBatchesQuery = useMutation(QueryBatche, {
     onSuccess: (data: GetResponseBatche[]) => {
-      console.log(data, props.fase);
       setBatchesDispo(data.filter((batche) => batche.specific_status === 0));
       setBatchesAnda(data.filter((batche) => batche.specific_status === 1));
       setBatchesConc(data.filter((batche) => batche.specific_status === 2));

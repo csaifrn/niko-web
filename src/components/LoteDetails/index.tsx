@@ -30,8 +30,6 @@ import { PatchBatcheSpecifStatus } from '../../api/services/batches/patch-status
 import { ToolTip } from '../Observation/ObservationBox/styles';
 import { AtribuirButton } from '../../pages/Coordenador/Atividade/atividade-home/styles';
 import { EspecifcModal } from '../EspecificStatusModal';
-import { BlackButton } from '../Board/styles';
-import { ButtonAtribuir } from '../CategoriaCard/styles';
 
 interface Option {
   label: string;
@@ -40,7 +38,7 @@ interface Option {
 
 export const LoteDetails = () => {
   const optionsFases = FaseData.map((fase, index) => ({ value: index, label: fase.titulo }));
-  const [task, setTask] = useState<GetResponseBatche | null>();
+  const [task, setTask] = useState<GetResponseBatche | null>(null);
   const [observations, setObservations] = useState<Observation[]>([]);
   const [priority, setPriority] = useState<boolean>(false);
   const navigate = useNavigate();
@@ -119,7 +117,6 @@ export const LoteDetails = () => {
         value: data.main_status + 1,
         label: optionsFases ? optionsFases[data.main_status + 1].label : 'Houve um problema',
       });
-      console.log(data.specific_status);
     },
     onError: (error: ApiError) => {
       if (error.response) {
@@ -600,6 +597,9 @@ export const LoteDetails = () => {
             batche={task!}
             title={titleModal.title}
             button={titleModal.button}
+            setSpecificStatus={setSpecificStatus}
+            setBatche={setTask}
+            setStatus={setStatus}
           />
         )}
       </>

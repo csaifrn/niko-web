@@ -44,6 +44,24 @@ const Users = [
     fase: '',
     andamento: false,
   },
+  {
+    id: '7',
+    name: 'Nicolas José',
+    url: 'https://th.bing.com/th/id/OIP.jTpsrJxMrIRi5qsxX8RWRQHaLJ?pid=ImgDet&rs=1',
+    email: 'nicolas@email.com.br',
+    lote: 'Lote 201',
+    fase: 'Catalogação',
+    andamento: false,
+  },
+  {
+    id: '8',
+    name: 'Lucas Antônio',
+    url: 'https://img.freepik.com/free-photo/handsome-cheerful-man-with-happy-smile_176420-18028.jpg',
+    email: 'lucass@escolar.ifrn.edu.br',
+    lote: '',
+    fase: '',
+    andamento: true,
+  },
 ];
 
 export default Users;

@@ -1,5 +1,5 @@
 import * as S from './styles';
-import { Link, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars, no-unused-vars
 interface MenuProps {

@@ -117,10 +117,11 @@ export const UserModalAtividade = (props: UserModalAtividadeProps) => {
   return (
     <>
       <S.ModalBackdrop>
-        <S.ModalArea id="modal-scaling">
+        <S.ModalAreaCard id="modal-scaling">
+
           <S.ModalContent id="modal-content">
             <S.NameClose>
-              <h2>Atribuir Lote</h2>
+              <h2>Atribuir usuários à atividade</h2>
               <S.Exit onClick={handleClose}>
                 <img src="/close.svg" alt="" height={24} width={24} />
               </S.Exit>
@@ -195,7 +196,7 @@ export const UserModalAtividade = (props: UserModalAtividadeProps) => {
             <S.AtribuirButton onClick={handleSave}>Salvar</S.AtribuirButton>
             {error && <p style={{ color: '#F32D2D', fontSize: '12px' }}>Todas as fases precisam de um Operador</p>}
           </S.ModalContent>
-        </S.ModalArea>
+        </S.ModalAreaCard>
       </S.ModalBackdrop>
     </>
   );

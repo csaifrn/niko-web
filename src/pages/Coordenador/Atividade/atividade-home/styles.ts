@@ -62,20 +62,16 @@ export const AtivsPorDiaDiv = styled.div``;
 
 export const DataAtiv = styled.h2``;
 
-export const AtivPorDia = styled.div`
+export const AtivsCardEscuro = styled.div`
   background-color: #191c24;
   padding: 16px;
 `;
 
-export const Atividades = styled.div`
+export const AtividadesMesmoDia = styled.div`
   display: flex;
   flex-direction: column;
   gap: 2em;
-  /* ${media.greaterThan('large')`
-    display:flex;
-    flex-direction: row;
-    gap:2em;
-  `} */
+  position: relative;
   @media screen and (min-width: 767px) {
     display: flex;
     flex-direction: row;
@@ -83,7 +79,7 @@ export const Atividades = styled.div`
   }
 `;
 
-export const AtivCard = styled.div`
+export const AtivCardCinza = styled.div`
   padding: 2em;
 
   background-color: #393e4b;
@@ -106,12 +102,6 @@ export const AtivsDetails = styled.div`
   display: flex;
   flex-direction: column;
   gap: 24px;
-  /* ${media.greaterThan('large')`
-    display:flex;
-    flex-direction: row;
-    gap: 32px;
-    align-items: start;
-  `} */
   @media screen and (min-width: 767px) {
     display: flex;
     flex-wrap: wrap;
@@ -121,15 +111,22 @@ export const AtivsDetails = styled.div`
   }
 `;
 
+export const BlockGrayBorder = styled.div`
+  background-color: ${({ theme }) => theme.colors['gray/500']};
+  border: ${({ theme }) => theme.colors['gray/300']} solid 2px;
+  height: 2em;
+  padding: 0 0.5em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5em;
+  border-radius: 3px;
+`;
+
 export const AtivPorFase = styled.div`
   display: flex;
   flex-direction: column;
   gap: 16px;
-  /* ${media.greaterThan('large')`
-    display:flex;
-    flex-direction: column;
-    gap: 16px;
-  `} */
   @media screen and (min-width: 767px) {
     display: flex;
     flex-direction: column;
@@ -137,9 +134,10 @@ export const AtivPorFase = styled.div`
   }
 `;
 
-export const EditDiv = styled.div`
+export const EditRemoveDiv = styled.div`
   display: flex;
   justify-content: flex-end;
+  gap: 16px;
   /* ${media.greaterThan('large')`
     display: flex;
     justify-content: flex-end;
@@ -150,16 +148,17 @@ export const EditDiv = styled.div`
   }
 `;
 
-export const Edit = styled.button`
+export const ButtonTransparent = styled.button`
   display: flex;
   background-color: transparent;
   align-items: center;
   padding: 5px;
   justify-content: center;
   border-radius: 5px;
-  right: 2em;
   border: none;
+  position: relative;
   cursor: pointer;
+  transition: all 300ms;
   &:hover {
     background-color: ${({ theme }) => theme.colors['gray/400']};
   }
@@ -167,6 +166,17 @@ export const Edit = styled.button`
     background-color: ${({ theme }) => theme.colors['gray/400']};
     transform: translateY(-5%) translateX(2%);
   }
+  :hover div {
+    visibility: visible;
+    opacity: 1;
+    display: block;
+  }
+`;
+
+export const ExcluirIcon = styled.img`
+  width: 20px;
+  height: 20px;
+  color: #ffffff;
 `;
 
 export const IconeFase = styled.img``;
@@ -183,12 +193,28 @@ export const Operador = styled.div`
 
 export const FotoOperador = styled.img``;
 
-export const NomeOperador = styled.div`
+export const Tooltip = styled.div`
+  background-color: ${({ theme }) => theme.colors['gray/300']};
+  padding: 8px;
+  border-radius: 3px;
+  position: absolute;
+  display: none;
+  font-family: 'Rubik';
+  color: ${({ theme }) => theme.colors['gray/900']};
+  bottom: -40px;
+  left: 0;
+  width: 75px;
+  
+`;
+
+export const TooltipOperador = styled.div`
   background-color: #191c24;
   padding: 8px;
   border-radius: 3px;
   position: absolute;
   display: none;
+  font-family: 'Rubik';
+  color: white;
 `;
 
 const SearchDiv = styled.div`

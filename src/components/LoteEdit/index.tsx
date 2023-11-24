@@ -13,6 +13,7 @@ import { SeachCategoriaResponseBatche } from '../../api/services/categoria/get-c
 import { SeachCategoria } from '../../api/services/categoria/get-categoria';
 import { validationPatch, validationSearch } from './validation';
 import { PatchBatcheEdit } from '../../api/services/batches/patch-batche';
+import { SairSemSalvarModal } from '../SairSemSalvarModal';
 
 interface Options {
   value: string;
@@ -27,6 +28,7 @@ const LoteEdit = () => {
   const [title, setTitle] = useState<string>('');
   const [physical_files_count, setPhysical_files_count] = useState<number>(0);
   const [digital_files_count, setDigital_files_count] = useState<number>(0);
+  const [modalSairSemSalvar, setModalSairSemSalvar] = useState(false);
 
   const categorias = useMutation(SeachCategoria, {
     onSuccess: (data: SeachCategoriaResponseBatche) => {
@@ -141,6 +143,8 @@ const LoteEdit = () => {
     }
   };
 
+  console.log(modalSairSemSalvar);
+
   if (beforeBatch.isLoading) {
     return <Splash />;
   } else {
@@ -149,22 +153,24 @@ const LoteEdit = () => {
         <Menu area={`/Painel/${id}`} id_projeto={id} />
         <MenuCoord />
 
-        <S.ModalContent id="modal-content" onSubmit={(e) => handleSave(e)}>
+        <S.EditLoteArea>
           <S.CloseDiv>
             <h1>Editar {title}</h1>
-            <S.Exit onClick={() => navigate(-1)}>
+
+            <S.Exit onClick={() => setModalSairSemSalvar(!modalSairSemSalvar)}>
               <img src="/close.svg" alt="" height={18} width={18} />
             </S.Exit>
           </S.CloseDiv>
 
-          {/* PROTOCOLO */}
-          {/* <S.ProtocoloDiv>
+          <S.FormContent id="modal-content" onSubmit={(e) => handleSave(e)}>
+            {/* PROTOCOLO */}
+            {/* <S.ProtocoloDiv>
             <h2>Protocolo</h2>
             <S.Protocolo>{task.protocolo}</S.Protocolo>
           </S.ProtocoloDiv> */}
 
-          {/* LOCAL */}
-          {/* {batch.shelf_number !== null && (
+            {/* LOCAL */}
+            {/* {batch.shelf_number !== null && (
             <S.LocalDiv>
               <p>Local</p>
               <S.Local
@@ -177,49 +183,49 @@ const LoteEdit = () => {
             </S.LocalDiv>
           )} */}
 
-          <h2>Título</h2>
-          <S.NameInput type="text" value={title} onChange={(e) => setTitle(e.currentTarget.value)} />
+            <h2>Título</h2>
+            <S.NameInput type="text" value={title} onChange={(e) => setTitle(e.currentTarget.value)} />
 
-          {/* ARQUIVOS */}
-          <S.Arquivos>
-            <h2>Arquivos</h2>
-            <S.ArquivosDiv>
-              {/* ARQUIVOS FÍSICOS */}
-              {physical_files_count !== null && (
-                <S.ArquivosFisicos>
-                  <p>Físicos</p>
-                  <S.ArquivosInput
-                    style={{ backgroundColor: '#393E4B' }}
-                    type="number"
-                    name="Arquivos físicos"
-                    placeholder={``}
-                    onChange={(e) => setPhysical_files_count(Number(e.currentTarget.value))}
-                    value={physical_files_count}
-                    min={0}
-                  ></S.ArquivosInput>
-                </S.ArquivosFisicos>
-              )}
+            {/* ARQUIVOS */}
+            <S.Arquivos>
+              <h2>Arquivos</h2>
+              <S.ArquivosDiv>
+                {/* ARQUIVOS FÍSICOS */}
+                {physical_files_count !== null && (
+                  <S.ArquivosFisicos>
+                    <p>Físicos</p>
+                    <S.ArquivosInput
+                      style={{ backgroundColor: '#393E4B' }}
+                      type="number"
+                      name="Arquivos físicos"
+                      placeholder={``}
+                      onChange={(e) => setPhysical_files_count(Number(e.currentTarget.value))}
+                      value={physical_files_count}
+                      min={0}
+                    ></S.ArquivosInput>
+                  </S.ArquivosFisicos>
+                )}
 
-              {/* ARQUIVOS DIGITAIS */}
-              {digital_files_count !== null && (
-                <S.ArquivosDigitais>
-                  <p>Digitais</p>
-                  <S.ArquivosInput
-                    style={{ backgroundColor: '#393E4B' }}
-                    type="number"
-                    name="Arquivos digitais"
-                    placeholder={``}
-                    onChange={(e) => setDigital_files_count(Number(e.currentTarget.value))}
-                    value={digital_files_count}
-                    min={0}
-                  ></S.ArquivosInput>
-                </S.ArquivosDigitais>
-              )}
-            </S.ArquivosDiv>
-          </S.Arquivos>
+                {/* ARQUIVOS DIGITAIS */}
+                {digital_files_count !== null && (
+                  <S.ArquivosDigitais>
+                    <p>Digitais</p>
+                    <S.ArquivosInput
+                      style={{ backgroundColor: '#393E4B' }}
+                      type="number"
+                      name="Arquivos digitais"
+                      placeholder={``}
+                      onChange={(e) => setDigital_files_count(Number(e.currentTarget.value))}
+                      value={digital_files_count}
+                      min={0}
+                    ></S.ArquivosInput>
+                  </S.ArquivosDigitais>
+                )}
+              </S.ArquivosDiv>
+            </S.Arquivos>
 
-          {/*CATEGORIAS E TIPOLOGIAS*/}
-          {/* <h2>Categoria</h2>
+            {/*CATEGORIAS E TIPOLOGIAS*/}
+            {/* <h2>Categoria</h2>
           <S.CustomSelect
             onInputChange={(e) => setName(e)}
             placeholder={'Digite no mínimo 3 caracteres...'}
@@ -231,10 +237,17 @@ const LoteEdit = () => {
             classNamePrefix="react-select"
           /> */}
 
-          <S.SalvarEditButton type="submit" onClick={(e) => e.preventDefault}>
-            Salvar
-          </S.SalvarEditButton>
-        </S.ModalContent>
+            <S.SalvarEditButton type="submit">Salvar alterações</S.SalvarEditButton>
+          </S.FormContent>
+        </S.EditLoteArea>
+
+        {modalSairSemSalvar && (
+          <SairSemSalvarModal
+            close={() => {
+              setModalSairSemSalvar(!modalSairSemSalvar);
+            }}
+          />
+        )}
       </div>
     );
   }

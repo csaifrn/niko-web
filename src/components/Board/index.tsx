@@ -15,7 +15,7 @@ import theme from '../../global/theme';
 import * as Empty from '../EmptyPage/styles';
 import { AtribuirAlguemModal } from '../AtribuirAlguemModal';
 import { Btn } from '../../pages/Etapas/Preparo/styles';
-import { ModalCriarLote } from '../ModalCrairLote';
+import { ModalCriarLote } from '../ModalCriarLote';
 import { EspecifcModal } from '../EspecificStatusModal';
 
 interface BoardProps {

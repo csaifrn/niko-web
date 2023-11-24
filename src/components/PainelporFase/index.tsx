@@ -49,7 +49,7 @@ export const PainelPorFase = () => {
   const ano = dataAtual.getFullYear();
   const dataHoje = new Date(ano, mes, dia, 0, 0, 0);
 
-  const [dataInicial, setDataInicial] = useState<Date>(new Date());
+  const [dataInicial, setDataInicial] = useState<Date>(new Date(dataHoje));
 
   const [dataInicialEmString, setDataInicialEmString] = useState<string>();
 
@@ -71,6 +71,8 @@ export const PainelPorFase = () => {
     const mes = e.target.value.split('-')[1];
     const ano = e.target.value.split('-')[2];
     const dataEscolhida = new Date(`${dia}/${mes}/${ano}`);
+    
+    dataEscolhida.setHours(0, 0, 0)
     setDataInicialEmString(`${dia}-${mes}-${ano}`);
     // Verifica se a data inicial escolhida é mais nova que a data de hoje
     if (dataEscolhida > dataHoje) {
@@ -83,7 +85,7 @@ export const PainelPorFase = () => {
     }
   };
 
-  const [dataFinal, setDataFinal] = useState<Date>();
+  const [dataFinal, setDataFinal] = useState<Date>(new Date(dataHoje));
 
   //Função pra pegar a data final escolhida pelo usuário
   const handlePegarDataFinal = (e: any) => {
@@ -91,6 +93,9 @@ export const PainelPorFase = () => {
     const mes = e.target.value.split('-')[1];
     const ano = e.target.value.split('-')[2];
     const dataEscolhida = new Date(`${dia}/${mes}/${ano}`);
+    dataEscolhida.setHours(0, 0, 0)
+
+    console.log('A data escolhida foi:' + dataEscolhida)
     setDataFinalEmString(`${dia}-${mes}-${ano}`);
     // Verifica se a data final escolhida é mais nova que a data de hoje
     if (dataEscolhida > dataHoje) {
@@ -106,11 +111,15 @@ export const PainelPorFase = () => {
     }
   };
 
+  console.log('A data inicial é:' + dataInicial)
+
+  console.log('A data final é:' + dataFinal)
+
   const { id } = useParams();
 
   return (
     <S.Wrapper>
-      <S.PainelTitulo>Painel por fase</S.PainelTitulo>
+      <S.PainelTitulo> Painel por fase </S.PainelTitulo>
 
       <S.ContainerData>
         <S.FiltrarPorPeriodo>
@@ -119,23 +128,12 @@ export const PainelPorFase = () => {
           <S.EscolherDatas>
             <S.DataInicial>
               <S.DataText>De:</S.DataText>
-
-              <S.Filter
-                disabled={dtFinalInvalida}
-                onChange={handlePegarDataInicial}
-                value={dataInicialEmString || ''}
-                type="date"
-              />
+              <S.Filter onChange={handlePegarDataInicial} value={dataInicialEmString || ''} type="date" />
             </S.DataInicial>
 
             <S.DataFinal>
               <S.DataText>Até:</S.DataText>
-              <S.Filter
-                disabled={dtInicialInvalida}
-                onChange={handlePegarDataFinal}
-                value={dataFinalEmString || ''}
-                type="date"
-              />
+              <S.Filter onChange={handlePegarDataFinal} value={dataFinalEmString || ''} type="date" />
             </S.DataFinal>
 
             {/* BOTÃO DE FILTRAR */}
@@ -281,9 +279,9 @@ export const PainelPorFase = () => {
             </S.ContainerDataFase>
             <S.ContainerDataFase>
               <Link to={`/Fase/${id}/Board/Upload`}>
-              <S.ContainerImg src="/icon-big/Upload.svg" />
+                <S.ContainerImg src="/icon-big/Upload.svg" />
               </Link>
-              
+
               <S.DataFase>
                 <S.NumberTextData>
                   <S.NumberName>

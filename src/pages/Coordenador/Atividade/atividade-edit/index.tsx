@@ -2,15 +2,17 @@ import { useNavigate, useParams } from 'react-router-dom';
 import Menu from '../../../../components/Menu';
 import MenuCoord from '../../../../components/MenuCoord';
 import { useEffect, useState } from 'react';
-import { CreateAtividade } from '../../../../components/CreateAtividadeModal';
+import { CreateTarefaAtividade } from '../../../../components/CreateTarefaModal';
 import { CategoriasTipologias } from '../../../../components/CategoriaTipologias';
 import CategoriaData from '../../../../data/CategoriaData';
 import { TipologiaData } from '../../../../data/TipologiaData';
 import { IUserFase, UserModalAtividade } from '../../../../components/UserAtividadeModal';
-import { AtribuirModalAtividade, ILoteUser } from '../../../../components/AtribuirModalAtividade';
+import { AtribuirLoteModal, ILoteUser } from '../../../../components/AtribuirLoteModal';
 import AtividadeData from '../../../../data/AtividadeData';
 import EtapaData from '../../../../data/EtapaData';
 import * as S from './styles';
+import { SairSemSalvarModal } from '../../../../components/SairSemSalvarModal';
+import { ModalConfirmarEdit } from '../../../../components/ModalConfirmarEdit';
 
 const AtividadeEdit = () => {
   const { id, idatv, iday } = useParams();
@@ -32,9 +34,12 @@ const AtividadeEdit = () => {
   const [modalCatTipo, SetModalCatTipo] = useState(false);
   const [modalUsers, SetModalUsers] = useState(false);
   const [modalAtribuirLote, SetModalAtribuirLote] = useState(false);
+  const [modalSairSemSalvar, setModalSairSemSalvar] = useState(false);
+  const [modalConfirmEdit, setModalConfirmEdit] = useState(false);
   const [faseDatas, setFaseDatas] = useState<any[]>([]);
   const [LoteUser, setLoteUser] = useState<any[]>([]);
   const [UserFase, setUserFase] = useState<IUserFase[]>([]);
+
   useEffect(() => {
     setUserFase(
       [
@@ -129,7 +134,7 @@ const AtividadeEdit = () => {
       atividade: [...faseDatas],
     };
 
-    console.log(atividadeFinal);
+    //console.log(atividadeFinal);
     navigate(`/Atividades/${id}`);
   };
 
@@ -182,11 +187,8 @@ const AtividadeEdit = () => {
               <S.Titulo> Editar Atividade </S.Titulo>
             </div>
           </div>
-          <S.Exit
-            onClick={() => {
-              navigate(`/Atividades/${id}`);
-            }}
-          >
+
+          <S.Exit onClick={() => setModalSairSemSalvar(!modalSairSemSalvar)}>
             <img src="/close.svg" alt="" height={18} width={18} />
           </S.Exit>
         </div>
@@ -494,7 +496,6 @@ const AtividadeEdit = () => {
                                   Atribuir Lote
                                 </p>
                               </S.AtribuirLoteButton>
-
                             </div>
                             <div style={{ gap: 8, display: 'flex', flexWrap: 'wrap' }}>
                               {LoteUser.filter((lote) => lote.id_user === user.id && lote.id_fase === f.id_fase)
@@ -559,13 +560,13 @@ const AtividadeEdit = () => {
           </S.Usuarios>
         </S.EspecificacoesAtiv>
         {/* BOTÃO DE SALVAR */}
-        {UserFase.length > 0 && <S.EditAtivAtivado onClick={handleSave}>Editar Atividade</S.EditAtivAtivado>}
-        {UserFase.length === 0 && <S.EditAtivDesativado>Editar Atividade</S.EditAtivDesativado>}
+        {UserFase.length > 0 && <S.EditAtivAtivado >Salvar alterações</S.EditAtivAtivado>}
+        {UserFase.length === 0 && <S.EditAtivDesativado>Salvar alterações</S.EditAtivDesativado>}
       </S.EditarAtivArea>
 
       {/* MODAIS */}
       {modalTarefas && (
-        <CreateAtividade
+        <CreateTarefaAtividade
           close={() => {
             setModalTarefas(!modalTarefas);
           }}
@@ -602,7 +603,7 @@ const AtividadeEdit = () => {
         />
       )}
       {modalAtribuirLote && (
-        <AtribuirModalAtividade
+        <AtribuirLoteModal
           close={() => {
             SetModalAtribuirLote(!modalAtribuirLote);
           }}
@@ -617,6 +618,21 @@ const AtividadeEdit = () => {
           loteUser={LoteUser.filter((loteUser) => loteUser.id_user === idUser && loteUser.id_fase === idFase)[0]}
         />
       )}
+      {modalSairSemSalvar && (
+        <SairSemSalvarModal
+          close={() => {
+            setModalSairSemSalvar(!modalSairSemSalvar);
+          }}
+        />
+      )}
+      {/* {modalConfirmEdit && (
+        <ModalConfirmarEdit
+          close={() => {
+            setModalConfirmEdit(!modalConfirmEdit);
+          }}
+          salvar={handleSave}
+        />
+      )} */}
     </div>
   );
 };

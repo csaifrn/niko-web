@@ -5,7 +5,7 @@ import MenuCoord from '../../../components/MenuCoord';
 import Menu from '../../../components/Menu';
 import { useParams } from 'react-router-dom';
 import * as S from './styles';
-import { ModalCriarLote } from '../../../components/ModalCrairLote';
+import { ModalCriarLote } from '../../../components/ModalCriarLote';
 
 // import { Container } from './styles';
 

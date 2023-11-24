@@ -6,6 +6,9 @@ import { Mutation, useMutation } from 'react-query';
 import { PatchBatcheSpecifStatus } from '../../api/services/batches/patch-status-specific';
 import toast from 'react-hot-toast';
 import { KabanContext } from '../Board';
+import { AtribuirButton } from '../../pages/Coordenador/Atividade/atividade-home/styles';
+import theme from '../../global/theme';
+import { ArrowCircleLeft } from '@phosphor-icons/react';
 
 interface EspecifModalProps {
   close: () => void;
@@ -43,14 +46,16 @@ export const EspecifcModal = (props: EspecifModalProps) => {
   const mutateEspecific = useMutation(PatchBatcheSpecifStatus, {
     onSuccess: () => {
       toast.success('Status atualizado!');
-      if (props.batche.specific_status + 1 === 1) {
-        kanban?.setBatchesDispo((dispo) => dispo.filter((d) => d.id !== props.batche.id));
-        kanban?.setBatchesAnda((anda) => [...anda, props.batche]);
-      } else if (props.batche.specific_status + 1 === 2) {
-        kanban?.setBatchesAnda((anda) => anda.filter((a) => a.id !== props.batche.id));
-        kanban?.setBatchesConc((conc) => [...conc, props.batche]);
-      } else {
-        console.log('Erro', props.batche.specific_status + 1 === 2);
+      if (kanban) {
+        if (props.batche.specific_status + 1 === 1) {
+          kanban.setBatchesDispo((dispo) => dispo.filter((d) => d.id !== props.batche.id));
+          kanban.setBatchesAnda((anda) => [...anda, props.batche]);
+        } else if (props.batche.specific_status + 1 === 2) {
+          kanban.setBatchesAnda((anda) => anda.filter((a) => a.id !== props.batche.id));
+          kanban.setBatchesConc((conc) => [...conc, props.batche]);
+        } else {
+          console.log('Erro', props.batche.specific_status + 1 === 2);
+        }
       }
     },
   });
@@ -75,10 +80,11 @@ export const EspecifcModal = (props: EspecifModalProps) => {
               <S.Recused onClick={handleClose}>
                 <S.Texto>Não, não quero.</S.Texto>
               </S.Recused>
-              <S.Avancar onClick={handlePegar}>
-                <S.IconeAvancar src="/avancar.svg"></S.IconeAvancar>
-                <S.Texto style={{ color: '#FFFFFF' }}>{props.button}</S.Texto>
-              </S.Avancar>
+
+              <AtribuirButton onClick={handlePegar}>
+                <ArrowCircleLeft weight="fill" size={24} />
+                <S.Texto style={{ color: theme.colors['gray/700'] }}>{props.button}</S.Texto>
+              </AtribuirButton>
             </S.RecusedAvancar>
           </S.ModalContent>
         </S.ModalArea>

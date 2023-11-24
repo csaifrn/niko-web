@@ -161,8 +161,8 @@ export const Menu = (props: MenuProps) => {
                 color: '#fff',
               }}
             >
-              <a
-                href={'/Perfil'}
+              <Link
+                to={'/Perfil'}
                 style={{
                   color: '#fff',
                   padding: '12px 16px',
@@ -175,7 +175,7 @@ export const Menu = (props: MenuProps) => {
                 }}
               >
                 <p>Perfil</p>
-              </a>
+              </Link>
               <button
                 onClick={() => {
                   handleSignOut();

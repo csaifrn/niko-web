@@ -61,7 +61,7 @@ export const Menu = (props: MenuProps) => {
             )}
 
             <S.MenuDesk>
-              <MenuC.link href={`/Painel/${id}`}>
+              <MenuC.link to={`/Painel/${id}`}>
                 <MenuC.MenuImg
                   src={
                     pathname === `/Painel/${id}`
@@ -73,7 +73,7 @@ export const Menu = (props: MenuProps) => {
                 {pathname !== `/Painel/${id}` && <MenuC.textIcon>Painel</MenuC.textIcon>}
               </MenuC.link>
 
-              <MenuC.link href={`/Atividades/${id}`}>
+              <MenuC.link to={`/Atividades/${id}`}>
                 <MenuC.MenuImg
                   src={
                     pathname === `/Atividades/${id}` ? '/IconMenu/Activity/Fill.svg' : '/IconMenu/Activity/Regular.svg'
@@ -85,7 +85,7 @@ export const Menu = (props: MenuProps) => {
                 {pathname !== `/Atividades/${id}` && <MenuC.textIcon>Atividades</MenuC.textIcon>}
               </MenuC.link>
 
-              <MenuC.link href={`/Fase/${id}`}>
+              <MenuC.link to={`/Fase/${id}`}>
                 <MenuC.MenuImg
                   src={
                     pathname === `/Fase/${id}` || pathname.search('Board') >= 0 || pathname.search('Lote') >= 0
@@ -101,7 +101,7 @@ export const Menu = (props: MenuProps) => {
                 )}
               </MenuC.link>
 
-              <MenuC.link href={`/Categorias/${id}`}>
+              <MenuC.link to={`/Categorias/${id}`}>
                 <MenuC.MenuImg
                   src={
                     pathname === `/Categorias/${id}`

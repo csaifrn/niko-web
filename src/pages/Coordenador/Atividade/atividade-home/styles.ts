@@ -234,6 +234,7 @@ export const AtribuirButton = styled.button`
   }
   &:active {
     background-color: #43db4d;
+    transform: translateY(-5%) translateX(2%);
   }
 `;
 

@@ -165,22 +165,22 @@ export const PainelPorFase = () => {
         </S.FiltrarPorPeriodo>
 
         {/* RECEPÇÃO */}
-        <S.ContainerDataFaseRecepcao>
+        <S.DivRemessasRecepcao>
+          <S.ContainerDataFaseRecepcao>
+            <Link to={`/Fase/${id}/Board/Recebidos`}>
+              <S.CardFaseColorful style={{ backgroundColor: '#F32D2D' }}>
+                <img src="/icon-big/IconOpenFile.svg" />
+              </S.CardFaseColorful>
+            </Link>
 
-          <Link to={`/Fase/${id}/Board/Recebidos`}>
-            <S.ContainerImg src="/icon-big/Recepção.svg" />
-          </Link>
-
-          <S.DataFase>
-            <S.NumberTextDataUnic>
-              <S.DataFaseTxtCenter>
+            <S.CardFaseBlack>
+              <S.NumberTextDataUnic>
                 <S.NumberOrangeTitle>{valores.filter((valor) => valor.fase === 1)[0].concluidos}</S.NumberOrangeTitle>
-              </S.DataFaseTxtCenter>
-              <S.DataFaseTxtCenter>Remessas Recebidas</S.DataFaseTxtCenter>
-            </S.NumberTextDataUnic>
-          </S.DataFase>
-          
-        </S.ContainerDataFaseRecepcao>
+                <S.DataFaseTxtCenter>Remessas Recebidas</S.DataFaseTxtCenter>
+              </S.NumberTextDataUnic>
+            </S.CardFaseBlack>
+          </S.ContainerDataFaseRecepcao>
+        </S.DivRemessasRecepcao>
 
         <S.PainelPorFaseLotes>
           {/* CONTAGEM DE LOTES */}
@@ -194,10 +194,12 @@ export const PainelPorFase = () => {
             {/* PREPARO */}
             <S.ContainerDataFase>
               <Link to={`/Fase/${id}/Board/Preparo`}>
-                <S.ContainerImg src="/icon-big/Preparo.svg" />
+                <S.CardFaseColorful style={{ backgroundColor: '#F3802D' }}>
+                  <img src="/icon-big/IconClean.svg" />
+                </S.CardFaseColorful>
               </Link>
 
-              <S.DataFase>
+              <S.CardFaseBlack>
                 <S.NumberTextData>
                   <S.NumberName>
                     <S.NumberTxt>
@@ -215,15 +217,18 @@ export const PainelPorFase = () => {
                     </S.NumberName>
                   </S.DataFaseTxt>
                 </S.NumberTextData>
-              </S.DataFase>
+              </S.CardFaseBlack>
             </S.ContainerDataFase>
 
             {/* CATALOGAÇÃO */}
             <S.ContainerDataFase>
               <Link to={`/Fase/${id}/Board/Catalogacao`}>
-                <S.ContainerImg src="/icon-big/Catalogação.svg" />
+                <S.CardFaseColorful style={{ backgroundColor: '#EAC503' }}>
+                  <img src="/icon-big/IconBookMark.svg" />
+                </S.CardFaseColorful>
               </Link>
-              <S.DataFase>
+
+              <S.CardFaseBlack>
                 <S.NumberTextData>
                   <S.NumberName>
                     <S.NumberTxt>
@@ -241,16 +246,18 @@ export const PainelPorFase = () => {
                     </S.NumberName>
                   </S.DataFaseTxt>
                 </S.NumberTextData>
-              </S.DataFase>
+              </S.CardFaseBlack>
             </S.ContainerDataFase>
 
             {/* DIGITALIZAÇÃO */}
             <S.ContainerDataFase>
               <Link to={`/Fase/${id}/Board/Digitalizacao`}>
-                <S.ContainerImg src="/icon-big/Digitalização.svg" />
+                <S.CardFaseColorful style={{ backgroundColor: '#2D94F3' }}>
+                  <img src="/icon-big/IconScanner.svg" />
+                </S.CardFaseColorful>
               </Link>
 
-              <S.DataFase>
+              <S.CardFaseBlack>
                 <S.NumberTextData>
                   <S.NumberName>
                     <S.NumberTxt>
@@ -268,16 +275,18 @@ export const PainelPorFase = () => {
                     </S.NumberName>
                   </S.DataFaseTxt>
                 </S.NumberTextData>
-              </S.DataFase>
+              </S.CardFaseBlack>
             </S.ContainerDataFase>
 
             {/* UPLOAD */}
             <S.ContainerDataFase>
               <Link to={`/Fase/${id}/Board/Upload`}>
-                <S.ContainerImg src="/icon-big/Upload.svg" />
+                <S.CardFaseColorful style={{ backgroundColor: '#9747FF' }}>
+                  <img src="/icon-big/IconUpload.svg" />
+                </S.CardFaseColorful>
               </Link>
 
-              <S.DataFase>
+              <S.CardFaseBlack>
                 <S.NumberTextData>
                   <S.NumberName>
                     <S.NumberTxt>
@@ -295,16 +304,18 @@ export const PainelPorFase = () => {
                     </S.NumberName>
                   </S.DataFaseTxt>
                 </S.NumberTextData>
-              </S.DataFase>
+              </S.CardFaseBlack>
             </S.ContainerDataFase>
 
             {/* ARQUIVAMENTO */}
             <S.ContainerDataFase>
               <Link to={`/Fase/${id}/Board/Arquivamento`}>
-                <S.ContainerImg src="/icon-big/Arquivamento.svg" />
+                <S.CardFaseColorful style={{ backgroundColor: '#43DB6D' }}>
+                  <img src="/icon-big/IconCheckFile.svg" />
+                </S.CardFaseColorful>
               </Link>
 
-              <S.DataFase>
+              <S.CardFaseBlack>
                 <S.DataFaseTxt>
                   <S.NumberName>
                     <S.NumberTxt>
@@ -313,8 +324,9 @@ export const PainelPorFase = () => {
                     <S.DataFaseTxt>Foram concluídos</S.DataFaseTxt>
                   </S.NumberName>
                 </S.DataFaseTxt>
-              </S.DataFase>
+              </S.CardFaseBlack>
             </S.ContainerDataFase>
+            
           </S.FasesDoMeio>
         </S.PainelPorFaseLotes>
       </S.ContainerData>

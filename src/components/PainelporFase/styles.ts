@@ -21,16 +21,15 @@ export const Wrapper = styled.div`
 `;
 
 export const FiltrarPorPeriodo = styled.div`
-  display: flex; 
-  gap: 16px; 
-  flex-direction: column ;
+  display: flex;
+  gap: 16px;
+  flex-direction: column;
 `;
 
-export const FiltrarTitulo = styled.h2`
-`;
+export const FiltrarTitulo = styled.h2``;
 
 export const EscolherDatas = styled.div`
-  display: flex; 
+  display: flex;
   flex-direction: column;
   gap: 16px;
   @media (min-width: 767px) {
@@ -40,7 +39,7 @@ export const EscolherDatas = styled.div`
 
 export const DataInicial = styled.div`
   display: flex;
-  gap: 8px; 
+  gap: 8px;
   align-items: center;
 `;
 
@@ -50,19 +49,17 @@ export const DataInvalidaMessage = styled.p`
 
 export const DataFinal = styled.div`
   display: flex;
-  gap: 8px; 
+  gap: 8px;
   align-items: center;
 `;
 
-export const DataText = styled.h3`
-  
-`;
+export const DataText = styled.h3``;
 
 export const BotaoFiltrar = styled.button`
   border-radius: 3px;
   font-family: 'Rubik';
   color: #ffffff;
-  background-color: #F3802D;
+  background-color: #f3802d;
   border: none;
   padding: 8px;
   cursor: pointer;
@@ -77,7 +74,7 @@ export const BotaoFiltrar = styled.button`
 `;
 
 export const BotaoFiltrarDesativado = styled.button`
-  color: #4A4A4A;
+  color: #4a4a4a;
   background-color: #734625;
   border-radius: 3px;
   font-family: 'Rubik';
@@ -90,7 +87,6 @@ export const PainelTitulo = styled.h1`
   font-family: 'Rubik';
   color: #ffffff;
 `;
-
 
 export const ContainerData = styled.div`
   border-radius: 5px;
@@ -138,30 +134,38 @@ export const Opiton = styled.option`
   gap: 1rem;
 `;
 
-export const ContainerDataFase = styled.div`
-  
-  color: ${({ theme }) => theme.colors.white};
-  display: flex;
-  padding: 0.5rem;
-  height: 100%;
-  align-items: center;
+export const DivRemessasRecepcao = styled.div`
   width: 100%;
-  border-radius: 5px;
+  @media (min-width: 767px) {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 16px;
+  }
+`;
+
+export const ContainerDataFase = styled.div`
+  color: ${({ theme }) => theme.colors.white};
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  height: 100%;
+  width: 100%;
+  @media (min-width: 767px) {
+    grid-template-columns: 1fr 4fr;
+  }
 `;
 
 export const ContainerDataFaseRecepcao = styled.div`
-  
   color: ${({ theme }) => theme.colors.white};
-  display: flex;
-  padding: 0.5rem;
+  display: grid;
+  grid-template-columns: 1fr 3fr;
   height: 100%;
-  align-items: center;
-  width: 33%;
-  border-radius: 5px;
+  width: 100%;
+  @media (min-width: 767px) {
+    grid-template-columns: 1fr 4fr;
+  }
 `;
 
 export const DivIconeFase = styled.div`
-  
   color: ${({ theme }) => theme.colors.white};
   display: flex;
   height: 100%;
@@ -172,8 +176,8 @@ export const DivIconeFase = styled.div`
 
 export const NumberOrangeTitle = styled.span`
   color: ${({ theme }) => theme.colors['orange/400']};
-  font-size: 18px;
-  font: bold;
+  font-weight: 500;
+  font-size: 20px;
 `;
 
 export const NumberOrange = styled.span`
@@ -203,7 +207,7 @@ export const NumberTextData = styled.div`
 export const NumberTextDataUnic = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   justify-content: flex-start;
   width: 100%;
   gap: 0.5em;
@@ -211,6 +215,7 @@ export const NumberTextDataUnic = styled.div`
   @media (min-width: 520px) {
     flex-direction: row;
     align-items: center;
+    height: 50px;
   }
 `;
 
@@ -226,16 +231,29 @@ export const ContainerImg = styled.img`
   }
 `;
 
-export const DataFase = styled.div`
+export const CardFaseColorful = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px 0px 0px 5px;
+  width: 100%;
+  height: 100%;
+  &:hover {
+    filter: brightness(0.9);
+  }
+  cursor: pointer;
+`;
+
+export const CardFaseBlack = styled.div`
   background-color: ${({ theme }) => theme.colors['gray/700']};
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
   border-radius: 0px 5px 5px 0px;
-  padding-left: 16px;
   height: 100%;
   width: 100%;
+  padding: 8px 8px 8px 16px;
 `;
 
 export const Container = styled.div`
@@ -265,11 +283,11 @@ export const FasesDoMeio = styled.div`
   display: flex;
   flex-direction: column;
   gap: 16px;
+  width: 100%;
   @media (min-width: 767px) {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    gap: 0px;
-    width: 100%;
+
     height: 100%;
   }
 `;
@@ -278,8 +296,8 @@ export const PainelPorFaseLotes = styled.div`
   display: flex;
   flex-direction: column;
   gap: 8px;
+  width: 100%;
   @media (min-width: 767px) {
-    width: 100%;
   }
 `;
 

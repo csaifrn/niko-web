@@ -29,6 +29,9 @@ import theme from '../../global/theme';
 import { PatchBatcheSpecifStatus } from '../../api/services/batches/patch-status-specific';
 import { ToolTip } from '../Observation/ObservationBox/styles';
 import { AtribuirButton } from '../../pages/Coordenador/Atividade/atividade-home/styles';
+import { EspecifcModal } from '../EspecificStatusModal';
+import { BlackButton } from '../Board/styles';
+import { ButtonAtribuir } from '../CategoriaCard/styles';
 
 interface Option {
   label: string;
@@ -55,6 +58,8 @@ export const LoteDetails = () => {
   const [assigners, setAssigners] = useState<AssignedUser[]>([]);
   const [status, setStatus] = useState<number>(0);
   const [specificStatus, setSpecificStatus] = useState<number>(0);
+  const [openEspecifModal, setOpenEspecifModal] = useState<boolean>(false);
+  const [titleModal, setTitleModal] = useState({ button: 'pegar lote', title: 'Deseja pegar o lote?' });
 
   const [option, setOption] = useState<Option>();
 
@@ -114,6 +119,7 @@ export const LoteDetails = () => {
         value: data.main_status + 1,
         label: optionsFases ? optionsFases[data.main_status + 1].label : 'Houve um problema',
       });
+      console.log(data.specific_status);
     },
     onError: (error: ApiError) => {
       if (error.response) {
@@ -371,17 +377,28 @@ export const LoteDetails = () => {
               <S.Botoes>
                 {/* ATRIBUIR À ALGUÉM */}
                 {specificStatus === 0 && (
-                  <S.Botao disabled={specificStatus > 0} onClick={() => console.log('Opa')}>
-                    <p style={{ color: '#FFFFFF' }}>Pegar lote</p>
-                  </S.Botao>
+                  <AtribuirButton
+                    onClick={(e) => {
+                      e.preventDefault();
+                      setOpenEspecifModal(!openEspecifModal);
+                      setTitleModal({ button: 'pegar lote', title: 'Deseja pegar o lote?' });
+                    }}
+                  >
+                    <ArrowCircleLeft weight="fill" size={24} /> Pegar Lote
+                  </AtribuirButton>
                 )}
-                <AtribuirButton
-                  onClick={(e) => {
-                    e.preventDefault();
-                  }}
-                >
-                  <ArrowCircleLeft weight="fill" size={24} /> Pegar Lote
-                </AtribuirButton>
+
+                {specificStatus === 1 && (
+                  <AtribuirButton
+                    onClick={(e) => {
+                      e.preventDefault();
+                      setOpenEspecifModal(!openEspecifModal);
+                      setTitleModal({ button: 'Concluir o lote', title: 'Deseja concluir o lote?' });
+                    }}
+                  >
+                    Concluir lote
+                  </AtribuirButton>
+                )}
                 <S.Botao onClick={handleAtribuirAlguem}>
                   <img src={`/atribuir.svg`} alt="botão para atribuir lote a algum operador " />
                   Atribuir à alguém
@@ -576,6 +593,14 @@ export const LoteDetails = () => {
         )}
         {atribuir_modal && (
           <AtribuirAlguemModal setAssigners={setAssigners} assigners={assigners} close={handleAtribuirAlguem} />
+        )}
+        {openEspecifModal && (
+          <EspecifcModal
+            close={() => setOpenEspecifModal(!openEspecifModal)}
+            batche={task!}
+            title={titleModal.title}
+            button={titleModal.button}
+          />
         )}
       </>
     );

@@ -114,7 +114,7 @@ export const EditConfig = styled.div`
   gap: 8px;
 `;
 
-export const Edit = styled.a`
+export const Edit = styled.div`
   height: 2.25em;
   width: 2.25em;
   border-radius: 3px;

@@ -309,6 +309,7 @@ export const PainelPorFase = () => {
 
             {/* ARQUIVAMENTO */}
             <S.ContainerDataFase>
+
               <Link to={`/Fase/${id}/Board/Arquivamento`}>
                 <S.CardFaseColorful style={{ backgroundColor: '#43DB6D' }}>
                   <img src="/icon-big/IconCheckFile.svg" />
@@ -316,18 +317,16 @@ export const PainelPorFase = () => {
               </Link>
 
               <S.CardFaseBlack>
-                <S.DataFaseTxt>
-                  <S.NumberName>
-                    <S.NumberTxt>
-                      <S.NumberGreen>{valores.filter((valor) => valor.fase === 5)[0].concluidos}</S.NumberGreen>
-                    </S.NumberTxt>
-                    <S.DataFaseTxt>Foram concluídos</S.DataFaseTxt>
-                  </S.NumberName>
-                </S.DataFaseTxt>
+                <S.NumberNameArquivamento>
+                  <S.NumberGreen>{valores.filter((valor) => valor.fase === 5)[0].concluidos}</S.NumberGreen>
+                  <S.DataFaseTxt>Foram concluídos</S.DataFaseTxt>
+                </S.NumberNameArquivamento>
               </S.CardFaseBlack>
+
             </S.ContainerDataFase>
-            
+
           </S.FasesDoMeio>
+
         </S.PainelPorFaseLotes>
       </S.ContainerData>
     </S.Wrapper>

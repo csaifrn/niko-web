@@ -95,7 +95,7 @@ export const ContainerData = styled.div`
   padding: 1rem;
   flex-direction: column;
   align-items: flex-start;
-  gap: 1rem;
+  gap: 32px;
   align-self: stretch;
   font-family: 'Rubik';
   color: #ffffff;
@@ -188,6 +188,7 @@ export const NumberOrange = styled.span`
 export const NumberGreen = styled.span`
   color: ${({ theme }) => theme.colors['green/400']};
   font-size: 18px;
+  font-weight: 500;
   font: bold;
 `;
 export const NumberRed = styled.span`
@@ -215,7 +216,7 @@ export const NumberTextDataUnic = styled.div`
   @media (min-width: 520px) {
     flex-direction: row;
     align-items: center;
-    height: 50px;
+    height: 60px;
   }
 `;
 
@@ -223,6 +224,15 @@ export const NumberName = styled.div`
   display: flex;
   align-items: center;
   gap: 8px;
+  
+`;
+
+export const NumberNameArquivamento = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 19px;
+  margin-bottom: 19px;
 `;
 
 export const ContainerImg = styled.img`
@@ -295,7 +305,7 @@ export const FasesDoMeio = styled.div`
 export const PainelPorFaseLotes = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 16px;
   width: 100%;
   @media (min-width: 767px) {
   }

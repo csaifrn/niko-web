@@ -1,17 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import * as S from './styles';
 import { generateUUID } from '../../utils/generateUUID.util';
-import { AtribuirAlguemModal } from '../AtribuirAlguemModal';
-import { ArrowCircleUp } from '@phosphor-icons/react';
 
 const Lote = (props: any) => {
-  const [modal, setModal] = useState(false);
-
-  const close = () => {
-    setModal(!modal);
-  };
-
-  const [usuarios, setUsuarios] = useState('LG');
   return (
     <>
       {props.edit == true && (

@@ -1,7 +1,7 @@
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-const MenuImg = styled.img`
-`;
+const MenuImg = styled.img``;
 
 export const MenuLupa = styled.img`
   @media screen and (min-width: 767px) {
@@ -9,7 +9,7 @@ export const MenuLupa = styled.img`
   }
 `;
 
-export const LinkLogo = styled.a`
+export const LinkLogo = styled(Link)`
   @media screen and (max-width: 767px) {
     display: none;
   }
@@ -34,7 +34,6 @@ export const MenuWrapper = styled.div`
   //padding: 0em 2em 0em 2em;
 `;
 
-
 const MenuArea = styled.nav`
   //position: fixed;
   width: 100%;
@@ -49,7 +48,7 @@ const MenuLeft = styled.div`
   display: flex;
   gap: 1em;
   border-radius: 100%;
-  border: solid 1px #393E4B;
+  border: solid 1px #393e4b;
 `;
 
 interface BurgerProps {
@@ -125,7 +124,7 @@ export { MenuImg, MenuArea, MenuLeft, ButtonBurger, StyledMenu, ContainerA };
 export const MenuDesk = styled.div`
   display: none;
   gap: 2em;
-  @media screen and (min-width: 767px){
+  @media screen and (min-width: 767px) {
     display: flex;
   }
 `;

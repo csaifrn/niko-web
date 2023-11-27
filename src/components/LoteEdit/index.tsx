@@ -32,10 +32,10 @@ const LoteEdit = () => {
 
   const categorias = useMutation(SeachCategoria, {
     onSuccess: (data: SeachCategoriaResponseBatche) => {
+      console.log(data);
       setOptions([]);
       const opt = data.categories;
       const response: Options[] = opt.map((e) => ({ value: e.id, label: e.name }));
-
       setOptions(response);
     },
     onError: (error: ApiError) => {
@@ -237,9 +237,7 @@ const LoteEdit = () => {
             classNamePrefix="react-select"
           /> */}
 
-            <S.SalvarEditButton type="submit">
-              Salvar alterações
-            </S.SalvarEditButton>
+            <S.SalvarEditButton type="submit">Salvar alterações</S.SalvarEditButton>
           </S.FormContent>
         </S.EditLoteArea>
 
@@ -249,8 +247,7 @@ const LoteEdit = () => {
               setModalSairSemSalvar(!modalSairSemSalvar);
             }}
           />
-        )} 
-        
+        )}
       </div>
     );
   }

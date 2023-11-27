@@ -11,7 +11,7 @@ export const MenuCoord = () => {
   const pathname = window.location.pathname;
   return (
     <S.MenuArea>
-      <S.link href={`/Painel/${id}`}>
+      <S.link to={`/Painel/${id}`}>
         <S.MenuImg
           src={
             pathname === `/Painel/${id}` ? '/IconMenu/ChartDonut/fillicon.png' : '/IconMenu/ChartDonut/regularicon.png'
@@ -20,14 +20,16 @@ export const MenuCoord = () => {
         {pathname === `/Painel/${id}` && <S.textIcon style={{ color: '#F3802D' }}>Painel</S.textIcon>}
         {pathname !== `/Painel/${id}` && <S.textIcon>Painel</S.textIcon>}
       </S.link>
-      <S.link href={`/Atividades/${id}`}>
+
+      <S.link to={`/Atividades/${id}`}>
         <S.MenuImg
           src={pathname === `/Atividades/${id}` ? '/IconMenu/Activity/Fill.svg' : '/IconMenu/Activity/Regular.svg'}
         />
         {pathname === `/Atividades/${id}` && <S.textIcon style={{ color: '#F3802D' }}>Atividades</S.textIcon>}
         {pathname !== `/Atividades/${id}` && <S.textIcon>Atividades</S.textIcon>}
       </S.link>
-      <S.link href={`/Fase/${id}`}>
+
+      <S.link to={`/Fase/${id}`}>
         <S.MenuImg
           src={
             pathname === `/Fase/${id}` || pathname.search('Board') >= 0 || pathname.search('Lote') >= 0
@@ -43,7 +45,7 @@ export const MenuCoord = () => {
         )}
       </S.link>
 
-      <S.link href={`/Categorias/${id}`}>
+      <S.link to={`/Categorias/${id}`}>
         <S.MenuImg
           src={
             pathname === `/Categorias/${id}`

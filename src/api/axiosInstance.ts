@@ -13,4 +13,15 @@ axiosInstance.interceptors.request.use((config) => {
   return config;
 });
 
+axiosInstance.interceptors.response.use(
+  (response) => response,
+  (error) => {
+    if (error.response && error.response.status === 401) {
+      return (window.location.href = '/login');
+    } else {
+      return error.response;
+    }
+  },
+);
+
 export default axiosInstance;

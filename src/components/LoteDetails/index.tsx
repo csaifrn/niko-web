@@ -174,9 +174,10 @@ export const LoteDetails = () => {
           <Menu area={`/Painel/${id}`} id_projeto={id}></Menu>
           <MenuCoord />
           <S.areaClick>
+
             {/* BOTÃO DE FECHAR */}
             <S.CloseDiv>
-              <S.Exit onClick={() => navigate(-1)}>
+              <S.Exit onClick={() => navigate(`/Fase/${id}/Board/${optionsFases[status].label}`)}>
                 <img src="/close.svg" alt="" height={18} width={18} />
               </S.Exit>
             </S.CloseDiv>
@@ -477,7 +478,7 @@ export const LoteDetails = () => {
 
             {/* DETALHAMENTO POR FASE */}
 
-            {taskData.detalhamento_por_fase != null && (
+            {/* {taskData.detalhamento_por_fase != null && (
               <S.DetalFase>
                 <S.DetalhamentoTitulo>Detalhamento por fase</S.DetalhamentoTitulo>
                 <S.DetalhamentoGrid>
@@ -536,7 +537,7 @@ export const LoteDetails = () => {
                   ))}
                 </S.DetalhamentoGrid>
               </S.DetalFase>
-            )}
+            )} */}
           </S.areaClick>
         </div>
         {/* {pend && <ModalResolverPendencia pendencia={pendencia} close={() => setPend(!pend)}></ModalResolverPendencia>}

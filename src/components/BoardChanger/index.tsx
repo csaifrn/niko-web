@@ -5,6 +5,8 @@ export const BoardChanger = () => {
   const { id } = useParams();
   const url = window.location.pathname;
 
+  console.log(url)
+
   return (
     <>
       <S.ChangeContainer>
@@ -13,9 +15,9 @@ export const BoardChanger = () => {
             ? 'Recepção'
             : url.search('Preparo') > -1
             ? 'Preparo'
-            : url.search('Catalogacao') > -1
+            : url.search('Cataloga%C3%A7%C3%A3o') > -1
             ? 'Catalogação'
-            : url.search('Digitalizacao') > -1
+            : url.search('Digitaliza%C3%A7%C3%A3o') > -1
             ? 'Digitalização'
             : url.search('Upload') > -1
             ? 'Upload'
@@ -30,13 +32,13 @@ export const BoardChanger = () => {
             <S.LinkImg src="/icon-medium/Preparo.svg" />
             {url.search('Preparo') > -1 && <S.Barra color="#F3802D"></S.Barra>}
           </S.Link>
-          <S.Link href={`/Fase/${id}/Board/Catalogacao`}>
+          <S.Link href={`/Fase/${id}/Board/Catalogação`}>
             <S.LinkImg src="/icon-medium/Catalogação.svg" />
-            {url.search('Catalogacao') > -1 && <S.Barra color="#F3CC00"></S.Barra>}
+            {url.search('Cataloga%C3%A7%C3%A3o') > -1 && <S.Barra color="#F3CC00"></S.Barra>}
           </S.Link>
-          <S.Link href={`/Fase/${id}/Board/Digitalizacao`}>
+          <S.Link href={`/Fase/${id}/Board/Digitalização`}>
             <S.LinkImg src="/icon-medium/Digitalização.svg" />
-            {url.search('Digitalizacao') > -1 && <S.Barra color="#2D94F3"></S.Barra>}
+            {url.search('Digitaliza%C3%A7%C3%A3o') > -1 && <S.Barra color="#2D94F3"></S.Barra>}
           </S.Link>
           <S.Link href={`/Fase/${id}/Board/Upload`}>
             <S.LinkImg src="/icon-medium/Upload.svg" />

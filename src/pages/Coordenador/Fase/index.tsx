@@ -23,8 +23,8 @@ const Home = () => {
       <Main>
         <CardFase fase={-1} link={`${id}/Board/Recebidos`} color="#F32D2D" srcImgIcon="/IconsFolder.svg" />
         <CardFase fase={0} link={`${id}/Board/Preparo`} color="#F3802D" srcImgIcon="/IconsClean.svg" />
-        <CardFase fase={1} link={`${id}/Board/Catalogacao`} color="#F3CC00" srcImgIcon="/IconsBookmark.svg" />
-        <CardFase fase={2} link={`${id}/Board/Digitalizacao`} color="#2D94F3" srcImgIcon="/IconsScanner.svg" />
+        <CardFase fase={1} link={`${id}/Board/Catalogação`} color="#F3CC00" srcImgIcon="/IconsBookmark.svg" />
+        <CardFase fase={2} link={`${id}/Board/Digitalização`} color="#2D94F3" srcImgIcon="/IconsScanner.svg" />
         <CardFase fase={3} link={`${id}/Board/Upload`} color="#9C2DF3" srcImgIcon="/IconsUpload.svg" />
         <CardFase fase={4} link={`${id}/Board/Arquivamento`} color="#43DB6D" srcImgIcon="/IconsArquivamento.svg" />
       </Main>

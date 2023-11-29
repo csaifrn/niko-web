@@ -222,7 +222,7 @@ export const PainelPorFase = () => {
 
             {/* CATALOGAÇÃO */}
             <S.ContainerDataFase>
-              <Link to={`/Fase/${id}/Board/Catalogacao`}>
+              <Link to={`/Fase/${id}/Board/Catalogação`}>
                 <S.CardFaseColorful style={{ backgroundColor: '#EAC503' }}>
                   <img src="/icon-big/IconBookMark.svg" />
                 </S.CardFaseColorful>
@@ -251,7 +251,7 @@ export const PainelPorFase = () => {
 
             {/* DIGITALIZAÇÃO */}
             <S.ContainerDataFase>
-              <Link to={`/Fase/${id}/Board/Digitalizacao`}>
+              <Link to={`/Fase/${id}/Board/Digitalização`}>
                 <S.CardFaseColorful style={{ backgroundColor: '#2D94F3' }}>
                   <img src="/icon-big/IconScanner.svg" />
                 </S.CardFaseColorful>

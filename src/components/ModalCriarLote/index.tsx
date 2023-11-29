@@ -4,7 +4,6 @@ import { ErrorMessage } from '../../pages/Login/styles';
 import { validationLoginSchema, validationSearch } from './validation';
 import { useMutation } from 'react-query';
 import { CreateBatche } from '../../api/services/batches/create-batche';
-import { CreateResponseBatche } from '../../api/services/batches/create-batche/create.interface';
 import { ApiError } from '../../api/services/authentication/signIn/signIn.interface';
 import * as Yup from 'yup';
 import { ErrorsForm } from './criar.interface';
@@ -12,11 +11,11 @@ import ReactLoading from 'react-loading';
 import toast from 'react-hot-toast';
 import { SeachCategoria } from '../../api/services/categoria/get-categoria';
 import { SeachCategoriaResponseBatche } from '../../api/services/categoria/get-categoria/get.interface';
-import { KabanContext } from '../Board';
 import { GetResponseBatche } from '../../api/services/batches/get-batche/get.interface';
 
 interface ModalCriarProps {
   close: () => void;
+  refetch?: () => void;
 }
 
 interface Options {
@@ -25,8 +24,6 @@ interface Options {
 }
 
 export const ModalCriarLote = (props: ModalCriarProps) => {
-  const kanban = useContext(KabanContext);
-
   const [categoria, setCategoria] = useState<any>(null);
   const [closing, setClosing] = useState(false);
   const [options, setOptions] = useState<Options[]>([]);
@@ -36,7 +33,6 @@ export const ModalCriarLote = (props: ModalCriarProps) => {
       setOptions([]);
       const opt = data.categories;
       const response: Options[] = opt.map((e) => ({ value: e.id, label: e.name }));
-
       setOptions(response);
     },
   });
@@ -63,6 +59,10 @@ export const ModalCriarLote = (props: ModalCriarProps) => {
 
   const handleSucess = () => {
     setTitle('');
+    if (props.refetch) {
+      props.refetch();
+    }
+
     handleClose();
   };
 
@@ -76,8 +76,6 @@ export const ModalCriarLote = (props: ModalCriarProps) => {
   const loginMutation = useMutation(CreateBatche, {
     onSuccess: (data: GetResponseBatche) => {
       toast.success('Lote Criado!');
-      console.log(data);
-      kanban?.setBatchesDispo((prev) => [...prev, data]);
       handleSucess();
     },
     onError: (error: ApiError) => {

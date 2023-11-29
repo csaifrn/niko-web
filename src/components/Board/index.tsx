@@ -1,8 +1,8 @@
-import { ReactNode, createContext, useEffect, useState } from 'react';
+import { ReactNode, useEffect, useState } from 'react';
 import * as S from './styles';
 import Lote from '../Lote';
 import Users from '../../data/UserData';
-import { ArrowCircleLeft, UsersThree } from '@phosphor-icons/react';
+import { ArrowCircleLeft } from '@phosphor-icons/react';
 import { AtribuirButton } from '../../pages/Coordenador/Atividade/atividade-home/styles';
 import { BoardChanger } from '../BoardChanger';
 import { GetResponseBatche } from '../../api/services/batches/get-batche/get.interface';
@@ -22,17 +22,6 @@ interface BoardProps {
   main_status: number;
   children?: ReactNode;
 }
-
-interface ContextProps {
-  batchesDispo: GetResponseBatche[];
-  setBatchesDispo: React.Dispatch<React.SetStateAction<GetResponseBatche[]>>;
-  batchesAnda: GetResponseBatche[];
-  setBatchesAnda: React.Dispatch<React.SetStateAction<GetResponseBatche[]>>;
-  batchesConc: GetResponseBatche[];
-  setBatchesConc: React.Dispatch<React.SetStateAction<GetResponseBatche[]>>;
-}
-
-export const KabanContext = createContext<ContextProps | null>(null);
 
 export const Board = (props: BoardProps) => {
   const user = { email: Users[1].email, role: 'Operador' };
@@ -67,9 +56,7 @@ export const Board = (props: BoardProps) => {
   }, []);
 
   return (
-    <KabanContext.Provider
-      value={{ batchesAnda, batchesConc, batchesDispo, setBatchesAnda, setBatchesConc, setBatchesDispo }}
-    >
+    <>
       <BoardChanger />
 
       {props.main_status === 0 && (
@@ -122,7 +109,7 @@ export const Board = (props: BoardProps) => {
                           categoria={batche.category}
                           //envolvidos={batche.envolvidos}
                         >
-                          {user.role === 'Operador' && (
+                          {user.role === 'Operador' && props.main_status != 4 && (
                             <AtribuirButton
                               onClick={(e) => {
                                 e.preventDefault();
@@ -152,7 +139,7 @@ export const Board = (props: BoardProps) => {
               </S.kanbanSectionContent>
             </S.kanban>
           )}
-          {batchesAnda.length >= 0 && (
+          {batchesAnda.length >= 0 && props.main_status != 4 && (
             <S.kanban>
               <S.divTitulo>
                 <h2 style={{ color: theme.colors.white }}>Em andamento</h2>
@@ -201,7 +188,7 @@ export const Board = (props: BoardProps) => {
               </S.kanbanSectionContent>
             </S.kanban>
           )}
-          {batchesConc.length >= 0 && (
+          {batchesConc.length >= 0 && props.main_status != 4 && (
             <S.kanban>
               <S.divTitulo>
                 <h2 style={{ color: theme.colors.white }}>Concluídos</h2>
@@ -242,16 +229,30 @@ export const Board = (props: BoardProps) => {
       {atribuirModal && (
         <AtribuirAlguemModal close={() => setAtribuirModal(false)} assigners={batche_data?.assigned_users} />
       )}
-      {openCriarModal && <ModalCriarLote close={() => setOpenCriarModal(!openCriarModal)} />}
+      {openCriarModal && (
+        <ModalCriarLote
+          close={() => setOpenCriarModal(!openCriarModal)}
+          refetch={() =>
+            mutateBatchesQuery.mutate({
+              status: props.main_status,
+            })
+          }
+        />
+      )}
       {openEspecifModal && batche_data && (
         <EspecifcModal
           close={() => setOpenEspecifModal(!openEspecifModal)}
           batche={batche_data}
           title={titleModal.title}
           button={titleModal.button}
+          refetch={() => {
+            mutateBatchesQuery.mutate({
+              status: props.main_status,
+            });
+          }}
         />
       )}
-    </KabanContext.Provider>
+    </>
   );
 };
 

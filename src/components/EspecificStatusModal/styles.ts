@@ -1,7 +1,56 @@
+import Select from 'react-select';
 import styled from 'styled-components';
 
 export const Texto = styled.p`
   color: red;
+`;
+
+export const EscolherFaseSelect = styled(Select)`
+  margin-top: 1em;
+  .react-select__control {
+    cursor: pointer;
+    border: none;
+    border-radius: 0;
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+    background-color: ${({ theme }) => theme.colors['gray/500']} !important; /* Cor de fundo do controle */
+    color: ${({ theme }) => theme.colors.white} !important;
+    min-height: 44px;
+  }
+
+  .react-select__placeholder {
+    color: #ffffff;
+  }
+
+  .react-select__single-value {
+    color: ${({ theme }) => theme.colors.white};
+  }
+
+  .react-select__menu {
+    background-color: ${({ theme }) => theme.colors['gray/500']} !important;
+  }
+
+  .react-select__option {
+    cursor: pointer;
+    background-color: ${({ theme }) => theme.colors['gray/500']};
+    color: ${({ theme }) => theme.colors.white}; /* Cor do texto das opções */
+  }
+
+  .react-select__option--is-selected {
+    background-color: ${({ theme }) => theme.colors['gray/500']}; /* Cor de fundo da opção selecionada */
+  }
+
+  .react-select__option--is-focused {
+    background-color: ${({ theme }) => theme.colors['gray/700']}; /* Cor de fundo da opção selecionada */
+  }
+
+  .react-select__indicator-separator {
+    background-color: ${({ theme }) => theme.colors['gray/200']}; /* Cor do separador entre indicadores */
+  }
+
+  .react-select__value-container .react-select__input {
+    color: ${({ theme }) => theme.colors.white} !important;
+  }
 `;
 
 const ModalArea = styled.div`
@@ -141,6 +190,20 @@ const Avancar = styled.button`
   padding: 0 16px;
   gap: 16px;
   cursor: pointer;
+`;
+
+export const CatalogacaoArea = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+`;
+export const ButtonNoCategory = styled.div`
+  padding: 3px 5px;
+  cursor: pointer;
+  align-self: center;
+  &:hover {
+    filter: brightness(0.9);
+  }
 `;
 
 const ModalBackdrop = styled.div`

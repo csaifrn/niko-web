@@ -1,11 +1,13 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-const MenuImg = styled.img``;
+const MenuImg = styled.img`
+`;
 
 const MenuLeft = styled.div`
   display: flex;
   gap: 0.5em;
+
 `;
 
 // Create a Wrapper component that'll render a <section> tag with some styles
@@ -41,6 +43,15 @@ const link = styled(Link)`
   text-align: center;
   text-decoration: none;
   font-family: 'Rubik';
+  border-radius: 5px;
+  padding: 5px;
+  &:hover {
+    background-color: ${({ theme }) => theme.colors['gray/500']};
+  }
+  &:active {
+    background-color: ${({ theme }) => theme.colors['gray/500']};
+    transform: translateY(-5%) translateX(2%);
+  }
 `;
 
 export { MenuImg, MenuArea, MenuLeft, textIcon, link };

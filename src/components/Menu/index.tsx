@@ -61,12 +61,13 @@ export const Menu = (props: MenuProps) => {
             )}
 
             <S.MenuDesk>
+              
               <MenuC.link to={`/Painel/${id}`}>
                 <MenuC.MenuImg
                   src={
                     pathname === `/Painel/${id}`
-                      ? '/IconMenu/ChartDonut/fillicon.png'
-                      : '/IconMenu/ChartDonut/regularicon.png'
+                      ? '/IconMenu/ChartDonut/FillIcon.svg'
+                      : '/IconMenu/ChartDonut/RegularIcon.svg'
                   }
                 />
                 {pathname === `/Painel/${id}` && <MenuC.textIcon style={{ color: '#F3802D' }}>Painel</MenuC.textIcon>}
@@ -89,8 +90,8 @@ export const Menu = (props: MenuProps) => {
                 <MenuC.MenuImg
                   src={
                     pathname === `/Fase/${id}` || pathname.search('Board') >= 0 || pathname.search('Lote') >= 0
-                      ? '/IconMenu/SquaresFour/fillicon.png'
-                      : '/IconMenu/SquaresFour/regularicon.png'
+                      ? '/IconMenu/SquaresFour/FillIcon.svg'
+                      : '/IconMenu/SquaresFour/RegularIcon.svg'
                   }
                 />
                 {pathname === `/Fase/${id}` && <MenuC.textIcon style={{ color: '#F3802D' }}>Fases</MenuC.textIcon>}
@@ -105,8 +106,8 @@ export const Menu = (props: MenuProps) => {
                 <MenuC.MenuImg
                   src={
                     pathname === `/Categorias/${id}`
-                      ? '/IconMenu/TagSimple/fillicon.png'
-                      : '/IconMenu/TagSimple/regularicon.png'
+                      ? '/IconMenu/TagSimple/FillIcon.svg'
+                      : '/IconMenu/TagSimple/RegularIcon.svg'
                   }
                 />
                 {pathname === `/Categorias/${id}` && (
@@ -130,7 +131,7 @@ export const Menu = (props: MenuProps) => {
           </Link>
         </S.ContainerLogo>
 
-        <S.MenuLeft>
+        <S.MenuRight>
           {/* <S.MenuLupaMobile src="/Lupa.svg" /> */}
           {/* <S.InputSearch>
             <p>Em desenvolvimento..</p>
@@ -141,13 +142,14 @@ export const Menu = (props: MenuProps) => {
             <User
               size={44}
               color="#fff"
-              style={{ borderRadius: '100%', padding: '8px', cursor: 'pointer' }}
+              style={{ borderRadius: '100%', padding: '8px', cursor: 'pointer' ,}}
               weight="fill"
               onClick={() => {
                 setDropDown(!DropDown);
               }}
             />
 
+            {/* Menu do usuário */}
             <div
               style={{
                 display: `${DropDown ? 'block' : 'none'}`,
@@ -176,6 +178,7 @@ export const Menu = (props: MenuProps) => {
               >
                 <p>Perfil</p>
               </Link>
+
               <button
                 onClick={() => {
                   handleSignOut();
@@ -199,8 +202,10 @@ export const Menu = (props: MenuProps) => {
                 </div>
               </button>
             </div>
+
           </div>
-        </S.MenuLeft>
+        </S.MenuRight>
+
       </S.MenuArea>
     </S.MenuWrapper>
   );

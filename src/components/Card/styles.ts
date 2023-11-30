@@ -9,26 +9,21 @@ const CardContainer = styled.a`
   text-decoration: none;
   min-height: 9em;
   width: 100%;
-  //width: 9.6em;
-  //height: 100%;
   overflow: hidden;
-  border-radius: 20px;
   display: flex;
   font-family: 'Rubik';
   font-size: 16px;
   &:hover {
     filter: brightness(0.9);
   }
+  border-radius: 14px;
+  border: 1px solid #4A5565;
   @media screen and (min-width: 767px) {
     //margin: 40em;
     width: 100%;
     height: 100%;    
     min-height: 15em;
   }
-  /* ${media.greaterThan('large')`
-    width: 100%;
-    height: 17em;
-  `} */
 `;
 
 const FigureIconCard = styled.figure<ColorProps>`

@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import * as S from './styles';
 
 import { v4 as uuidv4 } from 'uuid';
+import theme from '../../global/theme';
 
 interface User {
   id: string;
@@ -167,7 +168,7 @@ export const MembrosModal = (props: MembrosModalProps) => {
                       height: '44px',
                       border: 'none',
                       borderRadius: '5px 0px 0px 5px',
-                      backgroundColor: '#191C24',
+                      backgroundColor: theme.colors['gray/700'],
                       color: 'white',
                       fontFamily: 'Rubik',
                     }}
@@ -202,7 +203,6 @@ export const MembrosModal = (props: MembrosModalProps) => {
 
                 return (
                   <S.User key={user.id}>
-
                     <div style={{ display: 'flex', alignItems: 'center', gap: '1em' }}>
                       <img
                         src={user.url}
@@ -225,12 +225,11 @@ export const MembrosModal = (props: MembrosModalProps) => {
                         onClick={() => {
                           handleDeleteUser(user.email);
                         }}
-                        style={{ backgroundColor: 'transparent', border: 'none' , cursor: 'pointer' }}
+                        style={{ backgroundColor: 'transparent', border: 'none', cursor: 'pointer' }}
                       >
                         <img src="VectorDelete.svg" alt="" />
                       </button>
                     </div>
-                    
                   </S.User>
                 );
               })}

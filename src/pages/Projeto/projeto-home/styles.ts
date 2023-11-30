@@ -23,7 +23,7 @@ export const Wrapper = styled.div`
 `;
 
 export const TituloProjetos = styled.h1`
-  color: #ffffff;
+  color: ${({ theme }) => theme.colors.white};
 `;
 
 export const ContainerCriarProjeto = styled.div`
@@ -57,12 +57,9 @@ export const BotaoCriarProjeto = styled.button`
   }
 `;
 
-
-
-
 export const Link = styled.a`
   border: none;
-  color: #191c24;
+  color: ${({ theme }) => theme.colors['gray/700']};
   border-radius: 5px;
   font-family: Rubik;
 `;

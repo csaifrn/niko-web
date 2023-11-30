@@ -13,6 +13,7 @@ import { SeachCategoriaResponseBatche } from '../../api/services/categoria/get-c
 import { SeachCategoria } from '../../api/services/categoria/get-categoria';
 import { validationPatch, validationSearch } from './validation';
 import { PatchBatcheEdit } from '../../api/services/batches/patch-batche';
+import theme from '../../global/theme';
 
 interface Options {
   value: string;
@@ -145,14 +146,12 @@ const LoteEdit = () => {
     return <Splash />;
   } else {
     return (
-      <div style={{display: 'flex' , justifyContent: 'center'} }>
-        <Menu area={`/Painel/${id}`} id_projeto={id}/>
+      <div style={{ display: 'flex', justifyContent: 'center' }}>
+        <Menu area={`/Painel/${id}`} id_projeto={id} />
         <MenuCoord />
 
         <S.ModalContent id="modal-content" onSubmit={(e) => handleSave(e)}>
-
           <S.CloseDiv>
-
             <h1>Editar {title}</h1>
             <S.Exit onClick={() => navigate(-1)}>
               <img src="/close.svg" alt="" height={18} width={18} />
@@ -178,7 +177,7 @@ const LoteEdit = () => {
               ></S.Local>
             </S.LocalDiv>
           )} */}
-          
+
           <h2>Título</h2>
           <S.NameInput type="text" value={title} onChange={(e) => setTitle(e.currentTarget.value)} />
 
@@ -191,7 +190,7 @@ const LoteEdit = () => {
                 <S.ArquivosFisicos>
                   <p>Físicos</p>
                   <S.ArquivosInput
-                    style={{ backgroundColor: '#393E4B' }}
+                    style={{ backgroundColor: theme.colors['gray/500'] }}
                     type="number"
                     name="Arquivos físicos"
                     placeholder={``}
@@ -207,7 +206,7 @@ const LoteEdit = () => {
                 <S.ArquivosDigitais>
                   <p>Digitais</p>
                   <S.ArquivosInput
-                    style={{ backgroundColor: '#393E4B' }}
+                    style={{ backgroundColor: theme.colors['gray/500'] }}
                     type="number"
                     name="Arquivos digitais"
                     placeholder={``}

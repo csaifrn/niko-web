@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 const totalArea = styled.div`
   cursor: pointer;
-  background-color: #393e4b;
+  background-color: ${({ theme }) => theme.colors['gray/500']};
   align-items: center;
   color: white;
   font-family: 'Rubik';
@@ -12,7 +12,7 @@ const totalArea = styled.div`
 const CardArea = styled.div`
   cursor: pointer;
   display: flex;
-  background-color: #393e4b;
+  background-color: ${({ theme }) => theme.colors['gray/500']};
   align-items: center;
   justify-content: space-between;
   color: white;
@@ -23,7 +23,7 @@ const CardA = styled.div`
   display: flex;
   flex-direction: column;
   padding: 1.5em 2em;
-  background-color: #393e4b;
+  background-color: ${({ theme }) => theme.colors['gray/500']};
   gap: 2em;
   font-family: 'Rubik';
   border-radius: 5px;
@@ -45,7 +45,7 @@ const textLote = styled.p`
   height: 32px;
   padding: 0em 1em;
   color: white;
-  background-color: #191c24;
+  background-color: ${({ theme }) => theme.colors['gray/700']};
   border-radius: 5px;
 `;
 interface IFooter {
@@ -113,7 +113,7 @@ const ButtonAtribuir = styled.button`
   width: 100%;
   border: none;
   border-radius: 5px;
-  background-color: #191c24;
+  background-color: ${({ theme }) => theme.colors['gray/700']};
   color: white;
   display: flex;
   align-items: center;

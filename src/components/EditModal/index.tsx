@@ -7,6 +7,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import Menu from '../Menu';
 import MenuCoord from '../MenuCoord';
 import { TipologiaData } from '../../data/TipologiaData';
+import theme from '../../global/theme';
 
 interface IEditModal {
   id: number;
@@ -88,7 +89,7 @@ export const EditModal = () => {
   };
 
   return (
-    <div style={{display: 'flex' , justifyContent: 'center'}}> 
+    <div style={{ display: 'flex', justifyContent: 'center' }}>
       <Menu area="/"></Menu>
       <MenuCoord />
       <S.ModalContent id="modal-content">
@@ -130,7 +131,7 @@ export const EditModal = () => {
               <S.ArquivosFisicos>
                 <p>Físicos</p>
                 <S.ArquivosInput
-                  style={{ backgroundColor: '#393E4B' }}
+                  style={{ backgroundColor: `${theme.colors['gray/500']}` }}
                   type="number"
                   name="nome"
                   placeholder={``}
@@ -145,7 +146,7 @@ export const EditModal = () => {
               <S.ArquivosDigitais>
                 <p>Digitais</p>
                 <S.ArquivosInput
-                  style={{ backgroundColor: '#393E4B' }}
+                  style={{ backgroundColor: theme.colors['gray/500'] }}
                   type="number"
                   name="nome"
                   placeholder={``}
@@ -167,7 +168,7 @@ export const EditModal = () => {
               style={{
                 height: '40px',
                 border: 'none',
-                backgroundColor: CatTipol ? '#20232A' : '#393E4B',
+                backgroundColor: CatTipol ? '#20232A' : theme.colors['gray/500'],
                 color: CatTipol ? '#838383' : 'white',
                 padding: '8px 8px',
               }}
@@ -180,7 +181,7 @@ export const EditModal = () => {
               style={{
                 height: '40px',
                 border: 'none',
-                backgroundColor: CatTipol ? '#393E4B' : '#20232A',
+                backgroundColor: CatTipol ? theme.colors['gray/500'] : '#20232A',
                 color: CatTipol ? 'white' : '#838383',
                 padding: '8px 8px',
               }}
@@ -218,12 +219,12 @@ export const EditModal = () => {
                     key={cat.id}
                     onClick={() => handleLoteClick(cat)}
                     style={{
-                      backgroundColor: categorias.includes(cat) ? '#393E4B' : '#20232B',
+                      backgroundColor: categorias.includes(cat) ? theme.colors['gray/500'] : '#20232B',
                     }}
                   >
                     <p
                       style={{
-                        color: categorias.includes(cat) ? '#fff' : '#838383',
+                        color: categorias.includes(cat) ? theme.colors.white : '#838383',
                       }}
                     >
                       {cat.name}
@@ -236,12 +237,12 @@ export const EditModal = () => {
                     key={cat.id}
                     onClick={() => handleLoteClick(cat)}
                     style={{
-                      backgroundColor: tipologias.includes(cat) ? '#393E4B' : '#20232B',
+                      backgroundColor: tipologias.includes(cat) ? theme.colors['gray/500'] : '#20232B',
                     }}
                   >
                     <p
                       style={{
-                        color: tipologias.includes(cat) ? '#fff' : '#838383',
+                        color: tipologias.includes(cat) ? theme.colors.white : '#838383',
                       }}
                     >
                       {cat.name}

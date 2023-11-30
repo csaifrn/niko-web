@@ -4,7 +4,7 @@ const CardContainer = styled.a`
   text-decoration: none;
   font-family: 'Rubik';
   font-size: 16px;
-  background-color: #393e4b;
+  background-color: ${({ theme }) => theme.colors['gray/500']};
   &:hover {
     filter: brightness(0.9);
   }
@@ -32,7 +32,7 @@ export const ImgProjeto = styled.img`
 `;
 
 export const DivContentProjeto = styled.div`
-  background-color: #393e4b;
+  background-color: ${({ theme }) => theme.colors['gray/500']};
   display: flex;
   padding: 1em;
   justify-content: space-between;
@@ -65,15 +65,15 @@ export const MenuThreeDots = styled.div`
   border-radius: 5px;
   position: absolute;
   right: 0;
-  background-color: #393e4b;
+  background-color: ${({ theme }) => theme.colors['gray/500']};
   min-width: 120px;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-  color: #fff;
+  color: ${({ theme }) => theme.colors.white};
   border: solid 1px #4a5565;
 `;
 
 export const ButtonMenuThree = styled.button`
-  color: #fff;
+  color: ${({ theme }) => theme.colors.white};
   background-color: transparent;
   width: 100%;
   border: none;

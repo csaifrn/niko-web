@@ -105,7 +105,7 @@ const Atividade = () => {
                             <S.EditDiv>
                               <Link to={`/Atividades/${id}/Edit/${atividade.id}/${atv.id}`}>
                                 <S.Edit>
-                                  <PencilSimple size={20} weight="fill" color="#fff" />
+                                  <PencilSimple size={20} weight="fill" color={theme.colors.white} />
                                 </S.Edit>
                               </Link>
                             </S.EditDiv>
@@ -126,7 +126,7 @@ const Atividade = () => {
                                             <div
                                               key={catTip.id}
                                               style={{
-                                                background: '#191C24',
+                                                background: theme.colors['gray/700'],
                                                 padding: '5px 6px',
                                                 display: 'flex',
                                                 alignItems: 'center',
@@ -177,7 +177,7 @@ const Atividade = () => {
                                               <div
                                                 key={lote.lote.id}
                                                 style={{
-                                                  background: '#191C24',
+                                                  background: theme.colors['gray/700'],
                                                   padding: '5px 6px',
                                                   height: '24px',
                                                   display: 'flex',
@@ -238,7 +238,7 @@ const Atividade = () => {
                                           key={index}
                                           style={{
                                             padding: '2em',
-                                            backgroundColor: '#393E4B',
+                                            backgroundColor: theme.colors['gray/500'],
                                             display: 'flex',
                                             flexDirection: 'column',
                                             gap: '2em',
@@ -251,7 +251,7 @@ const Atividade = () => {
                                               href={`/Atividades/${id}/Edit/${atividade.id}/${atv.id}`}
                                               style={{
                                                 display: 'flex',
-                                                backgroundColor: '#191C24',
+                                                backgroundColor: theme.colors['gray/700'],
                                                 height: '24px',
                                                 width: '24px',
                                                 alignItems: 'center',
@@ -262,7 +262,7 @@ const Atividade = () => {
                                                 border: 'none',
                                               }}
                                             >
-                                              <PencilSimple size={16} weight="fill" color="#fff" />
+                                              <PencilSimple size={16} weight="fill" color={theme.colors.white} />
                                             </a>
                                           )}
                                           <div>
@@ -282,7 +282,7 @@ const Atividade = () => {
                                                       <div
                                                         key={catTip.id}
                                                         style={{
-                                                          background: '#191C24',
+                                                          background: theme.colors['gray/700'],
                                                           padding: '5px 6px',
                                                           display: 'flex',
                                                           alignItems: 'center',

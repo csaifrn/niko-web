@@ -24,7 +24,7 @@ const InputSearch = styled.input`
   padding: 0 4.2em;
   border-radius: 5px;
   background-color: rgb(57, 62, 75);
-  color: #fff;
+  color: ${({ theme }) => theme.colors.white};
   border: none;
   width: 100%;
 `;

@@ -21,7 +21,7 @@ const ModalArea = styled.div`
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
-    background: #393e4b url('Select.svg') 90% 50% no-repeat;
+    background: ${({ theme }) => theme.colors['gray/500']} url('Select.svg') 90% 50% no-repeat;
     padding: 0 3em 0 1em;
   }
 `;
@@ -29,7 +29,7 @@ const ModalArea = styled.div`
 export const Exit = styled.button`
   height: 2em;
   width: 2em;
-  background-color: #393e4b;
+  background-color: ${({ theme }) => theme.colors['gray/500']};
   border-radius: 3px;
   display: flex;
   justify-content: center;
@@ -70,12 +70,12 @@ const ChooseLote = styled.div`
     width: 8px;
   }
   webkit-scrollbar-track {
-    background: #fff;
+    background: ${({ theme }) => theme.colors.white};
   }
   ::-webkit-scrollbar-thumb {
-    background-color: #5c6170;
+    background-color: ${({ theme }) => theme.colors['gray/400']} !important;
     border-radius: 6px;
-    border: 1px solid #5c6170;
+    border: 1px solid ${({ theme }) => theme.colors['gray/400']};
   }
 `;
 
@@ -108,7 +108,7 @@ const AtribuirButton = styled.button`
   border-radius: 5px;
   background-color: #43db6d;
   border: none;
-  color: #191c24;
+  color: ${({ theme }) => theme.colors['gray/700']};
   font-family: 'Rubik';
   cursor: pointer;
   &:hover {

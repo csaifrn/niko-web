@@ -17,7 +17,7 @@ const MenuArea = styled.div`
   padding: 2em;
   width: 100vw;
   height: 80px;
-  background: #191c24;
+  background: ${({ theme }) => theme.colors['gray/700']};
   align-items: center;
   justify-content: space-between;
   gap: 20px;

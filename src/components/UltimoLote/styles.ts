@@ -273,7 +273,7 @@ const Lote = styled.div`
   font-family: 'Rubik';
   position: relative;
   padding: 0.8em;
-  background-color: #393e4b;
+  background-color: ${({ theme }) => theme.colors['gray/500']};
   border-radius: 5px;
   color: white;
   filter: drop-shadow(0px 4px 1px rgba(0, 0, 0, 0.25));
@@ -282,7 +282,7 @@ const Lote = styled.div`
 const LoteEdit = styled.div`
   font-family: 'Rubik';
   padding: 0.8em;
-  background-color: #393e4b;
+  background-color: ${({ theme }) => theme.colors['gray/500']};
   border-radius: 5px;
   color: white;
   max-width: 400px;
@@ -319,7 +319,7 @@ const Pa = styled.div`
 
 const PaTextDiv = styled.div`
   height: 24px;
-  background-color: #191c24;
+  background-color: ${({ theme }) => theme.colors['gray/700']};
   display: flex;
   justify-content: center;
   align-items: center;
@@ -353,7 +353,7 @@ const Btn = styled.button`
   }
   p {
     font-family: 'Rubik';
-    color: #191c24;
+    color: ${({ theme }) => theme.colors['gray/700']};
   }
 `;
 

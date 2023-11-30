@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import * as S from './styles';
 import { useParams } from 'react-router-dom';
 import { Check } from '@phosphor-icons/react';
+import theme from '../../global/theme';
 
 interface AvancarModalProps {
   close: () => void;
@@ -85,11 +86,9 @@ export const AvancarModal = (props: AvancarModalProps) => {
               <S.Recused onClick={handleClose}>
                 <S.Texto>Não, não quero.</S.Texto>
               </S.Recused>
-              <S.Avancar
-                onClick={handleClose}
-              >
+              <S.Avancar onClick={handleClose}>
                 <S.IconeAvancar src="/avancar.svg"></S.IconeAvancar>
-                <S.Texto style={{ color: '#FFFFFF' }}>Avançar fase</S.Texto>
+                <S.Texto style={{ color: theme.colors.white }}>Avançar fase</S.Texto>
               </S.Avancar>
             </S.RecusedAvancar>
           </S.ModalContent>

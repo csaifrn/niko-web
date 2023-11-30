@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 
-const MenuImg = styled.img`
-`;
+const MenuImg = styled.img``;
 
 export const MenuLupa = styled.img`
   @media screen and (min-width: 767px) {
@@ -22,7 +21,7 @@ export const MenuLupaMobile = styled.img`
 `;
 
 export const MenuWrapper = styled.div`
-  background-color: #191c24;
+  background-color: ${({ theme }) => theme.colors['gray/700']};
   display: flex;
   top: 0;
   justify-content: center;
@@ -33,7 +32,6 @@ export const MenuWrapper = styled.div`
   z-index: 99;
   //padding: 0em 2em 0em 2em;
 `;
-
 
 const MenuArea = styled.nav`
   //position: fixed;
@@ -49,7 +47,7 @@ const MenuLeft = styled.div`
   display: flex;
   gap: 1em;
   border-radius: 100%;
-  border: solid 1px #393E4B;
+  border: solid 1px ${({ theme }) => theme.colors['gray/500']};
 `;
 
 interface BurgerProps {
@@ -88,7 +86,7 @@ const StyledMenu = styled.nav<BurgerProps>`
   z-index: 99;
   flex-direction: column;
   justify-content: right;
-  background: #191c24;
+  background: ${({ theme }) => theme.colors['gray/700']};
   display: ${({ open }) => (open ? 'flex' : 'none')};
   transform: ${({ open }) => (open ? 'translateX(0)' : 'translateX(-100%)')};
   text-align: left;
@@ -125,7 +123,7 @@ export { MenuImg, MenuArea, MenuLeft, ButtonBurger, StyledMenu, ContainerA };
 export const MenuDesk = styled.div`
   display: none;
   gap: 2em;
-  @media screen and (min-width: 767px){
+  @media screen and (min-width: 767px) {
     display: flex;
   }
 `;

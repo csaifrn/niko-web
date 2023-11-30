@@ -10,6 +10,7 @@ interface IDataFaseProps {
 }
 import { useEffect } from 'react';
 import * as S from './styles';
+import theme from '../../global/theme';
 
 export const DataFase = (Props: IDataFaseProps) => {
   const total =
@@ -32,7 +33,7 @@ export const DataFase = (Props: IDataFaseProps) => {
     <>
       <div style={{ fontFamily: 'Rubik', padding: '2em 2em 0 2em', display: 'flex', gap: '1em', alignItems: 'center' }}>
         <h1 style={{ color: '#F3802D' }}>{total}</h1>
-        <h2 style={{ color: '#fff' }}> Lotes</h2>
+        <h2 style={{ color: theme.colors.white }}> Lotes</h2>
       </div>
       <S.DataUser>
         <S.SideUser>

@@ -63,7 +63,7 @@ export const AtivsPorDiaDiv = styled.div``;
 export const DataAtiv = styled.h2``;
 
 export const AtivPorDia = styled.div`
-  background-color: #191c24;
+  background-color: ${({ theme }) => theme.colors['gray/700']};
   padding: 16px;
 `;
 
@@ -86,7 +86,7 @@ export const Atividades = styled.div`
 export const AtivCard = styled.div`
   padding: 2em;
 
-  background-color: #393e4b;
+  background-color: ${({ theme }) => theme.colors['gray/500']};
   display: flex;
   flex-direction: column;
   gap: 2em;
@@ -184,7 +184,7 @@ export const Operador = styled.div`
 export const FotoOperador = styled.img``;
 
 export const NomeOperador = styled.div`
-  background-color: #191c24;
+  background-color: ${({ theme }) => theme.colors['gray/700']};
   padding: 8px;
   border-radius: 3px;
   position: absolute;
@@ -201,7 +201,7 @@ const InputSearch = styled.input`
   padding: 0 4.2em;
   border-radius: 5px;
   background-color: rgb(57, 62, 75);
-  color: #fff;
+  color: ${({ theme }) => theme.colors.white};
   border: none;
   width: 100%;
 `;

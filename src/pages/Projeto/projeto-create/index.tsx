@@ -5,6 +5,7 @@ import { Membros, Projeto } from '../../../data/ProjetoData';
 import { useNavigate } from 'react-router-dom';
 import Users from '../../../data/UserData';
 import * as S from './styles';
+import theme from '../../../global/theme';
 
 interface User {
   id: string;
@@ -191,7 +192,7 @@ const CreateProjeto = () => {
                         height: '44px',
                         border: 'none',
                         width: '100%',
-                        backgroundColor: '#5C6170',
+                        backgroundColor: theme.colors['gray/400'],
                         color: 'white',
                         fontFamily: 'Rubik',
                         borderRadius: '5px 0 0 5px',
@@ -215,7 +216,7 @@ const CreateProjeto = () => {
                         border: 'none',
                         height: '44px',
                         width: 'auto',
-                        backgroundColor: '#5C6170',
+                        backgroundColor: theme.colors[gray/400],
                         borderRadius: '0 5px 5px 0',
                       }}
                     >

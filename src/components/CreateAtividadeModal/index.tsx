@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import * as S from './style';
 import FaseData from '../../data/FaseData';
 import Search from '../Search';
+import theme from '../../global/theme';
 
 interface CreateAtividadeProps {
   close: () => void;
@@ -87,13 +88,13 @@ export const CreateAtividade = (props: CreateAtividadeProps) => {
                     key={categ.id}
                     onClick={() => handleLoteClick(categ)}
                     style={{
-                      backgroundColor: tarefasFase.includes(categ) ? '#090E09' : '#2D303B',
+                      backgroundColor: tarefasFase.includes(categ) ? theme.colors['gray/900'] : '#2D303B',
                     }}
                   >
                     <img src={`${categ.icone}`} alt="" />
                     <p
                       style={{
-                        color: tarefasFase.includes(categ) ? '#fff' : '#838383',
+                        color: tarefasFase.includes(categ) ? theme.colors.white : '#838383',
                       }}
                     >
                       {categ.titulo}
@@ -108,12 +109,12 @@ export const CreateAtividade = (props: CreateAtividadeProps) => {
                 onChange={handleNewAtividade}
                 placeholder="Adicionar outra tarefa"
                 style={{
-                  color: '#fff',
+                  color: theme.colors.white,
                   fontFamily: 'Rubik',
                   border: 'none',
                   borderRadius: '5px',
                   padding: '0 2em',
-                  backgroundColor: '#5C6170',
+                  backgroundColor: theme.colors['gray/400'],
                   height: '44px',
                   width: '100%',
                 }}
@@ -150,13 +151,13 @@ export const CreateAtividade = (props: CreateAtividadeProps) => {
                     style={{
                       height: '60px',
                       position: 'relative',
-                      backgroundColor: '#090E09',
+                      backgroundColor: theme.colors['gray/900'],
                     }}
                   >
                     <img src={`${categ.icone}`} alt="" />
                     <p
                       style={{
-                        color: '#fff',
+                        color: theme.colors.white,
                       }}
                     >
                       {categ.titulo}

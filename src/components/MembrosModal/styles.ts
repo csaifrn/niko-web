@@ -22,7 +22,7 @@ const ModalArea = styled.div`
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
-    background: #393e4b url('/Select.svg') 90% 50% no-repeat;
+    background: ${({ theme }) => theme.colors['gray/500']} url('/Select.svg') 90% 50% no-repeat;
     padding: 0 3em 0 1em;
   }
 `;
@@ -30,7 +30,7 @@ const ModalArea = styled.div`
 export const Exit = styled.button`
   height: 2em;
   width: 2em;
-  background-color: #393e4b;
+  background-color: ${({ theme }) => theme.colors['gray/500']};
   border-radius: 3px;
   display: flex;
   justify-content: center;
@@ -60,16 +60,15 @@ const NameClose = styled.div`
 export const EmailTodo = styled.div`
   display: flex;
   padding: 1em 0em;
-  width: 100% ;
+  width: 100%;
   justify-content: space-between;
   ${media.greaterThan('large')`
   `}
-
 `;
 
 export const EmailInputSelect = styled.div`
-  display: flex; 
-  border-radius: 10px; 
+  display: flex;
+  border-radius: 10px;
   height: 44px;
   width: 80%;
   ${media.greaterThan('large')`
@@ -89,7 +88,7 @@ export const EscolherFuncao = styled(Select)`
   }
 
   .react-select__placeholder {
-    color: #ffffff;
+    color: ${({ theme }) => theme.colors.white};
   }
 
   .react-select__single-value {
@@ -137,7 +136,7 @@ export const EscolherFuncaoBlack = styled(Select)`
   }
 
   .react-select__placeholder {
-    color: #ffffff;
+    color: ${({ theme }) => theme.colors.white};
   }
 
   .react-select__single-value {
@@ -158,7 +157,6 @@ export const EscolherFuncaoBlack = styled(Select)`
   }
 
   .react-select__option--is-focused {
-
     background-color: ${({ theme }) => theme.colors['gray/700']}; /* Cor de fundo da opção selecionada */
   }
 
@@ -188,12 +186,12 @@ const ChooseLote = styled.div`
     width: 8px;
   }
   webkit-scrollbar-track {
-    background: #fff;
+    background: ${({ theme }) => theme.colors.white};
   }
   ::-webkit-scrollbar-thumb {
-    background-color: #5c6170;
+    background-color: ${({ theme }) => theme.colors['gray/400']} !important;
     border-radius: 6px;
-    border: 1px solid #5c6170;
+    border: 1px solid ${({ theme }) => theme.colors['gray/400']};
   }
 `;
 
@@ -207,9 +205,7 @@ export const User = styled.div`
   width: 120%;
   ${media.greaterThan('large')`
     width: 100%;
-  `}
-
-  /* div {
+  `}/* div {
     width: 50%;
     display: flex;
     gap: 1em;

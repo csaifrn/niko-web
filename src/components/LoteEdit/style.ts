@@ -292,7 +292,7 @@ export const ChooseCatTipol = styled.div`
   }
 
   &::-webkit-scrollbar-track {
-    background: #191c24;
+    background: ${({ theme }) => theme.colors['gray/700']};
   }
 
   &::-webkit-scrollbar-thumb {
@@ -313,7 +313,7 @@ export const SalvarEditButton = styled.button`
   border-radius: 5px;
   background-color: #43db6d;
   border: none;
-  color: #0A090E;
+  color: #0a090e;
   font-family: 'Rubik';
   bottom: 0;
   left: 0;

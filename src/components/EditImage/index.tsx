@@ -1,6 +1,7 @@
 import { Check, X } from '@phosphor-icons/react';
 import { useState, ChangeEvent } from 'react';
 import * as S from './styles';
+import theme from '../../global/theme';
 
 interface EditImageProps {
   title: string;
@@ -37,7 +38,7 @@ export const EditImage = (props: EditImageProps) => {
                   display: 'flex',
                   width: '200px',
                   height: '200px',
-                  border: 'dashed 1px #fff',
+                  border: `dashed 1px ${theme.colors.white}`,
                   borderRadius: '5px',
                   alignItems: 'center',
                   justifyContent: 'center',

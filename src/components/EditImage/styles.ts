@@ -6,7 +6,7 @@ const ModalArea = styled.div`
   left: 50%;
   transform: translate(-50%, -50%);
   padding: 2em;
-  background-color: #393e4b;
+  background-color: ${({ theme }) => theme.colors['gray/500']};
   align-items: center;
   color: white;
   font-family: 'Rubik';
@@ -21,7 +21,7 @@ const ModalContent = styled.div`
 `;
 
 export const Title = styled.h2`
-  color: #fff;
+  color: ${({ theme }) => theme.colors.white};
 `;
 
 export const ButtonDiv = styled.div`
@@ -95,7 +95,7 @@ const Lote = styled.div`
 const Recused = styled.button`
   height: 44px;
   border-radius: 5px;
-  background-color: #191c24;
+  background-color: ${({ theme }) => theme.colors['gray/700']};
   border: none;
   color: white;
   font-family: 'Rubik';

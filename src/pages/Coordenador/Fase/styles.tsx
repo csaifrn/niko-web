@@ -46,7 +46,7 @@ const Main = styled.div`
 
 const FooterHome = styled.footer`
   height: 4em;
-  background: #191c24;
+  background: ${({ theme }) => theme.colors['gray/700']};
   position: absolute;
   bottom: 0;
   width: 100%;
@@ -66,7 +66,7 @@ const Btn = styled.button`
   color: white;
   font-weight: bold;
   :hover {
-    border: 1px solid #b1b1b1;
+    border: 1px solid ${({ theme }) => theme.colors['gray/300']} !important;
   }
 `;
 

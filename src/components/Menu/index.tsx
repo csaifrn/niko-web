@@ -5,6 +5,7 @@ import * as MenuC from '../MenuCoord/styles';
 import { useNavigate, useParams } from 'react-router-dom';
 import { User } from '@phosphor-icons/react';
 import { SharedState } from '../../context/SharedContext';
+import theme from '../../global/theme';
 
 interface MenuProps {
   area: string;
@@ -140,7 +141,7 @@ export const Menu = (props: MenuProps) => {
           <div style={{ position: 'relative' }} ref={dropDownRef}>
             <User
               size={44}
-              color="#fff"
+              color={theme.colors.white}
               style={{ borderRadius: '100%', padding: '8px', cursor: 'pointer' }}
               weight="fill"
               onClick={() => {
@@ -154,17 +155,17 @@ export const Menu = (props: MenuProps) => {
                 borderRadius: '5px',
                 position: 'absolute',
                 right: '0',
-                backgroundColor: '#393E4B',
+                backgroundColor: theme.colors['gray/500'],
                 minWidth: '120px',
                 boxShadow: '0px 8px 16px 0px rgba(0,0,0,0.2)',
                 zIndex: '1',
-                color: '#fff',
+                color: theme.colors.white,
               }}
             >
               <a
                 href={'/Perfil'}
                 style={{
-                  color: '#fff',
+                  color: theme.colors.white,
                   padding: '12px 16px',
                   fontFamily: 'Rubik',
 
@@ -182,7 +183,7 @@ export const Menu = (props: MenuProps) => {
                   navigate('/');
                 }}
                 style={{
-                  color: '#fff',
+                  color: theme.colors.white,
                   backgroundColor: 'transparent',
                   width: '100%',
                   border: 'none',

@@ -56,7 +56,7 @@ const Main = styled.section`
 
 const Footer = styled.footer`
   display: none;
-  background: #191c24;
+  background: ${({ theme }) => theme.colors['gray/700']};
   position: fixed;
   width: 100%;
   bottom: 0;
@@ -76,7 +76,7 @@ const Btn = styled.button`
   color: white;
   font-weight: bold;
   :hover {
-    border: 1px solid #b1b1b1;
+    border: 1px solid ${({ theme }) => theme.colors['gray/300']} !important;
   }
 `;
 

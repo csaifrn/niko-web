@@ -68,7 +68,7 @@ const Lote = styled.div`
 const Recused = styled.button`
   height: 44px;
   border-radius: 5px;
-  background-color: #191c24;
+  background-color: ${({ theme }) => theme.colors['gray/700']};
   border: none;
   color: white;
   font-family: 'Rubik';

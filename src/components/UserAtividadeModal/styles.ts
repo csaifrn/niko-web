@@ -38,7 +38,7 @@ const NameClose = styled.div`
 export const Exit = styled.button`
   height: 2em;
   width: 2em;
-  background-color: #393e4b;
+  background-color: ${({ theme }) => theme.colors['gray/500']};
   border-radius: 3px;
   display: flex;
   justify-content: center;
@@ -69,7 +69,7 @@ const ChooseLote = styled.div`
   }
 
   &::-webkit-scrollbar-track {
-    background: #191c24;
+    background: ${({ theme }) => theme.colors['gray/700']};
   }
 
   &::-webkit-scrollbar-thumb {
@@ -94,7 +94,7 @@ const AtribuirButton = styled.button`
   border-radius: 5px;
   background-color: #43db6d;
   border: none;
-  color: #191c24;
+  color: ${({ theme }) => theme.colors['gray/700']};
   font-family: 'Rubik';
   cursor: pointer;
   &:hover {

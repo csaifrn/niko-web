@@ -82,7 +82,7 @@ const ModalContent = styled.div`
 
 export const ButtonGreen = styled.button`
   border: none;
-  color: #191c24;
+  color: ${({ theme }) => theme.colors['gray/700']};
   border-radius: 5px;
   display: flex;
   align-items: center;
@@ -127,7 +127,7 @@ const ChooseUser = styled.div`
   }
 
   &::-webkit-scrollbar-thumb {
-    background-color: #191c24;
+    background-color: ${({ theme }) => theme.colors['gray/700']};
     border-radius: 20px;
   }
 `;

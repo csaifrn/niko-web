@@ -80,7 +80,7 @@ export const CloseDiv = styled.div`
 export const Exit = styled.button`
   height: 2em;
   width: 2em;
-  background-color: #393e4b;
+  background-color: ${({ theme }) => theme.colors['gray/500']};
   border-radius: 3px;
   display: flex;
   justify-content: center;
@@ -161,7 +161,7 @@ export const Protocolo = styled.div`
   height: 2em;
   display: flex;
   align-items: center;
-  background-color: #393e4b;
+  background-color: ${({ theme }) => theme.colors['gray/500']};
   border-radius: 3px;
 `;
 
@@ -171,12 +171,12 @@ export const Estante = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #393e4b;
+  background-color: ${({ theme }) => theme.colors['gray/500']};
   border-radius: 3px;
 `;
 
 export const ArquivFisicos = styled.div`
-  background-color: #393e4b;
+  background-color: ${({ theme }) => theme.colors['gray/500']};
   height: 2em;
   width: 4em;
   display: flex;
@@ -187,7 +187,7 @@ export const ArquivFisicos = styled.div`
 `;
 
 export const ArquivDigitais = styled.div`
-  background-color: #393e4b;
+  background-color: ${({ theme }) => theme.colors['gray/500']};
   height: 2em;
   width: 4em;
   display: flex;
@@ -246,7 +246,7 @@ export const Categoria = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #393e4b;
+  background-color: ${({ theme }) => theme.colors['gray/500']};
   border-radius: 3px;
 `;
 
@@ -330,7 +330,7 @@ export const Pendencias = styled.div`
   display: flex;
   flex-direction: column;
   gap: 16px;
-  background: #393e4b;
+  background: ${({ theme }) => theme.colors['gray/500']};
   border-radius: 5px;
   order: 0;
   flex-grow: 0;
@@ -345,7 +345,7 @@ export const Observações = styled.div`
   flex-direction: column;
   transition: all;
   gap: 16px;
-  background: #393e4b;
+  background: ${({ theme }) => theme.colors['gray/500']};
   border-radius: 5px;
   order: 0;
   flex-grow: 0;
@@ -385,7 +385,7 @@ export const BotaoResolverPend = styled.button`
   width: 100%;
   border: none;
   font-family: 'Rubik';
-  color: #ffffff;
+  color: ${({ theme }) => theme.colors.white};
   cursor: pointer;
   &:hover {
     background-color: ${({ theme }) => theme.colors['yellow/300']};
@@ -408,7 +408,7 @@ export const Botoes = styled.div`
 `;
 
 export const Botao = styled.button`
-  background-color: #393e4b;
+  background-color: ${({ theme }) => theme.colors['gray/500']};
   display: flex;
   align-items: center;
   gap: 1em;
@@ -418,7 +418,7 @@ export const Botao = styled.button`
   border-radius: 5px;
   border: none;
   font-family: 'Rubik';
-  color: #ffffff;
+  color: ${({ theme }) => theme.colors.white};
   cursor: pointer;
   &:hover {
     background-color: ${({ theme }) => theme.colors['gray/400']};
@@ -440,7 +440,7 @@ export const BotaoDeletarLote = styled.button`
   border-radius: 5px;
   border: none;
   font-family: 'Rubik';
-  color: #ffffff;
+  color: ${({ theme }) => theme.colors.white};
   cursor: pointer;
   &:hover {
     background-color: ${({ theme }) => theme.colors['red/400']};
@@ -455,12 +455,12 @@ export const BotaoMudarFase = styled.div`
   display: flex;
   border: none;
   font-family: 'Rubik';
-  color: #ffffff;
+  color: ${({ theme }) => theme.colors.white};
   border-radius: 5px;
 `;
 
 export const VoltarAvancar = styled.button`
-  background-color: #393e4b;
+  background-color: ${({ theme }) => theme.colors['gray/500']};
   display: flex;
   align-items: center;
   gap: 10px;
@@ -493,7 +493,7 @@ export const VoltarAvancarDesativado = styled.button`
 `;
 
 export const OptionFases = styled.option`
-  background-color: #393e4b;
+  background-color: ${({ theme }) => theme.colors['gray/500']};
   width: calc(50%);
   display: flex;
   padding: 2em;
@@ -587,7 +587,7 @@ export const Fase = styled.div`
   padding: 16px;
   gap: 16px;
   width: calc(100%-6em);
-  background: #393e4b;
+  background: ${({ theme }) => theme.colors['gray/500']};
   border-radius: 8px;
   flex: none;
   order: 0;
@@ -655,7 +655,7 @@ export const EscolherFaseSelect = styled(Select)`
   }
 
   .react-select__placeholder {
-    color: #ffffff;
+    color: ${({ theme }) => theme.colors.white};
   }
 
   .react-select__single-value {
@@ -699,7 +699,7 @@ export const EscolherFaseSelectDesativado = styled(Select)`
   }
 
   .react-select__placeholder {
-    color: #ffffff;
+    color: ${({ theme }) => theme.colors.white};
   }
 
   .react-select__single-value {

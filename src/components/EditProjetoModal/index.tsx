@@ -1,6 +1,7 @@
 import { ChangeEvent, useEffect, useState } from 'react';
 import * as S from './styles';
 import { Projeto } from '../../data/ProjetoData';
+import theme from '../../global/theme';
 
 interface EditProjetoModalProps {
   id_projeto: string;
@@ -72,7 +73,7 @@ export const EditProjetoModal = (props: EditProjetoModalProps) => {
                   display: 'flex',
                   width: '100%',
                   height: '150px',
-                  border: 'dashed 1px #fff',
+                  border: `dashed 1px ${theme.colors.white}`,
                   borderRadius: '5px',
                   alignItems: 'center',
                   justifyContent: 'center',
@@ -106,8 +107,8 @@ export const EditProjetoModal = (props: EditProjetoModalProps) => {
                   padding: '0 1em',
                   borderRadius: '5px',
                   border: 'none',
-                  backgroundColor: '#5C6170',
-                  fontFamily: 'Rubik'
+                  backgroundColor: theme.colors['gray/400'],
+                  fontFamily: 'Rubik',
                 }}
               />
             </div>

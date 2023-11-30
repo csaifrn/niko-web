@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import * as S from './styles';
 import Search from '../Search';
 import CategoriaData from '../../data/CategoriaData';
+import theme from '../../global/theme';
 
 interface EditModalProps {
   close: () => void;
@@ -46,7 +47,7 @@ export const CreateModal = (props: EditModalProps) => {
                   width={18}
                   style={{
                     padding: '5px 5px',
-                    backgroundColor: '#090E09',
+                    backgroundColor: theme.colors['gray/900'],
                     borderRadius: '5px',
                   }}
                 />
@@ -86,7 +87,7 @@ export const CreateModal = (props: EditModalProps) => {
                     key={categ.id}
                     onClick={() => handleLoteClick(categ.id)}
                     style={{
-                      backgroundColor: selectedCategoriaData.includes(categ.id) ? '#090E09' : '#2D303B',
+                      backgroundColor: selectedCategoriaData.includes(categ.id) ? theme.colors['gray/900'] : '#2D303B',
                     }}
                   >
                     <p

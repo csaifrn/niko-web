@@ -214,12 +214,12 @@ export const Board = (props: BoardProps) => {
         <S.FaseKanbanPage>
           {/* <S.divImg>
             <S.IconeFase src={`/icon-medium/${fase.titulo}.svg`} alt={`icone da fase ${fase.titulo}`} />
-            <h1 style={{ color: '#ffffff' }}>{fase.titulo}</h1>
+            <h1 style={{ color: theme.colors.white }}>{fase.titulo}</h1>
           </S.divImg>
 
           <S.divImgMaior>
             <S.IconeFase src={`/icon-big/${fase.titulo}.svg`} alt={`icone da fase ${fase.titulo}`} />
-            <h1 style={{ color: '#ffffff' }}>{fase.titulo}</h1>
+            <h1 style={{ color: theme.colors.white }}>{fase.titulo}</h1>
           </S.divImgMaior> */}
 
           {fase.titulo == 'Arquivamento' || fase.titulo == 'Preparo' ? (

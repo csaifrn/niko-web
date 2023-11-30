@@ -5,6 +5,7 @@ import { LoteData } from '../../data/LoteData';
 import EtapaData from '../../data/EtapaData';
 import CategoriaData from '../../data/CategoriaData';
 import { TipologiaData } from '../../data/TipologiaData';
+import theme from '../../global/theme';
 
 interface AtribuirModalAtividadeProps {
   nameUser: string;
@@ -118,7 +119,6 @@ export const AtribuirModalAtividade = (props: AtribuirModalAtividadeProps) => {
     }, 10);
 
     return () => clearTimeout(timer);
-
   }, [closing]);
 
   const handleClose = () => {
@@ -128,7 +128,7 @@ export const AtribuirModalAtividade = (props: AtribuirModalAtividadeProps) => {
     }, 300);
   };
 
-  console.log(props.nameFase)
+  console.log(props.nameFase);
 
   return (
     <>
@@ -171,7 +171,7 @@ export const AtribuirModalAtividade = (props: AtribuirModalAtividadeProps) => {
                     key={lote.id}
                     onClick={() => handleLoteClick(lote)}
                     style={{
-                      backgroundColor: selectedLotes.includes(lote) ? '#090E09' : '#2D303B',
+                      backgroundColor: selectedLotes.includes(lote) ? theme.colors['gray/900'] : '#2D303B',
                       display: 'flex',
                       flexDirection: 'column',
                       gap: '0.5em',
@@ -179,7 +179,7 @@ export const AtribuirModalAtividade = (props: AtribuirModalAtividadeProps) => {
                   >
                     <p
                       style={{
-                        color: selectedLotes.includes(lote) ? '#fff' : '#838383',
+                        color: selectedLotes.includes(lote) ? theme.colors.white : '#838383',
                       }}
                     >
                       {lote.titulo + ' ' + lote.numero}

@@ -15,13 +15,13 @@ export const EditarAtivArea = styled.div`
 `;
 
 export const Titulo = styled.h1`
-  color: #ffffff;
+  color: ${({ theme }) => theme.colors.white};
 `;
 
 export const Exit = styled.button`
   height: 2em;
   width: 2em;
-  background-color: #393e4b;
+  background-color: ${({ theme }) => theme.colors['gray/500']};
   border-radius: 3px;
   display: flex;
   justify-content: center;
@@ -38,7 +38,7 @@ export const Exit = styled.button`
 `;
 
 export const Titulo2 = styled.h2`
-  color: #ffffff;
+  color: ${({ theme }) => theme.colors.white};
   font-weight: 400;
 `;
 
@@ -158,7 +158,7 @@ export const UsuariosPorFase = styled.div`
   `} */
   @media screen and (min-width: 767px) {
     display: grid;
-    grid-template-columns: repeat(3 , 1fr);
+    grid-template-columns: repeat(3, 1fr);
     flex-direction: row;
   }
 `;

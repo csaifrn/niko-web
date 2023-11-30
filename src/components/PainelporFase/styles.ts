@@ -11,7 +11,7 @@ export const Wrapper = styled.div`
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
-    background: #191c24 url('/Select.svg') 90% 50% no-repeat;
+    background: ${({ theme }) => theme.colors['gray/700']} url('/Select.svg') 90% 50% no-repeat;
     padding: 0 3em 0 1em;
     width: 10em;
     height: 44px;
@@ -21,16 +21,15 @@ export const Wrapper = styled.div`
 `;
 
 export const FiltrarPorPeriodo = styled.div`
-  display: flex; 
-  gap: 16px; 
-  flex-direction: column ;
+  display: flex;
+  gap: 16px;
+  flex-direction: column;
 `;
 
-export const FiltrarTitulo = styled.h2`
-`;
+export const FiltrarTitulo = styled.h2``;
 
 export const EscolherDatas = styled.div`
-  display: flex; 
+  display: flex;
   flex-direction: column;
   gap: 16px;
   @media (min-width: 767px) {
@@ -40,7 +39,7 @@ export const EscolherDatas = styled.div`
 
 export const DataInicial = styled.div`
   display: flex;
-  gap: 8px; 
+  gap: 8px;
   align-items: center;
 `;
 
@@ -50,19 +49,17 @@ export const DataInvalidaMessage = styled.p`
 
 export const DataFinal = styled.div`
   display: flex;
-  gap: 8px; 
+  gap: 8px;
   align-items: center;
 `;
 
-export const DataText = styled.h3`
-  
-`;
+export const DataText = styled.h3``;
 
 export const BotaoFiltrar = styled.button`
   border-radius: 3px;
   font-family: 'Rubik';
-  color: #ffffff;
-  background-color: #F3802D;
+  color: ${({ theme }) => theme.colors.white};
+  background-color: #f3802d;
   border: none;
   padding: 8px;
   cursor: pointer;
@@ -79,18 +76,16 @@ export const BotaoFiltrar = styled.button`
 export const BotaoFiltrarDesativado = styled.button`
   border-radius: 3px;
   font-family: 'Rubik';
-  color: #4A4A4A;
+  color: #4a4a4a;
   background-color: #734625;
   border: none;
   padding: 8px;
-
 `;
 
 export const PainelTitulo = styled.h1`
   font-family: 'Rubik';
-  color: #ffffff;
+  color: ${({ theme }) => theme.colors.white};
 `;
-
 
 export const ContainerData = styled.div`
   border-radius: 5px;
@@ -102,7 +97,7 @@ export const ContainerData = styled.div`
   gap: 1rem;
   align-self: stretch;
   font-family: 'Rubik';
-  color: #ffffff;
+  color: ${({ theme }) => theme.colors.white};
 `;
 
 export const ContainerFilterNumber = styled.div`
@@ -137,8 +132,6 @@ export const Opiton = styled.option`
   align-items: center;
   gap: 1rem;
 `;
-
-
 
 export const ContainerDataFase = styled.div`
   background-color: ${({ theme }) => theme.colors['gray/700']};

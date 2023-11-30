@@ -19,7 +19,7 @@ const ModalArea = styled.div`
 
 export const InputCheck = styled.input`
   all: unset;
-  border: 1px solid #fff;
+  border: 1px solid ${({ theme }) => theme.colors.white};
   width: 18px;
   height: 18px;
   display: inline-block;
@@ -68,7 +68,7 @@ const NameClose = styled.div`
 export const Titulo = styled.h2``;
 
 export const PendDivBlack = styled.div`
-  background-color: #191c24;
+  background-color: ${({ theme }) => theme.colors['gray/700']};
   border-radius: 5px;
   gap: 10px;
   padding: 10px;
@@ -98,7 +98,7 @@ export const SelectPendencia = styled.input`
   align-items: center;
   gap: 10px;
   border-radius: 3px;
-  border: 1px solid #fff;
+  border: 1px solid ${({ theme }) => theme.colors.white};
   background: red;
 `;
 
@@ -110,7 +110,7 @@ const Recused = styled.button`
   padding: 0 16px;
   background-color: #fcde42;
   border: none;
-  color: #191c24;
+  color: ${({ theme }) => theme.colors['gray/700']};
   font-family: 'Rubik';
   display: flex;
   align-items: center;
@@ -135,9 +135,9 @@ export const IconeVoltar = styled.img``;
 export const Voltar = styled.button`
   height: 44px;
   border-radius: 5px;
-  background-color: #191c24;
+  background-color: ${({ theme }) => theme.colors['gray/700']};
   border: none;
-  color: #ffffff;
+  color: ${({ theme }) => theme.colors['white']};
   font-family: 'Rubik';
   display: flex;
   align-items: center;

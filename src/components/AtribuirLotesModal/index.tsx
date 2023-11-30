@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import * as S from './styles';
 import Search from '../Search';
+import theme from '../../global/theme';
 
 interface AtribuirModalProps {
   nameUser: string;
@@ -98,12 +99,11 @@ export const AtribuirModal = (props: AtribuirModalProps) => {
                   width={24}
                   style={{
                     padding: '5px 5px',
-                    backgroundColor: '#090E09',
+                    backgroundColor: theme.colors['gray/900'],
                     borderRadius: '5px',
                   }}
                 />
               </button>
-
             </S.NameClose>
 
             <Search searchTerm={searchTerm} handleSearchChange={handleSearchChange} />
@@ -113,12 +113,12 @@ export const AtribuirModal = (props: AtribuirModalProps) => {
                   key={lote.id}
                   onClick={() => handleLoteClick(lote.id)}
                   style={{
-                    backgroundColor: selectedLotes.includes(lote.id) ? '#090E09' : '#2D303B',
+                    backgroundColor: selectedLotes.includes(lote.id) ? theme.colors['gray/900'] : '#2D303B',
                   }}
                 >
                   <p
                     style={{
-                      color: selectedLotes.includes(lote.id) ? '#fff' : '#838383',
+                      color: selectedLotes.includes(lote.id) ? theme.colors.white : '#838383',
                     }}
                   >
                     {lote.title}

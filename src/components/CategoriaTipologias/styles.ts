@@ -38,13 +38,13 @@ const ChooseLote = styled.div`
   gap: 1em;
   overflow: auto;
   scroll-behavior: auto;
-    &::-webkit-scrollbar {
+  &::-webkit-scrollbar {
     width: 0.8em;
     height: 0.5em;
   }
 
   &::-webkit-scrollbar-track {
-    background: #191c24;
+    background: ${({ theme }) => theme.colors['gray/700']};
   }
 
   &::-webkit-scrollbar-thumb {
@@ -69,7 +69,7 @@ const AtribuirButton = styled.button`
   border-radius: 5px;
   background-color: #43db6d;
   border: none;
-  color: #191C24;
+  color: ${({ theme }) => theme.colors['gray/700']};
   font-family: 'Rubik';
   cursor: pointer;
   &:hover {
@@ -98,7 +98,7 @@ export const ModalBackdrop = styled.div`
 export const Exit = styled.button`
   height: 2em;
   width: 2em;
-  background-color: #393e4b;
+  background-color: ${({ theme }) => theme.colors['gray/500']};
   border-radius: 3px;
   display: flex;
   justify-content: center;

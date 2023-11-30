@@ -10,6 +10,7 @@ import { TipologiaData } from '../../../../data/TipologiaData';
 import { IUserFase, UserModalAtividade } from '../../../../components/UserAtividadeModal';
 import { AtribuirModalAtividade, ILoteUser } from '../../../../components/AtribuirModalAtividade';
 import * as S from './style';
+import theme from '../../../../global/theme';
 
 const AtividadeCreate = () => {
   const { id } = useParams();
@@ -168,7 +169,7 @@ const AtividadeCreate = () => {
                   width: 150,
                   height: 44,
                   padding: 10,
-                  background: '#393E4B',
+                  background: theme.colors['gray/500'],
                   borderRadius: 5,
                   justifyContent: 'center',
                   alignItems: 'center',
@@ -201,7 +202,7 @@ const AtividadeCreate = () => {
                       key={fase.id}
                       style={{
                         paddingRight: 8,
-                        background: '#393E4B',
+                        background: theme.colors['gray/500'],
                         borderRadius: 5,
                         justifyContent: 'flex-start',
                         alignItems: 'center',
@@ -274,7 +275,7 @@ const AtividadeCreate = () => {
                         paddingRight: 8,
                         paddingTop: 5,
                         paddingBottom: 5,
-                        background: '#393E4B',
+                        background: theme.colors['gray/500'],
                         borderRadius: 3,
                         justifyContent: 'flex-start',
                         alignItems: 'flex-start',
@@ -387,7 +388,7 @@ const AtividadeCreate = () => {
                           style={{
                             width: '100%',
                             padding: 16,
-                            background: '#393E4B',
+                            background: theme.colors['gray/500'],
                             borderRadius: 5,
                             flexDirection: 'column',
                             gap: '2em',
@@ -411,7 +412,7 @@ const AtividadeCreate = () => {
                                   height: 32,
                                   background: 'linear-gradient(0deg, #D9D9D9 0%, #D9D9D9 100%)',
                                   borderRadius: 9999,
-                                  border: '0.50px #191C24 solid',
+                                  border: `0.50px ${theme.colors['gray/700']} solid`,
                                   objectFit: 'cover',
                                 }}
                                 src={user.url}
@@ -431,27 +432,26 @@ const AtividadeCreate = () => {
                             </div>
 
                             <S.AtribuirLoteButton
-                                onClick={() => {
-                                  setFaseName(tarefas.filter((tarefa: any) => tarefa.id === f.id_fase)[0].icone);
-                                  setName(user.name);
-                                  setIdUser(user.id);
-                                  setIdFase(f.id_fase);
-                                  SetModalAtribuirLote(true);
+                              onClick={() => {
+                                setFaseName(tarefas.filter((tarefa: any) => tarefa.id === f.id_fase)[0].icone);
+                                setName(user.name);
+                                setIdUser(user.id);
+                                setIdFase(f.id_fase);
+                                SetModalAtribuirLote(true);
+                              }}
+                            >
+                              <p
+                                style={{
+                                  color: theme.colors['gray/500'],
+                                  fontSize: 12,
+                                  fontFamily: 'Rubik',
+                                  fontWeight: '500',
+                                  wordWrap: 'break-word',
                                 }}
                               >
-                                <p
-                                  style={{
-                                    color: '#191C24',
-                                    fontSize: 12,
-                                    fontFamily: 'Rubik',
-                                    fontWeight: '500',
-                                    wordWrap: 'break-word',
-                                  }}
-                                >
-                                  Atribuir Lote
-                                </p>
-                              </S.AtribuirLoteButton>
-
+                                Atribuir Lote
+                              </p>
+                            </S.AtribuirLoteButton>
                           </div>
 
                           <div style={{ gap: 8, display: 'flex', flexWrap: 'wrap' }}>
@@ -471,7 +471,7 @@ const AtividadeCreate = () => {
                                               paddingRight: 9,
                                               paddingTop: 8,
                                               paddingBottom: 8,
-                                              background: '#191C24',
+                                              background: theme.colors['gray/700'],
                                               borderRadius: 5,
                                               justifyContent: 'center',
                                               alignItems: 'center',

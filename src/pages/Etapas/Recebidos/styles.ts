@@ -17,22 +17,22 @@ export const RecepcaoPage = styled.div`
   }
 `;
 
-export const  NumeroDeRemessasDiv = styled.div`
+export const NumeroDeRemessasDiv = styled.div`
   display: flex;
   gap: 8px;
 `;
 
-export const  NumDeRemessasGreen = styled.h2`
+export const NumDeRemessasGreen = styled.h2`
   display: flex;
-  color: #43DB6D; 
+  color: #43db6d;
 `;
 
-export const  RemessasTitle = styled.h2`
+export const RemessasTitle = styled.h2`
   color: ${({ theme }) => theme.colors['white']};
 `;
 
 export const RemessasMain = styled.div`
-  background-color: #191c24;
+  background-color: ${({ theme }) => theme.colors['gray/700']};
   display: flex;
   flex-direction: column;
   padding: 2em;
@@ -41,14 +41,14 @@ export const RemessasMain = styled.div`
   height: 55vh;
   width: 100%;
   @media screen and (min-width: 767px) {
-    min-height: 50vh; 
+    min-height: 50vh;
     width: 70vh;
   }
 `;
 
- export const RemessasCards = styled.div`
-  display: flex; 
-  flex-direction: column; 
+export const RemessasCards = styled.div`
+  display: flex;
+  flex-direction: column;
   gap: 1em;
   overflow-y: scroll;
   scroll-behavior: auto;
@@ -70,11 +70,11 @@ export const RemessasMain = styled.div`
     background-color: ${({ theme }) => theme.colors['gray/400']};
     border-radius: 20px;
   }
- `;
+`;
 
 export const RemessaCardCinzaClaro = styled.div`
   color: white;
-  background-color: #393E4B;
+  background-color: ${({ theme }) => theme.colors['gray/500']};
   padding: 2em;
   border-radius: 5px;
   display: flex;
@@ -86,7 +86,7 @@ export const RemessaCardCinzaClaro = styled.div`
 
 const FooterHome = styled.footer`
   height: 4em;
-  background: #191c24;
+  background: ${({ theme }) => theme.colors['gray/700']};
   position: absolute;
   bottom: 0;
   width: 100%;
@@ -116,4 +116,4 @@ const Btn = styled.button`
   }
 `;
 
-export {FooterHome, spanLinear, Btn };
+export { FooterHome, spanLinear, Btn };

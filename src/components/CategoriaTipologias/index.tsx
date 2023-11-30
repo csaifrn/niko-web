@@ -3,6 +3,7 @@ import * as S from './styles';
 import Search from '../Search';
 import CategoriaData from '../../data/CategoriaData';
 import { TipologiaData } from '../../data/TipologiaData';
+import theme from '../../global/theme';
 
 interface CategoriasTipologiasProps {
   close: () => void;
@@ -46,7 +47,7 @@ export const CategoriasTipologias = (props: CategoriasTipologiasProps) => {
     (catg) => catg.name.toLowerCase().includes(searchTerm.toLowerCase()) || catg.name.includes(searchTerm),
   );
 
-  const [closing , setClosing] = useState(false);
+  const [closing, setClosing] = useState(false);
 
   useEffect(() => {
     // Ao renderizar o modal, aplicar um escalonamento gradual para exibi-lo
@@ -96,25 +97,23 @@ export const CategoriasTipologias = (props: CategoriasTipologiasProps) => {
             </S.NameClose>
 
             <S.DivEscolherCatTipol>
-
               <S.ButtonCatTipol
                 onClick={() => setCatTipo(false)}
                 style={{
-                  backgroundColor: CatTipo ? '#2D303B' : '#191C24',
+                  backgroundColor: CatTipo ? '#2D303B' : theme.colors['gray/700'],
                 }}
               >
-                <p style={{fontFamily: 'Rubik'}}>Categorias</p>
+                <p style={{ fontFamily: 'Rubik' }}>Categorias</p>
               </S.ButtonCatTipol>
 
               <S.ButtonCatTipol
                 onClick={() => setCatTipo(true)}
                 style={{
-                  backgroundColor: CatTipo ? '#191C24' : '#2D303B',
+                  backgroundColor: CatTipo ? theme.colors['gray/700'] : '#2D303B',
                 }}
               >
-                <p style={{fontFamily: 'Rubik'}}>Tipologias</p>
+                <p style={{ fontFamily: 'Rubik' }}>Tipologias</p>
               </S.ButtonCatTipol>
-
             </S.DivEscolherCatTipol>
 
             <Search searchTerm={searchTerm} handleSearchChange={handleSearchChange} />
@@ -127,12 +126,12 @@ export const CategoriasTipologias = (props: CategoriasTipologiasProps) => {
                       key={cat.id}
                       onClick={() => handleLoteClick(cat)}
                       style={{
-                        backgroundColor: categorias.includes(cat) ? '#090E09' : '#2D303B',
+                        backgroundColor: categorias.includes(cat) ? theme.colors['gray/900'] : '#2D303B',
                       }}
                     >
                       <p
                         style={{
-                          color: categorias.includes(cat) ? '#fff' : '#838383',
+                          color: categorias.includes(cat) ? theme.colors.white : '#838383',
                         }}
                       >
                         {cat.name}
@@ -145,12 +144,12 @@ export const CategoriasTipologias = (props: CategoriasTipologiasProps) => {
                       key={cat.id}
                       onClick={() => handleLoteClick(cat)}
                       style={{
-                        backgroundColor: tipologias.includes(cat) ? '#090E09' : '#2D303B',
+                        backgroundColor: tipologias.includes(cat) ? theme.colors['gray/900'] : '#2D303B',
                       }}
                     >
                       <p
                         style={{
-                          color: tipologias.includes(cat) ? '#fff' : '#838383',
+                          color: tipologias.includes(cat) ? theme.colors.white : '#838383',
                         }}
                       >
                         {cat.name}

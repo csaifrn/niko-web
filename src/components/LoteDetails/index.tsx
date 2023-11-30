@@ -8,7 +8,7 @@ import FaseData from '../../data/FaseData';
 import Splash from '../../pages/Splash';
 import toast from 'react-hot-toast';
 
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate, Link } from 'react-router-dom';
 import { ConfigModal } from '../ConfigModal';
 import { useMutation } from 'react-query';
 import { GetBatche } from '../../api/services/batches/get-batche';
@@ -23,8 +23,7 @@ import { ObservationModal } from '../Observation/Observation-modal-update';
 import { DeleteObservation } from '../../api/services/batches/observation/delete-obsevation';
 import { AtribuirAlguemModal } from '../AtribuirAlguemModal';
 import { BlockAssigner } from '../BatchBlocks/BlockAssigner';
-import { Link } from 'react-router-dom';
-
+import theme from '../../global/theme';
 
 export const LoteDetails = () => {
   const optionsFases = FaseData.map((fase) => ({ id: fase.id, label: fase.titulo }));
@@ -137,7 +136,6 @@ export const LoteDetails = () => {
             </S.CloseDiv>
 
             <S.LoteInfos>
-
               <S.LoteEditConfig>
                 {/* TÍTULO */}
                 <S.TituloLote>{`${task?.title}`}</S.TituloLote>
@@ -167,7 +165,6 @@ export const LoteDetails = () => {
                 </S.BlockGray>
               </S.DadosCriacaoLoteDiv>
               <S.DetalhesLote>
-
                 {task?.shelf_number !== null && <S.Estante>{task?.shelf_number}</S.Estante>}
 
                 {/* ARQUIVOS FÍSICOS */}
@@ -195,11 +192,7 @@ export const LoteDetails = () => {
                   <S.DetalhesLote>
                     {assigners &&
                       assigners.map((assigned) => (
-                        <BlockAssigner
-                          key={assigned.id}
-                          assigner={assigned}
-                          setAssigners={setAssigners}
-                        />
+                        <BlockAssigner key={assigned.id} assigner={assigned} setAssigners={setAssigners} />
                       ))}
                   </S.DetalhesLote>
                 </React.Fragment>
@@ -268,7 +261,7 @@ export const LoteDetails = () => {
                     style={{
                       objectFit: 'cover',
                       borderRadius: '100%',
-                      border: '1px solid #393E4B',
+                      border: `1px solid ${theme.colors[gray/500]}`,
                     }}
                   />
                 )}
@@ -301,8 +294,6 @@ export const LoteDetails = () => {
 
                 {/* OBSERVAÇÕES */}
                 <S.Observações>
-
-
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                     <S.PendenciaTitulo>Observações</S.PendenciaTitulo>
                     <S.BotaoCriarObservacao
@@ -345,7 +336,7 @@ export const LoteDetails = () => {
                     {/* BOTÃO DE VOLTAR FASE*/}
                     <S.VoltarAvancar onClick={handleVoltar} style={{ cursor: 'pointer' }}>
                       <img src={'/voltar.svg'} alt="ícone circular com uma seta para a esquerda ao centro" />
-                      <p style={{ color: '#FFFFFF' }}>Voltar Fase</p>
+                      <p style={{ color: theme.colors.white }}>Voltar Fase</p>
                     </S.VoltarAvancar>
 
                     {/* BOTÃO DE ESCOLHER FASE PARA VOLTAR*/}
@@ -364,7 +355,7 @@ export const LoteDetails = () => {
                     {/* BOTÃO DE AVANÇAR FASE*/}
                     <S.VoltarAvancar onClick={handleAvancar} style={{ cursor: 'pointer' }}>
                       <img src={'/avancar.svg'} alt="ícone circular com uma seta para a direita ao centro" />
-                      <p style={{ color: '#FFFFFF' }}>Avancar Fase</p>
+                      <p style={{ color: theme.colors.white }}>Avancar Fase</p>
                     </S.VoltarAvancar>
 
                     {/* BOTÃO DE ESCOLHER FASE PARA AVANÇAR*/}
@@ -436,7 +427,7 @@ export const LoteDetails = () => {
                                 style={{
                                   objectFit: 'cover',
                                   borderRadius: '100%',
-                                  border: '1px solid #191C24',
+                                  border: `1px solid ${theme.colors['gray/700']}`,
                                 }}
                               />
                             </React.Fragment>

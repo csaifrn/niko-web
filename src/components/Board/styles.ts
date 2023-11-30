@@ -26,22 +26,13 @@ const kanban = styled.div`
   gap: 16px;
 
   @media screen and (min-width: 767px) {
-<<<<<<< HEAD
-    //justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    margin-bottom: 0;
-    //margin-bottom: 2em;
-=======
     flex-direction: row;
     margin-bottom: 2em;
->>>>>>> d4bc41e418184f3210a9047700bc4657c04552d2
   }
 `;
 
 export const WrapperEmpty = styled.div`
   font-family: 'Rubik';
-  background-color: ${({ theme }) => theme.colors['gray/900']};
   display: flex;
   align-items: center;
   justify-content: center;

@@ -114,7 +114,7 @@ export const ButtonGreen = styled.button`
   height: 44px;
   width: 100%;
   font-family: Rubik;
-  background-color: #43db6d;
+  background-color: ${({ theme }) => theme.colors['green/400']};
   cursor: pointer;
   &:hover {
     background-color: ${({ theme }) => theme.colors['green/600']};
@@ -134,7 +134,7 @@ export const ButtonEnviar = styled.button`
   align-items: center;
   justify-content: center;
   border-radius: 5px;
-  background-color: #f3802d;
+  background-color: ${({ theme }) => theme.colors['orange/400']};
   cursor: pointer;
   &:hover {
     background-color: ${({ theme }) => theme.colors['orange/500']};

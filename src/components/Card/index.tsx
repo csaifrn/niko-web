@@ -1,4 +1,13 @@
-import { CardContainer, DataStrongCard, FigureIconCard, ImgIconCard, NumberCard, TextBoxCard , NomeEtapa} from './styles';
+import theme from '../../global/theme';
+import {
+  CardContainer,
+  DataStrongCard,
+  FigureIconCard,
+  ImgIconCard,
+  NumberCard,
+  TextBoxCard,
+  NomeEtapa,
+} from './styles';
 
 interface CardProps {
   color: string;
@@ -14,7 +23,6 @@ interface CardProps {
 export const CardFase = ({ remes = 0, dispo = 0, anda = 0, empausa = 0, ...props }: CardProps) => {
   return (
     <CardContainer href={props.link}>
-
       <FigureIconCard backgroundColor={props.color}>
         <ImgIconCard src={props.srcImgIcon}></ImgIconCard>
       </FigureIconCard>
@@ -22,7 +30,7 @@ export const CardFase = ({ remes = 0, dispo = 0, anda = 0, empausa = 0, ...props
       {props.fase == 'Recepcao' && (
         <TextBoxCard>
           <DataStrongCard>
-            <NumberCard backgroundColor="#43DB6D">{remes}</NumberCard>
+            <NumberCard backgroundColor={theme.colors['green/400']}>{remes}</NumberCard>
             <NomeEtapa>REMESSAS RECEBIDAS</NomeEtapa>
           </DataStrongCard>
         </TextBoxCard>
@@ -31,12 +39,12 @@ export const CardFase = ({ remes = 0, dispo = 0, anda = 0, empausa = 0, ...props
       {props.fase == 'Preparo' && (
         <TextBoxCard>
           <DataStrongCard>
-            <NumberCard backgroundColor="#FCDE42">{anda}</NumberCard>
+            <NumberCard backgroundColor={theme.colors['yellow/300']}>{anda}</NumberCard>
             <NomeEtapa>ANDAMENTO</NomeEtapa>
           </DataStrongCard>
 
           <DataStrongCard>
-            <NumberCard backgroundColor="#F32D2D">{empausa}</NumberCard>
+            <NumberCard backgroundColor={theme.colors['red/500']}>{empausa}</NumberCard>
             <NomeEtapa>EM PAUSA</NomeEtapa>
           </DataStrongCard>
         </TextBoxCard>
@@ -45,17 +53,17 @@ export const CardFase = ({ remes = 0, dispo = 0, anda = 0, empausa = 0, ...props
       {props.fase != 'Preparo' && props.fase != 'Recepcao' && props.fase != 'Arquivamento' && (
         <TextBoxCard>
           <DataStrongCard>
-            <NumberCard backgroundColor="#43DB6D">{dispo}</NumberCard>
+            <NumberCard backgroundColor={theme.colors['green/400']}>{dispo}</NumberCard>
             <NomeEtapa>DISPONÍVEIS</NomeEtapa>
           </DataStrongCard>
 
           <DataStrongCard>
-            <NumberCard backgroundColor="#FCDE42">{anda}</NumberCard>
+            <NumberCard backgroundColor={theme.colors['yellow/300']}>{anda}</NumberCard>
             <NomeEtapa>ANDAMENTO</NomeEtapa>
           </DataStrongCard>
 
           <DataStrongCard>
-            <NumberCard backgroundColor="#F32D2D">{empausa}</NumberCard>
+            <NumberCard backgroundColor={theme.colors['red/500']}>{empausa}</NumberCard>
             <NomeEtapa>EM PAUSA</NomeEtapa>
           </DataStrongCard>
         </TextBoxCard>
@@ -64,12 +72,11 @@ export const CardFase = ({ remes = 0, dispo = 0, anda = 0, empausa = 0, ...props
       {props.fase == 'Arquivamento' && (
         <TextBoxCard>
           <DataStrongCard>
-            <NumberCard backgroundColor="#43DB6D">{dispo}</NumberCard>
+            <NumberCard backgroundColor={theme.colors['green/400']}>{dispo}</NumberCard>
             <NomeEtapa>DISPONÍVEIS</NomeEtapa>
           </DataStrongCard>
         </TextBoxCard>
       )}
-      
     </CardContainer>
   );
 };

@@ -60,7 +60,7 @@ export const TituloBotaoAdd = styled.div`
 
 export const AtribuirLoteButton = styled.button`
   padding: 8px;
-  background-color: #43db6d;
+  background-color: ${({ theme }) => theme.colors['green/400']};
   border-radius: 5px;
   gap: 10;
   display: flex;
@@ -184,7 +184,7 @@ export const EditAtivAtivado = styled.button`
   align-self: stretch;
   height: 44px;
   padding: 10px;
-  background: #43db6d;
+  background: ${({ theme }) => theme.colors['green/400']};
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 5px;
   justify-content: center;
@@ -215,7 +215,7 @@ export const EditAtivDesativado = styled.button`
   align-self: stretch;
   height: 44px;
   padding: 10px;
-  background: #43db6d;
+  background: ${({ theme }) => theme.colors['green/400']};
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 5px;
   justify-content: center;

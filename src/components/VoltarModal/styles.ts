@@ -108,7 +108,7 @@ const Recused = styled.button`
   height: 44px;
   border-radius: 5px;
   padding: 0 16px;
-  background-color: #fcde42;
+  background-color: ${({ theme }) => theme.colors['yelow/300']};
   border: none;
   color: ${({ theme }) => theme.colors['gray/700']};
   font-family: 'Rubik';

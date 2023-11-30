@@ -346,7 +346,7 @@ const Btn = styled.button`
   color: ${({ theme }) => theme.colors['gray/700']};
   width: 100%;
   height: 44px;
-  background-color: #43db6d;
+  background-color: ${({ theme }) => theme.colors['green/400']};
   border-radius: 5px;
   border: none;
   :hover {

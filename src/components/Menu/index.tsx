@@ -70,7 +70,9 @@ export const Menu = (props: MenuProps) => {
                       : '/IconMenu/ChartDonut/regularicon.png'
                   }
                 />
-                {pathname === `/Painel/${id}` && <MenuC.textIcon style={{ color: '#F3802D' }}>Painel</MenuC.textIcon>}
+                {pathname === `/Painel/${id}` && (
+                  <MenuC.textIcon style={{ color: theme.colors['orange/400'] }}>Painel</MenuC.textIcon>
+                )}
                 {pathname !== `/Painel/${id}` && <MenuC.textIcon>Painel</MenuC.textIcon>}
               </MenuC.link>
 
@@ -81,7 +83,7 @@ export const Menu = (props: MenuProps) => {
                   }
                 />
                 {pathname === `/Atividades/${id}` && (
-                  <MenuC.textIcon style={{ color: '#F3802D' }}>Atividades</MenuC.textIcon>
+                  <MenuC.textIcon style={{ color: theme.colors['orange/400'] }}>Atividades</MenuC.textIcon>
                 )}
                 {pathname !== `/Atividades/${id}` && <MenuC.textIcon>Atividades</MenuC.textIcon>}
               </MenuC.link>
@@ -94,9 +96,15 @@ export const Menu = (props: MenuProps) => {
                       : '/IconMenu/SquaresFour/regularicon.png'
                   }
                 />
-                {pathname === `/Fase/${id}` && <MenuC.textIcon style={{ color: '#F3802D' }}>Fases</MenuC.textIcon>}
-                {pathname.search('Board') >= 0 && <MenuC.textIcon style={{ color: '#F3802D' }}>Fases</MenuC.textIcon>}
-                {pathname.search('Lote') >= 0 && <MenuC.textIcon style={{ color: '#F3802D' }}>Fases</MenuC.textIcon>}
+                {pathname === `/Fase/${id}` && (
+                  <MenuC.textIcon style={{ color: theme.colors['orange/400'] }}>Fases</MenuC.textIcon>
+                )}
+                {pathname.search('Board') >= 0 && (
+                  <MenuC.textIcon style={{ color: theme.colors['orange/400'] }}>Fases</MenuC.textIcon>
+                )}
+                {pathname.search('Lote') >= 0 && (
+                  <MenuC.textIcon style={{ color: theme.colors['orange/400'] }}>Fases</MenuC.textIcon>
+                )}
                 {pathname !== `/Fase/${id}` && pathname.search('Board') < 0 && pathname.search('Lote') < 0 && (
                   <MenuC.textIcon>Fases</MenuC.textIcon>
                 )}
@@ -111,7 +119,7 @@ export const Menu = (props: MenuProps) => {
                   }
                 />
                 {pathname === `/Categorias/${id}` && (
-                  <MenuC.textIcon style={{ color: '#F3802D' }}>Categorias</MenuC.textIcon>
+                  <MenuC.textIcon style={{ color: theme.colors['orange/400'] }}>Categorias</MenuC.textIcon>
                 )}
                 {pathname !== `/Categorias/${id}` && <MenuC.textIcon>Categorias</MenuC.textIcon>}
               </MenuC.link>

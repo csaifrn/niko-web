@@ -185,7 +185,7 @@ export const AtribuirModalAtividade = (props: AtribuirModalAtividadeProps) => {
                       {lote.titulo + ' ' + lote.numero}
                     </p>
                     {isLoteAssigned && (
-                      <span style={{ color: '#FCDE42' }}>Este lote foi atribuído a outro operador</span>
+                      <span style={{ color: theme.colors['yellow/300'] }}>Este lote foi atribuído a outro operador</span>
                     )}
                   </S.Lote>
                 );

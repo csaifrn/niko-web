@@ -379,7 +379,7 @@ export const BotaoResolverPend = styled.button`
   gap: 10px;
   flex-shrink: 0;
   border-radius: 5px;
-  background: #fcde42;
+  background: ${({ theme }) => theme.colors['yellow/300']};
   color: #191c24;
   padding: 1.5em;
   width: 100%;
@@ -388,7 +388,7 @@ export const BotaoResolverPend = styled.button`
   color: ${({ theme }) => theme.colors.white};
   cursor: pointer;
   &:hover {
-    background-color: ${({ theme }) => theme.colors['yellow/300']};
+    background-color: ${({ theme }) => theme.colors['yellow/200']};
   }
   &:active {
     background-color: ${({ theme }) => theme.colors['yellow/200']};

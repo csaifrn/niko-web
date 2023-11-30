@@ -140,7 +140,7 @@ export const ChooseUser = styled.div`
 export const AtribuirButton = styled.button`
   height: 44px;
   border-radius: 5px;
-  background-color: #43db6d;
+  background-color: ${({ theme }) => theme.colors['green/400']};
   border: none;
   color: ${({ theme }) => theme.colors['gray/700']};
   font-family: 'Rubik';
@@ -217,7 +217,7 @@ export const Slider = styled.span`
 export const Input = styled.input.attrs({ type: 'checkbox' })`
   display: none;
   &:checked + ${Slider} {
-    background-color: #43db6d;
+    background-color: ${({ theme }) => theme.colors['green/400']};
   }
 
   &:checked + ${Slider}:before {

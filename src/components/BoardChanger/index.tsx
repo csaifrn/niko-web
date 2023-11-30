@@ -1,5 +1,6 @@
 import { useParams } from 'react-router-dom';
 import * as S from './styles';
+import theme from '../../global/theme';
 
 export const BoardChanger = () => {
   const { id } = useParams();
@@ -24,11 +25,11 @@ export const BoardChanger = () => {
         <S.Change>
           <S.Link href={`/Fase/${id}/Board/Recebidos`}>
             <S.LinkImg src="/icon-medium/Recepção.svg" />
-            {url.search('Recebidos') > -1 && <S.Barra color="#F32D2D"></S.Barra>}
+            {url.search('Recebidos') > -1 && <S.Barra color={theme.colors['red/500']}></S.Barra>}
           </S.Link>
           <S.Link href={`/Fase/${id}/Board/Preparo`}>
             <S.LinkImg src="/icon-medium/Preparo.svg" />
-            {url.search('Preparo') > -1 && <S.Barra color="#F3802D"></S.Barra>}
+            {url.search('Preparo') > -1 && <S.Barra color={theme.colors['orange/400']}></S.Barra>}
           </S.Link>
           <S.Link href={`/Fase/${id}/Board/Catalogacao`}>
             <S.LinkImg src="/icon-medium/Catalogação.svg" />
@@ -44,7 +45,7 @@ export const BoardChanger = () => {
           </S.Link>
           <S.Link href={`/Fase/${id}/Board/Arquivamento`}>
             <S.LinkImg src="/icon-medium/Arquivamento.svg" />
-            {url.search('Arquivamento') > -1 && <S.Barra color="#43DB6D"></S.Barra>}
+            {url.search('Arquivamento') > -1 && <S.Barra color={theme.colors['green/400']}></S.Barra>}
           </S.Link>
         </S.Change>
       </S.ChangeContainer>

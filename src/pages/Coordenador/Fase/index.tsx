@@ -1,4 +1,4 @@
-import { Main , FasePage} from './styles';
+import { Main, FasePage } from './styles';
 import { CardFase } from '../../../components/Card';
 import MenuCoord from '../../../components/MenuCoord';
 import Menu from '../../../components/Menu';
@@ -7,6 +7,7 @@ import { useState } from 'react';
 import { LoteData } from '../../../data/LoteData';
 import FaseData from '../../../data/FaseData';
 import EntradaData from '../../../data/EntradasData';
+import theme from '../../../global/theme';
 
 const Home = () => {
   const { id } = useParams();
@@ -70,14 +71,14 @@ const Home = () => {
         <CardFase
           fase={'Recepcao'}
           link={`${id}/Board/Recebidos`}
-          color="#F32D2D"
+          color={theme.colors['red/500']}
           srcImgIcon="/IconsFolder.svg"
           remes={recepcao.remes}
         />
         <CardFase
           fase={FaseData[0].titulo}
           link={`${id}/Board/Preparo`}
-          color="#F3802D"
+          color={theme.colors['orange/400']}
           srcImgIcon="/IconsClean.svg"
           anda={preparo.anda}
           empausa={preparo.empausa}
@@ -112,7 +113,7 @@ const Home = () => {
         <CardFase
           fase={FaseData[4].titulo}
           link={`${id}/Board/Arquivamento`}
-          color="#43DB6D"
+          color={theme.colors['green/400']}
           srcImgIcon="/IconsArquivamento.svg"
           dispo={arquivamento.dispo}
         />

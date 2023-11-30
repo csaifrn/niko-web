@@ -48,7 +48,7 @@ const Lote = styled.div`
 const AtribuirButton = styled.button`
   height: 44px;
   border-radius: 5px;
-  background-color: #43db6d;
+  background-color: ${({ theme }) => theme.colors['green/400']};
   border: none;
   color: white;
   font-family: 'Rubik';

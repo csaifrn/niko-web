@@ -70,9 +70,9 @@ const spanLinear = styled.span`
 const Btn = styled.button`
   padding: 0.5em;
   width: 40%;
-  background-color: #f3802d;
+  background-color:  ${({ theme }) => theme.colors['orange/400']};
   border-radius: 0.5em;
-  border: 1px solid #f3802d;
+  border: 1px solid  ${({ theme }) => theme.colors['orange/400']};
   color: white;
   font-weight: bold;
   :hover {

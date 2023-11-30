@@ -59,7 +59,7 @@ export const BotaoFiltrar = styled.button`
   border-radius: 3px;
   font-family: 'Rubik';
   color: ${({ theme }) => theme.colors.white};
-  background-color: #f3802d;
+  background-color: ${({ theme }) => theme.colors['orange/400']};
   border: none;
   padding: 8px;
   cursor: pointer;

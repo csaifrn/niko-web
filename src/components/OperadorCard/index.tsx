@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import * as S from './styles';
 import { AtribuirModal } from '../AtribuirLotesModal';
 import { DataFase } from '../DataFase';
+import theme from '../../global/theme';
 
 const OperadorCard = (user: any) => {
   const [expanded, setExpanded] = useState(false);
@@ -38,10 +39,10 @@ const OperadorCard = (user: any) => {
                   style={{
                     objectFit: 'cover',
                     borderRadius: '100%',
-                    border: '1px solid #43DB6D',
+                    border: `1px solid ${theme.colors['green/400']}`,
                   }}
                 />
-                <p style={{ color: '#43DB6D' }}>{User.name}</p>
+                <p style={{ color: theme.colors['green/400'] }}>{User.name}</p>
               </S.dataUser>
               <S.dataLote>
                 <img src={`/icon-medium/${User.fase}.svg`} height={28} width={28} alt="" />

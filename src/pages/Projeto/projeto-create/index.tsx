@@ -145,7 +145,7 @@ const CreateProjeto = () => {
           <S.Status>
             <S.BallStatus
               style={{
-                backgroundColor: `${contador > 0 ? '#43DB6D' : '#F3802D'}`,
+                backgroundColor: `${contador > 0 ? theme.colors['green/400'] : theme.colors['orange/400']}`,
               }}
             >
               {contador > 0 && <img src="Check.svg" alt="" height={18} width={18} />}
@@ -156,7 +156,7 @@ const CreateProjeto = () => {
           <S.Status>
             <S.BallStatus
               style={{
-                backgroundColor: `${contador > 1 ? '#43DB6D' : '#F3802D'}`,
+                backgroundColor: `${contador > 1 ? theme.colors['green/400'] : theme.colors['orange/400']}`,
               }}
             ></S.BallStatus>
             <h3>Membros</h3>

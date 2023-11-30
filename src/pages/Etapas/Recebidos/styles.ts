@@ -24,7 +24,7 @@ export const NumeroDeRemessasDiv = styled.div`
 
 export const NumDeRemessasGreen = styled.h2`
   display: flex;
-  color: #43db6d;
+  color: ${({ theme }) => theme.colors['green/400']};
 `;
 
 export const RemessasTitle = styled.h2`
@@ -101,7 +101,7 @@ const Btn = styled.button`
   padding: 0.5em;
   width: 100%;
   height: 44px;
-  background-color: #43db6d;
+  background-color: ${({ theme }) => theme.colors['green/400']};
   border-radius: 5px;
   border: none;
   color: white;

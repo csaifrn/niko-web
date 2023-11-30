@@ -105,7 +105,7 @@ const Btn = styled.button`
   padding: 0.5em;
   width: 100%;
   height: 44px;
-  background-color: #43db6d;
+  background-color: ${({ theme }) => theme.colors['green/400']};
   border-radius: 5px;
   border: none;
   color: white;

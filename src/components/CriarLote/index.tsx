@@ -92,7 +92,7 @@ export const CreateModal = (props: EditModalProps) => {
                   >
                     <p
                       style={{
-                        color: selectedCategoriaData.includes(categ.id) ? '#43DB6D' : '#838383',
+                        color: selectedCategoriaData.includes(categ.id) ? theme.colors['green/400'] : '#838383',
                       }}
                     >
                       {categ.name}

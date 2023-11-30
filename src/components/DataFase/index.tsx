@@ -32,7 +32,7 @@ export const DataFase = (Props: IDataFaseProps) => {
   return (
     <>
       <div style={{ fontFamily: 'Rubik', padding: '2em 2em 0 2em', display: 'flex', gap: '1em', alignItems: 'center' }}>
-        <h1 style={{ color: '#F3802D' }}>{total}</h1>
+        <h1 style={{ color: theme.colors['orange/400'] }}>{total}</h1>
         <h2 style={{ color: theme.colors.white }}> Lotes</h2>
       </div>
       <S.DataUser>

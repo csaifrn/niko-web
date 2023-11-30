@@ -191,7 +191,7 @@ const Atividade = () => {
                                                 {EtapaData.filter((etapa) => lote.lote.id_etapa === etapa.id)[0] &&
                                                   EtapaData.filter((etapa) => lote.lote.id_etapa === etapa.id)[0]
                                                     .id_fase !== fase.faseData.id && (
-                                                    <Check size={12} color="#43DB6D" />
+                                                    <Check size={12} color={theme.colors['green/400']} />
                                                   )}
                                               </div>
                                             );

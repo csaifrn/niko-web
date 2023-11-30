@@ -13,7 +13,7 @@ const theme = {
     'red/700': '#CF2222',
     'orange/400': '#F3802D',
     'orange/500': '#E76A00',
-    'orange/600': '#D65400',
+    'orange/600': '#E76A00',
     'yellow/300': '#FCDE42',
     'yellow/200': '#FFE55B',
     'green/400': '#43DB6D',

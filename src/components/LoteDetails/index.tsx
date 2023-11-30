@@ -396,7 +396,7 @@ export const LoteDetails = () => {
                             alt="ícone com seta para direita indicando a data e hora que o lote começou a ser feito"
                           />
                           {fase.inicio}
-                          <S.Text style={{ color: '#FCDE42' }}>{fase.hora_inicio}</S.Text>
+                          <S.Text style={{ color: theme.colors['yellow/300'] }}>{fase.hora_inicio}</S.Text>
                         </S.TimeBeginDiv>
                       )}
 

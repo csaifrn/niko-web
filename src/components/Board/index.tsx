@@ -9,6 +9,7 @@ import { AtribuirAlguem, AtribuirButton as Btn } from '../Lote/styles';
 import { ArrowCircleLeft, ArrowCircleRight, ArrowCircleUp, UsersThree } from '@phosphor-icons/react';
 import { AtribuirButton } from '../../pages/Coordenador/Atividade/atividade-home/styles';
 import { BoardChanger } from '../BoardChanger';
+import theme from '../../global/theme';
 
 interface Fase {
   id: number;
@@ -87,7 +88,7 @@ export const Board = (props: BoardProps) => {
                       {section.title == 'Disponíveis' && (
                         <h2
                           style={{
-                            color: '#43DB6D',
+                            color: theme.colors['green/400'],
                           }}
                         >
                           {valor}
@@ -96,7 +97,7 @@ export const Board = (props: BoardProps) => {
                       {section.title == 'Em pausa' && (
                         <h2
                           style={{
-                            color: '#F32D2D',
+                            color: theme.colors['red/500'],
                           }}
                         >
                           {valor}
@@ -105,7 +106,7 @@ export const Board = (props: BoardProps) => {
                       {section.title == 'Em andamento' && (
                         <h2
                           style={{
-                            color: '#FCDE42',
+                            color: theme.colors['yellow/300'],
                           }}
                         >
                           {valor}
@@ -114,7 +115,7 @@ export const Board = (props: BoardProps) => {
                       {section.title == 'Concluídos' && (
                         <h2
                           style={{
-                            color: '#43DB6D',
+                            color: theme.colors['green/400'],
                           }}
                         >
                           {valor}
@@ -231,7 +232,7 @@ export const Board = (props: BoardProps) => {
                     {section.title == 'Disponíveis' && (
                       <h2
                         style={{
-                          color: '#43DB6D',
+                          color: theme.colors['green/400'],
                         }}
                       >
                         {section.tasks.filter((lote: any) => lote.id_projeto === id)
@@ -242,7 +243,7 @@ export const Board = (props: BoardProps) => {
                     {section.title == 'Em pausa' && (
                       <h2
                         style={{
-                          color: '#F32D2D',
+                          color: theme.colors['red/500'],
                         }}
                       >
                         {section.tasks.filter((lote: any) => lote.id_projeto === id)
@@ -253,7 +254,7 @@ export const Board = (props: BoardProps) => {
                     {section.title == 'Em andamento' && (
                       <h2
                         style={{
-                          color: '#FCDE42',
+                          color: theme.colors['yellow/300'],
                         }}
                       >
                         {section.tasks.filter((lote: any) => lote.id_projeto === id)
@@ -264,7 +265,7 @@ export const Board = (props: BoardProps) => {
                     {section.title == 'Concluídos' && (
                       <h2
                         style={{
-                          color: '#43DB6D',
+                          color: theme.colors['green/400'],
                         }}
                       >
                         {section.tasks.filter((lote: any) => lote.id_projeto === id)
@@ -303,7 +304,7 @@ export const Board = (props: BoardProps) => {
                     {section.title == 'Disponíveis' && (
                       <h2
                         style={{
-                          color: '#43DB6D',
+                          color: theme.colors['green/400'],
                         }}
                       >
                         {section.tasks.filter((lote: any) => lote.id_projeto === id)
@@ -314,7 +315,7 @@ export const Board = (props: BoardProps) => {
                     {section.title == 'Em pausa' && (
                       <h2
                         style={{
-                          color: '#F32D2D',
+                          color: theme.colors['red/500'],
                         }}
                       >
                         {section.tasks.filter((lote: any) => lote.id_projeto === id)
@@ -325,7 +326,7 @@ export const Board = (props: BoardProps) => {
                     {section.title == 'Em andamento' && (
                       <h2
                         style={{
-                          color: '#FCDE42',
+                          color: theme.colors['yellow/300'],
                         }}
                       >
                         {section.tasks.filter((lote: any) => lote.id_projeto === id)
@@ -336,7 +337,7 @@ export const Board = (props: BoardProps) => {
                     {section.title == 'Concluídos' && (
                       <h2
                         style={{
-                          color: '#43DB6D',
+                          color: theme.colors['green/400'],
                         }}
                       >
                         {section.tasks.filter((lote: any) => lote.id_projeto === id)
@@ -361,7 +362,12 @@ export const Board = (props: BoardProps) => {
                             >
                               <Btn type="button">
                                 <AtribuirAlguem>
-                                  <ArrowCircleUp weight="fill" color="#FCDE42" width={20} height={20} />
+                                  <ArrowCircleUp
+                                    weight="fill"
+                                    color={theme.colors['yellow/300']}
+                                    width={20}
+                                    height={20}
+                                  />
                                   <p>Atribuir à alguém</p>
                                 </AtribuirAlguem>
                               </Btn>

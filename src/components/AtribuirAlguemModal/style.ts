@@ -90,7 +90,7 @@ export const ButtonGreen = styled.button`
   height: 44px;
   width: 100%;
   font-family: Rubik;
-  background-color: #43db6d;
+  background-color: ${({ theme }) => theme.colors['green/400']};
   cursor: pointer;
   &:hover {
     background-color: ${({ theme }) => theme.colors['green/600']};
@@ -147,7 +147,7 @@ const NameFotoUser = styled.div`
 const AtribuirButton = styled.button`
   height: 44px;
   border-radius: 5px;
-  background-color: #43db6d;
+  background-color: ${({ theme }) => theme.colors['green/400']};
   border: none;
   color: #0a090e;
   font-family: 'Rubik';

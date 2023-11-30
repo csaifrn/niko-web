@@ -215,7 +215,7 @@ export const ChooseCatTipol = styled.div`
 export const SalvarEditButton = styled.button`
   height: 44px;
   border-radius: 5px;
-  background-color: #43db6d;
+  background-color: ${({ theme }) => theme.colors['green/400']};
   border: none;
   color: #0a090e;
   font-family: 'Rubik';

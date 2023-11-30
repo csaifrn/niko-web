@@ -225,7 +225,7 @@ export const AtribuirButton = styled.button`
   padding: 1em;
   align-items: center;
   border-radius: 5px;
-  background-color: #43db6d;
+  background-color: ${({ theme }) => theme.colors['green/400']};
   border: none;
   color: #1c1f28;
   font-family: 'Rubik';

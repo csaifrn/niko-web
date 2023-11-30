@@ -1,3 +1,4 @@
+import theme from '../../global/theme';
 import * as S from './styles';
 import { Link, useParams } from 'react-router-dom';
 
@@ -11,14 +12,13 @@ export const MenuCoord = () => {
   const pathname = window.location.pathname;
   return (
     <S.MenuArea>
-
       <Link to={`/Painel/${id}`}>
         <S.MenuImg
           src={
             pathname === `/Painel/${id}` ? '/IconMenu/ChartDonut/fillicon.png' : '/IconMenu/ChartDonut/regularicon.png'
           }
         />
-        {pathname === `/Painel/${id}` && <S.textIcon style={{ color: '#F3802D' }}>Painel</S.textIcon>}
+        {pathname === `/Painel/${id}` && <S.textIcon style={{ color: theme.colors['orange/400'] }}>Painel</S.textIcon>}
         {pathname !== `/Painel/${id}` && <S.textIcon>Painel</S.textIcon>}
       </Link>
 
@@ -26,7 +26,9 @@ export const MenuCoord = () => {
         <S.MenuImg
           src={pathname === `/Atividades/${id}` ? '/IconMenu/Activity/Fill.svg' : '/IconMenu/Activity/Regular.svg'}
         />
-        {pathname === `/Atividades/${id}` && <S.textIcon style={{ color: '#F3802D' }}>Atividades</S.textIcon>}
+        {pathname === `/Atividades/${id}` && (
+          <S.textIcon style={{ color: theme.colors['orange/400'] }}>Atividades</S.textIcon>
+        )}
         {pathname !== `/Atividades/${id}` && <S.textIcon>Atividades</S.textIcon>}
       </Link>
 
@@ -38,9 +40,9 @@ export const MenuCoord = () => {
               : '/IconMenu/SquaresFour/regularicon.png'
           }
         />
-        {pathname === `/Fase/${id}` && <S.textIcon style={{ color: '#F3802D' }}>Fases</S.textIcon>}
-        {pathname.search('Board') >= 0 && <S.textIcon style={{ color: '#F3802D' }}>Fases</S.textIcon>}
-        {pathname.search('Lote') >= 0 && <S.textIcon style={{ color: '#F3802D' }}>Fases</S.textIcon>}
+        {pathname === `/Fase/${id}` && <S.textIcon style={{ color: theme.colors['orange/400'] }}>Fases</S.textIcon>}
+        {pathname.search('Board') >= 0 && <S.textIcon style={{ color: theme.colors['orange/400'] }}>Fases</S.textIcon>}
+        {pathname.search('Lote') >= 0 && <S.textIcon style={{ color: theme.colors['orange/400'] }}>Fases</S.textIcon>}
         {pathname !== `/Fase/${id}` && pathname.search('Board') < 0 && pathname.search('Lote') < 0 && (
           <S.textIcon>Fases</S.textIcon>
         )}
@@ -54,7 +56,9 @@ export const MenuCoord = () => {
               : '/IconMenu/TagSimple/regularicon.png'
           }
         />
-        {pathname === `/Categorias/${id}` && <S.textIcon style={{ color: '#F3802D' }}>Categorias</S.textIcon>}
+        {pathname === `/Categorias/${id}` && (
+          <S.textIcon style={{ color: theme.colors['orange/400'] }}>Categorias</S.textIcon>
+        )}
         {pathname !== `/Categorias/${id}` && <S.textIcon>Categorias</S.textIcon>}
       </Link>
     </S.MenuArea>

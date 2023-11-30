@@ -77,7 +77,7 @@ const Recused = styled.button`
 const Delete = styled.button`
   height: 44px;
   border-radius: 5px;
-  background-color: #f32d2d;
+  background-color: ${({ theme }) => theme.colors['red/500']};
   border: none;
   color: white;
   font-family: 'Rubik';

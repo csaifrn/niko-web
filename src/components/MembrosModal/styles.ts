@@ -224,7 +224,7 @@ const AtribuirButton = styled.button`
   z-index: 0;
   height: 44px;
   border-radius: 5px;
-  background-color: #43db6d;
+  background-color: ${({ theme }) => theme.colors['green/400']};
   border: none;
   color: ${({ theme }) => theme.colors['gray/900']};
   font-family: 'Rubik';
@@ -261,7 +261,7 @@ export const EnviarEmail = styled.button`
   justify-content: center;
   border-radius: 5px;
   overflow: hidden;
-  background-color: #f3802d;
+  background-color: ${({ theme }) => theme.colors['orange/400']};
   cursor: pointer;
   &:hover {
     background-color: ${({ theme }) => theme.colors['orange/500']};

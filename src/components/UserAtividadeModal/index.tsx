@@ -185,14 +185,18 @@ export const UserModalAtividade = (props: UserModalAtividadeProps) => {
                       {f.name}
                     </p>
                     {isPresentInOtherFase && (
-                      <p style={{ color: '#F3802D', fontSize: '12px' }}>Usuário presente em outra tarefa</p>
+                      <p style={{ color: theme.colors['orange/400'], fontSize: '12px' }}>
+                        Usuário presente em outra tarefa
+                      </p>
                     )}
                   </S.Lote>
                 );
               })}
             </S.ChooseLote>
             <S.AtribuirButton onClick={handleSave}>Salvar</S.AtribuirButton>
-            {error && <p style={{ color: '#F32D2D', fontSize: '12px' }}>Todas as fases precisam de um Operador</p>}
+            {error && (
+              <p style={{ color: theme.colors['red/500'], fontSize: '12px' }}>Todas as fases precisam de um Operador</p>
+            )}
           </S.ModalContent>
         </S.ModalArea>
       </S.ModalBackdrop>

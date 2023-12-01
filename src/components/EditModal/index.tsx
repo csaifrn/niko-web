@@ -114,7 +114,7 @@ export const EditModal = () => {
             <p>Local</p>
             <S.Local
               key={task.id}
-              style={{ backgroundColor: '#2D303B' }}
+              style={{ backgroundColor: theme.colors['gray/600'] }}
               type="text"
               name="nome"
               placeholder={task.estante}
@@ -168,8 +168,8 @@ export const EditModal = () => {
               style={{
                 height: '40px',
                 border: 'none',
-                backgroundColor: CatTipol ? '#20232A' : theme.colors['gray/500'],
-                color: CatTipol ? '#838383' : 'white',
+                backgroundColor: CatTipol ? theme.colors['gray/600'] : theme.colors['gray/500'],
+                color: CatTipol ? theme.colors['gray/100'] : 'white',
                 padding: '8px 8px',
               }}
             >
@@ -181,8 +181,8 @@ export const EditModal = () => {
               style={{
                 height: '40px',
                 border: 'none',
-                backgroundColor: CatTipol ? theme.colors['gray/500'] : '#20232A',
-                color: CatTipol ? 'white' : '#838383',
+                backgroundColor: CatTipol ? theme.colors['gray/500'] : theme.colors['gray/600'],
+                color: CatTipol ? 'white' : theme.colors['gray/100'],
                 padding: '8px 8px',
               }}
             >
@@ -219,12 +219,12 @@ export const EditModal = () => {
                     key={cat.id}
                     onClick={() => handleLoteClick(cat)}
                     style={{
-                      backgroundColor: categorias.includes(cat) ? theme.colors['gray/500'] : '#20232B',
+                      backgroundColor: categorias.includes(cat) ? theme.colors['gray/500'] : theme.colors['gray/600'],
                     }}
                   >
                     <p
                       style={{
-                        color: categorias.includes(cat) ? theme.colors.white : '#838383',
+                        color: categorias.includes(cat) ? theme.colors.white : theme.colors['gray/100'],
                       }}
                     >
                       {cat.name}
@@ -237,12 +237,12 @@ export const EditModal = () => {
                     key={cat.id}
                     onClick={() => handleLoteClick(cat)}
                     style={{
-                      backgroundColor: tipologias.includes(cat) ? theme.colors['gray/500'] : '#20232B',
+                      backgroundColor: tipologias.includes(cat) ? theme.colors['gray/500'] : theme.colors['gray/600'],
                     }}
                   >
                     <p
                       style={{
-                        color: tipologias.includes(cat) ? theme.colors.white : '#838383',
+                        color: tipologias.includes(cat) ? theme.colors.white : theme.colors['gray/100'],
                       }}
                     >
                       {cat.name}

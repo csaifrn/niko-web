@@ -102,7 +102,7 @@ export const CreateRemessa = (props: EditModalProps) => {
                 <p>Quantidade de Caixas</p>
                 <S.Titulo
                   onChange={handleQtd}
-                  style={{ backgroundColor: '#2D303B' }}
+                  style={{ backgroundColor: theme.colors['gray/600'] }}
                   type="number"
                   name="qtd_caixas"
                   placeholder={'23'}
@@ -117,7 +117,7 @@ export const CreateRemessa = (props: EditModalProps) => {
                   onChange={() => {
                     handleData;
                   }}
-                  style={{ backgroundColor: '#2D303B' }}
+                  style={{ backgroundColor: theme.colors['gray/600'] }}
                   type="date"
                   name="Data"
                   placeholder={'Onde está a caixa?'}
@@ -129,7 +129,7 @@ export const CreateRemessa = (props: EditModalProps) => {
                 <p>Observação</p>
                 <S.Local
                   onChange={handleObservacao}
-                  style={{ backgroundColor: '#2D303B' }}
+                  style={{ backgroundColor: theme.colors['gray/600'] }}
                   type="text"
                   name="Data"
                   placeholder={'...'}
@@ -148,7 +148,9 @@ export const CreateRemessa = (props: EditModalProps) => {
                       key={uuidv4()}
                       onClick={() => handleLoteClick(categ.id)}
                       style={{
-                        backgroundColor: selectedClientes.includes(categ.id) ? theme.colors['gray/900'] : '#2D303B',
+                        backgroundColor: selectedClientes.includes(categ.id)
+                          ? theme.colors['gray/900']
+                          : theme.colors['gray/600'],
                       }}
                     >
                       <img
@@ -160,7 +162,7 @@ export const CreateRemessa = (props: EditModalProps) => {
                       />
                       <p
                         style={{
-                          color: selectedClientes.includes(categ.id) ? theme.colors.white : '#838383',
+                          color: selectedClientes.includes(categ.id) ? theme.colors.white : theme.colors['gray/100'],
                         }}
                       >
                         {categ.name}

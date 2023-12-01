@@ -155,7 +155,7 @@ export const Board = (props: BoardProps) => {
                                 >
                                   {task.prioridade && (
                                     <S.BlackButton onClick={(e) => e.preventDefault()}>
-                                      <UsersThree weight="fill" size={24} color="#00D25B" />
+                                      <UsersThree weight="fill" size={24} color={theme.colors['green/400']} />
                                       Participar do Lote
                                     </S.BlackButton>
                                   )}

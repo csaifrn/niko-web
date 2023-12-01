@@ -100,7 +100,7 @@ export const CategoriasTipologias = (props: CategoriasTipologiasProps) => {
               <S.ButtonCatTipol
                 onClick={() => setCatTipo(false)}
                 style={{
-                  backgroundColor: CatTipo ? '#2D303B' : theme.colors['gray/700'],
+                  backgroundColor: CatTipo ? theme.colors['gray/600'] : theme.colors['gray/700'],
                 }}
               >
                 <p style={{ fontFamily: 'Rubik' }}>Categorias</p>
@@ -109,7 +109,7 @@ export const CategoriasTipologias = (props: CategoriasTipologiasProps) => {
               <S.ButtonCatTipol
                 onClick={() => setCatTipo(true)}
                 style={{
-                  backgroundColor: CatTipo ? theme.colors['gray/700'] : '#2D303B',
+                  backgroundColor: CatTipo ? theme.colors['gray/700'] : theme.colors['gray/600'],
                 }}
               >
                 <p style={{ fontFamily: 'Rubik' }}>Tipologias</p>
@@ -126,12 +126,12 @@ export const CategoriasTipologias = (props: CategoriasTipologiasProps) => {
                       key={cat.id}
                       onClick={() => handleLoteClick(cat)}
                       style={{
-                        backgroundColor: categorias.includes(cat) ? theme.colors['gray/900'] : '#2D303B',
+                        backgroundColor: categorias.includes(cat) ? theme.colors['gray/900'] : theme.colors['gray/600'],
                       }}
                     >
                       <p
                         style={{
-                          color: categorias.includes(cat) ? theme.colors.white : '#838383',
+                          color: categorias.includes(cat) ? theme.colors.white : theme.colors['gray/100'],
                         }}
                       >
                         {cat.name}
@@ -144,12 +144,12 @@ export const CategoriasTipologias = (props: CategoriasTipologiasProps) => {
                       key={cat.id}
                       onClick={() => handleLoteClick(cat)}
                       style={{
-                        backgroundColor: tipologias.includes(cat) ? theme.colors['gray/900'] : '#2D303B',
+                        backgroundColor: tipologias.includes(cat) ? theme.colors['gray/900'] : theme.colors['gray/600'],
                       }}
                     >
                       <p
                         style={{
-                          color: tipologias.includes(cat) ? theme.colors.white : '#838383',
+                          color: tipologias.includes(cat) ? theme.colors.white : theme.colors['gray/100'],
                         }}
                       >
                         {cat.name}

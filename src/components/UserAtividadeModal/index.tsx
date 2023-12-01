@@ -145,7 +145,7 @@ export const UserModalAtividade = (props: UserModalAtividadeProps) => {
                         color: 'white',
                         border: 'none',
                         borderRadius: '5px',
-                        backgroundColor: faseSelected === index ? theme.colors['gray/700'] : '#2D303B',
+                        backgroundColor: faseSelected === index ? theme.colors['gray/700'] : theme.colors['gray/600'],
                         padding: '8px 8px',
                         cursor: 'pointer',
                       }}
@@ -171,7 +171,7 @@ export const UserModalAtividade = (props: UserModalAtividadeProps) => {
                     key={f.id}
                     onClick={() => handleLoteClick(f)}
                     style={{
-                      backgroundColor: isSelected ? theme.colors['gray/700'] : '#2D303B',
+                      backgroundColor: isSelected ? theme.colors['gray/700'] : theme.colors['gray/600'],
                       display: 'flex',
                       flexDirection: 'column',
                       gap: '0.5em',
@@ -179,7 +179,7 @@ export const UserModalAtividade = (props: UserModalAtividadeProps) => {
                   >
                     <p
                       style={{
-                        color: isSelected ? theme.colors.white : '#838383',
+                        color: isSelected ? theme.colors.white : theme.colors['gray/100'],
                       }}
                     >
                       {f.name}

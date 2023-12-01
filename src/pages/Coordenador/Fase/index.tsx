@@ -86,7 +86,7 @@ const Home = () => {
         <CardFase
           fase={FaseData[1].titulo}
           link={`${id}/Board/Catalogacao`}
-          color="#F3CC00"
+          color={theme.colors['yellow/500']}
           srcImgIcon="/IconsBookmark.svg"
           dispo={catalogacao.dispo}
           anda={catalogacao.anda}

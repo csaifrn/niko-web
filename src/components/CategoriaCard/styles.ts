@@ -73,7 +73,7 @@ const Footer = styled.div<IFooter>`
   }
 
   &.show {
-    border-top: 1px solid #4a5565;
+    border-top: 1px solid ${({ theme }) => theme.colors['gray/400']};
     height: ${({ setHeight }) => setHeight}px;
   }
 `;
@@ -121,13 +121,13 @@ const TotalFase = styled.p`
 `;
 
 const PerecentageFase = styled.p`
-  color: #c3c3c3;
+  color: ${({ theme }) => theme.colors['green/50']};
   font-size: 10px;
 `;
 
 const Prioridade = styled.div`
   height: 24px;
-  background-color: #dd3b3b;
+  background-color: ${({ theme }) => theme.colors['red/700']};
   border-radius: 3px;
   display: flex;
   justify-content: center;
@@ -214,7 +214,7 @@ interface IBar {
 }
 
 const BarInner = styled.div<IBar>`
-  background-color: #00d25b;
+  background-color: ${({ theme }) => theme.colors['green/400']};
   width: ${({ percentage }) => percentage}%;
   height: 1.5em;
 `;

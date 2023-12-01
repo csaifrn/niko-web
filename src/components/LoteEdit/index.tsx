@@ -170,7 +170,7 @@ const LoteEdit = () => {
               <p>Local</p>
               <S.Local
                 key={batch.id}
-                style={{ backgroundColor: '#2D303B' }}
+                style={{ backgroundColor: theme.colors['gray/600'] }}
                 type="number"
                 name="shelf_number"
                 placeholder={batch.shelf_number}

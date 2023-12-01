@@ -33,7 +33,7 @@ export const BoardChanger = () => {
           </S.Link>
           <S.Link href={`/Fase/${id}/Board/Catalogacao`}>
             <S.LinkImg src="/icon-medium/Catalogação.svg" />
-            {url.search('Catalogacao') > -1 && <S.Barra color="#F3CC00"></S.Barra>}
+            {url.search('Catalogacao') > -1 && <S.Barra color={theme.colors['yellow/500']}></S.Barra>}
           </S.Link>
           <S.Link href={`/Fase/${id}/Board/Digitalizacao`}>
             <S.LinkImg src="/icon-medium/Digitalização.svg" />

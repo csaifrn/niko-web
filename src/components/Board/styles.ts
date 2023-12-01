@@ -179,7 +179,7 @@ export const kanbanSectionOperador = styled.div`
   }
 
   &::-webkit-scrollbar-thumb {
-    background-color: #2a2e38;
+    background-color: ${({ theme }) => theme.colors['gray/550']};
     border-radius: 5px;
     width: 0.2em;
   }
@@ -216,7 +216,7 @@ export const kanbanSectionContentOperador = styled.div`
   }
   @media screen and (min-width: 1008px) {
     &::-webkit-scrollbar-thumb {
-      background-color: #2a2e38;
+      background-color: ${({ theme }) => theme.colors['gray/550']};
       border-radius: 20px;
     }
   }
@@ -264,7 +264,7 @@ export const kanbanSectionContentOperadorBefore = styled.div`
   }
   @media screen and (min-width: 1008px) {
     &::-webkit-scrollbar-thumb {
-      background-color: #2a2e38;
+      background-color: ${({ theme }) => theme.colors['gray/550']};
       border-radius: 20px;
     }
   }

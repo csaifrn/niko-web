@@ -72,7 +72,7 @@ const Footer = styled.div<IFooter>`
   }
 
   &.show {
-    border-top: 1px solid #4a5565;
+    border-top: 1px solid ${({ theme }) => theme.colors['gray/400']};
     height: ${({ setHeight }) => setHeight}px;
   }
 `;

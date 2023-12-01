@@ -179,7 +179,7 @@ export const Menu = (props: MenuProps) => {
 
                   textDecoration: 'none',
                   display: 'block',
-                  borderBottom: 'solid 1px #4a5565',
+                  borderBottom: `solid 1px ${theme.colors['gray/400']}`,
                   textAlign: 'left',
                 }}
               >

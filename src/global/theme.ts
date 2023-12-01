@@ -1,10 +1,15 @@
 const theme = {
   colors: {
     white: '#fff',
+    'gray/50': '#d9d9d9',
+    'gray/100': '#838383',
     'gray/200': '#B2B5C0',
     'gray/300': '#b1b1b1',
     'gray/400': '#5C6170',
+    'gray/450': '#626a7d',
     'gray/500': '#393E4B',
+    'gray/550': '#2a2e38',
+    'gray/600': '#2d303b',
     'gray/700': '#191c24',
     'gray/900': '#090E09',
     'red/300': '#e76464',
@@ -16,6 +21,7 @@ const theme = {
     'orange/600': '#E76A00',
     'yellow/300': '#FCDE42',
     'yellow/200': '#FFE55B',
+    'yellow/500': '#f3cc00',
     'green/400': '#43DB6D',
     'green/500': '#46EA73',
     'green/600': '#38C25E',

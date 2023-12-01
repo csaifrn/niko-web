@@ -69,7 +69,7 @@ const ButtonBurger = styled.a<BurgerProps>`
   }
 
   &:hover {
-    background-color: #12141a;
+    background-color: ${({ theme }) => theme.colors['gray/900']};
   }
 
   img {

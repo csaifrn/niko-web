@@ -71,7 +71,7 @@ const ChooseLote = styled.div`
   }
 
   &::-webkit-scrollbar-thumb {
-    background-color: #2a2e38;
+    background-color: ${({ theme }) => theme.colors['gray/550']};
     border-radius: 20px;
   }
 
@@ -134,8 +134,9 @@ export const Nome = styled.p``;
 export const Categoria = styled.div<CategoriaProps>`
   padding: 0.5em;
   border-radius: 4px;
-  background-color: ${(props) => (props.selected ? ({ theme }) => theme.colors['gray/900'] : '#2D303B')};
-  color: ${(props) => (props.selected ? ({ theme }) => theme.colors.white : '#838383')};
+  background-color: ${(props) =>
+    props.selected ? ({ theme }) => theme.colors['gray/900'] : ({ theme }) => theme.colors['gray/600']};
+  color: ${(props) => (props.selected ? ({ theme }) => theme.colors.white : ({ theme }) => theme.colors['gray/100'])};
   cursor: pointer;
 `;
 

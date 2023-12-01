@@ -58,7 +58,7 @@ export const CreateModal = (props: EditModalProps) => {
             <S.TituloDiv>
               <p>Título</p>
               <S.Titulo
-                style={{ backgroundColor: '#2D303B' }}
+                style={{ backgroundColor: theme.colors['gray/600'] }}
                 type="text"
                 name="nome"
                 placeholder={'Título da caixa'}
@@ -69,7 +69,7 @@ export const CreateModal = (props: EditModalProps) => {
             <S.LocalDiv>
               <p>Local</p>
               <S.Local
-                style={{ backgroundColor: '#2D303B' }}
+                style={{ backgroundColor: theme.colors['gray/600'] }}
                 type="text"
                 name="nome"
                 placeholder={'Onde está a caixa?'}
@@ -87,12 +87,14 @@ export const CreateModal = (props: EditModalProps) => {
                     key={categ.id}
                     onClick={() => handleLoteClick(categ.id)}
                     style={{
-                      backgroundColor: selectedCategoriaData.includes(categ.id) ? theme.colors['gray/900'] : '#2D303B',
+                      backgroundColor: selectedCategoriaData.includes(categ.id)
+                        ? theme.colors['gray/900']
+                        : theme.colors['gray/600'],
                     }}
                   >
                     <p
                       style={{
-                        color: selectedCategoriaData.includes(categ.id) ? theme.colors['green/400'] : '#838383',
+                        color: selectedCategoriaData.includes(categ.id) ? theme.colors['green/400'] : theme.colors['gray/100'],
                       }}
                     >
                       {categ.name}

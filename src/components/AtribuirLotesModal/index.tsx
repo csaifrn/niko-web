@@ -113,12 +113,12 @@ export const AtribuirModal = (props: AtribuirModalProps) => {
                   key={lote.id}
                   onClick={() => handleLoteClick(lote.id)}
                   style={{
-                    backgroundColor: selectedLotes.includes(lote.id) ? theme.colors['gray/900'] : '#2D303B',
+                    backgroundColor: selectedLotes.includes(lote.id) ? theme.colors['gray/900'] : theme.colors['gray/600'],
                   }}
                 >
                   <p
                     style={{
-                      color: selectedLotes.includes(lote.id) ? theme.colors.white : '#838383',
+                      color: selectedLotes.includes(lote.id) ? theme.colors.white : theme.colors['gray/100'],
                     }}
                   >
                     {lote.title}

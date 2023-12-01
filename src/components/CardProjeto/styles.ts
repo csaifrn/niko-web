@@ -69,7 +69,7 @@ export const MenuThreeDots = styled.div`
   min-width: 120px;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   color: ${({ theme }) => theme.colors.white};
-  border: solid 1px #4a5565;
+  border: solid 1px ${({ theme }) => theme.colors['gray/900']};
 `;
 
 export const ButtonMenuThree = styled.button`

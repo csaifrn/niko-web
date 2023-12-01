@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 const Lote = styled.div`
   font-family: 'Rubik';
-  border: 0.2px solid #35394a;
   position: relative;
   padding: 0.8em;
   background-color: ${({ theme }) => theme.colors['gray/500']};
@@ -59,7 +58,7 @@ export const PendPrioridade = styled.div`
 
 const Prioridade = styled.div`
   height: 24px;
-  background-color: #dd3b3b;
+  background-color: ${({ theme }) => theme.colors['red/700']};
   border-radius: 3px;
   display: flex;
   justify-content: center;
@@ -125,7 +124,7 @@ export const AtribuirAlguem = styled.div`
   gap: 8px;
   align-items: center;
   padding: 16px;
-  background-color: #000000;
+  background-color: ${({ theme }) => theme.colors['gray/900']};
   border: none;
   border-radius: 5px;
 `;

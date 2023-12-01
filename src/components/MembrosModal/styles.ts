@@ -224,13 +224,13 @@ const AtribuirButton = styled.button`
   z-index: 0;
   height: 44px;
   border-radius: 5px;
-  background-color: ${({ theme }) => theme.colors['green/400']};
+  background-color: ${({ theme }) => theme.colors['green/500']};
   border: none;
   color: ${({ theme }) => theme.colors['gray/900']};
   font-family: 'Rubik';
   cursor: pointer;
   &:hover {
-    background-color: ${({ theme }) => theme.colors['green/600']};
+    background-color: ${({ theme }) => theme.colors['green/400']};
   }
   &:active {
     background-color: ${({ theme }) => theme.colors['green/600']};

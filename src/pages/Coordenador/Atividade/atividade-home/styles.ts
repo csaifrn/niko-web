@@ -46,7 +46,7 @@ export const AtivsCabecalho = styled.div`
   align-items: center;
   z-index: 98;
   justify-content: space-between;
-  background-color: #0a090e;
+  background-color: ${({ theme }) => theme.colors['gray/900']};
   /* ${media.greaterThan('large')`
     gap: 16px;
     justify-content: flex-start;
@@ -225,15 +225,17 @@ export const AtribuirButton = styled.button`
   padding: 1em;
   align-items: center;
   border-radius: 5px;
-  background-color: ${({ theme }) => theme.colors['green/400']};
+  background-color: ${({ theme }) => theme.colors['green/500']};
   border: none;
   color: #1c1f28;
   font-family: 'Rubik';
   &:hover {
-    background-color: #43db5d;
+    background-color: ${({ theme }) => theme.colors['green/400']};
   }
   &:active {
-    background-color: #43db4d;
+    background-color: ${({ theme }) => theme.colors['green/600']};
+    transform: translateY(-5%) translateX(2%);
+  }
   }
 `;
 

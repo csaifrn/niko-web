@@ -37,11 +37,11 @@ export const areaClick = styled.div`
   }
 
   &::-webkit-scrollbar-track {
-    background: #191c24;
+    background: ${({ theme }) => theme.colors['gray/900']};
   }
 
   &::-webkit-scrollbar-thumb {
-    background-color: #2a2e38;
+    background-color: ${({ theme }) => theme.colors['gray/550']};
     border-radius: 20px;
   }
 
@@ -57,7 +57,7 @@ export const areaClick = styled.div`
 `;
 
 export const Texto = styled.p`
-  color: #191c24;
+  color: ${({ theme }) => theme.colors['gray/900']};
 `;
 
 export const Teste = styled.h1`
@@ -261,7 +261,7 @@ export const Tipologia = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #626a7d;
+  background-color: ${({ theme }) => theme.colors['gray/450']};
   border-radius: 3px;
 `;
 
@@ -356,7 +356,7 @@ export const Observações = styled.div`
 `;
 
 export const PendDivBlack = styled.div`
-  background-color: #191c24;
+  background-color: ${({ theme }) => theme.colors['gray/900']};
   border-radius: 5px;
   gap: 10px;
   padding: 15px;
@@ -380,7 +380,7 @@ export const BotaoResolverPend = styled.button`
   flex-shrink: 0;
   border-radius: 5px;
   background: ${({ theme }) => theme.colors['yellow/300']};
-  color: #191c24;
+  color: ${({ theme }) => theme.colors['gray/900']};
   padding: 1.5em;
   width: 100%;
   border: none;
@@ -535,11 +535,11 @@ export const TodasAsPendencias = styled.div`
     }
 
     &::-webkit-scrollbar-track {
-      background: #191c24;
+      background: ${({ theme }) => theme.colors['gray/900']};
     }
 
     &::-webkit-scrollbar-thumb {
-      background-color: #2a2e38;
+      background-color: ${({ theme }) => theme.colors['gray/550']};
       border-radius: 20px;
     }
 
@@ -565,11 +565,11 @@ export const TodasAsObservacoes = styled.div`
     }
 
     &::-webkit-scrollbar-track {
-      background: #191c24;
+      background: ${({ theme }) => theme.colors['gray/900']};
     }
 
     &::-webkit-scrollbar-thumb {
-      background-color: #2a2e38;
+      background-color: ${({ theme }) => theme.colors['gray/550']};
       border-radius: 20px;
     }
 

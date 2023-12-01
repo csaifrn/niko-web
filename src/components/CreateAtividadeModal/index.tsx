@@ -88,13 +88,13 @@ export const CreateAtividade = (props: CreateAtividadeProps) => {
                     key={categ.id}
                     onClick={() => handleLoteClick(categ)}
                     style={{
-                      backgroundColor: tarefasFase.includes(categ) ? theme.colors['gray/900'] : '#2D303B',
+                      backgroundColor: tarefasFase.includes(categ) ? theme.colors['gray/900'] : theme.colors['gray/600'],
                     }}
                   >
                     <img src={`${categ.icone}`} alt="" />
                     <p
                       style={{
-                        color: tarefasFase.includes(categ) ? theme.colors.white : '#838383',
+                        color: tarefasFase.includes(categ) ? theme.colors.white : theme.colors['gray/100'],
                       }}
                     >
                       {categ.titulo}

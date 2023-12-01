@@ -106,6 +106,25 @@ const NameClose = styled.div`
   justify-content: space-between;
 `;
 
+export const Exit = styled.button`
+  height: 2em;
+  width: 2em;
+  background-color: transparent;
+  border-radius: 3px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  cursor: pointer;
+  &:hover {
+    background-color: ${({ theme }) => theme.colors['gray/400']};
+  }
+  &:active {
+    background-color: ${({ theme }) => theme.colors['gray/400']};
+    transform: translateY(-5%) translateX(2%);
+  }
+`;
+
 const Fechar = styled.button``;
 
 const ChooseUser = styled.div`

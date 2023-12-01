@@ -256,10 +256,10 @@ export const AtribuirButton = styled.button`
   color: #1c1f28;
   font-family: 'Rubik';
   &:hover {
-    background-color: #43db5d;
+    background-color: ${({ theme }) => theme.colors['green/600']};
   }
   &:active {
-    background-color: #43db4d;
+    background-color: ${({ theme }) => theme.colors['green/600']};
     transform: translateY(-5%) translateX(2%);
   }
 `;

@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const Texto = styled.p`
-  color: red;
+  color: white;
 `;
 
 const ModalArea = styled.div`
@@ -118,6 +118,13 @@ const Recused = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
+  &:hover {
+    background-color: ${({ theme }) => theme.colors['gray/900']};
+  }
+  &:active {
+    background-color: ${({ theme }) => theme.colors['gray/900']};
+    transform: translateY(-5%) translateX(2%);
+  }
 `;
 
 export const RecusedAvancar = styled.div`

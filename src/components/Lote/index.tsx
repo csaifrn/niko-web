@@ -3,6 +3,7 @@ import * as S from './styles';
 import { generateUUID } from '../../utils/generateUUID.util';
 
 const Lote = (props: any) => {
+
   return (
     <>
       {props.edit == true && (

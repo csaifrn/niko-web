@@ -40,11 +40,8 @@ export const Board = (props: BoardProps) => {
   const [batchesDispo, setBatchesDispo] = useState<GetResponseBatche[]>([]);
   const [batchesAnda, setBatchesAnda] = useState<GetResponseBatche[]>([]);
   const [batchesConc, setBatchesConc] = useState<GetResponseBatche[]>([]);
-
-  const [titleModal, setTitleModal] = useState({ button: 'pegar lote', title: 'Deseja pegar o lote?' });
-
+  const [titleModal, setTitleModal] = useState({ button: 'Pegar lote', title: 'Deseja pegar o lote?' });
   const [batche_data, setBatche] = useState<GetResponseBatche>();
-
   const [atribuirModal, setAtribuirModal] = useState<boolean>(false);
   const [openCriarModal, setOpenCriarModal] = useState<boolean>(false);
   const [openEspecifModal, setOpenEspecifModal] = useState<boolean>(false);
@@ -65,13 +62,16 @@ export const Board = (props: BoardProps) => {
       status: props.main_status,
     });
   }, []);
+  
 
   return (
     <KabanContext.Provider
       value={{ batchesAnda, batchesConc, batchesDispo, setBatchesAnda, setBatchesConc, setBatchesDispo }}
     >
+      {/* Menu das fases */}
       <BoardChanger />
 
+      {/* Botão de Criar lote(só aparece no preparo) */}
       {props.main_status === 0 && (
         <S.divChildren style={{ padding: '2em' }}>
           <Btn
@@ -127,7 +127,7 @@ export const Board = (props: BoardProps) => {
                               onClick={(e) => {
                                 e.preventDefault();
                                 setOpenEspecifModal(!openEspecifModal);
-                                setTitleModal({ button: 'pegar lote', title: 'Deseja pegar o lote?' });
+                                setTitleModal({ button: 'Pegar lote', title: 'Deseja pegar o lote?' });
                                 setBatche(batche);
                               }}
                             >

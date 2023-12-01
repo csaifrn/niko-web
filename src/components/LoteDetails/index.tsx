@@ -203,6 +203,7 @@ export const LoteDetails = () => {
                   </S.Config>
                 </S.EditConfig>
               </S.LoteEditConfig>
+              
               <S.DadosCriacaoLoteDiv>
                 <S.BlockGray>
                   Criado por {task?.created_by.name} em{' '}
@@ -211,6 +212,7 @@ export const LoteDetails = () => {
                   })}
                 </S.BlockGray>
               </S.DadosCriacaoLoteDiv>
+            
               <S.DetalhesLote>
                 {task?.shelf_number !== null && <S.Estante>{task?.shelf_number}</S.Estante>}
 
@@ -230,20 +232,19 @@ export const LoteDetails = () => {
                 )}
               </S.DetalhesLote>
 
+              {/* CATEGORIAS */}
               <S.DetalhesLote>
                 <S.BlockGrayBorder>{task?.category.name}</S.BlockGrayBorder>
               </S.DetalhesLote>
+
               {priority === true && (
                 <S.CategoriaPrioridade>
                   <S.Prioridade>
                     <p>Prioridade</p>
                   </S.Prioridade>
-
-                  {/* <S.Categoria>
-            <p>{task?.category.name}</p>
-          </S.Categoria> */}
                 </S.CategoriaPrioridade>
               )}
+
               {assigners.length > 0 && (
                 <React.Fragment>
                   Atribuidos
@@ -255,31 +256,7 @@ export const LoteDetails = () => {
                   </S.DetalhesLote>
                 </React.Fragment>
               )}
-              {/* MOSTRA CATEGORIAS QUANDO O LOTE É PRIORIDADE */}
-
-              {/* MOSTRA CATEGORIAS QUANDO O LOTE NÃO É PRIORIDADE */}
-              {taskData.categorias.length > 0 && priority == false && (
-                <S.CategoriaPrioridade>
-                  {/* CATEGORIAS */}
-                  {taskData.categorias.map((categoria: any) => (
-                    <React.Fragment key={categoria.id}>
-                      <S.Categoria>
-                        <p>{categoria.name}</p>
-                      </S.Categoria>
-                    </React.Fragment>
-                  ))}
-                </S.CategoriaPrioridade>
-              )}
-              {/* TIPOLOGIAS */}
-              {taskData.tipologias.length > 0 && (
-                <S.Tipologias>
-                  {taskData.tipologias.map((tipol: any) => (
-                    <S.Tipologia key={tipol.id}>
-                      <p>{tipol.name}</p>
-                    </S.Tipologia>
-                  ))}
-                </S.Tipologias>
-              )}
+              
               <S.FaseEnvolvAtual>
                 {/* FASE ATUAL DO LOTE */}
                 <S.Icons src={`/icon-medium/${optionsFases[status].label}.svg`} />

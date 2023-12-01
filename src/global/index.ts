@@ -16,6 +16,9 @@ const Title = styled.a`
 
 const Wrapper = styled.div`
   font-family: 'Rubik';
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
   //background-color: #0a090e;
   //height: 170vh;
   //min-height: 550px;

@@ -5,9 +5,8 @@ export const FaseKanbanPage = styled.div`
   display: flex;
   justify-content: center;
   flex-direction: row;
-  //max-width: 1140px;
-
   gap: 2em;
+
   //Mobile
   @media screen and (max-width: 767px) {
     flex-direction: column;
@@ -19,23 +18,15 @@ const kanban = styled.div`
   font-family: 'Rubik';
   display: flex;
   justify-content: center;
-  //justify-content: flex-start;
   flex-wrap: wrap;
   flex-direction: column;
   padding: 0em 0em 1em 0em;
   gap: 16px;
 
   @media screen and (min-width: 767px) {
-<<<<<<< HEAD
-    //justify-content: center;
     align-items: center;
     flex-direction: column;
-    margin-bottom: 0;
-    //margin-bottom: 2em;
-=======
-    flex-direction: row;
     margin-bottom: 2em;
->>>>>>> d4bc41e418184f3210a9047700bc4657c04552d2
   }
 `;
 
@@ -83,12 +74,14 @@ const kanbanSectionContent = styled.div`
   gap: 1em;
   color: #ffffff;
   overflow-x: scroll;
+  overflow-y: auto;
   scroll-behavior: auto;
   scrollbar-width: thin;
   height: 150px;
   width: 100%;
   padding: 1em;
   background-color: ${({ theme }) => theme.colors['gray/700']};
+  border-radius: 5px;
 
   &::-webkit-scrollbar {
     width: 0.5em;
@@ -111,6 +104,8 @@ const kanbanSectionContent = styled.div`
     max-width: 300px;
     height: 60vh;
     width: 100%;
+    overflow-y: scroll;
+    overflow-x: auto;
   }
 `;
 

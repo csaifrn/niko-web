@@ -8,7 +8,7 @@ export const ChangeContainer = styled.nav`
   display: flex;
   flex-direction: column;
   gap: 1em;
-  margin-bottom: 1em;
+  //margin-bottom: 1em;
 `;
 
 export const Change = styled.nav`
@@ -17,7 +17,7 @@ export const Change = styled.nav`
   padding: 0 2em;
   display: flex;
   gap: 1em;
-  margin-bottom: 1em;
+  //margin-bottom: 1em;
 `;
 
 export const Link = styled.a`

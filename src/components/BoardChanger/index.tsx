@@ -37,11 +37,11 @@ export const BoardChanger = () => {
           </S.Link>
           <S.Link href={`/Fase/${id}/Board/Digitalizacao`}>
             <S.LinkImg src="/icon-medium/Digitalização.svg" />
-            {url.search('Digitalizacao') > -1 && <S.Barra color="#2D94F3"></S.Barra>}
+            {url.search('Digitalizacao') > -1 && <S.Barra color={theme.colors['blue/400']}></S.Barra>}
           </S.Link>
           <S.Link href={`/Fase/${id}/Board/Upload`}>
             <S.LinkImg src="/icon-medium/Upload.svg" />
-            {url.search('Upload') > -1 && <S.Barra color="#9C2DF3"></S.Barra>}
+            {url.search('Upload') > -1 && <S.Barra color={theme.colors['purple/600']}></S.Barra>}
           </S.Link>
           <S.Link href={`/Fase/${id}/Board/Arquivamento`}>
             <S.LinkImg src="/icon-medium/Arquivamento.svg" />

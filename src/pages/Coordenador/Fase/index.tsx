@@ -95,7 +95,7 @@ const Home = () => {
         <CardFase
           fase={FaseData[2].titulo}
           link={`${id}/Board/Digitalizacao`}
-          color="#2D94F3"
+          color={theme.colors['blue/400']}
           srcImgIcon="/IconsScanner.svg"
           dispo={digitalizacao.dispo}
           anda={digitalizacao.anda}
@@ -104,7 +104,7 @@ const Home = () => {
         <CardFase
           fase={FaseData[3].titulo}
           link={`${id}/Board/Upload`}
-          color="#9C2DF3"
+          color={theme.colors['purple/600']}
           srcImgIcon="/IconsUpload.svg"
           dispo={upload.dispo}
           anda={upload.anda}

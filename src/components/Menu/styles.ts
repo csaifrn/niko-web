@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 const MenuImg = styled.img``;
@@ -8,7 +9,7 @@ export const MenuLupa = styled.img`
   }
 `;
 
-export const LinkLogo = styled.a`
+export const LinkLogo = styled(Link)`
   @media screen and (max-width: 767px) {
     display: none;
   }

@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import MenuBurger from '../MenuBurger';
 import * as S from './styles';
 import * as MenuC from '../MenuCoord/styles';
-import { useNavigate, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import { User } from '@phosphor-icons/react';
 import { SharedState } from '../../context/SharedContext';
 import theme from '../../global/theme';
@@ -53,7 +53,7 @@ export const Menu = (props: MenuProps) => {
               <S.MenuImg src="/menu.svg" />
             </S.ButtonBurger>
 
-            <S.LinkLogo href={`/Painel/${id}`}>
+            <S.LinkLogo to={`/Painel/${id}`}>
               <S.MenuImg src="/Logo_Niko.svg" />
             </S.LinkLogo>
 
@@ -62,7 +62,7 @@ export const Menu = (props: MenuProps) => {
             )}
 
             <S.MenuDesk>
-              <MenuC.link href={`/Painel/${id}`}>
+              <MenuC.link to={`/Painel/${id}`}>
                 <MenuC.MenuImg
                   src={
                     pathname === `/Painel/${id}`
@@ -76,7 +76,7 @@ export const Menu = (props: MenuProps) => {
                 {pathname !== `/Painel/${id}` && <MenuC.textIcon>Painel</MenuC.textIcon>}
               </MenuC.link>
 
-              <MenuC.link href={`/Atividades/${id}`}>
+              <MenuC.link to={`/Atividades/${id}`}>
                 <MenuC.MenuImg
                   src={
                     pathname === `/Atividades/${id}` ? '/IconMenu/Activity/Fill.svg' : '/IconMenu/Activity/Regular.svg'
@@ -88,7 +88,7 @@ export const Menu = (props: MenuProps) => {
                 {pathname !== `/Atividades/${id}` && <MenuC.textIcon>Atividades</MenuC.textIcon>}
               </MenuC.link>
 
-              <MenuC.link href={`/Fase/${id}`}>
+              <MenuC.link to={`/Fase/${id}`}>
                 <MenuC.MenuImg
                   src={
                     pathname === `/Fase/${id}` || pathname.search('Board') >= 0 || pathname.search('Lote') >= 0
@@ -110,7 +110,7 @@ export const Menu = (props: MenuProps) => {
                 )}
               </MenuC.link>
 
-              <MenuC.link href={`/Categorias/${id}`}>
+              <MenuC.link to={`/Categorias/${id}`}>
                 <MenuC.MenuImg
                   src={
                     pathname === `/Categorias/${id}`
@@ -128,15 +128,15 @@ export const Menu = (props: MenuProps) => {
         )}
 
         {props.id_projeto == undefined && (
-          <S.LinkLogo href={`/Projetos`}>
+          <S.LinkLogo to={`/Projetos`}>
             <S.MenuImg src="/Logo_Niko.svg" />
           </S.LinkLogo>
         )}
 
         <S.ContainerLogo>
-          <a href={props.id_projeto ? `/Fase/${id}` : '/Projetos'}>
+          <Link to={props.id_projeto ? `/Fase/${id}` : '/Projetos'}>
             <S.MenuImg src="/Logo_Niko.svg" />
-          </a>
+          </Link>
         </S.ContainerLogo>
 
         <S.MenuLeft>
@@ -170,8 +170,8 @@ export const Menu = (props: MenuProps) => {
                 color: theme.colors.white,
               }}
             >
-              <a
-                href={'/Perfil'}
+              <Link
+                to={'/Perfil'}
                 style={{
                   color: theme.colors.white,
                   padding: '12px 16px',
@@ -184,7 +184,7 @@ export const Menu = (props: MenuProps) => {
                 }}
               >
                 <p>Perfil</p>
-              </a>
+              </Link>
               <button
                 onClick={() => {
                   handleSignOut();

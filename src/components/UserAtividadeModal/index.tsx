@@ -116,10 +116,11 @@ export const UserModalAtividade = (props: UserModalAtividadeProps) => {
   return (
     <>
       <S.ModalBackdrop>
-        <S.ModalArea id="modal-scaling">
+        <S.ModalAreaCard id="modal-scaling">
+
           <S.ModalContent id="modal-content">
             <S.NameClose>
-              <h2>Atribuir Lote</h2>
+              <h2>Atribuir usuários à atividade</h2>
               <S.Exit onClick={handleClose}>
                 <img src="/close.svg" alt="" height={24} width={24} />
               </S.Exit>
@@ -198,7 +199,7 @@ export const UserModalAtividade = (props: UserModalAtividadeProps) => {
               <p style={{ color: theme.colors['red/500'], fontSize: '12px' }}>Todas as fases precisam de um Operador</p>
             )}
           </S.ModalContent>
-        </S.ModalArea>
+        </S.ModalAreaCard>
       </S.ModalBackdrop>
     </>
   );

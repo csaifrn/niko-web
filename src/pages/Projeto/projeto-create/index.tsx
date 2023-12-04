@@ -241,7 +241,7 @@ const CreateProjeto = () => {
                   </S.ButtonEnviar>
                 </S.AdressContainer>
                 {showError && <p style={{ color: 'red' }}>{errorMessage}</p>}
-                <Sm.ChooseLote></Sm.ChooseLote>
+                <Sm.MembrosDiv></Sm.MembrosDiv>
                 <S.ButtonGray onClick={() => setContador(contador - 1)}>Voltar</S.ButtonGray>
                 <S.ButtonGreen
                   onClick={() => {

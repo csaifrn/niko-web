@@ -2,12 +2,13 @@ import { useEffect, useState } from 'react';
 import * as S from './styles';
 import { date, string } from 'yup';
 import { Link, useParams } from 'react-router-dom';
+import theme from '../../global/theme';
 
 export const PainelPorFase = () => {
   const valores = [
     {
       fase: 1,
-      concluidos: 5,
+      concluidos: 152,
     },
     {
       fase: 2,
@@ -49,7 +50,7 @@ export const PainelPorFase = () => {
   const ano = dataAtual.getFullYear();
   const dataHoje = new Date(ano, mes, dia, 0, 0, 0);
 
-  const [dataInicial, setDataInicial] = useState<Date>(new Date());
+  const [dataInicial, setDataInicial] = useState<Date>(new Date(dataHoje));
 
   const [dataInicialEmString, setDataInicialEmString] = useState<string>();
 
@@ -71,6 +72,8 @@ export const PainelPorFase = () => {
     const mes = e.target.value.split('-')[1];
     const ano = e.target.value.split('-')[2];
     const dataEscolhida = new Date(`${dia}/${mes}/${ano}`);
+
+    dataEscolhida.setHours(0, 0, 0);
     setDataInicialEmString(`${dia}-${mes}-${ano}`);
     // Verifica se a data inicial escolhida é mais nova que a data de hoje
     if (dataEscolhida > dataHoje) {
@@ -83,7 +86,7 @@ export const PainelPorFase = () => {
     }
   };
 
-  const [dataFinal, setDataFinal] = useState<Date>();
+  const [dataFinal, setDataFinal] = useState<Date>(new Date(dataHoje));
 
   //Função pra pegar a data final escolhida pelo usuário
   const handlePegarDataFinal = (e: any) => {
@@ -91,6 +94,9 @@ export const PainelPorFase = () => {
     const mes = e.target.value.split('-')[1];
     const ano = e.target.value.split('-')[2];
     const dataEscolhida = new Date(`${dia}/${mes}/${ano}`);
+    dataEscolhida.setHours(0, 0, 0);
+
+    console.log('A data escolhida foi:' + dataEscolhida);
     setDataFinalEmString(`${dia}-${mes}-${ano}`);
     // Verifica se a data final escolhida é mais nova que a data de hoje
     if (dataEscolhida > dataHoje) {
@@ -106,11 +112,15 @@ export const PainelPorFase = () => {
     }
   };
 
+  console.log('A data inicial é:' + dataInicial);
+
+  console.log('A data final é:' + dataFinal);
+
   const { id } = useParams();
 
   return (
     <S.Wrapper>
-      <S.PainelTitulo>Painel por fase</S.PainelTitulo>
+      <S.PainelTitulo> Painel por fase </S.PainelTitulo>
 
       <S.ContainerData>
         <S.FiltrarPorPeriodo>
@@ -119,23 +129,12 @@ export const PainelPorFase = () => {
           <S.EscolherDatas>
             <S.DataInicial>
               <S.DataText>De:</S.DataText>
-
-              <S.Filter
-                disabled={dtFinalInvalida}
-                onChange={handlePegarDataInicial}
-                value={dataInicialEmString || ''}
-                type="date"
-              />
+              <S.Filter onChange={handlePegarDataInicial} value={dataInicialEmString || ''} type="date" />
             </S.DataInicial>
 
             <S.DataFinal>
               <S.DataText>Até:</S.DataText>
-              <S.Filter
-                disabled={dtInicialInvalida}
-                onChange={handlePegarDataFinal}
-                value={dataFinalEmString || ''}
-                type="date"
-              />
+              <S.Filter onChange={handlePegarDataFinal} value={dataFinalEmString || ''} type="date" />
             </S.DataFinal>
 
             {/* BOTÃO DE FILTRAR */}
@@ -166,51 +165,42 @@ export const PainelPorFase = () => {
           {dtFinalInvalida && <S.DataInvalidaMessage>A data final é inválida. {msgErro}</S.DataInvalidaMessage>}
         </S.FiltrarPorPeriodo>
 
-        <S.ContainerFilterNumber>
-          <S.QtdLotes>
-            <S.NumberOrangeTitle>172</S.NumberOrangeTitle> Lotes
-          </S.QtdLotes>
-        </S.ContainerFilterNumber>
+        {/* RECEPÇÃO */}
+        <S.DivRemessasRecepcao>
+          <S.ContainerDataFaseRecepcao>
+            <Link to={`/Fase/${id}/Board/Recebidos`}>
+              <S.CardFaseColorful style={{ backgroundColor: theme.colors['red/300'] }}>
+                <img src="/icon-big/IconOpenFile.svg" />
+              </S.CardFaseColorful>
+            </Link>
 
-        <S.Container>
-          <S.DataFaseDois>
-            <S.ContainerDataFase>
-              <Link to={`/Fase/${id}/Board/Recebidos`}>
-                <S.ContainerImg src="/icon-big/Recepção.svg" />
-              </Link>
-              <S.DataFase>
-                <S.NumberTextDataUnic>
-                  <S.DataFaseTxtCenter>
-                    <S.NumberGreen>{valores.filter((valor) => valor.fase === 1)[0].concluidos}</S.NumberGreen>
-                  </S.DataFaseTxtCenter>
-                  <S.DataFaseTxtCenter>Remessas Recebidas</S.DataFaseTxtCenter>
-                </S.NumberTextDataUnic>
-              </S.DataFase>
-            </S.ContainerDataFase>
+            <S.CardFaseBlack>
+              <S.NumberTextDataUnic>
+                <S.NumberOrangeTitle>{valores.filter((valor) => valor.fase === 1)[0].concluidos}</S.NumberOrangeTitle>
+                <S.DataFaseTxtCenter>Remessas Recebidas</S.DataFaseTxtCenter>
+              </S.NumberTextDataUnic>
+            </S.CardFaseBlack>
+          </S.ContainerDataFaseRecepcao>
+        </S.DivRemessasRecepcao>
 
-            <S.ContainerDataFase>
-              <Link to={`/Fase/${id}/Board/Arquivamento`}>
-                <S.ContainerImg src="/icon-big/Arquivamento.svg" />
-              </Link>
-
-              <S.DataFase>
-                <S.NumberTextDataUnic>
-                  <S.DataFaseTxtCenter>
-                    <S.NumberGreen>{valores.filter((valor) => valor.fase === 6)[0].concluidos}</S.NumberGreen>
-                  </S.DataFaseTxtCenter>
-                  <S.DataFaseTxtCenter>Foram concluídos</S.DataFaseTxtCenter>
-                </S.NumberTextDataUnic>
-              </S.DataFase>
-            </S.ContainerDataFase>
-          </S.DataFaseDois>
+        <S.PainelPorFaseLotes>
+          {/* CONTAGEM DE LOTES */}
+          <S.ContainerFilterNumber>
+            <S.QtdLotes>
+              <S.NumberOrangeTitle>172</S.NumberOrangeTitle> Lotes
+            </S.QtdLotes>
+          </S.ContainerFilterNumber>
 
           <S.FasesDoMeio>
+            {/* PREPARO */}
             <S.ContainerDataFase>
               <Link to={`/Fase/${id}/Board/Preparo`}>
-                <S.ContainerImg src="/icon-big/Preparo.svg" />
+                <S.CardFaseColorful style={{ backgroundColor: theme.colors['orange/400'] }}>
+                  <img src="/icon-big/IconClean.svg" />
+                </S.CardFaseColorful>
               </Link>
 
-              <S.DataFase>
+              <S.CardFaseBlack>
                 <S.NumberTextData>
                   <S.NumberName>
                     <S.NumberTxt>
@@ -228,14 +218,18 @@ export const PainelPorFase = () => {
                     </S.NumberName>
                   </S.DataFaseTxt>
                 </S.NumberTextData>
-              </S.DataFase>
+              </S.CardFaseBlack>
             </S.ContainerDataFase>
 
+            {/* CATALOGAÇÃO */}
             <S.ContainerDataFase>
               <Link to={`/Fase/${id}/Board/Catalogacao`}>
-                <S.ContainerImg src="/icon-big/Catalogação.svg" />
+                <S.CardFaseColorful style={{ backgroundColor: theme.colors['yellow/500'] }}>
+                  <img src="/icon-big/IconBookMark.svg" />
+                </S.CardFaseColorful>
               </Link>
-              <S.DataFase>
+
+              <S.CardFaseBlack>
                 <S.NumberTextData>
                   <S.NumberName>
                     <S.NumberTxt>
@@ -253,13 +247,18 @@ export const PainelPorFase = () => {
                     </S.NumberName>
                   </S.DataFaseTxt>
                 </S.NumberTextData>
-              </S.DataFase>
+              </S.CardFaseBlack>
             </S.ContainerDataFase>
+
+            {/* DIGITALIZAÇÃO */}
             <S.ContainerDataFase>
               <Link to={`/Fase/${id}/Board/Digitalizacao`}>
-                <S.ContainerImg src="/icon-big/Digitalização.svg" />
+                <S.CardFaseColorful style={{ backgroundColor: theme.colors['blue/400'] }}>
+                  <img src="/icon-big/IconScanner.svg" />
+                </S.CardFaseColorful>
               </Link>
-              <S.DataFase>
+
+              <S.CardFaseBlack>
                 <S.NumberTextData>
                   <S.NumberName>
                     <S.NumberTxt>
@@ -277,14 +276,18 @@ export const PainelPorFase = () => {
                     </S.NumberName>
                   </S.DataFaseTxt>
                 </S.NumberTextData>
-              </S.DataFase>
+              </S.CardFaseBlack>
             </S.ContainerDataFase>
+
+            {/* UPLOAD */}
             <S.ContainerDataFase>
               <Link to={`/Fase/${id}/Board/Upload`}>
-              <S.ContainerImg src="/icon-big/Upload.svg" />
+                <S.CardFaseColorful style={{ backgroundColor: theme.colors['purple/600'] }}>
+                  <img src="/icon-big/IconUpload.svg" />
+                </S.CardFaseColorful>
               </Link>
-              
-              <S.DataFase>
+
+              <S.CardFaseBlack>
                 <S.NumberTextData>
                   <S.NumberName>
                     <S.NumberTxt>
@@ -302,10 +305,26 @@ export const PainelPorFase = () => {
                     </S.NumberName>
                   </S.DataFaseTxt>
                 </S.NumberTextData>
-              </S.DataFase>
+              </S.CardFaseBlack>
+            </S.ContainerDataFase>
+
+            {/* ARQUIVAMENTO */}
+            <S.ContainerDataFase>
+              <Link to={`/Fase/${id}/Board/Arquivamento`}>
+                <S.CardFaseColorful style={{ backgroundColor: theme.colors['green/400'] }}>
+                  <img src="/icon-big/IconCheckFile.svg" />
+                </S.CardFaseColorful>
+              </Link>
+
+              <S.CardFaseBlack>
+                <S.NumberNameArquivamento>
+                  <S.NumberGreen>{valores.filter((valor) => valor.fase === 5)[0].concluidos}</S.NumberGreen>
+                  <S.DataFaseTxt>Foram concluídos</S.DataFaseTxt>
+                </S.NumberNameArquivamento>
+              </S.CardFaseBlack>
             </S.ContainerDataFase>
           </S.FasesDoMeio>
-        </S.Container>
+        </S.PainelPorFaseLotes>
       </S.ContainerData>
     </S.Wrapper>
   );

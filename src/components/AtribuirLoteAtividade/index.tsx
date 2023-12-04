@@ -29,7 +29,7 @@ export interface ILoteUser {
   lotes: (typeof LoteData)[];
 }
 
-export const AtribuirModalAtividade = (props: AtribuirModalAtividadeProps) => {
+export const AtribuirLoteAtividade = (props: AtribuirModalAtividadeProps) => {
   const [selectedLotes, setSelectedLotes] = useState<(typeof LoteData)[]>([]);
   const [searchTerm, setSearchTerm] = useState<string>('');
   const [selectedCategoria, setSelectedCategoria] = useState<number | null>(null);
@@ -142,7 +142,29 @@ export const AtribuirModalAtividade = (props: AtribuirModalAtividadeProps) => {
               </S.Exit>
             </S.NameClose>
 
-            <img height={32} width={32} src={`/icon-medium/${props.nameFase}.svg`} alt="Icone da fase" />
+            {props.nameFase == 'Preparo' && (
+              <img height={32} width={32} src={`/icon-medium/Preparo.svg`} alt="Icone da fase" />
+            )}
+            {props.nameFase == 'Catalogação' && (
+              <img height={32} width={32} src={`/icon-medium/Catalogação.svg`} alt="Icone da fase" />
+            )}
+            {props.nameFase == 'Digitalização' && (
+              <img height={32} width={32} src={`/icon-medium/Digitalização.svg`} alt="Icone da fase" />
+            )}
+            {props.nameFase == 'Upload' && (
+              <img height={32} width={32} src={`/icon-medium/Upload.svg`} alt="Icone da fase" />
+            )}
+            {props.nameFase == 'Arquivamento' && (
+              <img height={32} width={32} src={`/icon-medium/Arquivamento.svg`} alt="Icone da fase" />
+            )}
+
+            {props.nameFase != 'Catalogação' &&
+              props.nameFase != 'Digitalização' &&
+              props.nameFase != 'Upload' &&
+              props.nameFase != 'Preparo' &&
+              props.nameFase != 'Arquivamento' && (
+                <img height={32} width={32} src={`/icon-small/new.png`} alt="Icone da fase" />
+              )}
 
             <Search searchTerm={searchTerm} handleSearchChange={handleSearchChange} />
 

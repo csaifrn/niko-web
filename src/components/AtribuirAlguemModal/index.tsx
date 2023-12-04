@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import * as S from './style';
 import { AssignedUser } from '../../api/services/batches/get-batche/get.interface';
-import { MultiValue } from 'react-select';
+
 import { validationSearch } from './validation';
 import toast from 'react-hot-toast';
 import { SearchUserResponseBatche } from '../../api/services/batches/assigners/get-user-autocomplete/get.interface';
@@ -16,11 +16,12 @@ import { PostResponseAssigners } from '../../api/services/batches/assigners/post
 import ReactLoading from 'react-loading';
 import { ErrorMessage } from '../../pages/Login/styles';
 import theme from '../../global/theme';
+import { MultiValue } from 'react-select';
 
 export interface AtribuirAlguemModalProps {
   close: () => void;
   assigners: AssignedUser[] | undefined;
-  setAssigners: React.Dispatch<React.SetStateAction<AssignedUser[]>>;
+  setAssigners?: React.Dispatch<React.SetStateAction<AssignedUser[]>>;
 }
 
 interface Options {
@@ -107,7 +108,9 @@ export const AtribuirAlguemModal = (props: AtribuirAlguemModalProps) => {
   });
 
   useEffect(() => {
-    props.setAssigners(presentAssigners ? presentAssigners : []);
+    if (props.setAssigners) {
+      props.setAssigners(presentAssigners ? presentAssigners : []);
+    }
   }, [presentAssigners]);
 
   useEffect(() => {
@@ -205,11 +208,13 @@ export const AtribuirAlguemModal = (props: AtribuirAlguemModalProps) => {
             </S.NameClose>
             <S.CustomSelect
               isMulti
+              // eslint-disable-next-line jsx-a11y/no-autofocus
               autoFocus
               placeholder={'Digite no mínimo 3 caracteres...'}
               onInputChange={setUserinput}
               inputValue={userInput}
               onChange={(e: any, action: any) => {
+                // eslint-disable-next-line no-constant-condition
                 if ((action.action = 'remove-value')) {
                   onRemove(action.removedValue);
                 }

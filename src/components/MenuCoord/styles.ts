@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 const MenuImg = styled.img``;
@@ -32,7 +33,7 @@ const textIcon = styled.p`
   font-weight: bold;
 `;
 
-const link = styled.a`
+const link = styled(Link)`
   display: flex;
   flex-direction: column;
   align-items: center;

@@ -13,7 +13,7 @@ interface CreateAtividadeProps {
   tarefasData: any[];
 }
 
-export const CreateAtividade = (props: CreateAtividadeProps) => {
+export const CreateTarefaAtividade = (props: CreateAtividadeProps) => {
   const [searchTerm, setSearchTerm] = useState<string>('');
   const [newAtividade, setNewAtividade] = useState<string>('');
   const [closing, setClosing] = useState(false);
@@ -132,11 +132,7 @@ export const CreateAtividade = (props: CreateAtividadeProps) => {
                 style={{
                   position: 'absolute',
                   right: '0',
-                  translate: '-35% 30%',
                   top: '0',
-                  border: 'none',
-                  backgroundColor: 'transparent',
-                  cursor: 'pointer',
                 }}
               >
                 <img src="/adicionar.svg" alt="" />

@@ -2,15 +2,16 @@ import { useNavigate, useParams } from 'react-router-dom';
 import Menu from '../../../../components/Menu';
 import MenuCoord from '../../../../components/MenuCoord';
 import { useEffect, useState } from 'react';
-import { CreateAtividade } from '../../../../components/CreateAtividadeModal';
+import { CreateTarefaAtividade } from '../../../../components/CreateTarefaModal';
 import FaseData from '../../../../data/FaseData';
 import { CategoriasTipologias } from '../../../../components/CategoriaTipologias';
 import CategoriaData from '../../../../data/CategoriaData';
 import { TipologiaData } from '../../../../data/TipologiaData';
 import { IUserFase, UserModalAtividade } from '../../../../components/UserAtividadeModal';
-import { AtribuirModalAtividade, ILoteUser } from '../../../../components/AtribuirModalAtividade';
+import { AtribuirLoteModal, ILoteUser } from '../../../../components/AtribuirLoteModal';
 import * as S from './style';
 import theme from '../../../../global/theme';
+import { SairSemSalvarModal } from '../../../../components/SairSemSalvarModal';
 
 const AtividadeCreate = () => {
   const { id } = useParams();
@@ -20,7 +21,7 @@ const AtividadeCreate = () => {
 
   const [tarefas, setTarefas] = useState<typeof FaseData>([]);
 
-  const [tarefasData, setTarefasData] = useState<any>([[], []]);
+  const [tarefasData, setTarefasData] = useState<any>([[...tarefas], []]);
 
   const [categorias, setCategorias] = useState<typeof CategoriaData>([]);
   const [tipologias, setTipologias] = useState<typeof TipologiaData>([]);
@@ -38,6 +39,7 @@ const AtividadeCreate = () => {
   const [modalCatTipo, SetModalCatTipo] = useState(false);
   const [modalUsers, SetModalUsers] = useState(false);
   const [modalAtribuirLote, SetModalAtribuirLote] = useState(false);
+  const [modalSairSemSalvar, setModalSairSemSalvar] = useState(false);
 
   const [faseDatas, setFaseDatas] = useState<any[]>([]);
 
@@ -137,11 +139,7 @@ const AtividadeCreate = () => {
           </div>
 
           <S.CloseDiv>
-            <S.Exit
-              onClick={() => {
-                navigate(`/Atividades/${id}`);
-              }}
-            >
+            <S.Exit onClick={() => setModalSairSemSalvar(!modalSairSemSalvar)}>
               <img src="/close.svg" alt="" height={18} width={18} />
             </S.Exit>
           </S.CloseDiv>
@@ -512,7 +510,7 @@ const AtividadeCreate = () => {
       </S.CriarAtivArea>
 
       {modalTarefas && (
-        <CreateAtividade
+        <CreateTarefaAtividade
           close={() => {
             setModalTarefas(!modalTarefas);
           }}
@@ -549,7 +547,7 @@ const AtividadeCreate = () => {
         />
       )}
       {modalAtribuirLote && (
-        <AtribuirModalAtividade
+        <AtribuirLoteModal
           close={() => {
             SetModalAtribuirLote(!modalAtribuirLote);
           }}
@@ -562,6 +560,14 @@ const AtividadeCreate = () => {
           id_fase={idFase}
           setLoteUser={handleLoteUser}
           loteUser={LoteUser.filter((loteUser) => loteUser.id_user === idUser && loteUser.id_fase === idFase)[0]}
+        />
+      )}
+
+      {modalSairSemSalvar && (
+        <SairSemSalvarModal
+          close={() => {
+            setModalSairSemSalvar(!modalSairSemSalvar);
+          }}
         />
       )}
     </div>

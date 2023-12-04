@@ -1,7 +1,21 @@
 import styled from 'styled-components';
 import media from 'styled-media-query';
 
-const ModalArea = styled.div`
+const ModalBackdrop = styled.div`
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  background-color: rgba(25, 28, 36, 0.7);
+  transition: transform 1s;
+`;
+
+const ModalAreaCard = styled.div`
   width: 80vw;
   max-height: 90vh;
   overflow-y: auto;
@@ -18,9 +32,12 @@ const ModalArea = styled.div`
   font-family: 'Rubik';
   border-radius: 5px;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  ${media.greaterThan('large')`
+  /* ${media.greaterThan('large')`
     width: 20vw;
-  `}
+  `} */
+  @media screen and (min-width: 767px) {
+    width: 50vw;
+  }
 `;
 
 const ModalContent = styled.div`
@@ -106,18 +123,4 @@ const AtribuirButton = styled.button`
   }
 `;
 
-const ModalBackdrop = styled.div`
-  position: fixed;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-  z-index: 100;
-  background-color: rgba(25, 28, 36, 0.7);
-  transition: transform 1s;
-`;
-
-export { ModalArea, ModalContent, NameClose, ChooseLote, Lote, AtribuirButton, ModalBackdrop };
+export { ModalAreaCard, ModalContent, NameClose, ChooseLote, Lote, AtribuirButton, ModalBackdrop };

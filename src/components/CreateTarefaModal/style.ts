@@ -17,6 +17,20 @@ export const ModalArea = styled.div`
   font-family: 'Rubik';
   border-radius: 5px;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  &::-webkit-scrollbar {
+    width: 0.8em;
+    height: 0.5em;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: ${({ theme }) => theme.colors['gray/500']};
+    border-radius: 20px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background-color: transparent;
+    margin: 0em;
+  }
 `;
 
 export const ModalContent = styled.div`
@@ -65,17 +79,19 @@ export const Titulo = styled.input`
 `;
 
 export const BotaoAdd = styled.button`
-  border: none;
-  background-color: transparent;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   border-radius: 100%;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 8px;
+  background-color: transparent;
   &:hover {
-    background-color: ${({ theme }) => theme.colors['gray/300']};
+    background-color: ${({ theme }) => theme.colors['gray/400']};
   }
   &:active {
-    background-color: ${({ theme }) => theme.colors['gray/300']};
+    background-color: ${({ theme }) => theme.colors['gray/400']};
     transform: translateY(-5%) translateX(2%);
   }
 `;
@@ -120,10 +136,6 @@ export const ChooseUser = styled.div`
   &::-webkit-scrollbar {
     width: 0.8em;
     height: 0.5em;
-  }
-
-  &::-webkit-scrollbar-track {
-    background: ${({ theme }) => theme.colors['gray/700']};
   }
 
   &::-webkit-scrollbar-thumb {

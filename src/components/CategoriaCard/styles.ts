@@ -220,7 +220,7 @@ const BarInner = styled.div<IBar>`
 `;
 
 const BtnsDiv = styled.div`
-  padding: 0 2em 2em 2em;
+  padding: 2em 2em 2em 2em;
   display: flex;
   flex-direction: column;
   gap: 1em;

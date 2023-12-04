@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import * as S from './styles';
 import { ErrorMessage } from '../../pages/Login/styles';
 import { validationLoginSchema, validationSearch } from './validation';
@@ -12,6 +12,8 @@ import ReactLoading from 'react-loading';
 import toast from 'react-hot-toast';
 import { SeachCategoria } from '../../api/services/categoria/get-categoria';
 import { SeachCategoriaResponseBatche } from '../../api/services/categoria/get-categoria/get.interface';
+import { KabanContext } from '../Board';
+import { GetResponseBatche } from '../../api/services/batches/get-batche/get.interface';
 
 interface ModalCriarProps {
   close: () => void;
@@ -23,6 +25,8 @@ interface Options {
 }
 
 export const ModalCriarLote = (props: ModalCriarProps) => {
+  const kanban = useContext(KabanContext);
+
   const [categoria, setCategoria] = useState<any>(null);
   const [closing, setClosing] = useState(false);
   const [options, setOptions] = useState<Options[]>([]);
@@ -70,9 +74,10 @@ export const ModalCriarLote = (props: ModalCriarProps) => {
   };
 
   const loginMutation = useMutation(CreateBatche, {
-    onSuccess: (data: CreateResponseBatche) => {
+    onSuccess: (data: GetResponseBatche) => {
       toast.success('Lote Criado!');
       console.log(data);
+      kanban?.setBatchesDispo((prev) => [...prev, data]);
       handleSucess();
     },
     onError: (error: ApiError) => {
@@ -127,7 +132,6 @@ export const ModalCriarLote = (props: ModalCriarProps) => {
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const isValid = await validateForm();
-    console.log('Foi', isValid);
     if (isValid) {
       loginMutation.mutate({
         title,

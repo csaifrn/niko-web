@@ -12,6 +12,9 @@ export const EditarAtivArea = styled.div`
   margin-top: 10em;
   max-width: 1140px;
   width: 100%;
+  @media screen and (min-width: 767px) {
+    margin-bottom: 2em;
+  }
 `;
 
 export const Titulo = styled.h1`
@@ -201,9 +204,6 @@ export const EditAtivAtivado = styled.button`
     background-color: ${({ theme }) => theme.colors['green/600']};
     transform: translateY(-5%) translateX(2%);
   }
-  /* ${media.greaterThan('large')`
-    width: fit-content;
-  `} */
   @media screen and (min-width: 767px) {
     width: fit-content;
   }

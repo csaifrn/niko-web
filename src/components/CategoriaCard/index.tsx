@@ -3,8 +3,9 @@ import * as S from './styles';
 import { DataFase } from '../DataFase';
 import { DeletarModal } from '../DeletarModal';
 import CategoriaData from '../../data/CategoriaData';
+import { Tag } from '../../api/services/tags/get-batche/get.interface';
 
-const CategoriaCard = (Categoria: (typeof CategoriaData)[0]) => {
+const CategoriaCard = (Categoria: Tag) => {
   const [expanded, setExpanded] = useState(false);
   const [accodionHeight, setAccodionHeight] = useState(0);
   const [modal, setModal] = useState(false);
@@ -55,15 +56,15 @@ const CategoriaCard = (Categoria: (typeof CategoriaData)[0]) => {
                 </S.Prioridade>
               )}
             </S.CabecarioCategoria>
-            <S.BarOut>
+            {/* <S.BarOut>
               <S.BarInner percentage={percentage}></S.BarInner>
             </S.BarOut>
-            <p>{percentage}%</p>
+            <p>{percentage}%</p> */}
           </S.CategoriaClick>
         </S.CardA>
 
         <S.Footer className={expanded ? 'show' : ''} setHeight={accodionHeight} ref={ref}>
-          <DataFase
+          {/* <DataFase
             recepcao={30}
             preparo={2}
             catalogacao={22}
@@ -71,7 +72,7 @@ const CategoriaCard = (Categoria: (typeof CategoriaData)[0]) => {
             upload={40}
             arquivados={1000}
             percentageCallback={handlePercentage}
-          />
+          /> */}
           <S.BtnsDiv>
             <S.ButtonPrioridade onClick={(e) => handlePrioridade(e)}>
               {prioridade ? 'Tirar Prioridade' : 'Marcar Prioridade'}

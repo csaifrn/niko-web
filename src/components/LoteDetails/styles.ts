@@ -11,6 +11,12 @@ export const BotaoCriarObservacao = styled.button`
   align-items: center;
   padding: 8px;
   background-color: transparent;
+  position: relative;
+  :hover div {
+    visibility: visible;
+    opacity: 1;
+    display: block;
+  }
   &:hover {
     background-color: ${({ theme }) => theme.colors['gray/400']};
   }
@@ -123,6 +129,12 @@ export const Edit = styled.div`
   justify-content: center;
   align-items: center;
   background-color: ${({ theme }) => theme.colors['gray/500']};
+  position: relative;
+  :hover div {
+    visibility: visible;
+    opacity: 1;
+    display: block;
+  }
   &:hover {
     background-color: ${({ theme }) => theme.colors['gray/400']};
   }
@@ -143,6 +155,12 @@ export const Config = styled.button`
   border: none;
   cursor: pointer;
   background-color: ${({ theme }) => theme.colors['gray/500']};
+  position: relative;
+  :hover div {
+    visibility: visible;
+    opacity: 1;
+    display: block;
+  }
   &:hover {
     background-color: ${({ theme }) => theme.colors['gray/400']};
   }
@@ -184,6 +202,12 @@ export const ArquivFisicos = styled.div`
   justify-content: center;
   gap: 0.5em;
   border-radius: 3px;
+  position: relative;
+  :hover div {
+    visibility: visible;
+    opacity: 1;
+    display: block;
+  }
 `;
 
 export const ArquivDigitais = styled.div`
@@ -195,6 +219,12 @@ export const ArquivDigitais = styled.div`
   justify-content: center;
   gap: 0.5em;
   border-radius: 3px;
+  position: relative;
+  :hover div {
+    visibility: visible;
+    opacity: 1;
+    display: block;
+  }
 `;
 
 export const DadosCriacaoLoteDiv = styled.div`
@@ -277,10 +307,16 @@ export const Text = styled.p`
   align-content: left;
 `;
 
-export const FaseEnvolvAtual = styled.div`
-  display: flex;
-  justify-content: flex-start;
-  gap: 8px;
+export const FaseAtualDiv = styled.div``;
+
+export const IconTooltipFase = styled.div`
+  position: relative;
+  width: 32px;
+  :hover div {
+    visibility: visible;
+    opacity: 1;
+    display: block;
+  }
 `;
 
 export const TituloFaseAtual = styled.h2``;
@@ -443,11 +479,10 @@ export const BotaoDeletarLote = styled.button`
   color: #ffffff;
   cursor: pointer;
   &:hover {
-    background-color: ${({ theme }) => theme.colors['red/400']};
+    filter: brightness(0.9);
   }
   &:active {
-    background-color: ${({ theme }) => theme.colors['red/400']};
-    transform: translateY(-5%) translateX(2%);
+    filter: brightness(0.9);
   }
 `;
 

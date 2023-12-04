@@ -54,11 +54,11 @@ export const BoxObservation = ({
           <S.DivButtons>
             <S.ButtonEdit onClick={handleClickEdit}>
               <PencilSimple size={18} weight="fill" color={theme.colors['white']} />
-              <S.ToolTip>Editar</S.ToolTip>
+              <S.ToolTip style={{width: '135px'}}>Editar observação</S.ToolTip>
             </S.ButtonEdit>
             <S.ButtonDelete onClick={handleClickDelete}>
               <MinusCircle size={18} weight="fill" color={theme.colors['red/500']} />
-              <S.ToolTip>Deletar</S.ToolTip>
+              <S.ToolTip style={{width: '140px'}} >Excluir observação</S.ToolTip>
             </S.ButtonDelete>
           </S.DivButtons>
         )}

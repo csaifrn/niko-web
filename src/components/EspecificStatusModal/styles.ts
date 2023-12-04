@@ -110,7 +110,7 @@ const Recused = styled.button`
   height: 44px;
   border-radius: 5px;
   padding: 0 16px;
-  background-color: #191c24;
+  background-color: rgb(207, 34, 34);
   border: none;
   cursor: pointer;
   color: #191c24;
@@ -119,11 +119,10 @@ const Recused = styled.button`
   align-items: center;
   justify-content: center;
   &:hover {
-    background-color: ${({ theme }) => theme.colors['gray/900']};
+    filter: brightness(0.9);
   }
   &:active {
-    background-color: ${({ theme }) => theme.colors['gray/900']};
-    transform: translateY(-5%) translateX(2%);
+    filter: brightness(0.9);
   }
 `;
 
@@ -162,6 +161,50 @@ const ModalBackdrop = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+`;
+
+export const PegarLoteButton = styled.button`
+  cursor: pointer;
+  height: 44px;
+  display: flex;
+  gap: 0.5em;
+  width: 100%;
+  padding: 1em;
+  align-items: center;
+  border-radius: 5px;
+  background-color: #43db6d;
+  border: none;
+  color: #1c1f28;
+  font-family: 'Rubik';
+  &:hover {
+    background-color: ${({ theme }) => theme.colors['green/600']};
+  }
+  &:active {
+    background-color: ${({ theme }) => theme.colors['green/600']};
+    transform: translateY(-5%) translateX(2%);
+  }
+`;
+
+export const ConcluirLoteButton = styled.button`
+  cursor: pointer;
+  height: 44px;
+  display: flex;
+  gap: 0.5em;
+  width: 100%;
+  padding: 1em;
+  align-items: center;
+  border-radius: 5px;
+  background-color: ${({ theme }) => theme.colors['gray/700']};
+  border: none;
+  color: #1c1f28;
+  font-family: 'Rubik';
+  &:hover {
+    background-color: ${({ theme }) => theme.colors['gray/900']};
+  }
+  &:active {
+    background-color: ${({ theme }) => theme.colors['gray/900']};
+    transform: translateY(-5%) translateX(2%);
+  }
 `;
 
 export { ModalArea, ModalContent, NameClose, Recused, Avancar, ModalBackdrop };

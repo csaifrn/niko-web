@@ -253,14 +253,13 @@ export const AtribuirButton = styled.button`
   border-radius: 5px;
   background-color: #43db6d;
   border: none;
-  color: #1c1f28;
+  color: white;
   font-family: 'Rubik';
   &:hover {
-    background-color: ${({ theme }) => theme.colors['green/600']};
+    filter: brightness(0.9);
   }
   &:active {
-    background-color: ${({ theme }) => theme.colors['green/600']};
-    transform: translateY(-5%) translateX(2%);
+    filter: brightness(0.9);
   }
 `;
 

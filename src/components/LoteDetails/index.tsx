@@ -57,7 +57,7 @@ export const LoteDetails = () => {
   const [status, setStatus] = useState<number>(0);
   const [specificStatus, setSpecificStatus] = useState<number>(0);
   const [openEspecifModal, setOpenEspecifModal] = useState<boolean>(false);
-  const [titleModal, setTitleModal] = useState({ button: 'pegar lote', title: 'Deseja pegar o lote?' });
+  const [titleModal, setTitleModal] = useState({ button: 'Pegar lote', title: 'Deseja pegar o lote?' });
 
   const [option, setOption] = useState<Option>();
 
@@ -174,7 +174,6 @@ export const LoteDetails = () => {
           <Menu area={`/Painel/${id}`} id_projeto={id}></Menu>
           <MenuCoord />
           <S.areaClick>
-
             {/* BOTÃO DE FECHAR */}
             <S.CloseDiv>
               <S.Exit onClick={() => navigate(`/Fase/${id}/Board/${optionsFases[status].label}`)}>
@@ -183,27 +182,33 @@ export const LoteDetails = () => {
             </S.CloseDiv>
 
             <S.LoteInfos>
+              {/* CABEÇALHO */}
               <S.LoteEditConfig>
                 {/* TÍTULO */}
                 <S.TituloLote>{`${task?.title}`}</S.TituloLote>
+
                 <S.EditConfig>
-                  {/* EDITAR */}
+                  {/* BOTÃO DE EDITAR */}
                   <Link to={`/Lote/${task?.id}/Edit`}>
                     <S.Edit>
-                      {''}
                       <S.Icons src={`/pen.svg`}></S.Icons>
-                      {''}
+                      <ToolTip style={{ width: '80px' }} id="tool">
+                        Editar Lote
+                      </ToolTip>
                     </S.Edit>
                   </Link>
-                  {/* CONFIGURAÇÕES */}
+
+                  {/* BOTÃOP DE CONFIGURAÇÕES */}
                   <S.Config onClick={handleConfig}>
-                    {''}
                     <S.Icons src={`/config.svg`}></S.Icons>
-                    {''}
+                    <ToolTip style={{ width: '120px' }} id="tool">
+                      Configurações do lote
+                    </ToolTip>
                   </S.Config>
                 </S.EditConfig>
               </S.LoteEditConfig>
-              
+
+              {/* DADOS DA CRIAÇÃO DO LOTE */}
               <S.DadosCriacaoLoteDiv>
                 <S.BlockGray>
                   Criado por {task?.created_by.name} em{' '}
@@ -212,22 +217,29 @@ export const LoteDetails = () => {
                   })}
                 </S.BlockGray>
               </S.DadosCriacaoLoteDiv>
-            
+
+              {/* ARQUIVOS */}
               <S.DetalhesLote>
                 {task?.shelf_number !== null && <S.Estante>{task?.shelf_number}</S.Estante>}
 
-                {/* ARQUIVOS FÍSICOS */}
-                {task?.physical_files_count != 0 && (
-                  <S.ArquivFisicos>
-                    <img src={`/arquivos_fisicos.svg`} alt="arquivos fisicos" />
-                    {task?.physical_files_count}
-                  </S.ArquivFisicos>
-                )}
-                {/* ARQUIVOS DIGITAIS */}
-                {task?.digital_files_count != 0 && (
+                {/* FÍSICOS */}
+
+                <S.ArquivFisicos>
+                  <img src={`/arquivos_fisicos.svg`} alt="arquivos fisicos" />
+                  {task?.physical_files_count}
+                  <ToolTip style={{ width: '105px' }} id="tool">
+                    Arquivos físicos
+                  </ToolTip>
+                </S.ArquivFisicos>
+
+                {/* DIGITAIS(QUANDO HOUVER) */}
+                {optionsFases[status].label != 'Preparo' && optionsFases[status].label != 'Catalogação' && (
                   <S.ArquivDigitais>
                     <img src={`/arquivos_digitais.svg`} alt="arquivos digitais" />
                     {task?.digital_files_count}
+                    <ToolTip style={{ width: '110px' }} id="tool">
+                      Arquivos digitais
+                    </ToolTip>
                   </S.ArquivDigitais>
                 )}
               </S.DetalhesLote>
@@ -237,6 +249,7 @@ export const LoteDetails = () => {
                 <S.BlockGrayBorder>{task?.category.name}</S.BlockGrayBorder>
               </S.DetalhesLote>
 
+              {/* PRIORIORIDADE(SE TIVER) */}
               {priority === true && (
                 <S.CategoriaPrioridade>
                   <S.Prioridade>
@@ -245,6 +258,7 @@ export const LoteDetails = () => {
                 </S.CategoriaPrioridade>
               )}
 
+              {/* OPERADORES ATRIBUÍDOS AO LOTE */}
               {assigners.length > 0 && (
                 <React.Fragment>
                   Atribuidos
@@ -256,44 +270,16 @@ export const LoteDetails = () => {
                   </S.DetalhesLote>
                 </React.Fragment>
               )}
-              
-              <S.FaseEnvolvAtual>
-                {/* FASE ATUAL DO LOTE */}
-                <S.Icons src={`/icon-medium/${optionsFases[status].label}.svg`} />
 
-                {/* ENVOLVIDOS  */}
-                {/* {usuarios != null &&
-            usuarios.map((env: any) => (
-              <S.Envolvidos key={env.id}>
-                {env.andamento == true && (
-                  <img
-                    src={env.foto}
-                    alt={env.nome}
-                    width={28}
-                    height={28}
-                    style={{
-                      objectFit: 'cover',
-                      borderRadius: '100%',
-                      border: '1px solid #43DB6D',
-                    }}
-                  />
-                )}
-                {env.andamento == false && (
-                  <img
-                    src={env.url}
-                    alt={env.nome}
-                    width={28}
-                    height={28}
-                    style={{
-                      objectFit: 'cover',
-                      borderRadius: '100%',
-                      border: '1px solid #393E4B',
-                    }}
-                  />
-                )}
-              </S.Envolvidos>
-            ))} */}
-              </S.FaseEnvolvAtual>
+              <S.FaseAtualDiv>
+                {/* FASE ATUAL DO LOTE */}
+                <S.IconTooltipFase>
+                  <S.Icons src={`/icon-medium/${optionsFases[status].label}.svg`} />
+                  <ToolTip style={{}} id="tool">
+                    {optionsFases[status].label}
+                  </ToolTip>
+                </S.IconTooltipFase>
+              </S.FaseAtualDiv>
             </S.LoteInfos>
 
             <S.PendObservacaoBotoes>
@@ -327,6 +313,9 @@ export const LoteDetails = () => {
                         setObservacao(!observacao);
                       }}
                     >
+                      <ToolTip style={{ width: '150px' }} id="tool">
+                        Adicionar observação
+                      </ToolTip>
                       <img src="/adicionar.svg" alt="" />
                     </S.BotaoCriarObservacao>
                   </div>
@@ -356,10 +345,11 @@ export const LoteDetails = () => {
                     onClick={(e) => {
                       e.preventDefault();
                       setOpenEspecifModal(!openEspecifModal);
-                      setTitleModal({ button: 'pegar lote', title: 'Deseja pegar o lote?' });
+                      setTitleModal({ button: 'Pegar lote', title: 'Deseja pegar o lote?' });
                     }}
                   >
-                    <ArrowCircleLeft weight="fill" size={24} /> Pegar Lote
+                    <img src="/PegarLote_icon.svg" />
+                    <p style={{ color: 'black' }}>Pegar lote</p>
                   </AtribuirButton>
                 )}
 
@@ -368,10 +358,12 @@ export const LoteDetails = () => {
                     onClick={(e) => {
                       e.preventDefault();
                       setOpenEspecifModal(!openEspecifModal);
-                      setTitleModal({ button: 'Concluir o lote', title: 'Deseja concluir o lote?' });
+                      setTitleModal({ button: 'Marcar como concluído', title: 'Deseja marcar o lote como concluído?' });
                     }}
+                    style={{ backgroundColor: theme.colors['gray/500'] }}
                   >
-                    Concluir lote
+                    <img src="/finished-icon.svg" />
+                    Marcar como concluído
                   </AtribuirButton>
                 )}
                 <S.Botao onClick={handleAtribuirAlguem}>
@@ -544,7 +536,7 @@ export const LoteDetails = () => {
             close={() => {
               setObservacao(!observacao);
             }}
-            title="Criar observação"
+            title="Adicionar observação"
           />
         )}
         {delete_modal && (

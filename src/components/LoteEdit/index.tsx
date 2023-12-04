@@ -28,6 +28,7 @@ const LoteEdit = () => {
   const [title, setTitle] = useState<string>('');
   const [physical_files_count, setPhysical_files_count] = useState<number>(0);
   const [digital_files_count, setDigital_files_count] = useState<number>(0);
+  const [faseAtual, setFaseAtual] = useState<number>(0);
   const [modalSairSemSalvar, setModalSairSemSalvar] = useState(false);
 
   const categorias = useMutation(SeachCategoria, {
@@ -63,6 +64,7 @@ const LoteEdit = () => {
       setName(data.category.name);
       setPhysical_files_count(data.physical_files_count);
       setDigital_files_count(data.digital_files_count);
+      setFaseAtual(data.main_status);
     },
     onError: (error: ApiError) => {
       if (error.response) {
@@ -205,9 +207,9 @@ const LoteEdit = () => {
                     ></S.ArquivosInput>
                   </S.ArquivosFisicos>
                 )}
-
+                
                 {/* ARQUIVOS DIGITAIS */}
-                {digital_files_count !== null && (
+                {faseAtual != 0 && faseAtual != 1 && digital_files_count !== null && (
                   <S.ArquivosDigitais>
                     <p>Digitais</p>
                     <S.ArquivosInput

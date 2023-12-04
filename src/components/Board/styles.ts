@@ -275,7 +275,11 @@ export const BlackButton = styled.button`
   height: 44px;
   transition: all 300ms;
   &:hover {
-    filter: brightness(110%);
+    background-color: ${({ theme }) => theme.colors['gray/900']};
+  }
+  &:active {
+    background-color: ${({ theme }) => theme.colors['gray/900']};
+    transform: translateY(-5%) translateX(2%);
   }
 `;
 

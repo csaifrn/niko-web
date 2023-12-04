@@ -118,10 +118,20 @@ export const EspecifcModal = (props: EspecifModalProps) => {
                 <S.Texto>Não, não quero.</S.Texto>
               </S.Recused>
 
-              <AtribuirButton onClick={handlePegar}>
-                <ArrowCircleLeft weight="fill" size={24} />
-                <S.Texto style={{ color: theme.colors['gray/700'] }}>{props.button}</S.Texto>
-              </AtribuirButton>
+              {props.button === 'Pegar lote' && (
+                <S.PegarLoteButton onClick={handlePegar}>
+                  <img src="/PegarLote_icon.svg" />
+                  {/* {props.button === 'Marcar como concluído' && <img src='/finished-icon.svg' />} */}
+                  <S.Texto style={{ color: theme.colors['gray/700'] }}>{props.button}</S.Texto>
+                </S.PegarLoteButton>
+              )}
+
+              {props.button === 'Marcar como concluído' && (
+                <S.ConcluirLoteButton onClick={handlePegar}>
+                  <img src="/finished-icon.svg" />
+                  <S.Texto>{props.button}</S.Texto>
+                </S.ConcluirLoteButton>
+              )}
             </S.RecusedAvancar>
           </S.ModalContent>
         </S.ModalArea>

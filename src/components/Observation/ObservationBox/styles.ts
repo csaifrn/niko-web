@@ -103,7 +103,8 @@ export const ToolTip = styled.div`
   color: white;
   border-radius: 3px;
   position: absolute;
-  bottom: -35px;
+  top: calc(100% + 5px) ;
   left: 0;
   display: none;
+  font-family: 'Rubik';
 `;

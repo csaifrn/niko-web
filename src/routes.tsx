@@ -45,7 +45,7 @@ const Rotas = () => {
         {/* Páginas que precisam de token */}
         <Route path="/Perfil/:id" element={<Perfil />} />
         <Route path="Painel/:id" element={<Painel />} />
-        <Route path="/Projetos" element={<Projetos />} />
+        {/* <Route path="/Projetos" element={<Projetos />} /> */}
         <Route path="/CriarProjeto" element={<CreateProjeto />} />
         <Route path="/Fase/:id" element={<FasesHome />} />
         <Route path="/Atividades/:id" element={<AtividadesHome />} />

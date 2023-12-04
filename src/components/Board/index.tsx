@@ -51,6 +51,7 @@ export const Board = (props: BoardProps) => {
       setBatchesDispo(data.filter((batche) => batche.specific_status === 0));
       setBatchesAnda(data.filter((batche) => batche.specific_status === 1));
       setBatchesConc(data.filter((batche) => batche.specific_status === 2));
+      console.log(data);
     },
     onError: (err: ApiError) => {
       toast.error(err.message);
@@ -62,7 +63,6 @@ export const Board = (props: BoardProps) => {
       status: props.main_status,
     });
   }, []);
-  
 
   return (
     <KabanContext.Provider
@@ -130,8 +130,9 @@ export const Board = (props: BoardProps) => {
                                 setTitleModal({ button: 'Pegar lote', title: 'Deseja pegar o lote?' });
                                 setBatche(batche);
                               }}
+                              style={{ color: 'black' }}
                             >
-                              <ArrowCircleLeft weight="fill" size={24} /> Pegar Lote
+                              <img src="/PegarLote_icon.svg" /> Pegar lote
                             </AtribuirButton>
                           )}
                           {user.role === 'Coordenador' && (
@@ -170,7 +171,7 @@ export const Board = (props: BoardProps) => {
                     <Empty.Title>Está lista está vazia</Empty.Title>
                   </S.WrapperEmptyKanban>
                 )}
-                {batchesAnda.map(
+                {batchesAnda?.map(
                   (batche) =>
                     batche && (
                       <a href={`/Lote/${batche.id}`} key={batche.id} style={{ textDecoration: 'none' }}>
@@ -188,10 +189,14 @@ export const Board = (props: BoardProps) => {
                                 e.preventDefault();
                                 setOpenEspecifModal(!openEspecifModal);
                                 setBatche(batche);
-                                setTitleModal({ button: 'Concluir o lote', title: 'Deseja concluir o lote?' });
+                                setTitleModal({
+                                  button: 'Marcar como concluído',
+                                  title: 'Deseja marcar o lote como concluído?',
+                                });
                               }}
                             >
-                              Concluir lote
+                              <img src="/finished-icon.svg" />
+                              <p>Marcar como concluído</p>
                             </S.BlackButton>
                           )}
                         </Lote>

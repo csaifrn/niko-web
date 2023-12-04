@@ -88,11 +88,11 @@ export const VoltarModal = (props: VoltarModalProps) => {
               <S.Voltar
                 onClick={handleClose}
                 disabled={!isChecked}
-                style={{ background: !isChecked ? '#666666' : '', cursor: !isChecked ? '' : 'pointer' }}
+                style={{ background: !isChecked ? theme.colors['gray/100'] : '', cursor: !isChecked ? '' : 'pointer' }}
               >
                 {!isChecked && <S.IconeVoltar src="/voltar-desativado.svg"></S.IconeVoltar>}
                 {isChecked && <S.IconeVoltar src="/voltar.svg"></S.IconeVoltar>}
-                <S.Texto style={{ color: !isChecked ? '#ffffff7f' : theme.colors.white }}>Voltar fase</S.Texto>
+                <S.Texto style={{ color: !isChecked ? theme.colors.white : theme.colors.white }}>Voltar fase</S.Texto>
               </S.Voltar>
             </S.RecusedVoltar>
           </S.ModalContent>

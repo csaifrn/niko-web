@@ -109,7 +109,7 @@ export const InputObservation = styled.textarea`
   font-family: 'Rubik';
   padding: 1em;
   background-color: ${({ theme }) => theme.colors['gray/700']}; /* ${({ theme }) => theme.colors['gray/700']}; */
-  color: #cccccc;
+  color: ${({ theme }) => theme.colors['gray/50']};
   font: inherit;
 `;
 

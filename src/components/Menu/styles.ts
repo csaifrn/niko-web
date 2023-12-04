@@ -142,7 +142,7 @@ export const InputSearch = styled.button`
   transition: all 0.3s;
 
   &:hover {
-    background-color: #12141a;
+    background-color: ${({ theme }) => theme.colors['gray/900']};
   }
 
   @media screen and (max-width: 767px) {

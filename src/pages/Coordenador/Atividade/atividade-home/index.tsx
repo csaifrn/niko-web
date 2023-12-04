@@ -352,7 +352,11 @@ const Atividade = () => {
                                                               console.log('Montar lógica');
                                                             }}
                                                           >
-                                                            <ArrowCircleRight size={18} weight="fill" color="#1C1F28" />
+                                                            <ArrowCircleRight
+                                                              size={18}
+                                                              weight="fill"
+                                                              color={theme.colors['gray/700']}
+                                                            />
                                                             Pegar Lote
                                                           </S.AtribuirButton>
                                                         </Lote>

@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 
-
 export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
@@ -76,7 +75,7 @@ export const BotaoFiltrar = styled.button`
 export const BotaoFiltrarDesativado = styled.button`
   border-radius: 3px;
   font-family: 'Rubik';
-  color: #4a4a4a;
+  color: ${({ theme }) => theme.colors['gray/100']};
   background-color: #734625;
   border: none;
   padding: 8px;

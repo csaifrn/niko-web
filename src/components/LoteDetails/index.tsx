@@ -404,7 +404,7 @@ export const LoteDetails = () => {
                         <S.TimeFinishDiv>
                           <img src={'/detal-fase-icons/conclusao-icon.png'} alt="icone de check" />
                           {fase.conclusao}
-                          <S.Text style={{ color: '#00D25B' }}>{fase.hora_conclusao}</S.Text>
+                          <S.Text style={{ color: theme.colors['green/500'] }}>{fase.hora_conclusao}</S.Text>
                         </S.TimeFinishDiv>
                       )}
 

@@ -162,7 +162,7 @@ export const AdressContainer = styled.div`
 
 export const EscolherFuncao = styled(Select)`
   width: calc(60%);
-  border-left: 1px solid #888c99;
+  border-left: 1px solid ${({ theme }) => theme.colors['gray/150']};
   .react-select__control {
     border: none;
     border-radius: 0px 5px 5px 0px;

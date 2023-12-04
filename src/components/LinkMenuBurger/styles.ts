@@ -12,7 +12,7 @@ const LinkMenu = styled.a<LinkMenuProps>`
   padding: 1rem 3em 1rem 2rem;
   color: white;
   text-decoration: none;
-  transition: color 0.3s linear;
+  transition: all 0.1s linear;
   z-index: 99;
   background-color: ${({ open }) => (open ? ({ theme }) => theme.colors['gray/900'] : 'transparent')};
 
@@ -21,7 +21,7 @@ const LinkMenu = styled.a<LinkMenuProps>`
   }
 
   &:hover {
-    background-color: ${({ theme }) => theme.colors['gray/50']};
+    background-color: ${({ theme }) => theme.colors['gray/900']};
     border-right: 5px solid ${({ theme }) => theme.colors['orange/500']};
   }
 `;

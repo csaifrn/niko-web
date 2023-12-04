@@ -642,7 +642,7 @@ export const EnvolvidosDiv = styled.div`
 
 export const EscolherFaseSelect = styled(Select)`
   width: calc(50%);
-  border-left: 1px solid #888c99;
+  border-left: 1px solid ${({ theme }) => theme.colors['gray/150']};
 
   .react-select__control {
     border: none;
@@ -690,7 +690,7 @@ export const EscolherFaseSelect = styled(Select)`
 
 export const EscolherFaseSelectDesativado = styled(Select)`
   width: calc(50%);
-  border-left: 1px solid #888c99;
+  border-left: 1px solid ${({ theme }) => theme.colors['gray/150']};
   .react-select__control {
     border: none;
     background-color: ${({ theme }) => theme.colors['gray/500']} !important; /* Cor de fundo do controle */

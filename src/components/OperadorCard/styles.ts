@@ -104,7 +104,7 @@ const TotalFase = styled.p`
 `;
 
 const PerecentageFase = styled.p`
-  color: #c3c3c3;
+  color: ${({ theme }) => theme.colors['gray/50']};
   font-size: 10px;
 `;
 

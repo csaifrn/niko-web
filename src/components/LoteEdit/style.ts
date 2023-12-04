@@ -175,7 +175,7 @@ export const ArquivosInput = styled.input`
     -webkit-appearance: none;
     background: url('/carets.svg') no-repeat center center;
     width: 3em;
-    border-left: 1px solid #bbb;
+    border-left: 1px solid ${({ theme }) => theme.colors['gray/50']};
     opacity: 0.5; /* shows Spin Buttons per default (Chrome >= 39) */
     position: absolute;
     border-left: none;

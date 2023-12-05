@@ -4,6 +4,7 @@ import media from 'styled-media-query';
 export const FaseKanbanPage = styled.div`
   display: flex;
   justify-content: center;
+  gap: 2em;
   flex-direction: row;
   //max-width: 1140px;
 
@@ -26,7 +27,6 @@ const kanban = styled.div`
   gap: 16px;
 
   @media screen and (min-width: 767px) {
-    flex-direction: row;
     margin-bottom: 2em;
   }
 `;

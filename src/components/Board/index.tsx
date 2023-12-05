@@ -29,15 +29,11 @@ export const Board = (props: BoardProps) => {
   const [batchesDispo, setBatchesDispo] = useState<GetResponseBatche[]>([]);
   const [batchesAnda, setBatchesAnda] = useState<GetResponseBatche[]>([]);
   const [batchesConc, setBatchesConc] = useState<GetResponseBatche[]>([]);
-
   const [titleModal, setTitleModal] = useState({ button: 'pegar lote', title: 'Deseja pegar o lote?' });
-
   const [batche_data, setBatche] = useState<GetResponseBatche>();
-
   const [atribuirModal, setAtribuirModal] = useState<boolean>(false);
   const [openCriarModal, setOpenCriarModal] = useState<boolean>(false);
   const [openEspecifModal, setOpenEspecifModal] = useState<boolean>(false);
-
   const mutateBatchesQuery = useMutation(QueryBatche, {
     onSuccess: (data: GetResponseBatche[]) => {
       setBatchesDispo(data.filter((batche) => batche.specific_status === 0));
@@ -48,13 +44,11 @@ export const Board = (props: BoardProps) => {
       toast.error(err.message);
     },
   });
-
   useEffect(() => {
     mutateBatchesQuery.mutate({
       status: props.main_status,
     });
   }, []);
-
   return (
     <>
       <BoardChanger />

@@ -4,6 +4,7 @@ import { MembrosModal } from '../MembrosModal';
 import { Membros } from '../../data/ProjetoData';
 import { EditProjetoModal } from '../EditProjetoModal';
 import * as S from './styles';
+import theme from '../../global/theme';
 
 interface Projeto {
   id: string;
@@ -54,7 +55,7 @@ export const CardProjeto = (Props: CardProps) => {
                     event.preventDefault();
                   }}
                   style={{
-                    borderBottom: 'solid 1px #4a5565',
+                    borderBottom: `solid 1px ${theme.colors['gray/400']}`,
                   }}
                 >
                   <S.DivButtonMenuThree>

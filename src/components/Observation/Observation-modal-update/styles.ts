@@ -68,7 +68,7 @@ const Lote = styled.div`
 const Recused = styled.button`
   height: 44px;
   border-radius: 5px;
-  background-color: #191c24;
+  background-color: ${({ theme }) => theme.colors['gray/700']};
   border: none;
   color: white;
   font-family: 'Rubik';
@@ -77,7 +77,7 @@ const Recused = styled.button`
 const Delete = styled.button`
   height: 44px;
   border-radius: 5px;
-  background-color: #f32d2d;
+  background-color: ${({ theme }) => theme.colors['red/500']};
   border: none;
   color: white;
   font-family: 'Rubik';
@@ -109,7 +109,7 @@ export const InputObservation = styled.textarea`
   font-family: 'Rubik';
   padding: 1em;
   background-color: ${({ theme }) => theme.colors['gray/700']}; /* ${({ theme }) => theme.colors['gray/700']}; */
-  color: #cccccc;
+  color: ${({ theme }) => theme.colors['gray/50']};
   font: inherit;
 `;
 

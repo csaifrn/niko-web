@@ -1,3 +1,4 @@
+import theme from '../../global/theme';
 import { useState, useEffect } from 'react';
 import toast from 'react-hot-toast';
 import { useMutation } from 'react-query';
@@ -52,7 +53,7 @@ export const CardFase = ({ ...props }: CardProps) => {
       {props.fase == -1 && (
         <TextBoxCard>
           <DataStrongCard>
-            <NumberCard backgroundColor="#43DB6D">{0}</NumberCard>
+            <NumberCard backgroundColor={theme.colors['green/400']}>{0}</NumberCard>
             <NomeEtapa>REMESSAS RECEBIDAS</NomeEtapa>
           </DataStrongCard>
         </TextBoxCard>
@@ -60,12 +61,12 @@ export const CardFase = ({ ...props }: CardProps) => {
       {props.fase == 0 && (
         <TextBoxCard>
           <DataStrongCard>
-            <NumberCard backgroundColor="#FCDE42">{batchesAnda.length}</NumberCard>
+            <NumberCard backgroundColor={theme.colors['yellow/300']}>{batchesAnda.length}</NumberCard>
             <NomeEtapa>ANDAMENTO</NomeEtapa>
           </DataStrongCard>
 
           {/* <DataStrongCard>
-            <NumberCard backgroundColor="#F32D2D">{batchesConc.length}</NumberCard>
+            <NumberCard backgroundColor={theme.colors.["red/300"]}>{batchesConc.length}</NumberCard>
             <NomeEtapa>EM PAUSA</NomeEtapa>
           </DataStrongCard> */}
         </TextBoxCard>
@@ -73,17 +74,17 @@ export const CardFase = ({ ...props }: CardProps) => {
       {props.fase === 1 && (
         <TextBoxCard>
           <DataStrongCard>
-            <NumberCard backgroundColor="#43DB6D">{batchesDispo.length}</NumberCard>
+            <NumberCard backgroundColor={theme.colors['green/400']}>{batchesDispo.length}</NumberCard>
             <NomeEtapa>DISPONÍVEIS</NomeEtapa>
           </DataStrongCard>
 
           <DataStrongCard>
-            <NumberCard backgroundColor="#FCDE42">{batchesAnda.length}</NumberCard>
+            <NumberCard backgroundColor={theme.colors['yellow/300']}>{batchesAnda.length}</NumberCard>
             <NomeEtapa>ANDAMENTO</NomeEtapa>
           </DataStrongCard>
 
           {/* <DataStrongCard>
-              <NumberCard backgroundColor="#F32D2D">{batchesConc.length}</NumberCard>
+              <NumberCard backgroundColor={theme.colors.["red/300"]}>{batchesConc.length}</NumberCard>
               <NomeEtapa>EM PAUSA</NomeEtapa>
             </DataStrongCard> */}
         </TextBoxCard>
@@ -91,17 +92,17 @@ export const CardFase = ({ ...props }: CardProps) => {
       {props.fase === 2 && (
         <TextBoxCard>
           <DataStrongCard>
-            <NumberCard backgroundColor="#43DB6D">{batchesDispo.length}</NumberCard>
+            <NumberCard backgroundColor={theme.colors['green/400']}>{batchesDispo.length}</NumberCard>
             <NomeEtapa>DISPONÍVEIS</NomeEtapa>
           </DataStrongCard>
 
           <DataStrongCard>
-            <NumberCard backgroundColor="#FCDE42">{batchesAnda.length}</NumberCard>
+            <NumberCard backgroundColor={theme.colors['yellow/300']}>{batchesAnda.length}</NumberCard>
             <NomeEtapa>ANDAMENTO</NomeEtapa>
           </DataStrongCard>
 
           {/* <DataStrongCard>
-              <NumberCard backgroundColor="#F32D2D">{batchesConc.length}</NumberCard>
+              <NumberCard backgroundColor={theme.colors.["red/300"]}>{batchesConc.length}</NumberCard>
               <NomeEtapa>EM PAUSA</NomeEtapa>
             </DataStrongCard> */}
         </TextBoxCard>
@@ -109,17 +110,17 @@ export const CardFase = ({ ...props }: CardProps) => {
       {props.fase === 3 && (
         <TextBoxCard>
           <DataStrongCard>
-            <NumberCard backgroundColor="#43DB6D">{batchesDispo.length}</NumberCard>
+            <NumberCard backgroundColor={theme.colors['green/400']}>{batchesDispo.length}</NumberCard>
             <NomeEtapa>DISPONÍVEIS</NomeEtapa>
           </DataStrongCard>
 
           <DataStrongCard>
-            <NumberCard backgroundColor="#FCDE42">{batchesAnda.length}</NumberCard>
+            <NumberCard backgroundColor={theme.colors['yellow/300']}>{batchesAnda.length}</NumberCard>
             <NomeEtapa>ANDAMENTO</NomeEtapa>
           </DataStrongCard>
 
           {/* <DataStrongCard>
-              <NumberCard backgroundColor="#F32D2D">{batchesConc.length}</NumberCard>
+              <NumberCard backgroundColor={theme.colors.["red/300"]}>{batchesConc.length}</NumberCard>
               <NomeEtapa>EM PAUSA</NomeEtapa>
             </DataStrongCard> */}
         </TextBoxCard>
@@ -127,7 +128,7 @@ export const CardFase = ({ ...props }: CardProps) => {
       {props.fase == 4 && (
         <TextBoxCard>
           <DataStrongCard>
-            <NumberCard backgroundColor="#43DB6D">{batchesDispo.length}</NumberCard>
+            <NumberCard backgroundColor={theme.colors['green/400']}>{batchesDispo.length}</NumberCard>
             <NomeEtapa>DISPONÍVEIS</NomeEtapa>
           </DataStrongCard>
         </TextBoxCard>

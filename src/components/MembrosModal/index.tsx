@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import * as S from './styles';
 
 import { v4 as uuidv4 } from 'uuid';
+import theme from '../../global/theme';
 
 interface User {
   id: string;
@@ -168,7 +169,7 @@ export const MembrosModal = (props: MembrosModalProps) => {
                       height: '44px',
                       border: 'none',
                       borderRadius: '5px 0px 0px 5px',
-                      backgroundColor: '#191C24',
+                      backgroundColor: theme.colors['gray/700'],
                       color: 'white',
                       fontFamily: 'Rubik',
                     }}

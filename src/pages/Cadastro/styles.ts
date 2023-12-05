@@ -74,7 +74,7 @@ export const InputText = styled.input`
 
 export const InputCheck = styled.input`
   all: unset;
-  border: 1px solid #fff;
+  border: 1px solid ${({ theme }) => theme.colors.white};
   width: 18px;
   height: 18px;
   display: inline-block;

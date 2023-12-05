@@ -11,6 +11,7 @@ import { AtribuirLoteModal, ILoteUser } from '../../../../components/AtribuirLot
 import AtividadeData from '../../../../data/AtividadeData';
 import EtapaData from '../../../../data/EtapaData';
 import * as S from './styles';
+import theme from '../../../../global/theme';
 import { SairSemSalvarModal } from '../../../../components/SairSemSalvarModal';
 import { ModalConfirmarEdit } from '../../../../components/ModalConfirmarEdit';
 
@@ -217,7 +218,7 @@ const AtividadeEdit = () => {
                   width: 150,
                   height: 44,
                   padding: 10,
-                  background: '#393E4B',
+                  background: theme.colors['gray/500'],
                   borderRadius: 5,
                   justifyContent: 'center',
                   alignItems: 'center',
@@ -249,7 +250,7 @@ const AtividadeEdit = () => {
                       key={fase.id}
                       style={{
                         paddingRight: 8,
-                        background: '#393E4B',
+                        background: theme.colors['gray/500'],
                         borderRadius: 5,
                         justifyContent: 'flex-start',
                         alignItems: 'center',
@@ -320,7 +321,7 @@ const AtividadeEdit = () => {
                         paddingRight: 8,
                         paddingTop: 5,
                         paddingBottom: 5,
-                        background: '#393E4B',
+                        background: theme.colors['gray/500'],
                         borderRadius: 3,
                         justifyContent: 'flex-start',
                         alignItems: 'flex-start',
@@ -353,7 +354,7 @@ const AtividadeEdit = () => {
                         paddingRight: 8,
                         paddingTop: 5,
                         paddingBottom: 5,
-                        background: '#626A7D',
+                        background: theme.colors['gray/450'],
                         borderRadius: 3,
                         justifyContent: 'flex-start',
                         alignItems: 'flex-start',
@@ -432,7 +433,7 @@ const AtividadeEdit = () => {
                             style={{
                               width: '100%',
                               padding: 16,
-                              background: '#393E4B',
+                              background: theme.colors['gray/500'],
                               borderRadius: 5,
                               flexDirection: 'column',
                               gap: '2em',
@@ -454,9 +455,9 @@ const AtividadeEdit = () => {
                                   style={{
                                     width: 32,
                                     height: 32,
-                                    background: 'linear-gradient(0deg, #D9D9D9 0%, #D9D9D9 100%)',
+                                    background: `linear-gradient(0deg, ${theme.colors['gray/50']} 0%, ${theme.colors['gray/50']} 100%)`,
                                     borderRadius: 9999,
-                                    border: '0.50px #191C24 solid',
+                                    border: `0.50px ${theme.colors['gray/700']} solid`,
                                     objectFit: 'cover',
                                   }}
                                   src={user.url}
@@ -486,7 +487,7 @@ const AtividadeEdit = () => {
                               >
                                 <p
                                   style={{
-                                    color: '#191C24',
+                                    color: theme.colors['gray/700'],
                                     fontSize: 12,
                                     fontFamily: 'Rubik',
                                     fontWeight: '500',
@@ -517,7 +518,7 @@ const AtividadeEdit = () => {
                                                   paddingRight: 9,
                                                   paddingTop: 8,
                                                   paddingBottom: 8,
-                                                  background: '#191C24',
+                                                  background: theme.colors['gray/700'],
                                                   borderRadius: 5,
                                                   justifyContent: 'center',
                                                   alignItems: 'center',
@@ -560,7 +561,7 @@ const AtividadeEdit = () => {
           </S.Usuarios>
         </S.EspecificacoesAtiv>
         {/* BOTÃO DE SALVAR */}
-        {UserFase.length > 0 && <S.EditAtivAtivado >Salvar alterações</S.EditAtivAtivado>}
+        {UserFase.length > 0 && <S.EditAtivAtivado>Salvar alterações</S.EditAtivAtivado>}
         {UserFase.length === 0 && <S.EditAtivDesativado>Salvar alterações</S.EditAtivDesativado>}
       </S.EditarAtivArea>
 

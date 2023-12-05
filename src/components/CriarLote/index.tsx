@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import * as S from './styles';
 import Search from '../Search';
 import CategoriaData from '../../data/CategoriaData';
+import theme from '../../global/theme';
 
 interface EditModalProps {
   close: () => void;
@@ -46,7 +47,7 @@ export const CreateModal = (props: EditModalProps) => {
                   width={18}
                   style={{
                     padding: '5px 5px',
-                    backgroundColor: '#090E09',
+                    backgroundColor: theme.colors['gray/900'],
                     borderRadius: '5px',
                   }}
                 />
@@ -57,7 +58,7 @@ export const CreateModal = (props: EditModalProps) => {
             <S.TituloDiv>
               <p>Título</p>
               <S.Titulo
-                style={{ backgroundColor: '#2D303B' }}
+                style={{ backgroundColor: theme.colors['gray/600'] }}
                 type="text"
                 name="nome"
                 placeholder={'Título da caixa'}
@@ -68,7 +69,7 @@ export const CreateModal = (props: EditModalProps) => {
             <S.LocalDiv>
               <p>Local</p>
               <S.Local
-                style={{ backgroundColor: '#2D303B' }}
+                style={{ backgroundColor: theme.colors['gray/600'] }}
                 type="text"
                 name="nome"
                 placeholder={'Onde está a caixa?'}
@@ -86,12 +87,14 @@ export const CreateModal = (props: EditModalProps) => {
                     key={categ.id}
                     onClick={() => handleLoteClick(categ.id)}
                     style={{
-                      backgroundColor: selectedCategoriaData.includes(categ.id) ? '#090E09' : '#2D303B',
+                      backgroundColor: selectedCategoriaData.includes(categ.id)
+                        ? theme.colors['gray/900']
+                        : theme.colors['gray/600'],
                     }}
                   >
                     <p
                       style={{
-                        color: selectedCategoriaData.includes(categ.id) ? '#43DB6D' : '#838383',
+                        color: selectedCategoriaData.includes(categ.id) ? theme.colors['green/400'] : theme.colors['gray/100'],
                       }}
                     >
                       {categ.name}

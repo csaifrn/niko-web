@@ -22,7 +22,7 @@ export const MenuLupaMobile = styled.img`
 `;
 
 export const MenuWrapper = styled.div`
-  background-color: #191c24;
+  background-color: ${({ theme }) => theme.colors['gray/700']};
   display: flex;
   top: 0;
   justify-content: center;
@@ -48,7 +48,7 @@ const MenuLeft = styled.div`
   display: flex;
   gap: 1em;
   border-radius: 100%;
-  border: solid 1px #393e4b;
+  border: solid 1px ${({ theme }) => theme.colors['gray/500']};
 `;
 
 interface BurgerProps {
@@ -70,7 +70,7 @@ const ButtonBurger = styled.a<BurgerProps>`
   }
 
   &:hover {
-    background-color: #12141a;
+    background-color: ${({ theme }) => theme.colors['gray/900']};
   }
 
   img {
@@ -87,7 +87,7 @@ const StyledMenu = styled.nav<BurgerProps>`
   z-index: 99;
   flex-direction: column;
   justify-content: right;
-  background: #191c24;
+  background: ${({ theme }) => theme.colors['gray/700']};
   display: ${({ open }) => (open ? 'flex' : 'none')};
   transform: ${({ open }) => (open ? 'translateX(0)' : 'translateX(-100%)')};
   text-align: left;
@@ -143,7 +143,7 @@ export const InputSearch = styled.button`
   transition: all 0.3s;
 
   &:hover {
-    background-color: #12141a;
+    background-color: ${({ theme }) => theme.colors['gray/900']};
   }
 
   @media screen and (max-width: 767px) {

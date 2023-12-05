@@ -1,5 +1,6 @@
 import React from 'react';
 import * as S from './styles';
+import theme from '../../global/theme';
 
 type SearchProps = {
   searchTerm: string;
@@ -18,7 +19,7 @@ const Search = ({ searchTerm, handleSearchChange }: SearchProps): JSX.Element =>
           value={searchTerm}
           onChange={handleSearchChange}
           placeholder="Pesquisa"
-          style={{ backgroundColor: '#626A7D', color: 'white'}}
+          style={{ backgroundColor: theme.colors['gray/450'], color: 'white' }}
         />
       </S.SearchDiv>
     </>

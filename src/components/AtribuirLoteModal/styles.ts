@@ -25,7 +25,7 @@ export const ModalArea = styled.div`
 export const Exit = styled.button`
   height: 2em;
   width: 2em;
-  background-color: #393e4b;
+  background-color: ${({ theme }) => theme.colors['gray/500']};
   border-radius: 3px;
   display: flex;
   justify-content: center;
@@ -67,11 +67,11 @@ const ChooseLote = styled.div`
   }
 
   &::-webkit-scrollbar-track {
-    background: #191c24;
+    background: ${({ theme }) => theme.colors['gray/700']};
   }
 
   &::-webkit-scrollbar-thumb {
-    background-color: #2a2e38;
+    background-color: ${({ theme }) => theme.colors['gray/550']};
     border-radius: 20px;
   }
 
@@ -90,11 +90,11 @@ const Lote = styled.div`
 const AtribuirButton = styled.button`
   height: 44px;
   border-radius: 5px;
-  background-color: #43db6d;
+  background-color: ${({ theme }) => theme.colors['green/400']};
   border: none;
   color: white;
   font-family: 'Rubik';
-  color: #191C24;
+  color: ${({ theme }) => theme.colors['gray/700']};
   cursor: pointer;
   &:hover {
     background-color: ${({ theme }) => theme.colors['green/600']};
@@ -129,14 +129,14 @@ export const Categorias = styled.div`
   //margin-bottom: 1em;
 `;
 
-export const Nome = styled.p`
-`;
+export const Nome = styled.p``;
 
 export const Categoria = styled.div<CategoriaProps>`
   padding: 0.5em;
   border-radius: 4px;
-  background-color: ${(props) => (props.selected ? '#090E09' : '#2D303B')};
-  color: ${(props) => (props.selected ? '#fff' : '#838383')};
+  background-color: ${(props) =>
+    props.selected ? ({ theme }) => theme.colors['gray/900'] : ({ theme }) => theme.colors['gray/600']};
+  color: ${(props) => (props.selected ? ({ theme }) => theme.colors.white : ({ theme }) => theme.colors['gray/100'])};
   cursor: pointer;
 `;
 

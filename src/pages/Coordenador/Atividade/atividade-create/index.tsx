@@ -2,7 +2,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import Menu from '../../../../components/Menu';
 import MenuCoord from '../../../../components/MenuCoord';
 import { useEffect, useState } from 'react';
-import {CreateTarefaAtividade } from '../../../../components/CreateTarefaModal';
+import { CreateTarefaAtividade } from '../../../../components/CreateTarefaModal';
 import FaseData from '../../../../data/FaseData';
 import { CategoriasTipologias } from '../../../../components/CategoriaTipologias';
 import CategoriaData from '../../../../data/CategoriaData';
@@ -10,6 +10,7 @@ import { TipologiaData } from '../../../../data/TipologiaData';
 import { IUserFase, UserModalAtividade } from '../../../../components/UserAtividadeModal';
 import { AtribuirLoteModal, ILoteUser } from '../../../../components/AtribuirLoteModal';
 import * as S from './style';
+import theme from '../../../../global/theme';
 import { SairSemSalvarModal } from '../../../../components/SairSemSalvarModal';
 
 const AtividadeCreate = () => {
@@ -138,9 +139,7 @@ const AtividadeCreate = () => {
           </div>
 
           <S.CloseDiv>
-            <S.Exit
-              onClick={() => setModalSairSemSalvar(!modalSairSemSalvar)}
-            >
+            <S.Exit onClick={() => setModalSairSemSalvar(!modalSairSemSalvar)}>
               <img src="/close.svg" alt="" height={18} width={18} />
             </S.Exit>
           </S.CloseDiv>
@@ -168,7 +167,7 @@ const AtividadeCreate = () => {
                   width: 150,
                   height: 44,
                   padding: 10,
-                  background: '#393E4B',
+                  background: theme.colors['gray/500'],
                   borderRadius: 5,
                   justifyContent: 'center',
                   alignItems: 'center',
@@ -201,7 +200,7 @@ const AtividadeCreate = () => {
                       key={fase.id}
                       style={{
                         paddingRight: 8,
-                        background: '#393E4B',
+                        background: theme.colors['gray/500'],
                         borderRadius: 5,
                         justifyContent: 'flex-start',
                         alignItems: 'center',
@@ -274,7 +273,7 @@ const AtividadeCreate = () => {
                         paddingRight: 8,
                         paddingTop: 5,
                         paddingBottom: 5,
-                        background: '#393E4B',
+                        background: theme.colors['gray/500'],
                         borderRadius: 3,
                         justifyContent: 'flex-start',
                         alignItems: 'flex-start',
@@ -307,7 +306,7 @@ const AtividadeCreate = () => {
                         paddingRight: 8,
                         paddingTop: 5,
                         paddingBottom: 5,
-                        background: '#626A7D',
+                        background: theme.colors['gray/450'],
                         borderRadius: 3,
                         justifyContent: 'flex-start',
                         alignItems: 'flex-start',
@@ -387,7 +386,7 @@ const AtividadeCreate = () => {
                           style={{
                             width: '100%',
                             padding: 16,
-                            background: '#393E4B',
+                            background: theme.colors['gray/500'],
                             borderRadius: 5,
                             flexDirection: 'column',
                             gap: '2em',
@@ -409,9 +408,9 @@ const AtividadeCreate = () => {
                                 style={{
                                   width: 32,
                                   height: 32,
-                                  background: 'linear-gradient(0deg, #D9D9D9 0%, #D9D9D9 100%)',
+                                  background: `linear-gradient(0deg, ${theme.colors['gray/50']} 0%, ${theme.colors['gray/50']} 100%)`,
                                   borderRadius: 9999,
-                                  border: '0.50px #191C24 solid',
+                                  border: `0.50px ${theme.colors['gray/700']} solid`,
                                   objectFit: 'cover',
                                 }}
                                 src={user.url}
@@ -441,7 +440,7 @@ const AtividadeCreate = () => {
                             >
                               <p
                                 style={{
-                                  color: '#191C24',
+                                  color: theme.colors['gray/500'],
                                   fontSize: 12,
                                   fontFamily: 'Rubik',
                                   fontWeight: '500',
@@ -470,7 +469,7 @@ const AtividadeCreate = () => {
                                               paddingRight: 9,
                                               paddingTop: 8,
                                               paddingBottom: 8,
-                                              background: '#191C24',
+                                              background: theme.colors['gray/700'],
                                               borderRadius: 5,
                                               justifyContent: 'center',
                                               alignItems: 'center',
@@ -571,7 +570,6 @@ const AtividadeCreate = () => {
           }}
         />
       )}
-
     </div>
   );
 };

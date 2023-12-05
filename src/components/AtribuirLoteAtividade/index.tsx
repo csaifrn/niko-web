@@ -5,7 +5,7 @@ import { LoteData } from '../../data/LoteData';
 import EtapaData from '../../data/EtapaData';
 import CategoriaData from '../../data/CategoriaData';
 import { TipologiaData } from '../../data/TipologiaData';
-import Catalogacao from '../../pages/Etapas/Catalogacao';
+import theme from '../../global/theme';
 
 interface AtribuirModalAtividadeProps {
   nameUser: string;
@@ -119,7 +119,6 @@ export const AtribuirLoteAtividade = (props: AtribuirModalAtividadeProps) => {
     }, 10);
 
     return () => clearTimeout(timer);
-
   }, [closing]);
 
   const handleClose = () => {
@@ -129,7 +128,7 @@ export const AtribuirLoteAtividade = (props: AtribuirModalAtividadeProps) => {
     }, 300);
   };
 
-  console.log(props.nameFase)
+  console.log(props.nameFase);
 
   return (
     <>
@@ -143,29 +142,29 @@ export const AtribuirLoteAtividade = (props: AtribuirModalAtividadeProps) => {
               </S.Exit>
             </S.NameClose>
 
-            {props.nameFase == 'Preparo' &&
+            {props.nameFase == 'Preparo' && (
               <img height={32} width={32} src={`/icon-medium/Preparo.svg`} alt="Icone da fase" />
-            }
-            {props.nameFase == 'Catalogação' &&
+            )}
+            {props.nameFase == 'Catalogação' && (
               <img height={32} width={32} src={`/icon-medium/Catalogação.svg`} alt="Icone da fase" />
-            }
-            {props.nameFase == 'Digitalização' &&
+            )}
+            {props.nameFase == 'Digitalização' && (
               <img height={32} width={32} src={`/icon-medium/Digitalização.svg`} alt="Icone da fase" />
-            }
-            {props.nameFase == 'Upload' &&
+            )}
+            {props.nameFase == 'Upload' && (
               <img height={32} width={32} src={`/icon-medium/Upload.svg`} alt="Icone da fase" />
-            }
-            {props.nameFase == 'Arquivamento' &&
+            )}
+            {props.nameFase == 'Arquivamento' && (
               <img height={32} width={32} src={`/icon-medium/Arquivamento.svg`} alt="Icone da fase" />
-            }
+            )}
 
-            {props.nameFase != 'Catalogação'
-             && props.nameFase != 'Digitalização' 
-             && props.nameFase != 'Upload' 
-             && props.nameFase != 'Preparo'
-             && props.nameFase != 'Arquivamento' &&
-              <img height={32} width={32} src={`/icon-small/new.png`} alt="Icone da fase" />
-            }
+            {props.nameFase != 'Catalogação' &&
+              props.nameFase != 'Digitalização' &&
+              props.nameFase != 'Upload' &&
+              props.nameFase != 'Preparo' &&
+              props.nameFase != 'Arquivamento' && (
+                <img height={32} width={32} src={`/icon-small/new.png`} alt="Icone da fase" />
+              )}
 
             <Search searchTerm={searchTerm} handleSearchChange={handleSearchChange} />
 
@@ -194,7 +193,9 @@ export const AtribuirLoteAtividade = (props: AtribuirModalAtividadeProps) => {
                     key={lote.id}
                     onClick={() => handleLoteClick(lote)}
                     style={{
-                      backgroundColor: selectedLotes.includes(lote) ? '#090E09' : '#2D303B',
+                      backgroundColor: selectedLotes.includes(lote)
+                        ? theme.colors['gray/900']
+                        : theme.colors['gray/600'],
                       display: 'flex',
                       flexDirection: 'column',
                       gap: '0.5em',
@@ -202,13 +203,15 @@ export const AtribuirLoteAtividade = (props: AtribuirModalAtividadeProps) => {
                   >
                     <p
                       style={{
-                        color: selectedLotes.includes(lote) ? '#fff' : '#838383',
+                        color: selectedLotes.includes(lote) ? theme.colors.white : theme.colors['gray/100'],
                       }}
                     >
                       {lote.titulo + ' ' + lote.numero}
                     </p>
                     {isLoteAssigned && (
-                      <span style={{ color: '#FCDE42' }}>Este lote foi atribuído a outro operador</span>
+                      <span style={{ color: theme.colors['yellow/300'] }}>
+                        Este lote foi atribuído a outro operador
+                      </span>
                     )}
                   </S.Lote>
                 );

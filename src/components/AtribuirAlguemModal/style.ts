@@ -1,4 +1,3 @@
-import StateManagedSelect, { ActionMeta, MultiValue } from 'react-select';
 import Select from 'react-select';
 import styled from 'styled-components';
 
@@ -18,11 +17,6 @@ const ModalArea = styled.div`
   border-radius: 5px;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 `;
-
-interface Options {
-  value: string;
-  label: string;
-}
 
 export const CustomSelect = styled(Select)`
   .react-select__multi-value {
@@ -82,7 +76,7 @@ const ModalContent = styled.div`
 
 export const ButtonGreen = styled.button`
   border: none;
-  color: #191c24;
+  color: ${({ theme }) => theme.colors['gray/700']};
   border-radius: 5px;
   display: flex;
   align-items: center;
@@ -90,7 +84,7 @@ export const ButtonGreen = styled.button`
   height: 44px;
   width: 100%;
   font-family: Rubik;
-  background-color: #43db6d;
+  background-color: ${({ theme }) => theme.colors['green/400']};
   cursor: pointer;
   &:hover {
     background-color: ${({ theme }) => theme.colors['green/600']};
@@ -123,11 +117,11 @@ const ChooseUser = styled.div`
   }
 
   &::-webkit-scrollbar-track {
-    background: #2a2e38;
+    background: ${({ theme }) => theme.colors['gray/700']};
   }
 
   &::-webkit-scrollbar-thumb {
-    background-color: #191c24;
+    background-color: ${({ theme }) => theme.colors['gray/700']};
     border-radius: 20px;
   }
 `;
@@ -147,11 +141,19 @@ const NameFotoUser = styled.div`
 const AtribuirButton = styled.button`
   height: 44px;
   border-radius: 5px;
-  background-color: #43db6d;
+  background-color: ${({ theme }) => theme.colors['green/500']};
   border: none;
-  color: #0a090e;
+  color: ${({ theme }) => theme.colors['gray/900']};
   font-family: 'Rubik';
   cursor: pointer;
+
+  &:hover {
+    background-color: ${({ theme }) => theme.colors['green/400']};
+  }
+  &:active {
+    background-color: ${({ theme }) => theme.colors['green/600']};
+    transform: translateY(-5%) translateX(2%);
+  }
 `;
 
 const ModalBackdrop = styled.div`

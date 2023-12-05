@@ -79,11 +79,11 @@ export const ContainerDataDependencias = styled.div`
   }
 
   &::-webkit-scrollbar-track {
-    background: #191c24;
+    background: ${({ theme }) => theme.colors['gray/700']};
   }
 
   &::-webkit-scrollbar-thumb {
-    background-color: #2a2e38;
+    background-color: ${({ theme }) => theme.colors['gray/550']};
     border-radius: 20px;
   }
   ${media.greaterThan('large')`
@@ -148,11 +148,11 @@ export const TextAlerta = styled.div`
   }
 
   &::-webkit-scrollbar-track {
-    background: #191c24;
+    background: ${({ theme }) => theme.colors['gray/700']};
   }
 
   &::-webkit-scrollbar-thumb {
-    background-color: #2a2e38;
+    background-color: ${({ theme }) => theme.colors['gray/550']};
     border-radius: 20px;
   }
 `;

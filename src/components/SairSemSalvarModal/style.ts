@@ -26,7 +26,7 @@ const ModalContent = styled.div`
 export const Exit = styled.button`
   height: 2em;
   width: 2em;
-  background-color: #090e09;
+  background-color: ${({ theme }) => theme.colors['gray/900']};
   border-radius: 3px;
   display: flex;
   justify-content: center;
@@ -77,7 +77,7 @@ const Recused = styled.button`
 const Delete = styled.button`
   height: 44px;
   border-radius: 5px;
-  background-color: #191c24;
+  background-color: ${({ theme }) => theme.colors['gray/700']};
   border: none;
   color: white;
   font-family: 'Rubik';

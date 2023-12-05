@@ -15,6 +15,7 @@ import { PostResponseAssigners } from '../../api/services/batches/assigners/post
 
 import ReactLoading from 'react-loading';
 import { ErrorMessage } from '../../pages/Login/styles';
+import theme from '../../global/theme';
 import { MultiValue } from 'react-select';
 
 export interface AtribuirAlguemModalProps {
@@ -199,7 +200,7 @@ export const AtribuirAlguemModal = (props: AtribuirAlguemModalProps) => {
                   width={24}
                   style={{
                     padding: '5px 5px',
-                    backgroundColor: '#090E09',
+                    backgroundColor: theme.colors['gray/900'],
                     borderRadius: '5px',
                   }}
                 />

@@ -10,6 +10,7 @@ import Users from '../../../data/UserData';
 import { CreateRemessa } from '../../../components/CriarRemessa';
 import { Membros } from '../../../data/ProjetoData';
 import { BoardChanger } from '../../../components/BoardChanger';
+import theme from '../../../global/theme';
 
 export interface Categoria {
   id: string;
@@ -38,9 +39,8 @@ const Recebidos = () => {
     <div style={{ display: 'flex', justifyContent: 'center' }}>
       <Menu area={`/Fase/${id}/Board/Recebidos`} id_projeto={id}></Menu>
       <MenuCoord />
-      
-      <S.RecepcaoPage>
 
+      <S.RecepcaoPage>
         <BoardChanger />
 
         {[{ role: ['coordenador'] }][0].role.filter((role: string) => role === 'Coordenador')[0] === 'Coordenador' && (
@@ -54,7 +54,6 @@ const Recebidos = () => {
         )}
 
         <S.RemessasMain>
-
           <S.NumeroDeRemessasDiv>
             <S.RemessasTitle> Remessas recebidas</S.RemessasTitle>
             <S.NumDeRemessasGreen>{remessas.length}</S.NumDeRemessasGreen>
@@ -64,9 +63,7 @@ const Recebidos = () => {
             {remessas.map((remessa) => {
               const user = Users.filter((user) => user.id === remessa.id_cliente)[0];
               return (
-                <S.RemessaCardCinzaClaro
-                  key={remessa.id}
-                >
+                <S.RemessaCardCinzaClaro key={remessa.id}>
                   <div
                     style={{
                       display: 'flex',
@@ -93,14 +90,12 @@ const Recebidos = () => {
                       }}
                     >
                       <p>Observações</p>
-                      <p style={{ backgroundColor: '#191C24', padding: '1em', borderRadius: '3px' }}>
+                      <p style={{ backgroundColor: theme.colors['gray/700'], padding: '1em', borderRadius: '3px' }}>
                         {remessa.Observacao}
                       </p>
                     </div>
                   )}
-                  {remessa.data != undefined &&
-                    <p>{remessa.data}</p>
-                  }
+                  {remessa.data != undefined && <p>{remessa.data}</p>}
                 </S.RemessaCardCinzaClaro>
               );
             })}

@@ -17,13 +17,13 @@ export const ModalArea = styled.div`
   font-family: 'Rubik';
   border-radius: 5px;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    &::-webkit-scrollbar {
+  &::-webkit-scrollbar {
     width: 0.8em;
     height: 0.5em;
   }
 
   &::-webkit-scrollbar-thumb {
-    background-color: #2a2e38;
+    background-color: ${({ theme }) => theme.colors['gray/500']};
     border-radius: 20px;
   }
 
@@ -48,7 +48,7 @@ export const NameClose = styled.div`
 export const Exit = styled.button`
   height: 2em;
   width: 2em;
-  background-color: #393e4b;
+  background-color: ${({ theme }) => theme.colors['gray/500']};
   border-radius: 3px;
   display: flex;
   justify-content: center;
@@ -139,7 +139,7 @@ export const ChooseUser = styled.div`
   }
 
   &::-webkit-scrollbar-thumb {
-    background-color: #2a2e38;
+    background-color: ${({ theme }) => theme.colors['gray/550']};
     border-radius: 20px;
   }
 
@@ -152,15 +152,15 @@ export const ChooseUser = styled.div`
 export const AtribuirButton = styled.button`
   height: 44px;
   border-radius: 5px;
-  background-color: #43db6d;
+  background-color: ${({ theme }) => theme.colors['green/500']};
   border: none;
-  color: #191c24;
+  color: ${({ theme }) => theme.colors['gray/700']};
   font-family: 'Rubik';
   bottom: 0;
   left: 0;
   cursor: pointer;
   &:hover {
-    background-color: ${({ theme }) => theme.colors['green/600']};
+    background-color: ${({ theme }) => theme.colors['green/400']};
   }
   &:active {
     background-color: ${({ theme }) => theme.colors['green/600']};
@@ -209,7 +209,7 @@ export const Slider = styled.span`
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: #0a090e;
+  background-color: ${({ theme }) => theme.colors['gray/900']};
   border-radius: 34px;
   cursor: pointer;
 
@@ -229,7 +229,7 @@ export const Slider = styled.span`
 export const Input = styled.input.attrs({ type: 'checkbox' })`
   display: none;
   &:checked + ${Slider} {
-    background-color: #43db6d;
+    background-color: ${({ theme }) => theme.colors['green/400']};
   }
 
   &:checked + ${Slider}:before {

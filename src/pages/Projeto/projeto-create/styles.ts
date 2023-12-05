@@ -26,7 +26,7 @@ export const Wrapper = styled.div`
   flex-direction: column;
   grid-template-columns: 1fr;
   gap: 2em;
-  color: #ffffff;
+  color: ${({ theme }) => theme.colors.white};
   margin-top: 6em;
   margin: 8em 0em 8em 0em;
   width: 100%;
@@ -68,7 +68,7 @@ export const ContainerForm = styled.div`
 export const LabelForm = styled.label`
   display: flex;
   height: 150px;
-  border: dashed 1px #fff;
+  border: dashed 1px ${({ theme }) => theme.colors.white};
   border-radius: 5px;
   align-items: center;
   justify-content: center;
@@ -82,7 +82,7 @@ export const InputText = styled.input`
   padding: 0 1em;
   border-radius: 5px;
   border: none;
-  background-color: #5c6170;
+  background-color: ${({ theme }) => theme.colors['gray/400']};
   color: white;
   font-family: 'Rubik';
   ${media.greaterThan('large')`
@@ -109,12 +109,12 @@ export const ButtonGray = styled.button`
 
 export const ButtonGreen = styled.button`
   border: none;
-  color: #191c24;
+  color: ${({ theme }) => theme.colors['gray/700']};
   border-radius: 5px;
   height: 44px;
   width: 100%;
   font-family: Rubik;
-  background-color: #43db6d;
+  background-color: ${({ theme }) => theme.colors['green/400']};
   cursor: pointer;
   &:hover {
     background-color: ${({ theme }) => theme.colors['green/600']};
@@ -134,7 +134,7 @@ export const ButtonEnviar = styled.button`
   align-items: center;
   justify-content: center;
   border-radius: 5px;
-  background-color: #f3802d;
+  background-color: ${({ theme }) => theme.colors['orange/400']};
   cursor: pointer;
   &:hover {
     background-color: ${({ theme }) => theme.colors['orange/500']};
@@ -162,7 +162,7 @@ export const AdressContainer = styled.div`
 
 export const EscolherFuncao = styled(Select)`
   width: calc(60%);
-  border-left: 1px solid #888c99;
+  border-left: 1px solid ${({ theme }) => theme.colors['gray/150']};
   .react-select__control {
     border: none;
     border-radius: 0px 5px 5px 0px;
@@ -172,7 +172,7 @@ export const EscolherFuncao = styled(Select)`
   }
 
   .react-select__placeholder {
-    color: #ffffff;
+    color: ${({ theme }) => theme.colors.white};
   }
 
   .react-select__single-value {

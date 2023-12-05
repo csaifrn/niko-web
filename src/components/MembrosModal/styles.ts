@@ -22,7 +22,7 @@ const ModalArea = styled.div`
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
-    background: #393e4b url('/Select.svg') 90% 50% no-repeat;
+    background: ${({ theme }) => theme.colors['gray/500']} url('/Select.svg') 90% 50% no-repeat;
     padding: 0 3em 0 1em;
   }
 `;
@@ -30,7 +30,7 @@ const ModalArea = styled.div`
 export const Exit = styled.button`
   height: 2em;
   width: 2em;
-  background-color: #393e4b;
+  background-color: ${({ theme }) => theme.colors['gray/500']};
   border-radius: 3px;
   display: flex;
   justify-content: center;
@@ -62,6 +62,8 @@ export const EmailTodo = styled.div`
   padding: 1em 0em;
   width: 100%;
   justify-content: space-between;
+  ${media.greaterThan('large')`
+  `}
 `;
 
 export const EmailInputSelect = styled.div`
@@ -76,7 +78,7 @@ export const EmailInputSelect = styled.div`
 
 export const EscolherFuncao = styled(Select)`
   width: 180px;
-  border-left: 1px solid #888c99;
+  border-left: 1px solid ${({ theme }) => theme.colors['gray/150']};
   .react-select__control {
     border: none;
     border-radius: 0px 5px 5px 0px;
@@ -86,7 +88,7 @@ export const EscolherFuncao = styled(Select)`
   }
 
   .react-select__placeholder {
-    color: #ffffff;
+    color: ${({ theme }) => theme.colors.white};
   }
 
   .react-select__single-value {
@@ -134,7 +136,7 @@ export const EscolherFuncaoBlack = styled(Select)`
   }
 
   .react-select__placeholder {
-    color: #ffffff;
+    color: ${({ theme }) => theme.colors.white};
   }
 
   .react-select__single-value {
@@ -184,12 +186,12 @@ export const MembrosDiv = styled.div`
     width: 8px;
   }
   webkit-scrollbar-track {
-    background: #fff;
+    background: ${({ theme }) => theme.colors.white};
   }
   ::-webkit-scrollbar-thumb {
-    background-color: #5c6170;
+    background-color: ${({ theme }) => theme.colors['gray/400']} !important;
     border-radius: 6px;
-    border: 1px solid #5c6170;
+    border: 1px solid ${({ theme }) => theme.colors['gray/400']};
   }
 `;
 
@@ -204,6 +206,11 @@ export const User = styled.div`
   flex-direction: row;
   @media screen and (min-width: 767px) {
     width: 100%;
+  }
+  div {
+    width: 50%;
+    display: flex;
+    gap: 1em;
     flex-direction: row;
     align-items: center;
   }
@@ -242,13 +249,13 @@ const AtribuirButton = styled.button`
   z-index: 0;
   height: 44px;
   border-radius: 5px;
-  background-color: #43db6d;
+  background-color: ${({ theme }) => theme.colors['green/500']};
   border: none;
   color: ${({ theme }) => theme.colors['gray/900']};
   font-family: 'Rubik';
   cursor: pointer;
   &:hover {
-    background-color: ${({ theme }) => theme.colors['green/600']};
+    background-color: ${({ theme }) => theme.colors['green/400']};
   }
   &:active {
     background-color: ${({ theme }) => theme.colors['green/600']};
@@ -279,7 +286,7 @@ export const EnviarEmail = styled.button`
   justify-content: center;
   border-radius: 5px;
   overflow: hidden;
-  background-color: #f3802d;
+  background-color: ${({ theme }) => theme.colors['orange/400']};
   cursor: pointer;
   &:hover {
     background-color: ${({ theme }) => theme.colors['orange/500']};

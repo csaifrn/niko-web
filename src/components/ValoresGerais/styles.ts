@@ -27,7 +27,7 @@ export const ValorGeral = styled.div`
 `;
 
 export const Text = styled.p`
-  color: #fff;
+  color: ${({ theme }) => theme.colors.white};
   font-family: Rubik;
   font-size: 16px;
 `;

@@ -1,10 +1,9 @@
 import styled from 'styled-components';
 const Lote = styled.div`
   font-family: 'Rubik';
-  border: 0.2px solid #35394a;
   position: relative;
   padding: 0.8em;
-  background-color: #393e4b;
+  background-color: ${({ theme }) => theme.colors['gray/500']};
   border-radius: 5px;
   color: white;
   min-height: 80px;
@@ -20,7 +19,7 @@ const Lote = styled.div`
 const LoteEdit = styled.div`
   font-family: 'Rubik';
   padding: 0.8em;
-  background-color: #393e4b;
+  background-color: ${({ theme }) => theme.colors['gray/500']};
   border-radius: 5px;
   color: white;
   max-width: 400px;
@@ -62,7 +61,7 @@ export const PendPrioridade = styled.div`
 
 const Prioridade = styled.div`
   height: 24px;
-  background-color: #dd3b3b;
+  background-color: ${({ theme }) => theme.colors['red/700']};
   border-radius: 3px;
   display: flex;
   justify-content: center;
@@ -87,7 +86,7 @@ const Categoria = styled.div`
 
 const CategoriaTextDiv = styled.div`
   height: 24px;
-  background-color: #191c24;
+  background-color: ${({ theme }) => theme.colors['gray/700']};
   display: flex;
   justify-content: center;
   align-items: center;
@@ -108,7 +107,7 @@ const Btn = styled.button`
   padding: 0.5em;
   width: 100%;
   height: 44px;
-  background-color: #43db6d;
+  background-color: ${({ theme }) => theme.colors['green/400']};
   border-radius: 5px;
   border: none;
   color: white;
@@ -117,7 +116,7 @@ const Btn = styled.button`
   }
   p {
     font-family: 'Rubik';
-    color: #191c24;
+    color: ${({ theme }) => theme.colors['gray/700']};
   }
 `;
 
@@ -128,7 +127,7 @@ export const AtribuirAlguem = styled.div`
   gap: 8px;
   align-items: center;
   padding: 16px;
-  background-color: #000000;
+  background-color: ${({ theme }) => theme.colors['gray/900']};
   border: none;
   border-radius: 5px;
 `;

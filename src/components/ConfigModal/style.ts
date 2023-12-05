@@ -36,7 +36,7 @@ export const TituloDiv = styled.div`
 export const Exit = styled.button`
   height: 2em;
   width: 2em;
-  background-color: #393e4b;
+  background-color: ${({ theme }) => theme.colors['gray/500']};
   border-radius: 3px;
   display: flex;
   justify-content: center;
@@ -104,7 +104,7 @@ export const ChooseUser = styled.div`
 export const AtribuirButton = styled.button`
   height: 44px;
   border-radius: 5px;
-  background-color: #43db6d;
+  background-color: ${({ theme }) => theme.colors['green/400']};
   border: none;
   color: white;
   font-family: 'Rubik';
@@ -153,7 +153,7 @@ export const Slider = styled.span`
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: #0a090e;
+  background-color: ${({ theme }) => theme.colors['gray/900']};
   border-radius: 34px;
   cursor: pointer;
 
@@ -173,7 +173,7 @@ export const Slider = styled.span`
 export const Input = styled.input.attrs({ type: 'checkbox' })`
   display: none;
   &:checked + ${Slider} {
-    background-color: #43db6d;
+    background-color: ${({ theme }) => theme.colors['green/400']};
   }
 
   &:checked + ${Slider}:before {

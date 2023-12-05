@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import * as S from './styles';
 import { date, string } from 'yup';
 import { Link, useParams } from 'react-router-dom';
+import theme from '../../global/theme';
 
 export const PainelPorFase = () => {
   const valores = [
@@ -168,7 +169,7 @@ export const PainelPorFase = () => {
         <S.DivRemessasRecepcao>
           <S.ContainerDataFaseRecepcao>
             <Link to={`/Fase/${id}/Board/Recebidos`}>
-              <S.CardFaseColorful style={{ backgroundColor: '#F32D2D' }}>
+              <S.CardFaseColorful style={{ backgroundColor: theme.colors['red/300'] }}>
                 <img src="/icon-big/IconOpenFile.svg" />
               </S.CardFaseColorful>
             </Link>
@@ -194,7 +195,7 @@ export const PainelPorFase = () => {
             {/* PREPARO */}
             <S.ContainerDataFase>
               <Link to={`/Fase/${id}/Board/Preparo`}>
-                <S.CardFaseColorful style={{ backgroundColor: '#F3802D' }}>
+                <S.CardFaseColorful style={{ backgroundColor: theme.colors['orange/400'] }}>
                   <img src="/icon-big/IconClean.svg" />
                 </S.CardFaseColorful>
               </Link>
@@ -223,7 +224,7 @@ export const PainelPorFase = () => {
             {/* CATALOGAÇÃO */}
             <S.ContainerDataFase>
               <Link to={`/Fase/${id}/Board/Catalogacao`}>
-                <S.CardFaseColorful style={{ backgroundColor: '#EAC503' }}>
+                <S.CardFaseColorful style={{ backgroundColor: theme.colors['yellow/500'] }}>
                   <img src="/icon-big/IconBookMark.svg" />
                 </S.CardFaseColorful>
               </Link>
@@ -252,7 +253,7 @@ export const PainelPorFase = () => {
             {/* DIGITALIZAÇÃO */}
             <S.ContainerDataFase>
               <Link to={`/Fase/${id}/Board/Digitalizacao`}>
-                <S.CardFaseColorful style={{ backgroundColor: '#2D94F3' }}>
+                <S.CardFaseColorful style={{ backgroundColor: theme.colors['blue/400'] }}>
                   <img src="/icon-big/IconScanner.svg" />
                 </S.CardFaseColorful>
               </Link>
@@ -281,7 +282,7 @@ export const PainelPorFase = () => {
             {/* UPLOAD */}
             <S.ContainerDataFase>
               <Link to={`/Fase/${id}/Board/Upload`}>
-                <S.CardFaseColorful style={{ backgroundColor: '#9747FF' }}>
+                <S.CardFaseColorful style={{ backgroundColor: theme.colors['purple/600'] }}>
                   <img src="/icon-big/IconUpload.svg" />
                 </S.CardFaseColorful>
               </Link>
@@ -309,9 +310,8 @@ export const PainelPorFase = () => {
 
             {/* ARQUIVAMENTO */}
             <S.ContainerDataFase>
-
               <Link to={`/Fase/${id}/Board/Arquivamento`}>
-                <S.CardFaseColorful style={{ backgroundColor: '#43DB6D' }}>
+                <S.CardFaseColorful style={{ backgroundColor: theme.colors['green/400'] }}>
                   <img src="/icon-big/IconCheckFile.svg" />
                 </S.CardFaseColorful>
               </Link>
@@ -322,11 +322,8 @@ export const PainelPorFase = () => {
                   <S.DataFaseTxt>Foram concluídos</S.DataFaseTxt>
                 </S.NumberNameArquivamento>
               </S.CardFaseBlack>
-
             </S.ContainerDataFase>
-
           </S.FasesDoMeio>
-
         </S.PainelPorFaseLotes>
       </S.ContainerData>
     </S.Wrapper>

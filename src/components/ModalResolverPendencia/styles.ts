@@ -25,7 +25,6 @@ export const Wrapper = styled.div`
   gap: 2em;
   transform: scale(0);
   transition: transform 0.3s ease-in-out;
-  
 `;
 
 export const ContainerData = styled.div`
@@ -196,7 +195,7 @@ export const QtdLotes = styled.p`
 export const Exit = styled.button`
   height: 2em;
   width: 2em;
-  background-color: #393e4b;
+  background-color: ${({ theme }) => theme.colors['gray/500']};
   border-radius: 3px;
   display: flex;
   justify-content: center;

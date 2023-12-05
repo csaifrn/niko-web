@@ -4,6 +4,7 @@ import Search from '../Search';
 import Users from '../../data/UserData';
 import { Membros } from '../../data/ProjetoData';
 import { useParams } from 'react-router-dom';
+import theme from '../../global/theme';
 
 export interface IUserFase {
   id_fase: any;
@@ -72,7 +73,7 @@ export const UserModalAtividade = (props: UserModalAtividadeProps) => {
     (f) => f.name.toLowerCase().includes(searchTerm.toLowerCase()) || f.name.includes(searchTerm),
   );
 
-  const [closing , setClosing] = useState(false);
+  const [closing, setClosing] = useState(false);
 
   useEffect(() => {
     // Ao renderizar o modal, aplicar um escalonamento gradual para exibi-lo
@@ -88,8 +89,6 @@ export const UserModalAtividade = (props: UserModalAtividadeProps) => {
     return () => clearTimeout(timer);
   }, [closing]);
 
-  
-
   const handleSave = () => {
     // Verifica se alguma lista de usuários em UserFase está vazia
     const isAnyUserFaseEmpty = UserFase.some((uf) => uf.users.length === 0);
@@ -102,7 +101,7 @@ export const UserModalAtividade = (props: UserModalAtividadeProps) => {
       }, 3000);
       return; // Aborta a função handleSave
     }
-    
+
     props.setUserFase(UserFase);
     handleClose();
   };
@@ -147,7 +146,7 @@ export const UserModalAtividade = (props: UserModalAtividadeProps) => {
                         color: 'white',
                         border: 'none',
                         borderRadius: '5px',
-                        backgroundColor: faseSelected === index ? '#191C24 ' : '#2D303B',
+                        backgroundColor: faseSelected === index ? theme.colors['gray/700'] : theme.colors['gray/600'],
                         padding: '8px 8px',
                         cursor: 'pointer',
                       }}
@@ -173,7 +172,7 @@ export const UserModalAtividade = (props: UserModalAtividadeProps) => {
                     key={f.id}
                     onClick={() => handleLoteClick(f)}
                     style={{
-                      backgroundColor: isSelected ? '#090E09' : '#2D303B',
+                      backgroundColor: isSelected ? theme.colors['gray/700'] : theme.colors['gray/600'],
                       display: 'flex',
                       flexDirection: 'column',
                       gap: '0.5em',
@@ -181,20 +180,24 @@ export const UserModalAtividade = (props: UserModalAtividadeProps) => {
                   >
                     <p
                       style={{
-                        color: isSelected ? '#fff' : '#838383',
+                        color: isSelected ? theme.colors.white : theme.colors['gray/100'],
                       }}
                     >
                       {f.name}
                     </p>
                     {isPresentInOtherFase && (
-                      <p style={{ color: '#F3802D', fontSize: '12px' }}>Usuário presente em outra tarefa</p>
+                      <p style={{ color: theme.colors['orange/400'], fontSize: '12px' }}>
+                        Usuário presente em outra tarefa
+                      </p>
                     )}
                   </S.Lote>
                 );
               })}
             </S.ChooseLote>
             <S.AtribuirButton onClick={handleSave}>Salvar</S.AtribuirButton>
-            {error && <p style={{ color: '#F32D2D', fontSize: '12px' }}>Todas as fases precisam de um Operador</p>}
+            {error && (
+              <p style={{ color: theme.colors['red/500'], fontSize: '12px' }}>Todas as fases precisam de um Operador</p>
+            )}
           </S.ModalContent>
         </S.ModalAreaCard>
       </S.ModalBackdrop>

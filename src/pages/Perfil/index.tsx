@@ -11,6 +11,7 @@ import * as Yup from 'yup';
 import { userPatch } from '../../api/services/users/patch';
 import { ApiError, UserPatchResponse } from '../../api/services/users/patch/userPatch.interface';
 import { useMutation } from 'react-query';
+import theme from '../../global/theme';
 
 const user = Users[0];
 
@@ -74,7 +75,7 @@ const Perfil = () => {
         <S.ContainerImg>
           <S.ImgUser src={url}></S.ImgUser>
           <S.EditImg type="button" onClick={() => setModal(!modal)}>
-            <PencilSimple size={24} weight="fill" color="#fff" />
+            <PencilSimple size={24} weight="fill" color={theme.colors.white} />
           </S.EditImg>
         </S.ContainerImg>
         <S.Form onSubmit={onSubmit}>

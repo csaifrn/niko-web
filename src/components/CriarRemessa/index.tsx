@@ -3,6 +3,7 @@ import * as S from './styles';
 import Search from '../Search';
 import Users from '../../data/UserData';
 import { v4 as uuidv4 } from 'uuid';
+import theme from '../../global/theme';
 
 interface clientes {
   id: string;
@@ -89,7 +90,7 @@ export const CreateRemessa = (props: EditModalProps) => {
                     width={24}
                     style={{
                       padding: '5px 5px',
-                      backgroundColor: '#090E09',
+                      backgroundColor: theme.colors['gray/900'],
                       borderRadius: '5px',
                     }}
                   />
@@ -101,7 +102,7 @@ export const CreateRemessa = (props: EditModalProps) => {
                 <p>Quantidade de Caixas</p>
                 <S.Titulo
                   onChange={handleQtd}
-                  style={{ backgroundColor: '#2D303B' }}
+                  style={{ backgroundColor: theme.colors['gray/600'] }}
                   type="number"
                   name="qtd_caixas"
                   placeholder={'23'}
@@ -116,7 +117,7 @@ export const CreateRemessa = (props: EditModalProps) => {
                   onChange={() => {
                     handleData;
                   }}
-                  style={{ backgroundColor: '#2D303B' }}
+                  style={{ backgroundColor: theme.colors['gray/600'] }}
                   type="date"
                   name="Data"
                   placeholder={'Onde está a caixa?'}
@@ -128,7 +129,7 @@ export const CreateRemessa = (props: EditModalProps) => {
                 <p>Observação</p>
                 <S.Local
                   onChange={handleObservacao}
-                  style={{ backgroundColor: '#2D303B' }}
+                  style={{ backgroundColor: theme.colors['gray/600'] }}
                   type="text"
                   name="Data"
                   placeholder={'...'}
@@ -147,7 +148,9 @@ export const CreateRemessa = (props: EditModalProps) => {
                       key={uuidv4()}
                       onClick={() => handleLoteClick(categ.id)}
                       style={{
-                        backgroundColor: selectedClientes.includes(categ.id) ? '#090E09' : '#2D303B',
+                        backgroundColor: selectedClientes.includes(categ.id)
+                          ? theme.colors['gray/900']
+                          : theme.colors['gray/600'],
                       }}
                     >
                       <img
@@ -159,7 +162,7 @@ export const CreateRemessa = (props: EditModalProps) => {
                       />
                       <p
                         style={{
-                          color: selectedClientes.includes(categ.id) ? '#fff' : '#838383',
+                          color: selectedClientes.includes(categ.id) ? theme.colors.white : theme.colors['gray/100'],
                         }}
                       >
                         {categ.name}

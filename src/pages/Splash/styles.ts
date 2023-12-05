@@ -7,7 +7,7 @@ export const backgroundContainer = styled.main`
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #0a090e;
+  background-color: ${({ theme }) => theme.colors['gray/900']};
 `;
 
 export const itemsContainer = styled.div`

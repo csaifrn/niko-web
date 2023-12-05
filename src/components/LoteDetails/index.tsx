@@ -28,8 +28,9 @@ import { ArrowCircleLeft, X } from '@phosphor-icons/react';
 import theme from '../../global/theme';
 import { PatchBatcheSpecifStatus } from '../../api/services/batches/patch-status-specific';
 import { ToolTip } from '../Observation/ObservationBox/styles';
-import { AtribuirButton } from '../../pages/Coordenador/Atividade/atividade-home/styles';
+
 import { EspecifcModal } from '../EspecificStatusModal';
+import { AtribuirButton } from '../AtribuirLoteModal/styles';
 
 interface Option {
   label: string;
@@ -309,7 +310,7 @@ export const LoteDetails = () => {
                     style={{
                       objectFit: 'cover',
                       borderRadius: '100%',
-                      border: '1px solid #393E4B',
+                      border: `1px solid ${theme.colors[gray/500]}`,
                     }}
                   />
                 )}
@@ -407,7 +408,7 @@ export const LoteDetails = () => {
                     {/* BOTÃO DE VOLTAR FASE*/}
                     <S.VoltarAvancar onClick={handleVoltar} style={{ cursor: 'pointer' }}>
                       <img src={'/voltar.svg'} alt="ícone circular com uma seta para a esquerda ao centro" />
-                      <p style={{ color: '#FFFFFF' }}>Voltar Fase</p>
+                      <p style={{ color: theme.colors.white }}>Voltar Fase</p>
                     </S.VoltarAvancar>
 
                     {/* BOTÃO DE ESCOLHER FASE PARA VOLTAR*/}
@@ -446,11 +447,11 @@ export const LoteDetails = () => {
                         <img src={'/avancar.svg'} alt="ícone circular com uma seta para a direita ao centro" />
                       )}
                       {option?.value && option?.value < status ? (
-                        <p style={{ color: '#FFFFFF' }}>Voltar Fase</p>
+                        <p style={{ color: theme.colors.white }}>Voltar Fase</p>
                       ) : option?.value === status ? (
-                        <p style={{ color: '#FFFFFF' }}>Você escolheu a mesma fase</p>
+                        <p style={{ color: theme.colors.white }}>Você escolheu a mesma fase</p>
                       ) : (
-                        <p style={{ color: '#FFFFFF' }}>Avancar Fase</p>
+                        <p style={{ color: theme.colors.white }}>Avancar Fase</p>
                       )}
                     </S.VoltarAvancar>
 
@@ -495,7 +496,7 @@ export const LoteDetails = () => {
                             alt="ícone com seta para direita indicando a data e hora que o lote começou a ser feito"
                           />
                           {fase.inicio}
-                          <S.Text style={{ color: '#FCDE42' }}>{fase.hora_inicio}</S.Text>
+                          <S.Text style={{ color: theme.colors['yellow/300'] }}>{fase.hora_inicio}</S.Text>
                         </S.TimeBeginDiv>
                       )}
 
@@ -503,7 +504,7 @@ export const LoteDetails = () => {
                         <S.TimeFinishDiv>
                           <img src={'/detal-fase-icons/conclusao-icon.png'} alt="icone de check" />
                           {fase.conclusao}
-                          <S.Text style={{ color: '#00D25B' }}>{fase.hora_conclusao}</S.Text>
+                          <S.Text style={{ color: theme.colors['green/500'] }}>{fase.hora_conclusao}</S.Text>
                         </S.TimeFinishDiv>
                       )}
 
@@ -526,7 +527,7 @@ export const LoteDetails = () => {
                                 style={{
                                   objectFit: 'cover',
                                   borderRadius: '100%',
-                                  border: '1px solid #191C24',
+                                  border: `1px solid ${theme.colors['gray/700']}`,
                                 }}
                               />
                             </React.Fragment>

@@ -92,7 +92,7 @@ export const CloseDiv = styled.div`
 export const Exit = styled.button`
   height: 2em;
   width: 2em;
-  background-color: #393e4b;
+  background-color: ${({ theme }) => theme.colors['gray/900']};
   border-radius: 3px;
   display: flex;
   justify-content: center;
@@ -119,7 +119,7 @@ export const NameClose = styled.div`
 
 export const Close = styled.div`
   display: flex;
-  background-color: #393e4b;
+  background-color: ${({ theme }) => theme.colors['gray/900']};
   width: auto;
   border: none;
 `;
@@ -140,7 +140,7 @@ export const Protocolo = styled.div`
   border-radius: 3px;
   color: white;
   font-family: 'Rubik';
-  background-color: #393e4b;
+  background-color: ${({ theme }) => theme.colors['gray/900']};
 `;
 
 export const Arquivos = styled.div`
@@ -172,7 +172,7 @@ export const ArquivosInput = styled.input`
   align-items: flex-start;
   padding: 15px;
   width: 60px;
-  background-color: #393e4b;
+  background-color: ${({ theme }) => theme.colors['gray/900']};
   color: white;
   font-family: 'Rubik', Helvetica, sans-serif;
   border: none;
@@ -183,7 +183,7 @@ export const ArquivosInput = styled.input`
     -webkit-appearance: none;
     background: url('/carets.svg') no-repeat center center;
     width: 3em;
-    border-left: 1px solid #bbb;
+    border-left: 1px solid ${({ theme }) => theme.colors['gray/50']};
     opacity: 0.5; /* shows Spin Buttons per default (Chrome >= 39) */
     position: absolute;
     border-left: none;
@@ -208,7 +208,7 @@ export const NameInput = styled.input`
   align-items: flex-start;
   padding: 15px;
   width: 56px;
-  background-color: #393e4b;
+  background-color: ${({ theme }) => theme.colors['gray/900']};
   color: white;
   font-family: 'Rubik', Helvetica, sans-serif;
   border: none;
@@ -252,13 +252,13 @@ export const MostrarCategTipolEscolhida = styled.div`
 `;
 
 export const CategEscolhida = styled.div`
-  background-color: #393e4b;
+  background-color: ${({ theme }) => theme.colors['gray/900']};
   padding: 5px;
   border-radius: 3px;
 `;
 
 export const TipolEscolhida = styled.div`
-  background-color: #393e4b;
+  background-color: ${({ theme }) => theme.colors['gray/900']};
   padding: 5px;
   border-radius: 3px;
 `;
@@ -300,11 +300,11 @@ export const ChooseCatTipol = styled.div`
   }
 
   &::-webkit-scrollbar-track {
-    background: #191c24;
+    background: ${({ theme }) => theme.colors['gray/700']};
   }
 
   &::-webkit-scrollbar-thumb {
-    background-color: #2a2e38;
+    background-color: ${({ theme }) => theme.colors['gray/550']};
     border-radius: 20px;
   }
 
@@ -317,9 +317,9 @@ export const ChooseCatTipol = styled.div`
 export const SalvarEditButton = styled.button`
   height: 44px;
   border-radius: 5px;
-  background-color: #43db6d;
+  background-color: ${({ theme }) => theme.colors['green/400']};
   border: none;
-  color: #0A090E;
+  color: ${({ theme }) => theme.colors['gray/900']};
   font-family: 'Rubik';
   bottom: 0;
   left: 0;

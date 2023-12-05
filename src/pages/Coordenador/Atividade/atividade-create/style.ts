@@ -24,7 +24,7 @@ export const CloseDiv = styled.div`
 export const Exit = styled.button`
   height: 2em;
   width: 2em;
-  background-color: #393e4b;
+  background-color: ${({ theme }) => theme.colors['gray/500']};
   border-radius: 3px;
   display: flex;
   justify-content: center;
@@ -41,11 +41,11 @@ export const Exit = styled.button`
 `;
 
 export const Titulo = styled.h1`
-  color: #ffffff;
+  color: ${({ theme }) => theme.colors.white};
 `;
 
 export const Titulo2 = styled.h2`
-  color: #ffffff;
+  color: ${({ theme }) => theme.colors.white};
   font-weight: 400;
 `;
 
@@ -174,7 +174,7 @@ export const AddAtivAtivado = styled.button`
   align-self: stretch;
   height: 44px;
   padding: 10px;
-  background: #43db6d;
+  background: ${({ theme }) => theme.colors['green/400']};
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 5px;
   justify-content: center;
@@ -205,7 +205,7 @@ export const AddAtivDesativado = styled.button`
   align-self: stretch;
   height: 44px;
   padding: 10px;
-  background: #43db6d;
+  background: ${({ theme }) => theme.colors['green/400']};
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 5px;
   justify-content: center;
@@ -225,14 +225,14 @@ export const AddAtivDesativado = styled.button`
 
 export const AtribuirLoteButton = styled.button`
   padding: 8px;
-  background-color: #43db6d;
+  background-color: ${({ theme }) => theme.colors['green/400']};
   border-radius: 5px;
   gap: 10;
   display: flex;
   border: none;
   cursor: pointer;
   &:hover {
-    background-color: ${({ theme }) => theme.colors['green/600']};
+    background-color: ${({ theme }) => theme.colors['green/400']};
   }
   &:active {
     background-color: ${({ theme }) => theme.colors['green/600']};

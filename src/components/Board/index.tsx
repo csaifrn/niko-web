@@ -3,7 +3,7 @@ import * as S from './styles';
 import Lote from '../Lote';
 import Users from '../../data/UserData';
 import { ArrowCircleLeft, UsersThree } from '@phosphor-icons/react';
-import { AtribuirButton } from '../../pages/Coordenador/Atividade/atividade-home/styles';
+
 import { BoardChanger } from '../BoardChanger';
 import { GetResponseBatche } from '../../api/services/batches/get-batche/get.interface';
 import { useMutation } from 'react-query';
@@ -17,6 +17,7 @@ import { AtribuirAlguemModal } from '../AtribuirAlguemModal';
 import { Btn } from '../../pages/Etapas/Preparo/styles';
 import { ModalCriarLote } from '../ModalCriarLote';
 import { EspecifcModal } from '../EspecificStatusModal';
+import { AtribuirButton } from '../AtribuirLoteAtividade/styles';
 
 interface BoardProps {
   main_status: number;

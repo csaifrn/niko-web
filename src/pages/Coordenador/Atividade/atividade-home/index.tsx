@@ -60,7 +60,7 @@ const Atividade = () => {
     }
   }, [atividadesOrdenadas]);
 
-  const [modalExcluirAtiv , setModalExcluirAtiv] = useState(false)
+  const [modalExcluirAtiv, setModalExcluirAtiv] = useState(false);
 
   return (
     <div style={{ display: 'flex', justifyContent: 'center' }}>
@@ -77,8 +77,6 @@ const Atividade = () => {
                 <img src="/adicionar.svg" alt="botão de adicionar atividade" />
               </S.CriarAtiv>
             </Link>
-
-            
           )}
         </S.AtivsCabecalho>
 
@@ -109,7 +107,6 @@ const Atividade = () => {
                         <>
                           <S.AtivCardCinza key={index}>
                             <S.EditRemoveDiv>
-
                               {/* Botão de editar atividade */}
                               <Link to={`/Atividades/${id}/Edit/${atividade.id}/${atv.id}`}>
                                 <S.ButtonTransparent>
@@ -119,15 +116,11 @@ const Atividade = () => {
                               </Link>
 
                               {/* Botão de excluir atividade */}
-                              <S.ButtonTransparent 
-                                onClick={() => setModalExcluirAtiv(!modalExcluirAtiv)}
-                              >
-                                <S.ExcluirIcon src={'/trash.svg'}/>
-                                
-                                <S.Tooltip>Excluir</S.Tooltip>
-                              
-                              </S.ButtonTransparent>
+                              <S.ButtonTransparent onClick={() => setModalExcluirAtiv(!modalExcluirAtiv)}>
+                                <S.ExcluirIcon src={'/trash.svg'} />
 
+                                <S.Tooltip>Excluir</S.Tooltip>
+                              </S.ButtonTransparent>
                             </S.EditRemoveDiv>
 
                             <S.AtivsDetails>
@@ -146,7 +139,7 @@ const Atividade = () => {
                                             <div
                                               key={catTip.id}
                                               style={{
-                                                background: '#191C24',
+                                                background: theme.colors['gray/700'],
                                                 padding: '5px 6px',
                                                 display: 'flex',
                                                 alignItems: 'center',
@@ -198,7 +191,7 @@ const Atividade = () => {
                                               <div
                                                 key={lote.lote.id}
                                                 style={{
-                                                  background: '#191C24',
+                                                  background: theme.colors['gray/700'],
                                                   padding: '5px 6px',
                                                   height: '24px',
                                                   display: 'flex',
@@ -212,7 +205,7 @@ const Atividade = () => {
                                                 {EtapaData.filter((etapa) => lote.lote.id_etapa === etapa.id)[0] &&
                                                   EtapaData.filter((etapa) => lote.lote.id_etapa === etapa.id)[0]
                                                     .id_fase !== fase.faseData.id && (
-                                                    <Check size={12} color="#43DB6D" />
+                                                    <Check size={12} color={theme.colors['green/400']} />
                                                   )}
                                               </div>
                                             );
@@ -259,7 +252,7 @@ const Atividade = () => {
                                           key={index}
                                           style={{
                                             padding: '2em',
-                                            backgroundColor: '#393E4B',
+                                            backgroundColor: theme.colors['gray/500'],
                                             display: 'flex',
                                             flexDirection: 'column',
                                             gap: '2em',
@@ -272,7 +265,7 @@ const Atividade = () => {
                                               href={`/Atividades/${id}/Edit/${atividade.id}/${atv.id}`}
                                               style={{
                                                 display: 'flex',
-                                                backgroundColor: '#191C24',
+                                                backgroundColor: theme.colors['gray/700'],
                                                 height: '24px',
                                                 width: '24px',
                                                 alignItems: 'center',
@@ -283,7 +276,7 @@ const Atividade = () => {
                                                 border: 'none',
                                               }}
                                             >
-                                              <PencilSimple size={16} weight="fill" color="#fff" />
+                                              <PencilSimple size={16} weight="fill" color={theme.colors.white} />
                                             </a>
                                           )}
                                           <div>
@@ -303,7 +296,7 @@ const Atividade = () => {
                                                       <div
                                                         key={catTip.id}
                                                         style={{
-                                                          background: '#191C24',
+                                                          background: theme.colors['gray/700'],
                                                           padding: '5px 6px',
                                                           display: 'flex',
                                                           alignItems: 'center',
@@ -373,7 +366,11 @@ const Atividade = () => {
                                                               console.log('Montar lógica');
                                                             }}
                                                           >
-                                                            <ArrowCircleRight size={18} weight="fill" color="#1C1F28" />
+                                                            <ArrowCircleRight
+                                                              size={18}
+                                                              weight="fill"
+                                                              color={theme.colors['gray/700']}
+                                                            />
                                                             Pegar Lote
                                                           </S.AtribuirButton>
                                                         </Lote>
@@ -405,17 +402,14 @@ const Atividade = () => {
       </S.AtividadesPage>
 
       {/* Modal de confirmação de exclusão de atividade */}
-      {modalExcluirAtiv &&
+      {modalExcluirAtiv && (
         <DeletarModal
-          title='Deseja excluir essa atividade? Essa ação não poderá ser desfeita'
+          title="Deseja excluir essa atividade? Essa ação não poderá ser desfeita"
           close={() => {
             setModalExcluirAtiv(!modalExcluirAtiv);
           }}
         />
-        
-      }
-
-
+      )}
     </div>
   );
 };

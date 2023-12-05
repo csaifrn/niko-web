@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import media from 'styled-media-query';
 
 interface paDiv {
   children?: JSX.Element | JSX.Element[];
@@ -16,7 +15,7 @@ const Title = styled.a`
 
 const Wrapper = styled.div`
   font-family: 'Rubik';
-  //background-color: #0a090e;
+  //background-color: ${({ theme }) => theme.colors['gray/900']};
   //height: 170vh;
   //min-height: 550px;
   //width: 100vw;
@@ -29,7 +28,7 @@ const Wrapper = styled.div`
 
 const AlignCenter = styled.div`
   font-family: 'Rubik';
-  background-color: #0a090e;
+  background-color: ${({ theme }) => theme.colors['gray/900']};
   height: 100vh;
   width: 100vw;
   display: flex;
@@ -56,7 +55,7 @@ const Main = styled.section`
 
 const Footer = styled.footer`
   display: none;
-  background: #191c24;
+  background: ${({ theme }) => theme.colors['gray/700']};
   position: fixed;
   width: 100%;
   bottom: 0;
@@ -70,13 +69,13 @@ const spanLinear = styled.span`
 const Btn = styled.button`
   padding: 0.5em;
   width: 40%;
-  background-color: #f3802d;
+  background-color:  ${({ theme }) => theme.colors['orange/400']};
   border-radius: 0.5em;
-  border: 1px solid #f3802d;
+  border: 1px solid  ${({ theme }) => theme.colors['orange/400']};
   color: white;
   font-weight: bold;
   :hover {
-    border: 1px solid #b1b1b1;
+    border: 1px solid ${({ theme }) => theme.colors['gray/300']} !important;
   }
 `;
 

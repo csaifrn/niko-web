@@ -5,6 +5,7 @@ import { LoteData } from '../../data/LoteData';
 import EtapaData from '../../data/EtapaData';
 import CategoriaData from '../../data/CategoriaData';
 import { TipologiaData } from '../../data/TipologiaData';
+import theme from '../../global/theme';
 
 interface AtribuirModalAtividadeProps {
   nameUser: string;
@@ -211,7 +212,9 @@ export const AtribuirLoteModal = (props: AtribuirModalAtividadeProps) => {
                     key={lote.id}
                     onClick={() => handleLoteClick(lote)}
                     style={{
-                      backgroundColor: selectedLotes.includes(lote) ? '#090E09' : '#2D303B',
+                      backgroundColor: selectedLotes.includes(lote)
+                        ? theme.colors['gray/900']
+                        : theme.colors['gray/700'],
                       display: 'flex',
                       flexDirection: 'column',
                       gap: '0.5em',
@@ -219,13 +222,15 @@ export const AtribuirLoteModal = (props: AtribuirModalAtividadeProps) => {
                   >
                     <p
                       style={{
-                        color: selectedLotes.includes(lote) ? '#fff' : '#838383',
+                        color: selectedLotes.includes(lote) ? theme.colors.white : theme.colors['gray/100'],
                       }}
                     >
                       {lote.titulo + ' ' + lote.numero}
                     </p>
                     {isLoteAssigned && (
-                      <span style={{ color: '#FCDE42' }}>Este lote foi atribuído a outro operador</span>
+                      <span style={{ color: theme.colors['yellow/500'] }}>
+                        Este lote foi atribuído a outro operador
+                      </span>
                     )}
                   </S.Lote>
                 );

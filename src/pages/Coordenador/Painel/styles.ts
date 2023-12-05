@@ -18,7 +18,7 @@ export const PainelArea = styled.div`
 
 export const PainelTitulo = styled.h1`
   font-family: 'Rubik';
-  color: #ffffff;
+  color: ${({ theme }) => theme.colors.white};
 `;
 
 export const DetalFasesPendencias = styled.div`

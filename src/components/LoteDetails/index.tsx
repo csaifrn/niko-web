@@ -157,6 +157,14 @@ export const LoteDetails = () => {
     }
   };
 
+  // const handleStatus = () => {
+  //   if(assigners.length === 0){
+  //     setSpecificStatus(0)
+  //   }else(
+  //     setSpecificStatus(1)
+  //   )
+  // }
+
   useEffect(() => {
     CheckIdForGetBatch();
   }, []);
@@ -198,7 +206,7 @@ export const LoteDetails = () => {
                     </S.Edit>
                   </Link>
 
-                  {/* BOTÃOP DE CONFIGURAÇÕES */}
+                  {/* BOTÃOO DE CONFIGURAÇÕES */}
                   <S.Config onClick={handleConfig}>
                     <S.Icons src={`/config.svg`}></S.Icons>
                     <ToolTip style={{ width: '120px' }} id="tool">
@@ -258,19 +266,6 @@ export const LoteDetails = () => {
                 </S.CategoriaPrioridade>
               )}
 
-              {/* OPERADORES ATRIBUÍDOS AO LOTE */}
-              {assigners.length > 0 && (
-                <React.Fragment>
-                  Atribuidos
-                  <S.DetalhesLote>
-                    {assigners &&
-                      assigners.map((assigned) => (
-                        <BlockAssigner key={assigned.id} assigner={assigned} setAssigners={setAssigners} />
-                      ))}
-                  </S.DetalhesLote>
-                </React.Fragment>
-              )}
-
               <S.FaseAtualDiv>
                 {/* FASE ATUAL DO LOTE */}
                 <S.IconTooltipFase>
@@ -280,48 +275,41 @@ export const LoteDetails = () => {
                   </ToolTip>
                 </S.IconTooltipFase>
               </S.FaseAtualDiv>
+
+              {/* OPERADORES ATRIBUÍDOS AO LOTE */}
+              {assigners.length > 0 && (
+                <React.Fragment>
+                  <h2>Atribuídos</h2>
+                  <S.DetalhesLote>
+                    {assigners &&
+                      assigners.map((assigned) => (
+                        <BlockAssigner key={assigned.id} assigner={assigned} setAssigners={setAssigners} />
+                      ))}
+                  </S.DetalhesLote>
+                </React.Fragment>
+              )}
             </S.LoteInfos>
 
-            <S.PendObservacaoBotoes>
-              <S.PendObservacao>
-                {/* PENDÊNCIAS */}
-                {/* <S.Pendencias>
-                <S.PendenciaTitulo>Pendências</S.PendenciaTitulo>
+            <S.ObservacaoBotoes>
+              {/* OBSERVAÇÕES */}
+              <S.Observações>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                  <S.PendenciaTitulo>Observações</S.PendenciaTitulo>
+                  <S.BotaoCriarObservacao
+                    onClick={() => {
+                      setObservacao(!observacao);
+                    }}
+                  >
+                    <ToolTip style={{ width: '150px' }} id="tool">
+                      Adicionar observação
+                    </ToolTip>
+                    <img src="/adicionar.svg" alt="" />
+                  </S.BotaoCriarObservacao>
+                </div>
 
-                <S.TodasAsPendencias>
-                  {taskData.pendencias.map((pen: any) => (
-                    <S.PendDivBlack key={pen.id}>
-                      <S.PendenciaTextIcon>
-                        {<img src="/warning.svg" alt="ícone de alerta" />}
-                        {pen.comment}
-                      </S.PendenciaTextIcon>
-
-                      <S.BotaoResolverPend onClick={() => handleResolverPend(pen)}>
-                        <S.Texto>Resolver pendência</S.Texto>
-                      </S.BotaoResolverPend>
-                    </S.PendDivBlack>
-                  ))}
-                </S.TodasAsPendencias>
-              </S.Pendencias> */}
-
-                {/* OBSERVAÇÕES */}
-                <S.Observações>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                    <S.PendenciaTitulo>Observações</S.PendenciaTitulo>
-                    <S.BotaoCriarObservacao
-                      onClick={() => {
-                        setObservacao(!observacao);
-                      }}
-                    >
-                      <ToolTip style={{ width: '150px' }} id="tool">
-                        Adicionar observação
-                      </ToolTip>
-                      <img src="/adicionar.svg" alt="" />
-                    </S.BotaoCriarObservacao>
-                  </div>
-
-                  {observations &&
-                    observations.map((obs, index) => {
+                {observations.length != 0 && (
+                  <S.ObsCardsDiv>
+                    {observations.map((obs, index) => {
                       return (
                         <BoxObservation
                           index={index}
@@ -334,12 +322,13 @@ export const LoteDetails = () => {
                         />
                       );
                     })}
-                </S.Observações>
-              </S.PendObservacao>
+                  </S.ObsCardsDiv>
+                )}
+              </S.Observações>
 
               {/* BOTÕES PRINCIPAIS */}
               <S.Botoes>
-                {/* ATRIBUIR À ALGUÉM */}
+                {/* PEGAR LOTE */}
                 {specificStatus === 0 && (
                   <AtribuirButton
                     onClick={(e) => {
@@ -353,6 +342,7 @@ export const LoteDetails = () => {
                   </AtribuirButton>
                 )}
 
+                {/* MARCAR COMO CONCLUÍDO */}
                 {specificStatus === 1 && (
                   <AtribuirButton
                     onClick={(e) => {
@@ -366,8 +356,10 @@ export const LoteDetails = () => {
                     Marcar como concluído
                   </AtribuirButton>
                 )}
+
+                {/* ATRIBUIR LOTE */}
                 <S.Botao onClick={handleAtribuirAlguem}>
-                  <img src={`/atribuir.svg`} alt="botão para atribuir lote a algum operador " />
+                  <img src={`/AddUser.svg`} alt="botão para atribuir lote a algum operador " />
                   Atribuir à alguém
                 </S.Botao>
 
@@ -443,7 +435,7 @@ export const LoteDetails = () => {
                   Excluir lote
                 </S.BotaoDeletarLote>
               </S.Botoes>
-            </S.PendObservacaoBotoes>
+            </S.ObservacaoBotoes>
 
             {/* DETALHAMENTO POR FASE */}
 

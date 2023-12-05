@@ -137,9 +137,6 @@ export const divImg = styled.div`
   justify-content: flex-start;
   align-items: center;
   gap: 16px;
-  /* ${media.greaterThan('large')`
-    display: none;
-  `} */
   @media screen and (min-width: 767px) {
     display: none;
   }
@@ -151,9 +148,6 @@ export const divImgMaior = styled.div`
   justify-content: center;
   align-items: center;
   gap: 16px;
-  /* ${media.greaterThan('large')`
-    display: flex;
-  `} */
   @media screen and (min-width: 767px) {
     display: flex;
   }
@@ -169,7 +163,7 @@ export const divTitulo = styled.div`
 export const divChildren = styled.div`
   display: flex;
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: 767px) {
     flex-direction: row;
     justify-content: center;
     align-items: start;

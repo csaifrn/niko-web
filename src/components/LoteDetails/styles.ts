@@ -326,15 +326,15 @@ export const Envolvidos = styled.div`
   gap: 0px;
 `;
 
-export const PendObservacaoBotoes = styled.div`
+export const ObservacaoBotoes = styled.div`
   display: flex;
   flex-direction: column;
   gap: 16px;
   grid-template-columns: repeat(auto-fit, minmax(21rem, 1fr));
-  ${media.greaterThan('large')`
-    display:grid;
+  @media screen and (min-width: 767px) {
+    display: grid;
     grid-template-columns: 2fr 1fr;
-  `}
+  }
 `;
 
 export const PendObservacao = styled.div`
@@ -342,24 +342,24 @@ export const PendObservacao = styled.div`
   flex-direction: column;
   gap: 16px;
   grid-template-columns: repeat(auto-fit, minmax(21rem, 1fr));
-  ${media.greaterThan('large')`
+  @media screen and (min-width: 767px) {
     flex-direction: row;
     width: 100%;
-  `}
+  }
 `;
 
 export const PendenciaTitulo = styled.p`
   font-size: 12px;
-  ${media.greaterThan('large')`
+  @media screen and (min-width: 767px) {
     font-size: 16px;
-  `}
+  }
 `;
 
 export const ObservacaoTitulo = styled.p`
   font-size: 12px;
-  ${media.greaterThan('large')`
+  @media screen and (min-width: 767px) {
     font-size: 16px;
-  `}
+  }
 `;
 
 export const Pendencias = styled.div`
@@ -371,9 +371,9 @@ export const Pendencias = styled.div`
   order: 0;
   flex-grow: 0;
   padding: 16px;
-  ${media.greaterThan('large')`
+  @media screen and (min-width: 767px) {
     width: 100%;
-  `}
+  }
 `;
 
 export const Observações = styled.div`
@@ -386,9 +386,33 @@ export const Observações = styled.div`
   order: 0;
   flex-grow: 0;
   padding: 16px;
-  ${media.greaterThan('large')`
+  max-height: 257px;
+  @media screen and (min-width: 767px) {
     width: 100%;
-  `}
+  }
+`;
+
+export const ObsCardsDiv = styled.div`
+  overflow-y: scroll;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  height: 100%;
+  &::-webkit-scrollbar {
+    width: 0.5em;
+    height: 0.5em;
+  }
+
+  // O caminho (barra de progresso) da barra de rolagem
+  &::-webkit-scrollbar-track {
+    background-color: transparent;
+  }
+
+  // A barra arrastável de rolagem
+  &::-webkit-scrollbar-thumb {
+    background-color: ${({ theme }) => theme.colors['gray/400']};
+    border-radius: 20px;
+  }
 `;
 
 export const PendDivBlack = styled.div`
@@ -436,11 +460,9 @@ export const Botoes = styled.div`
   display: flex;
   flex-direction: column;
   gap: 16px;
-  ${media.greaterThan('large')`
+  @media screen and (min-width: 767px) {
     gap: 27px;
-    /* display: grid;
-    grid-template-columns: 1fr 2fr 2fr 1fr; */
-  `}
+  }
 `;
 
 export const Botao = styled.button`
@@ -561,9 +583,9 @@ export const DetalhamentoGrid = styled.div`
   display: grid;
   grid-gap: 2rem;
   grid-template-columns: repeat(auto-fit, minmax(21rem, 1fr));
-  ${media.greaterThan('large')`
+  @media screen and (min-width: 767px) {
     grid-template-columns: 2fr 2fr 2fr;
-  `}
+  }
 `;
 
 export const NomeDaFase = styled.h2``;
@@ -572,7 +594,7 @@ export const TodasAsPendencias = styled.div`
   display: flex;
   flex-direction: column;
   gap: 12px;
-  ${media.greaterThan('large')`
+  @media screen and (min-width: 767px) {
     height: 20vh;
     overflow-y: scroll;
     scroll-behavior: auto;
@@ -595,14 +617,14 @@ export const TodasAsPendencias = styled.div`
       background-color: transparent;
       margin: 0em 2em;
     }
-  `}
+  }
 `;
 
 export const TodasAsObservacoes = styled.div`
   display: flex;
   flex-direction: column;
   gap: 12px;
-  ${media.greaterThan('large')`
+  @media screen and (min-width: 767px) {
     height: 20vh;
     overflow-y: scroll;
     scroll-behavior: auto;
@@ -625,7 +647,7 @@ export const TodasAsObservacoes = styled.div`
       background-color: transparent;
       margin: 0em 2em;
     }
-  `}
+  }
 `;
 
 export const Fase = styled.div`

@@ -1,13 +1,10 @@
 import * as S from './styles';
-
 import React, { useEffect, useState } from 'react';
-
 import Menu from '../Menu';
 import MenuCoord from '../MenuCoord';
 import FaseData from '../../data/FaseData';
 import Splash from '../../pages/Splash';
 import toast from 'react-hot-toast';
-
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import { ConfigModal } from '../ConfigModal';
 import { useMutation } from 'react-query';
@@ -24,7 +21,7 @@ import { DeleteObservation } from '../../api/services/batches/observation/delete
 import { AtribuirAlguemModal } from '../AtribuirAlguemModal';
 import { BlockAssigner } from '../BatchBlocks/BlockAssigner';
 import { PatchBatcheMainStatus } from '../../api/services/batches/patch-status';
-import { ArrowCircleLeft, X } from '@phosphor-icons/react';
+import { X } from '@phosphor-icons/react';
 import theme from '../../global/theme';
 import { PatchBatcheSpecifStatus } from '../../api/services/batches/patch-status-specific';
 import { ToolTip } from '../Observation/ObservationBox/styles';
@@ -337,7 +334,7 @@ export const LoteDetails = () => {
                       setTitleModal({ button: 'Pegar lote', title: 'Deseja pegar o lote?' });
                     }}
                   >
-                    <img src="/PegarLote_icon.svg" />
+                    <img src="/PegarLote_icon.svg" alt='ícone de mãozinha acenando'/>
                     <p style={{ color: 'black' }}>Pegar lote</p>
                   </AtribuirButton>
                 )}
@@ -352,7 +349,7 @@ export const LoteDetails = () => {
                     }}
                     style={{ backgroundColor: theme.colors['gray/500'] }}
                   >
-                    <img src="/finished-icon.svg" />
+                    <img src="/finished-icon.svg" alt='ícone de concluído'/>
                     Marcar como concluído
                   </AtribuirButton>
                 )}

@@ -2,7 +2,7 @@ import { ReactNode, createContext, useEffect, useState } from 'react';
 import * as S from './styles';
 import Lote from '../Lote';
 import Users from '../../data/UserData';
-import { ArrowCircleLeft, UsersThree } from '@phosphor-icons/react';
+import { ArrowCircleLeft } from '@phosphor-icons/react';
 import { AtribuirButton } from '../../pages/Coordenador/Atividade/atividade-home/styles';
 import { BoardChanger } from '../BoardChanger';
 import { GetResponseBatche } from '../../api/services/batches/get-batche/get.interface';
@@ -132,7 +132,7 @@ export const Board = (props: BoardProps) => {
                               }}
                               style={{ color: 'black' }}
                             >
-                              <img src="/PegarLote_icon.svg" /> Pegar lote
+                              <img src="/PegarLote_icon.svg" alt='icone de mão acenando'/> Pegar lote
                             </AtribuirButton>
                           )}
                           {user.role === 'Coordenador' && (
@@ -195,7 +195,7 @@ export const Board = (props: BoardProps) => {
                                 });
                               }}
                             >
-                              <img src="/finished-icon.svg" />
+                              <img src="/finished-icon.svg" alt='icone de concluído ' />
                               <p>Marcar como concluído</p>
                             </S.BlackButton>
                           )}

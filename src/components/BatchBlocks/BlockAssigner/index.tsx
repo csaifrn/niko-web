@@ -7,6 +7,7 @@ import { useParams } from 'react-router-dom';
 import { DeleteAssigner } from '../../../api/services/batches/assigners/delete-assigners';
 import { DeletarModal } from '../../DeletarModal';
 import { useState } from 'react';
+import { SharedState } from '../../../context/SharedContext';
 
 interface PropsBlockAssigner {
   assigner: AssignedUser;
@@ -15,6 +16,7 @@ interface PropsBlockAssigner {
 
 export const BlockAssigner = ({ assigner, setAssigners }: PropsBlockAssigner) => {
   const { id } = useParams();
+  const { user, setUser } = SharedState();
   const [modal, setModal] = useState(false);
 
   const removeAssigner = useMutation(DeleteAssigner, {
@@ -36,7 +38,12 @@ export const BlockAssigner = ({ assigner, setAssigners }: PropsBlockAssigner) =>
   return (
     <>
       <S.BlockAssigner>
-        <S.NameAssigner>{assigner.name}</S.NameAssigner>
+        {user?.name == assigner.name &&
+          <S.NameAssigner>Você</S.NameAssigner>
+        }
+        {user?.name != assigner.name &&
+          <S.NameAssigner>{assigner.name}</S.NameAssigner>
+        }
         <S.DeleteAssigner onClick={() => setModal(!modal)}>
           <X size={14} weight="bold"  />
         </S.DeleteAssigner>

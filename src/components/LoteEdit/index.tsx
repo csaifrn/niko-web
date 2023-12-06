@@ -33,7 +33,6 @@ const LoteEdit = () => {
 
   const categorias = useMutation(SeachCategoria, {
     onSuccess: (data: SeachCategoriaResponseBatche) => {
-      console.log(data);
       setOptions([]);
       const opt = data.categories;
       const response: Options[] = opt.map((e) => ({ value: e.id, label: e.name }));
@@ -144,8 +143,6 @@ const LoteEdit = () => {
       });
     }
   };
-
-  console.log(modalSairSemSalvar);
 
   if (beforeBatch.isLoading) {
     return <Splash />;

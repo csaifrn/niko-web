@@ -38,12 +38,15 @@ export const BlockAssigner = ({ assigner, setAssigners }: PropsBlockAssigner) =>
   return (
     <>
       <S.BlockAssigner>
-        {user?.name == assigner.name &&
+
+        {/* mostra quem está atribuído */}
+        {/* {user?.name == assigner.name &&
           <S.NameAssigner>Você</S.NameAssigner>
         }
         {user?.name != assigner.name &&
           <S.NameAssigner>{assigner.name}</S.NameAssigner>
-        }
+        } */}
+        <S.NameAssigner>{assigner.name}</S.NameAssigner>
         <S.DeleteAssigner onClick={() => setModal(!modal)}>
           <X size={14} weight="bold"  />
         </S.DeleteAssigner>

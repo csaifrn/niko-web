@@ -41,12 +41,16 @@ export const BoxObservation = ({
     <>
       <S.ObsDivBlack index={index}>
         <S.BottomContent>
-          {observation.created_by.name == user?.name &&
+
+          {/* mostra quem criou a observação */}
+          {/* {observation.created_by.name == user?.name &&
             <p>Você</p>
           }
           {observation.created_by.name != user?.name &&
             <p>{observation.created_by.name}</p>
-          }
+          } */}
+          
+          <p>{observation.created_by.name}</p>
           <S.Data>
             Criado em{' '}
             {new Date(observation.created_at).toLocaleString('pt-br', {

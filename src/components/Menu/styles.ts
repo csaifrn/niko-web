@@ -160,3 +160,13 @@ export const InputSearch = styled.button`
     display: none;
   }
 `;
+
+export const TextLink = styled.p`
+  &:hover {
+    filter: brightness(0.9);
+  }
+  &:active {
+    filter: brightness(0.9);
+  }
+`;
+

@@ -25,6 +25,12 @@ export const Link = styled.a`
   display: flex;
   gap: 0.5em;
   flex-direction: column;
+  &:hover {
+    filter: brightness(0.9);
+  }
+  &:active {
+    filter: brightness(0.9);
+  }
 `;
 
 export const LinkImg = styled.img``;

@@ -5,6 +5,7 @@ import * as MenuC from '../MenuCoord/styles';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { User } from '@phosphor-icons/react';
 import { SharedState } from '../../context/SharedContext';
+import { LogOutModal } from '../LogOutModal';
 
 interface MenuProps {
   area: string;
@@ -12,13 +13,18 @@ interface MenuProps {
 }
 
 export const Menu = (props: MenuProps) => {
-  const { setUser } = SharedState();
+  const { user, setUser } = SharedState();
   const { id } = useParams();
   const pathname = window.location.pathname;
   const [open, setOpen] = useState(false);
   const [DropDown, setDropDown] = useState(false);
   const navigate = useNavigate();
   const dropDownRef = useRef(null);
+  const [sair, setSair] = useState(false);
+
+  const handleSair = () => {
+    setSair(!sair);
+  };
 
   const handleClickButton = () => {
     setOpen(!open);
@@ -61,7 +67,6 @@ export const Menu = (props: MenuProps) => {
             )}
 
             <S.MenuDesk>
-              
               <MenuC.link to={`/Painel/${id}`}>
                 <MenuC.MenuImg
                   src={
@@ -142,7 +147,7 @@ export const Menu = (props: MenuProps) => {
             <User
               size={44}
               color="#fff"
-              style={{ borderRadius: '100%', padding: '8px', cursor: 'pointer' ,}}
+              style={{ borderRadius: '100%', padding: '8px', cursor: 'pointer' }}
               weight="fill"
               onClick={() => {
                 setDropDown(!DropDown);
@@ -157,32 +162,46 @@ export const Menu = (props: MenuProps) => {
                 position: 'absolute',
                 right: '0',
                 backgroundColor: '#393E4B',
-                minWidth: '120px',
+                minWidth: '150px',
                 boxShadow: '0px 8px 16px 0px rgba(0,0,0,0.2)',
                 zIndex: '1',
                 color: '#fff',
+                fontFamily: 'Rubik',
               }}
             >
+              {/* Nome e foto do usuário */}
+              <div
+                style={{ display: 'flex', gap: '8px',alignItems: 'center' ,justifyContent: 'flex-start', borderBottom: 'solid 1px #4a5565' , padding: '12px 16px'}}
+              >
+                <img src="/Account.svg" />
+                <p
+                  style={{
+                    color: '#fff',
+                    fontFamily: 'Rubik',
+                    textDecoration: 'none',
+                    display: 'block',
+                  }}
+                >
+                  {user?.name}
+                </p>
+              </div>
+
               <Link
                 to={'/Perfil'}
                 style={{
                   color: '#fff',
                   padding: '12px 16px',
                   fontFamily: 'Rubik',
-
                   textDecoration: 'none',
                   display: 'block',
-                  borderBottom: 'solid 1px #4a5565',
-                  textAlign: 'left',
                 }}
               >
-                <p>Perfil</p>
+                <S.TextLink>Perfil</S.TextLink>
               </Link>
 
               <button
                 onClick={() => {
-                  handleSignOut();
-                  navigate('/');
+                  setSair(!sair);
                 }}
                 style={{
                   color: '#fff',
@@ -195,18 +214,22 @@ export const Menu = (props: MenuProps) => {
                   textDecoration: 'none',
                   display: 'block',
                   textAlign: 'left',
+                  cursor: 'pointer',
                 }}
               >
-                <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: '0.5em' }}>
-                  <p>Sair</p>{' '}
-                </div>
+                <S.TextLink>Sair</S.TextLink>{' '}
               </button>
             </div>
-
           </div>
         </S.MenuRight>
-
       </S.MenuArea>
+      {sair && (
+        <LogOutModal
+          close={() => {
+            setSair(!sair);
+          }}
+        />
+      )}
     </S.MenuWrapper>
   );
 };

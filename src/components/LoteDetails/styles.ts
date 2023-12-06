@@ -479,11 +479,10 @@ export const Botao = styled.button`
   color: #ffffff;
   cursor: pointer;
   &:hover {
-    background-color: ${({ theme }) => theme.colors['gray/400']};
+    filter: brightness(0.9);
   }
   &:active {
-    background-color: ${({ theme }) => theme.colors['gray/400']};
-    transform: translateY(-5%) translateX(2%);
+    filter: brightness(0.9);
   }
 `;
 
@@ -536,11 +535,10 @@ export const VoltarAvancar = styled.button`
   border: none;
   font-family: 'Rubik';
   &:hover {
-    background-color: ${({ theme }) => theme.colors['gray/400']};
+    filter: brightness(0.9);
   }
   &:active {
-    background-color: ${({ theme }) => theme.colors['gray/400']};
-    transform: translateY(-5%) translateX(2%);
+    filter: brightness(0.9);
   }
   &:disabled {
     cursor: not-allowed;

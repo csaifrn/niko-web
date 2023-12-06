@@ -27,6 +27,7 @@ import { PatchBatcheSpecifStatus } from '../../api/services/batches/patch-status
 import { ToolTip } from '../Observation/ObservationBox/styles';
 import { AtribuirButton } from '../../pages/Coordenador/Atividade/atividade-home/styles';
 import { EspecifcModal } from '../EspecificStatusModal';
+import { SharedState } from '../../context/SharedContext';
 
 interface Option {
   label: string;
@@ -55,8 +56,8 @@ export const LoteDetails = () => {
   const [specificStatus, setSpecificStatus] = useState<number>(0);
   const [openEspecifModal, setOpenEspecifModal] = useState<boolean>(false);
   const [titleModal, setTitleModal] = useState({ button: 'Pegar lote', title: 'Deseja pegar o lote?' });
-
   const [option, setOption] = useState<Option>();
+  const { user, setUser } = SharedState();
 
   const handleConfig = () => {
     setConfigModal(!config_modal);
@@ -215,13 +216,29 @@ export const LoteDetails = () => {
 
               {/* DADOS DA CRIAÇÃO DO LOTE */}
               <S.DadosCriacaoLoteDiv>
-                <S.BlockGray>
-                  Criado por {task?.created_by.name} em{' '}
-                  {createDate?.toLocaleString('pt-br', {
-                    timeZone: 'America/Sao_paulo',
-                  })}
-                </S.BlockGray>
+
+                {/* SE VOCÊ CRIOU */}
+                {task?.created_by.name == user?.name && (
+                  <S.BlockGray>
+                    Criado por Você em{' '}
+                    {createDate?.toLocaleString('pt-br', {
+                      timeZone: 'America/Sao_paulo',
+                    })}
+                  </S.BlockGray>
+                )}
+
+                {/* SE OUTRA PESSOA CRIOU */}
+                {task?.created_by.name != user?.name && (
+                  <S.BlockGray>
+                    Criado por {task?.created_by.name} em{' '}
+                    {createDate?.toLocaleString('pt-br', {
+                      timeZone: 'America/Sao_paulo',
+                    })}
+                  </S.BlockGray>
+                )}
               </S.DadosCriacaoLoteDiv>
+
+              
 
               {/* ARQUIVOS */}
               <S.DetalhesLote>
@@ -334,7 +351,7 @@ export const LoteDetails = () => {
                       setTitleModal({ button: 'Pegar lote', title: 'Deseja pegar o lote?' });
                     }}
                   >
-                    <img src="/PegarLote_icon.svg" alt='ícone de mãozinha acenando'/>
+                    <img src="/PegarLote_icon.svg" alt="ícone de mãozinha acenando" />
                     <p style={{ color: 'black' }}>Pegar lote</p>
                   </AtribuirButton>
                 )}
@@ -349,7 +366,7 @@ export const LoteDetails = () => {
                     }}
                     style={{ backgroundColor: theme.colors['gray/500'] }}
                   >
-                    <img src="/finished-icon.svg" alt='ícone de concluído'/>
+                    <img src="/finished-icon.svg" alt="ícone de concluído" />
                     Marcar como concluído
                   </AtribuirButton>
                 )}

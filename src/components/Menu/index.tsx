@@ -136,19 +136,30 @@ export const Menu = (props: MenuProps) => {
           </Link>
         </S.ContainerLogo>
 
-        <S.MenuRight>
-          {/* <S.MenuLupaMobile src="/Lupa.svg" /> */}
-          {/* <S.InputSearch>
-            <p>Em desenvolvimento..</p>
-            <S.MenuLupa src="/Lupa.svg" />
-          </S.InputSearch> */}
+        
+        {/* <S.MenuLupaMobile src="/Lupa.svg" /> */}
+        {/* <S.InputSearch>
+          <p>Em desenvolvimento..</p>
+          <S.MenuLupa src="/Lupa.svg" />
+        </S.InputSearch> */}
 
           <div style={{ position: 'relative' }} ref={dropDownRef}>
-            <User
+
+            {/* Icone de usuário - opção 1 */}
+            {/* <User
               size={44}
               color="#fff"
               style={{ borderRadius: '100%', padding: '8px', cursor: 'pointer' }}
               weight="fill"
+              onClick={() => {
+                setDropDown(!DropDown);
+              }}
+            /> */}
+
+            {/* Icone de usuário - opção 2 */}
+            <S.User
+              src='/Account.svg' 
+              alt='ícone circular de foto do usuário' 
               onClick={() => {
                 setDropDown(!DropDown);
               }}
@@ -173,7 +184,7 @@ export const Menu = (props: MenuProps) => {
               <div
                 style={{ display: 'flex', gap: '8px',alignItems: 'center' ,justifyContent: 'flex-start', borderBottom: 'solid 1px #4a5565' , padding: '12px 16px'}}
               >
-                <img src="/Account.svg" />
+                <img src="/Account.svg" alt='ícone de foto do usuário' style={{width: '32px' , height: '32px'}}/>
                 <p
                   style={{
                     color: '#fff',
@@ -187,7 +198,7 @@ export const Menu = (props: MenuProps) => {
               </div>
 
               <Link
-                to={'/Perfil'}
+                to={'/Perfil/:id'}
                 style={{
                   color: '#fff',
                   padding: '12px 16px',
@@ -221,7 +232,7 @@ export const Menu = (props: MenuProps) => {
               </button>
             </div>
           </div>
-        </S.MenuRight>
+        
       </S.MenuArea>
       {sair && (
         <LogOutModal

@@ -48,7 +48,6 @@ export const MenuRight = styled.div`
   display: flex;
   gap: 1em;
   border-radius: 100%;
-  border: solid 1px #393e4b;
 `;
 
 export const UserIcon = styled.div`
@@ -126,6 +125,17 @@ export const ContainerLogo = styled.div`
   align-items: center;
   @media screen and (min-width: 767px) {
     display: none;
+  }
+`;
+
+export const User = styled.img`
+  border-radius: 100%;
+  cursor: pointer;
+  &:hover {
+    filter: brightness(0.9);
+  }
+  &:active {
+    filter: brightness(0.9);
   }
 `;
 

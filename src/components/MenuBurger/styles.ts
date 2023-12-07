@@ -40,6 +40,7 @@ const FecharMenu = styled.button`
   background-color: transparent;
   border: none;
   cursor: pointer;
+  border-radius: 100%;
 `;
 
 export { StyledMenu, MenuImg, areaClick, FecharMenu };

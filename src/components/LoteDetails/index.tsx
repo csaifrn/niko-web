@@ -205,7 +205,7 @@ export const LoteDetails = () => {
                     </S.Edit>
                   </Link>
 
-                  {/* BOTÃOO DE CONFIGURAÇÕES */}
+                  {/* BOTÃO DE CONFIGURAÇÕES */}
                   <S.Config onClick={handleConfig}>
                     <S.Icons src={`/config.svg`}></S.Icons>
                     <ToolTip style={{ width: '120px' }} id="tool">
@@ -238,8 +238,6 @@ export const LoteDetails = () => {
                   </S.BlockGray>
                 )}
               </S.DadosCriacaoLoteDiv>
-
-              
 
               {/* ARQUIVOS */}
               <S.DetalhesLote>
@@ -349,27 +347,32 @@ export const LoteDetails = () => {
                     onClick={(e) => {
                       e.preventDefault();
                       setOpenEspecifModal(!openEspecifModal);
-                      setTitleModal({ button: 'Pegar lote', title: 'Deseja pegar o lote?' });
+                      setTitleModal({ button: 'Pegar lote', title: `Deseja pegar o ${task?.title}?` });
                     }}
                   >
-                    <img src="/PegarLote_icon.svg" alt="ícone de mãozinha acenando" />
-                    <p style={{ color: 'black' }}>Pegar lote</p>
+                    <div style={{display: 'flex' , justifyContent: 'flex-start', gap: '16px' , color: 'white' , alignItems: 'center', marginLeft: '16px'}}>
+                      <img src="/PegarLote_icon.svg" alt="ícone de mãozinha acenando" />
+                      <p style={{ color: 'black' }}>Pegar lote</p>
+                    </div>
                   </AtribuirButton>
                 )}
 
                 {/* MARCAR COMO CONCLUÍDO */}
                 {specificStatus === 1 && (
-                  <AtribuirButton
+                  <S.ConcluirButton
                     onClick={(e) => {
                       e.preventDefault();
                       setOpenEspecifModal(!openEspecifModal);
-                      setTitleModal({ button: 'Marcar como concluído', title: 'Deseja marcar o lote como concluído?' });
+                      setTitleModal({ button: 'Marcar como concluído', title: `Deseja marcar o ${task?.title} como concluído?` });
                     }}
-                    style={{ backgroundColor: theme.colors['gray/500'] }}
+                    style={{ backgroundColor: theme.colors['gray/500']}}
                   >
-                    <img src="/finished-icon.svg" alt="ícone de concluído" />
-                    Marcar como concluído
-                  </AtribuirButton>
+                    <div style={{display: 'flex' , justifyContent: 'flex-start', gap: '16px' , color: 'white' , alignItems: 'center', marginLeft: '16px'}}>
+                      <img src="/finished-icon.svg" alt="ícone de concluído" />
+                      Marcar como concluído
+                    </div>
+
+                  </S.ConcluirButton>
                 )}
 
                 {/* ATRIBUIR LOTE */}

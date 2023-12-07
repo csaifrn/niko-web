@@ -17,7 +17,6 @@ import { AtribuirAlguemModal } from '../AtribuirAlguemModal';
 import { Btn } from '../../pages/Etapas/Preparo/styles';
 import { ModalCriarLote } from '../ModalCriarLote';
 import { EspecifcModal } from '../EspecificStatusModal';
-import { AtribuirButton } from '../AtribuirLoteAtividade/styles';
 
 interface BoardProps {
   main_status: number;
@@ -41,7 +40,7 @@ export const Board = (props: BoardProps) => {
   const [batchesDispo, setBatchesDispo] = useState<GetResponseBatche[]>([]);
   const [batchesAnda, setBatchesAnda] = useState<GetResponseBatche[]>([]);
   const [batchesConc, setBatchesConc] = useState<GetResponseBatche[]>([]);
-  const [titleModal, setTitleModal] = useState({ button: 'Pegar lote', title: 'Deseja pegar o lote?' });
+  const [titleModal, setTitleModal] = useState({ button: 'Pegar lote', title: 'Deseja pegar o lote' });
   const [batche_data, setBatche] = useState<GetResponseBatche>();
   const [atribuirModal, setAtribuirModal] = useState<boolean>(false);
   const [openCriarModal, setOpenCriarModal] = useState<boolean>(false);
@@ -128,7 +127,7 @@ export const Board = (props: BoardProps) => {
                               onClick={(e) => {
                                 e.preventDefault();
                                 setOpenEspecifModal(!openEspecifModal);
-                                setTitleModal({ button: 'Pegar lote', title: 'Deseja pegar o lote?' });
+                                setTitleModal({ button: 'Pegar lote', title: `Deseja pegar o ${batche.title}?` });
                                 setBatche(batche);
                               }}
                               style={{ color: 'black' }}
@@ -192,7 +191,7 @@ export const Board = (props: BoardProps) => {
                                 setBatche(batche);
                                 setTitleModal({
                                   button: 'Marcar como concluído',
-                                  title: 'Deseja marcar o lote como concluído?',
+                                  title: `Deseja marcar o ${batche.title} como concluído?`,
                                 });
                               }}
                             >
@@ -255,6 +254,7 @@ export const Board = (props: BoardProps) => {
           batche={batche_data}
           title={titleModal.title}
           button={titleModal.button}
+          
         />
       )}
     </KabanContext.Provider>

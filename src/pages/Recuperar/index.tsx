@@ -8,6 +8,7 @@ import { CheckModal } from '../../components/CheckModal';
 import { ResetPassword } from '../../api/services/users/reset-password';
 import { useMutation } from 'react-query';
 import { ApiError } from '../../api/services/authentication/signIn/signIn.interface';
+import theme from '../../global/theme';
 
 const RecuperarSenha = () => {
   const emailInputRef = useRef<HTMLInputElement>(null);
@@ -79,7 +80,7 @@ const RecuperarSenha = () => {
             <S.FieldContainer>
               <S.LabelField>
                 <S.IconEmail>
-                  <EnvelopeSimple size={24} color="#b1b1b1" />
+                  <EnvelopeSimple size={24} color={theme.colors['gray/300']} />
                 </S.IconEmail>
                 <S.InputText ref={emailInputRef} id="email" type="text" placeholder="E-mail Cadastrado" />
               </S.LabelField>

@@ -56,8 +56,8 @@ const kanbanSection = styled.div`
   width: 100%;
   gap: 1em;
   padding: 2em;
-  color: #ffffff;
-  background-color: #191c24;
+  color: ${({ theme }) => theme.colors['white']};
+  background-color: ${({ theme }) => theme.colors['gray/700']};
   border-radius: 5px;
   display: flex;
   flex-direction: column;
@@ -72,7 +72,7 @@ const kanbanSectionContent = styled.div`
   display: flex;
   flex-direction: row;
   gap: 1em;
-  color: #ffffff;
+  color: ${({ theme }) => theme.colors.white};
   overflow-x: scroll;
   overflow-y: auto;
   scroll-behavior: auto;
@@ -111,23 +111,23 @@ const kanbanSectionContent = styled.div`
 
 const btnPrioridade = styled.button`
   padding: 0.5em;
-  background-color: #393e4b;
+  background-color: ${({ theme }) => theme.colors['gray/500']};
   border-radius: 0.5em;
-  border: 1px solid #393e4b;
+  border: 1px solid ${({ theme }) => theme.colors['gray/500']};
   color: white;
   :hover {
-    border: 1px solid #b1b1b1;
+    border: 1px solid ${({ theme }) => theme.colors['gray/300']} !important;
   }
 `;
 
 const inputPrioridade = styled.input`
   padding: 0.5em;
-  background-color: #393e4b;
+  background-color: ${({ theme }) => theme.colors['gray/500']};
   border-radius: 0.5em;
-  border: 1px solid #393e4b;
+  border: 1px solid ${({ theme }) => theme.colors['gray/500']};
   color: white;
   :hover {
-    border: 1px solid #b1b1b1;
+    border: 1px solid ${({ theme }) => theme.colors['gray/300']} !important;
   }
 `;
 
@@ -195,7 +195,7 @@ export const kanbanSectionOperador = styled.div`
   gap: 1em;
   padding: 1em;
   color: white;
-  background-color: #191c24;
+  background-color: ${({ theme }) => theme.colors['gray/700']};
   border-radius: 5px;
   display: flex;
   flex-direction: row;
@@ -206,12 +206,12 @@ export const kanbanSectionOperador = styled.div`
   }
 
   &::-webkit-scrollbar-track {
-    background: #191c24;
+    background: ${({ theme }) => theme.colors['gray/700']};
     width: 0.2em;
   }
 
   &::-webkit-scrollbar-thumb {
-    background-color: #2a2e38;
+    background-color: ${({ theme }) => theme.colors['gray/550']};
     border-radius: 5px;
     width: 0.2em;
   }
@@ -248,7 +248,7 @@ export const kanbanSectionContentOperador = styled.div`
   }
   @media screen and (min-width: 1008px) {
     &::-webkit-scrollbar-thumb {
-      background-color: #2a2e38;
+      background-color: ${({ theme }) => theme.colors['gray/550']};
       border-radius: 20px;
     }
   }
@@ -300,7 +300,7 @@ export const kanbanSectionContentOperadorBefore = styled.div`
   }
   @media screen and (min-width: 1008px) {
     &::-webkit-scrollbar-thumb {
-      background-color: #2a2e38;
+      background-color: ${({ theme }) => theme.colors['gray/550']};
       border-radius: 20px;
     }
   }
@@ -311,23 +311,23 @@ export const kanbanSectionContentOperadorBefore = styled.div`
 
 export const btnPrioridadeOperador = styled.button`
   padding: 0.5em;
-  background-color: #393e4b;
+  background-color: ${({ theme }) => theme.colors['gray/500']};
   border-radius: 0.5em;
-  border: 1px solid #393e4b;
+  border: 1px solid ${({ theme }) => theme.colors['gray/500']};
   color: white;
   :hover {
-    border: 1px solid #b1b1b1;
+    border: 1px solid ${({ theme }) => theme.colors['gray/300']} !important;
   }
 `;
 
 export const inputPrioridadeOperador = styled.input`
   padding: 0.5em;
-  background-color: #393e4b;
+  background-color: ${({ theme }) => theme.colors['gray/500']};
   border-radius: 0.5em;
-  border: 1px solid #393e4b;
+  border: 1px solid ${({ theme }) => theme.colors['gray/500']};
   color: white;
   :hover {
-    border: 1px solid #b1b1b1;
+    border: 1px solid ${({ theme }) => theme.colors['gray/300']} !important;
   }
 `;
 

@@ -6,6 +6,7 @@ import { Link, useNavigate, useParams } from 'react-router-dom';
 import { User } from '@phosphor-icons/react';
 import { SharedState } from '../../context/SharedContext';
 import { LogOutModal } from '../LogOutModal';
+import theme from '../../global/theme';
 
 interface MenuProps {
   area: string;
@@ -75,7 +76,9 @@ export const Menu = (props: MenuProps) => {
                       : '/IconMenu/ChartDonut/RegularIcon.svg'
                   }
                 />
-                {pathname === `/Painel/${id}` && <MenuC.textIcon style={{ color: '#F3802D' }}>Painel</MenuC.textIcon>}
+                {pathname === `/Painel/${id}` && (
+                  <MenuC.textIcon style={{ color: theme.colors['orange/400'] }}>Painel</MenuC.textIcon>
+                )}
                 {pathname !== `/Painel/${id}` && <MenuC.textIcon>Painel</MenuC.textIcon>}
               </MenuC.link>
 
@@ -86,7 +89,7 @@ export const Menu = (props: MenuProps) => {
                   }
                 />
                 {pathname === `/Atividades/${id}` && (
-                  <MenuC.textIcon style={{ color: '#F3802D' }}>Atividades</MenuC.textIcon>
+                  <MenuC.textIcon style={{ color: theme.colors['orange/400'] }}>Atividades</MenuC.textIcon>
                 )}
                 {pathname !== `/Atividades/${id}` && <MenuC.textIcon>Atividades</MenuC.textIcon>}
               </MenuC.link>
@@ -99,9 +102,15 @@ export const Menu = (props: MenuProps) => {
                       : '/IconMenu/SquaresFour/RegularIcon.svg'
                   }
                 />
-                {pathname === `/Fase/${id}` && <MenuC.textIcon style={{ color: '#F3802D' }}>Fases</MenuC.textIcon>}
-                {pathname.search('Board') >= 0 && <MenuC.textIcon style={{ color: '#F3802D' }}>Fases</MenuC.textIcon>}
-                {pathname.search('Lote') >= 0 && <MenuC.textIcon style={{ color: '#F3802D' }}>Fases</MenuC.textIcon>}
+                {pathname === `/Fase/${id}` && (
+                  <MenuC.textIcon style={{ color: theme.colors['orange/400'] }}>Fases</MenuC.textIcon>
+                )}
+                {pathname.search('Board') >= 0 && (
+                  <MenuC.textIcon style={{ color: theme.colors['orange/400'] }}>Fases</MenuC.textIcon>
+                )}
+                {pathname.search('Lote') >= 0 && (
+                  <MenuC.textIcon style={{ color: theme.colors['orange/400'] }}>Fases</MenuC.textIcon>
+                )}
                 {pathname !== `/Fase/${id}` && pathname.search('Board') < 0 && pathname.search('Lote') < 0 && (
                   <MenuC.textIcon>Fases</MenuC.textIcon>
                 )}
@@ -116,7 +125,7 @@ export const Menu = (props: MenuProps) => {
                   }
                 />
                 {pathname === `/Categorias/${id}` && (
-                  <MenuC.textIcon style={{ color: '#F3802D' }}>Categorias</MenuC.textIcon>
+                  <MenuC.textIcon style={{ color: theme.colors['orange/400'] }}>Categorias</MenuC.textIcon>
                 )}
                 {pathname !== `/Categorias/${id}` && <MenuC.textIcon>Categorias</MenuC.textIcon>}
               </MenuC.link>
@@ -148,7 +157,7 @@ export const Menu = (props: MenuProps) => {
             {/* Icone de usuário - opção 1 */}
             {/* <User
               size={44}
-              color="#fff"
+              color={theme.colors.white}
               style={{ borderRadius: '100%', padding: '8px', cursor: 'pointer' }}
               weight="fill"
               onClick={() => {
@@ -200,7 +209,7 @@ export const Menu = (props: MenuProps) => {
               <Link
                 to={'/Perfil/:id'}
                 style={{
-                  color: '#fff',
+                  color: theme.colors.white,
                   padding: '12px 16px',
                   fontFamily: 'Rubik',
                   textDecoration: 'none',
@@ -215,7 +224,7 @@ export const Menu = (props: MenuProps) => {
                   setSair(!sair);
                 }}
                 style={{
-                  color: '#fff',
+                  color: theme.colors.white,
                   backgroundColor: 'transparent',
                   width: '100%',
                   border: 'none',

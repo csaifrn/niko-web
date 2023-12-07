@@ -10,7 +10,7 @@ export const ModalArea = styled.div`
   color: white;
   position: fixed;
   width: 285px;
-  background-color: #393e4b;
+  background-color: ${({ theme }) => theme.colors['gray/500']};
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 5px;
   overflow-y: scroll;
@@ -89,7 +89,7 @@ export const ChooseUser = styled.div`
 export const AtribuirButton = styled.button`
   height: 44px;
   border-radius: 5px;
-  background-color: #43db6d;
+  background-color: ${({ theme }) => theme.colors['green/400']};
   border: none;
   color: white;
   font-family: 'Rubik';

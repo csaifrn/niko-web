@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import * as S from './styles';
 import { useParams } from 'react-router-dom';
 import { Check } from '@phosphor-icons/react';
+import theme from '../../global/theme';
 
 interface VoltarModalProps {
   close: () => void;
@@ -87,11 +88,11 @@ export const VoltarModal = (props: VoltarModalProps) => {
               <S.Voltar
                 onClick={handleClose}
                 disabled={!isChecked}
-                style={{ background: !isChecked ? '#666666' : '' , cursor: !isChecked ? '' : 'pointer' }}
+                style={{ background: !isChecked ? theme.colors['gray/100'] : '', cursor: !isChecked ? '' : 'pointer' }}
               >
                 {!isChecked && <S.IconeVoltar src="/voltar-desativado.svg"></S.IconeVoltar>}
                 {isChecked && <S.IconeVoltar src="/voltar.svg"></S.IconeVoltar>}
-                <S.Texto style={{ color: !isChecked ? 'rgba(255, 255, 255, 0.50)' : '#FFFFFF' }}>Voltar fase</S.Texto>
+                <S.Texto style={{ color: !isChecked ? theme.colors.white : theme.colors.white }}>Voltar fase</S.Texto>
               </S.Voltar>
             </S.RecusedVoltar>
           </S.ModalContent>

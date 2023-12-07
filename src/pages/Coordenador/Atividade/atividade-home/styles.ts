@@ -46,7 +46,7 @@ export const AtivsCabecalho = styled.div`
   align-items: center;
   z-index: 98;
   justify-content: space-between;
-  background-color: #0a090e;
+  background-color: ${({ theme }) => theme.colors['gray/900']};
   /* ${media.greaterThan('large')`
     gap: 16px;
     justify-content: flex-start;
@@ -62,8 +62,12 @@ export const AtivsPorDiaDiv = styled.div``;
 
 export const DataAtiv = styled.h2``;
 
+export const AtivPorDia = styled.div`
+  background-color: ${({ theme }) => theme.colors['gray/700']};
+`;
+
 export const AtivsCardEscuro = styled.div`
-  background-color: #191c24;
+  background-color: ${({ theme }) => theme.colors['gray/700']};
   padding: 16px;
 `;
 
@@ -82,7 +86,7 @@ export const AtividadesMesmoDia = styled.div`
 export const AtivCardCinza = styled.div`
   padding: 2em;
 
-  background-color: #393e4b;
+  background-color: ${({ theme }) => theme.colors['gray/500']};
   display: flex;
   flex-direction: column;
   gap: 2em;
@@ -204,7 +208,6 @@ export const Tooltip = styled.div`
   bottom: -40px;
   left: 0;
   width: 75px;
-  
 `;
 
 export const TooltipOperador = styled.div`
@@ -226,8 +229,8 @@ const InputSearch = styled.input`
   height: 44px;
   padding: 0 4.2em;
   border-radius: 5px;
-  background-color: rgb(57, 62, 75);
-  color: #fff;
+  background-color: ${({ theme }) => theme.colors['gray/200']};
+  color: ${({ theme }) => theme.colors.white};
   border: none;
   width: 100%;
 `;
@@ -251,7 +254,7 @@ export const AtribuirButton = styled.button`
   padding: 1em;
   align-items: center;
   border-radius: 5px;
-  background-color: #43db6d;
+  background-color: ${({ theme }) => theme.colors['green/500']};
   border: none;
   color: white;
   font-family: 'Rubik';

@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 const totalArea = styled.div`
-  background-color: #393e4b;
+  background-color: ${({ theme }) => theme.colors['gray/500']};
   align-items: center;
   color: white;
   font-family: 'Rubik';
@@ -11,7 +11,7 @@ const totalArea = styled.div`
 
 const CardArea = styled.div`
   display: flex;
-  background-color: #393e4b;
+  background-color: ${({ theme }) => theme.colors['gray/500']};
   align-items: center;
   justify-content: space-between;
   color: white;
@@ -24,7 +24,7 @@ const CardA = styled.div`
   display: flex;
   flex-direction: column;
   padding: 1.5em 2em;
-  background-color: #393e4b;
+  background-color: ${({ theme }) => theme.colors['gray/500']};
   gap: 2em;
   font-family: 'Rubik';
   border-radius: 5px;
@@ -46,7 +46,7 @@ const textLote = styled.p`
   height: 32px;
   padding: 0em 1em;
   color: white;
-  background-color: #191c24;
+  background-color: ${({ theme }) => theme.colors['gray/700']};
   border-radius: 5px;
 `;
 interface IFooter {
@@ -73,7 +73,7 @@ const Footer = styled.div<IFooter>`
   }
 
   &.show {
-    border-top: 1px solid #4a5565;
+    border-top: 1px solid ${({ theme }) => theme.colors['gray/400']};
     height: ${({ setHeight }) => setHeight}px;
   }
 `;
@@ -96,9 +96,9 @@ const Fase = styled.div`
 `;
 
 const CategoriaClick = styled.div`
-  background-color: #393e4b;
+  background-color: ${({ theme }) => theme.colors['gray/500']};
   font-family: 'Rubik';
-  color: #fff;
+  color: ${({ theme }) => theme.colors.white};
   display: grid;
   gap: 1em;
   border-radius: 5px;
@@ -121,13 +121,13 @@ const TotalFase = styled.p`
 `;
 
 const PerecentageFase = styled.p`
-  color: #c3c3c3;
+  color: ${({ theme }) => theme.colors['green/50']};
   font-size: 10px;
 `;
 
 const Prioridade = styled.div`
   height: 24px;
-  background-color: #dd3b3b;
+  background-color: ${({ theme }) => theme.colors['red/700']};
   border-radius: 3px;
   display: flex;
   justify-content: center;
@@ -145,7 +145,7 @@ const ButtonAtribuir = styled.button`
   width: 100%;
   border: none;
   border-radius: 5px;
-  background-color: #191c24;
+  background-color: ${({ theme }) => theme.colors['gray/700']};
   color: white;
   display: flex;
   align-items: center;
@@ -202,7 +202,7 @@ export const ButtonPrioridade = styled.button`
 `;
 
 const BarOut = styled.div`
-  background-color: #191c24;
+  background-color: ${({ theme }) => theme.colors['gray/700']};
   width: 100%;
   height: 1.5em;
   border-radius: 5px;
@@ -214,7 +214,7 @@ interface IBar {
 }
 
 const BarInner = styled.div<IBar>`
-  background-color: #00d25b;
+  background-color: ${({ theme }) => theme.colors['green/400']};
   width: ${({ percentage }) => percentage}%;
   height: 1.5em;
 `;

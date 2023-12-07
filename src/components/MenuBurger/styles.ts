@@ -9,7 +9,7 @@ const StyledMenu = styled.nav<BurgerProps>`
   padding-top: 2em;
   flex-direction: column;
   justify-content: right;
-  background: #191c24;
+  background: ${({ theme }) => theme.colors['gray/700']};
   text-align: left;
   z-index: 99;
   gap: 1em;
@@ -27,7 +27,7 @@ const areaClick = styled.div<BurgerProps>`
   z-index: 99;
   padding-left: 2em;
   padding-top: 2em;
-  background: #191c24;
+  background: ${({ theme }) => theme.colors['gray/700']};
   filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
   @media (max-width: 576px) {
     width: 300px;

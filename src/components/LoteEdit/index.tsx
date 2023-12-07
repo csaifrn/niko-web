@@ -13,6 +13,7 @@ import { SeachCategoriaResponseBatche } from '../../api/services/categoria/get-c
 import { SeachCategoria } from '../../api/services/categoria/get-categoria';
 import { validationPatch, validationSearch } from './validation';
 import { PatchBatcheEdit } from '../../api/services/batches/patch-batche';
+import theme from '../../global/theme';
 import { SairSemSalvarModal } from '../SairSemSalvarModal';
 
 interface Options {
@@ -174,7 +175,7 @@ const LoteEdit = () => {
               <p>Local</p>
               <S.Local
                 key={batch.id}
-                style={{ backgroundColor: '#2D303B' }}
+                style={{ backgroundColor: theme.colors['gray/600'] }}
                 type="number"
                 name="shelf_number"
                 placeholder={batch.shelf_number}
@@ -194,7 +195,7 @@ const LoteEdit = () => {
                   <S.ArquivosFisicos>
                     <p>Físicos</p>
                     <S.ArquivosInput
-                      style={{ backgroundColor: '#393E4B' }}
+                      style={{ backgroundColor: theme.colors['gray/500'] }}
                       type="number"
                       name="Arquivos físicos"
                       placeholder={``}
@@ -210,7 +211,7 @@ const LoteEdit = () => {
                   <S.ArquivosDigitais>
                     <p>Digitais</p>
                     <S.ArquivosInput
-                      style={{ backgroundColor: '#393E4B' }}
+                      style={{ backgroundColor: theme.colors['gray/500'] }}
                       type="number"
                       name="Arquivos digitais"
                       placeholder={``}

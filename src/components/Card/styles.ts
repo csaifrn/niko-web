@@ -21,7 +21,7 @@ const CardContainer = styled.a`
   @media screen and (min-width: 767px) {
     //margin: 40em;
     width: 100%;
-    height: 100%;    
+    height: 100%;
     min-height: 15em;
   }
 `;
@@ -77,7 +77,7 @@ const TextBoxCard = styled.div`
   gap: 4px;
   color: white;
   font-size: 8px;
-  background-color: #191c24;
+  background-color: ${({ theme }) => theme.colors['gray/700']};
   width: 100%;
   @media screen and (min-width: 767px) {
     gap: 20px;

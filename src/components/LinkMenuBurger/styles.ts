@@ -12,16 +12,16 @@ const LinkMenu = styled.a<LinkMenuProps>`
   padding: 1rem 3em 1rem 2rem;
   color: white;
   text-decoration: none;
-  transition: color 0.3s linear;
+  transition: all 0.1s linear;
   z-index: 99;
-  background-color: ${({ open }) => (open ? '#0E0F13' : 'transparent')};
+  background-color: ${({ open }) => (open ? ({ theme }) => theme.colors['gray/900'] : 'transparent')};
 
   @media (max-width: 576px) {
     font-size: 1.5rem;
   }
 
   &:hover {
-    background-color: #0e0f13;
+    background-color: ${({ theme }) => theme.colors['gray/900']};
     border-right: 5px solid ${({ theme }) => theme.colors['orange/500']};
   }
 `;

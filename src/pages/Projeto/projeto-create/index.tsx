@@ -5,6 +5,7 @@ import { Membros, Projeto } from '../../../data/ProjetoData';
 import { useNavigate } from 'react-router-dom';
 import Users from '../../../data/UserData';
 import * as S from './styles';
+import theme from '../../../global/theme';
 
 interface User {
   id: string;
@@ -144,7 +145,7 @@ const CreateProjeto = () => {
           <S.Status>
             <S.BallStatus
               style={{
-                backgroundColor: `${contador > 0 ? '#43DB6D' : '#F3802D'}`,
+                backgroundColor: `${contador > 0 ? theme.colors['green/400'] : theme.colors['orange/400']}`,
               }}
             >
               {contador > 0 && <img src="Check.svg" alt="" height={18} width={18} />}
@@ -155,7 +156,7 @@ const CreateProjeto = () => {
           <S.Status>
             <S.BallStatus
               style={{
-                backgroundColor: `${contador > 1 ? '#43DB6D' : '#F3802D'}`,
+                backgroundColor: `${contador > 1 ? theme.colors['green/400'] : theme.colors['orange/400']}`,
               }}
             ></S.BallStatus>
             <h3>Membros</h3>
@@ -191,7 +192,7 @@ const CreateProjeto = () => {
                         height: '44px',
                         border: 'none',
                         width: '100%',
-                        backgroundColor: '#5C6170',
+                        backgroundColor: theme.colors['gray/400'],
                         color: 'white',
                         fontFamily: 'Rubik',
                         borderRadius: '5px 0 0 5px',
@@ -215,7 +216,7 @@ const CreateProjeto = () => {
                         border: 'none',
                         height: '44px',
                         width: 'auto',
-                        backgroundColor: '#5C6170',
+                        backgroundColor: theme.colors[gray/400],
                         borderRadius: '0 5px 5px 0',
                       }}
                     >

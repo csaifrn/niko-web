@@ -14,6 +14,7 @@ import { PostResponseAssigners } from '../../api/services/batches/assigners/post
 
 import ReactLoading from 'react-loading';
 import { ErrorMessage } from '../../pages/Login/styles';
+import theme from '../../global/theme';
 import { MultiValue } from 'react-select';
 
 export interface AtribuirAlguemModalProps {

@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import media from 'styled-media-query';
 
 export const Wrapper = styled.div`
   display: flex;
@@ -11,7 +10,7 @@ export const Wrapper = styled.div`
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
-    background: #191c24 url('/Select.svg') 90% 50% no-repeat;
+    background: ${({ theme }) => theme.colors['gray/700']} url('/Select.svg') 90% 50% no-repeat;
     padding: 0 3em 0 1em;
     width: 10em;
     height: 44px;
@@ -58,8 +57,9 @@ export const DataText = styled.h3``;
 export const BotaoFiltrar = styled.button`
   border-radius: 3px;
   font-family: 'Rubik';
-  color: #ffffff;
-  background-color: #f3802d;
+  color: ${({ theme }) => theme.colors.white};
+  background-color: ${({ theme }) => theme.colors['orange/400']};
+
   border: none;
   padding: 8px;
   cursor: pointer;
@@ -74,10 +74,11 @@ export const BotaoFiltrar = styled.button`
 `;
 
 export const BotaoFiltrarDesativado = styled.button`
-  color: #4a4a4a;
+  color: ${({ theme }) => theme.colors['gray/200']};
   background-color: #734625;
   border-radius: 3px;
   font-family: 'Rubik';
+  color: ${({ theme }) => theme.colors['gray/100']};
   border: none;
   width: 4em;
   padding: 8px;
@@ -85,7 +86,7 @@ export const BotaoFiltrarDesativado = styled.button`
 
 export const PainelTitulo = styled.h1`
   font-family: 'Rubik';
-  color: #ffffff;
+  color: ${({ theme }) => theme.colors.white};
 `;
 
 export const ContainerData = styled.div`
@@ -98,7 +99,7 @@ export const ContainerData = styled.div`
   gap: 32px;
   align-self: stretch;
   font-family: 'Rubik';
-  color: #ffffff;
+  color: ${({ theme }) => theme.colors.white};
 `;
 
 export const ContainerFilterNumber = styled.div`
@@ -224,7 +225,6 @@ export const NumberName = styled.div`
   display: flex;
   align-items: center;
   gap: 8px;
-  
 `;
 
 export const NumberNameArquivamento = styled.div`

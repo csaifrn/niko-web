@@ -17,6 +17,7 @@ import { AtribuirAlguemModal } from '../AtribuirAlguemModal';
 import { Btn } from '../../pages/Etapas/Preparo/styles';
 import { ModalCriarLote } from '../ModalCriarLote';
 import { EspecifcModal } from '../EspecificStatusModal';
+import { AtribuirButton } from '../AtribuirLoteAtividade/styles';
 
 interface BoardProps {
   main_status: number;

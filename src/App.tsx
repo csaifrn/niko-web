@@ -1,5 +1,5 @@
 import { Routes, Route, useNavigate } from 'react-router-dom';
-import { Suspense, lazy, useEffect, useState } from 'react';
+import { Suspense, lazy, useEffect, useRef, useState } from 'react';
 import Login from './pages/Login';
 import { SharedState } from './context/SharedContext';
 import toast from 'react-hot-toast';
@@ -8,11 +8,12 @@ import Rotas from './routes';
 const App = () => {
   const { user, setUser } = SharedState();
   const navigate = useNavigate();
-  const [interacao, setInteracao] = useState(Date.now()); // o valor inicial é a data atual em milisegundos
+  // const [interacao, setInteracao] = useState(Date.now()); // o valor inicial é a data atual em milisegundos
+  const interacao = useRef(Date.now())
   const tempExpiracao = 60 * 60 * 1000; // 1 hora em milisegundos
 
   const handleUserActivity = () => {
-    setInteracao(Date.now());
+    interacao.current = Date.now();
   };
 
   useEffect(() => {
@@ -22,7 +23,7 @@ const App = () => {
 
     const interval = setInterval(() => {
       const currentTime = Date.now();
-      const timeSinceLastInteraction = currentTime - interacao;
+      const timeSinceLastInteraction = currentTime - interacao.current;
       const iSessionExpired = user && currentTime > user.exp * 1000;
       if (timeSinceLastInteraction >= tempExpiracao || iSessionExpired) {
         localStorage.clear();

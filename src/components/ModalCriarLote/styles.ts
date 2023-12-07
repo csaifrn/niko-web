@@ -27,7 +27,7 @@ const ModalContent = styled.div`
 export const Exit = styled.button`
   height: 2em;
   width: 2em;
-  background-color: ${({ theme }) => theme.colors['gray/700']};
+  background-color: transparent;
   border-radius: 3px;
   display: flex;
   justify-content: center;

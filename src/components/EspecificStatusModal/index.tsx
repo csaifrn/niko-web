@@ -2,13 +2,12 @@ import { useContext, useEffect, useState } from 'react';
 import * as S from './styles';
 import { useParams } from 'react-router-dom';
 import { GetResponseBatche } from '../../api/services/batches/get-batche/get.interface';
-import { Mutation, useMutation } from 'react-query';
+import { useMutation } from 'react-query';
 import { PatchBatcheSpecifStatus } from '../../api/services/batches/patch-status-specific';
 import toast from 'react-hot-toast';
 import { KabanContext } from '../Board';
-import { AtribuirButton } from '../../pages/Coordenador/Atividade/atividade-home/styles';
 import theme from '../../global/theme';
-import { ArrowCircleLeft } from '@phosphor-icons/react';
+//import { ArrowCircleLeft } from '@phosphor-icons/react';
 import { ApiError } from '../../api/services/authentication/signIn/signIn.interface';
 import { PatchBatcheMainStatus } from '../../api/services/batches/patch-status';
 
@@ -17,13 +16,14 @@ interface EspecifModalProps {
   batche: GetResponseBatche;
   title: string;
   button: string;
+  //LoteTitle: string;
   setSpecificStatus?: React.Dispatch<React.SetStateAction<number>>;
   setBatche?: React.Dispatch<React.SetStateAction<GetResponseBatche | null>>;
   setStatus?: React.Dispatch<React.SetStateAction<number>>;
 }
 
 export const EspecifcModal = (props: EspecifModalProps) => {
-  const { id } = useParams();
+  //const { id } = useParams();
   const kanban = useContext(KabanContext);
 
   const [closing, setClosing] = useState(false);
@@ -111,17 +111,27 @@ export const EspecifcModal = (props: EspecifModalProps) => {
         <S.ModalArea id="modal-scaling">
           <S.ModalContent>
             <S.NameClose>
-              <S.Titulo> {props.title} </S.Titulo>
+              <S.Titulo> {props.title}</S.Titulo>
             </S.NameClose>
             <S.RecusedAvancar>
               <S.Recused onClick={handleClose}>
                 <S.Texto>Não, não quero.</S.Texto>
               </S.Recused>
 
-              <AtribuirButton onClick={handlePegar}>
-                <ArrowCircleLeft weight="fill" size={24} />
-                <S.Texto style={{ color: theme.colors['gray/700'] }}>{props.button}</S.Texto>
-              </AtribuirButton>
+              {props.button === 'Pegar lote' && (
+                <S.PegarLoteButton onClick={handlePegar}>
+                  <img src="/PegarLote_icon.svg" />
+                  {/* {props.button === 'Marcar como concluído' && <img src='/finished-icon.svg' />} */}
+                  <S.Texto style={{ color: theme.colors['gray/700'] }}>{props.button}</S.Texto>
+                </S.PegarLoteButton>
+              )}
+
+              {props.button === 'Marcar como concluído' && (
+                <S.ConcluirLoteButton onClick={handlePegar}>
+                  <img src="/finished-icon.svg" />
+                  <S.Texto>{props.button}</S.Texto>
+                </S.ConcluirLoteButton>
+              )}
             </S.RecusedAvancar>
           </S.ModalContent>
         </S.ModalArea>

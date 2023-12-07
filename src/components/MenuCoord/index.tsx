@@ -15,7 +15,7 @@ export const MenuCoord = () => {
       <S.link to={`/Painel/${id}`}>
         <S.MenuImg
           src={
-            pathname === `/Painel/${id}` ? '/IconMenu/ChartDonut/fillicon.png' : '/IconMenu/ChartDonut/regularicon.png'
+            pathname === `/Painel/${id}` ? '/IconMenu/ChartDonut/FillIcon.svg' : '/IconMenu/ChartDonut/RegularIcon.svg'
           }
         />
         {pathname === `/Painel/${id}` && <S.textIcon style={{ color: theme.colors['orange/400'] }}>Painel</S.textIcon>}
@@ -36,8 +36,8 @@ export const MenuCoord = () => {
         <S.MenuImg
           src={
             pathname === `/Fase/${id}` || pathname.search('Board') >= 0 || pathname.search('Lote') >= 0
-              ? '/IconMenu/SquaresFour/fillicon.png'
-              : '/IconMenu/SquaresFour/regularicon.png'
+              ? '/IconMenu/SquaresFour/FillIcon.svg'
+              : '/IconMenu/SquaresFour/RegularIcon.svg'
           }
         />
         {pathname === `/Fase/${id}` && <S.textIcon style={{ color: theme.colors['orange/400'] }}>Fases</S.textIcon>}
@@ -52,8 +52,8 @@ export const MenuCoord = () => {
         <S.MenuImg
           src={
             pathname === `/Categorias/${id}`
-              ? '/IconMenu/TagSimple/fillicon.png'
-              : '/IconMenu/TagSimple/regularicon.png'
+              ? '/IconMenu/TagSimple/FillIcon.svg'
+              : '/IconMenu/TagSimple/RegularIcon.svg'
           }
         />
         {pathname === `/Categorias/${id}` && (

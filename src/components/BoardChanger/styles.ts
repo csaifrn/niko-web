@@ -8,7 +8,7 @@ export const ChangeContainer = styled.nav`
   display: flex;
   flex-direction: column;
   gap: 1em;
-  margin-bottom: 1em;
+  //margin-bottom: 1em;
 `;
 
 export const Change = styled.nav`
@@ -17,7 +17,7 @@ export const Change = styled.nav`
   padding: 0 2em;
   display: flex;
   gap: 1em;
-  margin-bottom: 1em;
+  //margin-bottom: 1em;
 `;
 
 export const Link = styled.a`
@@ -25,6 +25,12 @@ export const Link = styled.a`
   display: flex;
   gap: 0.5em;
   flex-direction: column;
+  &:hover {
+    filter: brightness(0.9);
+  }
+  &:active {
+    filter: brightness(0.9);
+  }
 `;
 
 export const LinkImg = styled.img``;

@@ -129,12 +129,14 @@ export const ObservationModal = (props: DeletarModalProps) => {
       <S.ModalBackdrop>
         <S.ModalArea id="modal-scaling">
           <S.ModalContent>
+
             <S.NameClose>
               <h2>{props.title}</h2>
               <S.Exit type="button" onClick={handleClose}>
                 <img src="/close.svg" alt="" height={24} width={24} />
               </S.Exit>
             </S.NameClose>
+            
             <S.InputObservation
               autoFocus
               ref={textareaRef}

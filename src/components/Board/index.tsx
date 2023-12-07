@@ -2,8 +2,8 @@ import { ReactNode, createContext, useEffect, useState } from 'react';
 import * as S from './styles';
 import Lote from '../Lote';
 import Users from '../../data/UserData';
-import { ArrowCircleLeft, UsersThree } from '@phosphor-icons/react';
-
+import { ArrowCircleLeft } from '@phosphor-icons/react';
+import { AtribuirButton } from '../../pages/Coordenador/Atividade/atividade-home/styles';
 import { BoardChanger } from '../BoardChanger';
 import { GetResponseBatche } from '../../api/services/batches/get-batche/get.interface';
 import { useMutation } from 'react-query';
@@ -17,7 +17,6 @@ import { AtribuirAlguemModal } from '../AtribuirAlguemModal';
 import { Btn } from '../../pages/Etapas/Preparo/styles';
 import { ModalCriarLote } from '../ModalCriarLote';
 import { EspecifcModal } from '../EspecificStatusModal';
-import { AtribuirButton } from '../AtribuirLoteAtividade/styles';
 
 interface BoardProps {
   main_status: number;
@@ -41,11 +40,8 @@ export const Board = (props: BoardProps) => {
   const [batchesDispo, setBatchesDispo] = useState<GetResponseBatche[]>([]);
   const [batchesAnda, setBatchesAnda] = useState<GetResponseBatche[]>([]);
   const [batchesConc, setBatchesConc] = useState<GetResponseBatche[]>([]);
-
-  const [titleModal, setTitleModal] = useState({ button: 'pegar lote', title: 'Deseja pegar o lote?' });
-
+  const [titleModal, setTitleModal] = useState({ button: 'Pegar lote', title: 'Deseja pegar o lote' });
   const [batche_data, setBatche] = useState<GetResponseBatche>();
-
   const [atribuirModal, setAtribuirModal] = useState<boolean>(false);
   const [openCriarModal, setOpenCriarModal] = useState<boolean>(false);
   const [openEspecifModal, setOpenEspecifModal] = useState<boolean>(false);
@@ -55,6 +51,7 @@ export const Board = (props: BoardProps) => {
       setBatchesDispo(data.filter((batche) => batche.specific_status === 0));
       setBatchesAnda(data.filter((batche) => batche.specific_status === 1));
       setBatchesConc(data.filter((batche) => batche.specific_status === 2));
+      console.log(data);
     },
     onError: (err: ApiError) => {
       toast.error(err.message);
@@ -71,8 +68,10 @@ export const Board = (props: BoardProps) => {
     <KabanContext.Provider
       value={{ batchesAnda, batchesConc, batchesDispo, setBatchesAnda, setBatchesConc, setBatchesDispo }}
     >
+      {/* Menu das fases */}
       <BoardChanger />
 
+      {/* Botão de Criar lote(só aparece no preparo) */}
       {props.main_status === 0 && (
         <S.divChildren style={{ padding: '2em' }}>
           <Btn
@@ -128,11 +127,12 @@ export const Board = (props: BoardProps) => {
                               onClick={(e) => {
                                 e.preventDefault();
                                 setOpenEspecifModal(!openEspecifModal);
-                                setTitleModal({ button: 'pegar lote', title: 'Deseja pegar o lote?' });
+                                setTitleModal({ button: 'Pegar lote', title: `Deseja pegar o ${batche.title}?` });
                                 setBatche(batche);
                               }}
+                              style={{ color: 'black' }}
                             >
-                              <ArrowCircleLeft weight="fill" size={24} /> Pegar Lote
+                              <img src="/PegarLote_icon.svg" alt='icone de mão acenando'/> Pegar lote
                             </AtribuirButton>
                           )}
                           {user.role === 'Coordenador' && (
@@ -171,7 +171,7 @@ export const Board = (props: BoardProps) => {
                     <Empty.Title>Está lista está vazia</Empty.Title>
                   </S.WrapperEmptyKanban>
                 )}
-                {batchesAnda.map(
+                {batchesAnda?.map(
                   (batche) =>
                     batche && (
                       <a href={`/Lote/${batche.id}`} key={batche.id} style={{ textDecoration: 'none' }}>
@@ -189,10 +189,14 @@ export const Board = (props: BoardProps) => {
                                 e.preventDefault();
                                 setOpenEspecifModal(!openEspecifModal);
                                 setBatche(batche);
-                                setTitleModal({ button: 'Concluir o lote', title: 'Deseja concluir o lote?' });
+                                setTitleModal({
+                                  button: 'Marcar como concluído',
+                                  title: `Deseja marcar o ${batche.title} como concluído?`,
+                                });
                               }}
                             >
-                              Concluir lote
+                              <img src="/finished-icon.svg" alt='icone de concluído ' />
+                              <p>Marcar como concluído</p>
                             </S.BlackButton>
                           )}
                         </Lote>
@@ -250,6 +254,7 @@ export const Board = (props: BoardProps) => {
           batche={batche_data}
           title={titleModal.title}
           button={titleModal.button}
+          
         />
       )}
     </KabanContext.Provider>

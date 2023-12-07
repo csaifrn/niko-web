@@ -44,11 +44,20 @@ const MenuArea = styled.nav`
   margin: 0em 2em 0em 2em;
 `;
 
-const MenuLeft = styled.div`
+export const MenuRight = styled.div`
   display: flex;
   gap: 1em;
   border-radius: 100%;
-  border: solid 1px ${({ theme }) => theme.colors['gray/500']};
+`;
+
+export const UserIcon = styled.div`
+  display: flex;
+  gap: 1em;
+  border: solid 1px #393e4b;
+  border-radius: 100%;
+  padding: 8px;
+  cursor: pointer;
+  size: 120;
 `;
 
 interface BurgerProps {
@@ -119,7 +128,18 @@ export const ContainerLogo = styled.div`
   }
 `;
 
-export { MenuImg, MenuArea, MenuLeft, ButtonBurger, StyledMenu, ContainerA };
+export const User = styled.img`
+  border-radius: 100%;
+  cursor: pointer;
+  &:hover {
+    filter: brightness(0.9);
+  }
+  &:active {
+    filter: brightness(0.9);
+  }
+`;
+
+export { MenuImg, MenuArea,  ButtonBurger, StyledMenu, ContainerA };
 
 export const MenuDesk = styled.div`
   display: none;
@@ -150,3 +170,13 @@ export const InputSearch = styled.button`
     display: none;
   }
 `;
+
+export const TextLink = styled.p`
+  &:hover {
+    filter: brightness(0.9);
+  }
+  &:active {
+    filter: brightness(0.9);
+  }
+`;
+

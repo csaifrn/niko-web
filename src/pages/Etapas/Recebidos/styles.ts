@@ -4,7 +4,7 @@ import media from 'styled-media-query';
 export const RecepcaoPage = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 0px;
+  gap: 32px;
   max-width: 1140px;
   margin: 8em 2em 5em 2em;
   font-family: 'Rubik';

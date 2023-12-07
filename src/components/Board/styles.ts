@@ -5,9 +5,8 @@ export const FaseKanbanPage = styled.div`
   display: flex;
   justify-content: center;
   flex-direction: row;
-  //max-width: 1140px;
-
   gap: 2em;
+
   //Mobile
   @media screen and (max-width: 767px) {
     flex-direction: column;
@@ -19,23 +18,15 @@ const kanban = styled.div`
   font-family: 'Rubik';
   display: flex;
   justify-content: center;
-  //justify-content: flex-start;
   flex-wrap: wrap;
   flex-direction: column;
   padding: 0em 0em 1em 0em;
   gap: 16px;
 
   @media screen and (min-width: 767px) {
-<<<<<<< HEAD
-    //justify-content: center;
     align-items: center;
     flex-direction: column;
-    margin-bottom: 0;
-    //margin-bottom: 2em;
-=======
-    flex-direction: row;
     margin-bottom: 2em;
->>>>>>> d4bc41e418184f3210a9047700bc4657c04552d2
   }
 `;
 
@@ -83,12 +74,14 @@ const kanbanSectionContent = styled.div`
   gap: 1em;
   color: ${({ theme }) => theme.colors.white};
   overflow-x: scroll;
+  overflow-y: auto;
   scroll-behavior: auto;
   scrollbar-width: thin;
   height: 150px;
   width: 100%;
   padding: 1em;
   background-color: ${({ theme }) => theme.colors['gray/700']};
+  border-radius: 5px;
 
   &::-webkit-scrollbar {
     width: 0.5em;
@@ -111,6 +104,8 @@ const kanbanSectionContent = styled.div`
     max-width: 300px;
     height: 60vh;
     width: 100%;
+    overflow-y: scroll;
+    overflow-x: auto;
   }
 `;
 
@@ -142,9 +137,6 @@ export const divImg = styled.div`
   justify-content: flex-start;
   align-items: center;
   gap: 16px;
-  /* ${media.greaterThan('large')`
-    display: none;
-  `} */
   @media screen and (min-width: 767px) {
     display: none;
   }
@@ -156,9 +148,6 @@ export const divImgMaior = styled.div`
   justify-content: center;
   align-items: center;
   gap: 16px;
-  /* ${media.greaterThan('large')`
-    display: flex;
-  `} */
   @media screen and (min-width: 767px) {
     display: flex;
   }
@@ -174,7 +163,7 @@ export const divTitulo = styled.div`
 export const divChildren = styled.div`
   display: flex;
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: 767px) {
     flex-direction: row;
     justify-content: center;
     align-items: start;
@@ -280,7 +269,11 @@ export const BlackButton = styled.button`
   height: 44px;
   transition: all 300ms;
   &:hover {
-    filter: brightness(110%);
+    background-color: ${({ theme }) => theme.colors['gray/900']};
+  }
+  &:active {
+    background-color: ${({ theme }) => theme.colors['gray/900']};
+    transform: translateY(-5%) translateX(2%);
   }
 `;
 

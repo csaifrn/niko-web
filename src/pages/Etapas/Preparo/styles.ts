@@ -12,7 +12,12 @@ export const Btn = styled.button`
   border: none;
   font-weight: bold;
   cursor: pointer;
-  :hover {
+  &:hover {
+    background-color: ${({ theme }) => theme.colors['green/600']};
+  }
+  &:active {
+    background-color: ${({ theme }) => theme.colors['green/600']};
+    transform: translateY(-5%) translateX(2%);
   }
   p {
     font-family: 'Rubik';

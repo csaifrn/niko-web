@@ -11,6 +11,12 @@ export const BotaoCriarObservacao = styled.button`
   align-items: center;
   padding: 8px;
   background-color: transparent;
+  position: relative;
+  :hover div {
+    visibility: visible;
+    opacity: 1;
+    display: block;
+  }
   &:hover {
     background-color: ${({ theme }) => theme.colors['gray/400']};
   }
@@ -123,6 +129,12 @@ export const Edit = styled.div`
   justify-content: center;
   align-items: center;
   background-color: ${({ theme }) => theme.colors['gray/500']};
+  position: relative;
+  :hover div {
+    visibility: visible;
+    opacity: 1;
+    display: block;
+  }
   &:hover {
     background-color: ${({ theme }) => theme.colors['gray/400']};
   }
@@ -143,6 +155,12 @@ export const Config = styled.button`
   border: none;
   cursor: pointer;
   background-color: ${({ theme }) => theme.colors['gray/500']};
+  position: relative;
+  :hover div {
+    visibility: visible;
+    opacity: 1;
+    display: block;
+  }
   &:hover {
     background-color: ${({ theme }) => theme.colors['gray/400']};
   }
@@ -184,6 +202,12 @@ export const ArquivFisicos = styled.div`
   justify-content: center;
   gap: 0.5em;
   border-radius: 3px;
+  position: relative;
+  :hover div {
+    visibility: visible;
+    opacity: 1;
+    display: block;
+  }
 `;
 
 export const ArquivDigitais = styled.div`
@@ -195,6 +219,12 @@ export const ArquivDigitais = styled.div`
   justify-content: center;
   gap: 0.5em;
   border-radius: 3px;
+  position: relative;
+  :hover div {
+    visibility: visible;
+    opacity: 1;
+    display: block;
+  }
 `;
 
 export const DadosCriacaoLoteDiv = styled.div`
@@ -277,10 +307,16 @@ export const Text = styled.p`
   align-content: left;
 `;
 
-export const FaseEnvolvAtual = styled.div`
-  display: flex;
-  justify-content: flex-start;
-  gap: 8px;
+export const FaseAtualDiv = styled.div``;
+
+export const IconTooltipFase = styled.div`
+  position: relative;
+  width: 32px;
+  :hover div {
+    visibility: visible;
+    opacity: 1;
+    display: block;
+  }
 `;
 
 export const TituloFaseAtual = styled.h2``;
@@ -290,15 +326,15 @@ export const Envolvidos = styled.div`
   gap: 0px;
 `;
 
-export const PendObservacaoBotoes = styled.div`
+export const ObservacaoBotoes = styled.div`
   display: flex;
   flex-direction: column;
   gap: 16px;
   grid-template-columns: repeat(auto-fit, minmax(21rem, 1fr));
-  ${media.greaterThan('large')`
-    display:grid;
+  @media screen and (min-width: 767px) {
+    display: grid;
     grid-template-columns: 2fr 1fr;
-  `}
+  }
 `;
 
 export const PendObservacao = styled.div`
@@ -306,24 +342,24 @@ export const PendObservacao = styled.div`
   flex-direction: column;
   gap: 16px;
   grid-template-columns: repeat(auto-fit, minmax(21rem, 1fr));
-  ${media.greaterThan('large')`
+  @media screen and (min-width: 767px) {
     flex-direction: row;
     width: 100%;
-  `}
+  }
 `;
 
 export const PendenciaTitulo = styled.p`
   font-size: 12px;
-  ${media.greaterThan('large')`
+  @media screen and (min-width: 767px) {
     font-size: 16px;
-  `}
+  }
 `;
 
 export const ObservacaoTitulo = styled.p`
   font-size: 12px;
-  ${media.greaterThan('large')`
+  @media screen and (min-width: 767px) {
     font-size: 16px;
-  `}
+  }
 `;
 
 export const Pendencias = styled.div`
@@ -335,9 +371,9 @@ export const Pendencias = styled.div`
   order: 0;
   flex-grow: 0;
   padding: 16px;
-  ${media.greaterThan('large')`
+  @media screen and (min-width: 767px) {
     width: 100%;
-  `}
+  }
 `;
 
 export const Observações = styled.div`
@@ -350,9 +386,33 @@ export const Observações = styled.div`
   order: 0;
   flex-grow: 0;
   padding: 16px;
-  ${media.greaterThan('large')`
+  max-height: 257px;
+  @media screen and (min-width: 767px) {
     width: 100%;
-  `}
+  }
+`;
+
+export const ObsCardsDiv = styled.div`
+  overflow-y: scroll;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  height: 100%;
+  &::-webkit-scrollbar {
+    width: 0.5em;
+    height: 0.5em;
+  }
+
+  // O caminho (barra de progresso) da barra de rolagem
+  &::-webkit-scrollbar-track {
+    background-color: transparent;
+  }
+
+  // A barra arrastável de rolagem
+  &::-webkit-scrollbar-thumb {
+    background-color: ${({ theme }) => theme.colors['gray/400']};
+    border-radius: 20px;
+  }
 `;
 
 export const PendDivBlack = styled.div`
@@ -400,11 +460,26 @@ export const Botoes = styled.div`
   display: flex;
   flex-direction: column;
   gap: 16px;
-  ${media.greaterThan('large')`
+  @media screen and (min-width: 767px) {
     gap: 27px;
-    /* display: grid;
-    grid-template-columns: 1fr 2fr 2fr 1fr; */
-  `}
+  }
+`;
+
+export const ConcluirButton = styled.button`
+  height: 44px;
+  border-radius: 5px;
+  background-color: ${({ theme }) => theme.colors['green/400']};
+  border: none;
+  color: white;
+  font-family: 'Rubik';
+  color: ${({ theme }) => theme.colors['gray/700']};
+  cursor: pointer;
+  &:hover {
+    filter: brightness(0.9);
+  }
+  &:active {
+    filter: brightness(0.9);
+  }
 `;
 
 export const Botao = styled.button`
@@ -421,11 +496,10 @@ export const Botao = styled.button`
   color: ${({ theme }) => theme.colors.white};
   cursor: pointer;
   &:hover {
-    background-color: ${({ theme }) => theme.colors['gray/400']};
+    filter: brightness(0.9);
   }
   &:active {
-    background-color: ${({ theme }) => theme.colors['gray/400']};
-    transform: translateY(-5%) translateX(2%);
+    filter: brightness(0.9);
   }
 `;
 
@@ -443,11 +517,10 @@ export const BotaoDeletarLote = styled.button`
   color: ${({ theme }) => theme.colors.white};
   cursor: pointer;
   &:hover {
-    background-color: ${({ theme }) => theme.colors['red/400']};
+    filter: brightness(0.9);
   }
   &:active {
-    background-color: ${({ theme }) => theme.colors['red/400']};
-    transform: translateY(-5%) translateX(2%);
+    filter: brightness(0.9);
   }
 `;
 
@@ -479,11 +552,10 @@ export const VoltarAvancar = styled.button`
   border: none;
   font-family: 'Rubik';
   &:hover {
-    background-color: ${({ theme }) => theme.colors['gray/400']};
+    filter: brightness(0.9);
   }
   &:active {
-    background-color: ${({ theme }) => theme.colors['gray/400']};
-    transform: translateY(-5%) translateX(2%);
+    filter: brightness(0.9);
   }
   &:disabled {
     cursor: not-allowed;
@@ -526,9 +598,9 @@ export const DetalhamentoGrid = styled.div`
   display: grid;
   grid-gap: 2rem;
   grid-template-columns: repeat(auto-fit, minmax(21rem, 1fr));
-  ${media.greaterThan('large')`
+  @media screen and (min-width: 767px) {
     grid-template-columns: 2fr 2fr 2fr;
-  `}
+  }
 `;
 
 export const NomeDaFase = styled.h2``;
@@ -537,7 +609,7 @@ export const TodasAsPendencias = styled.div`
   display: flex;
   flex-direction: column;
   gap: 12px;
-  ${media.greaterThan('large')`
+  @media screen and (min-width: 767px) {
     height: 20vh;
     overflow-y: scroll;
     scroll-behavior: auto;
@@ -560,14 +632,14 @@ export const TodasAsPendencias = styled.div`
       background-color: transparent;
       margin: 0em 2em;
     }
-  `}
+  }
 `;
 
 export const TodasAsObservacoes = styled.div`
   display: flex;
   flex-direction: column;
   gap: 12px;
-  ${media.greaterThan('large')`
+  @media screen and (min-width: 767px) {
     height: 20vh;
     overflow-y: scroll;
     scroll-behavior: auto;
@@ -590,7 +662,7 @@ export const TodasAsObservacoes = styled.div`
       background-color: transparent;
       margin: 0em 2em;
     }
-  `}
+  }
 `;
 
 export const Fase = styled.div`

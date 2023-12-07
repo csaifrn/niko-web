@@ -1,13 +1,10 @@
 import * as S from './styles';
-
 import React, { useEffect, useState } from 'react';
-
 import Menu from '../Menu';
 import MenuCoord from '../MenuCoord';
 import FaseData from '../../data/FaseData';
 import Splash from '../../pages/Splash';
 import toast from 'react-hot-toast';
-
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import { ConfigModal } from '../ConfigModal';
 import { useMutation } from 'react-query';
@@ -24,12 +21,13 @@ import { DeleteObservation } from '../../api/services/batches/observation/delete
 import { AtribuirAlguemModal } from '../AtribuirAlguemModal';
 import { BlockAssigner } from '../BatchBlocks/BlockAssigner';
 import { PatchBatcheMainStatus } from '../../api/services/batches/patch-status';
-import { ArrowCircleLeft, X } from '@phosphor-icons/react';
+import { X } from '@phosphor-icons/react';
 import theme from '../../global/theme';
 import { PatchBatcheSpecifStatus } from '../../api/services/batches/patch-status-specific';
 import { ToolTip } from '../Observation/ObservationBox/styles';
 
 import { EspecifcModal } from '../EspecificStatusModal';
+import { SharedState } from '../../context/SharedContext';
 import { AtribuirButton } from '../AtribuirLoteModal/styles';
 
 interface Option {
@@ -58,9 +56,9 @@ export const LoteDetails = () => {
   const [status, setStatus] = useState<number>(0);
   const [specificStatus, setSpecificStatus] = useState<number>(0);
   const [openEspecifModal, setOpenEspecifModal] = useState<boolean>(false);
-  const [titleModal, setTitleModal] = useState({ button: 'pegar lote', title: 'Deseja pegar o lote?' });
-
+  const [titleModal, setTitleModal] = useState({ button: 'Pegar lote', title: 'Deseja pegar o lote?' });
   const [option, setOption] = useState<Option>();
+  const { user} = SharedState();
 
   const handleConfig = () => {
     setConfigModal(!config_modal);
@@ -158,6 +156,14 @@ export const LoteDetails = () => {
     }
   };
 
+  // const handleStatus = () => {
+  //   if(assigners.length === 0){
+  //     setSpecificStatus(0)
+  //   }else(
+  //     setSpecificStatus(1)
+  //   )
+  // }
+
   useEffect(() => {
     CheckIdForGetBatch();
   }, []);
@@ -177,76 +183,116 @@ export const LoteDetails = () => {
           <S.areaClick>
             {/* BOTÃO DE FECHAR */}
             <S.CloseDiv>
-              <S.Exit onClick={() => navigate(-1)}>
+              <S.Exit onClick={() => navigate(`/Fase/${id}/Board/${optionsFases[status].label}`)}>
                 <img src="/close.svg" alt="" height={18} width={18} />
               </S.Exit>
             </S.CloseDiv>
 
             <S.LoteInfos>
+              {/* CABEÇALHO */}
               <S.LoteEditConfig>
                 {/* TÍTULO */}
                 <S.TituloLote>{`${task?.title}`}</S.TituloLote>
+
                 <S.EditConfig>
-                  {/* EDITAR */}
+                  {/* BOTÃO DE EDITAR */}
                   <Link to={`/Lote/${task?.id}/Edit`}>
                     <S.Edit>
-                      {''}
                       <S.Icons src={`/pen.svg`}></S.Icons>
-                      {''}
+                      <ToolTip style={{ width: '80px' }} id="tool">
+                        Editar Lote
+                      </ToolTip>
                     </S.Edit>
                   </Link>
-                  {/* CONFIGURAÇÕES */}
+
+                  {/* BOTÃO DE CONFIGURAÇÕES */}
                   <S.Config onClick={handleConfig}>
-                    {''}
                     <S.Icons src={`/config.svg`}></S.Icons>
-                    {''}
+                    <ToolTip style={{ width: '120px' }} id="tool">
+                      Configurações do lote
+                    </ToolTip>
                   </S.Config>
                 </S.EditConfig>
               </S.LoteEditConfig>
+
+              {/* DADOS DA CRIAÇÃO DO LOTE */}
               <S.DadosCriacaoLoteDiv>
-                <S.BlockGray>
-                  Criado por {task?.created_by.name} em{' '}
-                  {createDate?.toLocaleString('pt-br', {
-                    timeZone: 'America/Sao_paulo',
-                  })}
-                </S.BlockGray>
+
+                {/* SE VOCÊ CRIOU */}
+                {task?.created_by.name == user?.name && (
+                  <S.BlockGray>
+                    Criado por Você em{' '}
+                    {createDate?.toLocaleString('pt-br', {
+                      timeZone: 'America/Sao_paulo',
+                    })}
+                  </S.BlockGray>
+                )}
+
+                {/* SE OUTRA PESSOA CRIOU */}
+                {task?.created_by.name != user?.name && (
+                  <S.BlockGray>
+                    Criado por {task?.created_by.name} em{' '}
+                    {createDate?.toLocaleString('pt-br', {
+                      timeZone: 'America/Sao_paulo',
+                    })}
+                  </S.BlockGray>
+                )}
               </S.DadosCriacaoLoteDiv>
+
+              {/* ARQUIVOS */}
               <S.DetalhesLote>
                 {task?.shelf_number !== null && <S.Estante>{task?.shelf_number}</S.Estante>}
 
-                {/* ARQUIVOS FÍSICOS */}
-                {task?.physical_files_count != 0 && (
-                  <S.ArquivFisicos>
-                    <img src={`/arquivos_fisicos.svg`} alt="arquivos fisicos" />
-                    {task?.physical_files_count}
-                  </S.ArquivFisicos>
-                )}
-                {/* ARQUIVOS DIGITAIS */}
-                {task?.digital_files_count != 0 && (
+                {/* FÍSICOS */}
+
+                <S.ArquivFisicos>
+                  <img src={`/arquivos_fisicos.svg`} alt="arquivos fisicos" />
+                  {task?.physical_files_count}
+                  <ToolTip style={{ width: '105px' }} id="tool">
+                    Arquivos físicos
+                  </ToolTip>
+                </S.ArquivFisicos>
+
+                {/* DIGITAIS(QUANDO HOUVER) */}
+                {optionsFases[status].label != 'Preparo' && optionsFases[status].label != 'Catalogação' && (
                   <S.ArquivDigitais>
                     <img src={`/arquivos_digitais.svg`} alt="arquivos digitais" />
                     {task?.digital_files_count}
+                    <ToolTip style={{ width: '110px' }} id="tool">
+                      Arquivos digitais
+                    </ToolTip>
                   </S.ArquivDigitais>
                 )}
               </S.DetalhesLote>
 
+              {/* CATEGORIAS */}
               <S.DetalhesLote>
                 <S.BlockGrayBorder>{task?.category.name}</S.BlockGrayBorder>
               </S.DetalhesLote>
+
+              {/* PRIORIORIDADE(SE TIVER) */}
               {priority === true && (
                 <S.CategoriaPrioridade>
                   <S.Prioridade>
                     <p>Prioridade</p>
                   </S.Prioridade>
-
-                  {/* <S.Categoria>
-            <p>{task?.category.name}</p>
-          </S.Categoria> */}
                 </S.CategoriaPrioridade>
               )}
+
+              <S.FaseAtualDiv>
+                {/* FASE ATUAL DO LOTE */}
+                <S.IconTooltipFase>
+                  <S.Icons src={`/icon-medium/${optionsFases[status].label}.svg`} />
+                  <ToolTip style={{}} id="tool">
+                    {optionsFases[status].label}
+                  </ToolTip>
+                </S.IconTooltipFase>
+              </S.FaseAtualDiv>
+
+              {/* OPERADORES ATRIBUÍDOS AO LOTE */}
               {assigners.length > 0 && (
                 <React.Fragment>
-                  Atribuidos
+                  <h2>Atribuídos</h2>
                   <S.DetalhesLote>
                     {assigners &&
                       assigners.map((assigned) => (
@@ -255,107 +301,28 @@ export const LoteDetails = () => {
                   </S.DetalhesLote>
                 </React.Fragment>
               )}
-              {/* MOSTRA CATEGORIAS QUANDO O LOTE É PRIORIDADE */}
-
-              {/* MOSTRA CATEGORIAS QUANDO O LOTE NÃO É PRIORIDADE */}
-              {taskData.categorias.length > 0 && priority == false && (
-                <S.CategoriaPrioridade>
-                  {/* CATEGORIAS */}
-                  {taskData.categorias.map((categoria: any) => (
-                    <React.Fragment key={categoria.id}>
-                      <S.Categoria>
-                        <p>{categoria.name}</p>
-                      </S.Categoria>
-                    </React.Fragment>
-                  ))}
-                </S.CategoriaPrioridade>
-              )}
-              {/* TIPOLOGIAS */}
-              {taskData.tipologias.length > 0 && (
-                <S.Tipologias>
-                  {taskData.tipologias.map((tipol: any) => (
-                    <S.Tipologia key={tipol.id}>
-                      <p>{tipol.name}</p>
-                    </S.Tipologia>
-                  ))}
-                </S.Tipologias>
-              )}
-              <S.FaseEnvolvAtual>
-                {/* FASE ATUAL DO LOTE */}
-                <S.Icons src={`/icon-medium/${optionsFases[status].label}.svg`} />
-
-                {/* ENVOLVIDOS  */}
-                {/* {usuarios != null &&
-            usuarios.map((env: any) => (
-              <S.Envolvidos key={env.id}>
-                {env.andamento == true && (
-                  <img
-                    src={env.foto}
-                    alt={env.nome}
-                    width={28}
-                    height={28}
-                    style={{
-                      objectFit: 'cover',
-                      borderRadius: '100%',
-                      border: '1px solid #43DB6D',
-                    }}
-                  />
-                )}
-                {env.andamento == false && (
-                  <img
-                    src={env.url}
-                    alt={env.nome}
-                    width={28}
-                    height={28}
-                    style={{
-                      objectFit: 'cover',
-                      borderRadius: '100%',
-                      border: `1px solid ${theme.colors[gray/500]}`,
-                    }}
-                  />
-                )}
-              </S.Envolvidos>
-            ))} */}
-              </S.FaseEnvolvAtual>
             </S.LoteInfos>
 
-            <S.PendObservacaoBotoes>
-              <S.PendObservacao>
-                {/* PENDÊNCIAS */}
-                {/* <S.Pendencias>
-                <S.PendenciaTitulo>Pendências</S.PendenciaTitulo>
+            <S.ObservacaoBotoes>
+              {/* OBSERVAÇÕES */}
+              <S.Observações>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                  <S.PendenciaTitulo>Observações</S.PendenciaTitulo>
+                  <S.BotaoCriarObservacao
+                    onClick={() => {
+                      setObservacao(!observacao);
+                    }}
+                  >
+                    <ToolTip style={{ width: '150px' }} id="tool">
+                      Adicionar observação
+                    </ToolTip>
+                    <img src="/adicionar.svg" alt="" />
+                  </S.BotaoCriarObservacao>
+                </div>
 
-                <S.TodasAsPendencias>
-                  {taskData.pendencias.map((pen: any) => (
-                    <S.PendDivBlack key={pen.id}>
-                      <S.PendenciaTextIcon>
-                        {<img src="/warning.svg" alt="ícone de alerta" />}
-                        {pen.comment}
-                      </S.PendenciaTextIcon>
-
-                      <S.BotaoResolverPend onClick={() => handleResolverPend(pen)}>
-                        <S.Texto>Resolver pendência</S.Texto>
-                      </S.BotaoResolverPend>
-                    </S.PendDivBlack>
-                  ))}
-                </S.TodasAsPendencias>
-              </S.Pendencias> */}
-
-                {/* OBSERVAÇÕES */}
-                <S.Observações>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                    <S.PendenciaTitulo>Observações</S.PendenciaTitulo>
-                    <S.BotaoCriarObservacao
-                      onClick={() => {
-                        setObservacao(!observacao);
-                      }}
-                    >
-                      <img src="/adicionar.svg" alt="" />
-                    </S.BotaoCriarObservacao>
-                  </div>
-
-                  {observations &&
-                    observations.map((obs, index) => {
+                {observations.length != 0 && (
+                  <S.ObsCardsDiv>
+                    {observations.map((obs, index) => {
                       return (
                         <BoxObservation
                           index={index}
@@ -368,37 +335,49 @@ export const LoteDetails = () => {
                         />
                       );
                     })}
-                </S.Observações>
-              </S.PendObservacao>
+                  </S.ObsCardsDiv>
+                )}
+              </S.Observações>
 
               {/* BOTÕES PRINCIPAIS */}
               <S.Botoes>
-                {/* ATRIBUIR À ALGUÉM */}
+                {/* PEGAR LOTE */}
                 {specificStatus === 0 && (
                   <AtribuirButton
                     onClick={(e) => {
                       e.preventDefault();
                       setOpenEspecifModal(!openEspecifModal);
-                      setTitleModal({ button: 'pegar lote', title: 'Deseja pegar o lote?' });
+                      setTitleModal({ button: 'Pegar lote', title: `Deseja pegar o ${task?.title}?` });
                     }}
                   >
-                    <ArrowCircleLeft weight="fill" size={24} /> Pegar Lote
+                    <div style={{display: 'flex' , justifyContent: 'flex-start', gap: '16px' , color: 'white' , alignItems: 'center', marginLeft: '16px'}}>
+                      <img src="/PegarLote_icon.svg" alt="ícone de mãozinha acenando" />
+                      <p style={{ color: 'black' }}>Pegar lote</p>
+                    </div>
                   </AtribuirButton>
                 )}
 
+                {/* MARCAR COMO CONCLUÍDO */}
                 {specificStatus === 1 && (
-                  <AtribuirButton
+                  <S.ConcluirButton
                     onClick={(e) => {
                       e.preventDefault();
                       setOpenEspecifModal(!openEspecifModal);
-                      setTitleModal({ button: 'Concluir o lote', title: 'Deseja concluir o lote?' });
+                      setTitleModal({ button: 'Marcar como concluído', title: `Deseja marcar o ${task?.title} como concluído?` });
                     }}
+                    style={{ backgroundColor: theme.colors['gray/500']}}
                   >
-                    Concluir lote
-                  </AtribuirButton>
+                    <div style={{display: 'flex' , justifyContent: 'flex-start', gap: '16px' , color: 'white' , alignItems: 'center', marginLeft: '16px'}}>
+                      <img src="/finished-icon.svg" alt="ícone de concluído" />
+                      Marcar como concluído
+                    </div>
+
+                  </S.ConcluirButton>
                 )}
+
+                {/* ATRIBUIR LOTE */}
                 <S.Botao onClick={handleAtribuirAlguem}>
-                  <img src={`/atribuir.svg`} alt="botão para atribuir lote a algum operador " />
+                  <img src={`/AddUser.svg`} alt="botão para atribuir lote a algum operador " />
                   Atribuir à alguém
                 </S.Botao>
 
@@ -474,11 +453,11 @@ export const LoteDetails = () => {
                   Excluir lote
                 </S.BotaoDeletarLote>
               </S.Botoes>
-            </S.PendObservacaoBotoes>
+            </S.ObservacaoBotoes>
 
             {/* DETALHAMENTO POR FASE */}
 
-            {taskData.detalhamento_por_fase != null && (
+            {/* {taskData.detalhamento_por_fase != null && (
               <S.DetalFase>
                 <S.DetalhamentoTitulo>Detalhamento por fase</S.DetalhamentoTitulo>
                 <S.DetalhamentoGrid>
@@ -537,7 +516,7 @@ export const LoteDetails = () => {
                   ))}
                 </S.DetalhamentoGrid>
               </S.DetalFase>
-            )}
+            )} */}
           </S.areaClick>
         </div>
         {/* {pend && <ModalResolverPendencia pendencia={pendencia} close={() => setPend(!pend)}></ModalResolverPendencia>}
@@ -567,7 +546,7 @@ export const LoteDetails = () => {
             close={() => {
               setObservacao(!observacao);
             }}
-            title="Criar observação"
+            title="Adicionar observação"
           />
         )}
         {delete_modal && (

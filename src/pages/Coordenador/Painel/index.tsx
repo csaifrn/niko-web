@@ -15,8 +15,8 @@ const Painel = () => {
       <MenuCoord />
       <S.PainelArea>
         <PainelPorFase/>
-        <PendenciaCoord />
-        <ValoresGerais />
+        {/* <PendenciaCoord />
+        <ValoresGerais /> */}
       </S.PainelArea>
     </div>
   );

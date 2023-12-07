@@ -92,7 +92,7 @@ export const CloseDiv = styled.div`
 export const Exit = styled.button`
   height: 2em;
   width: 2em;
-  background-color: ${({ theme }) => theme.colors['gray/900']};
+  background-color: ${({ theme }) => theme.colors['gray/500']};
   border-radius: 3px;
   display: flex;
   justify-content: center;
@@ -208,7 +208,7 @@ export const NameInput = styled.input`
   align-items: flex-start;
   padding: 15px;
   width: 56px;
-  background-color: ${({ theme }) => theme.colors['gray/900']};
+  background-color: ${({ theme }) => theme.colors['gray/500']};
   color: white;
   font-family: 'Rubik', Helvetica, sans-serif;
   border: none;

@@ -256,14 +256,13 @@ export const AtribuirButton = styled.button`
   border-radius: 5px;
   background-color: ${({ theme }) => theme.colors['green/500']};
   border: none;
-  color: ${({ theme }) => theme.colors['gray/700']};
+  color: white;
   font-family: 'Rubik';
   &:hover {
-    background-color: ${({ theme }) => theme.colors['green/400']};
+    filter: brightness(0.9);
   }
   &:active {
-    background-color: ${({ theme }) => theme.colors['green/600']};
-    transform: translateY(-5%) translateX(2%);
+    filter: brightness(0.9);
   }
 `;
 

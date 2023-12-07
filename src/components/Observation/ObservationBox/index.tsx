@@ -41,6 +41,15 @@ export const BoxObservation = ({
     <>
       <S.ObsDivBlack index={index}>
         <S.BottomContent>
+
+          {/* mostra quem criou a observação */}
+          {/* {observation.created_by.name == user?.name &&
+            <p>Você</p>
+          }
+          {observation.created_by.name != user?.name &&
+            <p>{observation.created_by.name}</p>
+          } */}
+          
           <p>{observation.created_by.name}</p>
           <S.Data>
             Criado em{' '}
@@ -54,11 +63,11 @@ export const BoxObservation = ({
           <S.DivButtons>
             <S.ButtonEdit onClick={handleClickEdit}>
               <PencilSimple size={18} weight="fill" color={theme.colors['white']} />
-              <S.ToolTip>Editar</S.ToolTip>
+              <S.ToolTip style={{width: '135px'}}>Editar observação</S.ToolTip>
             </S.ButtonEdit>
             <S.ButtonDelete onClick={handleClickDelete}>
               <MinusCircle size={18} weight="fill" color={theme.colors['red/500']} />
-              <S.ToolTip>Deletar</S.ToolTip>
+              <S.ToolTip style={{width: '140px'}} >Excluir observação</S.ToolTip>
             </S.ButtonDelete>
           </S.DivButtons>
         )}

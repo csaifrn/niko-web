@@ -96,7 +96,6 @@ export const PainelPorFase = () => {
     const dataEscolhida = new Date(`${dia}/${mes}/${ano}`);
     dataEscolhida.setHours(0, 0, 0);
 
-    console.log('A data escolhida foi:' + dataEscolhida);
     setDataFinalEmString(`${dia}-${mes}-${ano}`);
     // Verifica se a data final escolhida é mais nova que a data de hoje
     if (dataEscolhida > dataHoje) {
@@ -111,10 +110,6 @@ export const PainelPorFase = () => {
       setDtFinalInvalida(false);
     }
   };
-
-  console.log('A data inicial é:' + dataInicial);
-
-  console.log('A data final é:' + dataFinal);
 
   const { id } = useParams();
 
@@ -223,7 +218,7 @@ export const PainelPorFase = () => {
 
             {/* CATALOGAÇÃO */}
             <S.ContainerDataFase>
-              <Link to={`/Fase/${id}/Board/Catalogacao`}>
+              <Link to={`/Fase/${id}/Board/Catalogação`}>
                 <S.CardFaseColorful style={{ backgroundColor: theme.colors['yellow/500'] }}>
                   <img src="/icon-big/IconBookMark.svg" />
                 </S.CardFaseColorful>
@@ -252,7 +247,7 @@ export const PainelPorFase = () => {
 
             {/* DIGITALIZAÇÃO */}
             <S.ContainerDataFase>
-              <Link to={`/Fase/${id}/Board/Digitalizacao`}>
+              <Link to={`/Fase/${id}/Board/Digitalização`}>
                 <S.CardFaseColorful style={{ backgroundColor: theme.colors['blue/400'] }}>
                   <img src="/icon-big/IconScanner.svg" />
                 </S.CardFaseColorful>

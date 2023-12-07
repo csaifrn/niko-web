@@ -45,7 +45,7 @@ const Rotas = () => {
         {/* Páginas que precisam de token */}
         <Route path="/Perfil/:id" element={<Perfil />} />
         <Route path="Painel/:id" element={<Painel />} />
-        <Route path="/Projetos" element={<Projetos />} />
+        {/* <Route path="/Projetos" element={<Projetos />} /> */}
         <Route path="/CriarProjeto" element={<CreateProjeto />} />
         <Route path="/Fase/:id" element={<FasesHome />} />
         <Route path="/Atividades/:id" element={<AtividadesHome />} />
@@ -54,8 +54,8 @@ const Rotas = () => {
         <Route path="Fase/:id/Board/Arquivamento" element={<Arquivamento />} />
         <Route path="Fase/:id/Board/Recebidos" element={<Recepcao />} />
         <Route path="Fase/:id/Board/Preparo" element={<Preparo />} />
-        <Route path="Fase/:id/Board/Catalogacao" element={<Catalogacao />} />
-        <Route path="Fase/:id/Board/Digitalizacao" element={<Digitalizacao />} />
+        <Route path="Fase/:id/Board/Catalogação" element={<Catalogacao />} />
+        <Route path="Fase/:id/Board/Digitalização" element={<Digitalizacao />} />
         <Route path="/Operadores/:id" element={<Operadores />} />
         <Route path="/Categorias/:id" element={<Categorias />} />
         <Route path="Fase/:id/Board/Upload" element={<Upload />} />

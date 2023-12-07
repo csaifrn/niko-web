@@ -165,6 +165,7 @@ export const ModalCriarLote = (props: ModalCriarProps) => {
                 <img src="/close.svg" alt="" height={18} width={18} />
               </S.Exit>
             </S.NameClose>
+            
             <S.FormCriar onSubmit={onSubmit}>
               <S.InputText
                 placeholder="Nome do Lote"
@@ -174,6 +175,7 @@ export const ModalCriarLote = (props: ModalCriarProps) => {
                 className="title"
               />
               {validationFormError.title && <ErrorMessage>{validationFormError.title}</ErrorMessage>}
+              <h3>Escolha uma categoria</h3>
               <S.CustomSelect
                 onInputChange={(e) => setName(e)}
                 placeholder={'Digite no mínimo 3 caracteres...'}

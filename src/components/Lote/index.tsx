@@ -3,11 +3,13 @@ import * as S from './styles';
 import { generateUUID } from '../../utils/generateUUID.util';
 
 const Lote = (props: any) => {
+
   return (
     <>
       {props.edit == true && (
         <S.LoteEdit className="Lote">
           <S.LoteArea>
+
             <S.LoteNumAvisos>
               {/* NÚMERO DO LOTE */}
               <h2>{props.value}</h2>
@@ -24,28 +26,26 @@ const Lote = (props: any) => {
                   </React.Fragment>
                 ))}
             </S.LoteNumAvisos>
+
             <S.LoteNumAvisos>
               <S.Categoria>
-                {props.categoria &&
-                  props.categoria.map((categoria: any, index: number) => (
-                    <React.Fragment key={generateUUID()}>
-                      {index >= 1 && (
-                        <S.CategoriaTextDiv style={{ borderRadius: '100%', width: '2em' }}>
-                          <p>+{index}</p>
-                        </S.CategoriaTextDiv>
-                      )}
-                      {index == 0 && (
-                        <S.CategoriaTextDiv style={{ borderRadius: '3px' }}>
-                          <p style={{ padding: '0 0.5em' }}>{categoria.nome}</p>
-                        </S.CategoriaTextDiv>
-                      )}
-                    </React.Fragment>
-                  ))}
+                {props.categoria && (
+                  <React.Fragment key={generateUUID()}>
+                    <S.CategoriaTextDiv style={{ borderRadius: '100%', width: '2em' }}>
+                      <p>+</p>
+                    </S.CategoriaTextDiv>
+
+                    <S.CategoriaTextDiv style={{ borderRadius: '3px' }}>
+                      <p style={{ padding: '0 0.5em' }}>{props.categoria.name}</p>
+                    </S.CategoriaTextDiv>
+                  </React.Fragment>
+                )}
               </S.Categoria>
             </S.LoteNumAvisos>
           </S.LoteArea>
         </S.LoteEdit>
       )}
+
       {props.edit == null && (
         <S.Lote className="Lote">
           <S.LoteArea>
@@ -71,24 +71,22 @@ const Lote = (props: any) => {
               </S.LoteNumAvisos>
 
               <S.LoteNumAvisos>
+                {/* Categorias do Lote */}
                 <S.Categoria>
-                  {props.categoria &&
-                    props.categoria.map((categoria: any, index: number) => (
-                      <React.Fragment key={generateUUID()}>
-                        {index >= 1 && (
-                          <S.CategoriaTextDiv style={{ borderRadius: '100%', width: '2em' }}>
-                            <p>+{index}</p>
-                          </S.CategoriaTextDiv>
-                        )}
-                        {index == 0 && (
-                          <S.CategoriaTextDiv style={{ borderRadius: '3px' }}>
-                            <p style={{ padding: '0 0.5em' }}>{categoria.name}</p>
-                          </S.CategoriaTextDiv>
-                        )}
-                      </React.Fragment>
-                    ))}
+                  {props.categoria && (
+                    <React.Fragment key={generateUUID()}>
+                      <S.CategoriaTextDiv style={{ borderRadius: '100%', width: '2em' }}>
+                        <p>+</p>
+                      </S.CategoriaTextDiv>
+
+                      <S.CategoriaTextDiv style={{ borderRadius: '3px' }}>
+                        <p style={{ padding: '0 0.5em' }}>{props.categoria.name}</p>
+                      </S.CategoriaTextDiv>
+                    </React.Fragment>
+                  )}
                 </S.Categoria>
 
+                {/* Operadores do Lote */}
                 <S.Envolvido style={{ display: 'flex', marginLeft: '10px' }}>
                   {props.envolvidos &&
                     props.envolvidos.map((envolvidos: any, index: number) => (

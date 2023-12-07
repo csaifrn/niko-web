@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import * as S from './style';
 import { AssignedUser } from '../../api/services/batches/get-batche/get.interface';
-
 import { validationSearch } from './validation';
 import toast from 'react-hot-toast';
 import { SearchUserResponseBatche } from '../../api/services/batches/assigners/get-user-autocomplete/get.interface';
@@ -189,22 +188,9 @@ export const AtribuirAlguemModal = (props: AtribuirAlguemModalProps) => {
             <S.NameClose>
               <h2>Atribuir para</h2>
 
-              <button
-                onClick={handleClose}
-                style={{ width: 'auto', backgroundColor: 'transparent', border: 'none', cursor: 'pointer' }}
-              >
-                <img
-                  src="/close.svg"
-                  alt=""
-                  height={24}
-                  width={24}
-                  style={{
-                    padding: '5px 5px',
-                    backgroundColor: theme.colors['gray/900'],
-                    borderRadius: '5px',
-                  }}
-                />
-              </button>
+              <S.Exit type="button" onClick={handleClose}>
+                <img src="/close.svg" alt="" height={24} width={24} />
+              </S.Exit>
             </S.NameClose>
             <S.CustomSelect
               isMulti

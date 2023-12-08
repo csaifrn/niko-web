@@ -105,4 +105,45 @@ const ModalBackdrop = styled.div`
   transition: transform 1s;
 `;
 
+export const SwitchButton = styled.label`
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+`;
+
+export const Slider = styled.span`
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: ${({ theme }) => theme.colors['gray/900']};
+  border-radius: 34px;
+  cursor: pointer;
+
+  &:before {
+    position: absolute;
+    content: '';
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    border-radius: 50%;
+    transition: 0.4s;
+  }
+`;
+
+export const Input = styled.input.attrs({ type: 'checkbox' })`
+  display: none;
+  &:checked + ${Slider} {
+    background-color: ${({ theme }) => theme.colors['green/400']};
+  }
+
+  &:checked + ${Slider}:before {
+    transform: translateX(26px);
+  }
+`;
+
 export { ModalArea, ModalContent, NameClose, ChooseLote, Lote, Recused, ModalBackdrop };

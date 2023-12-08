@@ -52,6 +52,7 @@ const LoteNumAvisos = styled.div`
   gap: 2em;
   justify-content: space-between;
   align-items: center;
+  height: 100%;
   align-left {
     justify-self: left;
   }

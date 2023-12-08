@@ -31,6 +31,11 @@ export const CreateObservationModal = (props: DeletarModalProps) => {
   const [validationFormError, setValidationFormError] = useState<ErrorsForm>({ observation: '' });
   const textareaRef = useRef<HTMLTextAreaElement | null>(null);
   const [value, setValue] = useState<string>('');
+  const [isPending, setIspending] = useState<boolean>(false);
+
+  const handlePend = () => {
+    setIspending(!isPending)
+  }
 
   const onChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
     setValue(event.target.value);
@@ -126,7 +131,6 @@ export const CreateObservationModal = (props: DeletarModalProps) => {
       <S.ModalBackdrop>
         <S.ModalArea id="modal-scaling">
           <S.ModalContent>
-
             <S.NameClose>
               <h2>{props.title}</h2>
               <S.Exit type="button" onClick={handleClose}>
@@ -153,6 +157,14 @@ export const CreateObservationModal = (props: DeletarModalProps) => {
               }}
               placeholder="Escreva uma observação..."
             />
+
+            <h3>Pendência?</h3>
+
+            <S.SwitchButton>
+              <S.Input checked={isPending} onChange={handlePend}/>
+              <S.Slider />
+            </S.SwitchButton>
+
             {validationFormError.observation && <ErrorMessage>{validationFormError.observation}</ErrorMessage>}
 
             <S.Green onClick={handleSave} disabled={ObservationMutate.isLoading || ObservationMutate.isSuccess}>

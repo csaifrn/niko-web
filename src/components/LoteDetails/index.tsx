@@ -21,7 +21,7 @@ import { DeleteObservation } from '../../api/services/batches/observation/delete
 import { AtribuirAlguemModal } from '../AtribuirAlguemModal';
 import { BlockAssigner } from '../BatchBlocks/BlockAssigner';
 import { PatchBatcheMainStatus } from '../../api/services/batches/patch-status';
-import { X } from '@phosphor-icons/react';
+import { CheckCircle, HandWaving, X } from '@phosphor-icons/react';
 import theme from '../../global/theme';
 import { PatchBatcheSpecifStatus } from '../../api/services/batches/patch-status-specific';
 import { ToolTip } from '../Observation/ObservationBox/styles';
@@ -29,6 +29,7 @@ import { ToolTip } from '../Observation/ObservationBox/styles';
 import { EspecifcModal } from '../EspecificStatusModal';
 import { SharedState } from '../../context/SharedContext';
 import { AtribuirButton } from '../AtribuirLoteModal/styles';
+import { BlackButton } from '../Board/styles';
 
 interface Option {
   label: string;
@@ -58,7 +59,9 @@ export const LoteDetails = () => {
   const [openEspecifModal, setOpenEspecifModal] = useState<boolean>(false);
   const [titleModal, setTitleModal] = useState({ button: 'Pegar lote', title: 'Deseja pegar o lote?' });
   const [option, setOption] = useState<Option>();
-  const { user} = SharedState();
+  const { user } = SharedState();
+
+  //console.log(task)
 
   const handleConfig = () => {
     setConfigModal(!config_modal);
@@ -217,7 +220,6 @@ export const LoteDetails = () => {
 
               {/* DADOS DA CRIAÇÃO DO LOTE */}
               <S.DadosCriacaoLoteDiv>
-
                 {/* SE VOCÊ CRIOU */}
                 {task?.created_by.name == user?.name && (
                   <S.BlockGray>
@@ -343,18 +345,27 @@ export const LoteDetails = () => {
               <S.Botoes>
                 {/* PEGAR LOTE */}
                 {specificStatus === 0 && (
-                  <AtribuirButton
+                  <S.PegarLote
                     onClick={(e) => {
                       e.preventDefault();
                       setOpenEspecifModal(!openEspecifModal);
                       setTitleModal({ button: 'Pegar lote', title: `Deseja pegar o ${task?.title}?` });
                     }}
                   >
-                    <div style={{display: 'flex' , justifyContent: 'flex-start', gap: '16px' , color: 'white' , alignItems: 'center', marginLeft: '16px'}}>
-                      <img src="/PegarLote_icon.svg" alt="ícone de mãozinha acenando" />
-                      <p style={{ color: 'black' }}>Pegar lote</p>
+                    <div
+                      style={{
+                        display: 'flex',
+                        justifyContent: 'flex-start',
+                        gap: '16px',
+                        color: 'white',
+                        alignItems: 'center',
+                        marginLeft: '12px'
+                      }}
+                    >
+                      <HandWaving size={20} weight="fill" />
+                      <p>Pegar lote</p>
                     </div>
-                  </AtribuirButton>
+                  </S.PegarLote>
                 )}
 
                 {/* MARCAR COMO CONCLUÍDO */}
@@ -363,15 +374,24 @@ export const LoteDetails = () => {
                     onClick={(e) => {
                       e.preventDefault();
                       setOpenEspecifModal(!openEspecifModal);
-                      setTitleModal({ button: 'Marcar como concluído', title: `Deseja marcar o ${task?.title} como concluído?` });
+                      setTitleModal({
+                        button: 'Marcar como concluído',
+                        title: `Deseja marcar o ${task?.title} como concluído?`,
+                      });
                     }}
-                    style={{ backgroundColor: theme.colors['gray/500']}}
                   >
-                    <div style={{display: 'flex' , justifyContent: 'flex-start', gap: '16px' , color: 'white' , alignItems: 'center', marginLeft: '16px'}}>
-                      <img src="/finished-icon.svg" alt="ícone de concluído" />
+                    <div
+                      style={{
+                        display: 'flex',
+                        justifyContent: 'flex-start',
+                        gap: '8px',
+                        alignItems: 'center',
+                        marginLeft: '16px',
+                      }}
+                    >
+                      <CheckCircle size={24} weight="fill" />
                       Marcar como concluído
                     </div>
-
                   </S.ConcluirButton>
                 )}
 

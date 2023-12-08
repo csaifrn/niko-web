@@ -74,6 +74,7 @@ export const ConfigModal = (props: ConfigModalProps) => {
       <S.ModalBackdrop>
         <S.ModalArea id="modal-scaling">
           <S.ModalContent id="modal-content">
+
             <S.NameClose>
               <h2>Configurações</h2>
               <S.Exit type="button" onClick={handleClose}>
@@ -90,12 +91,17 @@ export const ConfigModal = (props: ConfigModalProps) => {
             </S.Compartilhamento> */}
 
             <S.Prioridade>
+
               <p>Prioridade</p>
+              
               <S.SwitchButton>
+
                 <S.Input checked={Pchecked} onChange={handlePrioridadeCheck} />
                 <S.Slider />
               </S.SwitchButton>
+
             </S.Prioridade>
+
           </S.ModalContent>
         </S.ModalArea>
       </S.ModalBackdrop>

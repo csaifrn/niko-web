@@ -59,6 +59,7 @@ export const BoxObservation = ({
           </S.Data>
         </S.BottomContent>
         <S.DivObservation>{observation.observation}</S.DivObservation>
+        {/* <h2>{observation.isPending}</h2> */}
         {observation.created_by.user_id === user?.sub && (
           <S.DivButtons>
             <S.ButtonEdit onClick={handleClickEdit}>

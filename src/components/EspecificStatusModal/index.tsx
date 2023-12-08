@@ -10,6 +10,7 @@ import theme from '../../global/theme';
 //import { ArrowCircleLeft } from '@phosphor-icons/react';
 import { ApiError } from '../../api/services/authentication/signIn/signIn.interface';
 import { PatchBatcheMainStatus } from '../../api/services/batches/patch-status';
+import { CheckCircle, HandWaving } from '@phosphor-icons/react';
 
 interface EspecifModalProps {
   close: () => void;
@@ -120,16 +121,16 @@ export const EspecifcModal = (props: EspecifModalProps) => {
 
               {props.button === 'Pegar lote' && (
                 <S.PegarLoteButton onClick={handlePegar}>
-                  <img src="/PegarLote_icon.svg" />
+                  <HandWaving size={20} weight="fill" />
                   {/* {props.button === 'Marcar como concluído' && <img src='/finished-icon.svg' />} */}
-                  <S.Texto style={{ color: theme.colors['gray/700'] }}>{props.button}</S.Texto>
+                  <S.Texto>{props.button}</S.Texto>
                 </S.PegarLoteButton>
               )}
 
               {props.button === 'Marcar como concluído' && (
                 <S.ConcluirLoteButton onClick={handlePegar}>
-                  <img src="/finished-icon.svg" />
-                  <S.Texto>{props.button}</S.Texto>
+                  <CheckCircle size={24} weight="fill" />
+                  <S.Texto style={{color: theme.colors['gray/900']}}>{props.button}</S.Texto>
                 </S.ConcluirLoteButton>
               )}
             </S.RecusedAvancar>

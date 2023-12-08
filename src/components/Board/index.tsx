@@ -2,7 +2,7 @@ import { ReactNode, createContext, useEffect, useState } from 'react';
 import * as S from './styles';
 import Lote from '../Lote';
 import Users from '../../data/UserData';
-import { ArrowCircleLeft } from '@phosphor-icons/react';
+import { ArrowCircleLeft, CheckCircle, HandWaving } from '@phosphor-icons/react';
 import { AtribuirButton } from '../../pages/Coordenador/Atividade/atividade-home/styles';
 import { BoardChanger } from '../BoardChanger';
 import { GetResponseBatche } from '../../api/services/batches/get-batche/get.interface';
@@ -51,7 +51,6 @@ export const Board = (props: BoardProps) => {
       setBatchesDispo(data.filter((batche) => batche.specific_status === 0));
       setBatchesAnda(data.filter((batche) => batche.specific_status === 1));
       setBatchesConc(data.filter((batche) => batche.specific_status === 2));
-      console.log(data);
     },
     onError: (err: ApiError) => {
       toast.error(err.message);
@@ -123,17 +122,16 @@ export const Board = (props: BoardProps) => {
                           //envolvidos={batche.envolvidos}
                         >
                           {user.role === 'Operador' && (
-                            <AtribuirButton
+                            <S.BlackButton
                               onClick={(e) => {
                                 e.preventDefault();
                                 setOpenEspecifModal(!openEspecifModal);
                                 setTitleModal({ button: 'Pegar lote', title: `Deseja pegar o ${batche.title}?` });
                                 setBatche(batche);
                               }}
-                              style={{ color: 'black' }}
                             >
-                              <img src="/PegarLote_icon.svg" alt='icone de mão acenando'/> Pegar lote
-                            </AtribuirButton>
+                              <HandWaving size={20} weight="fill" /> Pegar lote
+                            </S.BlackButton>
                           )}
                           {user.role === 'Coordenador' && (
                             <S.BlackButton
@@ -184,7 +182,7 @@ export const Board = (props: BoardProps) => {
                           //envolvidos={batche.envolvidos}
                         >
                           {user.role === 'Operador' && (
-                            <S.BlackButton
+                            <S.ConcluirButton
                               onClick={(e) => {
                                 e.preventDefault();
                                 setOpenEspecifModal(!openEspecifModal);
@@ -195,9 +193,9 @@ export const Board = (props: BoardProps) => {
                                 });
                               }}
                             >
-                              <img src="/finished-icon.svg" alt='icone de concluído ' />
+                              <CheckCircle size={24} weight="fill" />
                               <p>Marcar como concluído</p>
-                            </S.BlackButton>
+                            </S.ConcluirButton>
                           )}
                         </Lote>
                       </a>
@@ -235,7 +233,18 @@ export const Board = (props: BoardProps) => {
                           prioridade={batche.priority}
                           categoria={batche.category}
                           //envolvidos={batche.envolvidos}
-                        ></Lote>
+                        >
+                          {batche.main_status === 1 && (
+                            <img src="/icon-small/Catalogação.svg" style={{ width: '32px', height: '32px' }} />
+                          )}
+                          {batche.main_status === 2 && (
+                            <img src="/icon-small/Digitalização.svg" style={{ width: '32px', height: '32px' }} />
+                          )}
+                          {batche.main_status === 3 && (
+                            <img src="/icon-small/Upload.svg" style={{ width: '32px', height: '32px' }} />
+                            
+                          )}
+                        </Lote>
                       </a>
                     ),
                 )}
@@ -254,7 +263,6 @@ export const Board = (props: BoardProps) => {
           batche={batche_data}
           title={titleModal.title}
           button={titleModal.button}
-          
         />
       )}
     </KabanContext.Provider>

@@ -13,7 +13,6 @@ const Lote = (props: any) => {
             <S.LoteNumAvisos>
               {/* NÚMERO DO LOTE */}
               <h2>{props.value}</h2>
-
               {props.categoria &&
                 props.categoria.map((categoria: any) => (
                   <React.Fragment key={generateUUID()}>
@@ -61,6 +60,7 @@ const Lote = (props: any) => {
                       alt="icone triangular com ponto de exclamação no centro indicando que há uma pendência no lote"
                     />
                   )}
+
                   {/* PRIORIDADE */}
                   {props.prioridade == true && (
                     <S.Prioridade>
@@ -116,10 +116,7 @@ const Lote = (props: any) => {
                 </S.Envolvido>
               </S.LoteNumAvisos>
             </S.LoteDetalhes>
-
-            {/* BOTÃO DE ATRIBUIR ALGUÉM */}
-
-            {props.children && props.children}
+            
           </S.LoteArea>
         </S.Lote>
       )}

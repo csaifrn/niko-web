@@ -37,6 +37,7 @@ export interface AssignedUser {
 export interface Observation {
   id: string;
   observation: string;
+  //is_pending: boolean;
   created_by: CreatedBy2;
   created_at: string;
 }

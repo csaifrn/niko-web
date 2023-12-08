@@ -465,12 +465,27 @@ export const Botoes = styled.div`
   }
 `;
 
+export const PegarLote = styled.button`
+  height: 44px;
+  border-radius: 5px;
+  background-color: ${({ theme }) => theme.colors['gray/500']};
+  border: none;
+  font-family: 'Rubik';
+  color: ${({ theme }) => theme.colors['white']};
+  cursor: pointer;
+  &:hover {
+    filter: brightness(0.9);
+  }
+  &:active {
+    filter: brightness(0.9);
+  }
+`;
+
 export const ConcluirButton = styled.button`
   height: 44px;
   border-radius: 5px;
   background-color: ${({ theme }) => theme.colors['green/400']};
   border: none;
-  color: white;
   font-family: 'Rubik';
   color: ${({ theme }) => theme.colors['gray/700']};
   cursor: pointer;

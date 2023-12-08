@@ -86,12 +86,12 @@ const Perfil = () => {
           </S.FieldContainer>
           <S.FieldContainer>
             <S.LabelField>Email</S.LabelField>
-            <S.Text>pedro@email.com</S.Text>
+            <S.Text>{user.email}</S.Text>
           </S.FieldContainer>
           <S.Button>Salvar</S.Button>
           <S.ErrorMessage>{responseError}</S.ErrorMessage>
         </S.Form>
-        <S.DataFase>
+        {/* <S.DataFase>
           <DataFase
             recepcao={30}
             preparo={2}
@@ -103,7 +103,7 @@ const Perfil = () => {
               console.log();
             }}
           />
-        </S.DataFase>
+        </S.DataFase> */}
       </S.Wrapper>
       {modal && <EditImage close={() => setModal(!modal)} title="Mudar foto" url={url} />}
     </>

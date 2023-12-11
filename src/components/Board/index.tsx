@@ -5,18 +5,17 @@ import Users from '../../data/UserData';
 import { ArrowCircleLeft } from '@phosphor-icons/react';
 import { AtribuirButton } from '../../pages/Coordenador/Atividade/atividade-home/styles';
 import { BoardChanger } from '../BoardChanger';
-import { GetResponseBatche } from '../../api/services/batches/get-batche/get.interface';
 import { useMutation } from 'react-query';
 import { QueryBatche } from '../../api/services/batches/query-batches';
 import toast from 'react-hot-toast';
 import { ApiError } from '../../api/services/authentication/signIn/signIn.interface';
 import theme from '../../global/theme';
-
 import * as Empty from '../EmptyPage/styles';
 import { AtribuirAlguemModal } from '../AtribuirAlguemModal';
 import { Btn } from '../../pages/Etapas/Preparo/styles';
 import { ModalCriarLote } from '../ModalCriarLote';
 import { EspecifcModal } from '../EspecificStatusModal';
+import { GetResponseBatche } from '../../api/services/batches/query-batches/get.interface';
 
 interface BoardProps {
   main_status: number;
@@ -51,7 +50,6 @@ export const Board = (props: BoardProps) => {
       setBatchesDispo(data.filter((batche) => batche.specific_status === 0));
       setBatchesAnda(data.filter((batche) => batche.specific_status === 1));
       setBatchesConc(data.filter((batche) => batche.specific_status === 2));
-      console.log(data);
     },
     onError: (err: ApiError) => {
       toast.error(err.message);
@@ -119,7 +117,7 @@ export const Board = (props: BoardProps) => {
                           value={`${batche.title}`}
                           pendencia={batche.observations}
                           prioridade={batche.priority}
-                          categoria={batche.category}
+                          categoria={batche.settlementProjectCategories}
                           //envolvidos={batche.envolvidos}
                         >
                           {user.role === 'Operador' && (
@@ -132,7 +130,7 @@ export const Board = (props: BoardProps) => {
                               }}
                               style={{ color: 'black' }}
                             >
-                              <img src="/PegarLote_icon.svg" alt='icone de mão acenando'/> Pegar lote
+                              <img src="/PegarLote_icon.svg" alt="icone de mão acenando" /> Pegar lote
                             </AtribuirButton>
                           )}
                           {user.role === 'Coordenador' && (
@@ -180,7 +178,7 @@ export const Board = (props: BoardProps) => {
                           value={`${batche.title}`}
                           pendencia={batche.observations}
                           prioridade={batche.priority}
-                          categoria={batche.category}
+                          categoria={batche.settlementProjectCategories}
                           //envolvidos={batche.envolvidos}
                         >
                           {user.role === 'Operador' && (
@@ -195,7 +193,7 @@ export const Board = (props: BoardProps) => {
                                 });
                               }}
                             >
-                              <img src="/finished-icon.svg" alt='icone de concluído ' />
+                              <img src="/finished-icon.svg" alt="icone de concluído " />
                               <p>Marcar como concluído</p>
                             </S.BlackButton>
                           )}
@@ -233,7 +231,7 @@ export const Board = (props: BoardProps) => {
                           value={`${batche.title}`}
                           pendencia={batche.observations}
                           prioridade={batche.priority}
-                          categoria={batche.category}
+                          categoria={batche.settlementProjectCategories}
                           //envolvidos={batche.envolvidos}
                         ></Lote>
                       </a>
@@ -254,7 +252,6 @@ export const Board = (props: BoardProps) => {
           batche={batche_data}
           title={titleModal.title}
           button={titleModal.button}
-          
         />
       )}
     </KabanContext.Provider>

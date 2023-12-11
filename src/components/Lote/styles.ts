@@ -88,7 +88,36 @@ const Categoria = styled.div`
   gap: 0.5em;
 `;
 
+export const Categories = styled.div`
+  background-color: ${({ theme }) => theme.colors['gray/500']};
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  width: 10em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1em;
+  padding: 8px;
+  color: white;
+  border-radius: 3px;
+  position: absolute;
+  top: calc(100% + 5px);
+  left: 0;
+  display: none;
+  font-family: 'Rubik';
+
+  p:last-child {
+    border: none !important;
+  }
+`;
+
+export const ToolText = styled.p`
+  color: white;
+  padding: 5px;
+  border-bottom: 1px ${({ theme }) => theme.colors['gray/450']} solid;
+`;
+
 const CategoriaTextDiv = styled.div`
+  position: relative;
   height: 24px;
   background-color: ${({ theme }) => theme.colors['gray/700']};
   display: flex;
@@ -97,6 +126,11 @@ const CategoriaTextDiv = styled.div`
   p {
     color: 'white';
     margin-bottom: '0';
+  }
+  :hover div {
+    visibility: visible;
+    opacity: 1;
+    display: block;
   }
 `;
 

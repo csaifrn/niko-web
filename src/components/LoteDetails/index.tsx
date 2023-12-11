@@ -127,6 +127,8 @@ export const LoteDetails = () => {
     },
   });
 
+  console.log(observations)
+
   const deleteObs = useMutation(DeleteObservation, {
     onSuccess: (data) => {
       toast.success('Observação excluida');
@@ -268,9 +270,9 @@ export const LoteDetails = () => {
               </S.DetalhesLote>
 
               {/* CATEGORIAS */}
-              <S.DetalhesLote>
+              {/* <S.DetalhesLote>
                 <S.BlockGrayBorder>{task?.category.name}</S.BlockGrayBorder>
-              </S.DetalhesLote>
+              </S.DetalhesLote> */}
 
               {/* PRIORIORIDADE(SE TIVER) */}
               {priority === true && (
@@ -467,9 +469,9 @@ export const LoteDetails = () => {
                   </S.BotaoMudarFase>
                 )}
 
-                {/* DELETAR LOTE */}
+                {/* EXCLUIR LOTE */}
                 <S.BotaoDeletarLote>
-                  <img src={`/trash.svg`} alt="Botão de deletar Lote" />
+                  <img src={`/trash.svg`} alt="Botão de excluir Lote" />
                   Excluir lote
                 </S.BotaoDeletarLote>
               </S.Botoes>
@@ -571,7 +573,7 @@ export const LoteDetails = () => {
         )}
         {delete_modal && (
           <DeletarModal
-            title="Deletar observação?"
+            title="Excluir observação?"
             close={() => setDeleteModal(!delete_modal)}
             deleteFunction={() => DeleteObs(observationId)}
           />

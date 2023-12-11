@@ -27,13 +27,13 @@ const Home = () => {
         />
         <CardFase
           fase={1}
-          link={`${id}/Board/Catalogacao`}
+          link={`${id}/Board/Catalogação`}
           color={theme.colors['yellow/500']}
           srcImgIcon="/IconsBookmark.svg"
         />
         <CardFase
           fase={2}
-          link={`${id}/Board/Digitalizacao`}
+          link={`${id}/Board/Digitalização`}
           color={theme.colors['blue/400']}
           srcImgIcon="/IconsScanner.svg"
         />

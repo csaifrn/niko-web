@@ -19,7 +19,7 @@ export const ObsDivBlack = styled.div<IObsDiv>`
   border-radius: 5px;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 16px;
   padding: 1.5em;
   width: calc(100%-2em);
   order: 1;
@@ -29,7 +29,11 @@ export const ObsDivBlack = styled.div<IObsDiv>`
   animation-duration: ${({ index }) => index * 0.8}s;
 `;
 
-export const DivObservation = styled.div``;
+export const DivObservation = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 16px;
+`;
 
 export const DivButtons = styled.div`
   display: flex;
@@ -41,11 +45,17 @@ export const BottomContent = styled.div`
   column-span: 3;
   display: flex;
   flex-direction: column;
+  gap: 16px;
+`;
+
+export const ObsCreationData = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 `;
 
 export const Data = styled.span`
   color: ${({ theme }) => theme.colors['gray/300']};
-  margin-top: 0.5em;
 `;
 
 export const ButtonDelete = styled.button`
@@ -60,7 +70,7 @@ export const ButtonDelete = styled.button`
   justify-content: center;
   align-items: center;
   transition: all 300ms;
-  border-radius: 100%;
+  border-radius: 3px;
 
   :hover div {
     visibility: visible;
@@ -80,7 +90,7 @@ export const ButtonEdit = styled.button`
   justify-content: center;
   align-items: center;
   transition: all 300ms;
-  border-radius: 100%;
+  border-radius: 3px;
   :hover {
     background-color: ${({ theme }) => theme.colors['gray/400']};
   }

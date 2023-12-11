@@ -27,6 +27,7 @@ export const ObservationModal = (props: DeletarModalProps) => {
   const [closing, setClosing] = useState(false);
   const [obs, setObs] = useState<string>(props.observation ? props.observation : '');
   const [responseError, setResponseError] = useState('');
+  const [isPending, setIspending] = useState<boolean>(false);
 
   const [validationFormError, setValidationFormError] = useState<ErrorsForm>({ observation: '' });
 
@@ -36,6 +37,10 @@ export const ObservationModal = (props: DeletarModalProps) => {
   const onChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
     setValue(event.target.value);
   };
+
+  const handlePend = () => {
+    setIspending(!isPending)
+  }
 
   useLayoutEffect(() => {
     if (textareaRef.current) {
@@ -129,14 +134,13 @@ export const ObservationModal = (props: DeletarModalProps) => {
       <S.ModalBackdrop>
         <S.ModalArea id="modal-scaling">
           <S.ModalContent>
-
             <S.NameClose>
               <h2>{props.title}</h2>
               <S.Exit type="button" onClick={handleClose}>
                 <img src="/close.svg" alt="" height={24} width={24} />
               </S.Exit>
             </S.NameClose>
-            
+
             <S.InputObservation
               autoFocus
               ref={textareaRef}
@@ -156,6 +160,14 @@ export const ObservationModal = (props: DeletarModalProps) => {
               }}
               placeholder="Edite sua observação..."
             />
+
+            <h3>Pendência?</h3>
+
+            <S.SwitchButton>
+              <S.Input checked={isPending} onChange={handlePend} />
+              <S.Slider />
+            </S.SwitchButton>
+
             {validationFormError.observation && <ErrorMessage>{validationFormError.observation}</ErrorMessage>}
             <ButtonGreen
               onClick={updateObservation}

@@ -126,6 +126,7 @@ export const CreateObservationModal = (props: DeletarModalProps) => {
       props.close();
     }, 300);
   };
+
   return (
     <>
       <S.ModalBackdrop>

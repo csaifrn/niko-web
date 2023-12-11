@@ -24,6 +24,7 @@ export const ConfigModal = (props: ConfigModalProps) => {
     },
   });
 
+
   const handlePrioridadeCheck = () => {
     if (Pchecked) {
       setPChecked(false);

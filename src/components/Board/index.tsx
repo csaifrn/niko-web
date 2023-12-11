@@ -17,6 +17,7 @@ import { AtribuirAlguemModal } from '../AtribuirAlguemModal';
 import { Btn } from '../../pages/Etapas/Preparo/styles';
 import { ModalCriarLote } from '../ModalCriarLote';
 import { EspecifcModal } from '../EspecificStatusModal';
+import { Link } from 'react-router-dom';
 
 interface BoardProps {
   main_status: number;
@@ -112,7 +113,7 @@ export const Board = (props: BoardProps) => {
                 {batchesDispo.map(
                   (batche) =>
                     batche && (
-                      <a href={`/Lote/${batche.id}`} key={batche.id} style={{ textDecoration: 'none' }}>
+                      <Link to={`/Lote/${batche.id}`} key={batche.id} style={{ textDecoration: 'none' }}>
                         <Lote
                           task={batche}
                           value={`${batche.title}`}
@@ -145,7 +146,7 @@ export const Board = (props: BoardProps) => {
                             </S.BlackButton>
                           )}
                         </Lote>
-                      </a>
+                      </Link>
                     ),
                 )}
               </S.kanbanSectionContent>
@@ -172,7 +173,7 @@ export const Board = (props: BoardProps) => {
                 {batchesAnda?.map(
                   (batche) =>
                     batche && (
-                      <a href={`/Lote/${batche.id}`} key={batche.id} style={{ textDecoration: 'none' }}>
+                      <Link to={`/Lote/${batche.id}`} key={batche.id} style={{ textDecoration: 'none' }}>
                         <Lote
                           task={batche}
                           value={`${batche.title}`}
@@ -198,7 +199,7 @@ export const Board = (props: BoardProps) => {
                             </S.ConcluirButton>
                           )}
                         </Lote>
-                      </a>
+                      </Link>
                     ),
                 )}
               </S.kanbanSectionContent>
@@ -225,7 +226,7 @@ export const Board = (props: BoardProps) => {
                 {batchesConc.map(
                   (batche) =>
                     batche && (
-                      <a href={`/Lote/${batche.id}`} key={batche.id} style={{ textDecoration: 'none' }}>
+                      <Link to={`/Lote/${batche.id}`} key={batche.id} style={{ textDecoration: 'none' }}>
                         <Lote
                           task={batche}
                           value={`${batche.title}`}
@@ -245,7 +246,7 @@ export const Board = (props: BoardProps) => {
                             
                           )}
                         </Lote>
-                      </a>
+                      </Link>
                     ),
                 )}
               </S.kanbanSectionContent>

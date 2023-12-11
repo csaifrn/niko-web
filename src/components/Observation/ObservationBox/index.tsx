@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import * as S from './styles';
-import { MinusCircle, PencilSimple } from '@phosphor-icons/react';
+import { MinusCircle, PencilSimple, Trash, Warning } from '@phosphor-icons/react';
 import { Observation } from '../../../api/services/batches/get-batche/get.interface';
 import theme from '../../../global/theme';
 import { SharedState } from '../../../context/SharedContext';
@@ -37,11 +37,12 @@ export const BoxObservation = ({
     openDelete();
   };
 
+  console.log(observation.is_pending)
+
   return (
     <>
       <S.ObsDivBlack index={index}>
         <S.BottomContent>
-
           {/* mostra quem criou a observação */}
           {/* {observation.created_by.name == user?.name &&
             <p>Você</p>
@@ -49,26 +50,37 @@ export const BoxObservation = ({
           {observation.created_by.name != user?.name &&
             <p>{observation.created_by.name}</p>
           } */}
-          
-          <p>{observation.created_by.name}</p>
-          <S.Data>
-            Criado em{' '}
-            {new Date(observation.created_at).toLocaleString('pt-br', {
-              timeZone: 'America/Sao_paulo',
-            })}
-          </S.Data>
+          <S.ObsCreationData>
+            <p>{observation.created_by.name}</p>
+            <S.Data>
+              Criado em{' '}
+              {new Date(observation.created_at).toLocaleString('pt-br', {
+                timeZone: 'America/Sao_paulo',
+              })}
+            </S.Data>
+          </S.ObsCreationData>
+
         </S.BottomContent>
-        <S.DivObservation>{observation.observation}</S.DivObservation>
+
+        <S.DivObservation>
+          {/* <img src='/warning.svg'/> */}
+          {observation.is_pending == true &&
+            <Warning size={24} color="#f7df4c" weight="fill" />
+          }
+          <p>{observation.observation}</p>
+        </S.DivObservation>
+
+        {/* Botões de editar e excluir observação */}
         {/* <h2>{observation.isPending}</h2> */}
         {observation.created_by.user_id === user?.sub && (
           <S.DivButtons>
             <S.ButtonEdit onClick={handleClickEdit}>
               <PencilSimple size={18} weight="fill" color={theme.colors['white']} />
-              <S.ToolTip style={{width: '135px'}}>Editar observação</S.ToolTip>
+              <S.ToolTip style={{ width: '135px' }}>Editar observação</S.ToolTip>
             </S.ButtonEdit>
             <S.ButtonDelete onClick={handleClickDelete}>
-              <MinusCircle size={18} weight="fill" color={theme.colors['red/500']} />
-              <S.ToolTip style={{width: '140px'}} >Excluir observação</S.ToolTip>
+              <Trash size={18} color="#f5f5f5" weight="fill" />
+              <S.ToolTip style={{ width: '140px' }}>Excluir observação</S.ToolTip>
             </S.ButtonDelete>
           </S.DivButtons>
         )}

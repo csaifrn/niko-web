@@ -5,7 +5,6 @@ export interface GetBatcheParams {
 export interface GetResponseBatche {
   id: string;
   title: string;
-  status: number;
   main_status: number;
   specific_status: number;
   digital_files_count: number;
@@ -15,11 +14,11 @@ export interface GetResponseBatche {
   created_at: string;
   updated_at: string;
   created_by: CreatedBy;
-  category: Category;
+  categories: Category[];
   assigned_users: AssignedUser[];
+  tags: any[];
   observations: Observation[];
 }
-
 export interface CreatedBy {
   user_id: string;
   name: string;

@@ -14,9 +14,20 @@ export interface GetResponseBatche {
   created_at: string;
   updated_at: string;
   created_by: CreatedBy;
-  category: Category;
+  categories: Category[];
   assigned_users: AssignedUser[];
+  tags: any[];
   observations: Observation[];
+}
+
+export interface CreatedBy {
+  user_id: string;
+  name: string;
+}
+
+export interface Category {
+  id: string;
+  name: string;
 }
 
 export interface CreatedBy {

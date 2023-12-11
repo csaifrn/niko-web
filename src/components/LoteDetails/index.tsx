@@ -58,7 +58,7 @@ export const LoteDetails = () => {
   const [openEspecifModal, setOpenEspecifModal] = useState<boolean>(false);
   const [titleModal, setTitleModal] = useState({ button: 'Pegar lote', title: 'Deseja pegar o lote?' });
   const [option, setOption] = useState<Option>();
-  const { user} = SharedState();
+  const { user } = SharedState();
 
   const handleConfig = () => {
     setConfigModal(!config_modal);
@@ -217,7 +217,6 @@ export const LoteDetails = () => {
 
               {/* DADOS DA CRIAÇÃO DO LOTE */}
               <S.DadosCriacaoLoteDiv>
-
                 {/* SE VOCÊ CRIOU */}
                 {task?.created_by.name == user?.name && (
                   <S.BlockGray>
@@ -265,9 +264,11 @@ export const LoteDetails = () => {
                 )}
               </S.DetalhesLote>
 
-              {/* CATEGORIAS */}
               <S.DetalhesLote>
-                <S.BlockGrayBorder>{task?.category.name}</S.BlockGrayBorder>
+                {/* CATEGORIAS */}
+                {task?.categories.map((cat) => {
+                  return <S.BlockGrayBorder key={cat.id}>{cat.name}</S.BlockGrayBorder>;
+                })}
               </S.DetalhesLote>
 
               {/* PRIORIORIDADE(SE TIVER) */}
@@ -350,7 +351,16 @@ export const LoteDetails = () => {
                       setTitleModal({ button: 'Pegar lote', title: `Deseja pegar o ${task?.title}?` });
                     }}
                   >
-                    <div style={{display: 'flex' , justifyContent: 'flex-start', gap: '16px' , color: 'white' , alignItems: 'center', marginLeft: '16px'}}>
+                    <div
+                      style={{
+                        display: 'flex',
+                        justifyContent: 'flex-start',
+                        gap: '16px',
+                        color: 'white',
+                        alignItems: 'center',
+                        marginLeft: '16px',
+                      }}
+                    >
                       <img src="/PegarLote_icon.svg" alt="ícone de mãozinha acenando" />
                       <p style={{ color: 'black' }}>Pegar lote</p>
                     </div>
@@ -363,15 +373,26 @@ export const LoteDetails = () => {
                     onClick={(e) => {
                       e.preventDefault();
                       setOpenEspecifModal(!openEspecifModal);
-                      setTitleModal({ button: 'Marcar como concluído', title: `Deseja marcar o ${task?.title} como concluído?` });
+                      setTitleModal({
+                        button: 'Marcar como concluído',
+                        title: `Deseja marcar o ${task?.title} como concluído?`,
+                      });
                     }}
-                    style={{ backgroundColor: theme.colors['gray/500']}}
+                    style={{ backgroundColor: theme.colors['gray/500'] }}
                   >
-                    <div style={{display: 'flex' , justifyContent: 'flex-start', gap: '16px' , color: 'white' , alignItems: 'center', marginLeft: '16px'}}>
+                    <div
+                      style={{
+                        display: 'flex',
+                        justifyContent: 'flex-start',
+                        gap: '16px',
+                        color: 'white',
+                        alignItems: 'center',
+                        marginLeft: '16px',
+                      }}
+                    >
                       <img src="/finished-icon.svg" alt="ícone de concluído" />
                       Marcar como concluído
                     </div>
-
                   </S.ConcluirButton>
                 )}
 

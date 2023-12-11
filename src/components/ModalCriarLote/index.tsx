@@ -27,7 +27,6 @@ interface Options {
 export const ModalCriarLote = (props: ModalCriarProps) => {
   const kanban = useContext(KabanContext);
 
-  const [categoria, setCategoria] = useState<any>(null);
   const [closing, setClosing] = useState(false);
   const [options, setOptions] = useState<Options[]>([]);
   const [name, setName] = useState('');
@@ -77,7 +76,6 @@ export const ModalCriarLote = (props: ModalCriarProps) => {
     onSuccess: (data: GetResponseBatche) => {
       toast.success('Lote Criado!');
       console.log(data);
-      kanban?.setBatchesDispo((prev) => [...prev, data]);
       handleSucess();
     },
     onError: (error: ApiError) => {
@@ -92,7 +90,6 @@ export const ModalCriarLote = (props: ModalCriarProps) => {
       await validationLoginSchema.validate(
         {
           title,
-          settlement_project_category_id: categoria?.value,
         },
         {
           abortEarly: false,
@@ -135,7 +132,6 @@ export const ModalCriarLote = (props: ModalCriarProps) => {
     if (isValid) {
       loginMutation.mutate({
         title,
-        settlement_project_category_id: categoria!.value,
       });
     }
   };
@@ -165,7 +161,7 @@ export const ModalCriarLote = (props: ModalCriarProps) => {
                 <img src="/close.svg" alt="" height={18} width={18} />
               </S.Exit>
             </S.NameClose>
-            
+
             <S.FormCriar onSubmit={onSubmit}>
               <S.InputText
                 placeholder="Nome do Lote"
@@ -175,7 +171,7 @@ export const ModalCriarLote = (props: ModalCriarProps) => {
                 className="title"
               />
               {validationFormError.title && <ErrorMessage>{validationFormError.title}</ErrorMessage>}
-              <h3>Escolha uma categoria</h3>
+              {/* <h3>Escolha uma categoria</h3>
               <S.CustomSelect
                 onInputChange={(e) => setName(e)}
                 placeholder={'Digite no mínimo 3 caracteres...'}
@@ -188,7 +184,7 @@ export const ModalCriarLote = (props: ModalCriarProps) => {
               />
               {validationFormError.settlement_project_category_id && (
                 <ErrorMessage>{validationFormError.settlement_project_category_id}</ErrorMessage>
-              )}
+              )} */}
               {loginMutation.isLoading ? (
                 <S.Criar type="submit" disabled>
                   <ReactLoading type="cylon" color="white" height={30} width={30} />

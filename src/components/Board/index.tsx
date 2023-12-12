@@ -37,7 +37,15 @@ export const Board = (props: BoardProps) => {
     onSuccess: (data: GetResponseBatche[]) => {
       setBatchesDispo(data.filter((batche) => batche.specific_status === 0));
       setBatchesAnda(data.filter((batche) => batche.specific_status === 1));
-      setBatchesConc(data.filter((batche) => batche.specific_status === 2));
+    },
+    onError: (err: ApiError) => {
+      toast.error(err.message);
+    },
+  });
+
+  const mutateBatchesConc = useMutation(QueryBatche, {
+    onSuccess: (data: GetResponseBatche[]) => {
+      setBatchesConc(data.filter((batche) => batche.specific_status === 0));
     },
     onError: (err: ApiError) => {
       toast.error(err.message);
@@ -46,6 +54,9 @@ export const Board = (props: BoardProps) => {
   useEffect(() => {
     mutateBatchesQuery.mutate({
       status: props.main_status,
+    });
+    mutateBatchesConc.mutate({
+      status: props.main_status + 1,
     });
   }, []);
   return (

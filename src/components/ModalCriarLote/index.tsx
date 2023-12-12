@@ -74,18 +74,13 @@ export const ModalCriarLote = (props: ModalCriarProps) => {
   };
 
   const loginMutation = useMutation(CreateBatche, {
-    onSuccess: (data: any) => {
-      if (data.statusCode) {
-        console.log('opa');
-        toast.error(data.message);
-      } else {
+    onSettled: (data: any) => {
+      if (data) {
         toast.success('Lote Criado!');
         handleSucess();
-      }
-    },
-    onError: (error: ApiError) => {
-      if (error.response) {
-        toast.error(error.response!.data.message);
+      } else {
+        console.log('opa');
+        toast.error(data && data.massege ? data.message : 'Algum erro ocorreu!');
       }
     },
   });

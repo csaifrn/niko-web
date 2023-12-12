@@ -89,8 +89,10 @@ const Categoria = styled.div`
 `;
 
 export const Categories = styled.div`
-  background-color: ${({ theme }) => theme.colors['gray/500']};
-  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  background-color: ${({ theme }) => theme.colors['gray/450']};
+  box-shadow: rgba(100, 100, 111, 0.1) 0px 7px 29px 0px;
+  z-index: 101 !important;
+
   width: 10em;
   display: flex;
   justify-content: center;
@@ -113,7 +115,7 @@ export const Categories = styled.div`
 export const ToolText = styled.p`
   color: white;
   padding: 5px;
-  border-bottom: 1px ${({ theme }) => theme.colors['gray/450']} solid;
+  border-bottom: 1px ${({ theme }) => theme.colors['gray/400']} solid;
 `;
 
 const CategoriaTextDiv = styled.div`

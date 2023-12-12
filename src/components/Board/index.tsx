@@ -1,9 +1,9 @@
-import { ReactNode, createContext, useEffect, useState } from 'react';
+import { ReactNode, useEffect, useState } from 'react';
 import * as S from './styles';
 import Lote from '../Lote';
 import Users from '../../data/UserData';
-import { ArrowCircleLeft } from '@phosphor-icons/react';
 import { AtribuirButton } from '../../pages/Coordenador/Atividade/atividade-home/styles';
+import { ArrowCircleLeft, UsersThree } from '@phosphor-icons/react';
 import { BoardChanger } from '../BoardChanger';
 import { useMutation } from 'react-query';
 import { QueryBatche } from '../../api/services/batches/query-batches';
@@ -22,29 +22,17 @@ interface BoardProps {
   children?: ReactNode;
 }
 
-interface ContextProps {
-  batchesDispo: GetResponseBatche[];
-  setBatchesDispo: React.Dispatch<React.SetStateAction<GetResponseBatche[]>>;
-  batchesAnda: GetResponseBatche[];
-  setBatchesAnda: React.Dispatch<React.SetStateAction<GetResponseBatche[]>>;
-  batchesConc: GetResponseBatche[];
-  setBatchesConc: React.Dispatch<React.SetStateAction<GetResponseBatche[]>>;
-}
-
-export const KabanContext = createContext<ContextProps | null>(null);
-
 export const Board = (props: BoardProps) => {
   const user = { email: Users[1].email, role: 'Operador' };
 
   const [batchesDispo, setBatchesDispo] = useState<GetResponseBatche[]>([]);
   const [batchesAnda, setBatchesAnda] = useState<GetResponseBatche[]>([]);
   const [batchesConc, setBatchesConc] = useState<GetResponseBatche[]>([]);
-  const [titleModal, setTitleModal] = useState({ button: 'Pegar lote', title: 'Deseja pegar o lote' });
+  const [titleModal, setTitleModal] = useState({ button: 'pegar lote', title: 'Deseja pegar o lote?' });
   const [batche_data, setBatche] = useState<GetResponseBatche>();
   const [atribuirModal, setAtribuirModal] = useState<boolean>(false);
   const [openCriarModal, setOpenCriarModal] = useState<boolean>(false);
   const [openEspecifModal, setOpenEspecifModal] = useState<boolean>(false);
-
   const mutateBatchesQuery = useMutation(QueryBatche, {
     onSuccess: (data: GetResponseBatche[]) => {
       setBatchesDispo(data.filter((batche) => batche.specific_status === 0));
@@ -55,18 +43,13 @@ export const Board = (props: BoardProps) => {
       toast.error(err.message);
     },
   });
-
   useEffect(() => {
     mutateBatchesQuery.mutate({
       status: props.main_status,
     });
   }, []);
-
   return (
-    <KabanContext.Provider
-      value={{ batchesAnda, batchesConc, batchesDispo, setBatchesAnda, setBatchesConc, setBatchesDispo }}
-    >
-      {/* Menu das fases */}
+    <>
       <BoardChanger />
 
       {/* Botão de Criar lote(só aparece no preparo) */}
@@ -120,7 +103,7 @@ export const Board = (props: BoardProps) => {
                           categoria={batche.settlementProjectCategories}
                           //envolvidos={batche.envolvidos}
                         >
-                          {user.role === 'Operador' && (
+                          {user.role === 'Operador' && props.main_status != 4 && (
                             <AtribuirButton
                               onClick={(e) => {
                                 e.preventDefault();
@@ -151,7 +134,7 @@ export const Board = (props: BoardProps) => {
               </S.kanbanSectionContent>
             </S.kanban>
           )}
-          {batchesAnda.length >= 0 && (
+          {batchesAnda.length >= 0 && props.main_status != 4 && (
             <S.kanban>
               <S.divTitulo>
                 <h2 style={{ color: theme.colors.white }}>Em andamento</h2>
@@ -204,7 +187,7 @@ export const Board = (props: BoardProps) => {
               </S.kanbanSectionContent>
             </S.kanban>
           )}
-          {batchesConc.length >= 0 && (
+          {batchesConc.length >= 0 && props.main_status != 4 && (
             <S.kanban>
               <S.divTitulo>
                 <h2 style={{ color: theme.colors.white }}>Concluídos</h2>
@@ -245,16 +228,30 @@ export const Board = (props: BoardProps) => {
       {atribuirModal && (
         <AtribuirAlguemModal close={() => setAtribuirModal(false)} assigners={batche_data?.assigned_users} />
       )}
-      {openCriarModal && <ModalCriarLote close={() => setOpenCriarModal(!openCriarModal)} />}
+      {openCriarModal && (
+        <ModalCriarLote
+          close={() => setOpenCriarModal(!openCriarModal)}
+          refetch={() =>
+            mutateBatchesQuery.mutate({
+              status: props.main_status,
+            })
+          }
+        />
+      )}
       {openEspecifModal && batche_data && (
         <EspecifcModal
           close={() => setOpenEspecifModal(!openEspecifModal)}
           batche={batche_data}
           title={titleModal.title}
           button={titleModal.button}
+          refetch={() => {
+            mutateBatchesQuery.mutate({
+              status: props.main_status,
+            });
+          }}
         />
       )}
-    </KabanContext.Provider>
+    </>
   );
 };
 

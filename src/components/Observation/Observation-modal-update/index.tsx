@@ -4,30 +4,33 @@ import { ButtonGreen } from '../../../pages/Projeto/projeto-create/styles';
 import { ApiError } from '../../../api/services/authentication/signIn/signIn.interface';
 import toast from 'react-hot-toast';
 import { useMutation } from 'react-query';
-import { DeleteObservation } from '../../../api/services/batches/observation/delete-obsevation';
 import { UpdateObservation } from '../../../api/services/batches/observation/update-obsevation';
 import * as Yup from 'yup';
 import { ErrorMessage } from '../../../pages/Login/styles';
 import { Observation } from '../../../api/services/batches/get-batche/get.interface';
 import { ErrorsForm } from '../ObservationBox/interface.observation';
 import { validationObservationSchema } from '../ObservationBox/validation.observation';
+import { PatchPendencia } from '../../../api/services/batches/observation/pendencia';
 
 const MIN_TEXTAREA_HEIGHT = 32;
 
 interface DeletarModalProps {
-  refetch: (e: Observation[]) => void;
+  refetch: () => void;
   title: string;
   id: string | undefined;
   close: () => void;
   observation: string | undefined;
   observations: Observation[] | undefined;
+  pendencia: boolean;
 }
 
 export const ObservationModal = (props: DeletarModalProps) => {
   const [closing, setClosing] = useState(false);
   const [obs, setObs] = useState<string>(props.observation ? props.observation : '');
   const [responseError, setResponseError] = useState('');
-  const [isPending, setIspending] = useState<boolean>(false);
+  const [isPending, setIsPending] = useState<boolean>(props.pendencia);
+
+  console.log(props.id);
 
   const [validationFormError, setValidationFormError] = useState<ErrorsForm>({ observation: '' });
 
@@ -38,9 +41,34 @@ export const ObservationModal = (props: DeletarModalProps) => {
     setValue(event.target.value);
   };
 
+  const Pendencia = useMutation(PatchPendencia, {
+    onSuccess: () => {
+      toast.success(`Pendência ${isPending ? 'foi desativada' : 'foi ativada'}!`);
+    },
+    onError: (error: ApiError) => {
+      toast.error(error.response!.data.message);
+    },
+  });
+
   const handlePend = () => {
-    setIspending(!isPending)
-  }
+    if (isPending && props.id) {
+      setIsPending(false);
+      //props.priorityOnChange(false);
+      Pendencia.mutate({
+        id: props.id,
+      });
+    } else if (props.id) {
+      setIsPending(true);
+      //props.priorityOnChange(true);
+      Pendencia.mutate({
+        id: props.id,
+      });
+    }
+  };
+
+  // const handlePend = () => {
+  //   setIspending(!isPending)
+  // }
 
   useLayoutEffect(() => {
     if (textareaRef.current) {
@@ -65,8 +93,9 @@ export const ObservationModal = (props: DeletarModalProps) => {
         }
         return observation;
       });
-      props.refetch(updatedObservations ? updatedObservations : []);
+
       handleClose();
+
     },
     onError: (error: ApiError) => {
       if (error.response) {
@@ -127,6 +156,7 @@ export const ObservationModal = (props: DeletarModalProps) => {
     setClosing(true);
     setTimeout(() => {
       props.close();
+      props.refetch();
     }, 300);
   };
   return (
@@ -161,7 +191,7 @@ export const ObservationModal = (props: DeletarModalProps) => {
               placeholder="Edite sua observação..."
             />
 
-            <h3>Pendência?</h3>
+            <h3>Pendência</h3>
 
             <S.SwitchButton>
               <S.Input checked={isPending} onChange={handlePend} />

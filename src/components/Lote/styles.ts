@@ -58,10 +58,20 @@ const LoteNumAvisos = styled.div`
   }
 `;
 
+export const PendNumberIconBlack = styled.div`
+  display: flex;
+  align-items: center;
+  background-color:${({ theme }) => theme.colors['gray/900']};
+  gap: 8px;
+  border-radius: 3px;
+  height: 24px;
+  padding: 0px 4px 0px 4px;
+`;
+
 export const PendPrioridade = styled.div`
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 8px;
 `;
 
 const Prioridade = styled.div`

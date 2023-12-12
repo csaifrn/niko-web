@@ -1,29 +1,19 @@
 import React from 'react';
 import * as S from './styles';
 import { generateUUID } from '../../utils/generateUUID.util';
+import { Warning } from '@phosphor-icons/react';
 
 const Lote = (props: any) => {
+  console.log(props.pendencia);
 
   return (
     <>
       {props.edit == true && (
         <S.LoteEdit className="Lote">
           <S.LoteArea>
-
             <S.LoteNumAvisos>
               {/* NÚMERO DO LOTE */}
               <h2>{props.value}</h2>
-              {props.categoria &&
-                props.categoria.map((categoria: any) => (
-                  <React.Fragment key={generateUUID()}>
-                    {categoria.nome === props.prioridade && (
-                      //AVISO DE PRIORIDADE
-                      <S.Prioridade>
-                        <p>Prioridade</p>
-                      </S.Prioridade>
-                    )}
-                  </React.Fragment>
-                ))}
             </S.LoteNumAvisos>
 
             <S.LoteNumAvisos>
@@ -54,11 +44,18 @@ const Lote = (props: any) => {
 
                 <S.PendPrioridade>
                   {/* PENDENCIA */}
+
                   {props.pendencia > 0 && (
-                    <img
-                      src="/warning.svg"
-                      alt="icone triangular com ponto de exclamação no centro indicando que há uma pendência no lote"
-                    />
+                    <S.PendNumberIconBlack>
+                      <Warning
+                        size={18}
+                        color="#f7df4c"
+                        weight="fill"
+                        alt="icone triangular com ponto de exclamação no centro indicando que há uma pendência no lote"
+                      />
+
+                      <h2>{props.pendencia}</h2>
+                    </S.PendNumberIconBlack>
                   )}
 
                   {/* PRIORIDADE */}
@@ -116,7 +113,6 @@ const Lote = (props: any) => {
                 </S.Envolvido>
               </S.LoteNumAvisos>
             </S.LoteDetalhes>
-            
           </S.LoteArea>
         </S.Lote>
       )}

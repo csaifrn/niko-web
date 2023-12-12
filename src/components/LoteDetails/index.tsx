@@ -127,7 +127,7 @@ export const LoteDetails = () => {
     },
   });
 
-  console.log(observations)
+  console.log(observations);
 
   const deleteObs = useMutation(DeleteObservation, {
     onSuccess: (data) => {
@@ -276,11 +276,11 @@ export const LoteDetails = () => {
 
               {/* PRIORIORIDADE(SE TIVER) */}
               {priority === true && (
-                <S.CategoriaPrioridade>
-                  <S.Prioridade>
+                <S.PrioridadeDiv>
+                  <S.PrioridadeTag>
                     <p>Prioridade</p>
-                  </S.Prioridade>
-                </S.CategoriaPrioridade>
+                  </S.PrioridadeTag>
+                </S.PrioridadeDiv>
               )}
 
               <S.FaseAtualDiv>
@@ -311,7 +311,11 @@ export const LoteDetails = () => {
               {/* OBSERVAÇÕES */}
               <S.Observações>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                  <S.PendenciaTitulo>Observações</S.PendenciaTitulo>
+                  <S.ObsTituloNumber>
+                    <S.ObservacaoTitulo>Observações</S.ObservacaoTitulo>
+                    <p>{observations.length}</p>
+                  </S.ObsTituloNumber>
+
                   <S.BotaoCriarObservacao
                     onClick={() => {
                       setObservacao(!observacao);
@@ -361,7 +365,7 @@ export const LoteDetails = () => {
                         gap: '16px',
                         color: 'white',
                         alignItems: 'center',
-                        marginLeft: '12px'
+                        marginLeft: '12px',
                       }}
                     >
                       <HandWaving size={20} weight="fill" />
@@ -583,11 +587,16 @@ export const LoteDetails = () => {
             id={observationId}
             observation={observation?.observation}
             observations={observations}
-            refetch={(Obss: Observation[]) => {
-              setObservations(Obss);
+            refetch={() => {
+              if (id) {
+                beforeTask.mutate({
+                  id,
+                });
+              }
             }}
             title="Mudar observação"
             close={() => setEditModal(!edit_modal)}
+            pendencia={observation?.is_pending}
           />
         )}
         {atribuir_modal && (

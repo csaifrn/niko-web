@@ -254,13 +254,12 @@ export const BlockGrayBorder = styled.div`
   border-radius: 3px;
 `;
 
-export const CategoriaPrioridade = styled.div`
+export const PrioridadeDiv = styled.div`
   display: flex;
-  flex-wrap: wrap;
   gap: 0.5em;
 `;
 
-export const Prioridade = styled.div`
+export const PrioridadeTag = styled.div`
   width: 72px;
   height: 24px;
   background-color: ${({ theme }) => theme.colors['red/700']};
@@ -307,7 +306,8 @@ export const Text = styled.p`
   align-content: left;
 `;
 
-export const FaseAtualDiv = styled.div``;
+export const FaseAtualDiv = styled.div`
+`;
 
 export const IconTooltipFase = styled.div`
   position: relative;
@@ -348,18 +348,17 @@ export const PendObservacao = styled.div`
   }
 `;
 
-export const PendenciaTitulo = styled.p`
-  font-size: 12px;
-  @media screen and (min-width: 767px) {
+export const ObsTituloNumber = styled.div`
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  p {
     font-size: 16px;
   }
 `;
 
 export const ObservacaoTitulo = styled.p`
-  font-size: 12px;
-  @media screen and (min-width: 767px) {
-    font-size: 16px;
-  }
+  font-size: 16px;
 `;
 
 export const Pendencias = styled.div`

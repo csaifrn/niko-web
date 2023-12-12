@@ -37,8 +37,6 @@ export const BoxObservation = ({
     openDelete();
   };
 
-  console.log(observation.is_pending)
-
   return (
     <>
       <S.ObsDivBlack index={index}>
@@ -59,14 +57,11 @@ export const BoxObservation = ({
               })}
             </S.Data>
           </S.ObsCreationData>
-
         </S.BottomContent>
 
-        <S.DivObservation>
+        <S.DivObservation style={{ display: observation.is_pending ? 'grid' : 'flex' }}>
           {/* <img src='/warning.svg'/> */}
-          {observation.is_pending == true &&
-            <Warning size={24} color="#f7df4c" weight="fill" />
-          }
+          {observation.is_pending == true && <Warning size={24} color="#f7df4c" weight="fill" />}
           <p>{observation.observation}</p>
         </S.DivObservation>
 

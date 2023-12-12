@@ -17,7 +17,7 @@ export const ConfigModal = (props: ConfigModalProps) => {
 
   const Priority = useMutation(PatchBatchePriority, {
     onSuccess: (data) => {
-      toast.success(`Prioride ${data.priority ? 'foi ativada' : 'foi desativada'}!`);
+      toast.success(`Prioridade ${data.priority ? 'foi ativada' : 'foi desativada'}!`);
     },
     onError: (error: ApiError) => {
       toast.error(error.response!.data.message);

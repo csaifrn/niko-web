@@ -64,6 +64,8 @@ export const Board = (props: BoardProps) => {
     });
   }, []);
 
+  console.log(batchesDispo)
+
   return (
     <KabanContext.Provider
       value={{ batchesAnda, batchesConc, batchesDispo, setBatchesAnda, setBatchesConc, setBatchesDispo }}
@@ -117,9 +119,10 @@ export const Board = (props: BoardProps) => {
                         <Lote
                           task={batche}
                           value={`${batche.title}`}
-                          pendencia={batche.observations}
+                          observations={batche.observations}
                           prioridade={batche.priority}
                           categoria={batche.category}
+                          pendencia={batche.pending_batch_observations}
                           //envolvidos={batche.envolvidos}
                         >
                           {user.role === 'Operador' && (
@@ -177,7 +180,7 @@ export const Board = (props: BoardProps) => {
                         <Lote
                           task={batche}
                           value={`${batche.title}`}
-                          pendencia={batche.observations}
+                          pendencia={batche.pending_batch_observations}
                           prioridade={batche.priority}
                           categoria={batche.category}
                           //envolvidos={batche.envolvidos}
@@ -230,7 +233,7 @@ export const Board = (props: BoardProps) => {
                         <Lote
                           task={batche}
                           value={`${batche.title}`}
-                          pendencia={batche.observations}
+                          pendencia={batche.pending_batch_observations}
                           prioridade={batche.priority}
                           categoria={batche.category}
                           //envolvidos={batche.envolvidos}

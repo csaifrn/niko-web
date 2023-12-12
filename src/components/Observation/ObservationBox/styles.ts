@@ -20,7 +20,7 @@ export const ObsDivBlack = styled.div<IObsDiv>`
   display: flex;
   flex-direction: column;
   gap: 16px;
-  padding: 1.5em;
+  padding: 1.7em;
   width: calc(100%-2em);
   order: 1;
   flex-grow: 0;
@@ -30,9 +30,13 @@ export const ObsDivBlack = styled.div<IObsDiv>`
 `;
 
 export const DivObservation = styled.div`
-  display: flex;
+  display: grid;
   align-items: center;
-  gap: 16px;
+  //gap: 16px;
+  grid-template-columns: 1fr 15fr;
+  @media screen and (max-width: 767px) {
+    gap: 16px;
+  }
 `;
 
 export const DivButtons = styled.div`
@@ -113,7 +117,7 @@ export const ToolTip = styled.div`
   color: white;
   border-radius: 3px;
   position: absolute;
-  top: calc(100% + 5px) ;
+  top: calc(100% + 5px);
   left: 0;
   display: none;
   font-family: 'Rubik';

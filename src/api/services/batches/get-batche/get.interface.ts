@@ -35,11 +35,6 @@ export interface CreatedBy {
   name: string;
 }
 
-export interface Category {
-  settlement_project_category_id: string;
-  name: string;
-}
-
 export interface AssignedUser {
   id: string;
   name: string;

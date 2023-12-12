@@ -14,7 +14,7 @@ export interface GetResponseBatche {
   created_at: string;
   updated_at: string;
   created_by: CreatedBy;
-  categories: Category[];
+  settlementProjectCategories: Category[];
   assigned_users: AssignedUser[];
   tags: any[];
   observations: Observation[];

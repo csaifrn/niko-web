@@ -2,7 +2,7 @@ export interface GetBatcheParams {
   id: string;
 }
 
-export interface GetResponseBatche {
+export interface Batche {
   id: string;
   title: string;
   main_status: number;

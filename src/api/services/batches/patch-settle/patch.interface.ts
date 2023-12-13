@@ -1,8 +1,8 @@
-import { GetResponseBatche } from '../get-batche/get.interface';
+import { Batche } from '../get-batche/get.interface';
 
 export interface ParamAddSettle {
   id: string;
   settlementProjectCategories: string[];
 }
 
-export type ResponseAddSettle = GetResponseBatche;
+export type ResponseAddSettle = Batche;

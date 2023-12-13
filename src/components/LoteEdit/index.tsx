@@ -2,7 +2,7 @@ import { FormEvent, useEffect, useState } from 'react';
 import * as S from './style';
 import Menu from '../Menu';
 import MenuCoord from '../MenuCoord';
-import { GetResponseBatche } from '../../api/services/batches/get-batche/get.interface';
+import { Batche } from '../../api/services/batches/get-batche/get.interface';
 import { useNavigate, useParams } from 'react-router-dom';
 import toast from 'react-hot-toast';
 import { useMutation } from 'react-query';
@@ -59,7 +59,7 @@ const LoteEdit = () => {
   });
 
   const beforeBatch = useMutation(GetBatche, {
-    onSuccess: (data: GetResponseBatche) => {
+    onSuccess: (data: Batche) => {
       setTitle(data.title);
       setName(data.category.name);
       setPhysical_files_count(data.physical_files_count);
@@ -205,7 +205,7 @@ const LoteEdit = () => {
                     ></S.ArquivosInput>
                   </S.ArquivosFisicos>
                 )}
-                
+
                 {/* ARQUIVOS DIGITAIS */}
                 {faseAtual != 0 && faseAtual != 1 && digital_files_count !== null && (
                   <S.ArquivosDigitais>

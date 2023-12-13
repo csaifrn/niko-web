@@ -9,7 +9,7 @@ import { useParams, useNavigate, Link } from 'react-router-dom';
 import { ConfigModal } from '../ConfigModal';
 import { useMutation } from 'react-query';
 import { GetBatche } from '../../api/services/batches/get-batche';
-import { AssignedUser, GetResponseBatche, Observation } from '../../api/services/batches/get-batche/get.interface';
+import { AssignedUser, Batche, Observation } from '../../api/services/batches/get-batche/get.interface';
 import { ApiError } from '../../api/services/authentication/signIn/signIn.interface';
 import { Empty } from '../EmptyPage';
 import { CreateObservationModal } from '../Observation/Observation-modal-create';
@@ -37,7 +37,7 @@ interface Option {
 
 export const LoteDetails = () => {
   const optionsFases = FaseData.map((fase, index) => ({ value: index, label: fase.titulo }));
-  const [task, setTask] = useState<GetResponseBatche | null>(null);
+  const [task, setTask] = useState<Batche | null>(null);
   const [observations, setObservations] = useState<Observation[]>([]);
   const [priority, setPriority] = useState<boolean>(false);
   const navigate = useNavigate();
@@ -104,7 +104,7 @@ export const LoteDetails = () => {
   });
 
   const beforeTask = useMutation(GetBatche, {
-    onSuccess: (data: GetResponseBatche) => {
+    onSuccess: (data: Batche) => {
       setTask(data);
       setObservations(data.observations);
       setPriority(data.priority);

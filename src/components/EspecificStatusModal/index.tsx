@@ -66,7 +66,6 @@ export const EspecifcModal = (props: EspecifModalProps) => {
 
   const mutateEspecific = useMutation(PatchBatcheSpecifStatus, {
     onSuccess: () => {
-      toast.success('Status atualizado!');
       if (props.refetch) {
         props.refetch();
       }
@@ -78,10 +77,7 @@ export const EspecifcModal = (props: EspecifModalProps) => {
   });
 
   const mutateSettle = useMutation(PostBatcheSettle, {
-    onSuccess: (data) => {
-      console.log(data);
-      console.log('settles mudados');
-    },
+    onSuccess: (data) => {},
     onError: (err: ApiError) => {
       toast.error(err.response?.data.message ? err.response?.data.message : 'Erro na execução');
     },
@@ -89,7 +85,6 @@ export const EspecifcModal = (props: EspecifModalProps) => {
 
   const mutateStatus = useMutation(PatchBatcheMainStatus, {
     onSuccess: () => {
-      toast.success('Fase atualizada!');
       if (props.refetch) {
         props.refetch();
       }
@@ -120,13 +115,11 @@ export const EspecifcModal = (props: EspecifModalProps) => {
       specific_status,
       id: props.batche.id,
     });
-
     if (specific_status === 0) {
       mutateStatus.mutate({
         id: props.batche.id,
         main_status: props.batche.main_status + 1,
       });
-      console.log(props.batche);
       if (props.batche.assigned_users) {
         props.batche.assigned_users.map((ass) => {
           mutateDeleteAssigner.mutate({
@@ -138,11 +131,13 @@ export const EspecifcModal = (props: EspecifModalProps) => {
       if (mutateDeleteAssigner.isSuccess) {
         toast.success('Usuários removidos!');
       }
+      toast.success('Fase atualizada!');
     } else if (user.user?.sub && specific_status === 1) {
       mutateAssigner.mutate({
         batch_id: props.batche.id,
         assignment_users_ids: [user.user?.sub],
       });
+      toast.success('Status atualizado!');
     }
     handleClose();
   };

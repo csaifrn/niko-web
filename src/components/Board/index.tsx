@@ -52,13 +52,17 @@ export const Board = (props: BoardProps) => {
     },
   });
   useEffect(() => {
+    refecth();
+  }, []);
+
+  const refecth = () => {
     mutateBatchesQuery.mutate({
       status: props.main_status,
     });
     mutateBatchesConc.mutate({
       status: props.main_status + 1,
     });
-  }, []);
+  };
   return (
     <>
       <BoardChanger />
@@ -255,11 +259,7 @@ export const Board = (props: BoardProps) => {
           batche={batche_data}
           title={titleModal.title}
           button={titleModal.button}
-          refetch={() => {
-            mutateBatchesQuery.mutate({
-              status: props.main_status,
-            });
-          }}
+          refetch={refecth}
         />
       )}
     </>

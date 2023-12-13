@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from 'react';
 import * as S from './styles';
 import { useParams } from 'react-router-dom';
-import { GetResponseBatche } from '../../api/services/batches/get-batche/get.interface';
+import { AssignedUser, GetResponseBatche } from '../../api/services/batches/get-batche/get.interface';
 import { useMutation } from 'react-query';
 import { PatchBatcheSpecifStatus } from '../../api/services/batches/patch-status-specific';
 import toast from 'react-hot-toast';
@@ -11,12 +11,18 @@ import theme from '../../global/theme';
 import { ApiError } from '../../api/services/authentication/signIn/signIn.interface';
 import { PatchBatcheMainStatus } from '../../api/services/batches/patch-status';
 import { CheckCircle, HandWaving } from '@phosphor-icons/react';
+import { PostAssigners } from '../../api/services/batches/assigners/post-assigners';
+import { PostResponseAssigners } from '../../api/services/batches/assigners/post-assigners/post.interface';
+import { SharedState } from '../../context/SharedContext';
+import { SearchUser } from '../../api/services/batches/assigners/get-user-autocomplete';
+import { SearchUserResponseBatche } from '../../api/services/batches/assigners/get-user-autocomplete/get.interface';
 
 interface EspecifModalProps {
   close: () => void;
   batche: GetResponseBatche;
   title: string;
   button: string;
+  assigners: AssignedUser[] | undefined;
   //LoteTitle: string;
   setSpecificStatus?: React.Dispatch<React.SetStateAction<number>>;
   setBatche?: React.Dispatch<React.SetStateAction<GetResponseBatche | null>>;
@@ -24,10 +30,12 @@ interface EspecifModalProps {
 }
 
 export const EspecifcModal = (props: EspecifModalProps) => {
-  //const { id } = useParams();
   const kanban = useContext(KabanContext);
-
+  const { id } = useParams();
+  const { user } = SharedState();
   const [closing, setClosing] = useState(false);
+  const [presentAssigners, setPresentAssigners] = useState<AssignedUser[]>(props.assigners ? props.assigners : []);
+
   useEffect(() => {
     // Ao renderizar o modal, aplicar um escalonamento gradual para exibi-lo
     const timer = setTimeout(() => {
@@ -90,13 +98,40 @@ export const EspecifcModal = (props: EspecifModalProps) => {
     },
   });
 
+  const users = useMutation(SearchUser, {
+    onSuccess: (data: SearchUserResponseBatche) => {
+      const usersNiko = data.users;
+    },
+  });
+
+  const assignMutate = useMutation(PostAssigners, {
+    onSuccess: (data: PostResponseAssigners) => {
+      toast.success('Mudanças salvas!');
+      setPresentAssigners(data.assignedUsers);
+      handleClose();
+    },
+    onError: (error: ApiError) => {
+      if (error.response) {
+        toast.error(error.response!.data.message);
+      }
+    },
+  });
+
   const handlePegar = () => {
     const specific_status = props.batche.specific_status + 1 === 2 ? 0 : 1;
-    console.log(specific_status);
+    //console.log(specific_status);
     mutateEspecific.mutate({
       specific_status,
       id: props.batche.id,
     });
+
+    // if (user?.id != undefined) {
+    //   assignMutate.mutate({
+    //     batch_id: id,
+    //     assignment_users_ids: user.id,
+    //   });
+    // }
+
     handleClose();
     if (specific_status === 0) {
       mutateStatus.mutate({
@@ -130,7 +165,7 @@ export const EspecifcModal = (props: EspecifModalProps) => {
               {props.button === 'Marcar como concluído' && (
                 <S.ConcluirLoteButton onClick={handlePegar}>
                   <CheckCircle size={24} weight="fill" />
-                  <S.Texto style={{color: theme.colors['gray/900']}}>{props.button}</S.Texto>
+                  <S.Texto style={{ color: theme.colors['gray/900'] }}>{props.button}</S.Texto>
                 </S.ConcluirLoteButton>
               )}
             </S.RecusedAvancar>

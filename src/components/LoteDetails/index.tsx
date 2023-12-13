@@ -41,8 +41,6 @@ export const LoteDetails = () => {
   const [task, setTask] = useState<GetResponseBatche | null>(null);
   const [observations, setObservations] = useState<Observation[]>([]);
   const [priority, setPriority] = useState<boolean>(false);
-  const navigate = useNavigate();
-  const { id } = useParams();
   const [observacao, setObservacao] = useState(false);
   const [delete_modal, setDeleteModal] = useState(false);
   const [config_modal, setConfigModal] = useState(false);
@@ -59,9 +57,9 @@ export const LoteDetails = () => {
   const [openEspecifModal, setOpenEspecifModal] = useState<boolean>(false);
   const [titleModal, setTitleModal] = useState({ button: 'Pegar lote', title: 'Deseja pegar o lote?' });
   const [option, setOption] = useState<Option>();
+  const { id } = useParams();
   const { user } = SharedState();
-
-  //console.log(task)
+  const navigate = useNavigate();
 
   const handleConfig = () => {
     setConfigModal(!config_modal);
@@ -126,8 +124,6 @@ export const LoteDetails = () => {
       }
     },
   });
-
-  console.log(observations);
 
   const deleteObs = useMutation(DeleteObservation, {
     onSuccess: (data) => {
@@ -565,9 +561,15 @@ export const LoteDetails = () => {
         )}
         {observacao && (
           <CreateObservationModal
+            id={observationId}
             observations={observations!}
-            refetch={(Obs: Observation[]) => {
-              setObservations(Obs);
+            pendencia={observation?.is_pending}
+            refetch={() => {
+              if (id) {
+                beforeTask.mutate({
+                  id,
+                });
+              }
             }}
             close={() => {
               setObservacao(!observacao);

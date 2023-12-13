@@ -61,7 +61,7 @@ const LoteNumAvisos = styled.div`
 export const PendNumberIconBlack = styled.div`
   display: flex;
   align-items: center;
-  background-color:${({ theme }) => theme.colors['gray/900']};
+  background-color:${({ theme }) => theme.colors['gray/550']};
   gap: 8px;
   border-radius: 3px;
   height: 24px;

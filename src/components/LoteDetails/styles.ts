@@ -310,7 +310,7 @@ export const FaseAtualDiv = styled.div`
 `;
 
 export const IconTooltipFase = styled.div`
-  position: relative;
+  //position: relative;
   width: 32px;
   :hover div {
     visibility: visible;

@@ -25,7 +25,6 @@ import { CheckCircle, HandWaving, X } from '@phosphor-icons/react';
 import theme from '../../global/theme';
 import { PatchBatcheSpecifStatus } from '../../api/services/batches/patch-status-specific';
 import { ToolTip } from '../Observation/ObservationBox/styles';
-
 import { EspecifcModal } from '../EspecificStatusModal';
 import { SharedState } from '../../context/SharedContext';
 import { AtribuirButton } from '../AtribuirLoteModal/styles';
@@ -200,7 +199,7 @@ export const LoteDetails = () => {
                   <Link to={`/Lote/${task?.id}/Edit`}>
                     <S.Edit>
                       <S.Icons src={`/pen.svg`}></S.Icons>
-                      <ToolTip style={{ width: '80px' }} id="tool">
+                      <ToolTip style={{ width: '80px', left: 'auto',  right: '0' }} id="tool">
                         Editar Lote
                       </ToolTip>
                     </S.Edit>
@@ -209,10 +208,11 @@ export const LoteDetails = () => {
                   {/* BOTÃO DE CONFIGURAÇÕES */}
                   <S.Config onClick={handleConfig}>
                     <S.Icons src={`/config.svg`}></S.Icons>
-                    <ToolTip style={{ width: '120px' }} id="tool">
+                    <ToolTip style={{ width: '120px' , left: 'auto',  right: '0' }} id="tool">
                       Configurações do lote
                     </ToolTip>
                   </S.Config>
+                  
                 </S.EditConfig>
               </S.LoteEditConfig>
 
@@ -283,7 +283,7 @@ export const LoteDetails = () => {
                 {/* FASE ATUAL DO LOTE */}
                 <S.IconTooltipFase>
                   <S.Icons src={`/icon-medium/${optionsFases[status].label}.svg`} />
-                  <ToolTip style={{}} id="tool">
+                  <ToolTip style={{top: 'auto' , left: 'auto'}} id="tool">
                     {optionsFases[status].label}
                   </ToolTip>
                 </S.IconTooltipFase>

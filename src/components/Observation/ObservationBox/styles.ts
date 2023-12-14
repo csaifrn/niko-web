@@ -24,9 +24,9 @@ export const ObsDivBlack = styled.div<IObsDiv>`
   width: calc(100%-2em);
   order: 1;
   flex-grow: 0;
-
   animation-name: ${flicker};
   animation-duration: ${({ index }) => index * 0.8}s;
+  //margin-bottom: 20px;
 `;
 
 export const DivObservation = styled.div`
@@ -36,6 +36,15 @@ export const DivObservation = styled.div`
   grid-template-columns: 1fr 15fr;
   @media screen and (max-width: 767px) {
     gap: 16px;
+  }
+`;
+
+export const DivPendenciaTooltip = styled.div`
+  position: relative;
+  :hover div {
+    visibility: visible;
+    opacity: 1;
+    display: block;
   }
 `;
 
@@ -64,9 +73,6 @@ export const Data = styled.span`
 
 export const ButtonDelete = styled.button`
   cursor: pointer;
-  :hover {
-    background-color: ${({ theme }) => theme.colors['gray/400']};
-  }
   background-color: transparent;
   position: relative;
   height: 24px;
@@ -75,14 +81,16 @@ export const ButtonDelete = styled.button`
   align-items: center;
   transition: all 300ms;
   border-radius: 3px;
-
+  width: 24px;
+  border: none;
+  :hover {
+    background-color: ${({ theme }) => theme.colors['gray/400']};
+  }
   :hover div {
     visibility: visible;
     opacity: 1;
     display: block;
   }
-  width: 24px;
-  border: none;
 `;
 
 export const ButtonEdit = styled.button`
@@ -117,7 +125,7 @@ export const ToolTip = styled.div`
   color: white;
   border-radius: 3px;
   position: absolute;
-  top: calc(100% + 5px);
+  top: calc(100% + 8px);
   left: 0;
   display: none;
   font-family: 'Rubik';

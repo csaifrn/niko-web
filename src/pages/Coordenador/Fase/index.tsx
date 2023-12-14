@@ -27,7 +27,7 @@ const Home = () => {
         />
         <CardFase
           fase={1}
-          link={`${id}/Board/Catalogaçao`}
+          link={`${id}/Board/Catalogação`}
           color={theme.colors['yellow/500']}
           srcImgIcon="/IconsBookmark.svg"
         />

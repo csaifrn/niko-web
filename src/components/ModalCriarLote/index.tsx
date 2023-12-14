@@ -4,19 +4,16 @@ import { ErrorMessage } from '../../pages/Login/styles';
 import { validationLoginSchema, validationSearch } from './validation';
 import { useMutation } from 'react-query';
 import { CreateBatche } from '../../api/services/batches/create-batche';
-import { CreateResponseBatche } from '../../api/services/batches/create-batche/create.interface';
-import { ApiError } from '../../api/services/authentication/signIn/signIn.interface';
 import * as Yup from 'yup';
 import { ErrorsForm } from './criar.interface';
 import ReactLoading from 'react-loading';
 import toast from 'react-hot-toast';
 import { SeachCategoria } from '../../api/services/categoria/get-categoria';
 import { SeachCategoriaResponseBatche } from '../../api/services/categoria/get-categoria/get.interface';
-import { KabanContext } from '../Board';
-import { GetResponseBatche } from '../../api/services/batches/get-batche/get.interface';
 
 interface ModalCriarProps {
   close: () => void;
+  refetch?: () => void;
 }
 
 interface Options {
@@ -25,8 +22,6 @@ interface Options {
 }
 
 export const ModalCriarLote = (props: ModalCriarProps) => {
-  const kanban = useContext(KabanContext);
-
   const [categoria, setCategoria] = useState<any>(null);
   const [closing, setClosing] = useState(false);
   const [options, setOptions] = useState<Options[]>([]);
@@ -36,7 +31,6 @@ export const ModalCriarLote = (props: ModalCriarProps) => {
       setOptions([]);
       const opt = data.categories;
       const response: Options[] = opt.map((e) => ({ value: e.id, label: e.name }));
-
       setOptions(response);
     },
   });
@@ -63,6 +57,10 @@ export const ModalCriarLote = (props: ModalCriarProps) => {
 
   const handleSucess = () => {
     setTitle('');
+    if (props.refetch) {
+      props.refetch();
+    }
+
     handleClose();
   };
 
@@ -74,15 +72,13 @@ export const ModalCriarLote = (props: ModalCriarProps) => {
   };
 
   const loginMutation = useMutation(CreateBatche, {
-    onSuccess: (data: GetResponseBatche) => {
-      toast.success('Lote Criado!');
-      console.log(data);
-      kanban?.setBatchesDispo((prev) => [...prev, data]);
-      handleSucess();
-    },
-    onError: (error: ApiError) => {
-      if (error.response) {
-        toast.error(error.response!.data.message);
+    onSettled: (data: any) => {
+      if (data) {
+        toast.success('Lote Criado!');
+        handleSucess();
+      } else {
+        console.log('opa');
+        toast.error(data && data.massege ? data.message : 'Algum erro ocorreu!');
       }
     },
   });
@@ -92,7 +88,6 @@ export const ModalCriarLote = (props: ModalCriarProps) => {
       await validationLoginSchema.validate(
         {
           title,
-          settlement_project_category_id: categoria?.value,
         },
         {
           abortEarly: false,
@@ -135,7 +130,6 @@ export const ModalCriarLote = (props: ModalCriarProps) => {
     if (isValid) {
       loginMutation.mutate({
         title,
-        settlement_project_category_id: categoria!.value,
       });
     }
   };
@@ -165,7 +159,7 @@ export const ModalCriarLote = (props: ModalCriarProps) => {
                 <img src="/close.svg" alt="" height={18} width={18} />
               </S.Exit>
             </S.NameClose>
-            
+
             <S.FormCriar onSubmit={onSubmit}>
               <S.InputText
                 placeholder="Nome do Lote"
@@ -175,7 +169,7 @@ export const ModalCriarLote = (props: ModalCriarProps) => {
                 className="title"
               />
               {validationFormError.title && <ErrorMessage>{validationFormError.title}</ErrorMessage>}
-              <h3>Escolha uma categoria</h3>
+              {/* <h3>Escolha uma categoria</h3>
               <S.CustomSelect
                 onInputChange={(e) => setName(e)}
                 placeholder={'Digite no mínimo 3 caracteres...'}
@@ -188,7 +182,7 @@ export const ModalCriarLote = (props: ModalCriarProps) => {
               />
               {validationFormError.settlement_project_category_id && (
                 <ErrorMessage>{validationFormError.settlement_project_category_id}</ErrorMessage>
-              )}
+              )} */}
               {loginMutation.isLoading ? (
                 <S.Criar type="submit" disabled>
                   <ReactLoading type="cylon" color="white" height={30} width={30} />

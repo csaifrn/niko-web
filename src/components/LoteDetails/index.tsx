@@ -9,7 +9,7 @@ import { useParams, useNavigate, Link } from 'react-router-dom';
 import { ConfigModal } from '../ConfigModal';
 import { useMutation } from 'react-query';
 import { GetBatche } from '../../api/services/batches/get-batche';
-import { AssignedUser, GetResponseBatche, Observation } from '../../api/services/batches/get-batche/get.interface';
+import { AssignedUser, Batche, Observation } from '../../api/services/batches/get-batche/get.interface';
 import { ApiError } from '../../api/services/authentication/signIn/signIn.interface';
 import { Empty } from '../EmptyPage';
 import { CreateObservationModal } from '../Observation/Observation-modal-create';
@@ -37,7 +37,7 @@ interface Option {
 
 export const LoteDetails = () => {
   const optionsFases = FaseData.map((fase, index) => ({ value: index, label: fase.titulo }));
-  const [task, setTask] = useState<GetResponseBatche | null>(null);
+  const [task, setTask] = useState<Batche | null>(null);
   const [observations, setObservations] = useState<Observation[]>([]);
   const [priority, setPriority] = useState<boolean>(false);
   const navigate = useNavigate();
@@ -58,7 +58,7 @@ export const LoteDetails = () => {
   const [openEspecifModal, setOpenEspecifModal] = useState<boolean>(false);
   const [titleModal, setTitleModal] = useState({ button: 'Pegar lote', title: 'Deseja pegar o lote?' });
   const [option, setOption] = useState<Option>();
-  const { user} = SharedState();
+  const { user } = SharedState();
 
   const handleConfig = () => {
     setConfigModal(!config_modal);
@@ -104,7 +104,7 @@ export const LoteDetails = () => {
   });
 
   const beforeTask = useMutation(GetBatche, {
-    onSuccess: (data: GetResponseBatche) => {
+    onSuccess: (data: Batche) => {
       setTask(data);
       setObservations(data.observations);
       setPriority(data.priority);
@@ -114,7 +114,7 @@ export const LoteDetails = () => {
       setSpecificStatus(data.specific_status);
       setOption({
         value: data.main_status + 1,
-        label: optionsFases ? optionsFases[data.main_status + 1].label : 'Houve um problema',
+        label: optionsFases ? optionsFases[data.main_status].label : '0',
       });
     },
     onError: (error: ApiError) => {
@@ -217,7 +217,6 @@ export const LoteDetails = () => {
 
               {/* DADOS DA CRIAÇÃO DO LOTE */}
               <S.DadosCriacaoLoteDiv>
-
                 {/* SE VOCÊ CRIOU */}
                 {task?.created_by.name == user?.name && (
                   <S.BlockGray>
@@ -265,9 +264,11 @@ export const LoteDetails = () => {
                 )}
               </S.DetalhesLote>
 
-              {/* CATEGORIAS */}
               <S.DetalhesLote>
-                <S.BlockGrayBorder>{task?.category.name}</S.BlockGrayBorder>
+                {/* CATEGORIAS */}
+                {task?.settlement_project_categories.map((cat) => {
+                  return <S.BlockGrayBorder key={cat.id}>{cat.name}</S.BlockGrayBorder>;
+                })}
               </S.DetalhesLote>
 
               {/* PRIORIORIDADE(SE TIVER) */}
@@ -350,7 +351,16 @@ export const LoteDetails = () => {
                       setTitleModal({ button: 'Pegar lote', title: `Deseja pegar o ${task?.title}?` });
                     }}
                   >
-                    <div style={{display: 'flex' , justifyContent: 'flex-start', gap: '16px' , color: 'white' , alignItems: 'center', marginLeft: '16px'}}>
+                    <div
+                      style={{
+                        display: 'flex',
+                        justifyContent: 'flex-start',
+                        gap: '16px',
+                        color: 'white',
+                        alignItems: 'center',
+                        marginLeft: '16px',
+                      }}
+                    >
                       <img src="/PegarLote_icon.svg" alt="ícone de mãozinha acenando" />
                       <p style={{ color: 'black' }}>Pegar lote</p>
                     </div>
@@ -363,15 +373,26 @@ export const LoteDetails = () => {
                     onClick={(e) => {
                       e.preventDefault();
                       setOpenEspecifModal(!openEspecifModal);
-                      setTitleModal({ button: 'Marcar como concluído', title: `Deseja marcar o ${task?.title} como concluído?` });
+                      setTitleModal({
+                        button: 'Marcar como concluído',
+                        title: `Deseja marcar o ${task?.title} como concluído?`,
+                      });
                     }}
-                    style={{ backgroundColor: theme.colors['gray/500']}}
+                    style={{ backgroundColor: theme.colors['gray/500'] }}
                   >
-                    <div style={{display: 'flex' , justifyContent: 'flex-start', gap: '16px' , color: 'white' , alignItems: 'center', marginLeft: '16px'}}>
+                    <div
+                      style={{
+                        display: 'flex',
+                        justifyContent: 'flex-start',
+                        gap: '16px',
+                        color: 'white',
+                        alignItems: 'center',
+                        marginLeft: '16px',
+                      }}
+                    >
                       <img src="/finished-icon.svg" alt="ícone de concluído" />
                       Marcar como concluído
                     </div>
-
                   </S.ConcluirButton>
                 )}
 
@@ -577,9 +598,6 @@ export const LoteDetails = () => {
             batche={task!}
             title={titleModal.title}
             button={titleModal.button}
-            setSpecificStatus={setSpecificStatus}
-            setBatche={setTask}
-            setStatus={setStatus}
           />
         )}
       </>

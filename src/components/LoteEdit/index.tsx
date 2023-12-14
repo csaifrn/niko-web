@@ -2,7 +2,7 @@ import { FormEvent, useEffect, useState } from 'react';
 import * as S from './style';
 import Menu from '../Menu';
 import MenuCoord from '../MenuCoord';
-import { GetResponseBatche } from '../../api/services/batches/get-batche/get.interface';
+import { Batche, Category } from '../../api/services/batches/get-batche/get.interface';
 import { useNavigate, useParams } from 'react-router-dom';
 import toast from 'react-hot-toast';
 import { useMutation } from 'react-query';
@@ -25,7 +25,7 @@ const LoteEdit = () => {
   const navigate = useNavigate();
   const { id } = useParams();
   const [, setOptions] = useState<Options[]>([]);
-  const [name, setName] = useState('');
+  const [categories, setCategories] = useState<Category[]>([]);
   const [title, setTitle] = useState<string>('');
   const [physical_files_count, setPhysical_files_count] = useState<number>(0);
   const [digital_files_count, setDigital_files_count] = useState<number>(0);
@@ -59,9 +59,9 @@ const LoteEdit = () => {
   });
 
   const beforeBatch = useMutation(GetBatche, {
-    onSuccess: (data: GetResponseBatche) => {
+    onSuccess: (data: Batche) => {
       setTitle(data.title);
-      setName(data.category.name);
+      setCategories(data.settlement_project_categories);
       setPhysical_files_count(data.physical_files_count);
       setDigital_files_count(data.digital_files_count);
       setFaseAtual(data.main_status);
@@ -82,10 +82,6 @@ const LoteEdit = () => {
       navigate(-1);
     }
   }, []);
-
-  useEffect(() => {
-    onChange();
-  }, [name]);
 
   const handleSave = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -133,16 +129,6 @@ const LoteEdit = () => {
       return false;
     }
     return true;
-  };
-
-  const onChange = async () => {
-    const isValid = await validateSearch();
-
-    if (isValid) {
-      categorias.mutate({
-        name,
-      });
-    }
   };
 
   if (beforeBatch.isLoading) {
@@ -205,7 +191,7 @@ const LoteEdit = () => {
                     ></S.ArquivosInput>
                   </S.ArquivosFisicos>
                 )}
-                
+
                 {/* ARQUIVOS DIGITAIS */}
                 {faseAtual != 0 && faseAtual != 1 && digital_files_count !== null && (
                   <S.ArquivosDigitais>
@@ -227,7 +213,7 @@ const LoteEdit = () => {
             {/*CATEGORIAS E TIPOLOGIAS*/}
             {/* <h2>Categoria</h2>
           <S.CustomSelect
-            onInputChange={(e) => setName(e)}
+            onInputChange={(e) => setCategories(e)}
             placeholder={'Digite no mínimo 3 caracteres...'}
             inputValue={name}
             options={options}

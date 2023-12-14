@@ -2,7 +2,7 @@ export interface GetBatcheParams {
   id: string;
 }
 
-export interface GetResponseBatche {
+export interface Batche {
   id: string;
   title: string;
   main_status: number;
@@ -14,8 +14,9 @@ export interface GetResponseBatche {
   created_at: string;
   updated_at: string;
   created_by: CreatedBy;
-  category: Category;
+  settlement_project_categories: Category[];
   assigned_users: AssignedUser[];
+  tags: any[];
   observations: Observation[];
 }
 
@@ -25,7 +26,12 @@ export interface CreatedBy {
 }
 
 export interface Category {
-  settlement_project_category_id: string;
+  id: string;
+  name: string;
+}
+
+export interface CreatedBy {
+  user_id: string;
   name: string;
 }
 

@@ -4,14 +4,12 @@ import { ErrorMessage } from '../../pages/Login/styles';
 import { validationLoginSchema, validationSearch } from './validation';
 import { useMutation } from 'react-query';
 import { CreateBatche } from '../../api/services/batches/create-batche';
-import { ApiError } from '../../api/services/authentication/signIn/signIn.interface';
 import * as Yup from 'yup';
 import { ErrorsForm } from './criar.interface';
 import ReactLoading from 'react-loading';
 import toast from 'react-hot-toast';
 import { SeachCategoria } from '../../api/services/categoria/get-categoria';
 import { SeachCategoriaResponseBatche } from '../../api/services/categoria/get-categoria/get.interface';
-import { GetResponseBatche } from '../../api/services/batches/get-batche/get.interface';
 
 interface ModalCriarProps {
   close: () => void;

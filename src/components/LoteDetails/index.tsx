@@ -114,7 +114,7 @@ export const LoteDetails = () => {
       setSpecificStatus(data.specific_status);
       setOption({
         value: data.main_status + 1,
-        label: optionsFases ? optionsFases[data.main_status + 1].label : 'Houve um problema',
+        label: optionsFases ? optionsFases[data.main_status].label : '0',
       });
     },
     onError: (error: ApiError) => {
@@ -266,7 +266,7 @@ export const LoteDetails = () => {
 
               <S.DetalhesLote>
                 {/* CATEGORIAS */}
-                {task?.categories.map((cat) => {
+                {task?.settlement_project_categories.map((cat) => {
                   return <S.BlockGrayBorder key={cat.id}>{cat.name}</S.BlockGrayBorder>;
                 })}
               </S.DetalhesLote>
@@ -598,9 +598,6 @@ export const LoteDetails = () => {
             batche={task!}
             title={titleModal.title}
             button={titleModal.button}
-            setSpecificStatus={setSpecificStatus}
-            setBatche={setTask}
-            setStatus={setStatus}
           />
         )}
       </>

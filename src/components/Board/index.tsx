@@ -33,6 +33,7 @@ export const Board = (props: BoardProps) => {
   const [atribuirModal, setAtribuirModal] = useState<boolean>(false);
   const [openCriarModal, setOpenCriarModal] = useState<boolean>(false);
   const [openEspecifModal, setOpenEspecifModal] = useState<boolean>(false);
+
   const mutateBatchesQuery = useMutation(QueryBatche, {
     onSuccess: (data: GetResponseBatche[]) => {
       setBatchesDispo(data.filter((batche) => batche.specific_status === 0));
@@ -115,7 +116,7 @@ export const Board = (props: BoardProps) => {
                           value={`${batche.title}`}
                           pendencia={batche.observations}
                           prioridade={batche.priority}
-                          categoria={batche.settlementProjectCategories}
+                          categoria={batche.settlement_project_categories}
                           //envolvidos={batche.envolvidos}
                         >
                           {user.role === 'Operador' && props.main_status != 4 && (
@@ -176,7 +177,7 @@ export const Board = (props: BoardProps) => {
                           value={`${batche.title}`}
                           pendencia={batche.observations}
                           prioridade={batche.priority}
-                          categoria={batche.settlementProjectCategories}
+                          categoria={batche.settlement_project_categories}
                           //envolvidos={batche.envolvidos}
                         >
                           {user.role === 'Operador' && (
@@ -229,7 +230,7 @@ export const Board = (props: BoardProps) => {
                           value={`${batche.title}`}
                           pendencia={batche.observations}
                           prioridade={batche.priority}
-                          categoria={batche.settlementProjectCategories}
+                          categoria={batche.settlement_project_categories}
                           //envolvidos={batche.envolvidos}
                         ></Lote>
                       </a>

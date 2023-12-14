@@ -11,14 +11,14 @@ import { CustomSelect } from '../AtribuirAlguemModal/style';
 import { QuerySettles } from '../../api/services/settlement/query-settlement';
 import { ResponseSettle } from '../../api/services/settlement/query-settlement/get.interface';
 import { PostBatcheSettle } from '../../api/services/batches/patch-settle';
-import { GetResponseBatche } from '../../api/services/batches/query-batches/get.interface';
 import { PostAssigners } from '../../api/services/batches/assigners/post-assigners';
 import { SharedState } from '../../context/SharedContext';
 import { DeleteAssigner } from '../../api/services/batches/assigners/delete-assigners';
+import { Batche } from '../../api/services/batches/get-batche/get.interface';
 
 interface EspecifModalProps {
   close: () => void;
-  batche: GetResponseBatche;
+  batche: Batche;
   title: string;
   button: string;
   refetch?: () => void;
@@ -37,8 +37,8 @@ export const EspecifcModal = (props: EspecifModalProps) => {
   const [userInput, setUserInput] = useState('');
   const [options, setOptions] = useState<Option[]>([]);
   const [selectedOptions, setSelectedOptions] = useState<Option[]>([
-    ...props.batche.settlementProjectCategories.map((cat) => ({
-      value: cat.settlement_project_category_id,
+    ...props.batche.settlement_project_categories.map((cat) => ({
+      value: cat.id,
       label: cat.name,
     })),
   ]);

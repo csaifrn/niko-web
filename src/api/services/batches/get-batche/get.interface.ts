@@ -14,7 +14,7 @@ export interface Batche {
   created_at: string;
   updated_at: string;
   created_by: CreatedBy;
-  categories: Category[];
+  settlement_project_categories: Category[];
   assigned_users: AssignedUser[];
   tags: any[];
   observations: Observation[];

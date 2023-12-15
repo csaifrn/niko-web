@@ -146,6 +146,13 @@ export const LoteDetails = () => {
     }
   };
 
+  const refetch = () => {
+    if (typeof id === 'string') {
+      beforeTask.mutate({
+        id,
+      });
+    }
+  };
   const CheckIdForGetBatch = () => {
     if (typeof id === 'string') {
       beforeTask.mutate({
@@ -343,7 +350,7 @@ export const LoteDetails = () => {
               {/* BOTÕES PRINCIPAIS */}
               <S.Botoes>
                 {/* PEGAR LOTE */}
-                {specificStatus === 0 && (
+                {specificStatus === 0 && task?.main_status !== 4 && (
                   <AtribuirButton
                     onClick={(e) => {
                       e.preventDefault();
@@ -598,6 +605,7 @@ export const LoteDetails = () => {
             batche={task!}
             title={titleModal.title}
             button={titleModal.button}
+            refetch={refetch}
           />
         )}
       </>

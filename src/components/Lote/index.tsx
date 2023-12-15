@@ -4,7 +4,6 @@ import { generateUUID } from '../../utils/generateUUID.util';
 import { Warning } from '@phosphor-icons/react';
 
 const Lote = (props: any) => {
-  console.log(props.pendencia);
 
   return (
     <>
@@ -111,6 +110,7 @@ const Lote = (props: any) => {
                       </React.Fragment>
                     ))}
                 </S.Envolvido>
+
               </S.LoteNumAvisos>
             </S.LoteDetalhes>
           </S.LoteArea>

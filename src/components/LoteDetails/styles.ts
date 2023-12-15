@@ -93,6 +93,12 @@ export const Exit = styled.button`
   align-items: center;
   border: none;
   cursor: pointer;
+  position: relative;
+  :hover div {
+    visibility: visible;
+    opacity: 1;
+    display: block;
+  }
   &:hover {
     background-color: ${({ theme }) => theme.colors['gray/400']};
   }
@@ -129,12 +135,6 @@ export const Edit = styled.div`
   justify-content: center;
   align-items: center;
   background-color: ${({ theme }) => theme.colors['gray/500']};
-  position: relative;
-  :hover div {
-    visibility: visible;
-    opacity: 1;
-    display: block;
-  }
   &:hover {
     background-color: ${({ theme }) => theme.colors['gray/400']};
   }
@@ -155,12 +155,6 @@ export const Config = styled.button`
   border: none;
   cursor: pointer;
   background-color: ${({ theme }) => theme.colors['gray/500']};
-  position: relative;
-  :hover div {
-    visibility: visible;
-    opacity: 1;
-    display: block;
-  }
   &:hover {
     background-color: ${({ theme }) => theme.colors['gray/400']};
   }
@@ -306,8 +300,7 @@ export const Text = styled.p`
   align-content: left;
 `;
 
-export const FaseAtualDiv = styled.div`
-`;
+export const FaseAtualDiv = styled.div``;
 
 export const IconTooltipFase = styled.div`
   //position: relative;

@@ -29,6 +29,7 @@ import { EspecifcModal } from '../EspecificStatusModal';
 import { SharedState } from '../../context/SharedContext';
 import { AtribuirButton } from '../AtribuirLoteModal/styles';
 import { BlackButton } from '../Board/styles';
+import { Tooltip } from 'react-tooltip';
 
 interface Option {
   label: string;
@@ -183,8 +184,16 @@ export const LoteDetails = () => {
           <S.areaClick>
             {/* BOTÃO DE FECHAR */}
             <S.CloseDiv>
-              <S.Exit onClick={() => navigate(`/Fase/${id}/Board/${optionsFases[status].label}`)}>
+              <S.Exit
+                onClick={() => navigate(`/Fase/${id}/Board/${optionsFases[status].label}`)}
+                className="FecharTooltip"
+              >
                 <img src="/close.svg" alt="" height={18} width={18} />
+                <Tooltip
+                  children={<p style={{ fontSize: '12px', fontFamily: 'Rubik' }}>Fechar página</p>}
+                  anchorSelect=".FecharTooltip"
+                  place="bottom"
+                />
               </S.Exit>
             </S.CloseDiv>
 
@@ -197,46 +206,36 @@ export const LoteDetails = () => {
                 <S.EditConfig>
                   {/* BOTÃO DE EDITAR */}
                   <Link to={`/Lote/${task?.id}/Edit`}>
-                    <S.Edit>
+                    <S.Edit className="EditarLoteTooltip">
                       <S.Icons src={`/pen.svg`}></S.Icons>
-                      <ToolTip style={{ width: '80px', left: 'auto',  right: '0' }} id="tool">
-                        Editar Lote
-                      </ToolTip>
+                      <Tooltip
+                        children={<p style={{ fontSize: '12px', fontFamily: 'Rubik' }}>Editar lote</p>}
+                        anchorSelect=".EditarLoteTooltip"
+                        place="bottom"
+                      />
                     </S.Edit>
                   </Link>
 
                   {/* BOTÃO DE CONFIGURAÇÕES */}
-                  <S.Config onClick={handleConfig}>
+                  <S.Config onClick={handleConfig} className="ConfigTooltip">
                     <S.Icons src={`/config.svg`}></S.Icons>
-                    <ToolTip style={{ width: '120px' , left: 'auto',  right: '0' }} id="tool">
-                      Configurações do lote
-                    </ToolTip>
+                    <Tooltip
+                      children={<p style={{ fontSize: '12px', fontFamily: 'Rubik' }}>Configurações do lote</p>}
+                      anchorSelect=".ConfigTooltip"
+                      place="bottom"
+                    />
                   </S.Config>
-                  
                 </S.EditConfig>
               </S.LoteEditConfig>
 
               {/* DADOS DA CRIAÇÃO DO LOTE */}
               <S.DadosCriacaoLoteDiv>
-                {/* SE VOCÊ CRIOU */}
-                {task?.created_by.name == user?.name && (
-                  <S.BlockGray>
-                    Criado por Você em{' '}
-                    {createDate?.toLocaleString('pt-br', {
-                      timeZone: 'America/Sao_paulo',
-                    })}
-                  </S.BlockGray>
-                )}
-
-                {/* SE OUTRA PESSOA CRIOU */}
-                {task?.created_by.name != user?.name && (
-                  <S.BlockGray>
-                    Criado por {task?.created_by.name} em{' '}
-                    {createDate?.toLocaleString('pt-br', {
-                      timeZone: 'America/Sao_paulo',
-                    })}
-                  </S.BlockGray>
-                )}
+                <S.BlockGray>
+                  Criado por {task?.created_by.name} em{' '}
+                  {createDate?.toLocaleString('pt-br', {
+                    timeZone: 'America/Sao_paulo',
+                  })}
+                </S.BlockGray>
               </S.DadosCriacaoLoteDiv>
 
               {/* ARQUIVOS */}
@@ -245,22 +244,26 @@ export const LoteDetails = () => {
 
                 {/* FÍSICOS */}
 
-                <S.ArquivFisicos>
+                <S.ArquivFisicos className="ArquivFisTooltip">
                   <img src={`/arquivos_fisicos.svg`} alt="arquivos fisicos" />
                   {task?.physical_files_count}
-                  <ToolTip style={{ width: '105px' }} id="tool">
-                    Arquivos físicos
-                  </ToolTip>
+                  <Tooltip
+                    children={<p style={{ fontSize: '12px', fontFamily: 'Rubik' }}>Arquivos físicos</p>}
+                    anchorSelect=".ArquivFisTooltip"
+                    place="bottom"
+                  />
                 </S.ArquivFisicos>
 
                 {/* DIGITAIS(QUANDO HOUVER) */}
                 {optionsFases[status].label != 'Preparo' && optionsFases[status].label != 'Catalogação' && (
-                  <S.ArquivDigitais>
+                  <S.ArquivDigitais className="ArquivDigTooltip">
                     <img src={`/arquivos_digitais.svg`} alt="arquivos digitais" />
                     {task?.digital_files_count}
-                    <ToolTip style={{ width: '110px' }} id="tool">
-                      Arquivos digitais
-                    </ToolTip>
+                    <Tooltip
+                      children={<p style={{ fontSize: '12px', fontFamily: 'Rubik' }}>Arquivos digitais</p>}
+                      anchorSelect=".ArquivDigTooltip"
+                      place="bottom"
+                    />
                   </S.ArquivDigitais>
                 )}
               </S.DetalhesLote>
@@ -281,11 +284,13 @@ export const LoteDetails = () => {
 
               <S.FaseAtualDiv>
                 {/* FASE ATUAL DO LOTE */}
-                <S.IconTooltipFase>
+                <S.IconTooltipFase className="FaseAtualTooltip">
                   <S.Icons src={`/icon-medium/${optionsFases[status].label}.svg`} />
-                  <ToolTip style={{top: 'auto' , left: 'auto'}} id="tool">
-                    {optionsFases[status].label}
-                  </ToolTip>
+                  <Tooltip
+                    children={<p style={{ fontSize: '12px', fontFamily: 'Rubik' }}>{optionsFases[status].label}</p>}
+                    anchorSelect=".FaseAtualTooltip"
+                    place="bottom"
+                  />
                 </S.IconTooltipFase>
               </S.FaseAtualDiv>
 
@@ -312,15 +317,19 @@ export const LoteDetails = () => {
                     <p>{observations.length}</p>
                   </S.ObsTituloNumber>
 
+                  {/* Botão de criar observação */}
                   <S.BotaoCriarObservacao
                     onClick={() => {
                       setObservacao(!observacao);
                     }}
+                    className="CriarObsTooltip"
                   >
-                    <ToolTip style={{ width: '150px' }} id="tool">
-                      Adicionar observação
-                    </ToolTip>
-                    <img src="/adicionar.svg" alt="" />
+                    <Tooltip
+                      children={<p style={{ fontSize: '12px', fontFamily: 'Rubik' }}>Adicionar observação</p>}
+                      anchorSelect=".CriarObsTooltip"
+                      place="bottom"
+                    />
+                    <img src="/adicionar.svg" alt="botão redondo com símbolo + para criar observação" />
                   </S.BotaoCriarObservacao>
                 </div>
 
@@ -465,7 +474,16 @@ export const LoteDetails = () => {
                       classNamePrefix="react-select"
                       placeholder="Escolher fase"
                     />
-                    {task?.specific_status === 0 && <ToolTip id="tool">É necessário pegar o lote antes</ToolTip>}
+
+                    {task?.specific_status === 0 && (
+                      <Tooltip
+                        children={
+                          <p style={{ fontSize: '12px', fontFamily: 'Rubik' }}>É necessário pegar o lote antes</p>
+                        }
+                        anchorSelect=".react-select-container"
+                        place="bottom"
+                      />
+                    )}
                   </S.BotaoMudarFase>
                 )}
 
@@ -596,7 +614,7 @@ export const LoteDetails = () => {
                 });
               }
             }}
-            title="Mudar observação"
+            title="Editar observação"
             close={() => setEditModal(!edit_modal)}
             pendencia={observation?.is_pending}
           />

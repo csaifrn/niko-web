@@ -20,11 +20,11 @@ export const Change = styled.nav`
   //margin-bottom: 1em;
 `;
 
-export const Link = styled.a`
+export const IconBarra = styled.div`
   text-decoration: none;
   display: flex;
-  gap: 0.5em;
   flex-direction: column;
+  gap: 4px;
   &:hover {
     filter: brightness(0.9);
   }

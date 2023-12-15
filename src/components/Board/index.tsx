@@ -64,8 +64,6 @@ export const Board = (props: BoardProps) => {
     });
   }, []);
 
-  console.log(batchesDispo)
-
   return (
     <KabanContext.Provider
       value={{ batchesAnda, batchesConc, batchesDispo, setBatchesAnda, setBatchesConc, setBatchesDispo }}
@@ -112,6 +110,8 @@ export const Board = (props: BoardProps) => {
                     <Empty.Title>Está lista está vazia</Empty.Title>
                   </S.WrapperEmptyKanban>
                 )}
+
+                {/* Disponíveis */}
                 {batchesDispo.map(
                   (batche) =>
                     batche && (

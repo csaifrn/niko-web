@@ -14,6 +14,7 @@ import {
   TextBoxCard,
   NomeEtapa,
 } from './styles';
+import { Tooltip } from 'react-tooltip';
 
 interface CardProps {
   color: string;
@@ -46,7 +47,7 @@ export const CardFase = ({ ...props }: CardProps) => {
   }, []);
 
   return (
-    <CardContainer href={props.link}>
+    <CardContainer href={props.link} >
       <FigureIconCard backgroundColor={props.color}>
         <ImgIconCard src={props.srcImgIcon}></ImgIconCard>
       </FigureIconCard>

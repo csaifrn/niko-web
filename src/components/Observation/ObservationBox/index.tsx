@@ -4,6 +4,7 @@ import { MinusCircle, PencilSimple, Trash, Warning } from '@phosphor-icons/react
 import { Observation } from '../../../api/services/batches/get-batche/get.interface';
 import theme from '../../../global/theme';
 import { SharedState } from '../../../context/SharedContext';
+import { Tooltip } from 'react-tooltip';
 
 export interface PropsObservation {
   observation: Observation;
@@ -59,13 +60,14 @@ export const BoxObservation = ({
       </S.BottomContent>
 
       <S.DivObservation style={{ display: observation.is_pending ? 'grid' : 'flex' }}>
-        {/* <img src='/warning.svg'/> */}
         {observation.is_pending == true && (
-          <S.DivPendenciaTooltip>
+          <S.DivPendenciaTooltip className="my-anchor-element">
             <Warning size={24} color="#f7df4c" weight="fill" />
-            <S.ToolTip style={{}} id="tool">
-              Pendência
-            </S.ToolTip>
+            <Tooltip
+              children={<p style={{ fontSize: '12px' }}>Pendência</p>}
+              anchorSelect=".my-anchor-element"
+              place="bottom"
+            />
           </S.DivPendenciaTooltip>
         )}
         <p>{observation.observation}</p>
@@ -75,13 +77,21 @@ export const BoxObservation = ({
       {/* <h2>{observation.isPending}</h2> */}
       {observation.created_by.user_id === user?.sub && (
         <S.DivButtons>
-          <S.ButtonEdit onClick={handleClickEdit}>
+          <S.ButtonEdit onClick={handleClickEdit} className="EditarTooltip">
             <PencilSimple size={18} weight="fill" color={theme.colors['white']} />
-            <S.ToolTip style={{ width: '135px'}}>Editar observação</S.ToolTip>
+            <Tooltip
+              children={<p style={{ fontSize: '12px', fontFamily: 'Rubik' }}>Editar observação</p>}
+              anchorSelect=".EditarTooltip"
+              place="bottom"
+            />
           </S.ButtonEdit>
-          <S.ButtonDelete onClick={handleClickDelete}>
+          <S.ButtonDelete onClick={handleClickDelete} className="ExcluirTooltip">
             <Trash size={18} color="#f5f5f5" weight="fill" />
-            <S.ToolTip style={{ width: '140px'}}>Excluir observação</S.ToolTip>
+            <Tooltip
+              children={<p style={{ fontSize: '12px' , fontFamily: 'Rubik' }}>Excluir observação</p>}
+              anchorSelect=".ExcluirTooltip"
+              place="bottom"
+            />
           </S.ButtonDelete>
         </S.DivButtons>
       )}

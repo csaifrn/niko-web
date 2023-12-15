@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import * as S from './styles';
 import theme from '../../global/theme';
 
@@ -25,40 +25,44 @@ export const BoardChanger = () => {
 
         <S.Change>
           {/* RECEPÇÃO */}
-          <S.Link href={`/Fase/${id}/Board/Recebidos`}>
+          <Link to={`/Fase/${id}/Board/Recebidos`}>
             <S.LinkImg src="/icon-medium/Recepção.svg" />
             {url.search('Recebidos') > -1 && <S.Barra color={theme.colors['red/500']}></S.Barra>}
-          </S.Link>
+          </Link>
 
           {/* PREPARO */}
-          <S.Link href={`/Fase/${id}/Board/Preparo`}>
+          <Link to={`/Fase/${id}/Board/Preparo`}>
             <S.LinkImg src="/icon-medium/Preparo.svg" />
             {url.search('Preparo') > -1 && <S.Barra color={theme.colors['orange/400']}></S.Barra>}
-          </S.Link>
+          </Link>
 
           {/* CATALOGAÇÃO */}
-          <S.Link href={`/Fase/${id}/Board/Catalogação`}>
+          <Link to={`/Fase/${id}/Board/Catalogação`}>
             <S.LinkImg src="/icon-medium/Catalogação.svg" />
             {url.search('Cataloga%C3%A7%C3%A3o') > -1 && <S.Barra color="#F3CC00"></S.Barra>}
-          </S.Link>
+          </Link>
 
           {/* DIGITALIZAÇÃO */}
-          <S.Link href={`/Fase/${id}/Board/Digitalização`}>
+          <Link to={`/Fase/${id}/Board/Digitalização`}>
             <S.LinkImg src="/icon-medium/Digitalização.svg" />
             {url.search('Digitaliza%C3%A7%C3%A3o') > -1 && <S.Barra color="#2D94F3"></S.Barra>}
-          </S.Link>
+          </Link>
 
           {/* UPLOAD */}
-          <S.Link href={`/Fase/${id}/Board/Upload`}>
+          <Link to={`/Fase/${id}/Board/Upload`}>
+
             <S.LinkImg src="/icon-medium/Upload.svg" />
             {url.search('Upload') > -1 && <S.Barra color={theme.colors['purple/600']}></S.Barra>}
-          </S.Link>
+            
+          </Link>
 
           {/* ARQUIVAMENTO */}
-          <S.Link href={`/Fase/${id}/Board/Arquivamento`}>
-            <S.LinkImg src="/icon-medium/Arquivamento.svg" />
-            {url.search('Arquivamento') > -1 && <S.Barra color={theme.colors['green/400']}></S.Barra>}
-          </S.Link>
+          <Link to={`/Fase/${id}/Board/Arquivamento`}>
+            <S.IconBarra>
+              <S.LinkImg src="/icon-medium/Arquivamento.svg" />
+              {url.search('Arquivamento') > -1 && <S.Barra color={theme.colors['green/400']}></S.Barra>}
+            </S.IconBarra>
+          </Link>
         </S.Change>
       </S.ChangeContainer>
     </>

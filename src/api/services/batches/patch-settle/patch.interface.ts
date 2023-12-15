@@ -6,3 +6,12 @@ export interface ParamAddSettle {
 }
 
 export type ResponseAddSettle = Batche;
+
+export interface ParamsDeleteSettle {
+  id: string;
+  settlement_project_category_id: string;
+}
+
+export interface ResponseDeleteSettle {
+  status: string;
+}

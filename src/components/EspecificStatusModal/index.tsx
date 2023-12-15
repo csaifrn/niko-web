@@ -10,11 +10,12 @@ import { PatchBatcheMainStatus } from '../../api/services/batches/patch-status';
 import { CustomSelect } from '../AtribuirAlguemModal/style';
 import { QuerySettles } from '../../api/services/settlement/query-settlement';
 import { ResponseSettle } from '../../api/services/settlement/query-settlement/get.interface';
-import { PostBatcheSettle } from '../../api/services/batches/patch-settle';
+import { DeleteBatcheSettle, PostBatcheSettle } from '../../api/services/batches/patch-settle';
 import { PostAssigners } from '../../api/services/batches/assigners/post-assigners';
 import { SharedState } from '../../context/SharedContext';
 import { DeleteAssigner } from '../../api/services/batches/assigners/delete-assigners';
 import { Batche } from '../../api/services/batches/get-batche/get.interface';
+import { ErrorMessage } from '../../pages/Login/styles';
 
 interface EspecifModalProps {
   close: () => void;
@@ -24,7 +25,7 @@ interface EspecifModalProps {
   refetch?: () => void;
 }
 
-interface Option {
+export interface Option {
   value: string;
   label: string;
 }
@@ -34,6 +35,7 @@ export const EspecifcModal = (props: EspecifModalProps) => {
 
   const [closing, setClosing] = useState(false);
   const [NoCategories, setNoCategories] = useState(false);
+  const [error, setError] = useState('');
   const [userInput, setUserInput] = useState('');
   const [options, setOptions] = useState<Option[]>([]);
   const [selectedOptions, setSelectedOptions] = useState<Option[]>([
@@ -77,6 +79,13 @@ export const EspecifcModal = (props: EspecifModalProps) => {
   });
 
   const mutateSettle = useMutation(PostBatcheSettle, {
+    onSuccess: (data) => {},
+    onError: (err: ApiError) => {
+      toast.error(err.response?.data.message ? err.response?.data.message : 'Erro na execução');
+    },
+  });
+
+  const mutateDeleteSettle = useMutation(DeleteBatcheSettle, {
     onSuccess: (data) => {},
     onError: (err: ApiError) => {
       toast.error(err.response?.data.message ? err.response?.data.message : 'Erro na execução');
@@ -143,16 +152,56 @@ export const EspecifcModal = (props: EspecifModalProps) => {
   };
 
   const handlePegar = () => {
-    if (props.batche.main_status === 1 && props.batche.specific_status === 2) {
+    if (props.batche.main_status === 1 && props.batche.specific_status === 1) {
       if (NoCategories) {
         nextFase();
       } else {
-        mutateSettle.mutate({
-          id: props.batche.id,
-          settlementProjectCategories: [...selectedOptions.map((opt) => opt.value)],
-        });
-        if (mutateSettle.isSuccess) {
+        if (props.batche.settlement_project_categories.length > 0 && selectedOptions.length > 0) {
+          const newSettle = selectedOptions.filter((settle) => {
+            const cat = props.batche.settlement_project_categories.map((cate) => {
+              if (cate.id === settle.value) {
+                return true;
+              }
+            });
+            if (cat.filter((cat) => cat === undefined).length === cat.length) {
+              return settle;
+            }
+          });
+
+          const deleteSettle = props.batche.settlement_project_categories.filter((categ) => {
+            const cat = selectedOptions.map((settle) => {
+              if (settle.value === categ.id) {
+                return true;
+              }
+            });
+            if (cat.filter((cat) => cat === undefined).length === cat.length) {
+              return categ;
+            }
+          });
+
+          if (newSettle.length > 0) {
+            mutateSettle.mutate({
+              id: props.batche.id,
+              settlementProjectCategories: [...newSettle.map((settle) => settle.value)],
+            });
+          }
+
+          if (deleteSettle.length > 0) {
+            deleteSettle.map((deletedSettle) => {
+              mutateDeleteSettle.mutate({
+                id: props.batche.id,
+                settlement_project_category_id: deletedSettle.id,
+              });
+            });
+          }
           nextFase();
+        } else if (selectedOptions.length > 0) {
+          mutateSettle.mutate({
+            id: props.batche.id,
+            settlementProjectCategories: [...selectedOptions.map((settle) => settle.value)],
+          });
+        } else {
+          setError('Adicione alguma categoria para avançar para a próxima fase.');
         }
       }
     } else {
@@ -210,9 +259,10 @@ export const EspecifcModal = (props: EspecifModalProps) => {
                     required
                   />
                 )}
-                <S.ButtonNoCategory onClick={() => setNoCategories(!NoCategories)}>
+                {/* <S.ButtonNoCategory onClick={() => setNoCategories(!NoCategories)}>
                   {NoCategories ? 'Adicionar' : 'Não adicionar'}
-                </S.ButtonNoCategory>
+                </S.ButtonNoCategory> */}
+                {error && <ErrorMessage>{error}</ErrorMessage>}
               </S.CatalogacaoArea>
             )}
             <S.RecusedAvancar>

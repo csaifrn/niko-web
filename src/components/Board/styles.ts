@@ -68,6 +68,7 @@ const kanbanSection = styled.div`
 
 const kanbanSectionContent = styled.div`
   display: flex;
+  overflow: auto;
   flex-direction: row;
   gap: 1em;
   color: ${({ theme }) => theme.colors.white};
@@ -75,7 +76,7 @@ const kanbanSectionContent = styled.div`
   overflow-y: auto;
   scroll-behavior: auto;
   scrollbar-width: thin;
-  height: 150px;
+  height: 165px;
   width: 100%;
   padding: 1em;
   background-color: ${({ theme }) => theme.colors['gray/700']};

@@ -8,6 +8,13 @@ export const Titulo2 = styled.p`
   font-size: 18px;
 `;
 
+export const SelectDiv = styled.div`
+  width: 100%;
+  ${media.greaterThan('medium')`
+    width: 30vw;
+  `}
+`;
+
 export const CustomSelect = styled(Select)`
   .react-select__control {
     border: none;

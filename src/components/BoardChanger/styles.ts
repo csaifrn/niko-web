@@ -33,7 +33,24 @@ export const IconBarra = styled.div`
   }
 `;
 
-export const LinkImg = styled.img``;
+export const LinkImgEscura = styled.img`
+  filter: brightness(0.6);
+  &:hover {
+    filter: brightness(0.9);
+  }
+  &:active {
+    filter: brightness(0.9);
+  }
+`;
+
+export const LinkImg = styled.img`
+  &:hover {
+    filter: brightness(0.9);
+  }
+  &:active {
+    filter: brightness(0.9);
+  }
+`;
 
 interface BarraL {
   color: string;

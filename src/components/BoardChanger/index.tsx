@@ -26,41 +26,79 @@ export const BoardChanger = () => {
         <S.Change>
           {/* RECEPÇÃO */}
           <Link to={`/Fase/${id}/Board/Recebidos`}>
-            <S.LinkImg src="/icon-medium/Recepção.svg" />
-            {url.search('Recebidos') > -1 && <S.Barra color={theme.colors['red/500']}></S.Barra>}
+            <S.IconBarra>
+              {url.search('Recebidos') <= -1 && <S.LinkImgEscura src="/icon-medium/Recepção.svg" />}
+              {url.search('Recebidos') > -1 && (
+                <>
+                  <S.LinkImg src="/icon-medium/Recepção.svg" />
+                  <S.Barra color={theme.colors['red/500']}></S.Barra>
+                </>
+              )}
+            </S.IconBarra>
           </Link>
 
           {/* PREPARO */}
           <Link to={`/Fase/${id}/Board/Preparo`}>
-            <S.LinkImg src="/icon-medium/Preparo.svg" />
-            {url.search('Preparo') > -1 && <S.Barra color={theme.colors['orange/400']}></S.Barra>}
+            <S.IconBarra>
+              {url.search('Preparo') <= -1 && <S.LinkImgEscura src="/icon-medium/Preparo.svg" />}
+              {url.search('Preparo') > -1 && (
+                <>
+                  <S.LinkImg src="/icon-medium/Preparo.svg" />
+                  <S.Barra color={theme.colors['orange/400']}></S.Barra>
+                </>
+              )}
+            </S.IconBarra>
           </Link>
 
           {/* CATALOGAÇÃO */}
           <Link to={`/Fase/${id}/Board/Catalogação`}>
-            <S.LinkImg src="/icon-medium/Catalogação.svg" />
-            {url.search('Cataloga%C3%A7%C3%A3o') > -1 && <S.Barra color="#F3CC00"></S.Barra>}
+            <S.IconBarra>
+              {url.search('Cataloga%C3%A7%C3%A3o') <= -1 && <S.LinkImgEscura src="/icon-medium/Catalogação.svg" />}
+              {url.search('Cataloga%C3%A7%C3%A3o') > -1 && (
+                <>
+                  <S.LinkImg src="/icon-medium/Catalogação.svg" />
+                  <S.Barra color="#F3CC00"></S.Barra>
+                </>
+              )}
+            </S.IconBarra>
           </Link>
 
           {/* DIGITALIZAÇÃO */}
           <Link to={`/Fase/${id}/Board/Digitalização`}>
-            <S.LinkImg src="/icon-medium/Digitalização.svg" />
-            {url.search('Digitaliza%C3%A7%C3%A3o') > -1 && <S.Barra color="#2D94F3"></S.Barra>}
+            <S.IconBarra>
+              {url.search('Digitaliza%C3%A7%C3%A3o') <= -1 && <S.LinkImgEscura src="/icon-medium/Digitalização.svg" />}
+              {url.search('Digitaliza%C3%A7%C3%A3o') > -1 && (
+                <>
+                  <S.LinkImg src="/icon-medium/Digitalização.svg" />
+                  <S.Barra color="#2D94F3"></S.Barra>
+                </>
+              )}
+            </S.IconBarra>
           </Link>
 
           {/* UPLOAD */}
           <Link to={`/Fase/${id}/Board/Upload`}>
-
-            <S.LinkImg src="/icon-medium/Upload.svg" />
-            {url.search('Upload') > -1 && <S.Barra color={theme.colors['purple/600']}></S.Barra>}
-            
+            <S.IconBarra>
+              {url.search('Upload') <= -1 && <S.LinkImgEscura src="/icon-medium/Upload.svg" />}
+              {url.search('Upload') > -1 && (
+                <>
+                  <S.LinkImg src="/icon-medium/Upload.svg" />
+                  <S.Barra color={theme.colors['purple/600']}></S.Barra>
+                </>
+              )}
+            </S.IconBarra>
           </Link>
 
           {/* ARQUIVAMENTO */}
           <Link to={`/Fase/${id}/Board/Arquivamento`}>
             <S.IconBarra>
-              <S.LinkImg src="/icon-medium/Arquivamento.svg" />
-              {url.search('Arquivamento') > -1 && <S.Barra color={theme.colors['green/400']}></S.Barra>}
+              {url.search('Arquivamento') <= -1 && <S.LinkImgEscura src="/icon-medium/Arquivamento.svg" />}
+              {url.search('Arquivamento') > -1 && (
+                <>
+                  <S.LinkImg src="/icon-medium/Arquivamento.svg" />
+                  <S.Barra color={theme.colors['green/400']}></S.Barra>
+                </>
+              )}
             </S.IconBarra>
           </Link>
         </S.Change>

@@ -19,7 +19,7 @@ import { Tooltip } from 'react-tooltip';
 interface CardProps {
   color: string;
   srcImgIcon: string;
-  link: string;
+  //link: string;
 
   fase: number;
 }
@@ -47,7 +47,7 @@ export const CardFase = ({ ...props }: CardProps) => {
   }, []);
 
   return (
-    <CardContainer href={props.link} >
+    <CardContainer>
       <FigureIconCard backgroundColor={props.color}>
         <ImgIconCard src={props.srcImgIcon}></ImgIconCard>
       </FigureIconCard>

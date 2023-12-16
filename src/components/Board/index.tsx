@@ -14,7 +14,7 @@ import theme from '../../global/theme';
 
 import * as Empty from '../EmptyPage/styles';
 import { AtribuirAlguemModal } from '../AtribuirAlguemModal';
-import { Btn } from '../../pages/Etapas/Preparo/styles';
+import { Btn } from '../../pages/FasesEspecificsPages/Preparo/styles';
 import { ModalCriarLote } from '../ModalCriarLote';
 import { EspecifcModal } from '../EspecificStatusModal';
 import { Link } from 'react-router-dom';
@@ -246,7 +246,6 @@ export const Board = (props: BoardProps) => {
                           )}
                           {batche.main_status === 3 && (
                             <img src="/icon-small/Upload.svg" style={{ width: '32px', height: '32px' }} />
-                            
                           )}
                         </Lote>
                       </Link>

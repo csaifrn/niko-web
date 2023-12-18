@@ -23,7 +23,7 @@ interface EspecifModalProps {
   batche: Batche;
   title: string;
   button: string;
-  assigners: AssignedUser[] | undefined;
+  //assigners: AssignedUser[] | undefined;
   //LoteTitle: string;
   setSpecificStatus?: React.Dispatch<React.SetStateAction<number>>;
   setBatche?: React.Dispatch<React.SetStateAction<GetResponseBatche | null>>;
@@ -86,7 +86,6 @@ export const EspecifcModal = (props: EspecifModalProps) => {
       }
     },
     onError: (err: ApiError) => {
-      console.log('esp');
       toast.error(err.response?.data.message ? err.response?.data.message : 'Erro na execução');
     },
   });
@@ -105,7 +104,6 @@ export const EspecifcModal = (props: EspecifModalProps) => {
       }
     },
     onError: (err: ApiError) => {
-      console.log('main');
       toast.error(err.response?.data.message ? err.response?.data.message : 'Erro na execução');
     },
   });

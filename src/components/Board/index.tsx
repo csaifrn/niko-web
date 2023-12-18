@@ -119,7 +119,7 @@ export const Board = (props: BoardProps) => {
                           value={`${batche.title}`}
                           observations={batche.observations}
                           prioridade={batche.priority}
-                          categoria={batche.category}
+                          categoria={batche.settlement_project_categories}
                           pendencia={batche.pending_batch_observations}
                           //envolvidos={batche.envolvidos}
                         >

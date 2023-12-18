@@ -17,6 +17,7 @@ export interface GetResponseBatche {
   category: Category;
   assigned_users: AssignedUser[];
   observations: Observation[];
+  pending_batch_observations: {};
 }
 
 
@@ -61,7 +62,7 @@ export interface AssignedUser {
 export interface Observation {
   id: string;
   observation: string;
-  //is_pending: boolean;
+  is_pending: boolean;
   created_by: CreatedBy2;
   created_at: string;
 }

@@ -1,25 +1,26 @@
-import { useContext, useEffect, useState } from 'react';
+import {useEffect, useState } from 'react';
 import * as S from './styles';
-import { useParams } from 'react-router-dom';
 import { AssignedUser, GetResponseBatche } from '../../api/services/batches/get-batche/get.interface';
 import { useMutation } from 'react-query';
 import { PatchBatcheSpecifStatus } from '../../api/services/batches/patch-status-specific';
 import toast from 'react-hot-toast';
-import { KabanContext } from '../Board';
 import theme from '../../global/theme';
-//import { ArrowCircleLeft } from '@phosphor-icons/react';
 import { ApiError } from '../../api/services/authentication/signIn/signIn.interface';
 import { PatchBatcheMainStatus } from '../../api/services/batches/patch-status';
 import { CheckCircle, HandWaving } from '@phosphor-icons/react';
-import { PostAssigners } from '../../api/services/batches/assigners/post-assigners';
-import { PostResponseAssigners } from '../../api/services/batches/assigners/post-assigners/post.interface';
 import { SharedState } from '../../context/SharedContext';
-import { SearchUser } from '../../api/services/batches/assigners/get-user-autocomplete';
-import { SearchUserResponseBatche } from '../../api/services/batches/assigners/get-user-autocomplete/get.interface';
+import { CustomSelect } from '../AtribuirAlguemModal/style';
+import { QuerySettles } from '../../api/services/settlement/query-settlement';
+import { ResponseSettle } from '../../api/services/settlement/query-settlement/get.interface';
+import { PostBatcheSettle } from '../../api/services/batches/patch-settle';
+import { PostAssigners } from '../../api/services/batches/assigners/post-assigners';
+import { DeleteAssigner } from '../../api/services/batches/assigners/delete-assigners';
+import { Batche } from '../../api/services/batches/get-batche/get.interface';
 
 interface EspecifModalProps {
   close: () => void;
-  batche: GetResponseBatche;
+  refetch?: () => void;
+  batche: Batche;
   title: string;
   button: string;
   assigners: AssignedUser[] | undefined;
@@ -29,12 +30,33 @@ interface EspecifModalProps {
   setStatus?: React.Dispatch<React.SetStateAction<number>>;
 }
 
+// export const EspecifcModal = (props: EspecifModalProps) => {
+//   const kanban = useContext(KabanContext);
+//   const { id } = useParams();
+//   const { user } = SharedState();
+//   const [closing, setClosing] = useState(false);
+//   const [presentAssigners, setPresentAssigners] = useState<AssignedUser[]>(props.assigners ? props.assigners : []);
+//   refetch?: () => void;
+// }
+
+interface Option {
+  value: string;
+  label: string;
+}
+
 export const EspecifcModal = (props: EspecifModalProps) => {
-  const kanban = useContext(KabanContext);
-  const { id } = useParams();
-  const { user } = SharedState();
+  const user = SharedState();
+
   const [closing, setClosing] = useState(false);
-  const [presentAssigners, setPresentAssigners] = useState<AssignedUser[]>(props.assigners ? props.assigners : []);
+  const [NoCategories, setNoCategories] = useState(false);
+  const [userInput, setUserInput] = useState('');
+  const [options, setOptions] = useState<Option[]>([]);
+  const [selectedOptions, setSelectedOptions] = useState<Option[]>([
+    ...props.batche.settlement_project_categories.map((cat) => ({
+      value: cat.id,
+      label: cat.name,
+    })),
+  ]);
 
   useEffect(() => {
     // Ao renderizar o modal, aplicar um escalonamento gradual para exibi-lo
@@ -59,67 +81,51 @@ export const EspecifcModal = (props: EspecifModalProps) => {
 
   const mutateEspecific = useMutation(PatchBatcheSpecifStatus, {
     onSuccess: () => {
-      toast.success('Status atualizado!');
-      if (kanban) {
-        if (props.batche.specific_status + 1 === 1) {
-          kanban.setBatchesDispo((dispo) => dispo.filter((d) => d.id !== props.batche.id));
-          kanban.setBatchesAnda((anda) => [...anda, props.batche]);
-        } else if (props.batche.specific_status + 1 === 2) {
-          kanban.setBatchesAnda((anda) => anda.filter((a) => a.id !== props.batche.id));
-          kanban.setBatchesConc((conc) => [
-            ...conc,
-            { ...props.batche, specific_status: props.batche.specific_status + 1 },
-          ]);
-        } else {
-          console.log('Erro', props.batche.specific_status + 1 === 2);
-        }
+      if (props.refetch) {
+        props.refetch();
       }
-      if (props.batche.specific_status == 0 && props.setSpecificStatus && props.setBatche) {
-        props.setSpecificStatus((e) => (e + 1 === 2 ? 0 : 1));
-        props.setBatche({ ...props.batche, specific_status: props.batche.specific_status + 1 });
-      } else if (props.batche.specific_status == 1 && props.setBatche && props.setStatus && props.setSpecificStatus) {
-        props.setSpecificStatus((e) => (e + 1 === 2 ? 0 : 1));
-        props.setStatus((s) => s + 1);
-        props.setBatche({
-          ...props.batche,
-          main_status: props.batche.main_status + 1,
-          specific_status: 0,
-        });
-      }
+    },
+    onError: (err: ApiError) => {
+      console.log('esp');
+      toast.error(err.response?.data.message ? err.response?.data.message : 'Erro na execução');
     },
   });
 
-  const mutateStatus = useMutation(PatchBatcheMainStatus, {
-    onSuccess: () => {
-      toast.success('Fase atualizada!');
-    },
+  const mutateSettle = useMutation(PostBatcheSettle, {
+    onSuccess: (data) => {},
     onError: (err: ApiError) => {
       toast.error(err.response?.data.message ? err.response?.data.message : 'Erro na execução');
     },
   });
 
-  const users = useMutation(SearchUser, {
-    onSuccess: (data: SearchUserResponseBatche) => {
-      const usersNiko = data.users;
-    },
-  });
-
-  const assignMutate = useMutation(PostAssigners, {
-    onSuccess: (data: PostResponseAssigners) => {
-      toast.success('Mudanças salvas!');
-      setPresentAssigners(data.assignedUsers);
-      handleClose();
-    },
-    onError: (error: ApiError) => {
-      if (error.response) {
-        toast.error(error.response!.data.message);
+  const mutateStatus = useMutation(PatchBatcheMainStatus, {
+    onSuccess: () => {
+      if (props.refetch) {
+        props.refetch();
       }
     },
+    onError: (err: ApiError) => {
+      console.log('main');
+      toast.error(err.response?.data.message ? err.response?.data.message : 'Erro na execução');
+    },
   });
 
-  const handlePegar = () => {
+  const mutateQueryCategories = useMutation(QuerySettles, {
+    onSuccess: (data: ResponseSettle) => {
+      setOptions([...data.categories.map((settle) => ({ value: settle.id, label: settle.name }))]);
+    },
+  });
+
+  const mutateAssigner = useMutation(PostAssigners, {
+    onSuccess: (data) => {},
+  });
+
+  const mutateDeleteAssigner = useMutation(DeleteAssigner, {
+    onSuccess: (data) => {},
+  });
+
+  const nextFase = () => {
     const specific_status = props.batche.specific_status + 1 === 2 ? 0 : 1;
-    //console.log(specific_status);
     mutateEspecific.mutate({
       specific_status,
       id: props.batche.id,
@@ -138,6 +144,57 @@ export const EspecifcModal = (props: EspecifModalProps) => {
         id: props.batche.id,
         main_status: props.batche.main_status + 1,
       });
+      if (props.batche.assigned_users) {
+        props.batche.assigned_users.map((ass) => {
+          mutateDeleteAssigner.mutate({
+            batch_id: props.batche.id,
+            assignment_user_id: ass.id,
+          });
+        });
+      }
+      if (mutateDeleteAssigner.isSuccess) {
+        toast.success('Usuários removidos!');
+      }
+      toast.success('Fase atualizada!');
+    } else if (user.user?.sub && specific_status === 1) {
+      mutateAssigner.mutate({
+        batch_id: props.batche.id,
+        assignment_users_ids: [user.user?.sub],
+      });
+      toast.success('Status atualizado!');
+    }
+    handleClose();
+  };
+
+  const handlePegar = () => {
+    if (props.batche.main_status === 1 && props.batche.specific_status === 2) {
+      if (NoCategories) {
+        nextFase();
+      } else {
+        mutateSettle.mutate({
+          id: props.batche.id,
+          settlementProjectCategories: [...selectedOptions.map((opt) => opt.value)],
+        });
+        if (mutateSettle.isSuccess) {
+          nextFase();
+        }
+      }
+    } else {
+      nextFase();
+    }
+  };
+
+  useEffect(() => {
+    if (userInput.length >= 3) {
+      mutateQueryCategories.mutate({
+        name: userInput,
+      });
+    }
+  }, [userInput]);
+
+  const onRemove = (e: any) => {
+    if (e) {
+      setSelectedOptions((settles) => settles.filter((settle) => settle.value != e.value));
     }
   };
 
@@ -149,11 +206,40 @@ export const EspecifcModal = (props: EspecifModalProps) => {
             <S.NameClose>
               <S.Titulo> {props.title}</S.Titulo>
             </S.NameClose>
-            <S.RecusedAvancar>
-              <S.Recused onClick={handleClose}>
-                <S.Texto>Não, não quero.</S.Texto>
-              </S.Recused>
+            {props.batche.main_status === 1 && props.batche.specific_status == 1 && (
+              <S.CatalogacaoArea>
+                <h3>Adicionar categorias</h3>
+                {!NoCategories && (
+                  <CustomSelect
+                    isMulti
+                    // eslint-disable-next-line jsx-a11y/no-autofocus
+                    autoFocus
+                    placeholder={'Digite no mínimo 3 caracteres...'}
+                    name="colors"
+                    className="react-select-container"
+                    classNamePrefix="react-select"
+                    onInputChange={setUserInput}
+                    inputValue={userInput}
+                    onChange={(e: any, action: any) => {
+                      // eslint-disable-next-line no-constant-condition
+                      if ((action.action = 'remove-value')) {
+                        onRemove(action.removedValue);
+                      }
 
+                      setSelectedOptions(e);
+                    }}
+                    options={options}
+                    value={selectedOptions}
+                    isLoading={mutateQueryCategories.isLoading}
+                    required
+                  />
+                )}
+                <S.ButtonNoCategory onClick={() => setNoCategories(!NoCategories)}>
+                  {NoCategories ? 'Adicionar' : 'Não adicionar'}
+                </S.ButtonNoCategory>
+              </S.CatalogacaoArea>
+            )}
+            <S.RecusedAvancar>
               {props.button === 'Pegar lote' && (
                 <S.PegarLoteButton onClick={handlePegar}>
                   <HandWaving size={20} weight="fill" />
@@ -168,6 +254,9 @@ export const EspecifcModal = (props: EspecifModalProps) => {
                   <S.Texto style={{ color: theme.colors['gray/900'] }}>{props.button}</S.Texto>
                 </S.ConcluirLoteButton>
               )}
+              <S.Recused onClick={handleClose}>
+                <S.Texto>Não, não quero.</S.Texto>
+              </S.Recused>
             </S.RecusedAvancar>
           </S.ModalContent>
         </S.ModalArea>

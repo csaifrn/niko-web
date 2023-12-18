@@ -19,13 +19,37 @@ export interface GetResponseBatche {
   observations: Observation[];
 }
 
+
+export interface Batche {
+  id: string;
+  title: string;
+  main_status: number;
+  specific_status: number;
+  digital_files_count: number;
+  physical_files_count: number;
+  priority: boolean;
+  shelf_number: any;
+  created_at: string;
+  updated_at: string;
+  created_by: CreatedBy;
+  settlement_project_categories: Category[];
+  assigned_users: AssignedUser[];
+  tags: any[];
+  observations: Observation[];
+}
+
 export interface CreatedBy {
   user_id: string;
   name: string;
 }
 
 export interface Category {
-  settlement_project_category_id: string;
+  id: string;
+  name: string;
+}
+
+export interface CreatedBy {
+  user_id: string;
   name: string;
 }
 

@@ -3,7 +3,6 @@ import { useState, useEffect } from 'react';
 import toast from 'react-hot-toast';
 import { useMutation } from 'react-query';
 import { ApiError } from '../../api/services/authentication/signIn/signIn.interface';
-import { GetResponseBatche } from '../../api/services/batches/get-batche/get.interface';
 import { QueryBatche } from '../../api/services/batches/query-batches';
 import {
   CardContainer,
@@ -14,7 +13,7 @@ import {
   TextBoxCard,
   NomeEtapa,
 } from './styles';
-import { Tooltip } from 'react-tooltip';
+import { GetResponseBatche } from '../../api/services/batches/query-batches/get.interface';
 
 interface CardProps {
   color: string;
@@ -27,13 +26,11 @@ interface CardProps {
 export const CardFase = ({ ...props }: CardProps) => {
   const [batchesDispo, setBatchesDispo] = useState<GetResponseBatche[]>([]);
   const [batchesAnda, setBatchesAnda] = useState<GetResponseBatche[]>([]);
-  const [batchesConc, setBatchesConc] = useState<GetResponseBatche[]>([]);
 
   const mutateBatchesQuery = useMutation(QueryBatche, {
     onSuccess: (data: GetResponseBatche[]) => {
       setBatchesDispo(data.filter((batche) => batche.specific_status === 0));
       setBatchesAnda(data.filter((batche) => batche.specific_status === 1));
-      setBatchesConc(data.filter((batche) => batche.specific_status === 2));
     },
     onError: (err: ApiError) => {
       toast.error(err.message);

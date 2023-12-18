@@ -4,6 +4,7 @@ import media from 'styled-media-query';
 export const FaseKanbanPage = styled.div`
   display: flex;
   justify-content: center;
+  gap: 2em;
   flex-direction: row;
   gap: 2em;
 
@@ -24,15 +25,12 @@ const kanban = styled.div`
   gap: 16px;
 
   @media screen and (min-width: 767px) {
-    align-items: center;
-    flex-direction: column;
     margin-bottom: 2em;
   }
 `;
 
 export const WrapperEmpty = styled.div`
   font-family: 'Rubik';
-  background-color: ${({ theme }) => theme.colors['gray/900']};
   display: flex;
   align-items: center;
   justify-content: center;

@@ -2,9 +2,9 @@ import React from 'react';
 import * as S from './styles';
 import { generateUUID } from '../../utils/generateUUID.util';
 import { Warning } from '@phosphor-icons/react';
+import { Category } from '../../api/services/batches/get-batche/get.interface';
 
 const Lote = (props: any) => {
-
   return (
     <>
       {props.edit == true && (
@@ -17,17 +17,20 @@ const Lote = (props: any) => {
 
             <S.LoteNumAvisos>
               <S.Categoria>
-                {props.categoria && (
-                  <React.Fragment key={generateUUID()}>
-                    <S.CategoriaTextDiv style={{ borderRadius: '100%', width: '2em' }}>
-                      <p>+</p>
-                    </S.CategoriaTextDiv>
-
-                    <S.CategoriaTextDiv style={{ borderRadius: '3px' }}>
-                      <p style={{ padding: '0 0.5em' }}>{props.categoria.name}</p>
-                    </S.CategoriaTextDiv>
-                  </React.Fragment>
-                )}
+                <S.CategoriaTextDiv style={{ borderRadius: '100%', width: '2em' }}>
+                  <p>+</p>
+                </S.CategoriaTextDiv>
+                {props.categoria &&
+                  props.categoria.map((cat: any) => {
+                    console.log(cat);
+                    return (
+                      <React.Fragment key={generateUUID()}>
+                        <S.CategoriaTextDiv style={{ borderRadius: '3px' }}>
+                          <p style={{ padding: '0 0.5em' }}>{cat.name}</p>
+                        </S.CategoriaTextDiv>
+                      </React.Fragment>
+                    );
+                  })}
               </S.Categoria>
             </S.LoteNumAvisos>
           </S.LoteArea>
@@ -69,17 +72,32 @@ const Lote = (props: any) => {
               <S.LoteNumAvisos>
                 {/* Categorias do Lote */}
                 <S.Categoria>
-                  {props.categoria && (
-                    <React.Fragment key={generateUUID()}>
-                      <S.CategoriaTextDiv style={{ borderRadius: '100%', width: '2em' }}>
-                        <p>+</p>
-                      </S.CategoriaTextDiv>
-
-                      <S.CategoriaTextDiv style={{ borderRadius: '3px' }}>
-                        <p style={{ padding: '0 0.5em' }}>{props.categoria.name}</p>
-                      </S.CategoriaTextDiv>
-                    </React.Fragment>
-                  )}
+                  {props.categoria &&
+                    props.categoria.map((cat: Category, index: number) => {
+                      if (index === 0) {
+                        return (
+                          <React.Fragment key={generateUUID()}>
+                            <S.CategoriaTextDiv style={{ borderRadius: '3px' }}>
+                              <p style={{ padding: '0 0.5em' }}>{cat.name}</p>
+                            </S.CategoriaTextDiv>
+                          </React.Fragment>
+                        );
+                      } else if (index + 1 == props.categoria.length) {
+                        return (
+                          <S.CategoriaTextDiv
+                            key={cat.id}
+                            style={{ borderRadius: '100%', width: '2em', paddingRight: '2px' }}
+                          >
+                            <p>+{index + 1}</p>
+                            <S.Categories>
+                              {props.categoria.map((cat: Category, index: number) => {
+                                return <S.ToolText key={cat.id}>{cat.name}</S.ToolText>;
+                              })}
+                            </S.Categories>
+                          </S.CategoriaTextDiv>
+                        );
+                      }
+                    })}
                 </S.Categoria>
 
                 {/* Operadores do Lote */}

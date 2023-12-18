@@ -234,7 +234,6 @@ export const Board = (props: BoardProps) => {
                           pendencia={batche.pending_batch_observations}
                           prioridade={batche.priority}
                           categoria={batche.settlement_project_categories}
-                          //envolvidos={batche.envolvidos}
                         >
                           {batche.main_status === 1 && (
                             <img src="/icon-small/Catalogação.svg" style={{ width: '32px', height: '32px' }} />

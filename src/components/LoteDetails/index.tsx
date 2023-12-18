@@ -576,11 +576,11 @@ export const LoteDetails = () => {
             priorityOnChange={(e: boolean) => setPriority(e)}
           ></ConfigModal>
         )}
-        {observacao && (
+        {observacao && observation != undefined && (
           <CreateObservationModal
             id={observationId}
             observations={observations!}
-            pendencia={observation?.is_pending}
+            pendencia={observation.is_pending}
             refetch={() => {
               if (id) {
                 beforeTask.mutate({
@@ -601,7 +601,7 @@ export const LoteDetails = () => {
             deleteFunction={() => DeleteObs(observationId)}
           />
         )}
-        {edit_modal && (
+        {edit_modal &&  observation != undefined && (
           <ObservationModal
             id={observationId}
             observation={observation?.observation}
@@ -615,7 +615,7 @@ export const LoteDetails = () => {
             }}
             title="Editar observação"
             close={() => setEditModal(!edit_modal)}
-            pendencia={observation?.is_pending}
+            pendencia={observation.is_pending}
           />
         )}
         {atribuir_modal && (

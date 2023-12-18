@@ -13,13 +13,16 @@ import { Observation } from '../../../api/services/batches/get-batche/get.interf
 import { ErrorMessage } from '../../../pages/Login/styles';
 import { InputObservation } from '../Observation-modal-update/styles';
 import { SharedState } from '../../../context/SharedContext';
+import { PatchPendencia } from '../../../api/services/batches/observation/pendencia';
 
 const MIN_TEXTAREA_HEIGHT = 32;
 interface DeletarModalProps {
   title: string;
+  id: string | undefined;
+  pendencia: boolean;
   close: () => void;
   // eslint-disable-next-line no-unused-vars
-  refetch: (Obs: Observation[]) => void;
+  refetch: () => void;
   observations: Observation[];
 }
 
@@ -31,6 +34,33 @@ export const CreateObservationModal = (props: DeletarModalProps) => {
   const [validationFormError, setValidationFormError] = useState<ErrorsForm>({ observation: '' });
   const textareaRef = useRef<HTMLTextAreaElement | null>(null);
   const [value, setValue] = useState<string>('');
+  const [isPending, setIsPending] = useState<boolean>(false);
+
+  // const Pendencia = useMutation(PatchPendencia, {
+  //   onSuccess: () => {
+  //     toast.success(`Pendência ${isPending ? 'foi desativada' : 'foi ativada'}!`);
+  //   },
+  //   onError: (error: ApiError) => {
+  //     toast.error(error.response!.data.message);
+  //   },
+  // });
+
+  const handlePend = () => {
+    setIsPending(!isPending)
+    // if (isPending && props.id) {
+    //   setIsPending(false);
+    //   //props.priorityOnChange(false);
+    //   Pendencia.mutate({
+    //     id: props.id,
+    //   });
+    // } else if (props.id) {
+    //   setIsPending(true);
+    //   //props.priorityOnChange(true);
+    //   Pendencia.mutate({
+    //     id: props.id,
+    //   });
+    // }
+  }
 
   const onChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
     setValue(event.target.value);
@@ -63,17 +93,7 @@ export const CreateObservationModal = (props: DeletarModalProps) => {
     onSuccess(data: CreateObservationResponse) {
       let date = new Date();
       date.setHours(date.getHours() + 3);
-
       toast.success(`Observação adicionada: ${data.observation}`);
-      props.refetch([
-        ...props.observations,
-        {
-          id: data.id,
-          observation: data.observation,
-          created_at: String(date),
-          created_by: { name: user!.name, user_id: user!.sub },
-        },
-      ]);
       handleClose();
     },
     onError(error: ApiError) {
@@ -111,6 +131,7 @@ export const CreateObservationModal = (props: DeletarModalProps) => {
       ObservationMutate.mutate({
         id: id!,
         observation: observation.trim(),
+        is_pending: isPending
       });
     }
   };
@@ -119,14 +140,15 @@ export const CreateObservationModal = (props: DeletarModalProps) => {
     setClosing(true);
     setTimeout(() => {
       props.close();
+      props.refetch();
     }, 300);
   };
+
   return (
     <>
       <S.ModalBackdrop>
         <S.ModalArea id="modal-scaling">
           <S.ModalContent>
-
             <S.NameClose>
               <h2>{props.title}</h2>
               <S.Exit type="button" onClick={handleClose}>
@@ -153,6 +175,14 @@ export const CreateObservationModal = (props: DeletarModalProps) => {
               }}
               placeholder="Escreva uma observação..."
             />
+
+            <h3>Pendência?</h3>
+
+            <S.SwitchButton>
+              <S.Input checked={isPending} onChange={handlePend}/>
+              <S.Slider />
+            </S.SwitchButton>
+
             {validationFormError.observation && <ErrorMessage>{validationFormError.observation}</ErrorMessage>}
 
             <S.Green onClick={handleSave} disabled={ObservationMutate.isLoading || ObservationMutate.isSuccess}>

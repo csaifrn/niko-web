@@ -82,7 +82,7 @@ export const Menu = (props: MenuProps) => {
                 {pathname !== `/Painel/${id}` && <MenuC.textIcon>Painel</MenuC.textIcon>}
               </MenuC.link>
 
-              <MenuC.link to={`/Atividades/${id}`}>
+              {/* <MenuC.link to={`/Atividades/${id}`}>
                 <MenuC.MenuImg
                   src={
                     pathname === `/Atividades/${id}` ? '/IconMenu/Activity/Fill.svg' : '/IconMenu/Activity/Regular.svg'
@@ -92,7 +92,7 @@ export const Menu = (props: MenuProps) => {
                   <MenuC.textIcon style={{ color: theme.colors['orange/400'] }}>Atividades</MenuC.textIcon>
                 )}
                 {pathname !== `/Atividades/${id}` && <MenuC.textIcon>Atividades</MenuC.textIcon>}
-              </MenuC.link>
+              </MenuC.link> */}
 
               <MenuC.link to={`/Fase/${id}`}>
                 <MenuC.MenuImg

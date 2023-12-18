@@ -1,28 +1,43 @@
-import { useContext, useEffect, useState } from 'react';
+import {useEffect, useState } from 'react';
 import * as S from './styles';
+import { AssignedUser, GetResponseBatche } from '../../api/services/batches/get-batche/get.interface';
 import { useMutation } from 'react-query';
 import { PatchBatcheSpecifStatus } from '../../api/services/batches/patch-status-specific';
 import toast from 'react-hot-toast';
 import theme from '../../global/theme';
-//import { ArrowCircleLeft } from '@phosphor-icons/react';
 import { ApiError } from '../../api/services/authentication/signIn/signIn.interface';
 import { PatchBatcheMainStatus } from '../../api/services/batches/patch-status';
+import { CheckCircle, HandWaving } from '@phosphor-icons/react';
+import { SharedState } from '../../context/SharedContext';
 import { CustomSelect } from '../AtribuirAlguemModal/style';
 import { QuerySettles } from '../../api/services/settlement/query-settlement';
 import { ResponseSettle } from '../../api/services/settlement/query-settlement/get.interface';
 import { PostBatcheSettle } from '../../api/services/batches/patch-settle';
 import { PostAssigners } from '../../api/services/batches/assigners/post-assigners';
-import { SharedState } from '../../context/SharedContext';
 import { DeleteAssigner } from '../../api/services/batches/assigners/delete-assigners';
 import { Batche } from '../../api/services/batches/get-batche/get.interface';
 
 interface EspecifModalProps {
   close: () => void;
+  refetch?: () => void;
   batche: Batche;
   title: string;
   button: string;
-  refetch?: () => void;
+  //assigners: AssignedUser[] | undefined;
+  //LoteTitle: string;
+  setSpecificStatus?: React.Dispatch<React.SetStateAction<number>>;
+  setBatche?: React.Dispatch<React.SetStateAction<GetResponseBatche | null>>;
+  setStatus?: React.Dispatch<React.SetStateAction<number>>;
 }
+
+// export const EspecifcModal = (props: EspecifModalProps) => {
+//   const kanban = useContext(KabanContext);
+//   const { id } = useParams();
+//   const { user } = SharedState();
+//   const [closing, setClosing] = useState(false);
+//   const [presentAssigners, setPresentAssigners] = useState<AssignedUser[]>(props.assigners ? props.assigners : []);
+//   refetch?: () => void;
+// }
 
 interface Option {
   value: string;
@@ -71,7 +86,6 @@ export const EspecifcModal = (props: EspecifModalProps) => {
       }
     },
     onError: (err: ApiError) => {
-      console.log('esp');
       toast.error(err.response?.data.message ? err.response?.data.message : 'Erro na execução');
     },
   });
@@ -90,7 +104,6 @@ export const EspecifcModal = (props: EspecifModalProps) => {
       }
     },
     onError: (err: ApiError) => {
-      console.log('main');
       toast.error(err.response?.data.message ? err.response?.data.message : 'Erro na execução');
     },
   });
@@ -115,6 +128,15 @@ export const EspecifcModal = (props: EspecifModalProps) => {
       specific_status,
       id: props.batche.id,
     });
+
+    // if (user?.id != undefined) {
+    //   assignMutate.mutate({
+    //     batch_id: id,
+    //     assignment_users_ids: user.id,
+    //   });
+    // }
+
+    handleClose();
     if (specific_status === 0) {
       mutateStatus.mutate({
         id: props.batche.id,
@@ -216,18 +238,19 @@ export const EspecifcModal = (props: EspecifModalProps) => {
               </S.CatalogacaoArea>
             )}
             <S.RecusedAvancar>
-              {props.button === 'Marcar como concluído' && (
-                <S.ConcluirLoteButton onClick={handlePegar}>
-                  <img src="/finished-icon.svg" />
-                  <S.Texto>{props.button}</S.Texto>
-                </S.ConcluirLoteButton>
-              )}
               {props.button === 'Pegar lote' && (
                 <S.PegarLoteButton onClick={handlePegar}>
-                  <img src="/PegarLote_icon.svg" />
+                  <HandWaving size={20} weight="fill" />
                   {/* {props.button === 'Marcar como concluído' && <img src='/finished-icon.svg' />} */}
-                  <S.Texto style={{ color: theme.colors['gray/700'] }}>{props.button}</S.Texto>
+                  <S.Texto>{props.button}</S.Texto>
                 </S.PegarLoteButton>
+              )}
+
+              {props.button === 'Marcar como concluído' && (
+                <S.ConcluirLoteButton onClick={handlePegar}>
+                  <CheckCircle size={24} weight="fill" />
+                  <S.Texto style={{ color: theme.colors['gray/900'] }}>{props.button}</S.Texto>
+                </S.ConcluirLoteButton>
               )}
               <S.Recused onClick={handleClose}>
                 <S.Texto>Não, não quero.</S.Texto>

@@ -2,8 +2,6 @@ import { ReactNode, useEffect, useState } from 'react';
 import * as S from './styles';
 import Lote from '../Lote';
 import Users from '../../data/UserData';
-import { AtribuirButton } from '../../pages/Coordenador/Atividade/atividade-home/styles';
-import { ArrowCircleLeft, UsersThree } from '@phosphor-icons/react';
 import { BoardChanger } from '../BoardChanger';
 import { useMutation } from 'react-query';
 import { QueryBatche } from '../../api/services/batches/query-batches';
@@ -12,10 +10,12 @@ import { ApiError } from '../../api/services/authentication/signIn/signIn.interf
 import theme from '../../global/theme';
 import * as Empty from '../EmptyPage/styles';
 import { AtribuirAlguemModal } from '../AtribuirAlguemModal';
-import { Btn } from '../../pages/Etapas/Preparo/styles';
+import { Btn } from '../../pages/FasesEspecificsPages/Preparo/styles';
 import { ModalCriarLote } from '../ModalCriarLote';
 import { EspecifcModal } from '../EspecificStatusModal';
+import { Link } from 'react-router-dom';
 import { GetResponseBatche } from '../../api/services/batches/query-batches/get.interface';
+import { ArrowCircleLeft, CheckCircle, HandWaving } from '@phosphor-icons/react';
 
 interface BoardProps {
   main_status: number;
@@ -38,6 +38,7 @@ export const Board = (props: BoardProps) => {
     onSuccess: (data: GetResponseBatche[]) => {
       setBatchesDispo(data.filter((batche) => batche.specific_status === 0));
       setBatchesAnda(data.filter((batche) => batche.specific_status === 1));
+      setBatchesConc(data.filter((batche) => batche.specific_status === 2));
     },
     onError: (err: ApiError) => {
       toast.error(err.message);
@@ -107,30 +108,32 @@ export const Board = (props: BoardProps) => {
                     <Empty.Title>Está lista está vazia</Empty.Title>
                   </S.WrapperEmptyKanban>
                 )}
+
+                {/* Disponíveis */}
                 {batchesDispo.map(
                   (batche) =>
                     batche && (
-                      <a href={`/Lote/${batche.id}`} key={batche.id} style={{ textDecoration: 'none' }}>
+                      <Link to={`/Lote/${batche.id}`} key={batche.id} style={{ textDecoration: 'none' }}>
                         <Lote
                           task={batche}
                           value={`${batche.title}`}
-                          pendencia={batche.observations}
+                          observations={batche.observations}
                           prioridade={batche.priority}
                           categoria={batche.settlement_project_categories}
+                          pendencia={batche.pending_batch_observations}
                           //envolvidos={batche.envolvidos}
                         >
-                          {user.role === 'Operador' && props.main_status != 4 && (
-                            <AtribuirButton
+                          {user.role === 'Operador' && (
+                            <S.BlackButton
                               onClick={(e) => {
                                 e.preventDefault();
                                 setOpenEspecifModal(!openEspecifModal);
                                 setTitleModal({ button: 'Pegar lote', title: `Deseja pegar o ${batche.title}?` });
                                 setBatche(batche);
                               }}
-                              style={{ color: 'black' }}
                             >
-                              <img src="/PegarLote_icon.svg" alt="icone de mão acenando" /> Pegar lote
-                            </AtribuirButton>
+                              <HandWaving size={20} weight="fill" alt="icone de mão acenando" /> Pegar lote
+                            </S.BlackButton>
                           )}
                           {user.role === 'Coordenador' && (
                             <S.BlackButton
@@ -144,7 +147,7 @@ export const Board = (props: BoardProps) => {
                             </S.BlackButton>
                           )}
                         </Lote>
-                      </a>
+                      </Link>
                     ),
                 )}
               </S.kanbanSectionContent>
@@ -171,17 +174,17 @@ export const Board = (props: BoardProps) => {
                 {batchesAnda?.map(
                   (batche) =>
                     batche && (
-                      <a href={`/Lote/${batche.id}`} key={batche.id} style={{ textDecoration: 'none' }}>
+                      <Link to={`/Lote/${batche.id}`} key={batche.id} style={{ textDecoration: 'none' }}>
                         <Lote
                           task={batche}
                           value={`${batche.title}`}
-                          pendencia={batche.observations}
+                          pendencia={batche.pending_batch_observations}
                           prioridade={batche.priority}
                           categoria={batche.settlement_project_categories}
                           //envolvidos={batche.envolvidos}
                         >
                           {user.role === 'Operador' && (
-                            <S.BlackButton
+                            <S.ConcluirButton
                               onClick={(e) => {
                                 e.preventDefault();
                                 setOpenEspecifModal(!openEspecifModal);
@@ -192,12 +195,12 @@ export const Board = (props: BoardProps) => {
                                 });
                               }}
                             >
-                              <img src="/finished-icon.svg" alt="icone de concluído " />
+                              <CheckCircle size={24} weight="fill" alt="icone circular com ícone de correto ao centro" />
                               <p>Marcar como concluído</p>
-                            </S.BlackButton>
+                            </S.ConcluirButton>
                           )}
                         </Lote>
-                      </a>
+                      </Link>
                     ),
                 )}
               </S.kanbanSectionContent>
@@ -224,16 +227,25 @@ export const Board = (props: BoardProps) => {
                 {batchesConc.map(
                   (batche) =>
                     batche && (
-                      <a href={`/Lote/${batche.id}`} key={batche.id} style={{ textDecoration: 'none' }}>
+                      <Link to={`/Lote/${batche.id}`} key={batche.id} style={{ textDecoration: 'none' }}>
                         <Lote
                           task={batche}
                           value={`${batche.title}`}
-                          pendencia={batche.observations}
+                          pendencia={batche.pending_batch_observations}
                           prioridade={batche.priority}
                           categoria={batche.settlement_project_categories}
-                          //envolvidos={batche.envolvidos}
-                        ></Lote>
-                      </a>
+                        >
+                          {batche.main_status === 1 && (
+                            <img src="/icon-small/Catalogação.svg" style={{ width: '32px', height: '32px' }} />
+                          )}
+                          {batche.main_status === 2 && (
+                            <img src="/icon-small/Digitalização.svg" style={{ width: '32px', height: '32px' }} />
+                          )}
+                          {batche.main_status === 3 && (
+                            <img src="/icon-small/Upload.svg" style={{ width: '32px', height: '32px' }} />
+                          )}
+                        </Lote>
+                      </Link>
                     ),
                 )}
               </S.kanbanSectionContent>

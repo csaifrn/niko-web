@@ -52,15 +52,26 @@ const LoteNumAvisos = styled.div`
   gap: 2em;
   justify-content: space-between;
   align-items: center;
+  height: 100%;
   align-left {
     justify-self: left;
   }
 `;
 
+export const PendNumberIconBlack = styled.div`
+  display: flex;
+  align-items: center;
+  background-color:${({ theme }) => theme.colors['gray/550']};
+  gap: 8px;
+  border-radius: 3px;
+  height: 24px;
+  padding: 0px 4px 0px 4px;
+`;
+
 export const PendPrioridade = styled.div`
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 8px;
 `;
 
 const Prioridade = styled.div`

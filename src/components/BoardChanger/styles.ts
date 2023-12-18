@@ -20,11 +20,11 @@ export const Change = styled.nav`
   //margin-bottom: 1em;
 `;
 
-export const Link = styled.a`
+export const IconBarra = styled.div`
   text-decoration: none;
   display: flex;
-  gap: 0.5em;
   flex-direction: column;
+  gap: 4px;
   &:hover {
     filter: brightness(0.9);
   }
@@ -33,7 +33,24 @@ export const Link = styled.a`
   }
 `;
 
-export const LinkImg = styled.img``;
+export const LinkImgEscura = styled.img`
+  filter: brightness(0.6);
+  &:hover {
+    filter: brightness(0.9);
+  }
+  &:active {
+    filter: brightness(0.9);
+  }
+`;
+
+export const LinkImg = styled.img`
+  &:hover {
+    filter: brightness(0.9);
+  }
+  &:active {
+    filter: brightness(0.9);
+  }
+`;
 
 interface BarraL {
   color: string;

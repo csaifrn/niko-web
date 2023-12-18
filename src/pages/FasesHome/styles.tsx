@@ -44,6 +44,10 @@ const Main = styled.div`
   `} */
 `;
 
+export const CardFaseMaisTooltip = styled.div`
+`;
+
+
 const FooterHome = styled.footer`
   height: 4em;
   background: ${({ theme }) => theme.colors['gray/700']};

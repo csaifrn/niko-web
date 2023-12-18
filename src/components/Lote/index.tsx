@@ -1,6 +1,7 @@
 import React from 'react';
 import * as S from './styles';
 import { generateUUID } from '../../utils/generateUUID.util';
+import { Warning } from '@phosphor-icons/react';
 import { Category } from '../../api/services/batches/get-batche/get.interface';
 
 const Lote = (props: any) => {
@@ -12,18 +13,6 @@ const Lote = (props: any) => {
             <S.LoteNumAvisos>
               {/* NÚMERO DO LOTE */}
               <h2>{props.value}</h2>
-
-              {props.categoria &&
-                props.categoria.map((cat: any) => (
-                  <React.Fragment key={generateUUID()}>
-                    {cat.nome === props.prioridade && (
-                      //AVISO DE PRIORIDADE
-                      <S.Prioridade>
-                        <p>Prioridade</p>
-                      </S.Prioridade>
-                    )}
-                  </React.Fragment>
-                ))}
             </S.LoteNumAvisos>
 
             <S.LoteNumAvisos>
@@ -57,12 +46,20 @@ const Lote = (props: any) => {
 
                 <S.PendPrioridade>
                   {/* PENDENCIA */}
+
                   {props.pendencia > 0 && (
-                    <img
-                      src="/warning.svg"
-                      alt="icone triangular com ponto de exclamação no centro indicando que há uma pendência no lote"
-                    />
+                    <S.PendNumberIconBlack>
+                      <Warning
+                        size={18}
+                        color="#f7df4c"
+                        weight="fill"
+                        alt="icone triangular com ponto de exclamação no centro indicando que há uma pendência no lote"
+                      />
+
+                      <h2>{props.pendencia}</h2>
+                    </S.PendNumberIconBlack>
                   )}
+
                   {/* PRIORIDADE */}
                   {props.prioridade == true && (
                     <S.Prioridade>
@@ -131,12 +128,9 @@ const Lote = (props: any) => {
                       </React.Fragment>
                     ))}
                 </S.Envolvido>
+
               </S.LoteNumAvisos>
             </S.LoteDetalhes>
-
-            {/* BOTÃO DE ATRIBUIR ALGUÉM */}
-
-            {props.children && props.children}
           </S.LoteArea>
         </S.Lote>
       )}

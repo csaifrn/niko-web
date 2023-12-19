@@ -1,14 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import * as S from './styles';
 import Search from '../../../components/Search';
-import CategoriaData from '../../../data/CategoriaData';
 import CategoriaCard from '../../../components/CategoriaCard';
 import Menu from '../../../components/Menu';
 import MenuCoord from '../../../components/MenuCoord';
 import { useParams } from 'react-router-dom';
-import { useMutation, useQuery } from 'react-query';
+import { useMutation } from 'react-query';
 import { GetTags } from '../../../api/services/tags/get-batche';
 import { Tag, Tags } from '../../../api/services/tags/get-batche/get.interface';
+import { ButtonGreen } from '../../../components/AtribuirAlguemModal/style';
+import { CreateCategory } from '../../../api/services/categoria/create-category';
+import { ModalCreteCategory } from '../../../components/ModalCreateCategory';
 
 type Categoria = {
   id: number;
@@ -24,6 +26,7 @@ const removeDiacritics = (str: string): string => {
 const Categoria = () => {
   const { id } = useParams();
   const [searchTerm, setSearchTerm] = useState<string>('');
+  const [open, setOpen] = useState<boolean>(false);
 
   const [tags, setTags] = useState<Tags>();
 
@@ -65,6 +68,7 @@ const Categoria = () => {
         <Menu area={`/Categoria/${id}`} id_projeto={id}></Menu>
         <MenuCoord />
         <S.CardsArea>
+          <ButtonGreen onClick={() => setOpen(!open)}>Criar Categoria</ButtonGreen>
           <Search searchTerm={searchTerm} handleSearchChange={handleSearchChange} />
 
           {sortedAndFilteredTags.map((tag: Tag) => (
@@ -72,6 +76,7 @@ const Categoria = () => {
           ))}
         </S.CardsArea>
       </div>
+      {open && <ModalCreteCategory close={() => setOpen(!open)} />}
     </>
   );
 };

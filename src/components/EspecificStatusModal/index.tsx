@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import * as S from './styles';
 import { useMutation } from 'react-query';
 import { PatchBatcheSpecifStatus } from '../../api/services/batches/patch-status-specific';
@@ -16,6 +16,11 @@ import { SharedState } from '../../context/SharedContext';
 import { DeleteAssigner } from '../../api/services/batches/assigners/delete-assigners';
 import { Batche } from '../../api/services/batches/get-batche/get.interface';
 import { ErrorMessage } from '../../pages/Login/styles';
+import { InputText } from '../ModalCriarLote/styles';
+import { validationShelfSchema } from './validation';
+import { PatchBatcheEdit } from '../../api/services/batches/patch-batche';
+import { ErrorsForm } from './criar.interface';
+import * as Yup from 'yup';
 
 interface EspecifModalProps {
   close: () => void;
@@ -36,8 +41,12 @@ export const EspecifcModal = (props: EspecifModalProps) => {
   const [closing, setClosing] = useState(false);
   const [NoCategories, setNoCategories] = useState(false);
   const [error, setError] = useState('');
+  const [shelfNumber, setShelfNumber] = useState('');
   const [userInput, setUserInput] = useState('');
   const [options, setOptions] = useState<Option[]>([]);
+  const [validationFormError, setValidationFormError] = useState<ErrorsForm>({
+    shelf_number: '',
+  });
   const [selectedOptions, setSelectedOptions] = useState<Option[]>([
     ...props.batche.settlement_project_categories.map((cat) => ({
       value: cat.id,
@@ -66,12 +75,18 @@ export const EspecifcModal = (props: EspecifModalProps) => {
     }, 300);
   };
 
-  const mutateEspecific = useMutation(PatchBatcheSpecifStatus, {
-    onSuccess: () => {
+  const handleCloseRefecht = () => {
+    setClosing(true);
+    setTimeout(() => {
+      props.close();
       if (props.refetch) {
         props.refetch();
       }
-    },
+    }, 300);
+  };
+
+  const mutateEspecific = useMutation(PatchBatcheSpecifStatus, {
+    onSuccess: () => {},
     onError: (err: ApiError) => {
       console.log('esp');
       toast.error(err.response?.data.message ? err.response?.data.message : 'Erro na execução');
@@ -93,13 +108,8 @@ export const EspecifcModal = (props: EspecifModalProps) => {
   });
 
   const mutateStatus = useMutation(PatchBatcheMainStatus, {
-    onSuccess: () => {
-      if (props.refetch) {
-        props.refetch();
-      }
-    },
+    onSuccess: () => {},
     onError: (err: ApiError) => {
-      console.log('main');
       toast.error(err.response?.data.message ? err.response?.data.message : 'Erro na execução');
     },
   });
@@ -108,39 +118,71 @@ export const EspecifcModal = (props: EspecifModalProps) => {
     onSuccess: (data: ResponseSettle) => {
       setOptions([...data.categories.map((settle) => ({ value: settle.id, label: settle.name }))]);
     },
+    onError: (err: ApiError) => {
+      toast.error(err.response?.data.message ? err.response?.data.message : 'Erro na execução');
+    },
   });
 
   const mutateAssigner = useMutation(PostAssigners, {
     onSuccess: (data) => {},
+    onError: (err: ApiError) => {
+      toast.error(err.response?.data.message ? err.response?.data.message : 'Erro na execução');
+    },
   });
 
   const mutateDeleteAssigner = useMutation(DeleteAssigner, {
     onSuccess: (data) => {},
+    onError: (err: ApiError) => {
+      toast.error(err.response?.data.message ? err.response?.data.message : 'Erro na execução');
+    },
+  });
+
+  const mutateShelf = useMutation(PatchBatcheEdit, {
+    onSuccess: () => {
+      toast.success('Local Adicionado!');
+      nextFase();
+    },
+    onError: (err: ApiError) => {
+      toast.error(err.response?.data.message ? err.response?.data.message : 'Erro na execução');
+    },
   });
 
   const nextFase = () => {
     const specific_status = props.batche.specific_status + 1 === 2 ? 0 : 1;
-    mutateEspecific.mutate({
-      specific_status,
-      id: props.batche.id,
-    });
+    if (specific_status === 1) {
+      mutateEspecific.mutate({
+        specific_status,
+        id: props.batche.id,
+      });
+    }
     if (specific_status === 0) {
       mutateStatus.mutate({
         id: props.batche.id,
         main_status: props.batche.main_status + 1,
       });
-      if (props.batche.assigned_users) {
-        props.batche.assigned_users.map((ass) => {
-          mutateDeleteAssigner.mutate({
-            batch_id: props.batche.id,
-            assignment_user_id: ass.id,
+      while (mutateStatus.isLoading === true) {
+        if (mutateStatus.isError) {
+          break;
+        } else if (mutateStatus.isSuccess) {
+          mutateEspecific.mutate({
+            specific_status,
+            id: props.batche.id,
           });
-        });
+          toast.success('Fase atualizada!');
+          if (props.batche.assigned_users) {
+            props.batche.assigned_users.map((ass) => {
+              mutateDeleteAssigner.mutate({
+                batch_id: props.batche.id,
+                assignment_user_id: ass.id,
+              });
+            });
+          }
+        }
       }
+
       if (mutateDeleteAssigner.isSuccess) {
         toast.success('Usuários removidos!');
       }
-      toast.success('Fase atualizada!');
     } else if (user.user?.sub && specific_status === 1) {
       mutateAssigner.mutate({
         batch_id: props.batche.id,
@@ -148,10 +190,34 @@ export const EspecifcModal = (props: EspecifModalProps) => {
       });
       toast.success('Status atualizado!');
     }
-    handleClose();
+    handleCloseRefecht();
   };
 
-  const handlePegar = () => {
+  const validateShelf = async (): Promise<boolean> => {
+    try {
+      await validationShelfSchema.validate(
+        {
+          shelf_number: shelfNumber,
+        },
+        {
+          abortEarly: false,
+        },
+      );
+    } catch (error) {
+      if (error instanceof Yup.ValidationError) {
+        const validationErrors = error.inner.reduce<ErrorsForm>((errors, err) => {
+          errors[err.path as keyof ErrorsForm] = err.message;
+          return errors;
+        }, {});
+        setValidationFormError(validationErrors);
+      }
+      return false;
+    }
+    setValidationFormError({});
+    return true;
+  };
+
+  const handlePegar = async () => {
     if (props.batche.main_status === 1 && props.batche.specific_status === 1) {
       if (NoCategories) {
         nextFase();
@@ -200,9 +266,19 @@ export const EspecifcModal = (props: EspecifModalProps) => {
             id: props.batche.id,
             settlementProjectCategories: [...selectedOptions.map((settle) => settle.value)],
           });
+          nextFase();
         } else {
           setError('Adicione alguma categoria para avançar para a próxima fase.');
         }
+      }
+    } else if (props.batche.main_status === 3 && props.batche.specific_status === 1) {
+      const isValid = await validateShelf();
+
+      if (isValid) {
+        mutateShelf.mutate({
+          id: props.batche.id,
+          shelf_number: shelfNumber,
+        });
       }
     } else {
       nextFase();
@@ -264,6 +340,18 @@ export const EspecifcModal = (props: EspecifModalProps) => {
                 </S.ButtonNoCategory> */}
                 {error && <ErrorMessage>{error}</ErrorMessage>}
               </S.CatalogacaoArea>
+            )}
+
+            {props.batche.main_status === 3 && props.batche.specific_status == 1 && (
+              <>
+                <h2>Estante</h2>
+                <InputText
+                  placeholder="Estante..."
+                  value={shelfNumber}
+                  onChange={(e) => setShelfNumber(e.currentTarget.value)}
+                />
+                {validationFormError.shelf_number && <ErrorMessage>{validationFormError.shelf_number}</ErrorMessage>}
+              </>
             )}
             <S.RecusedAvancar>
               {props.button === 'Marcar como concluído' && (

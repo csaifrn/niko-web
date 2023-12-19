@@ -14,11 +14,13 @@ export const PatchBatcheEdit = async ({
   title,
   physical_files_count,
   digital_files_count,
+  shelf_number,
 }: PatchBatcheParams): Promise<PatchResponseEditBatch> => {
   const Batche = await axiosInstance.patch<PatchResponseEditBatch>(`/Batches/${id}`, {
     title,
     digital_files_count,
     physical_files_count,
+    shelf_number,
   });
 
   return Batche.data;

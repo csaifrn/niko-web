@@ -4,6 +4,7 @@ export interface PatchBatcheParams {
   digital_files_count?: number;
   physical_files_count?: number;
   priority?: boolean;
+  shelf_number?: any;
 }
 
 export interface PatchResponseBatche {

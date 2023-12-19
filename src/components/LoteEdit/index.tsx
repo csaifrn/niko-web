@@ -285,10 +285,6 @@ const LoteEdit = () => {
                 inputValue={userInput}
                 onChange={(e: any, action: any) => {
                   // eslint-disable-next-line no-constant-condition
-                  if ((action.action = 'remove-value')) {
-                    console.log(action.removedValue);
-                  }
-
                   setSelectedOptions(e);
                 }}
                 options={options}

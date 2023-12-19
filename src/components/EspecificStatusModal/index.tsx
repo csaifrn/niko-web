@@ -1,4 +1,4 @@
-import {useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import * as S from './styles';
 import { AssignedUser, GetResponseBatche } from '../../api/services/batches/get-batche/get.interface';
 import { useMutation } from 'react-query';
@@ -7,7 +7,7 @@ import toast from 'react-hot-toast';
 import theme from '../../global/theme';
 import { ApiError } from '../../api/services/authentication/signIn/signIn.interface';
 import { PatchBatcheMainStatus } from '../../api/services/batches/patch-status';
-import { CheckCircle, HandWaving } from '@phosphor-icons/react';
+import { CheckCircle, HandWaving, Trash } from '@phosphor-icons/react';
 import { SharedState } from '../../context/SharedContext';
 import { CustomSelect } from '../AtribuirAlguemModal/style';
 import { QuerySettles } from '../../api/services/settlement/query-settlement';
@@ -16,6 +16,8 @@ import { PostBatcheSettle } from '../../api/services/batches/patch-settle';
 import { PostAssigners } from '../../api/services/batches/assigners/post-assigners';
 import { DeleteAssigner } from '../../api/services/batches/assigners/delete-assigners';
 import { Batche } from '../../api/services/batches/get-batche/get.interface';
+import { DeleteBatche } from '../../api/services/batches/delete-batche';
+import { useNavigate } from 'react-router';
 
 interface EspecifModalProps {
   close: () => void;
@@ -23,6 +25,7 @@ interface EspecifModalProps {
   batche: Batche;
   title: string;
   button: string;
+  FaseAtual?:string;
   //assigners: AssignedUser[] | undefined;
   //LoteTitle: string;
   setSpecificStatus?: React.Dispatch<React.SetStateAction<number>>;
@@ -46,7 +49,7 @@ interface Option {
 
 export const EspecifcModal = (props: EspecifModalProps) => {
   const user = SharedState();
-
+  const navigate = useNavigate()
   const [closing, setClosing] = useState(false);
   const [NoCategories, setNoCategories] = useState(false);
   const [userInput, setUserInput] = useState('');
@@ -121,6 +124,23 @@ export const EspecifcModal = (props: EspecifModalProps) => {
   const mutateDeleteAssigner = useMutation(DeleteAssigner, {
     onSuccess: (data) => {},
   });
+
+  const DeleteBatch = useMutation(DeleteBatche, {
+    onSuccess: (data) => {
+      navigate(`/Fase/:id/Board/Preparo`)
+      toast.success('Lote excluído com sucesso!');
+      console.log('Lote excluído com sucesso!');
+    },
+    onError: (err: ApiError) => {
+      toast.error(err.response?.data.message ? err.response?.data.message : 'Erro na execução');
+    },
+  });
+
+  const ExcluirLote = () => {
+    DeleteBatch.mutate({
+      id: props.batche.id,
+    });
+  };
 
   const nextFase = () => {
     const specific_status = props.batche.specific_status + 1 === 2 ? 0 : 1;
@@ -238,6 +258,15 @@ export const EspecifcModal = (props: EspecifModalProps) => {
               </S.CatalogacaoArea>
             )}
             <S.RecusedAvancar>
+              {/* Botão de excluir lote */}
+              {props.button === 'Excluir lote' && (
+                <S.PegarLoteButton onClick={() => ExcluirLote()}>
+                  <Trash size={20} weight="fill" />
+                  {/* {props.button === 'Marcar como concluído' && <img src='/finished-icon.svg' />} */}
+                  <S.Texto>{props.button}</S.Texto>
+                </S.PegarLoteButton>
+              )}
+
               {props.button === 'Pegar lote' && (
                 <S.PegarLoteButton onClick={handlePegar}>
                   <HandWaving size={20} weight="fill" />
@@ -252,6 +281,7 @@ export const EspecifcModal = (props: EspecifModalProps) => {
                   <S.Texto style={{ color: theme.colors['gray/900'] }}>{props.button}</S.Texto>
                 </S.ConcluirLoteButton>
               )}
+
               <S.Recused onClick={handleClose}>
                 <S.Texto>Não, não quero.</S.Texto>
               </S.Recused>

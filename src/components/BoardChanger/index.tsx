@@ -25,7 +25,7 @@ export const BoardChanger = () => {
 
         <S.Change>
           {/* RECEPÇÃO */}
-          <Link to={`/Fase/${id}/Board/Recebidos`}>
+          {/* <Link to={`/Fase/${id}/Board/Recebidos`}>
             <S.IconBarra>
               {url.search('Recebidos') <= -1 && <S.LinkImgEscura src="/icon-medium/Recepção.svg" />}
               {url.search('Recebidos') > -1 && (
@@ -35,7 +35,7 @@ export const BoardChanger = () => {
                 </>
               )}
             </S.IconBarra>
-          </Link>
+          </Link> */}
 
           {/* PREPARO */}
           <Link to={`/Fase/${id}/Board/Preparo`}>

@@ -162,7 +162,7 @@ export const PainelPorFase = () => {
         </S.FiltrarPorPeriodo>
 
         {/* RECEPÇÃO */}
-        <S.DivRemessasRecepcao>
+        {/* <S.DivRemessasRecepcao>
           <S.ContainerDataFaseRecepcao>
             <Link to={`/Fase/${id}/Board/Recebidos`} className="RecepTooltip">
               <S.CardFaseColorful style={{ backgroundColor: theme.colors['red/300'] }}>
@@ -181,8 +181,9 @@ export const PainelPorFase = () => {
                 <S.DataFaseTxtCenter>Remessas Recebidas</S.DataFaseTxtCenter>
               </S.NumberTextDataUnic>
             </S.CardFaseBlack>
+
           </S.ContainerDataFaseRecepcao>
-        </S.DivRemessasRecepcao>
+        </S.DivRemessasRecepcao> */}
 
         <S.PainelPorFaseLotes>
           {/* CONTAGEM DE LOTES */}

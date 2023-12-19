@@ -1,4 +1,4 @@
-import { Main, FasePage, CardFaseMaisTooltip } from './styles';
+import { Main, FasePage, CardFaseMaisTooltip, TitleFase } from './styles';
 import { CardFase } from '../../components/Card';
 import MenuCoord from '../../components/MenuCoord';
 import Menu from '../../components/Menu';
@@ -14,7 +14,8 @@ const Home = () => {
       <Menu area={`/Fase/${id}`} id_projeto={id}></Menu>
       <MenuCoord />
       <Main>
-        <CardFaseMaisTooltip className="CardRecepcaoTooltip">
+        
+        {/* <CardFaseMaisTooltip className="CardRecepcaoTooltip">
           <Link to={`Board/Recebidos`} style={{ textDecoration: 'none' }}>
             <CardFase
               fase={-1}
@@ -29,9 +30,10 @@ const Home = () => {
             anchorSelect=".CardRecepcaoTooltip"
             place="top"
           />
-        </CardFaseMaisTooltip>
+        </CardFaseMaisTooltip> */}
 
         <CardFaseMaisTooltip className="CardPreparoTooltip">
+          {/* <TitleFase>Preparo</TitleFase> */}
           <Link to={`Board/Preparo`} style={{ textDecoration: 'none' }}>
             <CardFase
               fase={0}
@@ -48,6 +50,7 @@ const Home = () => {
         </CardFaseMaisTooltip>
 
         <CardFaseMaisTooltip className="CardCatalogacaoTooltip" style={{ height: '100%' }}>
+          {/* <TitleFase>Catalogação</TitleFase> */}
           <Link to={`Board/Catalogação`} style={{ textDecoration: 'none' }}>
             <CardFase
               fase={1}
@@ -64,6 +67,7 @@ const Home = () => {
         </CardFaseMaisTooltip>
 
         <CardFaseMaisTooltip className="CardDigitalizacaoTooltip">
+          {/* <TitleFase>Digitalização</TitleFase> */}
           <Link to={`Board/Digitalização`} style={{ textDecoration: 'none' }}>
             <CardFase
               fase={2}
@@ -80,6 +84,7 @@ const Home = () => {
         </CardFaseMaisTooltip>
 
         <CardFaseMaisTooltip className="CardUploadTooltip">
+          {/* <TitleFase>Upload</TitleFase> */}
           <Link to={`Board/Upload`} style={{ textDecoration: 'none' }}>
             <CardFase
               fase={3}
@@ -96,6 +101,7 @@ const Home = () => {
         </CardFaseMaisTooltip>
 
         <CardFaseMaisTooltip className="CardArquivTooltip">
+          {/* <TitleFase>Arquivamento</TitleFase> */}
           <Link to={`Board/Arquivamento`} style={{ textDecoration: 'none' }}>
             <CardFase
               fase={4}

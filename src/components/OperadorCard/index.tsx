@@ -3,6 +3,7 @@ import * as S from './styles';
 import { AtribuirModal } from '../AtribuirLotesModal';
 import { DataFase } from '../DataFase';
 import theme from '../../global/theme';
+import { UserCircle } from '@phosphor-icons/react';
 
 const OperadorCard = (user: any) => {
   const [expanded, setExpanded] = useState(false);
@@ -31,25 +32,15 @@ const OperadorCard = (user: any) => {
           {User.fase !== '' && (
             <S.CardArea>
               <S.dataUser>
-                <img
-                  src={User.url}
-                  alt=""
-                  width={28}
-                  height={28}
-                  style={{
-                    objectFit: 'cover',
-                    borderRadius: '100%',
-                    border: `1px solid ${theme.colors['green/400']}`,
-                  }}
-                />
-                <p style={{ color: theme.colors['green/400'] }}>{User.name}</p>
+                <UserCircle size={32} weight="fill" />
+                <p style={{ color: theme.colors['white'] }}>{User.name}</p>
               </S.dataUser>
-              <S.dataLote>
+              {/* <S.dataLote>
                 <img src={`/icon-medium/${User.fase}.svg`} height={28} width={28} alt="" />
                 <div>
                   <S.textLote>{User.lote}</S.textLote>
                 </div>
-              </S.dataLote>
+              </S.dataLote> */}
             </S.CardArea>
           )}
           {User.fase === '' && (
@@ -76,7 +67,7 @@ const OperadorCard = (user: any) => {
           )} */}
         </S.CardA>
 
-        <S.Footer className={expanded ? 'show' : ''} setHeight={accodionHeight} ref={ref}>
+        {/* <S.Footer className={expanded ? 'show' : ''} setHeight={accodionHeight} ref={ref}>
           <DataFase
             recepcao={30}
             preparo={2}
@@ -88,7 +79,8 @@ const OperadorCard = (user: any) => {
               console.log();
             }}
           />
-        </S.Footer>
+        </S.Footer> */}
+
       </S.totalArea>
       {modal && <AtribuirModal nameUser={User.name} close={handleAtribuir}></AtribuirModal>}
     </>

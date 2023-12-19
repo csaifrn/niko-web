@@ -19,7 +19,7 @@ const MIN_TEXTAREA_HEIGHT = 32;
 interface DeletarModalProps {
   title: string;
   id: string | undefined;
-  pendencia: boolean;
+  pendencia: boolean | undefined;
   close: () => void;
   // eslint-disable-next-line no-unused-vars
   refetch: () => void;

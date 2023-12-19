@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 
 const totalArea = styled.div`
-  cursor: pointer;
   background-color: ${({ theme }) => theme.colors['gray/500']};
   align-items: center;
   color: white;
@@ -10,7 +9,6 @@ const totalArea = styled.div`
 `;
 
 const CardArea = styled.div`
-  cursor: pointer;
   display: flex;
   background-color: ${({ theme }) => theme.colors['gray/500']};
   align-items: center;

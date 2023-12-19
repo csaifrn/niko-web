@@ -21,7 +21,7 @@ export const MenuCoord = () => {
         {pathname === `/Painel/${id}` && <S.textIcon style={{ color: theme.colors['orange/400'] }}>Painel</S.textIcon>}
         {pathname !== `/Painel/${id}` && <S.textIcon>Painel</S.textIcon>}
       </S.link>
-
+{/* 
       <S.link to={`/Atividades/${id}`}>
         <S.MenuImg
           src={pathname === `/Atividades/${id}` ? '/IconMenu/Activity/Fill.svg' : '/IconMenu/Activity/Regular.svg'}
@@ -30,7 +30,7 @@ export const MenuCoord = () => {
           <S.textIcon style={{ color: theme.colors['orange/400'] }}>Atividades</S.textIcon>
         )}
         {pathname !== `/Atividades/${id}` && <S.textIcon>Atividades</S.textIcon>}
-      </S.link>
+      </S.link> */}
 
       <S.link to={`/Fase/${id}`}>
         <S.MenuImg

@@ -64,7 +64,7 @@ const ModalArea = styled.div`
   gap: 2em;
   transform: scale(0);
   transition: transform 0.3s ease-in-out;
-  color: white;
+  color: ${({ theme }) => theme.colors['gray/900']};
   font-family: 'Rubik';
 `;
 
@@ -116,7 +116,9 @@ const NameClose = styled.div`
   gap: 2em;
 `;
 
-export const Titulo = styled.h2``;
+export const Titulo = styled.h2`
+  color: ${({ theme }) => theme.colors['white']};;
+`;
 
 export const PendDivBlack = styled.div`
   background-color: ${({ theme }) => theme.colors['gray/700']};
@@ -203,6 +205,7 @@ const Recused = styled.button`
   }
   &:active {
     filter: brightness(0.9);
+    transform: translateY(-5%) translateX(2%);
   }
 `;
 
@@ -266,15 +269,15 @@ export const PegarLoteButton = styled.button`
   padding: 1em;
   align-items: center;
   border-radius: 5px;
-  background-color: #43db6d;
+  background-color: ${({ theme }) => theme.colors['gray/700']};
   border: none;
-  color: #1c1f28;
+  color: ${({ theme }) => theme.colors['white']};
   font-family: 'Rubik';
   &:hover {
-    background-color: ${({ theme }) => theme.colors['green/600']};
+    background-color: ${({ theme }) => theme.colors['gray/900']};
   }
   &:active {
-    background-color: ${({ theme }) => theme.colors['green/600']};
+    background-color: ${({ theme }) => theme.colors['gray/900']};
     transform: translateY(-5%) translateX(2%);
   }
 `;
@@ -288,15 +291,15 @@ export const ConcluirLoteButton = styled.button`
   padding: 1em;
   align-items: center;
   border-radius: 5px;
-  background-color: ${({ theme }) => theme.colors['gray/700']};
+  background-color: ${({ theme }) => theme.colors['green/500']};
   border: none;
-  color: #1c1f28;
+  color: ${({ theme }) => theme.colors['gray/900']};
   font-family: 'Rubik';
   &:hover {
-    background-color: ${({ theme }) => theme.colors['gray/900']};
+    background-color: ${({ theme }) => theme.colors['green/600']};
   }
   &:active {
-    background-color: ${({ theme }) => theme.colors['gray/900']};
+    background-color: ${({ theme }) => theme.colors['green/600']};
     transform: translateY(-5%) translateX(2%);
   }
 `;

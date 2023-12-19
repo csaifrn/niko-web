@@ -19,17 +19,29 @@ export const ObsDivBlack = styled.div<IObsDiv>`
   border-radius: 5px;
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  padding: 1.5em;
+  gap: 16px;
+  padding: 1.7em;
   width: calc(100%-2em);
   order: 1;
   flex-grow: 0;
-
   animation-name: ${flicker};
   animation-duration: ${({ index }) => index * 0.8}s;
+  font-family: 'Rubik';
+  //margin-bottom: 20px;
 `;
 
-export const DivObservation = styled.div``;
+export const DivObservation = styled.div`
+  display: grid;
+  align-items: center;
+  //gap: 16px;
+  grid-template-columns: 1fr 15fr;
+  @media screen and (max-width: 767px) {
+    gap: 16px;
+  }
+`;
+
+export const DivPendenciaTooltip = styled.div`
+`;
 
 export const DivButtons = styled.div`
   display: flex;
@@ -41,54 +53,59 @@ export const BottomContent = styled.div`
   column-span: 3;
   display: flex;
   flex-direction: column;
+  gap: 16px;
+`;
+
+export const ObsCreationData = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 `;
 
 export const Data = styled.span`
   color: ${({ theme }) => theme.colors['gray/300']};
-  margin-top: 0.5em;
 `;
 
 export const ButtonDelete = styled.button`
   cursor: pointer;
-  :hover {
-    background-color: ${({ theme }) => theme.colors['gray/400']};
-  }
   background-color: transparent;
-  position: relative;
+  //position: relative;
   height: 24px;
   display: flex;
   justify-content: center;
   align-items: center;
   transition: all 300ms;
-  border-radius: 100%;
-
-  :hover div {
+  border-radius: 3px;
+  width: 24px;
+  border: none;
+  :hover {
+    background-color: ${({ theme }) => theme.colors['gray/400']};
+  }
+  /* :hover div {
     visibility: visible;
     opacity: 1;
     display: block;
-  }
-  width: 24px;
-  border: none;
+  } */
 `;
 
 export const ButtonEdit = styled.button`
   background-color: transparent;
   cursor: pointer;
-  position: relative;
+  //position: relative;
   height: 24px;
   display: flex;
   justify-content: center;
   align-items: center;
   transition: all 300ms;
-  border-radius: 100%;
+  border-radius: 3px;
   :hover {
     background-color: ${({ theme }) => theme.colors['gray/400']};
   }
-  :hover div {
+  /* :hover div {
     visibility: visible;
     opacity: 1;
     display: block;
-  }
+  } */
   width: 24px;
   border: none;
 `;
@@ -103,7 +120,7 @@ export const ToolTip = styled.div`
   color: white;
   border-radius: 3px;
   position: absolute;
-  top: calc(100% + 5px) ;
+  top: calc(100% + 8px);
   left: 0;
   display: none;
   font-family: 'Rubik';

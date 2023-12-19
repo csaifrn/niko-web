@@ -1,18 +1,19 @@
 import { useEffect, useState } from 'react';
 import * as S from './styles';
+import { AssignedUser, GetResponseBatche } from '../../api/services/batches/get-batche/get.interface';
 import { useMutation } from 'react-query';
 import { PatchBatcheSpecifStatus } from '../../api/services/batches/patch-status-specific';
 import toast from 'react-hot-toast';
 import theme from '../../global/theme';
-//import { ArrowCircleLeft } from '@phosphor-icons/react';
 import { ApiError } from '../../api/services/authentication/signIn/signIn.interface';
 import { PatchBatcheMainStatus } from '../../api/services/batches/patch-status';
+import { CheckCircle, HandWaving, Trash } from '@phosphor-icons/react';
+import { SharedState } from '../../context/SharedContext';
 import { CustomSelect } from '../AtribuirAlguemModal/style';
 import { QuerySettles } from '../../api/services/settlement/query-settlement';
 import { ResponseSettle } from '../../api/services/settlement/query-settlement/get.interface';
 import { DeleteBatcheSettle, PostBatcheSettle } from '../../api/services/batches/patch-settle';
 import { PostAssigners } from '../../api/services/batches/assigners/post-assigners';
-import { SharedState } from '../../context/SharedContext';
 import { DeleteAssigner } from '../../api/services/batches/assigners/delete-assigners';
 import { Batche } from '../../api/services/batches/get-batche/get.interface';
 import { ErrorMessage } from '../../pages/Login/styles';
@@ -22,13 +23,21 @@ import { PatchBatcheEdit, PatchShelfNumber } from '../../api/services/batches/pa
 import { ErrorsForm } from './criar.interface';
 import * as Yup from 'yup';
 import { ArquivosInput } from '../LoteEdit/style';
+import { DeleteBatche } from '../../api/services/batches/delete-batche';
+import { useNavigate } from 'react-router';
 
 interface EspecifModalProps {
   close: () => void;
+  refetch?: () => void;
   batche: Batche;
   title: string;
   button: string;
-  refetch?: () => void;
+  FaseAtual?: string;
+  //assigners: AssignedUser[] | undefined;
+  //LoteTitle: string;
+  setSpecificStatus?: React.Dispatch<React.SetStateAction<number>>;
+  setBatche?: React.Dispatch<React.SetStateAction<GetResponseBatche | null>>;
+  setStatus?: React.Dispatch<React.SetStateAction<number>>;
 }
 
 export interface Option {
@@ -38,6 +47,7 @@ export interface Option {
 
 export const EspecifcModal = (props: EspecifModalProps) => {
   const user = SharedState();
+  const navigate = useNavigate();
   const [closing, setClosing] = useState(false);
   const [buttonOff, setButtonOff] = useState(false);
 
@@ -111,6 +121,23 @@ export const EspecifcModal = (props: EspecifModalProps) => {
       toast.error(err.response?.data.message ? err.response?.data.message : 'Erro na execução');
     },
   });
+
+  const DeleteBatch = useMutation(DeleteBatche, {
+    onSuccess: (data) => {
+      navigate(`/Fase/:id/Board/Preparo`);
+      toast.success('Lote excluído com sucesso!');
+      console.log('Lote excluído com sucesso!');
+    },
+    onError: (err: ApiError) => {
+      toast.error(err.response?.data.message ? err.response?.data.message : 'Erro na execução');
+    },
+  });
+
+  const ExcluirLote = () => {
+    DeleteBatch.mutate({
+      id: props.batche.id,
+    });
+  };
 
   const mutateStatus = useMutation(PatchBatcheMainStatus, {
     onSuccess: () => {
@@ -395,9 +422,9 @@ export const EspecifcModal = (props: EspecifModalProps) => {
               </S.CatalogacaoArea>
             )}
 
-            {props.batche.main_status === 3 && props.batche.specific_status == 1 && (
+            {props.batche.main_status === 3 && props.batche.specific_status == 1 && props.button !== 'Excluir lote' && (
               <>
-                <h2>Estante</h2>
+                <h2 style={{ color: 'white' }}>Estante</h2>
                 <InputText
                   placeholder="Estante..."
                   value={shelfNumber}
@@ -409,7 +436,7 @@ export const EspecifcModal = (props: EspecifModalProps) => {
 
             {props.batche.main_status === 2 && props.batche.specific_status == 1 && (
               <>
-                <h2>Arquivos Digitais</h2>
+                <h2 style={{ color: 'white' }}>Arquivos Digitais</h2>
                 <S.ArquivosInput
                   style={{ backgroundColor: theme.colors['gray/700'] }}
                   type="number"
@@ -426,19 +453,30 @@ export const EspecifcModal = (props: EspecifModalProps) => {
             )}
 
             <S.RecusedAvancar>
-              {props.button === 'Marcar como concluído' && (
-                <S.ConcluirLoteButton disabled={buttonOff} onClick={handlePegar}>
-                  <img src="/finished-icon.svg" />
-                  <S.Texto>{props.button}</S.Texto>
-                </S.ConcluirLoteButton>
-              )}
-              {props.button === 'Pegar lote' && (
-                <S.PegarLoteButton onClick={handlePegar}>
-                  <img src="/PegarLote_icon.svg" />
+              {/* Botão de excluir lote */}
+              {props.button === 'Excluir lote' && (
+                <S.PegarLoteButton onClick={() => ExcluirLote()}>
+                  <Trash size={20} weight="fill" />
                   {/* {props.button === 'Marcar como concluído' && <img src='/finished-icon.svg' />} */}
-                  <S.Texto style={{ color: theme.colors['gray/700'] }}>{props.button}</S.Texto>
+                  <S.Texto>{props.button}</S.Texto>
                 </S.PegarLoteButton>
               )}
+
+              {props.button === 'Pegar lote' && (
+                <S.PegarLoteButton onClick={handlePegar}>
+                  <HandWaving size={20} weight="fill" />
+                  {/* {props.button === 'Marcar como concluído' && <img src='/finished-icon.svg' />} */}
+                  <S.Texto>{props.button}</S.Texto>
+                </S.PegarLoteButton>
+              )}
+
+              {props.button === 'Marcar como concluído' && (
+                <S.ConcluirLoteButton onClick={handlePegar}>
+                  <CheckCircle size={24} weight="fill" />
+                  <S.Texto style={{ color: theme.colors['gray/900'] }}>{props.button}</S.Texto>
+                </S.ConcluirLoteButton>
+              )}
+
               <S.Recused onClick={handleClose}>
                 <S.Texto>Cancelar</S.Texto>
               </S.Recused>

@@ -2,6 +2,25 @@ export interface GetBatcheParams {
   id: string;
 }
 
+export interface GetResponseBatche {
+  id: string;
+  title: string;
+  main_status: number;
+  specific_status: number;
+  digital_files_count: number;
+  physical_files_count: number;
+  priority: boolean;
+  shelf_number: any;
+  created_at: string;
+  updated_at: string;
+  created_by: CreatedBy;
+  category: Category;
+  assigned_users: AssignedUser[];
+  observations: Observation[];
+  pending_batch_observations: {};
+}
+
+
 export interface Batche {
   id: string;
   title: string;
@@ -43,6 +62,7 @@ export interface AssignedUser {
 export interface Observation {
   id: string;
   observation: string;
+  is_pending: boolean;
   created_by: CreatedBy2;
   created_at: string;
 }

@@ -5,7 +5,7 @@ interface ColorProps {
   backgroundColor: string;
 }
 
-const CardContainer = styled.a`
+const CardContainer = styled.div`
   text-decoration: none;
   min-height: 9em;
   width: 100%;
@@ -13,6 +13,7 @@ const CardContainer = styled.a`
   display: flex;
   font-family: 'Rubik';
   font-size: 16px;
+  cursor: pointer;
   &:hover {
     filter: brightness(0.9);
   }
@@ -29,7 +30,7 @@ const CardContainer = styled.a`
 const FigureIconCard = styled.figure<ColorProps>`
   display: flex;
   width: 100%;
-  height: 100%;
+  //height: 100%;
   background-color: ${(props) => props.backgroundColor};
   align-items: center;
   justify-content: center;

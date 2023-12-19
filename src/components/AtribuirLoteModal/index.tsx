@@ -41,9 +41,9 @@ export const AtribuirLoteModal = (props: AtribuirModalAtividadeProps) => {
       setSelectedLotes(props.loteUser.lotes);
     }
 
-    const Etapas = EtapaData.filter((etapa) => etapa.id_fase === props.id_fase);
-    if (Etapas.length > 0) {
-      setLotes(LoteData.filter((lote) => Etapas.filter((etapa) => etapa.id === lote.id_etapa).length > 0));
+    const Status = EtapaData.filter((etapa) => etapa.id_fase === props.id_fase);
+    if (Status.length > 0) {
+      setLotes(LoteData.filter((lote) => Status.filter((etapa) => etapa.id === lote.id_etapa).length > 0));
     }
   }, [props.loteUser, props.id_fase]);
 

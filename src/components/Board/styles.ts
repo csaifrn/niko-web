@@ -256,7 +256,7 @@ export const kanbanSectionContentOperador = styled.div`
 export const BlackButton = styled.button`
   background-color: ${({ theme }) => theme.colors['gray/700']};
   font-family: Rubik;
-  color: white;
+  color: ${({ theme }) => theme.colors['white']};
   padding: 0 1em;
   width: 100%;
   border-radius: 5px;
@@ -272,6 +272,30 @@ export const BlackButton = styled.button`
   }
   &:active {
     background-color: ${({ theme }) => theme.colors['gray/900']};
+    transform: translateY(-5%) translateX(2%);
+  }
+`;
+
+export const ConcluirButton = styled.button`
+  background-color: ${({ theme }) => theme.colors['green/500']};
+  font-family: Rubik;
+  color: white;
+  padding: 0 1em;
+  width: 100%;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  gap: 0.5em;
+  align-items: center;
+  height: 44px;
+  transition: all 300ms;
+  color: ${({ theme }) => theme.colors['gray/900']};
+  &:hover {
+    background-color: ${({ theme }) => theme.colors['green/600']};
+  }
+  &:active {
+    background-color: ${({ theme }) => theme.colors['green/600']};
     transform: translateY(-5%) translateX(2%);
   }
 `;

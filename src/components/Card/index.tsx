@@ -18,10 +18,11 @@ import { GetResponseBatche } from '../../api/services/batches/query-batches/get.
 interface CardProps {
   color: string;
   srcImgIcon: string;
-  link: string;
+  //link: string;
 
   fase: number;
 }
+
 //
 export const CardFase = ({ ...props }: CardProps) => {
   const [batchesDispo, setBatchesDispo] = useState<GetResponseBatche[]>([]);
@@ -44,93 +45,109 @@ export const CardFase = ({ ...props }: CardProps) => {
   }, []);
 
   return (
-    <CardContainer href={props.link}>
-      <FigureIconCard backgroundColor={props.color}>
-        <ImgIconCard src={props.srcImgIcon}></ImgIconCard>
-      </FigureIconCard>
-      {props.fase == -1 && (
+    <>
+      {props.fase != -1 && (
+        <CardContainer>
+          <FigureIconCard backgroundColor={props.color}>
+            <ImgIconCard src={props.srcImgIcon}></ImgIconCard>
+          </FigureIconCard>
+
+          {/* RECEPÇÃO */}
+          {/* {props.fase == -1 && (
         <TextBoxCard>
           <DataStrongCard>
             <NumberCard backgroundColor={theme.colors['green/400']}>{0}</NumberCard>
             <NomeEtapa>REMESSAS RECEBIDAS</NomeEtapa>
           </DataStrongCard>
         </TextBoxCard>
-      )}
-      {props.fase == 0 && (
-        <TextBoxCard>
-          <DataStrongCard>
-            <NumberCard backgroundColor={theme.colors['yellow/300']}>{batchesAnda.length}</NumberCard>
-            <NomeEtapa>ANDAMENTO</NomeEtapa>
-          </DataStrongCard>
+      )} */}
+          {/* PREPARO */}
 
-          {/* <DataStrongCard>
+          {props.fase == 0 && (
+            <TextBoxCard>
+              <DataStrongCard>
+                <NumberCard backgroundColor={theme.colors['green/400']}>{batchesDispo.length}</NumberCard>
+                <NomeEtapa>DISPONÍVEIS</NomeEtapa>
+              </DataStrongCard>
+              <DataStrongCard>
+                <NumberCard backgroundColor={theme.colors['yellow/300']}>{batchesAnda.length}</NumberCard>
+                <NomeEtapa>ANDAMENTO</NomeEtapa>
+              </DataStrongCard>
+
+              {/* <DataStrongCard>
             <NumberCard backgroundColor={theme.colors.["red/300"]}>{batchesConc.length}</NumberCard>
             <NomeEtapa>EM PAUSA</NomeEtapa>
           </DataStrongCard> */}
-        </TextBoxCard>
-      )}
-      {props.fase === 1 && (
-        <TextBoxCard>
-          <DataStrongCard>
-            <NumberCard backgroundColor={theme.colors['green/400']}>{batchesDispo.length}</NumberCard>
-            <NomeEtapa>DISPONÍVEIS</NomeEtapa>
-          </DataStrongCard>
+            </TextBoxCard>
+          )}
+          {/* CATALOGAÇÃO */}
+          {props.fase === 1 && (
+            <TextBoxCard>
+              <DataStrongCard>
+                <NumberCard backgroundColor={theme.colors['green/400']}>{batchesDispo.length}</NumberCard>
+                <NomeEtapa>DISPONÍVEIS</NomeEtapa>
+              </DataStrongCard>
 
-          <DataStrongCard>
-            <NumberCard backgroundColor={theme.colors['yellow/300']}>{batchesAnda.length}</NumberCard>
-            <NomeEtapa>ANDAMENTO</NomeEtapa>
-          </DataStrongCard>
+              <DataStrongCard>
+                <NumberCard backgroundColor={theme.colors['yellow/300']}>{batchesAnda.length}</NumberCard>
+                <NomeEtapa>ANDAMENTO</NomeEtapa>
+              </DataStrongCard>
 
-          {/* <DataStrongCard>
+              {/* <DataStrongCard>
               <NumberCard backgroundColor={theme.colors.["red/300"]}>{batchesConc.length}</NumberCard>
               <NomeEtapa>EM PAUSA</NomeEtapa>
             </DataStrongCard> */}
-        </TextBoxCard>
-      )}
-      {props.fase === 2 && (
-        <TextBoxCard>
-          <DataStrongCard>
-            <NumberCard backgroundColor={theme.colors['green/400']}>{batchesDispo.length}</NumberCard>
-            <NomeEtapa>DISPONÍVEIS</NomeEtapa>
-          </DataStrongCard>
+            </TextBoxCard>
+          )}
+          {/* DIGITALIZAÇÃO */}
+          {props.fase === 2 && (
+            <TextBoxCard>
+              <DataStrongCard>
+                <NumberCard backgroundColor={theme.colors['green/400']}>{batchesDispo.length}</NumberCard>
+                <NomeEtapa>DISPONÍVEIS</NomeEtapa>
+              </DataStrongCard>
 
-          <DataStrongCard>
-            <NumberCard backgroundColor={theme.colors['yellow/300']}>{batchesAnda.length}</NumberCard>
-            <NomeEtapa>ANDAMENTO</NomeEtapa>
-          </DataStrongCard>
+              <DataStrongCard>
+                <NumberCard backgroundColor={theme.colors['yellow/300']}>{batchesAnda.length}</NumberCard>
+                <NomeEtapa>ANDAMENTO</NomeEtapa>
+              </DataStrongCard>
 
-          {/* <DataStrongCard>
+              {/* <DataStrongCard>
               <NumberCard backgroundColor={theme.colors.["red/300"]}>{batchesConc.length}</NumberCard>
               <NomeEtapa>EM PAUSA</NomeEtapa>
             </DataStrongCard> */}
-        </TextBoxCard>
-      )}
-      {props.fase === 3 && (
-        <TextBoxCard>
-          <DataStrongCard>
-            <NumberCard backgroundColor={theme.colors['green/400']}>{batchesDispo.length}</NumberCard>
-            <NomeEtapa>DISPONÍVEIS</NomeEtapa>
-          </DataStrongCard>
+            </TextBoxCard>
+          )}
+          {/* UPLOAD */}
+          {props.fase === 3 && (
+            <TextBoxCard>
+              <DataStrongCard>
+                <NumberCard backgroundColor={theme.colors['green/400']}>{batchesDispo.length}</NumberCard>
+                <NomeEtapa>DISPONÍVEIS</NomeEtapa>
+              </DataStrongCard>
 
-          <DataStrongCard>
-            <NumberCard backgroundColor={theme.colors['yellow/300']}>{batchesAnda.length}</NumberCard>
-            <NomeEtapa>ANDAMENTO</NomeEtapa>
-          </DataStrongCard>
+              <DataStrongCard>
+                <NumberCard backgroundColor={theme.colors['yellow/300']}>{batchesAnda.length}</NumberCard>
+                <NomeEtapa>ANDAMENTO</NomeEtapa>
+              </DataStrongCard>
 
-          {/* <DataStrongCard>
+              {/* <DataStrongCard>
               <NumberCard backgroundColor={theme.colors.["red/300"]}>{batchesConc.length}</NumberCard>
               <NomeEtapa>EM PAUSA</NomeEtapa>
             </DataStrongCard> */}
-        </TextBoxCard>
+            </TextBoxCard>
+          )}
+          {/* ARQUIVAMENTO */}
+          {props.fase == 4 && (
+            <TextBoxCard>
+              <DataStrongCard>
+                <NumberCard backgroundColor={theme.colors['green/400']}>{batchesDispo.length}</NumberCard>
+                <NomeEtapa>DISPONÍVEIS</NomeEtapa>
+              </DataStrongCard>
+            </TextBoxCard>
+          )}
+        </CardContainer>
       )}
-      {props.fase == 4 && (
-        <TextBoxCard>
-          <DataStrongCard>
-            <NumberCard backgroundColor={theme.colors['green/400']}>{batchesDispo.length}</NumberCard>
-            <NomeEtapa>DISPONÍVEIS</NomeEtapa>
-          </DataStrongCard>
-        </TextBoxCard>
-      )}
-    </CardContainer>
+    </>
   );
 };

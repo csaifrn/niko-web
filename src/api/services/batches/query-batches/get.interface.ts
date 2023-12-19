@@ -3,4 +3,6 @@ export interface GetBatcheParams {
   status: number;
 }
 
-export interface GetResponseBatche extends Batche {}
+export interface GetResponseBatche extends Batche {
+  pending_batch_observations: {};
+}

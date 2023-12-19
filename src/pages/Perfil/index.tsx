@@ -1,7 +1,6 @@
 import { PencilSimple } from '@phosphor-icons/react';
 import Menu from '../../components/Menu';
 import * as S from './styles';
-import { DataFase } from '../../components/DataFase';
 import { useState } from 'react';
 import { EditImage } from '../../components/EditImage';
 import Users from '../../data/UserData';
@@ -12,15 +11,16 @@ import { userPatch } from '../../api/services/users/patch';
 import { ApiError, UserPatchResponse } from '../../api/services/users/patch/userPatch.interface';
 import { useMutation } from 'react-query';
 import theme from '../../global/theme';
+import { useMe } from '../../hooks/useMe';
 
 const user = Users[0];
 
 const Perfil = () => {
-  const [name, setName] = useState(user.name);
+  const {me, isLoadingMe} = useMe()
   const [modal, setModal] = useState(false);
   const [url] = useState<string>(user.url);
   const [responseError, setResponseError] = useState('');
-  const [validationFormError, setValidationFormError] = useState<ErrorsForm>({ name: '' });
+  const [validationFormError, setValidationFormError] = useState<ErrorsForm>({ name: '' , email: ''});
 
   const perfilMutation = useMutation(userPatch, {
     onSuccess: (data: UserPatchResponse) => {
@@ -31,11 +31,13 @@ const Perfil = () => {
     },
   });
 
-  const validateForm = async (): Promise<boolean> => {
+
+  const validateForm = async (name: string, email: string): Promise<boolean> => {
     try {
       await validationPerfilSchema.validate(
         {
           name,
+          email,
         },
         {
           abortEarly: false,
@@ -57,12 +59,17 @@ const Perfil = () => {
 
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    const form = e.target as HTMLFormElement
 
-    const isValid = await validateForm();
+    const nameForm = (form.elements[0] as HTMLInputElement).value
+    const emailForm = (form.elements[1] as HTMLInputElement).value
+    const isValid = await validateForm(nameForm, emailForm);
 
     if (isValid) {
       perfilMutation.mutate({
-        name,
+        name: nameForm,
+        email: emailForm,
+    
       });
     }
   };
@@ -80,17 +87,22 @@ const Perfil = () => {
         <S.Form onSubmit={onSubmit}>
           <S.FieldContainer>
             <S.LabelField>Nome</S.LabelField>
-            <S.InputText value={name} onChange={(e) => setName(e.currentTarget.value)} />
+            {!isLoadingMe ? (
+              <S.InputText defaultValue={me?.name} />
+            ): "... Carregando"}
             <S.ErrorMessage>{validationFormError.name}</S.ErrorMessage>
           </S.FieldContainer>
           <S.FieldContainer>
             <S.LabelField>Email</S.LabelField>
-            <S.Text>pedro@email.com</S.Text>
+            {!isLoadingMe ? (
+              <S.InputText type='email' defaultValue={me?.email} />
+            ): "... Carregando"}
+            <S.ErrorMessage>{validationFormError.email}</S.ErrorMessage>
           </S.FieldContainer>
           <S.Button>Salvar</S.Button>
           <S.ErrorMessage>{responseError}</S.ErrorMessage>
         </S.Form>
-        <S.DataFase>
+        {/* <S.DataFase>
           <DataFase
             recepcao={30}
             preparo={2}
@@ -100,7 +112,7 @@ const Perfil = () => {
             arquivados={23}
             percentageCallback={() => {}}
           />
-        </S.DataFase>
+        </S.DataFase> */}
       </S.Wrapper>
       {modal && <EditImage close={() => setModal(!modal)} title="Mudar foto" url={url} />}
     </>

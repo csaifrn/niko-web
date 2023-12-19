@@ -21,14 +21,12 @@ import { DeleteObservation } from '../../api/services/batches/observation/delete
 import { AtribuirAlguemModal } from '../AtribuirAlguemModal';
 import { BlockAssigner } from '../BatchBlocks/BlockAssigner';
 import { PatchBatcheMainStatus } from '../../api/services/batches/patch-status';
-import { X } from '@phosphor-icons/react';
+import { CheckCircle, HandWaving, X } from '@phosphor-icons/react';
 import theme from '../../global/theme';
 import { PatchBatcheSpecifStatus } from '../../api/services/batches/patch-status-specific';
-import { ToolTip } from '../Observation/ObservationBox/styles';
-
 import { EspecifcModal } from '../EspecificStatusModal';
 import { SharedState } from '../../context/SharedContext';
-import { AtribuirButton } from '../AtribuirLoteModal/styles';
+import { Tooltip } from 'react-tooltip';
 
 interface Option {
   label: string;
@@ -40,8 +38,6 @@ export const LoteDetails = () => {
   const [task, setTask] = useState<Batche | null>(null);
   const [observations, setObservations] = useState<Observation[]>([]);
   const [priority, setPriority] = useState<boolean>(false);
-  const navigate = useNavigate();
-  const { id } = useParams();
   const [observacao, setObservacao] = useState(false);
   const [delete_modal, setDeleteModal] = useState(false);
   const [config_modal, setConfigModal] = useState(false);
@@ -58,7 +54,9 @@ export const LoteDetails = () => {
   const [openEspecifModal, setOpenEspecifModal] = useState<boolean>(false);
   const [titleModal, setTitleModal] = useState({ button: 'Pegar lote', title: 'Deseja pegar o lote?' });
   const [option, setOption] = useState<Option>();
-  const { user } = SharedState();
+  const { id } = useParams();
+  const [excluirLoteModal, setExcluirLoteModal] = useState(false);
+  const navigate = useNavigate();
 
   const handleConfig = () => {
     setConfigModal(!config_modal);
@@ -190,8 +188,16 @@ export const LoteDetails = () => {
           <S.areaClick>
             {/* BOTÃO DE FECHAR */}
             <S.CloseDiv>
-              <S.Exit onClick={() => navigate(`/Fase/${id}/Board/${optionsFases[status].label}`)}>
+              <S.Exit
+                onClick={() => navigate(`/Fase/${id}/Board/${optionsFases[status].label}`)}
+                className="FecharTooltip"
+              >
                 <img src="/close.svg" alt="" height={18} width={18} />
+                <Tooltip
+                  children={<p style={{ fontSize: '12px', fontFamily: 'Rubik' }}>Fechar página</p>}
+                  anchorSelect=".FecharTooltip"
+                  place="bottom"
+                />
               </S.Exit>
             </S.CloseDiv>
 
@@ -204,45 +210,36 @@ export const LoteDetails = () => {
                 <S.EditConfig>
                   {/* BOTÃO DE EDITAR */}
                   <Link to={`/Lote/${task?.id}/Edit`}>
-                    <S.Edit>
+                    <S.Edit className="EditarLoteTooltip">
                       <S.Icons src={`/pen.svg`}></S.Icons>
-                      <ToolTip style={{ width: '80px' }} id="tool">
-                        Editar Lote
-                      </ToolTip>
+                      <Tooltip
+                        children={<p style={{ fontSize: '12px', fontFamily: 'Rubik' }}>Editar lote</p>}
+                        anchorSelect=".EditarLoteTooltip"
+                        place="bottom"
+                      />
                     </S.Edit>
                   </Link>
 
                   {/* BOTÃO DE CONFIGURAÇÕES */}
-                  <S.Config onClick={handleConfig}>
+                  <S.Config onClick={handleConfig} className="ConfigTooltip">
                     <S.Icons src={`/config.svg`}></S.Icons>
-                    <ToolTip style={{ width: '120px' }} id="tool">
-                      Configurações do lote
-                    </ToolTip>
+                    <Tooltip
+                      children={<p style={{ fontSize: '12px', fontFamily: 'Rubik' }}>Configurações do lote</p>}
+                      anchorSelect=".ConfigTooltip"
+                      place="bottom"
+                    />
                   </S.Config>
                 </S.EditConfig>
               </S.LoteEditConfig>
 
               {/* DADOS DA CRIAÇÃO DO LOTE */}
               <S.DadosCriacaoLoteDiv>
-                {/* SE VOCÊ CRIOU */}
-                {task?.created_by.name == user?.name && (
-                  <S.BlockGray>
-                    Criado por Você em{' '}
-                    {createDate?.toLocaleString('pt-br', {
-                      timeZone: 'America/Sao_paulo',
-                    })}
-                  </S.BlockGray>
-                )}
-
-                {/* SE OUTRA PESSOA CRIOU */}
-                {task?.created_by.name != user?.name && (
-                  <S.BlockGray>
-                    Criado por {task?.created_by.name} em{' '}
-                    {createDate?.toLocaleString('pt-br', {
-                      timeZone: 'America/Sao_paulo',
-                    })}
-                  </S.BlockGray>
-                )}
+                <S.BlockGray>
+                  Criado por {task?.created_by.name} em{' '}
+                  {createDate?.toLocaleString('pt-br', {
+                    timeZone: 'America/Sao_paulo',
+                  })}
+                </S.BlockGray>
               </S.DadosCriacaoLoteDiv>
 
               {/* ARQUIVOS */}
@@ -251,22 +248,26 @@ export const LoteDetails = () => {
 
                 {/* FÍSICOS */}
 
-                <S.ArquivFisicos>
+                <S.ArquivFisicos className="ArquivFisTooltip">
                   <img src={`/arquivos_fisicos.svg`} alt="arquivos fisicos" />
                   {task?.physical_files_count}
-                  <ToolTip style={{ width: '105px' }} id="tool">
-                    Arquivos físicos
-                  </ToolTip>
+                  <Tooltip
+                    children={<p style={{ fontSize: '12px', fontFamily: 'Rubik' }}>Arquivos físicos</p>}
+                    anchorSelect=".ArquivFisTooltip"
+                    place="bottom"
+                  />
                 </S.ArquivFisicos>
 
                 {/* DIGITAIS(QUANDO HOUVER) */}
                 {optionsFases[status].label != 'Preparo' && optionsFases[status].label != 'Catalogação' && (
-                  <S.ArquivDigitais>
+                  <S.ArquivDigitais className="ArquivDigTooltip">
                     <img src={`/arquivos_digitais.svg`} alt="arquivos digitais" />
                     {task?.digital_files_count}
-                    <ToolTip style={{ width: '110px' }} id="tool">
-                      Arquivos digitais
-                    </ToolTip>
+                    <Tooltip
+                      children={<p style={{ fontSize: '12px', fontFamily: 'Rubik' }}>Arquivos digitais</p>}
+                      anchorSelect=".ArquivDigTooltip"
+                      place="bottom"
+                    />
                   </S.ArquivDigitais>
                 )}
               </S.DetalhesLote>
@@ -280,20 +281,22 @@ export const LoteDetails = () => {
 
               {/* PRIORIORIDADE(SE TIVER) */}
               {priority === true && (
-                <S.CategoriaPrioridade>
-                  <S.Prioridade>
+                <S.PrioridadeDiv>
+                  <S.PrioridadeTag>
                     <p>Prioridade</p>
-                  </S.Prioridade>
-                </S.CategoriaPrioridade>
+                  </S.PrioridadeTag>
+                </S.PrioridadeDiv>
               )}
 
               <S.FaseAtualDiv>
                 {/* FASE ATUAL DO LOTE */}
-                <S.IconTooltipFase>
+                <S.IconTooltipFase className="FaseAtualTooltip">
                   <S.Icons src={`/icon-medium/${optionsFases[status].label}.svg`} />
-                  <ToolTip style={{}} id="tool">
-                    {optionsFases[status].label}
-                  </ToolTip>
+                  <Tooltip
+                    children={<p style={{ fontSize: '12px', fontFamily: 'Rubik' }}>{optionsFases[status].label}</p>}
+                    anchorSelect=".FaseAtualTooltip"
+                    place="bottom"
+                  />
                 </S.IconTooltipFase>
               </S.FaseAtualDiv>
 
@@ -315,16 +318,24 @@ export const LoteDetails = () => {
               {/* OBSERVAÇÕES */}
               <S.Observações>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                  <S.PendenciaTitulo>Observações</S.PendenciaTitulo>
+                  <S.ObsTituloNumber>
+                    <S.ObservacaoTitulo>Observações</S.ObservacaoTitulo>
+                    <p>{observations.length}</p>
+                  </S.ObsTituloNumber>
+
+                  {/* Botão de criar observação */}
                   <S.BotaoCriarObservacao
                     onClick={() => {
                       setObservacao(!observacao);
                     }}
+                    className="CriarObsTooltip"
                   >
-                    <ToolTip style={{ width: '150px' }} id="tool">
-                      Adicionar observação
-                    </ToolTip>
-                    <img src="/adicionar.svg" alt="" />
+                    <Tooltip
+                      children={<p style={{ fontSize: '12px', fontFamily: 'Rubik' }}>Adicionar observação</p>}
+                      anchorSelect=".CriarObsTooltip"
+                      place="bottom"
+                    />
+                    <img src="/adicionar.svg" alt="botão redondo com símbolo + para criar observação" />
                   </S.BotaoCriarObservacao>
                 </div>
 
@@ -350,8 +361,8 @@ export const LoteDetails = () => {
               {/* BOTÕES PRINCIPAIS */}
               <S.Botoes>
                 {/* PEGAR LOTE */}
-                {specificStatus === 0 && task?.main_status !== 4 && (
-                  <AtribuirButton
+                {specificStatus === 0 && (
+                  <S.PegarLote
                     onClick={(e) => {
                       e.preventDefault();
                       setOpenEspecifModal(!openEspecifModal);
@@ -365,13 +376,13 @@ export const LoteDetails = () => {
                         gap: '16px',
                         color: 'white',
                         alignItems: 'center',
-                        marginLeft: '16px',
+                        marginLeft: '12px',
                       }}
                     >
-                      <img src="/PegarLote_icon.svg" alt="ícone de mãozinha acenando" />
-                      <p style={{ color: 'black' }}>Pegar lote</p>
+                      <HandWaving size={20} weight="fill" />
+                      <p>Pegar lote</p>
                     </div>
-                  </AtribuirButton>
+                  </S.PegarLote>
                 )}
 
                 {/* MARCAR COMO CONCLUÍDO */}
@@ -385,19 +396,17 @@ export const LoteDetails = () => {
                         title: `Deseja marcar o ${task?.title} como concluído?`,
                       });
                     }}
-                    style={{ backgroundColor: theme.colors['gray/500'] }}
                   >
                     <div
                       style={{
                         display: 'flex',
                         justifyContent: 'flex-start',
-                        gap: '16px',
-                        color: 'white',
+                        gap: '8px',
                         alignItems: 'center',
                         marginLeft: '16px',
                       }}
                     >
-                      <img src="/finished-icon.svg" alt="ícone de concluído" />
+                      <CheckCircle size={24} weight="fill" />
                       Marcar como concluído
                     </div>
                   </S.ConcluirButton>
@@ -454,11 +463,11 @@ export const LoteDetails = () => {
                         <img src={'/avancar.svg'} alt="ícone circular com uma seta para a direita ao centro" />
                       )}
                       {option?.value && option?.value < status ? (
-                        <p style={{ color: theme.colors.white }}>Voltar Fase</p>
+                        <p style={{ color: theme.colors.white }}>Voltar fase</p>
                       ) : option?.value === status ? (
                         <p style={{ color: theme.colors.white }}>Você escolheu a mesma fase</p>
                       ) : (
-                        <p style={{ color: theme.colors.white }}>Avancar Fase</p>
+                        <p style={{ color: theme.colors.white }}>Avançar fase</p>
                       )}
                     </S.VoltarAvancar>
 
@@ -471,13 +480,28 @@ export const LoteDetails = () => {
                       classNamePrefix="react-select"
                       placeholder="Escolher fase"
                     />
-                    {task?.specific_status === 0 && <ToolTip id="tool">É necessário pegar o lote antes</ToolTip>}
+
+                    {task?.specific_status === 0 && (
+                      <Tooltip
+                        children={
+                          <p style={{ fontSize: '12px', fontFamily: 'Rubik' }}>É necessário pegar o lote antes</p>
+                        }
+                        anchorSelect=".react-select-container"
+                        place="bottom"
+                      />
+                    )}
                   </S.BotaoMudarFase>
                 )}
 
-                {/* DELETAR LOTE */}
-                <S.BotaoDeletarLote>
-                  <img src={`/trash.svg`} alt="Botão de deletar Lote" />
+                {/* EXCLUIR LOTE */}
+                <S.BotaoDeletarLote
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setOpenEspecifModal(!openEspecifModal);
+                    setTitleModal({ button: 'Excluir lote', title: `Deseja excluir o ${task?.title}?` });
+                  }}
+                >
+                  <img src={`/trash.svg`} alt="Botão de excluir Lote" />
                   Excluir lote
                 </S.BotaoDeletarLote>
               </S.Botoes>
@@ -567,9 +591,15 @@ export const LoteDetails = () => {
         )}
         {observacao && (
           <CreateObservationModal
+            id={observationId}
             observations={observations!}
-            refetch={(Obs: Observation[]) => {
-              setObservations(Obs);
+            pendencia={observation?.is_pending}
+            refetch={() => {
+              if (id) {
+                beforeTask.mutate({
+                  id,
+                });
+              }
             }}
             close={() => {
               setObservacao(!observacao);
@@ -579,7 +609,7 @@ export const LoteDetails = () => {
         )}
         {delete_modal && (
           <DeletarModal
-            title="Deletar observação?"
+            title="Excluir observação?"
             close={() => setDeleteModal(!delete_modal)}
             deleteFunction={() => DeleteObs(observationId)}
           />
@@ -589,11 +619,16 @@ export const LoteDetails = () => {
             id={observationId}
             observation={observation?.observation}
             observations={observations}
-            refetch={(Obss: Observation[]) => {
-              setObservations(Obss);
+            refetch={() => {
+              if (id) {
+                beforeTask.mutate({
+                  id,
+                });
+              }
             }}
-            title="Mudar observação"
+            title="Editar observação"
             close={() => setEditModal(!edit_modal)}
+            pendencia={observation?.is_pending}
           />
         )}
         {atribuir_modal && (
@@ -606,6 +641,16 @@ export const LoteDetails = () => {
             title={titleModal.title}
             button={titleModal.button}
             refetch={refetch}
+          />
+        )}
+        {/* Modal de excluir lote */}
+        {excluirLoteModal && (
+          <EspecifcModal
+            close={() => setExcluirLoteModal(!excluirLoteModal)}
+            batche={task!}
+            title={titleModal.title}
+            button={titleModal.button}
+            FaseAtual={optionsFases[status].label}
           />
         )}
       </>

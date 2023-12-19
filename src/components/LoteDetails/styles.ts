@@ -93,6 +93,12 @@ export const Exit = styled.button`
   align-items: center;
   border: none;
   cursor: pointer;
+  position: relative;
+  :hover div {
+    visibility: visible;
+    opacity: 1;
+    display: block;
+  }
   &:hover {
     background-color: ${({ theme }) => theme.colors['gray/400']};
   }
@@ -129,12 +135,6 @@ export const Edit = styled.div`
   justify-content: center;
   align-items: center;
   background-color: ${({ theme }) => theme.colors['gray/500']};
-  position: relative;
-  :hover div {
-    visibility: visible;
-    opacity: 1;
-    display: block;
-  }
   &:hover {
     background-color: ${({ theme }) => theme.colors['gray/400']};
   }
@@ -155,12 +155,6 @@ export const Config = styled.button`
   border: none;
   cursor: pointer;
   background-color: ${({ theme }) => theme.colors['gray/500']};
-  position: relative;
-  :hover div {
-    visibility: visible;
-    opacity: 1;
-    display: block;
-  }
   &:hover {
     background-color: ${({ theme }) => theme.colors['gray/400']};
   }
@@ -254,13 +248,12 @@ export const BlockGrayBorder = styled.div`
   border-radius: 3px;
 `;
 
-export const CategoriaPrioridade = styled.div`
+export const PrioridadeDiv = styled.div`
   display: flex;
-  flex-wrap: wrap;
   gap: 0.5em;
 `;
 
-export const Prioridade = styled.div`
+export const PrioridadeTag = styled.div`
   width: 72px;
   height: 24px;
   background-color: ${({ theme }) => theme.colors['red/700']};
@@ -310,7 +303,7 @@ export const Text = styled.p`
 export const FaseAtualDiv = styled.div``;
 
 export const IconTooltipFase = styled.div`
-  position: relative;
+  //position: relative;
   width: 32px;
   :hover div {
     visibility: visible;
@@ -348,18 +341,17 @@ export const PendObservacao = styled.div`
   }
 `;
 
-export const PendenciaTitulo = styled.p`
-  font-size: 12px;
-  @media screen and (min-width: 767px) {
+export const ObsTituloNumber = styled.div`
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  p {
     font-size: 16px;
   }
 `;
 
 export const ObservacaoTitulo = styled.p`
-  font-size: 12px;
-  @media screen and (min-width: 767px) {
-    font-size: 16px;
-  }
+  font-size: 16px;
 `;
 
 export const Pendencias = styled.div`
@@ -465,12 +457,27 @@ export const Botoes = styled.div`
   }
 `;
 
+export const PegarLote = styled.button`
+  height: 44px;
+  border-radius: 5px;
+  background-color: ${({ theme }) => theme.colors['gray/500']};
+  border: none;
+  font-family: 'Rubik';
+  color: ${({ theme }) => theme.colors['white']};
+  cursor: pointer;
+  &:hover {
+    filter: brightness(0.9);
+  }
+  &:active {
+    filter: brightness(0.9);
+  }
+`;
+
 export const ConcluirButton = styled.button`
   height: 44px;
   border-radius: 5px;
   background-color: ${({ theme }) => theme.colors['green/400']};
   border: none;
-  color: white;
   font-family: 'Rubik';
   color: ${({ theme }) => theme.colors['gray/700']};
   cursor: pointer;

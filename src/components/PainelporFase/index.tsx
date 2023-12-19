@@ -3,6 +3,7 @@ import * as S from './styles';
 import { date, string } from 'yup';
 import { Link, useParams } from 'react-router-dom';
 import theme from '../../global/theme';
+import { Tooltip } from 'react-tooltip';
 
 export const PainelPorFase = () => {
   const valores = [
@@ -161,12 +162,17 @@ export const PainelPorFase = () => {
         </S.FiltrarPorPeriodo>
 
         {/* RECEPÇÃO */}
-        <S.DivRemessasRecepcao>
+        {/* <S.DivRemessasRecepcao>
           <S.ContainerDataFaseRecepcao>
-            <Link to={`/Fase/${id}/Board/Recebidos`}>
+            <Link to={`/Fase/${id}/Board/Recebidos`} className="RecepTooltip">
               <S.CardFaseColorful style={{ backgroundColor: theme.colors['red/300'] }}>
                 <img src="/icon-big/IconOpenFile.svg" />
               </S.CardFaseColorful>
+              <Tooltip
+                children={<p style={{ fontSize: '12px', fontFamily: 'Rubik' }}>Recepção</p>}
+                anchorSelect=".RecepTooltip"
+                place="bottom"
+              />
             </Link>
 
             <S.CardFaseBlack>
@@ -175,8 +181,9 @@ export const PainelPorFase = () => {
                 <S.DataFaseTxtCenter>Remessas Recebidas</S.DataFaseTxtCenter>
               </S.NumberTextDataUnic>
             </S.CardFaseBlack>
+
           </S.ContainerDataFaseRecepcao>
-        </S.DivRemessasRecepcao>
+        </S.DivRemessasRecepcao> */}
 
         <S.PainelPorFaseLotes>
           {/* CONTAGEM DE LOTES */}
@@ -189,10 +196,15 @@ export const PainelPorFase = () => {
           <S.FasesDoMeio>
             {/* PREPARO */}
             <S.ContainerDataFase>
-              <Link to={`/Fase/${id}/Board/Preparo`}>
+              <Link to={`/Fase/${id}/Board/Preparo`} className="PreparoTooltip">
                 <S.CardFaseColorful style={{ backgroundColor: theme.colors['orange/400'] }}>
                   <img src="/icon-big/IconClean.svg" />
                 </S.CardFaseColorful>
+                <Tooltip
+                  children={<p style={{ fontSize: '12px', fontFamily: 'Rubik' }}>Preparo</p>}
+                  anchorSelect=".PreparoTooltip"
+                  place="bottom"
+                />
               </Link>
 
               <S.CardFaseBlack>
@@ -218,10 +230,15 @@ export const PainelPorFase = () => {
 
             {/* CATALOGAÇÃO */}
             <S.ContainerDataFase>
-              <Link to={`/Fase/${id}/Board/Catalogação`}>
+              <Link to={`/Fase/${id}/Board/Catalogação`} className="CatalogTooltip">
                 <S.CardFaseColorful style={{ backgroundColor: theme.colors['yellow/500'] }}>
                   <img src="/icon-big/IconBookMark.svg" />
                 </S.CardFaseColorful>
+                <Tooltip
+                  children={<p style={{ fontSize: '12px', fontFamily: 'Rubik' }}>Catalogação</p>}
+                  anchorSelect=".CatalogTooltip"
+                  place="bottom"
+                />
               </Link>
 
               <S.CardFaseBlack>
@@ -247,10 +264,15 @@ export const PainelPorFase = () => {
 
             {/* DIGITALIZAÇÃO */}
             <S.ContainerDataFase>
-              <Link to={`/Fase/${id}/Board/Digitalização`}>
+              <Link to={`/Fase/${id}/Board/Digitalização`} className="DigitalTooltip">
                 <S.CardFaseColorful style={{ backgroundColor: theme.colors['blue/400'] }}>
                   <img src="/icon-big/IconScanner.svg" />
                 </S.CardFaseColorful>
+                <Tooltip
+                  children={<p style={{ fontSize: '12px', fontFamily: 'Rubik' }}>Digitalização</p>}
+                  anchorSelect=".DigitalTooltip"
+                  place="bottom"
+                />
               </Link>
 
               <S.CardFaseBlack>
@@ -276,10 +298,15 @@ export const PainelPorFase = () => {
 
             {/* UPLOAD */}
             <S.ContainerDataFase>
-              <Link to={`/Fase/${id}/Board/Upload`}>
+              <Link to={`/Fase/${id}/Board/Upload`} className="UploadTooltip">
                 <S.CardFaseColorful style={{ backgroundColor: theme.colors['purple/600'] }}>
                   <img src="/icon-big/IconUpload.svg" />
                 </S.CardFaseColorful>
+                <Tooltip
+                  children={<p style={{ fontSize: '12px', fontFamily: 'Rubik' }}>Upload</p>}
+                  anchorSelect=".UploadTooltip"
+                  place="bottom"
+                />
               </Link>
 
               <S.CardFaseBlack>
@@ -305,10 +332,15 @@ export const PainelPorFase = () => {
 
             {/* ARQUIVAMENTO */}
             <S.ContainerDataFase>
-              <Link to={`/Fase/${id}/Board/Arquivamento`}>
+              <Link to={`/Fase/${id}/Board/Arquivamento`} className="ArquivTooltip">
                 <S.CardFaseColorful style={{ backgroundColor: theme.colors['green/400'] }}>
                   <img src="/icon-big/IconCheckFile.svg" />
                 </S.CardFaseColorful>
+                <Tooltip
+                  children={<p style={{ fontSize: '12px', fontFamily: 'Rubik' }}>Arquivamento</p>}
+                  anchorSelect=".ArquivTooltip"
+                  place="bottom"
+                />
               </Link>
 
               <S.CardFaseBlack>

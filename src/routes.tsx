@@ -8,17 +8,17 @@ const Painel = lazy(() => import('./pages/Coordenador/Painel'));
 const AtividadesHome = lazy(() => import('./pages/Coordenador/Atividade/atividade-home'));
 const AtividadeCreate = lazy(() => import('./pages/Coordenador/Atividade/atividade-create'));
 const AtividadeEdit = lazy(() => import('./pages/Coordenador/Atividade/atividade-edit'));
-const FasesHome = lazy(() => import('./pages/Coordenador/Fase'));
+const FasesHome = lazy(() => import('./pages/FasesHome'));
 const LoteDetails = lazy(() => import('./components/LoteDetails'));
 const LoteEdit = lazy(() => import('./components/LoteEdit'));
-const Recepcao = lazy(() => import('./pages/Etapas/Recebidos'));
-const Preparo = lazy(() => import('./pages/Etapas/Preparo'));
-const Catalogacao = lazy(() => import('./pages/Etapas/Catalogacao'));
-const Digitalizacao = lazy(() => import('./pages/Etapas/Digitalizacao'));
-const Upload = lazy(() => import('./pages/Etapas/Upload'));
-const Arquivamento = lazy(() => import('./pages/Etapas/Arquivamento'));
+const Recepcao = lazy(() => import('./pages/FasesEspecificsPages/Recepção'));
+const Preparo = lazy(() => import('./pages/FasesEspecificsPages/Preparo'));
+const Catalogacao = lazy(() => import('./pages/FasesEspecificsPages/Catalogacao'));
+const Digitalizacao = lazy(() => import('./pages/FasesEspecificsPages/Digitalizacao'));
+const Upload = lazy(() => import('./pages/FasesEspecificsPages/Upload'));
+const Arquivamento = lazy(() => import('./pages/FasesEspecificsPages/Arquivamento'));
 const Categorias = lazy(() => import('./pages/Coordenador/Categoria'));
-const Operadores = lazy(() => import('./pages/Coordenador/Operador'));
+const OperadoresPage = lazy(() => import('./pages/Coordenador/Operador'));
 const Perfil = lazy(() => import('./pages/Perfil'));
 const Cadastro = lazy(() => import('./pages/Cadastro'));
 const RecuperarSenha = lazy(() => import('./pages/Recuperar'));
@@ -31,7 +31,6 @@ const Rotas = () => {
   return (
     <Suspense fallback={<Splash />}>
       <Routes>
-        
         {/* Páginas que não precisam de token */}
         <Route path="/Cadastro" element={<Cadastro />} />
         <Route path="/recuperar-senha" element={<RecuperarSenha />} />
@@ -48,15 +47,15 @@ const Rotas = () => {
         {/* <Route path="/Projetos" element={<Projetos />} /> */}
         <Route path="/CriarProjeto" element={<CreateProjeto />} />
         <Route path="/Fase/:id" element={<FasesHome />} />
-        <Route path="/Atividades/:id" element={<AtividadesHome />} />
+        {/* <Route path="/Atividades/:id" element={<AtividadesHome />} />
         <Route path={`/Atividades/:id/CriarAtividade`} element={<AtividadeCreate />} />
-        <Route path={`/Atividades/:id/Edit/:iday/:idatv`} element={<AtividadeEdit />} />
+        <Route path={`/Atividades/:id/Edit/:iday/:idatv`} element={<AtividadeEdit />} /> */}
         <Route path="Fase/:id/Board/Arquivamento" element={<Arquivamento />} />
-        <Route path="Fase/:id/Board/Recebidos" element={<Recepcao />} />
+        {/* <Route path="Fase/:id/Board/Recebidos" element={<Recepcao />} /> */}
         <Route path="Fase/:id/Board/Preparo" element={<Preparo />} />
         <Route path="Fase/:id/Board/Catalogação" element={<Catalogacao />} />
         <Route path="Fase/:id/Board/Digitalização" element={<Digitalizacao />} />
-        <Route path="/Operadores/:id" element={<Operadores />} />
+        <Route path="/Operadores/:id" element={<OperadoresPage />} />
         <Route path="/Categorias/:id" element={<Categorias />} />
         <Route path="Fase/:id/Board/Upload" element={<Upload />} />
         <Route path={`/Lote/:id`} element={<LoteDetails />} />

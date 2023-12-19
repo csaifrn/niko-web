@@ -55,7 +55,7 @@ export const LoteDetails = () => {
   const [titleModal, setTitleModal] = useState({ button: 'Pegar lote', title: 'Deseja pegar o lote?' });
   const [option, setOption] = useState<Option>();
   const { id } = useParams();
-  const { user } = SharedState();
+  const [excluirLoteModal, setExcluirLoteModal] = useState(false);
   const navigate = useNavigate();
 
   const handleConfig = () => {
@@ -456,11 +456,11 @@ export const LoteDetails = () => {
                         <img src={'/avancar.svg'} alt="ícone circular com uma seta para a direita ao centro" />
                       )}
                       {option?.value && option?.value < status ? (
-                        <p style={{ color: theme.colors.white }}>Voltar Fase</p>
+                        <p style={{ color: theme.colors.white }}>Voltar fase</p>
                       ) : option?.value === status ? (
                         <p style={{ color: theme.colors.white }}>Você escolheu a mesma fase</p>
                       ) : (
-                        <p style={{ color: theme.colors.white }}>Avancar Fase</p>
+                        <p style={{ color: theme.colors.white }}>Avançar fase</p>
                       )}
                     </S.VoltarAvancar>
 
@@ -487,7 +487,13 @@ export const LoteDetails = () => {
                 )}
 
                 {/* EXCLUIR LOTE */}
-                <S.BotaoDeletarLote>
+                <S.BotaoDeletarLote
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setOpenEspecifModal(!openEspecifModal);
+                    setTitleModal({ button: 'Excluir lote', title: `Deseja excluir o ${task?.title}?` });
+                  }}
+                >
                   <img src={`/trash.svg`} alt="Botão de excluir Lote" />
                   Excluir lote
                 </S.BotaoDeletarLote>
@@ -576,11 +582,11 @@ export const LoteDetails = () => {
             priorityOnChange={(e: boolean) => setPriority(e)}
           ></ConfigModal>
         )}
-        {observacao && observation != undefined && (
+        {observacao && (
           <CreateObservationModal
             id={observationId}
             observations={observations!}
-            pendencia={observation.is_pending}
+            pendencia={observation?.is_pending}
             refetch={() => {
               if (id) {
                 beforeTask.mutate({
@@ -601,7 +607,7 @@ export const LoteDetails = () => {
             deleteFunction={() => DeleteObs(observationId)}
           />
         )}
-        {edit_modal &&  observation != undefined && (
+        {edit_modal && (
           <ObservationModal
             id={observationId}
             observation={observation?.observation}
@@ -615,7 +621,7 @@ export const LoteDetails = () => {
             }}
             title="Editar observação"
             close={() => setEditModal(!edit_modal)}
-            pendencia={observation.is_pending}
+            pendencia={observation?.is_pending}
           />
         )}
         {atribuir_modal && (
@@ -627,6 +633,16 @@ export const LoteDetails = () => {
             batche={task!}
             title={titleModal.title}
             button={titleModal.button}
+          />
+        )}
+        {/* Modal de excluir lote */}
+        {excluirLoteModal && (
+          <EspecifcModal
+            close={() => setExcluirLoteModal(!excluirLoteModal)}
+            batche={task!}
+            title={titleModal.title}
+            button={titleModal.button}
+            FaseAtual={optionsFases[status].label}
           />
         )}
       </>

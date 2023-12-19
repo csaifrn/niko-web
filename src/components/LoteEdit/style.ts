@@ -56,7 +56,6 @@ export const CustomSelect = styled(Select)`
 `;
 
 export const EditLoteArea = styled.div`
-  z-index: 100;
   color: white;
   transition: transform 0.9s ease-in-out;
   display: flex;

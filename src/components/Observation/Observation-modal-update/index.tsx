@@ -21,15 +21,15 @@ interface DeletarModalProps {
   close: () => void;
   observation: string | undefined;
   observations: Observation[] | undefined;
-  pendencia: boolean;
+  pendencia: boolean | undefined;
 }
 
 export const ObservationModal = (props: DeletarModalProps) => {
   const [closing, setClosing] = useState(false);
   const [obs, setObs] = useState<string>(props.observation ? props.observation : '');
   const [responseError, setResponseError] = useState('');
-  const [isPending, setIsPending] = useState<boolean>(props.pendencia);
-
+  const [isPending, setIsPending] = useState<boolean| undefined>(props.pendencia);
+ 
   console.log(props.id);
 
   const [validationFormError, setValidationFormError] = useState<ErrorsForm>({ observation: '' });

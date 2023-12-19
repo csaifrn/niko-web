@@ -18,7 +18,7 @@ const Digitalizacao = lazy(() => import('./pages/FasesEspecificsPages/Digitaliza
 const Upload = lazy(() => import('./pages/FasesEspecificsPages/Upload'));
 const Arquivamento = lazy(() => import('./pages/FasesEspecificsPages/Arquivamento'));
 const Categorias = lazy(() => import('./pages/Coordenador/Categoria'));
-const Operadores = lazy(() => import('./pages/Coordenador/Operador'));
+const OperadoresPage = lazy(() => import('./pages/Coordenador/Operador'));
 const Perfil = lazy(() => import('./pages/Perfil'));
 const Cadastro = lazy(() => import('./pages/Cadastro'));
 const RecuperarSenha = lazy(() => import('./pages/Recuperar'));
@@ -51,11 +51,11 @@ const Rotas = () => {
         <Route path={`/Atividades/:id/CriarAtividade`} element={<AtividadeCreate />} />
         <Route path={`/Atividades/:id/Edit/:iday/:idatv`} element={<AtividadeEdit />} /> */}
         <Route path="Fase/:id/Board/Arquivamento" element={<Arquivamento />} />
-        <Route path="Fase/:id/Board/Recebidos" element={<Recepcao />} />
+        {/* <Route path="Fase/:id/Board/Recebidos" element={<Recepcao />} /> */}
         <Route path="Fase/:id/Board/Preparo" element={<Preparo />} />
         <Route path="Fase/:id/Board/Catalogação" element={<Catalogacao />} />
         <Route path="Fase/:id/Board/Digitalização" element={<Digitalizacao />} />
-        <Route path="/Operadores/:id" element={<Operadores />} />
+        <Route path="/Operadores/:id" element={<OperadoresPage />} />
         <Route path="/Categorias/:id" element={<Categorias />} />
         <Route path="Fase/:id/Board/Upload" element={<Upload />} />
         <Route path={`/Lote/:id`} element={<LoteDetails />} />

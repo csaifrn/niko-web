@@ -7,56 +7,63 @@ import Menu from '../../../components/Menu';
 import MenuCoord from '../../../components/MenuCoord';
 import { useParams } from 'react-router';
 import { Membros } from '../../../data/ProjetoData';
+import { Operador } from '../../../api/services/users/ListUsers/users.interface';
+import { useMutation } from 'react-query';
+import { GetOperadores } from '../../../api/services/users/ListUsers';
 
-type User = {
+interface OperadorProps {
   id: string;
   name: string;
-  url: string;
-  email: string;
-  lote: string;
-  fase: string;
-  andamento: boolean;
-};
+}
 
 const removeDiacritics = (str: string): string => {
   return str.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
 };
 
-const Operador = (): JSX.Element => {
+const OperadoresPage = () => {
+
   const [searchTerm, setSearchTerm] = useState<string>('');
+
   const { id } = useParams();
 
+  const [membros, setMembros] = useState<Operador[]>([]);
+
+  const OperadoresMutate = useMutation(GetOperadores, {
+    onSuccess: (data: Operador[]) => {
+      setMembros(data);
+    },
+  });
+
+  useEffect(() => {
+    // Users.forEach((element) => {
+    //   const membro = Membros.filter((membr) => membr.email === element.email);
+    //   membro.forEach((m) => {
+    //     if (m.id_Projeto == id) {
+    //       setMembros((old: any) => [...old, element]);
+    //     }
+    //   });
+    // });
+
+    OperadoresMutate.mutate();
+  }, []);
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
     setSearchTerm(event.target.value);
   };
 
-  const [membros, setMembros] = useState<typeof Users>([]);
-
-  useEffect(() => {
-    Users.forEach((element) => {
-      const membro = Membros.filter((membr) => membr.email === element.email);
-      membro.forEach((m) => {
-        if (m.id_Projeto == id) {
-          setMembros((old: any) => [...old, element]);
-        }
-      });
-    });
-  }, []);
-
-  const filteredUsers: User[] = membros.filter((user: User) => {
+  const filteredUsers: Operador[] = membros.filter((user: Operador) => {
     const userName = removeDiacritics(user.name.toLowerCase());
     const search = removeDiacritics(searchTerm.toLowerCase());
     return userName.includes(search);
   });
 
-  const sortedUsers: User[] = filteredUsers.sort((a: User, b: User) => {
+  const sortedUsers: Operador[] = filteredUsers.sort((a: Operador, b: Operador) => {
     const nameA = removeDiacritics(a.name.toLowerCase());
     const nameB = removeDiacritics(b.name.toLowerCase());
     return nameA.localeCompare(nameB);
   });
 
-  const sortedAndFilteredUsers: User[] = sortedUsers.sort((a: User, b: User) => {
-    return a.lote !== '' ? -1 : b.lote === '' ? 1 : 0;
+  const sortedAndFilteredUsers: Operador[] = sortedUsers.sort((a: Operador, b: Operador) => {
+    return a.id !== '' ? -1 : b.name === '' ? 1 : 0;
   });
 
   return (
@@ -65,9 +72,10 @@ const Operador = (): JSX.Element => {
         <Menu area={`/Operadores/${id}`} id_projeto={id}></Menu>
         <MenuCoord />
         <S.CardsArea>
+          <h1 style={{color: 'white' , fontFamily: 'Rubik'}}>  Operadores </h1>
           <Search searchTerm={searchTerm} handleSearchChange={handleSearchChange} />
 
-          {sortedAndFilteredUsers.map((user: User) => (
+          {sortedAndFilteredUsers.map((user: Operador) => (
             <OperadorCard User={user} key={user.id} />
           ))}
         </S.CardsArea>
@@ -76,4 +84,4 @@ const Operador = (): JSX.Element => {
   );
 };
 
-export default Operador;
+export default OperadoresPage;

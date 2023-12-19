@@ -1,5 +1,6 @@
 export interface UserPatchParams {
   name: string;
+  email: string;
 }
 
 export interface UserPatchResponse {

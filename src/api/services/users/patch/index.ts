@@ -1,10 +1,11 @@
 import axiosInstance from '../../../axiosInstance';
 import { UserPatchParams, UserPatchResponse } from './userPatch.interface';
 
-export const userPatch = async ({ name }: UserPatchParams): Promise<UserPatchResponse> => {
-  const user = await axiosInstance.patch<UserPatchResponse>('/users', {
+export const userPatch = async ({ name, email }: UserPatchParams): Promise<UserPatchResponse> => {
+  const {data} = await axiosInstance.patch<UserPatchResponse>('/users', {
     name,
+    email,
   });
 
-  return user.data;
+  return data;
 };

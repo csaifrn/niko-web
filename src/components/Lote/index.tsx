@@ -33,7 +33,6 @@ const Lote = (props: any) => {
                 </S.CategoriaTextDiv>
                 {props.categoria &&
                   props.categoria.map((cat: any) => {
-                    console.log(cat);
                     return (
                       <React.Fragment key={generateUUID()}>
                         <S.CategoriaTextDiv style={{ borderRadius: '3px' }}>

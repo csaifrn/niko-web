@@ -68,7 +68,6 @@ const ChangePassword = () => {
     e.preventDefault();
 
     const isValid = await validateForm();
-    console.log(id);
 
     if (isValid && id) {
       // na teoria funciona mas falta tratar a data retornada e testar

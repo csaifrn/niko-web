@@ -6,11 +6,11 @@ import Menu from '../../../components/Menu';
 import MenuCoord from '../../../components/MenuCoord';
 import { useParams } from 'react-router-dom';
 import { useMutation } from 'react-query';
-import { GetTags } from '../../../api/services/tags/get-batche';
-import { Tag, Tags } from '../../../api/services/tags/get-batche/get.interface';
+import { Tag } from '../../../api/services/tags/get-tags/get.interface';
 import { ButtonGreen } from '../../../components/AtribuirAlguemModal/style';
-import { CreateCategory } from '../../../api/services/categoria/create-category';
 import { ModalCreteCategory } from '../../../components/ModalCreateCategory';
+import { Category } from '../../../api/services/batches/get-batche/get.interface';
+import { GetCategories } from '../../../api/services/settlement/get-categories';
 
 type Categoria = {
   id: number;
@@ -28,37 +28,37 @@ const Categoria = () => {
   const [searchTerm, setSearchTerm] = useState<string>('');
   const [open, setOpen] = useState<boolean>(false);
 
-  const [tags, setTags] = useState<Tags>();
+  const [Categories, setCategories] = useState<Category[]>();
 
-  const tagsMutate = useMutation(GetTags, {
-    onSuccess: (data: Tags) => {
-      setTags(data);
+  const CategoriesMutate = useMutation(GetCategories, {
+    onSuccess: (data: Category[]) => {
+      setCategories(data);
     },
   });
 
   useEffect(() => {
-    tagsMutate.mutate();
+    CategoriesMutate.mutate();
   }, []);
 
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
     setSearchTerm(event.target.value);
   };
 
-  const filteredTag: Tags = tags
-    ? tags.filter((tag: Tag) => {
-        const tagName = removeDiacritics(tag.name.toLowerCase());
+  const filteredCat: Category[] = Categories
+    ? Categories.filter((cat: Category) => {
+        const catName = removeDiacritics(cat.name.toLowerCase());
         const search = removeDiacritics(searchTerm.toLowerCase());
-        return tagName.includes(search);
+        return catName.includes(search);
       })
     : [];
 
-  const sortedTags: Tags = filteredTag.sort((a: Tag, b: Tag) => {
+  const sortedCategories: Category[] = filteredCat.sort((a: Category, b: Category) => {
     const nameA = removeDiacritics(a.name.toLowerCase());
     const nameB = removeDiacritics(b.name.toLowerCase());
     return nameA.localeCompare(nameB);
   });
 
-  const sortedAndFilteredTags: Tags = sortedTags.sort((a: Tag, b: Tag) => {
+  const sortedAndFilteredCategories: Category[] = sortedCategories.sort((a: Category, b: Category) => {
     return a.name.localeCompare(b.name);
   });
 
@@ -71,7 +71,7 @@ const Categoria = () => {
           <ButtonGreen onClick={() => setOpen(!open)}>Criar Categoria</ButtonGreen>
           <Search searchTerm={searchTerm} handleSearchChange={handleSearchChange} />
 
-          {sortedAndFilteredTags.map((tag: Tag) => (
+          {sortedAndFilteredCategories.map((tag: Tag) => (
             <CategoriaCard key={tag.id} id={tag.id} name={tag.name} />
           ))}
         </S.CardsArea>

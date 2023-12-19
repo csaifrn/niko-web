@@ -17,10 +17,11 @@ import { DeleteAssigner } from '../../api/services/batches/assigners/delete-assi
 import { Batche } from '../../api/services/batches/get-batche/get.interface';
 import { ErrorMessage } from '../../pages/Login/styles';
 import { InputText } from '../ModalCriarLote/styles';
-import { validationShelfSchema } from './validation';
-import { PatchBatcheEdit } from '../../api/services/batches/patch-batche';
+import { validationDigital, validationShelfSchema } from './validation';
+import { PatchBatcheEdit, PatchShelfNumber } from '../../api/services/batches/patch-batche';
 import { ErrorsForm } from './criar.interface';
 import * as Yup from 'yup';
+import { ArquivosInput } from '../LoteEdit/style';
 
 interface EspecifModalProps {
   close: () => void;
@@ -37,8 +38,9 @@ export interface Option {
 
 export const EspecifcModal = (props: EspecifModalProps) => {
   const user = SharedState();
-
   const [closing, setClosing] = useState(false);
+  const [buttonOff, setButtonOff] = useState(false);
+
   const [NoCategories, setNoCategories] = useState(false);
   const [error, setError] = useState('');
   const [shelfNumber, setShelfNumber] = useState('');
@@ -46,6 +48,7 @@ export const EspecifcModal = (props: EspecifModalProps) => {
   const [options, setOptions] = useState<Option[]>([]);
   const [validationFormError, setValidationFormError] = useState<ErrorsForm>({
     shelf_number: '',
+    digital_files_count: '',
   });
   const [selectedOptions, setSelectedOptions] = useState<Option[]>([
     ...props.batche.settlement_project_categories.map((cat) => ({
@@ -53,6 +56,7 @@ export const EspecifcModal = (props: EspecifModalProps) => {
       label: cat.name,
     })),
   ]);
+  const [digital_files_count, setDigital_files_count] = useState<number>(0);
 
   useEffect(() => {
     // Ao renderizar o modal, aplicar um escalonamento gradual para exibi-lo
@@ -85,10 +89,11 @@ export const EspecifcModal = (props: EspecifModalProps) => {
     }, 300);
   };
 
+  const mutatePatchBatch = useMutation(PatchBatcheEdit, {});
+
   const mutateEspecific = useMutation(PatchBatcheSpecifStatus, {
     onSuccess: () => {},
     onError: (err: ApiError) => {
-      console.log('esp');
       toast.error(err.response?.data.message ? err.response?.data.message : 'Erro na execução');
     },
   });
@@ -108,7 +113,21 @@ export const EspecifcModal = (props: EspecifModalProps) => {
   });
 
   const mutateStatus = useMutation(PatchBatcheMainStatus, {
-    onSuccess: () => {},
+    onSuccess: () => {
+      mutateEspecific.mutate({
+        specific_status: 0,
+        id: props.batche.id,
+      });
+      toast.success('Fase atualizada!');
+      if (props.batche.assigned_users) {
+        props.batche.assigned_users.map((ass) => {
+          mutateDeleteAssigner.mutate({
+            batch_id: props.batche.id,
+            assignment_user_id: ass.id,
+          });
+        });
+      }
+    },
     onError: (err: ApiError) => {
       toast.error(err.response?.data.message ? err.response?.data.message : 'Erro na execução');
     },
@@ -137,7 +156,7 @@ export const EspecifcModal = (props: EspecifModalProps) => {
     },
   });
 
-  const mutateShelf = useMutation(PatchBatcheEdit, {
+  const mutateShelf = useMutation(PatchShelfNumber, {
     onSuccess: () => {
       toast.success('Local Adicionado!');
       nextFase();
@@ -147,50 +166,65 @@ export const EspecifcModal = (props: EspecifModalProps) => {
     },
   });
 
-  const nextFase = () => {
-    const specific_status = props.batche.specific_status + 1 === 2 ? 0 : 1;
-    if (specific_status === 1) {
-      mutateEspecific.mutate({
-        specific_status,
+  const nextFase = async () => {
+    if (props.batche.main_status === 4 && props.batche.specific_status) {
+      await mutateEspecific.mutate({
+        specific_status: props.batche.specific_status + 1,
         id: props.batche.id,
       });
-    }
-    if (specific_status === 0) {
-      mutateStatus.mutate({
-        id: props.batche.id,
-        main_status: props.batche.main_status + 1,
-      });
-      while (mutateStatus.isLoading === true) {
-        if (mutateStatus.isError) {
-          break;
-        } else if (mutateStatus.isSuccess) {
-          mutateEspecific.mutate({
-            specific_status,
+      handleCloseRefecht();
+    } else {
+      const specific_status = props.batche.specific_status + 1 === 2 ? 0 : 1;
+      if (specific_status === 1) {
+        await mutateEspecific.mutate({
+          specific_status,
+          id: props.batche.id,
+        });
+      }
+      if (specific_status === 0) {
+        try {
+          await mutateStatus.mutate({
             id: props.batche.id,
+            main_status: props.batche.main_status + 1,
           });
-          toast.success('Fase atualizada!');
-          if (props.batche.assigned_users) {
-            props.batche.assigned_users.map((ass) => {
-              mutateDeleteAssigner.mutate({
-                batch_id: props.batche.id,
-                assignment_user_id: ass.id,
-              });
-            });
-          }
-        }
-      }
+        } catch {}
 
-      if (mutateDeleteAssigner.isSuccess) {
-        toast.success('Usuários removidos!');
+        if (mutateDeleteAssigner.isSuccess) {
+          toast.success('Usuários removidos!');
+        }
+      } else if (user.user?.sub && specific_status === 1) {
+        mutateAssigner.mutate({
+          batch_id: props.batche.id,
+          assignment_users_ids: [user.user?.sub],
+        });
+        toast.success('Status atualizado!');
       }
-    } else if (user.user?.sub && specific_status === 1) {
-      mutateAssigner.mutate({
-        batch_id: props.batche.id,
-        assignment_users_ids: [user.user?.sub],
-      });
-      toast.success('Status atualizado!');
+      handleCloseRefecht();
     }
-    handleCloseRefecht();
+  };
+
+  const validateDigital = async (): Promise<boolean> => {
+    try {
+      await validationDigital.validate(
+        {
+          digital_files_count,
+        },
+        {
+          abortEarly: false,
+        },
+      );
+    } catch (error) {
+      if (error instanceof Yup.ValidationError) {
+        const validationErrors = error.inner.reduce<ErrorsForm>((errors, err) => {
+          errors[err.path as keyof ErrorsForm] = err.message;
+          return errors;
+        }, {});
+        setValidationFormError(validationErrors);
+      }
+      return false;
+    }
+    setValidationFormError({});
+    return true;
   };
 
   const validateShelf = async (): Promise<boolean> => {
@@ -218,6 +252,7 @@ export const EspecifcModal = (props: EspecifModalProps) => {
   };
 
   const handlePegar = async () => {
+    setButtonOff(true);
     if (props.batche.main_status === 1 && props.batche.specific_status === 1) {
       if (NoCategories) {
         nextFase();
@@ -253,20 +288,28 @@ export const EspecifcModal = (props: EspecifModalProps) => {
           }
 
           if (deleteSettle.length > 0) {
-            deleteSettle.map((deletedSettle) => {
-              mutateDeleteSettle.mutate({
-                id: props.batche.id,
-                settlement_project_category_id: deletedSettle.id,
-              });
+            await mutateDeleteSettle.mutate({
+              id: props.batche.id,
+              settlement_project_category_id: [...deleteSettle.map((cat) => cat.id)],
             });
           }
           nextFase();
-        } else if (selectedOptions.length > 0) {
+        } else if (selectedOptions.length > 0 && props.batche.settlement_project_categories.length <= 0) {
           mutateSettle.mutate({
             id: props.batche.id,
             settlementProjectCategories: [...selectedOptions.map((settle) => settle.value)],
           });
-          nextFase();
+
+          while (mutateSettle.isLoading || mutateSettle.isError || mutateSettle.isSuccess) {
+            if (mutateSettle.isSuccess) {
+              nextFase();
+              break;
+            } else if (mutateSettle.isError) {
+              toast.error('Tente novamente ocorreu problema com as categorias!');
+              handleClose();
+              break;
+            }
+          }
         } else {
           setError('Adicione alguma categoria para avançar para a próxima fase.');
         }
@@ -280,9 +323,19 @@ export const EspecifcModal = (props: EspecifModalProps) => {
           shelf_number: shelfNumber,
         });
       }
+    } else if (props.batche.main_status === 2 && props.batche.specific_status === 1) {
+      const isValid = await validateDigital();
+      if (isValid) {
+        await mutatePatchBatch.mutate({
+          id: props.batche.id,
+          digital_files_count,
+        });
+        nextFase();
+      }
     } else {
       nextFase();
     }
+    setButtonOff(false);
   };
 
   useEffect(() => {
@@ -353,9 +406,28 @@ export const EspecifcModal = (props: EspecifModalProps) => {
                 {validationFormError.shelf_number && <ErrorMessage>{validationFormError.shelf_number}</ErrorMessage>}
               </>
             )}
+
+            {props.batche.main_status === 2 && props.batche.specific_status == 1 && (
+              <>
+                <h2>Arquivos Digitais</h2>
+                <S.ArquivosInput
+                  style={{ backgroundColor: theme.colors['gray/700'] }}
+                  type="number"
+                  name="Arquivos digitais"
+                  placeholder={``}
+                  onChange={(e) => setDigital_files_count(Number(e.currentTarget.value))}
+                  value={digital_files_count}
+                  min={1}
+                ></S.ArquivosInput>
+                {validationFormError.digital_files_count && (
+                  <ErrorMessage>{validationFormError.digital_files_count}</ErrorMessage>
+                )}
+              </>
+            )}
+
             <S.RecusedAvancar>
               {props.button === 'Marcar como concluído' && (
-                <S.ConcluirLoteButton onClick={handlePegar}>
+                <S.ConcluirLoteButton disabled={buttonOff} onClick={handlePegar}>
                   <img src="/finished-icon.svg" />
                   <S.Texto>{props.button}</S.Texto>
                 </S.ConcluirLoteButton>
@@ -368,7 +440,7 @@ export const EspecifcModal = (props: EspecifModalProps) => {
                 </S.PegarLoteButton>
               )}
               <S.Recused onClick={handleClose}>
-                <S.Texto>Não, não quero.</S.Texto>
+                <S.Texto>Cancelar</S.Texto>
               </S.Recused>
             </S.RecusedAvancar>
           </S.ModalContent>

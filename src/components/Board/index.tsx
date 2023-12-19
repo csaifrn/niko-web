@@ -38,6 +38,9 @@ export const Board = (props: BoardProps) => {
     onSuccess: (data: GetResponseBatche[]) => {
       setBatchesDispo(data.filter((batche) => batche.specific_status === 0));
       setBatchesAnda(data.filter((batche) => batche.specific_status === 1));
+      if (props.main_status === 4) {
+        setBatchesConc(data.filter((batche) => batche.specific_status === 2));
+      }
     },
     onError: (err: ApiError) => {
       toast.error(err.message);
@@ -60,9 +63,11 @@ export const Board = (props: BoardProps) => {
     mutateBatchesQuery.mutate({
       status: props.main_status,
     });
-    mutateBatchesConc.mutate({
-      status: props.main_status + 1,
-    });
+    if (props.main_status != 4) {
+      mutateBatchesConc.mutate({
+        status: props.main_status + 1,
+      });
+    }
   };
   return (
     <>
@@ -119,7 +124,7 @@ export const Board = (props: BoardProps) => {
                           categoria={batche.settlement_project_categories}
                           //envolvidos={batche.envolvidos}
                         >
-                          {user.role === 'Operador' && props.main_status != 4 && (
+                          {user.role === 'Operador' && (
                             <AtribuirButton
                               onClick={(e) => {
                                 e.preventDefault();
@@ -150,7 +155,7 @@ export const Board = (props: BoardProps) => {
               </S.kanbanSectionContent>
             </S.kanban>
           )}
-          {batchesAnda.length >= 0 && props.main_status != 4 && (
+          {batchesAnda.length >= 0 && (
             <S.kanban>
               <S.divTitulo>
                 <h2 style={{ color: theme.colors.white }}>Em andamento</h2>
@@ -203,7 +208,7 @@ export const Board = (props: BoardProps) => {
               </S.kanbanSectionContent>
             </S.kanban>
           )}
-          {batchesConc.length >= 0 && props.main_status != 4 && (
+          {batchesConc.length >= 0 && (
             <S.kanban>
               <S.divTitulo>
                 <h2 style={{ color: theme.colors.white }}>Concluídos</h2>

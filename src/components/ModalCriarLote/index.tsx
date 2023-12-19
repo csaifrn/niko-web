@@ -77,7 +77,6 @@ export const ModalCriarLote = (props: ModalCriarProps) => {
         toast.success('Lote Criado!');
         handleSucess();
       } else {
-        console.log('opa');
         toast.error(data && data.massege ? data.message : 'Algum erro ocorreu!');
       }
     },

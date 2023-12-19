@@ -72,9 +72,7 @@ const AtividadeEdit = () => {
             id_user: user.id,
             lotes: [...lote],
           });
-        } catch (error) {
-          console.log('');
-        }
+        } catch (error) {}
       });
     });
 
@@ -135,7 +133,6 @@ const AtividadeEdit = () => {
       atividade: [...faseDatas],
     };
 
-    //console.log(atividadeFinal);
     navigate(`/Atividades/${id}`);
   };
 

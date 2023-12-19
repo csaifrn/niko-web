@@ -3,7 +3,7 @@ import * as S from './styles';
 import { DataFase } from '../DataFase';
 import { DeletarModal } from '../DeletarModal';
 import CategoriaData from '../../data/CategoriaData';
-import { Tag } from '../../api/services/tags/get-batche/get.interface';
+import { Tag } from '../../api/services/tags/get-tags/get.interface';
 
 const CategoriaCard = (Categoria: Tag) => {
   const [expanded, setExpanded] = useState(false);
@@ -63,8 +63,8 @@ const CategoriaCard = (Categoria: Tag) => {
           </S.CategoriaClick>
         </S.CardA>
 
-        <S.Footer className={expanded ? 'show' : ''} setHeight={accodionHeight} ref={ref}>
-          {/* <DataFase
+        {/* <S.Footer className={expanded ? 'show' : ''} setHeight={accodionHeight} ref={ref}>
+          <DataFase
             recepcao={30}
             preparo={2}
             catalogacao={22}
@@ -72,14 +72,15 @@ const CategoriaCard = (Categoria: Tag) => {
             upload={40}
             arquivados={1000}
             percentageCallback={handlePercentage}
-          /> */}
+          />
           <S.BtnsDiv>
-            <S.ButtonPrioridade onClick={(e) => handlePrioridade(e)}>
-              {prioridade ? 'Tirar Prioridade' : 'Marcar Prioridade'}
-            </S.ButtonPrioridade>
-            <S.ButtonDelete onClick={(e) => handleDeletar(e)}>Deletar Categoria</S.ButtonDelete>
-          </S.BtnsDiv>
-        </S.Footer>
+              <S.ButtonPrioridade onClick={(e) => handlePrioridade(e)}>
+                {prioridade ? 'Tirar Prioridade' : 'Marcar Prioridade'}
+              </S.ButtonPrioridade>
+              <S.ButtonDelete onClick={(e) => handleDeletar(e)}>Deletar Categoria</S.ButtonDelete>
+            </S.BtnsDiv>
+          </S.Footer>
+        */}
       </S.totalArea>
       {modal && <DeletarModal title={'Deletar Categoria?'} close={handleClose}></DeletarModal>}
     </>

@@ -120,23 +120,6 @@ const LoteEdit = () => {
         digital_files_count,
         physical_files_count,
       });
-      const newSattle = selectedOptions.filter((settle) => {
-        const cat = categories.map((cate) => {
-          if (cate.id === settle.value) {
-            return true;
-          }
-        });
-        if (cat.filter((cat) => cat === undefined).length === cat.length) {
-          return settle;
-        }
-      });
-      if (newSattle.length > 0) {
-        mutateSettle.mutate({
-          id,
-          settlementProjectCategories: [...newSattle.map((sattle) => sattle.value)],
-        });
-      }
-
       const deleteSettle = categories.filter((categ) => {
         const cat = selectedOptions.map((settle) => {
           if (settle.value === categ.id) {
@@ -148,12 +131,32 @@ const LoteEdit = () => {
         }
       });
       if (deleteSettle.length > 0) {
-        deleteSettle.map((deletedSettle) => {
-          mutateDeleteSettle.mutate({
-            id,
-            settlement_project_category_id: deletedSettle.id,
-          });
+        await mutateDeleteSettle.mutate({
+          id,
+          settlement_project_category_id: [...deleteSettle.map((cat) => cat.id)],
         });
+      }
+
+      const newSattle = selectedOptions.filter((settle) => {
+        const cat = categories.map((cate) => {
+          if (cate.id === settle.value) {
+            return true;
+          }
+        });
+        if (cat.filter((cat) => cat === undefined).length === cat.length) {
+          return settle;
+        }
+      });
+      if (newSattle.length > 0) {
+        await mutateSettle.mutate({
+          id,
+          settlementProjectCategories: [...newSattle.map((sattle) => sattle.value)],
+        });
+      }
+      try {
+        await Promise.all([mutateSettle, mutateDeleteSettle]);
+      } catch (error) {
+        toast.error('Aconteceu um erro na mudança de categorias!');
       }
       navigate(`/Lote/${id}`);
     }

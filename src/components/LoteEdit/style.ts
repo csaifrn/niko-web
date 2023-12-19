@@ -16,6 +16,14 @@ export const SelectDiv = styled.div`
 `;
 
 export const CustomSelect = styled(Select)`
+  .react-select__multi-value {
+    background-color: ${({ theme }) => theme.colors['gray/700']} !important;
+  }
+
+  .react-select__multi-value__label {
+    color: white;
+  }
+
   .react-select__control {
     border: none;
     background-color: ${({ theme }) => theme.colors['gray/500']} !important; /* Cor de fundo do controle */
@@ -40,13 +48,8 @@ export const CustomSelect = styled(Select)`
     color: ${({ theme }) => theme.colors.white}; /* Cor do texto das opções */
   }
 
-  .react-select__option {
-    background-color: ${({ theme }) => theme.colors['gray/500']};
-    color: ${({ theme }) => theme.colors.white}; /* Cor do texto das opções */
-  }
-
   .react-select__option--is-selected {
-    background-color: ${({ theme }) => theme.colors['gray/700']}; /* Cor de fundo da opção selecionada */
+    background-color: ${({ theme }) => theme.colors['gray/500']}; /* Cor de fundo da opção selecionada */
   }
 
   .react-select__option--is-focused {
@@ -54,7 +57,7 @@ export const CustomSelect = styled(Select)`
   }
 
   .react-select__indicator-separator {
-    background-color: ${({ theme }) => theme.colors['gray/50']}; /* Cor do separador entre indicadores */
+    background-color: ${({ theme }) => theme.colors['gray/700']}; /* Cor do separador entre indicadores */
   }
 
   .react-select__value-container .react-select__input {

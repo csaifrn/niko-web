@@ -4,7 +4,6 @@ export interface PatchBatcheParams {
   digital_files_count?: number;
   physical_files_count?: number;
   priority?: boolean;
-  shelf_number?: any;
 }
 
 export interface PatchResponseBatche {
@@ -19,4 +18,13 @@ export interface PatchResponseEditBatch {
   digital_files_count: number;
   priority: boolean;
   updated_at: string;
+}
+
+export interface PatchShelfNumberParams {
+  id: string;
+  shelf_number: string;
+}
+
+export interface PatchShelfNumberResponse {
+  status: string;
 }

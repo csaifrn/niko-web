@@ -128,8 +128,6 @@ export const AtribuirLoteAtividade = (props: AtribuirModalAtividadeProps) => {
     }, 300);
   };
 
-  console.log(props.nameFase);
-
   return (
     <>
       <S.ModalBackdrop>

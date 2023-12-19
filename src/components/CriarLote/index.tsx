@@ -24,9 +24,7 @@ export const CreateModal = (props: EditModalProps) => {
     setSearchTerm(event.target.value);
   };
 
-  const handleCriarLote = () => {
-    return console.log('Lote Criado');
-  };
+  const handleCriarLote = () => {};
 
   const filteredCategorias = CategoriaData.filter((CategoriaData) =>
     CategoriaData.name.toLowerCase().includes(searchTerm.toLowerCase()),
@@ -94,7 +92,9 @@ export const CreateModal = (props: EditModalProps) => {
                   >
                     <p
                       style={{
-                        color: selectedCategoriaData.includes(categ.id) ? theme.colors['green/400'] : theme.colors['gray/100'],
+                        color: selectedCategoriaData.includes(categ.id)
+                          ? theme.colors['green/400']
+                          : theme.colors['gray/100'],
                       }}
                     >
                       {categ.name}

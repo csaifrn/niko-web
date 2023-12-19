@@ -157,7 +157,6 @@ const Atividade = () => {
                                     {fase.users?.map((user) => {
                                       // useEffect(() =>{
                                       //   const operadores = document.getElementById('operador')
-                                      //   console.log(operadores);
                                       //   operadores?.addEventListener('mouseenter', handleNomedoOperador)
                                       // },[])
 
@@ -363,7 +362,6 @@ const Atividade = () => {
                                                           <S.AtribuirButton
                                                             onClick={(e) => {
                                                               e.preventDefault();
-                                                              console.log('Montar lógica');
                                                             }}
                                                           >
                                                             <ArrowCircleRight

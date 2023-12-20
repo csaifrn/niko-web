@@ -76,7 +76,7 @@ const Categoria = () => {
           ))}
         </S.CardsArea>
       </div>
-      {open && <ModalCreteCategory close={() => setOpen(!open)} />}
+      {open && <ModalCreteCategory close={() => setOpen(!open)} refetch={() => CategoriesMutate.mutate()} />}
     </>
   );
 };

@@ -1,8 +1,10 @@
 import React from 'react';
 import * as S from './styles';
 import { generateUUID } from '../../utils/generateUUID.util';
-import { Warning } from '@phosphor-icons/react';
 import { Category } from '../../api/services/batches/get-batche/get.interface';
+import { Warning } from '@phosphor-icons/react';
+import { Tooltip } from 'react-tooltip';
+import uuid from 'react-uuid';
 
 const Lote = (props: any) => {
   return (
@@ -13,6 +15,18 @@ const Lote = (props: any) => {
             <S.LoteNumAvisos>
               {/* NÚMERO DO LOTE */}
               <h2>{props.value}</h2>
+
+              {props.categoria &&
+                props.categoria.map((cat: any) => (
+                  <React.Fragment key={generateUUID()}>
+                    {cat.nome === props.prioridade && (
+                      //AVISO DE PRIORIDADE
+                      <S.Prioridade>
+                        <p>Prioridade</p>
+                      </S.Prioridade>
+                    )}
+                  </React.Fragment>
+                ))}
             </S.LoteNumAvisos>
 
             <S.LoteNumAvisos>
@@ -22,7 +36,6 @@ const Lote = (props: any) => {
                 </S.CategoriaTextDiv>
                 {props.categoria &&
                   props.categoria.map((cat: any) => {
-                    console.log(cat);
                     return (
                       <React.Fragment key={generateUUID()}>
                         <S.CategoriaTextDiv style={{ borderRadius: '3px' }}>
@@ -46,7 +59,6 @@ const Lote = (props: any) => {
 
                 <S.PendPrioridade>
                   {/* PENDENCIA */}
-
                   {props.pendencia > 0 && (
                     <S.PendNumberIconBlack>
                       <Warning
@@ -59,7 +71,6 @@ const Lote = (props: any) => {
                       <h2>{props.pendencia}</h2>
                     </S.PendNumberIconBlack>
                   )}
-
                   {/* PRIORIDADE */}
                   {props.prioridade == true && (
                     <S.Prioridade>
@@ -83,18 +94,24 @@ const Lote = (props: any) => {
                           </React.Fragment>
                         );
                       } else if (index + 1 == props.categoria.length) {
+                        const random = generateUUID();
                         return (
-                          <S.CategoriaTextDiv
-                            key={cat.id}
-                            style={{ borderRadius: '100%', width: '2em', paddingRight: '2px' }}
-                          >
-                            <p>+{index + 1}</p>
-                            <S.Categories>
-                              {props.categoria.map((cat: Category, index: number) => {
-                                return <S.ToolText key={cat.id}>{cat.name}</S.ToolText>;
-                              })}
-                            </S.Categories>
-                          </S.CategoriaTextDiv>
+                          <>
+                            <S.CategoriaTextDiv
+                              data-tooltip-id={`my-tooltip-multiline-${random}`}
+                              key={random}
+                              style={{ borderRadius: '100%', width: '2em', paddingRight: '2px' }}
+                            >
+                              <p>+{index + 1}</p>
+                              <Tooltip
+                                id={`my-tooltip-multiline-${random}`}
+                                children={props.categoria.map((cat: Category) => {
+                                  return <S.ToolText key={cat.id}>{cat.name}</S.ToolText>;
+                                })}
+                                place="top"
+                              />
+                            </S.CategoriaTextDiv>
+                          </>
                         );
                       }
                     })}
@@ -128,9 +145,12 @@ const Lote = (props: any) => {
                       </React.Fragment>
                     ))}
                 </S.Envolvido>
-
               </S.LoteNumAvisos>
             </S.LoteDetalhes>
+
+            {/* BOTÃO DE ATRIBUIR ALGUÉM */}
+
+            {props.children && props.children}
           </S.LoteArea>
         </S.Lote>
       )}

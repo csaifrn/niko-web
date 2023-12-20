@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 const Lote = styled.div`
   font-family: 'Rubik';
-  position: relative;
   padding: 0.8em;
   background-color: ${({ theme }) => theme.colors['gray/500']};
   border-radius: 5px;
@@ -38,6 +37,7 @@ const LoteArea = styled.div`
   justify-content: space-between;
   flex-direction: column;
   width: 100%;
+  height: 100%;
 `;
 
 export const LoteDetalhes = styled.div`
@@ -52,26 +52,15 @@ const LoteNumAvisos = styled.div`
   gap: 2em;
   justify-content: space-between;
   align-items: center;
-  height: 100%;
   align-left {
     justify-self: left;
   }
 `;
 
-export const PendNumberIconBlack = styled.div`
-  display: flex;
-  align-items: center;
-  background-color:${({ theme }) => theme.colors['gray/550']};
-  gap: 8px;
-  border-radius: 3px;
-  height: 24px;
-  padding: 0px 4px 0px 4px;
-`;
-
 export const PendPrioridade = styled.div`
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 16px;
 `;
 
 const Prioridade = styled.div`
@@ -99,38 +88,11 @@ const Categoria = styled.div`
   gap: 0.5em;
 `;
 
-export const Categories = styled.div`
-  background-color: ${({ theme }) => theme.colors['gray/450']};
-  box-shadow: rgba(100, 100, 111, 0.1) 0px 7px 29px 0px;
-  z-index: 101 !important;
-
-  width: 10em;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 1em;
-  padding: 8px;
-  color: white;
-  border-radius: 3px;
-  position: absolute;
-  top: calc(100% + 5px);
-  left: 0;
-  display: none;
-  font-family: 'Rubik';
-
-  p:last-child {
-    border: none !important;
-  }
-`;
-
 export const ToolText = styled.p`
   color: white;
-  padding: 5px;
-  border-bottom: 1px ${({ theme }) => theme.colors['gray/400']} solid;
 `;
 
 const CategoriaTextDiv = styled.div`
-  position: relative;
   height: 24px;
   background-color: ${({ theme }) => theme.colors['gray/700']};
   display: flex;
@@ -190,3 +152,13 @@ export const AtribuirButton = styled.button`
 `;
 
 export { Lote, LoteArea, LoteNumAvisos, Prioridade, Envolvido, Categoria, CategoriaTextDiv, fotoEnv, LoteEdit, Btn };
+
+export const PendNumberIconBlack = styled.div`
+  display: flex;
+  align-items: center;
+  background-color: ${({ theme }) => theme.colors['gray/550']};
+  gap: 8px;
+  border-radius: 3px;
+  height: 24px;
+  padding: 0px 4px 0px 4px;
+`;

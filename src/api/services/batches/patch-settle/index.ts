@@ -1,5 +1,11 @@
 import axiosInstance from '../../../axiosInstance';
-import { ResponseAddSettle, ParamAddSettle } from './patch.interface';
+import {
+  ResponseAddSettle,
+  ParamAddSettle,
+  ResponseDeleteSettle,
+  ParamsDeleteSettle,
+  ResponseStatus,
+} from './patch.interface';
 
 export const PostBatcheSettle = async ({
   id,
@@ -10,4 +16,20 @@ export const PostBatcheSettle = async ({
   });
 
   return BatcheStatus.data;
+};
+
+export const DeleteBatcheSettle = async ({
+  id,
+  settlement_project_category_id,
+}: ParamsDeleteSettle): Promise<ResponseStatus[] | any> => {
+  const data = settlement_project_category_id.map(async (settle) => {
+    const ResponseDeleteBatcheSettle = await axiosInstance.delete<ResponseStatus>(`/batches/${id}/settlement-project`, {
+      data: {
+        settlement_project_category_id: settle,
+      },
+    });
+    return ResponseDeleteBatcheSettle;
+  });
+
+  return data;
 };

@@ -23,7 +23,6 @@ export const EditImage = (props: EditImageProps) => {
 
   const onSubmit = (e: any) => {
     e.preventDefault();
-    console.log('Mudar imagem');
   };
   return (
     <>

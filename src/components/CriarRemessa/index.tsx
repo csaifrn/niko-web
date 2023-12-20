@@ -66,9 +66,7 @@ export const CreateRemessa = (props: EditModalProps) => {
     setSearchTerm(event.target.value);
   };
 
-  const handleCriarLote = () => {
-    return console.log({ data, observacao, qtd, selectedClientes });
-  };
+  const handleCriarLote = () => {};
 
   const filteredCategorias = cliente.filter((SelectedClientes) =>
     SelectedClientes.name.toLowerCase().includes(searchTerm.toLowerCase()),

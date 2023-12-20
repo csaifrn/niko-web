@@ -1,15 +1,13 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect } from 'react';
 import * as S from './styles';
 import { ErrorMessage } from '../../pages/Login/styles';
-import { validationLoginSchema, validationSearch } from './validation';
+import { validationLoginSchema } from './validation';
 import { useMutation } from 'react-query';
-import { CreateBatche } from '../../api/services/batches/create-batche';
 import * as Yup from 'yup';
 import { ErrorsForm } from './criar.interface';
 import ReactLoading from 'react-loading';
 import toast from 'react-hot-toast';
-import { SeachCategoria } from '../../api/services/categoria/get-category';
-import { SeachCategoriaResponseBatche } from '../../api/services/categoria/get-category/get.interface';
+import { CreateCategory } from '../../api/services/categoria/create-category';
 
 interface ModalCriarProps {
   close: () => void;
@@ -21,25 +19,12 @@ interface Options {
   label: string;
 }
 
-export const ModalCriarLote = (props: ModalCriarProps) => {
-  const [categoria, setCategoria] = useState<any>(null);
+export const ModalCreteCategory = (props: ModalCriarProps) => {
   const [closing, setClosing] = useState(false);
-  const [options, setOptions] = useState<Options[]>([]);
   const [name, setName] = useState('');
-  const categorias = useMutation(SeachCategoria, {
-    onSuccess: (data: SeachCategoriaResponseBatche) => {
-      setOptions([]);
-      const opt = data.categories;
-      const response: Options[] = opt.map((e) => ({ value: e.id, label: e.name }));
-      setOptions(response);
-    },
-  });
-
-  const [title, setTitle] = useState('');
   const [responseError] = useState('');
   const [validationFormError, setValidationFormError] = useState<ErrorsForm>({
-    title: '',
-    settlement_project_category_id: '',
+    name: '',
   });
 
   useEffect(() => {
@@ -56,11 +41,10 @@ export const ModalCriarLote = (props: ModalCriarProps) => {
   }, [closing]);
 
   const handleSucess = () => {
-    setTitle('');
+    setName('');
     if (props.refetch) {
       props.refetch();
     }
-
     handleClose();
   };
 
@@ -71,10 +55,10 @@ export const ModalCriarLote = (props: ModalCriarProps) => {
     }, 300);
   };
 
-  const batcheMutation = useMutation(CreateBatche, {
+  const categoryMutation = useMutation(CreateCategory, {
     onSettled: (data: any) => {
       if (data) {
-        toast.success('Lote Criado!');
+        toast.success('Categoria criada!');
         handleSucess();
       } else {
         toast.error(data && data.massege ? data.message : 'Algum erro ocorreu!');
@@ -86,7 +70,7 @@ export const ModalCriarLote = (props: ModalCriarProps) => {
     try {
       await validationLoginSchema.validate(
         {
-          title,
+          name,
         },
         {
           abortEarly: false,
@@ -106,42 +90,11 @@ export const ModalCriarLote = (props: ModalCriarProps) => {
     return true;
   };
 
-  const validateSearch = async (): Promise<boolean> => {
-    try {
-      await validationSearch.validate(
-        {
-          name,
-        },
-        {
-          abortEarly: false,
-        },
-      );
-    } catch (error) {
-      return false;
-    }
-    setValidationFormError({});
-    return true;
-  };
-
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const isValid = await validateForm();
     if (isValid) {
-      batcheMutation.mutate({
-        title,
-      });
-    }
-  };
-
-  useEffect(() => {
-    onChange();
-  }, [name]);
-
-  const onChange = async () => {
-    const isValid = await validateSearch();
-
-    if (isValid) {
-      categorias.mutate({
+      categoryMutation.mutate({
         name,
       });
     }
@@ -153,7 +106,7 @@ export const ModalCriarLote = (props: ModalCriarProps) => {
         <S.ModalArea id="modal-scaling">
           <S.ModalContent>
             <S.NameClose>
-              <h2>Criar Lote</h2>
+              <h2>Criar Categoria</h2>
               <S.Exit type="button" onClick={handleClose}>
                 <img src="/close.svg" alt="" height={18} width={18} />
               </S.Exit>
@@ -161,19 +114,19 @@ export const ModalCriarLote = (props: ModalCriarProps) => {
 
             <S.FormCriar onSubmit={onSubmit}>
               <S.InputText
-                placeholder="Nome do Lote"
-                onChange={(e) => setTitle(e.currentTarget.value)}
-                value={title}
-                name="title"
-                className="title"
+                placeholder="Nome da categoria..."
+                onChange={(e) => setName(e.currentTarget.value)}
+                value={name}
+                name="name"
+                className="name"
               />
-              {validationFormError.title && <ErrorMessage>{validationFormError.title}</ErrorMessage>}
-              {batcheMutation.isLoading ? (
+              {validationFormError.name && <ErrorMessage>{validationFormError.name}</ErrorMessage>}
+              {categoryMutation.isLoading ? (
                 <S.Criar type="submit" disabled>
                   <ReactLoading type="cylon" color="white" height={30} width={30} />
                 </S.Criar>
               ) : (
-                <S.Criar type="submit">Criar Lote</S.Criar>
+                <S.Criar type="submit">Criar categoria</S.Criar>
               )}
               {responseError && <ErrorMessage>{responseError}</ErrorMessage>}
             </S.FormCriar>

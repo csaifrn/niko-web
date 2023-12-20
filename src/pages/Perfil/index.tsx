@@ -111,9 +111,7 @@ const Perfil = () => {
             digitalizacao={23}
             upload={1}
             arquivados={23}
-            percentageCallback={() => {
-              console.log();
-            }}
+            percentageCallback={() => {}}
           />
         </S.DataFase> */}
       </S.Wrapper>

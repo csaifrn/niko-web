@@ -50,7 +50,7 @@ export const ModalConfirmarEdit = (props: SairSemSalvarModalProps) => {
               <h2>Deseja confirmar as alterações feitas?</h2>
             </S.NameClose>
             <S.Recused onClick={handleClose}>Não, não quero.</S.Recused>
-            <S.ConfirmAlterações onClick={() => console.log(props.salvar)}>Confirmar alterações</S.ConfirmAlterações>
+            <S.ConfirmAlterações>Confirmar alterações</S.ConfirmAlterações>
           </S.ModalContent>
         </S.ModalArea>
       </S.ModalBackdrop>

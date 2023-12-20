@@ -137,6 +137,37 @@ export const PendenciaTextIcon = styled.div`
   gap: 10px;
 `;
 
+export const ArquivosInput = styled.input`
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding: 15px;
+  width: 60px;
+  background-color: ${({ theme }) => theme.colors['gray/500']};
+  color: white;
+  font-family: 'Rubik', Helvetica, sans-serif;
+  border: none;
+  border-radius: 5px;
+  min-width: 100px;
+
+  ::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    background: url('/carets.svg') no-repeat center center;
+    width: 3em;
+    border-left: 1px solid ${({ theme }) => theme.colors['gray/50']};
+    opacity: 0.5; /* shows Spin Buttons per default (Chrome >= 39) */
+    position: absolute;
+    border-left: none;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    transition: all 0.5s;
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+`;
+
 export const AlertIcon = styled.img``;
 
 export const LabelPendencia = styled.label``;

@@ -67,13 +67,11 @@ export const EditModal = () => {
   const [arquivFis, setArquivFis] = useState(task.arquiv_fisicos);
   const handleArquivosFisicos = (e: any) => {
     setArquivFis(e.target.value);
-    console.log('arquivos fisicos atualizados!');
   };
 
   const [arquivDig, setArquivDig] = useState(task.arquiv_digitais);
   const handleArquivosDigitais = (e: any) => {
     setArquivDig(e.target.value);
-    console.log('arquivos digitais atualizados!');
   };
 
   const handleSave = () => {
@@ -85,7 +83,6 @@ export const EditModal = () => {
       arquivosDigitais: arquivDig,
     };
     navigate(-1);
-    console.log(LoteAtualizado);
   };
 
   return (

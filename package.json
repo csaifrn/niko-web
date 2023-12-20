@@ -23,6 +23,7 @@
     "react-router-dom": "^6.11.1",
     "react-select": "^5.7.5",
     "react-tooltip": "^5.25.0",
+    "react-uuid": "^2.0.0",
     "styled-components": "^5.3.6",
     "styled-media-query": "^2.1.2",
     "uuid": "^9.0.0",

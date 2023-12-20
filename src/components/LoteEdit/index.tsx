@@ -9,14 +9,15 @@ import { useMutation } from 'react-query';
 import { ApiError } from '../../api/services/authentication/signIn/signIn.interface';
 import { GetBatche } from '../../api/services/batches/get-batche';
 import Splash from '../../pages/Splash';
-import { SeachCategoriaResponseBatche } from '../../api/services/categoria/get-categoria/get.interface';
-import { SeachCategoria } from '../../api/services/categoria/get-categoria';
 import { validationPatch, validationSearch } from './validation';
 import { PatchBatcheEdit } from '../../api/services/batches/patch-batche';
 import theme from '../../global/theme';
 import { SairSemSalvarModal } from '../SairSemSalvarModal';
+import { ResponseSettle } from '../../api/services/settlement/query-settlement/get.interface';
+import { QuerySettles } from '../../api/services/settlement/query-settlement';
+import { DeleteBatcheSettle, PostBatcheSettle } from '../../api/services/batches/patch-settle';
 
-interface Options {
+interface Option {
   value: string;
   label: string;
 }
@@ -24,32 +25,25 @@ interface Options {
 const LoteEdit = () => {
   const navigate = useNavigate();
   const { id } = useParams();
-  const [, setOptions] = useState<Options[]>([]);
   const [categories, setCategories] = useState<Category[]>([]);
   const [title, setTitle] = useState<string>('');
   const [physical_files_count, setPhysical_files_count] = useState<number>(0);
   const [digital_files_count, setDigital_files_count] = useState<number>(0);
   const [faseAtual, setFaseAtual] = useState<number>(0);
   const [modalSairSemSalvar, setModalSairSemSalvar] = useState(false);
+  const [userInput, setUserInput] = useState('');
+  const [options, setOptions] = useState<Option[]>([]);
+  const [selectedOptions, setSelectedOptions] = useState<Option[]>([]);
 
-  const categorias = useMutation(SeachCategoria, {
-    onSuccess: (data: SeachCategoriaResponseBatche) => {
-      setOptions([]);
-      const opt = data.categories;
-      const response: Options[] = opt.map((e) => ({ value: e.id, label: e.name }));
-      setOptions(response);
-    },
-    onError: (error: ApiError) => {
-      if (error.response) {
-        toast.error(error.response.data.message);
-      }
+  const mutateQueryCategories = useMutation(QuerySettles, {
+    onSuccess: (data: ResponseSettle) => {
+      setOptions([...data.categories.map((settle) => ({ value: settle.id, label: settle.name }))]);
     },
   });
 
   const patchBatch = useMutation(PatchBatcheEdit, {
     onSuccess: () => {
       toast.success('Alterações salvas!');
-      navigate(`/Lote/${id}`);
     },
     onError: (error: ApiError) => {
       if (error.response) {
@@ -65,11 +59,37 @@ const LoteEdit = () => {
       setPhysical_files_count(data.physical_files_count);
       setDigital_files_count(data.digital_files_count);
       setFaseAtual(data.main_status);
+      setSelectedOptions([
+        ...data.settlement_project_categories.map((cat) => ({
+          value: cat.id,
+          label: cat.name,
+        })),
+      ]);
     },
     onError: (error: ApiError) => {
       if (error.response) {
         toast.error(error.response.data.message);
       }
+    },
+  });
+
+  const mutateSettle = useMutation(PostBatcheSettle, {
+    onSuccess: (data) => {},
+    onError: (err: ApiError) => {
+      toast.error(err.response?.data.message ? err.response?.data.message : 'Erro na execução');
+    },
+    onSettled: () => {
+      navigate(`/Lote/${id}`);
+    },
+  });
+
+  const mutateDeleteSettle = useMutation(DeleteBatcheSettle, {
+    onSuccess: (data) => {},
+    onError: (err: ApiError) => {
+      toast.error(err.response?.data.message ? err.response?.data.message : 'Erro na execução');
+    },
+    onSettled: () => {
+      navigate(`/Lote/${id}`);
     },
   });
 
@@ -83,6 +103,18 @@ const LoteEdit = () => {
     }
   }, []);
 
+  useEffect(() => {
+    const serchcategory = async () => {
+      const valid = await validateSearch();
+      if (valid) {
+        mutateQueryCategories.mutate({
+          name: userInput,
+        });
+      }
+    };
+    serchcategory();
+  }, [userInput]);
+
   const handleSave = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const isValid = await validatePatch();
@@ -94,6 +126,45 @@ const LoteEdit = () => {
         digital_files_count,
         physical_files_count,
       });
+      const deleteSettle = categories.filter((categ) => {
+        console.log('selectedOptions', selectedOptions);
+        const cat = selectedOptions.map((settle) => {
+          if (settle.value === categ.id) {
+            return true;
+          }
+        });
+        if (cat.filter((cat) => cat === undefined).length === cat.length) {
+          return categ;
+        }
+      });
+      if (deleteSettle.length > 0) {
+        mutateDeleteSettle.mutate({
+          id,
+          settlement_project_category_id: [...deleteSettle.map((cat) => cat.id)],
+        });
+      }
+
+      const newSattle = selectedOptions.filter((settle) => {
+        const cat = categories.map((cate) => {
+          if (cate.id === settle.value) {
+            return true;
+          }
+        });
+        if (cat.filter((cat) => cat === undefined).length === cat.length) {
+          return settle;
+        }
+      });
+      if (newSattle.length > 0) {
+        await mutateSettle.mutate({
+          id,
+          settlementProjectCategories: [...newSattle.map((sattle) => sattle.value)],
+        });
+      }
+      try {
+        await Promise.all([mutateSettle, mutateDeleteSettle]);
+      } catch (error) {
+        toast.error('Aconteceu um erro na mudança de categorias!');
+      }
     }
   };
 
@@ -101,7 +172,7 @@ const LoteEdit = () => {
     try {
       await validationSearch.validate(
         {
-          name,
+          name: userInput,
         },
         {
           abortEarly: false,
@@ -209,19 +280,25 @@ const LoteEdit = () => {
                 )}
               </S.ArquivosDiv>
             </S.Arquivos>
-
-            {/*CATEGORIAS E TIPOLOGIAS*/}
-            {/* <h2>Categoria</h2>
-          <S.CustomSelect
-            onInputChange={(e) => setCategories(e)}
-            placeholder={'Digite no mínimo 3 caracteres...'}
-            inputValue={name}
-            options={options}
-            onChange={(e) => setCategoria(e.value)}
-            isLoading={categorias.isLoading}
-            className="react-select-container"
-            classNamePrefix="react-select"
-          /> */}
+            <h2>Categorias</h2>
+            <S.SelectDiv>
+              <S.CustomSelect
+                isMulti
+                // eslint-disable-next-line jsx-a11y/no-autofocus
+                autoFocus
+                placeholder={'Digite no mínimo 3 caracteres...'}
+                name="colors"
+                className="react-select-container"
+                classNamePrefix="react-select"
+                onInputChange={setUserInput}
+                inputValue={userInput}
+                onChange={(e: any, action: any) => setSelectedOptions(e)}
+                options={options}
+                value={selectedOptions}
+                isLoading={false}
+                required
+              />
+            </S.SelectDiv>
 
             <S.SalvarEditButton type="submit">Salvar alterações</S.SalvarEditButton>
           </S.FormContent>

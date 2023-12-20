@@ -8,6 +8,7 @@ import { DeleteAssigner } from '../../../api/services/batches/assigners/delete-a
 import { DeletarModal } from '../../DeletarModal';
 import { useState } from 'react';
 import { SharedState } from '../../../context/SharedContext';
+import { UserRole } from '../../../utils/userRole.enum';
 
 interface PropsBlockAssigner {
   assigner: AssignedUser;
@@ -38,7 +39,6 @@ export const BlockAssigner = ({ assigner, setAssigners }: PropsBlockAssigner) =>
   return (
     <>
       <S.BlockAssigner>
-
         {/* mostra quem está atribuído */}
         {/* {user?.name == assigner.name &&
           <S.NameAssigner>Você</S.NameAssigner>
@@ -47,9 +47,11 @@ export const BlockAssigner = ({ assigner, setAssigners }: PropsBlockAssigner) =>
           <S.NameAssigner>{assigner.name}</S.NameAssigner>
         } */}
         <S.NameAssigner>{assigner.name}</S.NameAssigner>
-        <S.DeleteAssigner onClick={() => setModal(!modal)}>
-          <X size={14} weight="bold"  />
-        </S.DeleteAssigner>
+        {user?.role === UserRole.MANAGER && (
+          <S.DeleteAssigner onClick={() => setModal(!modal)}>
+            <X size={14} weight="bold" />
+          </S.DeleteAssigner>
+        )}
       </S.BlockAssigner>
       {modal && (
         <DeletarModal

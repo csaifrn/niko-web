@@ -12,25 +12,31 @@ import { ApiError, UserPatchResponse } from '../../api/services/users/patch/user
 import { useMutation } from 'react-query';
 import theme from '../../global/theme';
 import { useMe } from '../../hooks/useMe';
+import { SharedState } from '../../context/SharedContext';
 
 const user = Users[0];
 
 const Perfil = () => {
-  const {me, isLoadingMe} = useMe()
+  const { me, isLoadingMe } = useMe();
+  const { setUser, user: loggedUsed } = SharedState();
   const [modal, setModal] = useState(false);
   const [url] = useState<string>(user.url);
   const [responseError, setResponseError] = useState('');
-  const [validationFormError, setValidationFormError] = useState<ErrorsForm>({ name: '' , email: ''});
-
+  const [validationFormError, setValidationFormError] = useState<ErrorsForm>({ name: '', email: '' });
   const perfilMutation = useMutation(userPatch, {
     onSuccess: (data: UserPatchResponse) => {
-      // TODO: store user on context state
+      const attUser = loggedUsed;
+      if (attUser && data.name) {
+        attUser.name = data.name;
+        setUser(attUser);
+      }
     },
     onError: (error: ApiError) => {
       setResponseError(error.response?.data.message || 'Um erro inesperado ocorreu.');
     },
   });
 
+  console.log('loggedUsed', loggedUsed);
 
   const validateForm = async (name: string, email: string): Promise<boolean> => {
     try {
@@ -59,17 +65,16 @@ const Perfil = () => {
 
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const form = e.target as HTMLFormElement
+    const form = e.target as HTMLFormElement;
 
-    const nameForm = (form.elements[0] as HTMLInputElement).value
-    const emailForm = (form.elements[1] as HTMLInputElement).value
+    const nameForm = (form.elements[0] as HTMLInputElement).value;
+    const emailForm = (form.elements[1] as HTMLInputElement).value;
     const isValid = await validateForm(nameForm, emailForm);
 
     if (isValid) {
       perfilMutation.mutate({
         name: nameForm,
         email: emailForm,
-    
       });
     }
   };
@@ -87,16 +92,12 @@ const Perfil = () => {
         <S.Form onSubmit={onSubmit}>
           <S.FieldContainer>
             <S.LabelField>Nome</S.LabelField>
-            {!isLoadingMe ? (
-              <S.InputText defaultValue={me?.name} />
-            ): "... Carregando"}
+            {!isLoadingMe ? <S.InputText defaultValue={me?.name} /> : '... Carregando'}
             <S.ErrorMessage>{validationFormError.name}</S.ErrorMessage>
           </S.FieldContainer>
           <S.FieldContainer>
             <S.LabelField>Email</S.LabelField>
-            {!isLoadingMe ? (
-              <S.InputText type='email' defaultValue={me?.email} />
-            ): "... Carregando"}
+            {!isLoadingMe ? <S.InputText type="email" defaultValue={me?.email} /> : '... Carregando'}
             <S.ErrorMessage>{validationFormError.email}</S.ErrorMessage>
           </S.FieldContainer>
           <S.Button>Salvar</S.Button>

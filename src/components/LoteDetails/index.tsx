@@ -27,6 +27,7 @@ import { PatchBatcheSpecifStatus } from '../../api/services/batches/patch-status
 import { EspecifcModal } from '../EspecificStatusModal';
 import { SharedState } from '../../context/SharedContext';
 import { Tooltip } from 'react-tooltip';
+import { UserRole } from '../../utils/userRole.enum';
 
 interface Option {
   label: string;
@@ -34,6 +35,7 @@ interface Option {
 }
 
 export const LoteDetails = () => {
+  const { user } = SharedState();
   const optionsFases = FaseData.map((fase, index) => ({ value: index, label: fase.titulo }));
   const [task, setTask] = useState<Batche | null>(null);
   const [observations, setObservations] = useState<Observation[]>([]);
@@ -412,11 +414,12 @@ export const LoteDetails = () => {
                   </S.ConcluirButton>
                 )}
 
-                {/* ATRIBUIR LOTE */}
-                <S.Botao onClick={handleAtribuirAlguem}>
-                  <img src={`/AddUser.svg`} alt="botão para atribuir lote a algum operador " />
-                  Atribuir à alguém
-                </S.Botao>
+                {user?.role === UserRole.MANAGER && (
+                  <S.Botao onClick={handleAtribuirAlguem}>
+                    <img src={`/AddUser.svg`} alt="botão para atribuir lote a algum operador " />
+                    Atribuir à alguém
+                  </S.Botao>
+                )}
 
                 {/* VOLTAR FASE */}
                 {observations && taskData.fase_atual != 'Preparo' && (
@@ -493,17 +496,18 @@ export const LoteDetails = () => {
                   </S.BotaoMudarFase>
                 )}
 
-                {/* EXCLUIR LOTE */}
-                <S.BotaoDeletarLote
-                  onClick={(e) => {
-                    e.preventDefault();
-                    setOpenEspecifModal(!openEspecifModal);
-                    setTitleModal({ button: 'Excluir lote', title: `Deseja excluir o ${task?.title}?` });
-                  }}
-                >
-                  <img src={`/trash.svg`} alt="Botão de excluir Lote" />
-                  Excluir lote
-                </S.BotaoDeletarLote>
+                {user?.role === UserRole.MANAGER && (
+                  <S.BotaoDeletarLote
+                    onClick={(e) => {
+                      e.preventDefault();
+                      setOpenEspecifModal(!openEspecifModal);
+                      setTitleModal({ button: 'Excluir lote', title: `Deseja excluir o ${task?.title}?` });
+                    }}
+                  >
+                    <img src={`/trash.svg`} alt="Botão de excluir Lote" />
+                    Excluir lote
+                  </S.BotaoDeletarLote>
+                )}
               </S.Botoes>
             </S.ObservacaoBotoes>
 

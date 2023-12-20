@@ -4,7 +4,8 @@ export interface UserPatchParams {
 }
 
 export interface UserPatchResponse {
-  data: any;
+  name: string;
+  email: string;
 }
 
 export interface UnauthorizedError {

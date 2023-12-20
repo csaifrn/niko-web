@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import media from 'styled-media-query';
 
 export const Wrapper = styled.main`
   width: 100vw;
@@ -15,6 +14,7 @@ export const Form = styled.form`
   display: flex;
   flex-direction: column;
   gap: 2em;
+  max-width: 570px;
 `;
 
 export const ImgUser = styled.img`

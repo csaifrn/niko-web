@@ -124,6 +124,8 @@ export const LoteDetails = () => {
     },
   });
 
+  console.log(beforeTask.data);
+
   const deleteObs = useMutation(DeleteObservation, {
     onSuccess: (data) => {
       toast.success('Observação excluida');
@@ -246,7 +248,16 @@ export const LoteDetails = () => {
 
               {/* ARQUIVOS */}
               <S.DetalhesLote>
-                {task?.shelf_number !== null && <S.Estante>{task?.shelf_number}</S.Estante>}
+                {task?.storage_location !== null && (
+                  <S.Estante className="LocationTooltip">
+                    {task?.storage_location}
+                    <Tooltip
+                      children={<p style={{ fontSize: '12px', fontFamily: 'Rubik' }}>Estante</p>}
+                      anchorSelect=".LocationTooltip"
+                      place="bottom"
+                    />
+                  </S.Estante>
+                )}
 
                 {/* FÍSICOS */}
 

@@ -11,6 +11,7 @@ export interface GetResponseBatche {
   physical_files_count: number;
   priority: boolean;
   shelf_number: any;
+  storage_location: string;
   created_at: string;
   updated_at: string;
   created_by: CreatedBy;
@@ -19,7 +20,6 @@ export interface GetResponseBatche {
   observations: Observation[];
   pending_batch_observations: {};
 }
-
 
 export interface Batche {
   id: string;
@@ -33,6 +33,7 @@ export interface Batche {
   created_at: string;
   updated_at: string;
   created_by: CreatedBy;
+  storage_location: string;
   settlement_project_categories: Category[];
   assigned_users: AssignedUser[];
   tags: any[];

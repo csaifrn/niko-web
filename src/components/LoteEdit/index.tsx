@@ -78,12 +78,18 @@ const LoteEdit = () => {
     onError: (err: ApiError) => {
       toast.error(err.response?.data.message ? err.response?.data.message : 'Erro na execução');
     },
+    onSettled: () => {
+      navigate(`/Lote/${id}`);
+    },
   });
 
   const mutateDeleteSettle = useMutation(DeleteBatcheSettle, {
     onSuccess: (data) => {},
     onError: (err: ApiError) => {
       toast.error(err.response?.data.message ? err.response?.data.message : 'Erro na execução');
+    },
+    onSettled: () => {
+      navigate(`/Lote/${id}`);
     },
   });
 
@@ -121,6 +127,7 @@ const LoteEdit = () => {
         physical_files_count,
       });
       const deleteSettle = categories.filter((categ) => {
+        console.log('selectedOptions', selectedOptions);
         const cat = selectedOptions.map((settle) => {
           if (settle.value === categ.id) {
             return true;
@@ -131,9 +138,9 @@ const LoteEdit = () => {
         }
       });
       if (deleteSettle.length > 0) {
-        await mutateDeleteSettle.mutate({
+        mutateDeleteSettle.mutate({
           id,
-          settlement_project_category_id: [...deleteSettle.map((cat) => cat.id)],
+          settlement_project_category_id: deleteSettle.map((cat) => cat.id),
         });
       }
 
@@ -158,7 +165,6 @@ const LoteEdit = () => {
       } catch (error) {
         toast.error('Aconteceu um erro na mudança de categorias!');
       }
-      navigate(`/Lote/${id}`);
     }
   };
 
@@ -286,10 +292,7 @@ const LoteEdit = () => {
                 classNamePrefix="react-select"
                 onInputChange={setUserInput}
                 inputValue={userInput}
-                onChange={(e: any, action: any) => {
-                  // eslint-disable-next-line no-constant-condition
-                  setSelectedOptions(e);
-                }}
+                onChange={(e: any, action: any) => setSelectedOptions(e)}
                 options={options}
                 value={selectedOptions}
                 isLoading={false}

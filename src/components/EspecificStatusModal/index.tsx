@@ -183,9 +183,8 @@ export const EspecifcModal = (props: EspecifModalProps) => {
     },
   });
 
-  const mutateShelf = useMutation(PatchShelfNumber, {
+  const mutateShelf = useMutation(PatchBatcheEdit, {
     onSuccess: () => {
-      toast.success('Local Adicionado!');
       nextFase();
     },
     onError: (err: ApiError) => {
@@ -347,7 +346,7 @@ export const EspecifcModal = (props: EspecifModalProps) => {
       if (isValid) {
         mutateShelf.mutate({
           id: props.batche.id,
-          shelf_number: shelfNumber,
+          storage_location: shelfNumber,
         });
       }
     } else if (props.batche.main_status === 2 && props.batche.specific_status === 1) {

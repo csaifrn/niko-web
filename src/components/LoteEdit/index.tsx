@@ -140,7 +140,7 @@ const LoteEdit = () => {
       if (deleteSettle.length > 0) {
         mutateDeleteSettle.mutate({
           id,
-          settlement_project_category_id: deleteSettle.map((cat) => cat.id),
+          settlement_project_category_id: [...deleteSettle.map((cat) => cat.id)],
         });
       }
 

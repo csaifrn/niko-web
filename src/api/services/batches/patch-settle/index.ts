@@ -22,7 +22,7 @@ export const DeleteBatcheSettle = async ({
   id,
   settlement_project_category_id,
 }: ParamsDeleteSettle): Promise<ResponseStatus[] | any> => {
-  const data = await settlement_project_category_id.map(async (settle) => {
+  const data = settlement_project_category_id.map(async (settle) => {
     const ResponseDeleteBatcheSettle = await axiosInstance.delete<ResponseStatus>(`/batches/${id}/settlement-project`, {
       data: {
         settlement_project_category_id: settle,

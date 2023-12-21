@@ -50,6 +50,9 @@ const LoteEdit = () => {
         toast.error(error.response.data.message);
       }
     },
+    onSettled: () => {
+      navigate(`/Lote/${id}`);
+    },
   });
 
   const beforeBatch = useMutation(GetBatche, {
@@ -125,6 +128,7 @@ const LoteEdit = () => {
         title,
         digital_files_count,
         physical_files_count,
+        
       });
       const deleteSettle = categories.filter((categ) => {
         console.log('selectedOptions', selectedOptions);

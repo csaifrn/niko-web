@@ -285,12 +285,16 @@ export const LoteDetails = () => {
                 )}
               </S.DetalhesLote>
 
-              <S.DetalhesLote>
-                {/* CATEGORIAS */}
-                {task?.settlement_project_categories.map((cat) => {
-                  return <S.BlockGrayBorder key={cat.id}>{cat.name}</S.BlockGrayBorder>;
-                })}
-              </S.DetalhesLote>
+              {task?.settlement_project_categories.length != undefined &&
+                task?.settlement_project_categories.length > 0 && (
+                  <S.DetalhesLote>
+                    {/* CATEGORIAS */}
+
+                    {task?.settlement_project_categories.map((cat) => {
+                      return <S.BlockGrayBorder key={cat.id}>{cat.name}</S.BlockGrayBorder>;
+                    })}
+                  </S.DetalhesLote>
+                )}
 
               {/* PRIORIORIDADE(SE TIVER) */}
               {priority === true && (

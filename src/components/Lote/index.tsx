@@ -18,6 +18,7 @@ interface PropsLote {
 }
 
 const Lote = ({ assigners, categories, children, pendencia, value, priority }: PropsLote) => {
+  const random = generateUUID();
   return (
     <>
       <S.Lote className="Lote">
@@ -30,8 +31,8 @@ const Lote = ({ assigners, categories, children, pendencia, value, priority }: P
                 {/* PENDENCIA */}
                 {pendencia > 0 && (
                   <S.PendNumberIconBlack>
-                    <Warning data-tooltip-id={'my-tooltip-warn'} size={18} color="#f7df4c" weight="fill" />
-                    <Tooltip id={`my-tooltip-warn`} children={<p>Pendências</p>} place="top" />
+                    <Warning data-tooltip-id={`my-tooltip-${random}`} size={18} color="#f7df4c" weight="fill" />
+                    <Tooltip id={`my-tooltip-${random}`} children={<p>Pendências</p>} place="top" />
                     <h2>{pendencia}</h2>
                   </S.PendNumberIconBlack>
                 )}

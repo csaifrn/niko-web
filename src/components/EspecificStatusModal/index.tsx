@@ -50,7 +50,6 @@ export const EspecifcModal = (props: EspecifModalProps) => {
   const navigate = useNavigate();
   const [closing, setClosing] = useState(false);
   const [buttonOff, setButtonOff] = useState(false);
-
   const [NoCategories, setNoCategories] = useState(false);
   const [error, setError] = useState('');
   const [shelfNumber, setShelfNumber] = useState('');
@@ -58,6 +57,7 @@ export const EspecifcModal = (props: EspecifModalProps) => {
   const [options, setOptions] = useState<Option[]>([]);
   const [validationFormError, setValidationFormError] = useState<ErrorsForm>({
     shelf_number: '',
+    physical_files_count: '',
     digital_files_count: '',
   });
   const [selectedOptions, setSelectedOptions] = useState<Option[]>([
@@ -66,7 +66,8 @@ export const EspecifcModal = (props: EspecifModalProps) => {
       label: cat.name,
     })),
   ]);
-  const [digital_files_count, setDigital_files_count] = useState<number>(0);
+  const [physical_files_count, setFisic_files_count] = useState<number>(props.batche.physical_files_count);
+  const [digital_files_count, setDigital_files_count] = useState<number>(props.batche.digital_files_count);
 
   useEffect(() => {
     // Ao renderizar o modal, aplicar um escalonamento gradual para exibi-lo
@@ -229,6 +230,30 @@ export const EspecifcModal = (props: EspecifModalProps) => {
     }
   };
 
+  const validateFisicos = async (): Promise<boolean> => {
+    try {
+      await validationDigital.validate(
+        {
+          physical_files_count,
+        },
+        {
+          abortEarly: false,
+        },
+      );
+    } catch (error) {
+      if (error instanceof Yup.ValidationError) {
+        const validationErrors = error.inner.reduce<ErrorsForm>((errors, err) => {
+          errors[err.path as keyof ErrorsForm] = err.message;
+          return errors;
+        }, {});
+        setValidationFormError(validationErrors);
+      }
+      return false;
+    }
+    setValidationFormError({});
+    return true;
+  };
+
   const validateDigital = async (): Promise<boolean> => {
     try {
       await validationDigital.validate(
@@ -349,6 +374,15 @@ export const EspecifcModal = (props: EspecifModalProps) => {
           storage_location: shelfNumber,
         });
       }
+    } else if (props.batche.main_status === 1 && props.batche.specific_status === 1) {
+      const isValid = await validateFisicos();
+      if (isValid) {
+        await mutatePatchBatch.mutate({
+          id: props.batche.id,
+          physical_files_count,
+        });
+        nextFase();
+      }
     } else if (props.batche.main_status === 2 && props.batche.specific_status === 1) {
       const isValid = await validateDigital();
       if (isValid) {
@@ -383,12 +417,15 @@ export const EspecifcModal = (props: EspecifModalProps) => {
       <S.ModalBackdrop>
         <S.ModalArea id="modal-scaling">
           <S.ModalContent>
+            {/* DESEJA CONCLUIR O LOTE? */}
             <S.NameClose>
               <S.Titulo> {props.title}</S.Titulo>
             </S.NameClose>
+
+            {/* ADICIONAR CATEGORIAS */}
             {props.batche.main_status === 1 && props.batche.specific_status == 1 && (
               <S.CatalogacaoArea>
-                <h3>Adicionar categorias</h3>
+                <S.AdicionarTitle>Adicionar categorias</S.AdicionarTitle>
                 {!NoCategories && (
                   <CustomSelect
                     isMulti
@@ -421,21 +458,29 @@ export const EspecifcModal = (props: EspecifModalProps) => {
               </S.CatalogacaoArea>
             )}
 
-            {props.batche.main_status === 3 && props.batche.specific_status == 1 && props.button !== 'Excluir lote' && (
+            {/* ADICIONAR ARQUIVOS FÍSICOS */}
+            {props.batche.main_status === 1 && props.batche.specific_status == 1 && (
               <>
-                <h2 style={{ color: 'white' }}>Estante</h2>
-                <InputText
-                  placeholder="Estante..."
-                  value={shelfNumber}
-                  onChange={(e) => setShelfNumber(e.currentTarget.value)}
-                />
-                {validationFormError.shelf_number && <ErrorMessage>{validationFormError.shelf_number}</ErrorMessage>}
+                <S.AdicionarTitle style={{ color: 'white' }}>Arquivos Físicos</S.AdicionarTitle>
+                <S.ArquivosInput
+                  style={{ backgroundColor: theme.colors['gray/700'] }}
+                  type="number"
+                  name="Arquivos fisicos"
+                  placeholder={``}
+                  onChange={(e) => setFisic_files_count(Number(e.currentTarget.value))}
+                  value={physical_files_count}
+                  min={1}
+                ></S.ArquivosInput>
+                {validationFormError.physical_files_count && (
+                  <ErrorMessage>{validationFormError.physical_files_count}</ErrorMessage>
+                )}
               </>
             )}
 
+            {/* ADICIONAR ARQUIVOS DIGITAIS */}
             {props.batche.main_status === 2 && props.batche.specific_status == 1 && (
               <>
-                <h2 style={{ color: 'white' }}>Arquivos Digitais</h2>
+                <S.AdicionarTitle style={{ color: 'white' }}>Arquivos Digitais</S.AdicionarTitle>
                 <S.ArquivosInput
                   style={{ backgroundColor: theme.colors['gray/700'] }}
                   type="number"
@@ -451,8 +496,21 @@ export const EspecifcModal = (props: EspecifModalProps) => {
               </>
             )}
 
+            {/* ADICIONAR ESTANTE */}
+            {props.batche.main_status === 3 && props.batche.specific_status == 1 && props.button !== 'Excluir lote' && (
+              <>
+                <S.AdicionarTitle style={{ color: 'white' }}>Estante</S.AdicionarTitle>
+                <InputText
+                  placeholder="Estante..."
+                  value={shelfNumber}
+                  onChange={(e) => setShelfNumber(e.currentTarget.value)}
+                />
+                {validationFormError.shelf_number && <ErrorMessage>{validationFormError.shelf_number}</ErrorMessage>}
+              </>
+            )}
+
             <S.RecusedAvancar>
-              {/* Botão de excluir lote */}
+              {/* EXCLUIR LOTE */}
               {props.button === 'Excluir lote' && (
                 <S.PegarLoteButton onClick={() => ExcluirLote()}>
                   <Trash size={20} weight="fill" />
@@ -461,6 +519,7 @@ export const EspecifcModal = (props: EspecifModalProps) => {
                 </S.PegarLoteButton>
               )}
 
+              {/* PEGAR LOTE */}
               {props.button === 'Pegar lote' && (
                 <S.PegarLoteButton onClick={handlePegar}>
                   <HandWaving size={20} weight="fill" />
@@ -469,6 +528,7 @@ export const EspecifcModal = (props: EspecifModalProps) => {
                 </S.PegarLoteButton>
               )}
 
+              {/* MARCAR COMO CONCLUÍDO */}
               {props.button === 'Marcar como concluído' && (
                 <S.ConcluirLoteButton onClick={handlePegar}>
                   <CheckCircle size={24} weight="fill" />

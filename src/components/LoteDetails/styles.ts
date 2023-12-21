@@ -213,7 +213,6 @@ export const ArquivDigitais = styled.div`
   justify-content: center;
   gap: 0.5em;
   border-radius: 3px;
-  position: relative;
   :hover div {
     visibility: visible;
     opacity: 1;

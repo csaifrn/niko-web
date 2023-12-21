@@ -5,6 +5,10 @@ export const Texto = styled.p`
   color: white;
 `;
 
+export const AdicionarTitle = styled.h2`
+  color: ${({ theme }) => theme.colors['white']};
+`;
+
 export const EscolherFaseSelect = styled(Select)`
   margin-top: 1em;
   .react-select__control {

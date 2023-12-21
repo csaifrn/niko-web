@@ -80,6 +80,7 @@ const Prioridade = styled.div`
 const Envolvido = styled.div`
   display: flex;
   margin-left: 10px;
+  gap: 4px;
 `;
 
 const Categoria = styled.div`
@@ -92,8 +93,9 @@ export const ToolText = styled.p`
   color: white;
 `;
 
-const CategoriaTextDiv = styled.div`
+const BlackBlock = styled.div`
   height: 24px;
+  width: auto;
   background-color: ${({ theme }) => theme.colors['gray/700']};
   display: flex;
   justify-content: center;
@@ -151,7 +153,7 @@ export const AtribuirButton = styled.button`
   font-family: 'Rubik';
 `;
 
-export { Lote, LoteArea, LoteNumAvisos, Prioridade, Envolvido, Categoria, CategoriaTextDiv, fotoEnv, LoteEdit, Btn };
+export { Lote, LoteArea, LoteNumAvisos, Prioridade, Envolvido, Categoria, BlackBlock, fotoEnv, LoteEdit, Btn };
 
 export const PendNumberIconBlack = styled.div`
   display: flex;

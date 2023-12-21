@@ -119,12 +119,12 @@ export const Board = (props: BoardProps) => {
                     batche && (
                       <Link to={`/Lote/${batche.id}`} key={batche.id} style={{ textDecoration: 'none' }}>
                         <Lote
-                          task={batche}
                           value={`${batche.title}`}
-                          observations={batche.observations}
-                          prioridade={batche.priority}
-                          categoria={batche.settlement_project_categories}
+                          priority={batche.priority}
+                          categories={batche.settlement_project_categories}
                           pendencia={batche.pending_batch_observations}
+                          assigners={batche.assigned_users}
+
                           //envolvidos={batche.envolvidos}
                         >
                           {user.role === 'Operador' && (
@@ -180,11 +180,11 @@ export const Board = (props: BoardProps) => {
                     batche && (
                       <Link to={`/Lote/${batche.id}`} key={batche.id} style={{ textDecoration: 'none' }}>
                         <Lote
-                          task={batche}
                           value={`${batche.title}`}
+                          priority={batche.priority}
+                          categories={batche.settlement_project_categories}
                           pendencia={batche.pending_batch_observations}
-                          prioridade={batche.priority}
-                          categoria={batche.settlement_project_categories}
+                          assigners={batche.assignedUsers}
                           //envolvidos={batche.envolvidos}
                         >
                           {user.role === 'Operador' && (
@@ -237,11 +237,11 @@ export const Board = (props: BoardProps) => {
                     batche && (
                       <Link to={`/Lote/${batche.id}`} key={batche.id} style={{ textDecoration: 'none' }}>
                         <Lote
-                          task={batche}
                           value={`${batche.title}`}
+                          priority={batche.priority}
+                          categories={batche.settlement_project_categories}
                           pendencia={batche.pending_batch_observations}
-                          prioridade={batche.priority}
-                          categoria={batche.settlement_project_categories}
+                          assigners={batche.assigned_users}
                         >
                           {batche.main_status === 1 && (
                             <img src="/icon-small/Catalogação.svg" style={{ width: '32px', height: '32px' }} />

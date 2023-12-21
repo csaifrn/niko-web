@@ -5,12 +5,11 @@ import MenuCoord from '../../../../components/MenuCoord';
 import { Link, useParams } from 'react-router-dom';
 import AtividadeData from '../../../../data/AtividadeData';
 import moment from 'moment';
-import { ArrowCircleRight, Check, PencilSimple } from '@phosphor-icons/react';
+import { Check, PencilSimple } from '@phosphor-icons/react';
 import EtapaData from '../../../../data/EtapaData';
 import Lote from '../../../../components/Lote';
 import theme from '../../../../global/theme';
 import { DeletarModal } from '../../../../components/DeletarModal';
-import { ToolTip } from '../../../../components/Observation/ObservationBox/styles';
 
 const Atividade = () => {
   const auth = { role: 'Coordenador', email: 'andre.sousa@gmail.com' };
@@ -325,34 +324,35 @@ const Atividade = () => {
                                                       .id_fase !== fase.faseData.id
                                                   ) {
                                                     return (
-                                                      <S.ContainerLote key={lote.lote.id}>
-                                                        <Lote
-                                                          categorias={lote.lote.categorias}
-                                                          value={`Lote ${lote.lote.numero}`}
-                                                          pendencia={lote.lote.pendencias}
-                                                          prioridade={lote.lote.prioridade}
-                                                          envolvidos={lote.lote.envolvidos}
-                                                        >
-                                                          <div
-                                                            style={{
-                                                              display: 'flex',
-                                                              alignItems: 'center',
-                                                              justifyContent: 'center',
-                                                              padding: '0.5em 0',
-                                                              gap: '0.5em',
-                                                              height: '44px',
-                                                            }}
-                                                          >
-                                                            <Check size={14} color={theme.colors['green/400']} />
-                                                            <p>Feito</p>
-                                                          </div>
-                                                        </Lote>
-                                                      </S.ContainerLote>
+                                                      <p>Opa</p>
+                                                      // <S.ContainerLote key={lote.lote.id}>
+                                                      //   <Lote
+                                                      //     categorias={lote.lote.categorias}
+                                                      //     value={`Lote ${lote.lote.numero}`}
+                                                      //     pendencia={lote.lote.pendencias}
+                                                      //     prioridade={lote.lote.prioridade}
+                                                      //     envolvidos={lote.lote.envolvidos}
+                                                      //   >
+                                                      //     <div
+                                                      //       style={{
+                                                      //         display: 'flex',
+                                                      //         alignItems: 'center',
+                                                      //         justifyContent: 'center',
+                                                      //         padding: '0.5em 0',
+                                                      //         gap: '0.5em',
+                                                      //         height: '44px',
+                                                      //       }}
+                                                      //     >
+                                                      //       <Check size={14} color={theme.colors['green/400']} />
+                                                      //       <p>Feito</p>
+                                                      //     </div>
+                                                      //   </Lote>
+                                                      // </S.ContainerLote>
                                                     );
                                                   } else {
                                                     return (
                                                       <S.Link href={`/Lote/${lote.lote.id}`} key={lote.lote.id}>
-                                                        <Lote
+                                                        {/* <Lote
                                                           categorias={lote.lote.categorias}
                                                           value={`Lote ${lote.lote.numero}`}
                                                           pendencia={lote.lote.pendencias}
@@ -371,7 +371,7 @@ const Atividade = () => {
                                                             />
                                                             Pegar Lote
                                                           </S.AtribuirButton>
-                                                        </Lote>
+                                                        </Lote> */}
                                                       </S.Link>
                                                     );
                                                   }

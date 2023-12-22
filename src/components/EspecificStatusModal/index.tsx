@@ -22,7 +22,7 @@ import { validationDigital, validationShelfSchema } from './validation';
 import { PatchBatcheEdit, PatchShelfNumber } from '../../api/services/batches/patch-batche';
 import { ErrorsForm } from './criar.interface';
 import * as Yup from 'yup';
-import { ArquivosInput } from '../LoteEdit/style';
+import { ArquivosInput } from '../../pages/LoteEdit/style';
 import { DeleteBatche } from '../../api/services/batches/delete-batche';
 import { useNavigate } from 'react-router';
 

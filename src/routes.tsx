@@ -2,16 +2,17 @@ import { Suspense, lazy } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import Login from './pages/Login';
 
-const Projetos = lazy(() => import('./pages/Projeto/projeto-home'));
+// const AtividadesHome = lazy(() => import('./pages/Coordenador/Atividade/atividade-home'));
+// const AtividadeCreate = lazy(() => import('./pages/Coordenador/Atividade/atividade-create'));
+// const AtividadeEdit = lazy(() => import('./pages/Coordenador/Atividade/atividade-edit'));
+// const Projetos = lazy(() => import('./pages/Projeto/projeto-home'));
+// const Recepcao = lazy(() => import('./pages/FasesEspecificsPages/Recepção'));
+
 const CreateProjeto = lazy(() => import('./pages/Projeto/projeto-create'));
 const Painel = lazy(() => import('./pages/Coordenador/Painel'));
-const AtividadesHome = lazy(() => import('./pages/Coordenador/Atividade/atividade-home'));
-const AtividadeCreate = lazy(() => import('./pages/Coordenador/Atividade/atividade-create'));
-const AtividadeEdit = lazy(() => import('./pages/Coordenador/Atividade/atividade-edit'));
 const FasesHome = lazy(() => import('./pages/FasesHome'));
-const LoteDetails = lazy(() => import('./components/LoteDetails'));
-const LoteEdit = lazy(() => import('./components/LoteEdit'));
-const Recepcao = lazy(() => import('./pages/FasesEspecificsPages/Recepção'));
+const LoteDetails = lazy(() => import('./pages/LoteDetails'));
+const LoteEdit = lazy(() => import('./pages/LoteEdit'));
 const Preparo = lazy(() => import('./pages/FasesEspecificsPages/Preparo'));
 const Catalogacao = lazy(() => import('./pages/FasesEspecificsPages/Catalogacao'));
 const Digitalizacao = lazy(() => import('./pages/FasesEspecificsPages/Digitalizacao'));

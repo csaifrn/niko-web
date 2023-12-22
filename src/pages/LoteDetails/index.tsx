@@ -1,30 +1,30 @@
 import * as S from './styles';
 import React, { useEffect, useState } from 'react';
-import Menu from '../Menu';
-import MenuCoord from '../MenuCoord';
+import Menu from '../../components/Menu';
+import MenuCoord from '../../components/MenuCoord';
 import FaseData from '../../data/FaseData';
-import Splash from '../../pages/Splash';
+import Splash from '../Splash';
 import toast from 'react-hot-toast';
 import { useParams, useNavigate, Link } from 'react-router-dom';
-import { ConfigModal } from '../ConfigModal';
+import { ConfigModal } from '../../components/ConfigModal';
 import { useMutation } from 'react-query';
 import { GetBatche } from '../../api/services/batches/get-batche';
 import { AssignedUser, Batche, Observation } from '../../api/services/batches/get-batche/get.interface';
 import { ApiError } from '../../api/services/authentication/signIn/signIn.interface';
-import { Empty } from '../EmptyPage';
-import { CreateObservationModal } from '../Observation/Observation-modal-create';
+import { Empty } from '../../components/EmptyPage';
+import { CreateObservationModal } from '../../components/Observation/Observation-modal-create';
 import { LoteData } from '../../data/LoteData';
-import { BoxObservation } from '../Observation/ObservationBox';
-import { DeletarModal } from '../DeletarModal';
-import { ObservationModal } from '../Observation/Observation-modal-update';
+import { BoxObservation } from '../../components/Observation/ObservationBox';
+import { DeletarModal } from '../../components/DeletarModal';
+import { ObservationModal } from '../../components/Observation/Observation-modal-update';
 import { DeleteObservation } from '../../api/services/batches/observation/delete-obsevation';
-import { AtribuirAlguemModal } from '../AtribuirAlguemModal';
-import { BlockAssigner } from '../BatchBlocks/BlockAssigner';
+import { AtribuirAlguemModal } from '../../components/AtribuirAlguemModal';
+import { BlockAssigner } from '../../components/BatchBlocks/BlockAssigner';
 import { PatchBatcheMainStatus } from '../../api/services/batches/patch-status';
-import { CheckCircle, HandWaving, X } from '@phosphor-icons/react';
+import { CheckCircle, HandWaving, X, XCircle } from '@phosphor-icons/react';
 import theme from '../../global/theme';
 import { PatchBatcheSpecifStatus } from '../../api/services/batches/patch-status-specific';
-import { EspecifcModal } from '../EspecificStatusModal';
+import { EspecifcModal } from '../../components/EspecificStatusModal';
 import { SharedState } from '../../context/SharedContext';
 import { Tooltip } from 'react-tooltip';
 import { UserRole } from '../../utils/userRole.enum';
@@ -71,7 +71,9 @@ export const LoteDetails = () => {
   const handleAvancar = () => {
     setAvancar(!avancar);
 
-    if (option?.value && id && option?.value === status + 1) {
+    console.log(option?.value);
+
+    if (option?.value && id) {
       mutateEspecific.mutate({
         id,
         specific_status: 0,
@@ -91,7 +93,7 @@ export const LoteDetails = () => {
 
   const mutateStatus = useMutation(PatchBatcheMainStatus, {
     onSuccess: () => {
-      setStatus(status + 1);
+      refetch();
       toast.success('Fase atualizada!');
     },
     onError: (err: ApiError) => {
@@ -114,7 +116,7 @@ export const LoteDetails = () => {
       setSpecificStatus(data.specific_status);
       setOption({
         value: data.main_status + 1,
-        label: optionsFases ? optionsFases[data.main_status].label : '0',
+        label: optionsFases ? optionsFases[data.main_status === 4 ? 4 : data.main_status + 1].label : '0',
       });
     },
     onError: (error: ApiError) => {
@@ -123,8 +125,6 @@ export const LoteDetails = () => {
       }
     },
   });
-
-  console.log(beforeTask.data);
 
   const deleteObs = useMutation(DeleteObservation, {
     onSuccess: (data) => {
@@ -176,8 +176,6 @@ export const LoteDetails = () => {
   useEffect(() => {
     CheckIdForGetBatch();
   }, []);
-
-  const taskData = LoteData[0];
 
   if (beforeTask.isLoading) {
     return <Splash />;
@@ -432,54 +430,26 @@ export const LoteDetails = () => {
                   </S.Botao>
                 )}
 
-                {/* VOLTAR FASE */}
-                {observations && taskData.fase_atual != 'Preparo' && (
-                  <S.BotaoMudarFase>
-                    {/* BOTÃO DE VOLTAR FASE*/}
-                    <S.VoltarAvancar onClick={handleVoltar} style={{ cursor: 'pointer' }}>
-                      <img src={'/voltar.svg'} alt="ícone circular com uma seta para a esquerda ao centro" />
-                      <p style={{ color: theme.colors.white }}>Voltar Fase</p>
-                    </S.VoltarAvancar>
-
-                    {/* BOTÃO DE ESCOLHER FASE PARA VOLTAR*/}
-                    <S.EscolherFaseSelect
-                      options={optionsFases}
-                      className="react-select-container"
-                      classNamePrefix="react-select"
-                      placeholder="Escolher fase"
-                    />
-                  </S.BotaoMudarFase>
-                )}
-
-                {/* AVANÇAR FASE */}
-                {taskData.fase_atual != 'Arquivamento' && (
+                {user?.role === UserRole.MANAGER && (
                   <S.BotaoMudarFase>
                     {/* BOTÃO DE AVANÇAR FASE*/}
 
                     <S.VoltarAvancar
-                      disabled={(() => {
-                        const isDisabled =
-                          (option?.value !== undefined && option?.value === status) ||
-                          task?.specific_status === 0 ||
-                          task?.specific_status === 2 ||
-                          (option?.value !== undefined && option?.value > status + 1);
-
-                        return isDisabled;
-                      })()}
+                      disabled={status === option?.value}
                       onClick={handleAvancar}
                       style={{ cursor: 'pointer' }}
                     >
                       {option?.value && option?.value < status ? (
                         <img src={'/voltar.svg'} alt="ícone circular com uma seta para a esquerda ao centro" />
                       ) : option?.value === status ? (
-                        <X size={24} color={theme.colors.white} />
+                        <XCircle size={18} />
                       ) : (
                         <img src={'/avancar.svg'} alt="ícone circular com uma seta para a direita ao centro" />
                       )}
                       {option?.value && option?.value < status ? (
                         <p style={{ color: theme.colors.white }}>Voltar fase</p>
                       ) : option?.value === status ? (
-                        <p style={{ color: theme.colors.white }}>Você escolheu a mesma fase</p>
+                        <p style={{ color: theme.colors.white }}>Fase atual</p>
                       ) : (
                         <p style={{ color: theme.colors.white }}>Avançar fase</p>
                       )}
@@ -494,16 +464,6 @@ export const LoteDetails = () => {
                       classNamePrefix="react-select"
                       placeholder="Escolher fase"
                     />
-
-                    {task?.specific_status === 0 && (
-                      <Tooltip
-                        children={
-                          <p style={{ fontSize: '12px', fontFamily: 'Rubik' }}>É necessário pegar o lote antes</p>
-                        }
-                        anchorSelect=".react-select-container"
-                        place="bottom"
-                      />
-                    )}
                   </S.BotaoMudarFase>
                 )}
 

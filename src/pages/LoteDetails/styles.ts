@@ -375,10 +375,8 @@ export const Observações = styled.div`
   gap: 16px;
   background: ${({ theme }) => theme.colors['gray/500']};
   border-radius: 5px;
-  order: 0;
-  flex-grow: 0;
   padding: 16px;
-  max-height: 257px;
+  max-height: 300px;
   @media screen and (min-width: 767px) {
     width: 100%;
   }

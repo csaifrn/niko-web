@@ -126,38 +126,26 @@ const LoteEdit = () => {
         digital_files_count,
         physical_files_count,
       });
-      const deleteSettle = categories.filter((categ) => {
-        console.log('selectedOptions', selectedOptions);
-        const cat = selectedOptions.map((settle) => {
-          if (settle.value === categ.id) {
-            return true;
-          }
-        });
-        if (cat.filter((cat) => cat === undefined).length === cat.length) {
-          return categ;
-        }
-      });
-      if (deleteSettle.length > 0) {
-        mutateDeleteSettle.mutate({
+      const newSettle = selectedOptions.filter(
+        (settleSelected) => !categories.some((settle) => settle.id === settleSelected.value),
+      );
+      const deleteSettle = categories.filter(
+        (settle) => !selectedOptions.some((settleSelected) => settleSelected.value === settle.id),
+      );
+
+      const newIds = newSettle.map((settle) => settle.value);
+      const deleteIds = deleteSettle.map((settle) => settle.id);
+
+      if (newSettle.length > 0) {
+        mutateSettle.mutate({
           id,
-          settlement_project_category_id: [...deleteSettle.map((cat) => cat.id)],
+          settlementProjectCategories: newIds,
         });
       }
-
-      const newSattle = selectedOptions.filter((settle) => {
-        const cat = categories.map((cate) => {
-          if (cate.id === settle.value) {
-            return true;
-          }
-        });
-        if (cat.filter((cat) => cat === undefined).length === cat.length) {
-          return settle;
-        }
-      });
-      if (newSattle.length > 0) {
-        await mutateSettle.mutate({
+      if (deleteSettle.length > 0) {
+        await mutateDeleteSettle.mutate({
           id,
-          settlementProjectCategories: [...newSattle.map((sattle) => sattle.value)],
+          settlement_project_category_id: deleteIds,
         });
       }
       try {

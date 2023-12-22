@@ -25,6 +25,8 @@ import * as Yup from 'yup';
 import { ArquivosInput } from '../../pages/LoteEdit/style';
 import { DeleteBatche } from '../../api/services/batches/delete-batche';
 import { useNavigate } from 'react-router';
+import { Loading } from '../Loading/styles';
+import ReactLoading from 'react-loading';
 
 interface EspecifModalProps {
   close: () => void;
@@ -33,11 +35,6 @@ interface EspecifModalProps {
   title: string;
   button: string;
   FaseAtual?: string;
-  //assigners: AssignedUser[] | undefined;
-  //LoteTitle: string;
-  setSpecificStatus?: React.Dispatch<React.SetStateAction<number>>;
-  setBatche?: React.Dispatch<React.SetStateAction<GetResponseBatche | null>>;
-  setStatus?: React.Dispatch<React.SetStateAction<number>>;
 }
 
 export interface Option {
@@ -50,7 +47,6 @@ export const EspecifcModal = (props: EspecifModalProps) => {
   const navigate = useNavigate();
   const [closing, setClosing] = useState(false);
   const [buttonOff, setButtonOff] = useState(false);
-
   const [NoCategories, setNoCategories] = useState(false);
   const [error, setError] = useState('');
   const [shelfNumber, setShelfNumber] = useState('');
@@ -109,7 +105,9 @@ export const EspecifcModal = (props: EspecifModalProps) => {
   });
 
   const mutateSettle = useMutation(PostBatcheSettle, {
-    onSuccess: (data) => {},
+    onSuccess: (data) => {
+      nextFase();
+    },
     onError: (err: ApiError) => {
       toast.error(err.response?.data.message ? err.response?.data.message : 'Erro na execução');
     },
@@ -183,7 +181,7 @@ export const EspecifcModal = (props: EspecifModalProps) => {
     },
   });
 
-  const mutateShelf = useMutation(PatchBatcheEdit, {
+  const mutateStorage = useMutation(PatchBatcheEdit, {
     onSuccess: () => {
       nextFase();
     },
@@ -284,39 +282,27 @@ export const EspecifcModal = (props: EspecifModalProps) => {
         nextFase();
       } else {
         if (props.batche.settlement_project_categories.length > 0 && selectedOptions.length > 0) {
-          const newSettle = selectedOptions.filter((settle) => {
-            const cat = props.batche.settlement_project_categories.map((cate) => {
-              if (cate.id === settle.value) {
-                return true;
-              }
-            });
-            if (cat.filter((cat) => cat === undefined).length === cat.length) {
-              return settle;
-            }
-          });
+          const newSettle = selectedOptions.filter(
+            (settleSelected) =>
+              !props.batche.settlement_project_categories.some((settle) => settle.id === settleSelected.value),
+          );
+          const deleteSettle = props.batche.settlement_project_categories.filter(
+            (settle) => !selectedOptions.some((settleSelected) => settleSelected.value === settle.id),
+          );
 
-          const deleteSettle = props.batche.settlement_project_categories.filter((categ) => {
-            const cat = selectedOptions.map((settle) => {
-              if (settle.value === categ.id) {
-                return true;
-              }
-            });
-            if (cat.filter((cat) => cat === undefined).length === cat.length) {
-              return categ;
-            }
-          });
+          const newIds = newSettle.map((settle) => settle.value);
+          const deleteIds = deleteSettle.map((settle) => settle.id);
 
           if (newSettle.length > 0) {
             mutateSettle.mutate({
               id: props.batche.id,
-              settlementProjectCategories: [...newSettle.map((settle) => settle.value)],
+              settlementProjectCategories: newIds,
             });
           }
-
           if (deleteSettle.length > 0) {
             await mutateDeleteSettle.mutate({
               id: props.batche.id,
-              settlement_project_category_id: [...deleteSettle.map((cat) => cat.id)],
+              settlement_project_category_id: deleteIds,
             });
           }
           nextFase();
@@ -325,26 +311,15 @@ export const EspecifcModal = (props: EspecifModalProps) => {
             id: props.batche.id,
             settlementProjectCategories: [...selectedOptions.map((settle) => settle.value)],
           });
-
-          while (mutateSettle.isLoading || mutateSettle.isError || mutateSettle.isSuccess) {
-            if (mutateSettle.isSuccess) {
-              nextFase();
-              break;
-            } else if (mutateSettle.isError) {
-              toast.error('Tente novamente ocorreu problema com as categorias!');
-              handleClose();
-              break;
-            }
-          }
         } else {
           setError('Adicione alguma categoria para avançar para a próxima fase.');
         }
       }
-    } else if (props.batche.main_status === 3 && props.batche.specific_status === 1) {
+    } else if (props.batche.main_status === 4 && props.batche.specific_status === 1) {
       const isValid = await validateShelf();
 
       if (isValid) {
-        mutateShelf.mutate({
+        mutateStorage.mutate({
           id: props.batche.id,
           storage_location: shelfNumber,
         });
@@ -352,7 +327,7 @@ export const EspecifcModal = (props: EspecifModalProps) => {
     } else if (props.batche.main_status === 2 && props.batche.specific_status === 1) {
       const isValid = await validateDigital();
       if (isValid) {
-        await mutatePatchBatch.mutate({
+        mutatePatchBatch.mutate({
           id: props.batche.id,
           digital_files_count,
         });
@@ -421,7 +396,7 @@ export const EspecifcModal = (props: EspecifModalProps) => {
               </S.CatalogacaoArea>
             )}
 
-            {props.batche.main_status === 3 && props.batche.specific_status == 1 && props.button !== 'Excluir lote' && (
+            {props.batche.main_status === 4 && props.batche.specific_status == 1 && props.button !== 'Excluir lote' && (
               <>
                 <h2 style={{ color: 'white' }}>Estante</h2>
                 <InputText
@@ -462,17 +437,23 @@ export const EspecifcModal = (props: EspecifModalProps) => {
               )}
 
               {props.button === 'Pegar lote' && (
-                <S.PegarLoteButton onClick={handlePegar}>
-                  <HandWaving size={20} weight="fill" />
+                <S.PegarLoteButton disabled={buttonOff} onClick={handlePegar}>
+                  {buttonOff && <ReactLoading type="cylon" color="white" height={100} width={100} />}
+                  {!buttonOff && <HandWaving size={20} weight="fill" />}
                   {/* {props.button === 'Marcar como concluído' && <img src='/finished-icon.svg' />} */}
                   <S.Texto>{props.button}</S.Texto>
                 </S.PegarLoteButton>
               )}
 
               {props.button === 'Marcar como concluído' && (
-                <S.ConcluirLoteButton onClick={handlePegar}>
-                  <CheckCircle size={24} weight="fill" />
-                  <S.Texto style={{ color: theme.colors['gray/900'] }}>{props.button}</S.Texto>
+                <S.ConcluirLoteButton disabled={buttonOff} onClick={handlePegar}>
+                  {buttonOff && <ReactLoading type="cylon" color="white" height={100} width={100} />}
+                  {!buttonOff && (
+                    <>
+                      <CheckCircle size={24} weight="fill" />
+                      <S.Texto style={{ color: theme.colors['gray/900'] }}>{props.button}</S.Texto>
+                    </>
+                  )}
                 </S.ConcluirLoteButton>
               )}
 

@@ -1,15 +1,24 @@
 import styled from 'styled-components';
 import media from 'styled-media-query';
 
-export const TitleFase = styled.h1`
+export const TitleFase = styled.p`
   font-family: 'Rubik';
   color: white;
+  font-weight: bold;
+  font-size: 20px;
+  @media screen and (min-width: 767px) {
+    font-size: 28px;
+  }
 `;
 
 export const FasePage = styled.div`
   height: 80vh;
   display: flex;
   justify-content: center;
+  margin-bottom: 18em;
+  @media screen and (min-width: 767px) {
+    margin-bottom: 18em;
+  }
 `;
 
 const Main = styled.div`
@@ -30,8 +39,10 @@ const Main = styled.div`
 `;
 
 export const CardFaseMaisTooltip = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 `;
-
 
 const FooterHome = styled.footer`
   height: 4em;

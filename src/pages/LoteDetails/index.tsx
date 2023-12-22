@@ -188,8 +188,19 @@ export const LoteDetails = () => {
           <Menu area={`/Painel/${id}`} id_projeto={id}></Menu>
           <MenuCoord />
           <S.areaClick>
-            {/* BOTÃO DE FECHAR */}
             <S.CloseDiv>
+              {/* FASE ATUAL DO LOTE */}
+              <S.IconTooltipFase className="FaseAtualTooltip">
+                <S.Icons src={`/icon-medium/${optionsFases[status].label}.svg`} />
+
+                <Tooltip
+                  children={<p style={{ fontSize: '12px', fontFamily: 'Rubik' }}>{optionsFases[status].label}</p>}
+                  anchorSelect=".FaseAtualTooltip"
+                  place="bottom"
+                />
+              </S.IconTooltipFase>
+
+              {/* BOTÃO DE FECHAR */}
               <S.Exit
                 onClick={() => navigate(`/Fase/${id}/Board/${optionsFases[status].label}`)}
                 className="FecharTooltip"
@@ -244,6 +255,42 @@ export const LoteDetails = () => {
                 </S.BlockGray>
               </S.DadosCriacaoLoteDiv>
 
+              {/* PRIORIDADE + CATEGORIAS */}
+
+              {/* QUANDO HÁ CATEGORIAS */}
+              {task?.settlement_project_categories.length != undefined &&
+                task?.settlement_project_categories.length > 0 && (
+                  <S.DetalhesLote>
+                    {/* PRIORIORIDADE(SE TIVER) */}
+                    {priority === true && (
+                      <S.PrioridadeDiv>
+                        <S.PrioridadeTag>
+                          <p>Prioridade</p>
+                        </S.PrioridadeTag>
+                      </S.PrioridadeDiv>
+                    )}
+
+                    {/* CATEGORIAS */}
+                    {task?.settlement_project_categories.map((cat) => {
+                      return <S.BlockGrayBorder key={cat.id}>{cat.name}</S.BlockGrayBorder>;
+                    })}
+                  </S.DetalhesLote>
+                )}
+
+              {/* QUANDO NÃO HÁ CATEGORIAS */}
+              {task?.settlement_project_categories.length != undefined &&
+                task?.settlement_project_categories.length === 0 &&
+                priority === true && (
+                  <S.DetalhesLote>
+                    {/* PRIORIORIDADE(SE TIVER) */}
+                    <S.PrioridadeDiv>
+                      <S.PrioridadeTag>
+                        <p>Prioridade</p>
+                      </S.PrioridadeTag>
+                    </S.PrioridadeDiv>
+                  </S.DetalhesLote>
+                )}
+
               {/* ARQUIVOS */}
               <S.DetalhesLote>
                 {task?.storage_location !== null && (
@@ -282,34 +329,6 @@ export const LoteDetails = () => {
                   </S.ArquivDigitais>
                 )}
               </S.DetalhesLote>
-
-              <S.DetalhesLote>
-                {/* CATEGORIAS */}
-                {task?.settlement_project_categories.map((cat) => {
-                  return <S.BlockGrayBorder key={cat.id}>{cat.name}</S.BlockGrayBorder>;
-                })}
-              </S.DetalhesLote>
-
-              {/* PRIORIORIDADE(SE TIVER) */}
-              {priority === true && (
-                <S.PrioridadeDiv>
-                  <S.PrioridadeTag>
-                    <p>Prioridade</p>
-                  </S.PrioridadeTag>
-                </S.PrioridadeDiv>
-              )}
-
-              <S.FaseAtualDiv>
-                {/* FASE ATUAL DO LOTE */}
-                <S.IconTooltipFase className="FaseAtualTooltip">
-                  <S.Icons src={`/icon-medium/${optionsFases[status].label}.svg`} />
-                  <Tooltip
-                    children={<p style={{ fontSize: '12px', fontFamily: 'Rubik' }}>{optionsFases[status].label}</p>}
-                    anchorSelect=".FaseAtualTooltip"
-                    place="bottom"
-                  />
-                </S.IconTooltipFase>
-              </S.FaseAtualDiv>
 
               {/* OPERADORES ATRIBUÍDOS AO LOTE */}
               {assigners.length > 0 && (

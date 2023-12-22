@@ -33,7 +33,7 @@ export const areaClick = styled.div`
   display: flex;
   flex-direction: column;
   gap: 24px;
-  margin: 8em 2em 8em 2em;
+  margin: 8em 2em;
   font-family: 'Rubik', Helvetica, sans-serif;
   width: 100%;
   max-width: 1140px;
@@ -78,7 +78,8 @@ export const TituloLote = styled.h1``;
 
 export const CloseDiv = styled.div`
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
+  align-items: flex-end;
   padding: '5px 5px';
   border-radius: '5px';
 `;
@@ -117,7 +118,7 @@ export const LoteInfos = styled.div`
 export const LoteEditConfig = styled.div`
   display: flex;
   justify-content: space-between;
-  align-items: flex-end;
+  align-items: flex-start;
   margin-bottom: -0.5em;
 `;
 
@@ -304,7 +305,7 @@ export const FaseAtualDiv = styled.div``;
 
 export const IconTooltipFase = styled.div`
   //position: relative;
-  width: 32px;
+  height: 32px;
   :hover div {
     visibility: visible;
     opacity: 1;

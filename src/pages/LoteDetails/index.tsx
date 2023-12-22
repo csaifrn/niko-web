@@ -73,7 +73,7 @@ export const LoteDetails = () => {
 
     console.log(option?.value);
 
-    if (option?.value && id) {
+    if ((option?.value && id) || (option?.value === 0 && id)) {
       mutateEspecific.mutate({
         id,
         specific_status: 0,
@@ -371,6 +371,42 @@ export const LoteDetails = () => {
 
               {/* BOTÕES PRINCIPAIS */}
               <S.Botoes>
+                {user?.role === UserRole.MANAGER && (
+                  <S.BotaoMudarFase>
+                    {/* BOTÃO DE AVANÇAR FASE*/}
+
+                    <S.VoltarAvancar
+                      disabled={status === option?.value}
+                      onClick={handleAvancar}
+                      style={{ cursor: 'pointer' }}
+                    >
+                      {(option?.value && option?.value < status) || (option?.value === 0 && option?.value < status) ? (
+                        <img src={'/voltar.svg'} alt="ícone circular com uma seta para a esquerda ao centro" />
+                      ) : option?.value === status ? (
+                        <XCircle size={18} />
+                      ) : (
+                        <img src={'/avancar.svg'} alt="ícone circular com uma seta para a direita ao centro" />
+                      )}
+                      {option?.value && option?.value < status ? (
+                        <p style={{ color: theme.colors.white }}>Voltar fase</p>
+                      ) : option?.value === status ? (
+                        <p style={{ color: theme.colors.white }}>Fase atual</p>
+                      ) : (
+                        <p style={{ color: theme.colors.white }}>Avançar fase</p>
+                      )}
+                    </S.VoltarAvancar>
+
+                    {/* BOTÃO DE ESCOLHER FASE PARA AVANÇAR*/}
+                    <S.EscolherFaseSelect
+                      options={optionsFases}
+                      onChange={(o: any) => setOption(o)}
+                      value={option}
+                      className="react-select-container"
+                      classNamePrefix="react-select"
+                      placeholder="Escolher fase"
+                    />
+                  </S.BotaoMudarFase>
+                )}
                 {/* PEGAR LOTE */}
                 {specificStatus === 0 && (
                   <S.PegarLote
@@ -428,43 +464,6 @@ export const LoteDetails = () => {
                     <img src={`/AddUser.svg`} alt="botão para atribuir lote a algum operador " />
                     Atribuir à alguém
                   </S.Botao>
-                )}
-
-                {user?.role === UserRole.MANAGER && (
-                  <S.BotaoMudarFase>
-                    {/* BOTÃO DE AVANÇAR FASE*/}
-
-                    <S.VoltarAvancar
-                      disabled={status === option?.value}
-                      onClick={handleAvancar}
-                      style={{ cursor: 'pointer' }}
-                    >
-                      {option?.value && option?.value < status ? (
-                        <img src={'/voltar.svg'} alt="ícone circular com uma seta para a esquerda ao centro" />
-                      ) : option?.value === status ? (
-                        <XCircle size={18} />
-                      ) : (
-                        <img src={'/avancar.svg'} alt="ícone circular com uma seta para a direita ao centro" />
-                      )}
-                      {option?.value && option?.value < status ? (
-                        <p style={{ color: theme.colors.white }}>Voltar fase</p>
-                      ) : option?.value === status ? (
-                        <p style={{ color: theme.colors.white }}>Fase atual</p>
-                      ) : (
-                        <p style={{ color: theme.colors.white }}>Avançar fase</p>
-                      )}
-                    </S.VoltarAvancar>
-
-                    {/* BOTÃO DE ESCOLHER FASE PARA AVANÇAR*/}
-                    <S.EscolherFaseSelect
-                      options={optionsFases}
-                      onChange={(o: any) => setOption(o)}
-                      value={option}
-                      className="react-select-container"
-                      classNamePrefix="react-select"
-                      placeholder="Escolher fase"
-                    />
-                  </S.BotaoMudarFase>
                 )}
 
                 {user?.role === UserRole.MANAGER && (

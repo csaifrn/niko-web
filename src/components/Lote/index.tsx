@@ -61,22 +61,20 @@ const Lote = ({ assigners, categories, children, pendencia, value, priority }: P
                     } else if (index + 1 == categories.length) {
                       const random = generateUUID();
                       return (
-                        <>
-                          <S.BlackBlock
-                            data-tooltip-id={`my-tooltip-multiline-${random}`}
-                            key={cat.id}
-                            style={{ borderRadius: '100%', width: '2em', paddingRight: '2px' }}
-                          >
-                            <p>+{index}</p>
-                            <Tooltip
-                              id={`my-tooltip-multiline-${random}`}
-                              children={categories.slice(1).map((cat: Category) => {
-                                return <S.ToolText key={random}>{cat.name}</S.ToolText>;
-                              })}
-                              place="top"
-                            />
-                          </S.BlackBlock>
-                        </>
+                        <S.BlackBlock
+                          data-tooltip-id={`my-tooltip-multiline-${random}`}
+                          key={cat.id}
+                          style={{ borderRadius: '100%', width: '2em', paddingRight: '2px' }}
+                        >
+                          <p>+{index}</p>
+                          <Tooltip
+                            id={`my-tooltip-multiline-${random}`}
+                            children={categories.slice(1).map((cat: Category) => {
+                              return <S.ToolText key={random}>{cat.name}</S.ToolText>;
+                            })}
+                            place="top"
+                          />
+                        </S.BlackBlock>
                       );
                     }
                   })}
@@ -86,26 +84,24 @@ const Lote = ({ assigners, categories, children, pendencia, value, priority }: P
                 {assigners &&
                   assigners.map((member, index: number) => {
                     if (index < 1) {
-                      return <IconUser name={member.name} id={member.id} />;
+                      return <IconUser name={member.name} id={member.id} key={member.id} />;
                     } else if (index <= 2 && assigners.length === index + 1) {
                       const random = generateUUID();
                       return (
-                        <>
-                          <S.BlackBlock
-                            data-tooltip-id={`my-tooltip-multiline-${random}`}
-                            key={member.id}
-                            style={{ borderRadius: '100%', width: '2em', paddingRight: '2px' }}
-                          >
-                            <p>+{index}</p>
-                            <Tooltip
-                              id={`my-tooltip-multiline-${random}`}
-                              children={assigners.slice(1).map((cat: AssignedUser) => {
-                                return <S.ToolText key={cat.id}>{cat.name}</S.ToolText>;
-                              })}
-                              place="top"
-                            />
-                          </S.BlackBlock>
-                        </>
+                        <S.BlackBlock
+                          data-tooltip-id={`my-tooltip-multiline-${random}`}
+                          key={member.id}
+                          style={{ borderRadius: '100%', width: '2em', paddingRight: '2px' }}
+                        >
+                          <p>+{index}</p>
+                          <Tooltip
+                            id={`my-tooltip-multiline-${random}`}
+                            children={assigners.slice(1).map((cat: AssignedUser) => {
+                              return <S.ToolText key={cat.id}>{cat.name}</S.ToolText>;
+                            })}
+                            place="top"
+                          />
+                        </S.BlackBlock>
                       );
                     }
                   })}

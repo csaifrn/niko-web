@@ -98,7 +98,7 @@ export const EspecifcModal = (props: EspecifModalProps) => {
   const mutatePatchBatch = useMutation(PatchBatcheEdit, {});
 
   const mutateEspecific = useMutation(PatchBatcheSpecifStatus, {
-    onSuccess: () => {},
+    onSuccess: (data) => {},
     onError: (err: ApiError) => {
       toast.error(err.response?.data.message ? err.response?.data.message : 'Erro na execução');
     },
@@ -167,6 +167,9 @@ export const EspecifcModal = (props: EspecifModalProps) => {
     },
   });
 
+  //forbiden - only manager can mutateAssigner (error: Forbiden)
+  //solutions - api does the assignation to the batche or he opens this operation
+  
   const mutateAssigner = useMutation(PostAssigners, {
     onSuccess: (data) => {},
     onError: (err: ApiError) => {
@@ -192,7 +195,7 @@ export const EspecifcModal = (props: EspecifModalProps) => {
 
   const nextFase = async () => {
     if (props.batche.main_status === 4 && props.batche.specific_status) {
-      await mutateEspecific.mutate({
+      mutateEspecific.mutate({
         specific_status: props.batche.specific_status + 1,
         id: props.batche.id,
       });
@@ -200,22 +203,19 @@ export const EspecifcModal = (props: EspecifModalProps) => {
     } else {
       const specific_status = props.batche.specific_status + 1 === 2 ? 0 : 1;
       if (specific_status === 1) {
-        await mutateEspecific.mutate({
+        mutateEspecific.mutate({
           specific_status,
           id: props.batche.id,
         });
       }
+
       if (specific_status === 0) {
         try {
-          await mutateStatus.mutate({
+          mutateStatus.mutate({
             id: props.batche.id,
             main_status: props.batche.main_status + 1,
           });
         } catch {}
-
-        if (mutateDeleteAssigner.isSuccess) {
-          toast.success('Usuários removidos!');
-        }
       } else if (user.user?.sub && specific_status === 1) {
         mutateAssigner.mutate({
           batch_id: props.batche.id,
@@ -363,7 +363,7 @@ export const EspecifcModal = (props: EspecifModalProps) => {
             </S.NameClose>
             {props.batche.main_status === 1 && props.batche.specific_status == 1 && (
               <S.CatalogacaoArea>
-                <h3>Adicionar categorias</h3>
+                <h3 style={{ color: 'white' }}>Adicionar categorias</h3>
                 {!NoCategories && (
                   <CustomSelect
                     isMulti

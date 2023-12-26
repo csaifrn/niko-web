@@ -76,12 +76,17 @@ export const EnvolvAtual = styled.img``;
 
 export const TituloLote = styled.h1``;
 
-export const CloseDiv = styled.div`
+export const CloseFaseStatus = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
   padding: '5px 5px';
   border-radius: '5px';
+`;
+
+export const FaseStatus = styled.div`
+  display: flex;
+  gap: 16px;
 `;
 
 export const Exit = styled.button`
@@ -115,11 +120,10 @@ export const LoteInfos = styled.div`
   gap: 16px;
 `;
 
-export const LoteEditConfig = styled.div`
+export const LoteTitleEdit = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  margin-bottom: -0.5em;
 `;
 
 export const EditConfig = styled.div`
@@ -131,7 +135,6 @@ export const Edit = styled.div`
   height: 2.25em;
   width: 2.25em;
   border-radius: 3px;
-  margin-bottom: 0.5em;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -167,7 +170,7 @@ export const Config = styled.button`
 
 export const DetalhesLote = styled.div`
   display: flex;
-  gap: 0.5em;
+  gap: 8px;
 `;
 
 export const Protocolo = styled.div`
@@ -241,7 +244,7 @@ export const BlockGrayBorder = styled.div`
   background-color: ${({ theme }) => theme.colors['gray/500']};
   border: ${({ theme }) => theme.colors['gray/300']} solid 2px;
   height: 2em;
-  padding: 0 0.5em;
+  padding: 0.5em;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -314,6 +317,16 @@ export const IconTooltipFase = styled.div`
 `;
 
 export const TituloFaseAtual = styled.h2``;
+
+export const Status = styled.div`
+  display: flex;
+  align-items: center;
+  width: fit-content;
+  background-color: ${({ theme }) => theme.colors['gray/500']};
+  padding: 0.5em;
+  border-radius: 3px;
+  gap: 8px;
+`;
 
 export const Envolvidos = styled.div`
   display: flex;

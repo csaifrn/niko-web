@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import * as S from './styles';
+import * as S from './style';
 
 interface DeletarModalProps {
   title: string;
@@ -48,7 +48,7 @@ export const DeletarModal = (props: DeletarModalProps) => {
             <S.NameClose>
               <h2>{props.title}</h2>
             </S.NameClose>
-            <S.Recused onClick={close}>Não, não quero.</S.Recused>
+            <S.Recused onClick={close}>Cancelar</S.Recused>
             <S.Delete onClick={handleClose}>Excluir</S.Delete>
           </S.ModalContent>
         </S.ModalArea>

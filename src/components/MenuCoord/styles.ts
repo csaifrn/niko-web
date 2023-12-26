@@ -22,7 +22,7 @@ const MenuArea = styled.div`
   height: 80px;
   background: ${({ theme }) => theme.colors['gray/700']};
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   gap: 20px;
 
   @media screen and (min-width: 767px) {

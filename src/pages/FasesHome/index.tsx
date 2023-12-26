@@ -1,10 +1,9 @@
-import { Main, FasePage, CardFaseMaisTooltip, TitleFase } from './styles';
+import { Main, FasePage, TitleFase, CardFaseMaisTitulo } from './styles';
 import { CardFase } from '../../components/Card';
 import MenuCoord from '../../components/MenuCoord';
 import Menu from '../../components/Menu';
 import { Link, useParams } from 'react-router-dom';
 import theme from '../../global/theme';
-import { Tooltip } from 'react-tooltip';
 
 const Home = () => {
   const { id } = useParams();
@@ -31,7 +30,7 @@ const Home = () => {
           />
         </CardFaseMaisTooltip> */}
 
-        <CardFaseMaisTooltip>
+        <CardFaseMaisTitulo>
           <TitleFase>Preparo</TitleFase>
           <Link to={`Board/Preparo`} style={{ textDecoration: 'none' }}>
             <CardFase
@@ -41,14 +40,9 @@ const Home = () => {
               srcImgIcon="/IconsClean.svg"
             />
           </Link>
-          {/* <Tooltip
-            children={<p style={{ fontSize: '12px', fontFamily: 'Rubik' }}>Preparo</p>}
-            anchorSelect=".CardPreparoTooltip"
-            place="top"
-          /> */}
-        </CardFaseMaisTooltip>
+        </CardFaseMaisTitulo>
 
-        <CardFaseMaisTooltip style={{ height: '100%' }}>
+        <CardFaseMaisTitulo style={{ height: '100%' }}>
           <TitleFase>Catalogação</TitleFase>
           <Link to={`Board/Catalogação`} style={{ textDecoration: 'none' }}>
             <CardFase
@@ -58,9 +52,9 @@ const Home = () => {
               srcImgIcon="/IconsBookmark.svg"
             />
           </Link>
-        </CardFaseMaisTooltip>
+        </CardFaseMaisTitulo>
 
-        <CardFaseMaisTooltip>
+        <CardFaseMaisTitulo>
           <TitleFase>Digitalização</TitleFase>
           <Link to={`Board/Digitalização`} style={{ textDecoration: 'none' }}>
             <CardFase
@@ -70,9 +64,9 @@ const Home = () => {
               srcImgIcon="/IconsScanner.svg"
             />
           </Link>
-        </CardFaseMaisTooltip>
+        </CardFaseMaisTitulo>
 
-        <CardFaseMaisTooltip>
+        <CardFaseMaisTitulo>
           <TitleFase>Upload</TitleFase>
           <Link to={`Board/Upload`} style={{ textDecoration: 'none' }}>
             <CardFase
@@ -82,9 +76,9 @@ const Home = () => {
               srcImgIcon="/IconsUpload.svg"
             />
           </Link>
-        </CardFaseMaisTooltip>
+        </CardFaseMaisTitulo>
 
-        <CardFaseMaisTooltip>
+        <CardFaseMaisTitulo>
           <TitleFase>Arquivamento</TitleFase>
           <Link to={`Board/Arquivamento`} style={{ textDecoration: 'none' }}>
             <CardFase
@@ -94,7 +88,7 @@ const Home = () => {
               srcImgIcon="/IconsArquivamento.svg"
             />
           </Link>
-        </CardFaseMaisTooltip>
+        </CardFaseMaisTitulo>
       </Main>
     </FasePage>
   );

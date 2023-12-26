@@ -48,7 +48,7 @@ export const SairSemSalvarModal = (props: SairSemSalvarModalProps) => {
             <S.NameClose>
               <h2>Deseja sair sem salvar? Todas as alterações serão descartadas</h2>
             </S.NameClose>
-            <S.Recused onClick={handleClose}>Não, não quero.</S.Recused>
+            <S.Recused onClick={handleClose}>Cancelar</S.Recused>
             <S.Delete onClick={() => navigate(-1)}>Sair</S.Delete>
           </S.ModalContent>
         </S.ModalArea>

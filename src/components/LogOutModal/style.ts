@@ -60,16 +60,16 @@ const Lote = styled.div`
 const Recused = styled.button`
   height: 44px;
   border-radius: 5px;
-  background-color: ${({ theme }) => theme.colors['red/700']};
+  background-color: ${({ theme }) => theme.colors['gray/700']};
   border: none;
   color: white;
   font-family: 'Rubik';
   cursor: pointer;
   &:hover {
-    background-color: ${({ theme }) => theme.colors['red/500']};
+    background-color: ${({ theme }) => theme.colors['gray/900']};
   }
   &:active {
-    background-color: ${({ theme }) => theme.colors['red/500']};
+    background-color: ${({ theme }) => theme.colors['gray/900']};
     transform: translateY(-5%) translateX(2%);
   }
 `;
@@ -77,17 +77,17 @@ const Recused = styled.button`
 const Delete = styled.button`
   height: 44px;
   border-radius: 5px;
-  background-color: #191c24;
+  background-color: ${({ theme }) => theme.colors['red/700']};
   border: none;
   color: white;
   font-family: 'Rubik';
   width: 100%;
   cursor: pointer;
   &:hover {
-    background-color: ${({ theme }) => theme.colors['gray/900']};
+    background-color: ${({ theme }) => theme.colors['red/500']};
   }
   &:active {
-    background-color: ${({ theme }) => theme.colors['gray/900']};
+    background-color: ${({ theme }) => theme.colors['red/500']};
     transform: translateY(-5%) translateX(2%);
   }
 `;

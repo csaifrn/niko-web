@@ -10,7 +10,7 @@ import { ApiError } from '../../api/services/authentication/signIn/signIn.interf
 import { GetBatche } from '../../api/services/batches/get-batche';
 import Splash from '../Splash';
 import { validationPatch, validationSearch } from './validation';
-import { PatchBatcheEdit } from '../../api/services/batches/patch-batche';
+import { PatchBatcheEdit, PatchBatchePriority } from '../../api/services/batches/patch-batche';
 import theme from '../../global/theme';
 import { SairSemSalvarModal } from '../../components/SairSemSalvarModal';
 import { ResponseSettle } from '../../api/services/settlement/query-settlement/get.interface';
@@ -22,7 +22,13 @@ interface Option {
   label: string;
 }
 
-const LoteEdit = () => {
+interface Prioridade {
+  id: string;
+  prioridade: boolean;
+  priorityOnChange: (e: boolean) => void;
+}
+
+const LoteEdit = (props: Prioridade) => {
   const navigate = useNavigate();
   const { id } = useParams();
   const [categories, setCategories] = useState<Category[]>([]);
@@ -34,6 +40,34 @@ const LoteEdit = () => {
   const [userInput, setUserInput] = useState('');
   const [options, setOptions] = useState<Option[]>([]);
   const [selectedOptions, setSelectedOptions] = useState<Option[]>([]);
+  const [priority, setPriority] = useState(props.prioridade);
+
+  const Priority = useMutation(PatchBatchePriority, {
+    onSuccess: (data) => {
+      toast.success(`Prioridade ${data.priority ? 'foi ativada' : 'foi desativada'}!`);
+    },
+    onError: (error: ApiError) => {
+      toast.error(error.response!.data.message);
+    },
+  });
+
+  const handlePrioridadeCheck = () => {
+    if (priority) {
+      setPriority(false);
+      props.priorityOnChange(false);
+      Priority.mutate({
+        id: props.id,
+        priority: false,
+      });
+    } else {
+      setPriority(true);
+      props.priorityOnChange(true);
+      Priority.mutate({
+        id: props.id,
+        priority: true,
+      });
+    }
+  };
 
   const mutateQueryCategories = useMutation(QuerySettles, {
     onSuccess: (data: ResponseSettle) => {
@@ -55,6 +89,7 @@ const LoteEdit = () => {
   const beforeBatch = useMutation(GetBatche, {
     onSuccess: (data: Batche) => {
       setTitle(data.title);
+      setPriority(data.priority)
       setCategories(data.settlement_project_categories);
       setPhysical_files_count(data.physical_files_count);
       setDigital_files_count(data.digital_files_count);
@@ -123,9 +158,11 @@ const LoteEdit = () => {
       patchBatch.mutate({
         id,
         title,
+        priority,
         digital_files_count,
         physical_files_count,
       });
+
       const deleteSettle = categories.filter((categ) => {
         console.log('selectedOptions', selectedOptions);
         const cat = selectedOptions.map((settle) => {
@@ -242,6 +279,16 @@ const LoteEdit = () => {
 
             <h2>Título</h2>
             <S.NameInput type="text" value={title} onChange={(e) => setTitle(e.currentTarget.value)} />
+
+            {/* PRIORIDADE */}
+            <S.Prioridade>
+              <h2>Prioridade</h2>
+
+              <S.SwitchButton>
+                <S.Input checked={priority} onChange={(e) => setPriority(!priority)} />
+                <S.Slider />
+              </S.SwitchButton>
+            </S.Prioridade>
 
             {/* ARQUIVOS */}
             <S.Arquivos>

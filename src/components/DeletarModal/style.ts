@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 const ModalArea = styled.div`
+  z-index: 101;
   width: 80vw;
   max-width: 400px;
   background-color: ${({ theme }) => theme.colors['gray/500']};
@@ -26,12 +27,20 @@ const ModalContent = styled.div`
 export const Exit = styled.button`
   height: 2em;
   width: 2em;
-  background-color: ${({ theme }) => theme.colors['gray/700']};
+  background-color: ${({ theme }) => theme.colors['gray/500']};
   border-radius: 3px;
   display: flex;
   justify-content: center;
   align-items: center;
   border: none;
+  cursor: pointer;
+  &:hover {
+    background-color: ${({ theme }) => theme.colors['gray/400']};
+  }
+  &:active {
+    background-color: ${({ theme }) => theme.colors['gray/400']};
+    transform: translateY(-5%) translateX(2%);
+  }
 `;
 
 const NameClose = styled.div`
@@ -65,16 +74,37 @@ const Recused = styled.button`
   color: white;
   font-family: 'Rubik';
   cursor: pointer;
+  &:hover {
+    background-color: ${({ theme }) => theme.colors['gray/900']};
+  }
+  &:active {
+    background-color: ${({ theme }) => theme.colors['gray/900']};
+    transform: translateY(-5%) translateX(2%);
+  }
 `;
 
-const Delete = styled.button`
+export const Delete = styled.button`
   height: 44px;
-  border-radius: 5px;
-  background-color: ${({ theme }) => theme.colors['red/700']};
+  width: 100%;
   border: none;
+  border-radius: 5px;
+  background-color: ${({ theme }) => theme.colors['red/500']};
   color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0em 1em;
+  gap: 1em;
   font-family: 'Rubik';
+  background-color: ${({ theme }) => theme.colors['red/700']};
   cursor: pointer;
+  &:hover {
+    background-color: ${({ theme }) => theme.colors['red/500']};
+  }
+  &:active {
+    background-color: ${({ theme }) => theme.colors['red/600']};
+    transform: translateY(-5%) translateX(2%);
+  }
 `;
 
 const ModalBackdrop = styled.div`
@@ -91,4 +121,4 @@ const ModalBackdrop = styled.div`
   transition: transform 1s;
 `;
 
-export { ModalArea, ModalContent, NameClose, ChooseLote, Lote, Recused, Delete, ModalBackdrop };
+export { ModalArea, ModalContent, NameClose, ChooseLote, Lote, Recused, ModalBackdrop };

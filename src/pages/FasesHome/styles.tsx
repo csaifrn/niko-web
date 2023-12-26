@@ -38,10 +38,10 @@ const Main = styled.div`
   }
 `;
 
-export const CardFaseMaisTooltip = styled.div`
+export const CardFaseMaisTitulo = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 16px;
 `;
 
 const FooterHome = styled.footer`

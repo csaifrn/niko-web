@@ -13,22 +13,32 @@ import { useMutation } from 'react-query';
 import theme from '../../global/theme';
 import { useMe } from '../../hooks/useMe';
 import { SharedState } from '../../context/SharedContext';
+import toast from 'react-hot-toast';
+import { useNavigate, useParams } from 'react-router-dom';
+import { IconUserBig } from '../../components/IconBig';
+import MenuCoord from '../../components/MenuCoord';
 
 const user = Users[0];
 
 const Perfil = () => {
-  const { me, isLoadingMe } = useMe();
+  const { id } = useParams();
+  const { me, isLoadingMe, refetch } = useMe();
   const { setUser, user: loggedUsed } = SharedState();
   const [modal, setModal] = useState(false);
   const [url] = useState<string>(user.url);
   const [responseError, setResponseError] = useState('');
   const [validationFormError, setValidationFormError] = useState<ErrorsForm>({ name: '', email: '' });
+  const navigate = useNavigate();
+
   const perfilMutation = useMutation(userPatch, {
     onSuccess: (data: UserPatchResponse) => {
       const attUser = loggedUsed;
       if (attUser && data.name) {
         attUser.name = data.name;
         setUser(attUser);
+        toast.success(`Dados alterados com sucesso!`);
+        refetch();
+        navigate('/Fase/:id');
       }
     },
     onError: (error: ApiError) => {
@@ -80,15 +90,20 @@ const Perfil = () => {
   };
 
   return (
-    <>
-      <Menu area="/Perfil" />
+    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+      <Menu area={`/Perfil/${id}`} id_projeto={id}></Menu>
+      <MenuCoord />
       <S.Wrapper>
+        <S.Title>Perfil</S.Title>
         <S.ContainerImg>
-          <S.ImgUser src={url}></S.ImgUser>
+          {me?.name != undefined && <IconUserBig name={me?.name} id="1" />}
+
+          {/* <S.ImgUser src={url}></S.ImgUser>
           <S.EditImg type="button" onClick={() => setModal(!modal)}>
             <PencilSimple size={24} weight="fill" color={theme.colors.white} />
-          </S.EditImg>
+          </S.EditImg> */}
         </S.ContainerImg>
+
         <S.Form onSubmit={onSubmit}>
           <S.FieldContainer>
             <S.LabelField>Nome</S.LabelField>
@@ -103,6 +118,7 @@ const Perfil = () => {
           <S.Button>Salvar</S.Button>
           <S.ErrorMessage>{responseError}</S.ErrorMessage>
         </S.Form>
+
         {/* <S.DataFase>
           <DataFase
             recepcao={30}
@@ -115,8 +131,8 @@ const Perfil = () => {
           />
         </S.DataFase> */}
       </S.Wrapper>
-      {modal && <EditImage close={() => setModal(!modal)} title="Mudar foto" url={url} />}
-    </>
+      {/* {modal && <EditImage close={() => setModal(!modal)} title="Mudar foto" url={url} />} */}
+    </div>
   );
 };
 

@@ -72,7 +72,7 @@ const OperadoresPage = () => {
         <Menu area={`/Operadores/${id}`} id_projeto={id}></Menu>
         <MenuCoord />
         <S.CardsArea>
-          <h1 style={{color: 'white' , fontFamily: 'Rubik'}}>  Operadores </h1>
+          <h1 style={{color: 'white' , fontFamily: 'Rubik'}}>  Membros </h1>
           <Search searchTerm={searchTerm} handleSearchChange={handleSearchChange} />
 
           {sortedAndFilteredUsers.map((user: Operador) => (

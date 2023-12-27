@@ -38,115 +38,105 @@ export const BoardChanger = () => {
             </S.IconBarra>
           </Link> */}
 
-          {/* PREPARO */}
-          <Link to={`/Fase/${id}/Board/Preparo`}>
-            <S.IconBarra>
-              {url.search('Preparo') <= -1 && (
-                <div className="PreparoTooltip">
-                  <S.LinkImgEscura src="/icon-medium/Preparo.svg" />
-                  <Tooltip
-                    children={<p style={{ fontSize: '12px', fontFamily: 'Rubik' }}>Preparo</p>}
-                    anchorSelect=".PreparoTooltip"
-                    place="bottom"
-                  />
-                </div>
-              )}
-              {url.search('Preparo') > -1 && (
-                <>
-                  <S.LinkImg src="/icon-medium/Preparo.svg" />
-                  <S.Barra color={theme.colors['orange/400']}></S.Barra>
-                </>
-              )}
-            </S.IconBarra>
-          </Link>
+          {/* PREPARO(não selecionado)*/}
+          {url.search('Preparo') <= -1 && (
+            <Link to={`/Fase/${id}/Board/Preparo`} className="PreparoTooltip">
+              <S.LinkImgEscura src="/icon-medium/Preparo.svg" />
+              <Tooltip
+                children={<p style={{ fontSize: '12px', fontFamily: 'Rubik' }}>Preparo</p>}
+                anchorSelect=".PreparoTooltip"
+                place="bottom"
+              />
+            </Link>
+          )}
 
-          {/* CATALOGAÇÃO */}
-          <Link to={`/Fase/${id}/Board/Catalogação`}>
-            <S.IconBarra>
-              {url.search('Cataloga%C3%A7%C3%A3o') <= -1 && (
-                <div className="CatalogTooltip">
-                  <S.LinkImgEscura src="/icon-medium/Catalogação.svg" />
-                  <Tooltip
-                    children={<p style={{ fontSize: '12px', fontFamily: 'Rubik' }}>Catalogação</p>}
-                    anchorSelect=".CatalogTooltip"
-                    place="bottom"
-                  />
-                </div>
-              )}
-              {url.search('Cataloga%C3%A7%C3%A3o') > -1 && (
-                <>
-                  <S.LinkImg src="/icon-medium/Catalogação.svg" />
-                  <S.Barra color="#F3CC00"></S.Barra>
-                </>
-              )}
+          {/* PREPARO(selecionado)*/}
+          {url.search('Preparo') > -1 && (
+            <S.IconBarra to={`/Fase/${id}/Board/Preparo`}>
+              <S.LinkImg src="/icon-medium/Preparo.svg" />
+              <S.Barra color={theme.colors['orange/400']}></S.Barra>
             </S.IconBarra>
-          </Link>
+          )}
 
-          {/* DIGITALIZAÇÃO */}
-          <Link to={`/Fase/${id}/Board/Digitalização`}>
-            <S.IconBarra>
-              {url.search('Digitaliza%C3%A7%C3%A3o') <= -1 && (
-                <div className="DigitalTooltip">
-                  <S.LinkImgEscura src="/icon-medium/Digitalização.svg" />
-                  <Tooltip
-                    children={<p style={{ fontSize: '12px', fontFamily: 'Rubik' }}>Digitalização</p>}
-                    anchorSelect=".DigitalTooltip"
-                    place="bottom"
-                  />
-                </div>
-              )}
-              {url.search('Digitaliza%C3%A7%C3%A3o') > -1 && (
-                <>
-                  <S.LinkImg src="/icon-medium/Digitalização.svg" />
-                  <S.Barra color="#2D94F3"></S.Barra>
-                </>
-              )}
-            </S.IconBarra>
-          </Link>
+          {/* CATALOGAÇÃO(não selecionado)*/}
+          {url.search('Cataloga%C3%A7%C3%A3o') <= -1 && (
+            <Link to={`/Fase/${id}/Board/Catalogação`} className="CatalogaçãoTooltip">
+              <S.LinkImgEscura src="/icon-medium/Catalogação.svg" />
+              <Tooltip
+                children={<p style={{ fontSize: '12px', fontFamily: 'Rubik' }}>Catalogação</p>}
+                anchorSelect=".CatalogaçãoTooltip"
+                place="bottom"
+              />
+            </Link>
+          )}
 
-          {/* UPLOAD */}
-          <Link to={`/Fase/${id}/Board/Upload`}>
-            <S.IconBarra>
-              {url.search('Upload') <= -1 && (
-                <div className="UploadTooltip">
-                  <S.LinkImgEscura src="/icon-medium/Upload.svg" />
-                  <Tooltip
-                    children={<p style={{ fontSize: '12px', fontFamily: 'Rubik' }}>Upload</p>}
-                    anchorSelect=".UploadTooltip"
-                    place="bottom"
-                  />
-                </div>
-              )}
-              {url.search('Upload') > -1 && (
-                <>
-                  <S.LinkImg src="/icon-medium/Upload.svg" />
-                  <S.Barra color={theme.colors['purple/600']}></S.Barra>
-                </>
-              )}
+          {/* CATALOGAÇÃO(selecionado)*/}
+          {url.search('Cataloga%C3%A7%C3%A3o') > -1 && (
+            <S.IconBarra to={`/Fase/${id}/Board/Catalogação`}>
+              <S.LinkImg src="/icon-medium/Catalogação.svg" />
+              <S.Barra color="#F3CC00"></S.Barra>
             </S.IconBarra>
-          </Link>
+          )}
 
-          {/* ARQUIVAMENTO */}
-          <Link to={`/Fase/${id}/Board/Arquivamento`}>
-            <S.IconBarra>
-              {url.search('Arquivamento') <= -1 && (
-                <div className="ArquivamentoTooltip">
-                  <S.LinkImgEscura src="/icon-medium/Arquivamento.svg" />
-                  <Tooltip
-                    children={<p style={{ fontSize: '12px', fontFamily: 'Rubik' }}>Arquivamento</p>}
-                    anchorSelect=".ArquivamentoTooltip"
-                    place="bottom"
-                  />
-                </div>
-              )}
-              {url.search('Arquivamento') > -1 && (
-                <>
-                  <S.LinkImg src="/icon-medium/Arquivamento.svg" />
-                  <S.Barra color={theme.colors['green/400']}></S.Barra>
-                </>
-              )}
+          {/* DIGITALIZAÇÃO(não selecionado)*/}
+          {url.search('Digitaliza%C3%A7%C3%A3o') <= -1 && (
+            <Link to={`/Fase/${id}/Board/Digitalização`} className="DigitalizaçãoTooltip">
+              <S.LinkImgEscura src="/icon-medium/Digitalização.svg" />
+              <Tooltip
+                children={<p style={{ fontSize: '12px', fontFamily: 'Rubik' }}>Digitalização</p>}
+                anchorSelect=".DigitalizaçãoTooltip"
+                place="bottom"
+              />
+            </Link>
+          )}
+
+          {/* DIGITALIZAÇÃO(selecionado)*/}
+          {url.search('Digitaliza%C3%A7%C3%A3o') > -1 && (
+            <S.IconBarra to={`/Fase/${id}/Board/Digitalização`}>
+              <S.LinkImg src="/icon-medium/Digitalização.svg" />
+              <S.Barra color="#2D94F3"></S.Barra>
             </S.IconBarra>
-          </Link>
+          )}
+
+          {/* UPLOAD(não selecionado)*/}
+          {url.search('Upload') <= -1 && (
+            <Link to={`/Fase/${id}/Board/Upload`} className="UploadTooltip">
+              <S.LinkImgEscura src="/icon-medium/Upload.svg" />
+              <Tooltip
+                children={<p style={{ fontSize: '12px', fontFamily: 'Rubik' }}>Upload</p>}
+                anchorSelect=".UploadTooltip"
+                place="bottom"
+              />
+            </Link>
+          )}
+
+          {/* UPLOAD(selecionado)*/}
+          {url.search('Upload') > -1 && (
+            <S.IconBarra to={`/Fase/${id}/Board/Upload`}>
+              <S.LinkImg src="/icon-medium/Upload.svg" />
+              <S.Barra color={theme.colors['purple/600']}></S.Barra>
+            </S.IconBarra>
+          )}
+
+          {/* ARQUIVAMENTO(não selecionado)*/}
+          {url.search('Arquivamento') <= -1 && (
+            <Link to={`/Fase/${id}/Board/Arquivamento`} className="ArquivamentoTooltip">
+              <S.LinkImgEscura src="/icon-medium/Arquivamento.svg" />
+              <Tooltip
+                children={<p style={{ fontSize: '12px', fontFamily: 'Rubik' }}>Arquivamento</p>}
+                anchorSelect=".ArquivamentoTooltip"
+                place="bottom"
+              />
+            </Link>
+          )}
+
+          {/* ARQUIVAMENTO(selecionado)*/}
+          {url.search('Arquivamento') > -1 && (
+            <S.IconBarra to={`/Fase/${id}/Board/Arquivamento`}>
+              <S.LinkImg src="/icon-medium/Arquivamento.svg" />
+              <S.Barra color={theme.colors['green/400']}></S.Barra>
+            </S.IconBarra>
+          )}
         </S.Change>
       </S.ChangeContainer>
     </>

@@ -5,13 +5,13 @@ const CardsArea = styled.div`
   display: grid;
   grid-template-columns: 1fr;
   width: 100%;
-  padding: 10em 2em;
+  padding: 9em 2em;
   gap: 16px;
   flex-direction: column;
   max-width: 1140px;
-  ${media.greaterThan('large')`
+  @media screen and (min-width: 767px){
     padding: 10em 0em 2em 0em;
-  `}
+  }
 `;
 
 const SearchDiv = styled.div`

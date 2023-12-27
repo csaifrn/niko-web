@@ -84,6 +84,9 @@ const LoteEdit = (props: Prioridade) => {
         toast.error(error.response.data.message);
       }
     },
+    onSettled: () => {
+      navigate(`/Lote/${id}`);
+    },
   });
 
   const beforeBatch = useMutation(GetBatche, {

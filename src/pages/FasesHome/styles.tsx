@@ -22,7 +22,7 @@ export const FasePage = styled.div`
 `;
 
 const Main = styled.div`
-  margin: 8em 2em 0em 2em;
+  margin: 9em 2em 0em 2em;
   display: grid;
   grid-gap: 1.25em;
   grid-template-columns: 1fr 1fr;

@@ -1,13 +1,22 @@
 import styled from 'styled-components';
 
-export const Wrapper = styled.main`
-  width: 100vw;
-  max-width: 100vw;
-  padding: 2em;
-  margin-top: 8em;
+export const Title = styled.h1`
+  color: white;
+  font-family: 'Rubik';
+`;
+
+export const Wrapper = styled.div`
+  width: 100%;
+  max-width: 570px;
+  margin-top: 10em;
   display: flex;
   flex-direction: column;
   gap: 2em;
+  @media screen and (max-width: 767px){
+    padding: 2em;
+    margin-top: 7em;
+    margin-bottom: 6em;
+  }
 `;
 
 export const Form = styled.form`
@@ -57,6 +66,7 @@ export const EditImg = styled.button`
 export const ContainerImg = styled.div`
   position: relative;
   display: flex;
+  justify-content: center;
   width: 100%;
 `;
 
@@ -102,19 +112,18 @@ export const FieldContainer = styled.div`
 export const Button = styled.button`
   width: 100%;
   height: 44px;
-  color: white;
+  color: ${({ theme }) => theme.colors['gray/900']};
   background-color: ${({ theme }) => theme.colors['green/400']};
   border: none;
   border-radius: 5px;
   font-family: 'Rubik';
   transition: background-color 500ms;
+  cursor: pointer;
   &:hover {
-    background-color: ${({ theme }) => theme.colors['green/500']};
+    filter: brightness(0.9);
   }
-
   &:active {
-    background-color: ${({ theme }) => theme.colors['green/600']};
-    transform: translateY(-5%) translateX(2%);
+    filter: brightness(0.9);
   }
 `;
 

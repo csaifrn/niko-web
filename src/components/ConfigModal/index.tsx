@@ -13,8 +13,8 @@ interface ConfigModalProps {
 }
 
 export const ConfigModal = (props: ConfigModalProps) => {
-  const [Pchecked, setPChecked] = useState(props.prioridade);
 
+  const [Pchecked, setPChecked] = useState(props.prioridade);
   const Priority = useMutation(PatchBatchePriority, {
     onSuccess: (data) => {
       toast.success(`Prioridade ${data.priority ? 'foi ativada' : 'foi desativada'}!`);

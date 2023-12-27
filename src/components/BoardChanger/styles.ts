@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 export const ChangeContainer = styled.nav`
@@ -20,7 +21,7 @@ export const Change = styled.nav`
   //margin-bottom: 1em;
 `;
 
-export const IconBarra = styled.div`
+export const IconBarra = styled(Link)`
   text-decoration: none;
   display: flex;
   flex-direction: column;

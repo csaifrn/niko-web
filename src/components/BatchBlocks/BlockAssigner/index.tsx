@@ -38,7 +38,8 @@ export const BlockAssigner = ({ assigner, setAssigners }: PropsBlockAssigner) =>
 
   return (
     <>
-      <S.BlockAssigner>
+
+      <S.BlockAssigner style={{padding: user?.role === UserRole.MANAGER ? '0 0 0 0.5em' : '0.5em'}}>
         {/* mostra quem está atribuído */}
         {/* {user?.name == assigner.name &&
           <S.NameAssigner>Você</S.NameAssigner>
@@ -53,6 +54,7 @@ export const BlockAssigner = ({ assigner, setAssigners }: PropsBlockAssigner) =>
           </S.DeleteAssigner>
         )}
       </S.BlockAssigner>
+
       {modal && (
         <DeletarModal
           close={() => setModal(!modal)}

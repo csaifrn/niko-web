@@ -13,7 +13,6 @@ import { AssignedUser, Batche, Observation } from '../../api/services/batches/ge
 import { ApiError } from '../../api/services/authentication/signIn/signIn.interface';
 import { Empty } from '../../components/EmptyPage';
 import { CreateObservationModal } from '../../components/Observation/Observation-modal-create';
-import { LoteData } from '../../data/LoteData';
 import { BoxObservation } from '../../components/Observation/ObservationBox';
 import { DeletarModal } from '../../components/DeletarModal';
 import { ObservationModal } from '../../components/Observation/Observation-modal-update';
@@ -21,7 +20,7 @@ import { DeleteObservation } from '../../api/services/batches/observation/delete
 import { AtribuirAlguemModal } from '../../components/AtribuirAlguemModal';
 import { BlockAssigner } from '../../components/BatchBlocks/BlockAssigner';
 import { PatchBatcheMainStatus } from '../../api/services/batches/patch-status';
-import { CheckCircle, HandWaving, X, XCircle } from '@phosphor-icons/react';
+import { CheckCircle, Circle, HandWaving, Pause, X, XCircle } from '@phosphor-icons/react';
 import theme from '../../global/theme';
 import { PatchBatcheSpecifStatus } from '../../api/services/batches/patch-status-specific';
 import { EspecifcModal } from '../../components/EspecificStatusModal';
@@ -188,8 +187,44 @@ export const LoteDetails = () => {
           <Menu area={`/Painel/${id}`} id_projeto={id}></Menu>
           <MenuCoord />
           <S.areaClick>
-            {/* BOTÃO DE FECHAR */}
-            <S.CloseDiv>
+            <S.CloseFaseStatus>
+
+              <S.FaseStatus>
+              {/* FASE ATUAL DO LOTE */}
+              <S.IconTooltipFase className="FaseAtualTooltip">
+                <S.Icons src={`/icon-medium/${optionsFases[status].label}.svg`} />
+
+                <Tooltip
+                  children={<p style={{ fontSize: '12px', fontFamily: 'Rubik' }}>{optionsFases[status].label}</p>}
+                  anchorSelect=".FaseAtualTooltip"
+                  place="bottom"
+                />
+
+              </S.IconTooltipFase>
+
+              {/* STATUS DO LOTE */}
+              {specificStatus === 0 && (
+                <S.Status>
+                  <Circle size={15} color="#44d663" weight="fill" />
+                  <h2>Disponível</h2>
+                </S.Status>
+              )}
+              {specificStatus === 1 && (
+                <S.Status>
+                  <Pause size={24} color="#ffffff" weight="fill" />
+                  <h2>Em andamento</h2>
+                </S.Status>
+              )}
+              {specificStatus === 2 && status === 4 && (
+                <S.Status>
+                  <CheckCircle size={24} weight="fill" />
+                  <h2>Arquivado</h2>
+                </S.Status>
+              )}
+              </S.FaseStatus>
+
+
+              {/* BOTÃO DE FECHAR */}
               <S.Exit
                 onClick={() => navigate(`/Fase/${id}/Board/${optionsFases[status].label}`)}
                 className="FecharTooltip"
@@ -201,38 +236,26 @@ export const LoteDetails = () => {
                   place="bottom"
                 />
               </S.Exit>
-            </S.CloseDiv>
+            </S.CloseFaseStatus>
 
             <S.LoteInfos>
               {/* CABEÇALHO */}
-              <S.LoteEditConfig>
+              <S.LoteTitleEdit>
                 {/* TÍTULO */}
                 <S.TituloLote>{`${task?.title}`}</S.TituloLote>
 
-                <S.EditConfig>
-                  {/* BOTÃO DE EDITAR */}
-                  <Link to={`/Lote/${task?.id}/Edit`}>
-                    <S.Edit className="EditarLoteTooltip">
-                      <S.Icons src={`/pen.svg`}></S.Icons>
-                      <Tooltip
-                        children={<p style={{ fontSize: '12px', fontFamily: 'Rubik' }}>Editar lote</p>}
-                        anchorSelect=".EditarLoteTooltip"
-                        place="bottom"
-                      />
-                    </S.Edit>
-                  </Link>
-
-                  {/* BOTÃO DE CONFIGURAÇÕES */}
-                  <S.Config onClick={handleConfig} className="ConfigTooltip">
-                    <S.Icons src={`/config.svg`}></S.Icons>
+                {/* BOTÃO DE EDITAR */}
+                <Link to={`/Lote/${task?.id}/Edit`}>
+                  <S.Edit className="EditarLoteTooltip">
+                    <S.Icons src={`/pen.svg`}></S.Icons>
                     <Tooltip
-                      children={<p style={{ fontSize: '12px', fontFamily: 'Rubik' }}>Configurações do lote</p>}
-                      anchorSelect=".ConfigTooltip"
+                      children={<p style={{ fontSize: '12px', fontFamily: 'Rubik' }}>Editar lote</p>}
+                      anchorSelect=".EditarLoteTooltip"
                       place="bottom"
                     />
-                  </S.Config>
-                </S.EditConfig>
-              </S.LoteEditConfig>
+                  </S.Edit>
+                </Link>
+              </S.LoteTitleEdit>
 
               {/* DADOS DA CRIAÇÃO DO LOTE */}
               <S.DadosCriacaoLoteDiv>
@@ -243,6 +266,42 @@ export const LoteDetails = () => {
                   })}
                 </S.BlockGray>
               </S.DadosCriacaoLoteDiv>
+
+              {/* PRIORIDADE + CATEGORIAS */}
+
+              {/* QUANDO HÁ CATEGORIAS */}
+              {task?.settlement_project_categories.length != undefined &&
+                task?.settlement_project_categories.length > 0 && (
+                  <S.DetalhesLote style={{ display: 'flex', gap: '8px', flexWrap: 'wrap', flexDirection: 'row' }}>
+                    {/* PRIORIORIDADE(SE TIVER) */}
+                    {priority === true && (
+                      <S.PrioridadeDiv>
+                        <S.PrioridadeTag>
+                          <p>Prioridade</p>
+                        </S.PrioridadeTag>
+                      </S.PrioridadeDiv>
+                    )}
+
+                    {/* CATEGORIAS */}
+                    {task?.settlement_project_categories.map((cat) => {
+                      return <S.BlockGrayBorder key={cat.id}>{cat.name}</S.BlockGrayBorder>;
+                    })}
+                  </S.DetalhesLote>
+                )}
+
+              {/* QUANDO NÃO HÁ CATEGORIAS */}
+              {task?.settlement_project_categories.length != undefined &&
+                task?.settlement_project_categories.length === 0 &&
+                priority === true && (
+                  <S.DetalhesLote>
+                    {/* PRIORIORIDADE(SE TIVER) */}
+                    <S.PrioridadeDiv>
+                      <S.PrioridadeTag>
+                        <p>Prioridade</p>
+                      </S.PrioridadeTag>
+                    </S.PrioridadeDiv>
+                  </S.DetalhesLote>
+                )}
 
               {/* ARQUIVOS */}
               <S.DetalhesLote>
@@ -282,34 +341,6 @@ export const LoteDetails = () => {
                   </S.ArquivDigitais>
                 )}
               </S.DetalhesLote>
-
-              <S.DetalhesLote>
-                {/* CATEGORIAS */}
-                {task?.settlement_project_categories.map((cat) => {
-                  return <S.BlockGrayBorder key={cat.id}>{cat.name}</S.BlockGrayBorder>;
-                })}
-              </S.DetalhesLote>
-
-              {/* PRIORIORIDADE(SE TIVER) */}
-              {priority === true && (
-                <S.PrioridadeDiv>
-                  <S.PrioridadeTag>
-                    <p>Prioridade</p>
-                  </S.PrioridadeTag>
-                </S.PrioridadeDiv>
-              )}
-
-              <S.FaseAtualDiv>
-                {/* FASE ATUAL DO LOTE */}
-                <S.IconTooltipFase className="FaseAtualTooltip">
-                  <S.Icons src={`/icon-medium/${optionsFases[status].label}.svg`} />
-                  <Tooltip
-                    children={<p style={{ fontSize: '12px', fontFamily: 'Rubik' }}>{optionsFases[status].label}</p>}
-                    anchorSelect=".FaseAtualTooltip"
-                    place="bottom"
-                  />
-                </S.IconTooltipFase>
-              </S.FaseAtualDiv>
 
               {/* OPERADORES ATRIBUÍDOS AO LOTE */}
               {assigners.length > 0 && (
@@ -553,16 +584,6 @@ export const LoteDetails = () => {
     )}
     {voltar && <VoltarModal close={handleVoltar}></VoltarModal>}
     {avancar && <AvancarModal close={handleAvancar}></AvancarModal>}*/}
-        {config_modal && (
-          <ConfigModal
-            id={id!}
-            prioridade={task?.priority ? task.priority : false}
-            close={() => {
-              setConfigModal(!config_modal);
-            }}
-            priorityOnChange={(e: boolean) => setPriority(e)}
-          ></ConfigModal>
-        )}
         {observacao && (
           <CreateObservationModal
             id={observationId}

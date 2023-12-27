@@ -180,7 +180,7 @@ export const Menu = (props: MenuProps) => {
               position: 'absolute',
               right: '0',
               backgroundColor: '#393E4B',
-              minWidth: '150px',
+              minWidth: '170px',
               boxShadow: '0px 8px 16px 0px rgba(0,0,0,0.2)',
               zIndex: '1',
               color: '#fff',

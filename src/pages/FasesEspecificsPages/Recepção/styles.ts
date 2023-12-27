@@ -6,7 +6,7 @@ export const RecepcaoPage = styled.div`
   flex-direction: column;
   gap: 32px;
   max-width: 1140px;
-  margin: 8em 2em 5em 2em;
+  margin: 9em 2em 5em 2em;
   font-family: 'Rubik';
   @media screen and (max-width: 767px) {
     width: 100%;

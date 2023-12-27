@@ -16,7 +16,7 @@ interface IEditModal {
   percentage?: number;
 }
 
-export const EditModal = () => {
+export const EditPage = () => {
   const [searchTerm, setSearchTerm] = useState<string>('');
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(event.target.value);

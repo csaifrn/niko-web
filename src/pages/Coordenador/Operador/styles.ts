@@ -9,9 +9,9 @@ const CardsArea = styled.div`
   gap: 16px;
   flex-direction: column;
   max-width: 1140px;
-  ${media.greaterThan('large')`
+  @media screen and (min-width: 767px){
     padding: 10em 0em 2em 0em;
-  `}
+  }
 `;
 
 const SearchDiv = styled.div`

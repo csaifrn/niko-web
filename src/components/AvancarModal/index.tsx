@@ -84,7 +84,7 @@ export const AvancarModal = (props: AvancarModalProps) => {
             ))} */}
             <S.RecusedAvancar>
               <S.Recused onClick={handleClose}>
-                <S.Texto>Não, não quero.</S.Texto>
+                <S.Texto>Cancelar</S.Texto>
               </S.Recused>
               <S.Avancar onClick={handleClose}>
                 <S.IconeAvancar src="/avancar.svg"></S.IconeAvancar>

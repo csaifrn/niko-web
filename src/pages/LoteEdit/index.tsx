@@ -22,13 +22,13 @@ interface Option {
   label: string;
 }
 
-interface Prioridade {
-  id: string;
-  prioridade: boolean;
-  priorityOnChange: (e: boolean) => void;
-}
+// interface Prioridade {
+//   id: string;
+//   prioridade: boolean;
+//   priorityOnChange: (e: boolean) => void;
+// }
 
-const LoteEdit = (props: Prioridade) => {
+const LoteEdit = () => {
   const navigate = useNavigate();
   const { id } = useParams();
   const [categories, setCategories] = useState<Category[]>([]);
@@ -40,7 +40,7 @@ const LoteEdit = (props: Prioridade) => {
   const [userInput, setUserInput] = useState('');
   const [options, setOptions] = useState<Option[]>([]);
   const [selectedOptions, setSelectedOptions] = useState<Option[]>([]);
-  const [priority, setPriority] = useState(props.prioridade);
+  const [priority, setPriority] = useState(false);
 
   const Priority = useMutation(PatchBatchePriority, {
     onSuccess: (data) => {
@@ -52,18 +52,16 @@ const LoteEdit = (props: Prioridade) => {
   });
 
   const handlePrioridadeCheck = () => {
-    if (priority) {
+    if (priority && id) {
       setPriority(false);
-      props.priorityOnChange(false);
       Priority.mutate({
-        id: props.id,
+        id,
         priority: false,
       });
-    } else {
+    } else if(id) {
       setPriority(true);
-      props.priorityOnChange(true);
       Priority.mutate({
-        id: props.id,
+        id,
         priority: true,
       });
     }

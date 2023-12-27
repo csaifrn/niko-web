@@ -60,7 +60,7 @@ const Rotas = () => {
         <Route path="/Categorias/:id" element={<Categorias />} />
         <Route path="Fase/:id/Board/Upload" element={<Upload />} />
         <Route path={`/Lote/:id`} element={<LoteDetails />} />
-        <Route path={`/Lote/:id/Edit`} element={<LoteEdit />} />
+        <Route path={`/Lote/:id/Edit`} element={<LoteEdit  />} />
       </Routes>
     </Suspense>
   );

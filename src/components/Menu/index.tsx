@@ -18,9 +18,10 @@ export const Menu = (props: MenuProps) => {
   const { id } = useParams();
   const pathname = window.location.pathname;
   const [open, setOpen] = useState(false);
-  const [DropDown, setDropDown] = useState(false);
+
   const navigate = useNavigate();
   const dropDownRef = useRef(null);
+  const [DropDown, setDropDown] = useState(false);
   const [sair, setSair] = useState(false);
 
   const handleSair = () => {

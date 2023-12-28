@@ -85,6 +85,7 @@ export const BoxObservation = ({
               place="bottom"
             />
           </S.ButtonEdit>
+          
           <S.ButtonDelete onClick={handleClickDelete} className="ExcluirTooltip">
             <Trash size={18} color="#f5f5f5" weight="fill" />
             <Tooltip

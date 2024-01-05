@@ -15,7 +15,7 @@ import theme from '../../global/theme';
 import { SairSemSalvarModal } from '../../components/SairSemSalvarModal';
 import { ResponseSettle } from '../../api/services/settlement/query-settlement/get.interface';
 import { QuerySettles } from '../../api/services/settlement/query-settlement';
-import { DeleteBatcheSettle, PostBatcheSettle } from '../../api/services/batches/patch-settle';
+import { DeleteBatcheSettle, PatchBatcheSettle, PostBatcheSettle } from '../../api/services/batches/patch-settle';
 
 interface Option {
   value: string;
@@ -74,7 +74,19 @@ const LoteEdit = () => {
   });
 
   const mutateSettle = useMutation(PostBatcheSettle, {
-    onSuccess: (data) => {},
+    onSuccess: () => {},
+    onError: (err: ApiError) => {
+      toast.error(err.response?.data.message ? err.response?.data.message : 'Erro na execução');
+    },
+    onSettled: () => {
+      navigate(`/Lote/${id}`);
+    },
+  });
+
+  const mutateSettleAll = useMutation(PatchBatcheSettle, {
+    onSuccess: () => {
+      console.log('Deu bom');
+    },
     onError: (err: ApiError) => {
       toast.error(err.response?.data.message ? err.response?.data.message : 'Erro na execução');
     },
@@ -84,7 +96,7 @@ const LoteEdit = () => {
   });
 
   const mutateDeleteSettle = useMutation(DeleteBatcheSettle, {
-    onSuccess: (data) => {},
+    onSuccess: () => {},
     onError: (err: ApiError) => {
       toast.error(err.response?.data.message ? err.response?.data.message : 'Erro na execução');
     },
@@ -136,16 +148,21 @@ const LoteEdit = () => {
       const newIds = newSettle.map((settle) => settle.value);
       const deleteIds = deleteSettle.map((settle) => settle.id);
 
-      if (newSettle.length > 0) {
+      if (deleteSettle.length > 0 && newSettle.length === 0) {
+        mutateDeleteSettle.mutate({
+          id,
+          settlement_project_category_ids: deleteIds,
+        });
+      } else if (newSettle.length > 0 && deleteSettle.length === 0) {
         mutateSettle.mutate({
           id,
           settlementProjectCategories: newIds,
         });
-      }
-      if (deleteSettle.length > 0) {
-        await mutateDeleteSettle.mutate({
+      } else if (newSettle.length > 0 && deleteSettle.length > 0) {
+        mutateSettleAll.mutate({
           id,
-          settlement_project_category_id: deleteIds,
+          settlementProjectCategories: newIds,
+          settlement_project_category_ids: deleteIds,
         });
       }
       try {
@@ -280,7 +297,7 @@ const LoteEdit = () => {
                 classNamePrefix="react-select"
                 onInputChange={setUserInput}
                 inputValue={userInput}
-                onChange={(e: any, action: any) => setSelectedOptions(e)}
+                onChange={(e: any) => setSelectedOptions(e)}
                 options={options}
                 value={selectedOptions}
                 isLoading={false}

@@ -244,13 +244,13 @@ export const Board = (props: BoardProps) => {
                           assigners={batche.assigned_users}
                         >
                           {batche.main_status === 1 && (
-                            <img src="/icon-small/Catalogação.svg" style={{ width: '32px', height: '32px' }} />
+                            <img src="/icon-small/Catalogação.svg" alt="" style={{ width: '32px', height: '32px' }} />
                           )}
                           {batche.main_status === 2 && (
-                            <img src="/icon-small/Digitalização.svg" style={{ width: '32px', height: '32px' }} />
+                            <img src="/icon-small/Digitalização.svg" alt="" style={{ width: '32px', height: '32px' }} />
                           )}
                           {batche.main_status === 3 && (
-                            <img src="/icon-small/Upload.svg" style={{ width: '32px', height: '32px' }} />
+                            <img src="/icon-small/Upload.svg" alt="" style={{ width: '32px', height: '32px' }} />
                           )}
                         </Lote>
                       </Link>

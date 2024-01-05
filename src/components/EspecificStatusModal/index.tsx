@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import * as S from './styles';
-import { AssignedUser, GetResponseBatche } from '../../api/services/batches/get-batche/get.interface';
+import { Batche } from '../../api/services/batches/get-batche/get.interface';
 import { useMutation } from 'react-query';
 import { PatchBatcheSpecifStatus } from '../../api/services/batches/patch-status-specific';
 import toast from 'react-hot-toast';
@@ -12,20 +12,17 @@ import { SharedState } from '../../context/SharedContext';
 import { CustomSelect } from '../AtribuirAlguemModal/style';
 import { QuerySettles } from '../../api/services/settlement/query-settlement';
 import { ResponseSettle } from '../../api/services/settlement/query-settlement/get.interface';
-import { DeleteBatcheSettle, PostBatcheSettle } from '../../api/services/batches/patch-settle';
-import { PostAssigners } from '../../api/services/batches/assigners/post-assigners';
+import { DeleteBatcheSettle, PatchBatcheSettle, PostBatcheSettle } from '../../api/services/batches/patch-settle';
 import { DeleteAssigner } from '../../api/services/batches/assigners/delete-assigners';
-import { Batche } from '../../api/services/batches/get-batche/get.interface';
+
 import { ErrorMessage } from '../../pages/Login/styles';
 import { InputText } from '../ModalCriarLote/styles';
 import { validationDigital, validationShelfSchema } from './validation';
-import { PatchBatcheEdit, PatchShelfNumber } from '../../api/services/batches/patch-batche';
+import { PatchBatcheEdit } from '../../api/services/batches/patch-batche';
 import { ErrorsForm } from './criar.interface';
 import * as Yup from 'yup';
-import { ArquivosInput } from '../../pages/LoteEdit/style';
 import { DeleteBatche } from '../../api/services/batches/delete-batche';
 import { useNavigate } from 'react-router';
-import { Loading } from '../Loading/styles';
 import ReactLoading from 'react-loading';
 
 interface EspecifModalProps {
@@ -47,7 +44,7 @@ export const EspecifcModal = (props: EspecifModalProps) => {
   const navigate = useNavigate();
   const [closing, setClosing] = useState(false);
   const [buttonOff, setButtonOff] = useState(false);
-  const [NoCategories, setNoCategories] = useState(false);
+  const [NoCategories] = useState(false);
   const [error, setError] = useState('');
   const [shelfNumber, setShelfNumber] = useState('');
   const [userInput, setUserInput] = useState('');
@@ -98,14 +95,33 @@ export const EspecifcModal = (props: EspecifModalProps) => {
   const mutatePatchBatch = useMutation(PatchBatcheEdit, {});
 
   const mutateEspecific = useMutation(PatchBatcheSpecifStatus, {
-    onSuccess: (data) => {},
+    onSuccess: () => {},
     onError: (err: ApiError) => {
       toast.error(err.response?.data.message ? err.response?.data.message : 'Erro na execução');
     },
   });
 
   const mutateSettle = useMutation(PostBatcheSettle, {
-    onSuccess: (data) => {
+    onSuccess: () => {
+      nextFase();
+    },
+    onError: (err: ApiError) => {
+      toast.error(err.response?.data.message ? err.response?.data.message : 'Erro na execução');
+    },
+  });
+
+  const mutateSettle2 = useMutation(PostBatcheSettle, {
+    onSuccess: () => {
+      console.log('Deu bom');
+    },
+    onError: (err: ApiError) => {
+      toast.error(err.response?.data.message ? err.response?.data.message : 'Erro na execução');
+    },
+  });
+
+  const mutateSettleAll = useMutation(PatchBatcheSettle, {
+    onSuccess: () => {
+      console.log('Deu bom');
       nextFase();
     },
     onError: (err: ApiError) => {
@@ -114,14 +130,14 @@ export const EspecifcModal = (props: EspecifModalProps) => {
   });
 
   const mutateDeleteSettle = useMutation(DeleteBatcheSettle, {
-    onSuccess: (data) => {},
+    onSuccess: () => {},
     onError: (err: ApiError) => {
       toast.error(err.response?.data.message ? err.response?.data.message : 'Erro na execução');
     },
   });
 
   const DeleteBatch = useMutation(DeleteBatche, {
-    onSuccess: (data) => {
+    onSuccess: () => {
       navigate(`/Fase/:id/Board/Preparo`);
       toast.success('Lote excluído com sucesso!');
       console.log('Lote excluído com sucesso!');
@@ -169,16 +185,9 @@ export const EspecifcModal = (props: EspecifModalProps) => {
 
   //forbiden - only manager can mutateAssigner (error: Forbiden)
   //solutions - api does the assignation to the batche or he opens this operation
-  
-  const mutateAssigner = useMutation(PostAssigners, {
-    onSuccess: (data) => {},
-    onError: (err: ApiError) => {
-      toast.error(err.response?.data.message ? err.response?.data.message : 'Erro na execução');
-    },
-  });
 
   const mutateDeleteAssigner = useMutation(DeleteAssigner, {
-    onSuccess: (data) => {},
+    onSuccess: () => {},
     onError: (err: ApiError) => {
       toast.error(err.response?.data.message ? err.response?.data.message : 'Erro na execução');
     },
@@ -215,12 +224,10 @@ export const EspecifcModal = (props: EspecifModalProps) => {
             id: props.batche.id,
             main_status: props.batche.main_status + 1,
           });
-        } catch {}
+        } catch (err) {
+          console.warn(err);
+        }
       } else if (user.user?.sub && specific_status === 1) {
-        mutateAssigner.mutate({
-          batch_id: props.batche.id,
-          assignment_users_ids: [user.user?.sub],
-        });
         toast.success('Status atualizado!');
       }
       handleCloseRefecht();
@@ -293,18 +300,24 @@ export const EspecifcModal = (props: EspecifModalProps) => {
           const newIds = newSettle.map((settle) => settle.value);
           const deleteIds = deleteSettle.map((settle) => settle.id);
 
-          if (newSettle.length > 0) {
-            mutateSettle.mutate({
+          if (deleteSettle.length > 0 && newSettle.length === 0) {
+            mutateDeleteSettle.mutate({
+              id: props.batche.id,
+              settlement_project_category_ids: deleteIds,
+            });
+          } else if (newSettle.length > 0 && deleteSettle.length === 0) {
+            mutateSettle2.mutate({
               id: props.batche.id,
               settlementProjectCategories: newIds,
             });
-          }
-          if (deleteSettle.length > 0) {
-            await mutateDeleteSettle.mutate({
+          } else if (newSettle.length > 0 && deleteSettle.length > 0) {
+            mutateSettleAll.mutate({
               id: props.batche.id,
-              settlement_project_category_id: deleteIds,
+              settlementProjectCategories: newIds,
+              settlement_project_category_ids: deleteIds,
             });
           }
+
           nextFase();
         } else if (selectedOptions.length > 0 && props.batche.settlement_project_categories.length <= 0) {
           mutateSettle.mutate({

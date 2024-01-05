@@ -7,6 +7,7 @@ import { User } from '@phosphor-icons/react';
 import { SharedState } from '../../context/SharedContext';
 import { LogOutModal } from '../LogOutModal';
 import theme from '../../global/theme';
+import { UserRole } from '../../utils/userRole.enum';
 
 interface MenuProps {
   area: string;
@@ -56,9 +57,9 @@ export const Menu = (props: MenuProps) => {
       <S.MenuArea>
         {props.id_projeto && (
           <S.ContainerA>
-            <S.ButtonBurger open={open} onClick={handleClickButton}>
+            {/* <S.ButtonBurger open={open} onClick={handleClickButton}>
               <S.MenuImg src="/menu.svg" />
-            </S.ButtonBurger>
+            </S.ButtonBurger> */}
 
             <S.LinkLogo to={`/Fase/${id}`}>
               <S.MenuImg src="/Logo_Niko.svg" />
@@ -116,20 +117,23 @@ export const Menu = (props: MenuProps) => {
                   <MenuC.textIcon>Fases</MenuC.textIcon>
                 )}
               </MenuC.link>
-
-              <MenuC.link to={`/Categorias/${id}`}>
-                <MenuC.MenuImg
-                  src={
-                    pathname === `/Categorias/${id}`
-                      ? '/IconMenu/TagSimple/FillIcon.svg'
-                      : '/IconMenu/TagSimple/RegularIcon.svg'
-                  }
-                />
-                {pathname === `/Categorias/${id}` && (
-                  <MenuC.textIcon style={{ color: theme.colors['orange/400'] }}>Categorias</MenuC.textIcon>
-                )}
-                {pathname !== `/Categorias/${id}` && <MenuC.textIcon>Categorias</MenuC.textIcon>}
-              </MenuC.link>
+              
+              {/* Página de categorias */}
+              {user?.role === UserRole.MANAGER && (
+                <MenuC.link to={`/Categorias/${id}`}>
+                  <MenuC.MenuImg
+                    src={
+                      pathname === `/Categorias/${id}`
+                        ? '/IconMenu/TagSimple/FillIcon.svg'
+                        : '/IconMenu/TagSimple/RegularIcon.svg'
+                    }
+                  />
+                  {pathname === `/Categorias/${id}` && (
+                    <MenuC.textIcon style={{ color: theme.colors['orange/400'] }}>Classes</MenuC.textIcon>
+                  )}
+                  {pathname !== `/Categorias/${id}` && <MenuC.textIcon>Classes</MenuC.textIcon>}
+                </MenuC.link>
+              )}
             </S.MenuDesk>
           </S.ContainerA>
         )}

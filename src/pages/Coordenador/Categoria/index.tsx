@@ -8,7 +8,7 @@ import { useParams } from 'react-router-dom';
 import { useMutation } from 'react-query';
 import { Tag } from '../../../api/services/tags/get-tags/get.interface';
 import { ButtonGreen } from '../../../components/AtribuirAlguemModal/style';
-import { ModalCreteCategory } from '../../../components/ModalCreateCategory';
+import { ModalCategory } from '../../../components/ModalCategory';
 import { Category } from '../../../api/services/batches/get-batche/get.interface';
 import { GetCategories } from '../../../api/services/settlement/get-categories';
 
@@ -68,7 +68,7 @@ const Categoria = () => {
         <Menu area={`/Categoria/${id}`} id_projeto={id}></Menu>
         <MenuCoord />
         <S.CardsArea>
-          <ButtonGreen onClick={() => setOpen(!open)}>Criar Categoria</ButtonGreen>
+          <ButtonGreen onClick={() => setOpen(!open)}>Criar classe</ButtonGreen>
           <Search searchTerm={searchTerm} handleSearchChange={handleSearchChange} />
 
           {sortedAndFilteredCategories.map((tag: Tag) => (
@@ -76,7 +76,9 @@ const Categoria = () => {
           ))}
         </S.CardsArea>
       </div>
-      {open && <ModalCreteCategory close={() => setOpen(!open)} refetch={() => CategoriesMutate.mutate()} />}
+      {open && (
+        <ModalCategory title={'Criar classe'} close={() => setOpen(!open)} refetch={() => CategoriesMutate.mutate()} />
+      )}
     </>
   );
 };

@@ -38,8 +38,7 @@ export const BlockAssigner = ({ assigner, setAssigners }: PropsBlockAssigner) =>
 
   return (
     <>
-
-      <S.BlockAssigner style={{padding: user?.role === UserRole.MANAGER ? '0 0 0 0.5em' : '0.5em'}}>
+      <S.BlockAssigner style={{ padding: user?.role === UserRole.MANAGER ? '0 0 0 0.5em' : '0.5em' }}>
         {/* mostra quem está atribuído */}
         {/* {user?.name == assigner.name &&
           <S.NameAssigner>Você</S.NameAssigner>

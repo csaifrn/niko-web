@@ -1,3 +1,4 @@
+import { PencilSimple } from '@phosphor-icons/react';
 import styled from 'styled-components';
 
 const totalArea = styled.div`
@@ -6,7 +7,6 @@ const totalArea = styled.div`
   color: white;
   font-family: 'Rubik';
   border-radius: 5px;
-  cursor: pointer;
 `;
 
 const CardArea = styled.div`
@@ -20,7 +20,6 @@ const CardArea = styled.div`
   overflow: hidden;
 `;
 const CardA = styled.div`
-  cursor: pointer;
   display: flex;
   flex-direction: column;
   padding: 1.5em 2em;
@@ -115,6 +114,29 @@ const Icon = styled.img`
   height: 18px;
   width: 18px;
 `;
+
+export const ButtonEdit = styled.button`
+  background-color: transparent;
+  cursor: pointer;
+  //position: relative;
+  padding: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 300ms;
+  border-radius: 3px;
+  :hover {
+    background-color: ${({ theme }) => theme.colors['gray/400']};
+  }
+  /* :hover div {
+    visibility: visible;
+    opacity: 1;
+    display: block;
+  } */
+  
+  border: none;
+`;
+
 
 const TotalFase = styled.p`
   color: white;

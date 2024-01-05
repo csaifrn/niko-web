@@ -1,18 +1,25 @@
 import { useEffect, useRef, useState } from 'react';
 import * as S from './styles';
-import { DataFase } from '../DataFase';
 import { DeletarModal } from '../DeletarModal';
-import CategoriaData from '../../data/CategoriaData';
 import { Tag } from '../../api/services/tags/get-tags/get.interface';
+import { PencilSimple } from '@phosphor-icons/react';
+import theme from '../../global/theme';
+import { Tooltip } from 'react-tooltip';
+import { ModalCategory } from '../ModalCategory';
+import { Category } from '../../api/services/batches/get-batche/get.interface';
+import { useMutation } from 'react-query';
+import { GetCategories } from '../../api/services/settlement/get-categories';
 
 const CategoriaCard = (Categoria: Tag) => {
+  const categoria = Categoria;
   const [expanded, setExpanded] = useState(false);
   const [accodionHeight, setAccodionHeight] = useState(0);
   const [modal, setModal] = useState(false);
   const [percentage, setPercentage] = useState(0);
   const ref = useRef<HTMLDivElement>(null);
-
   const [prioridade, setPrioridade] = useState(false);
+  const [openModal, setOpen] = useState<boolean>(false);
+  const [Categories, setCategories] = useState<Category[]>();
 
   const handlePrioridade = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
@@ -34,7 +41,11 @@ const CategoriaCard = (Categoria: Tag) => {
 
   const open = () => setExpanded(!expanded);
 
-  const categoria = Categoria;
+  const CategoriesMutate = useMutation(GetCategories, {
+    onSuccess: (data: Category[]) => {
+      setCategories(data);
+    },
+  });
 
   useEffect(() => {
     if (ref.current) {
@@ -50,6 +61,19 @@ const CategoriaCard = (Categoria: Tag) => {
           <S.CategoriaClick>
             <S.CabecarioCategoria>
               <p>{categoria.name}</p>
+              <S.ButtonEdit className="EditarTooltip">
+                <PencilSimple
+                  onClick={() => setOpen(!openModal)}
+                  size={24}
+                  weight="fill"
+                  color={theme.colors['white']}
+                />
+                <Tooltip
+                  children={<p style={{ fontSize: '12px', fontFamily: 'Rubik' }}>Editar categoria</p>}
+                  anchorSelect=".EditarTooltip"
+                  place="bottom"
+                />
+              </S.ButtonEdit>
               {prioridade && (
                 <S.Prioridade>
                   <p>Prioridade</p>
@@ -82,6 +106,15 @@ const CategoriaCard = (Categoria: Tag) => {
           </S.Footer>
         */}
       </S.totalArea>
+      {openModal && (
+        <ModalCategory
+          id={categoria.id}
+          title={'Editar classe'}
+          nomeCat={categoria.name}
+          close={() => setOpen(!openModal)}
+          refetch={() => CategoriesMutate.mutate()}
+        />
+      )}
       {modal && <DeletarModal title={'Deletar Categoria?'} close={handleClose}></DeletarModal>}
     </>
   );

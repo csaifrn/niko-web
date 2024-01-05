@@ -29,13 +29,9 @@ export const ObservationModal = (props: DeletarModalProps) => {
   const [obs, setObs] = useState<string>(props.observation ? props.observation : '');
   const [responseError, setResponseError] = useState('');
   const [isPending, setIsPending] = useState<boolean| undefined>(props.pendencia);
- 
-  console.log(props.id);
-
   const [validationFormError, setValidationFormError] = useState<ErrorsForm>({ observation: '' });
-
-  const textareaRef = useRef<HTMLTextAreaElement | null>(null);
   const [value, setValue] = useState<string>('');
+  const textareaRef = useRef<HTMLTextAreaElement | null>(null);
 
   const onChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
     setValue(event.target.value);

@@ -2,13 +2,14 @@ import React, { useState, useEffect } from 'react';
 import * as S from './styles';
 import { ErrorMessage } from '../../pages/Login/styles';
 import { validationCreateCatSchema } from './validation';
-import { useMutation } from 'react-query';
+import { useMutation, useQueryClient } from 'react-query';
 import * as Yup from 'yup';
 import { ErrorsForm } from './criar.interface';
 import ReactLoading from 'react-loading';
 import toast from 'react-hot-toast';
 import { CreateCategory } from '../../api/services/categoria/create-category';
 import { EditCategory } from '../../api/services/categoria/edit-category';
+import theme from '../../global/theme';
 
 interface ModalCategoriaProps {
   id?: string;
@@ -19,6 +20,7 @@ interface ModalCategoriaProps {
 }
 
 export const ModalCategory = (props: ModalCategoriaProps) => {
+  const queryClient = useQueryClient();
   const [closing, setClosing] = useState(false);
   const [name, setName] = useState<string>('');
   const [nomeCat, setNomeCat] = useState<string>(props.nomeCat ? props.nomeCat : '');
@@ -40,14 +42,6 @@ export const ModalCategory = (props: ModalCategoriaProps) => {
 
   const handleSucessCreate = () => {
     setName('');
-    if (props.refetch) {
-      props.refetch();
-    }
-    handleClose();
-  };
-
-  const handleSucessEdit = () => {
-    setNomeCat('');
     if (props.refetch) {
       props.refetch();
     }
@@ -76,7 +70,9 @@ export const ModalCategory = (props: ModalCategoriaProps) => {
     onSettled: (data: any) => {
       if (data) {
         toast.success('Categoria atualizada!');
-        handleSucessEdit();
+        setNomeCat('');
+        queryClient.invalidateQueries('categories');
+        handleClose();
       } else {
         toast.error(data && data.message ? data.message : 'Algum erro ocorreu!');
       }
@@ -202,11 +198,19 @@ export const ModalCategory = (props: ModalCategoriaProps) => {
                     onChange={(e) => setNomeCat(e.currentTarget.value)}
                     value={nomeCat}
                   />
+                  {props.nomeCat === nomeCat && <p style={{color: theme.colors['red/400']}}>Por favor escolha um nome diferente do atual</p>}
+
+                  {nomeCat.length < 3 && <p style={{color: theme.colors['red/400']}}>O nome precisa ter ao menos 3 caracteres</p>}
+
                   {validationFormError.name && <ErrorMessage>{validationFormError.name}</ErrorMessage>}
                   {categoryEditMutation.isLoading ? (
                     <S.Criar type="submit" disabled>
                       <ReactLoading type="cylon" color="white" height={30} width={30} />
                     </S.Criar>
+                  ) : props.nomeCat === nomeCat ||  nomeCat.length < 3 ? (
+                    <S.CriarDesativado type="submit" disabled>
+                      Editar categoria
+                    </S.CriarDesativado>
                   ) : (
                     <S.Criar type="submit">Editar categoria</S.Criar>
                   )}

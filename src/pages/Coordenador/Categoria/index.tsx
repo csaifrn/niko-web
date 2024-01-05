@@ -11,6 +11,7 @@ import { ButtonGreen } from '../../../components/AtribuirAlguemModal/style';
 import { ModalCategory } from '../../../components/ModalCategory';
 import { Category } from '../../../api/services/batches/get-batche/get.interface';
 import { GetCategories } from '../../../api/services/settlement/get-categories';
+import { useCategories } from '../../../hooks/useCategories';
 
 type Categoria = {
   id: number;
@@ -27,6 +28,7 @@ const Categoria = () => {
   const { id } = useParams();
   const [searchTerm, setSearchTerm] = useState<string>('');
   const [open, setOpen] = useState<boolean>(false);
+  const { categories, isLoadingCategories } = useCategories();
 
   const [Categories, setCategories] = useState<Category[]>();
 
@@ -44,21 +46,21 @@ const Categoria = () => {
     setSearchTerm(event.target.value);
   };
 
-  const filteredCat: Category[] = Categories
-    ? Categories.filter((cat: Category) => {
+  const filteredCat = !isLoadingCategories
+    ? categories?.filter((cat: Category) => {
         const catName = removeDiacritics(cat.name.toLowerCase());
         const search = removeDiacritics(searchTerm.toLowerCase());
         return catName.includes(search);
       })
     : [];
 
-  const sortedCategories: Category[] = filteredCat.sort((a: Category, b: Category) => {
+  const sortedCategories = filteredCat?.sort((a: Category, b: Category) => {
     const nameA = removeDiacritics(a.name.toLowerCase());
     const nameB = removeDiacritics(b.name.toLowerCase());
     return nameA.localeCompare(nameB);
   });
 
-  const sortedAndFilteredCategories: Category[] = sortedCategories.sort((a: Category, b: Category) => {
+  const sortedAndFilteredCategories = sortedCategories?.sort((a: Category, b: Category) => {
     return a.name.localeCompare(b.name);
   });
 
@@ -71,7 +73,7 @@ const Categoria = () => {
           <ButtonGreen onClick={() => setOpen(!open)}>Criar classe</ButtonGreen>
           <Search searchTerm={searchTerm} handleSearchChange={handleSearchChange} />
 
-          {sortedAndFilteredCategories.map((tag: Tag) => (
+          {sortedAndFilteredCategories?.map((tag: Tag) => (
             <CategoriaCard key={tag.id} id={tag.id} name={tag.name} />
           ))}
         </S.CardsArea>

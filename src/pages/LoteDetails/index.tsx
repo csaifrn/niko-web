@@ -27,6 +27,7 @@ import { EspecifcModal } from '../../components/EspecificStatusModal';
 import { SharedState } from '../../context/SharedContext';
 import { Tooltip } from 'react-tooltip';
 import { UserRole } from '../../utils/userRole.enum';
+import { useMe } from '../../hooks/useMe';
 
 interface Option {
   label: string;
@@ -58,6 +59,13 @@ export const LoteDetails = () => {
   const { id } = useParams();
   const [excluirLoteModal, setExcluirLoteModal] = useState(false);
   const navigate = useNavigate();
+  const { me } = useMe();
+
+  const operadorEstaNoLote = (obj: any, OperadorId: string) => {
+    if (me != undefined) {
+      return Object.values(obj).includes(OperadorId);
+    }
+  };
 
   const handleConfig = () => {
     setConfigModal(!config_modal);
@@ -188,41 +196,38 @@ export const LoteDetails = () => {
           <MenuCoord />
           <S.areaClick>
             <S.CloseFaseStatus>
-
               <S.FaseStatus>
-              {/* FASE ATUAL DO LOTE */}
-              <S.IconTooltipFase className="FaseAtualTooltip">
-                <S.Icons src={`/icon-medium/${optionsFases[status].label}.svg`} />
+                {/* FASE ATUAL DO LOTE */}
+                <S.IconTooltipFase className="FaseAtualTooltip">
+                  <S.Icons src={`/icon-medium/${optionsFases[status].label}.svg`} />
 
-                <Tooltip
-                  children={<p style={{ fontSize: '12px', fontFamily: 'Rubik' }}>{optionsFases[status].label}</p>}
-                  anchorSelect=".FaseAtualTooltip"
-                  place="bottom"
-                />
+                  <Tooltip
+                    children={<p style={{ fontSize: '12px', fontFamily: 'Rubik' }}>{optionsFases[status].label}</p>}
+                    anchorSelect=".FaseAtualTooltip"
+                    place="bottom"
+                  />
+                </S.IconTooltipFase>
 
-              </S.IconTooltipFase>
-
-              {/* STATUS DO LOTE */}
-              {specificStatus === 0 && (
-                <S.Status>
-                  <Circle size={15} color="#44d663" weight="fill" />
-                  <h2>Disponível</h2>
-                </S.Status>
-              )}
-              {specificStatus === 1 && (
-                <S.Status>
-                  <Pause size={24} color="#ffffff" weight="fill" />
-                  <h2>Em andamento</h2>
-                </S.Status>
-              )}
-              {specificStatus === 2 && status === 4 && (
-                <S.Status>
-                  <CheckCircle size={24} weight="fill" />
-                  <h2>Arquivado</h2>
-                </S.Status>
-              )}
+                {/* STATUS DO LOTE */}
+                {specificStatus === 0 && (
+                  <S.Status>
+                    <Circle size={15} color="#44d663" weight="fill" />
+                    <h2>Disponível</h2>
+                  </S.Status>
+                )}
+                {specificStatus === 1 && (
+                  <S.Status>
+                    <Pause size={24} color="#ffffff" weight="fill" />
+                    <h2>Em andamento</h2>
+                  </S.Status>
+                )}
+                {specificStatus === 2 && status === 4 && (
+                  <S.Status>
+                    <CheckCircle size={24} weight="fill" />
+                    <h2>Arquivado</h2>
+                  </S.Status>
+                )}
               </S.FaseStatus>
-
 
               {/* BOTÃO DE FECHAR */}
               <S.Exit
@@ -464,31 +469,34 @@ export const LoteDetails = () => {
                 )}
 
                 {/* MARCAR COMO CONCLUÍDO */}
-                {specificStatus === 1 && (
-                  <S.ConcluirButton
-                    onClick={(e) => {
-                      e.preventDefault();
-                      setOpenEspecifModal(!openEspecifModal);
-                      setTitleModal({
-                        button: 'Marcar como concluído',
-                        title: `Deseja marcar o ${task?.title} como concluído?`,
-                      });
-                    }}
-                  >
-                    <div
-                      style={{
-                        display: 'flex',
-                        justifyContent: 'flex-start',
-                        gap: '8px',
-                        alignItems: 'center',
-                        marginLeft: '16px',
+                {specificStatus === 1 &&
+                  me != undefined &&
+                  assigners != undefined &&
+                  operadorEstaNoLote(assigners.map(user => user.id), me?.id) === true && (
+                    <S.ConcluirButton
+                      onClick={(e) => {
+                        e.preventDefault();
+                        setOpenEspecifModal(!openEspecifModal);
+                        setTitleModal({
+                          button: 'Marcar como concluído',
+                          title: `Deseja marcar o ${task?.title} como concluído?`,
+                        });
                       }}
                     >
-                      <CheckCircle size={24} weight="fill" />
-                      Marcar como concluído
-                    </div>
-                  </S.ConcluirButton>
-                )}
+                      <div
+                        style={{
+                          display: 'flex',
+                          justifyContent: 'flex-start',
+                          gap: '8px',
+                          alignItems: 'center',
+                          marginLeft: '16px',
+                        }}
+                      >
+                        <CheckCircle size={24} weight="fill" />
+                        Marcar como concluído
+                      </div>
+                    </S.ConcluirButton>
+                  )}
 
                 {user?.role === UserRole.MANAGER && (
                   <S.Botao onClick={handleAtribuirAlguem}>

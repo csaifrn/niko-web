@@ -76,13 +76,13 @@ const ModalContent = styled.div`
 
 export const ButtonGreen = styled.button`
   border: none;
-  color: ${({ theme }) => theme.colors['gray/700']};
+  color: ${({ theme }) => theme.colors['gray/900']};
   border-radius: 5px;
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 44px;
-  width: 100%;
+  padding: 16px 0px 16px 0px;
+  width: 150px;
   font-family: Rubik;
   background-color: ${({ theme }) => theme.colors['green/400']};
   cursor: pointer;
@@ -92,6 +92,9 @@ export const ButtonGreen = styled.button`
   &:active {
     background-color: ${({ theme }) => theme.colors['green/600']};
     transform: translateY(-5%) translateX(2%);
+  }
+  @media screen and (max-width: 767px){
+    width: 100%;
   }
 `;
 

@@ -1,4 +1,6 @@
+import { SharedState } from '../../context/SharedContext';
 import theme from '../../global/theme';
+import { UserRole } from '../../utils/userRole.enum';
 import * as S from './styles';
 import { useParams } from 'react-router-dom';
 
@@ -8,6 +10,7 @@ interface MenuProps {
 }
 
 export const MenuCoord = () => {
+  const { user, setUser } = SharedState();
   const { id } = useParams();
   const pathname = window.location.pathname;
   return (
@@ -47,20 +50,23 @@ export const MenuCoord = () => {
           <S.textIcon>Fases</S.textIcon>
         )}
       </S.link>
-
-      <S.link to={`/Categorias/${id}`}>
-        <S.MenuImg
-          src={
-            pathname === `/Categorias/${id}`
-              ? '/IconMenu/TagSimple/FillIcon.svg'
-              : '/IconMenu/TagSimple/RegularIcon.svg'
-          }
-        />
-        {pathname === `/Categorias/${id}` && (
-          <S.textIcon style={{ color: theme.colors['orange/400'] }}>Categorias</S.textIcon>
-        )}
-        {pathname !== `/Categorias/${id}` && <S.textIcon>Categorias</S.textIcon>}
-      </S.link>
+      
+      {/* Página de categorias */}
+      {user?.role === UserRole.MANAGER && (
+        <S.link to={`/Categorias/${id}`}>
+          <S.MenuImg
+            src={
+              pathname === `/Categorias/${id}`
+                ? '/IconMenu/TagSimple/FillIcon.svg'
+                : '/IconMenu/TagSimple/RegularIcon.svg'
+            }
+          />
+          {pathname === `/Categorias/${id}` && (
+            <S.textIcon style={{ color: theme.colors['orange/400'] }}>Classes</S.textIcon>
+          )}
+          {pathname !== `/Categorias/${id}` && <S.textIcon>Classes</S.textIcon>}
+        </S.link>
+      )}
     </S.MenuArea>
   );
 };

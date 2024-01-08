@@ -324,7 +324,7 @@ export const Status = styled.div`
   align-items: center;
   width: fit-content;
   background-color: ${({ theme }) => theme.colors['gray/500']};
-  padding: 0.5em;
+  padding: 0px 6px 0px 6px;
   border-radius: 3px;
   gap: 8px;
 `;

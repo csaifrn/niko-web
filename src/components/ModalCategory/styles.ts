@@ -97,6 +97,20 @@ export const Criar = styled.button`
   }
 `;
 
+export const CriarDesativado = styled.button`
+  height: 44px;
+  border-radius: 5px;
+  background-color: #25753B;
+  border: none;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Rubik';
+  color: ${({ theme }) => theme.colors['gray/700']};
+  font-weight: bold;
+`;
+
 export const Toaster = styled.div`
   position: fixed;
   display: flex;

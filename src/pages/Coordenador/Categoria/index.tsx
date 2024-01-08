@@ -29,7 +29,6 @@ const Categoria = () => {
   const [searchTerm, setSearchTerm] = useState<string>('');
   const [open, setOpen] = useState<boolean>(false);
   const { categories, isLoadingCategories } = useCategories();
-
   const [Categories, setCategories] = useState<Category[]>();
 
   const CategoriesMutate = useMutation(GetCategories, {

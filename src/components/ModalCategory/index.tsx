@@ -10,6 +10,9 @@ import toast from 'react-hot-toast';
 import { CreateCategory } from '../../api/services/categoria/create-category';
 import { EditCategory } from '../../api/services/categoria/edit-category';
 import theme from '../../global/theme';
+import { GetCategories } from '../../api/services/settlement/get-categories';
+import { Category } from '../../api/services/batches/get-batche/get.interface';
+import { useCategories } from '../../hooks/useCategories';
 
 interface ModalCategoriaProps {
   id?: string;
@@ -26,6 +29,15 @@ export const ModalCategory = (props: ModalCategoriaProps) => {
   const [nomeCat, setNomeCat] = useState<string>(props.nomeCat ? props.nomeCat : '');
   const [responseError] = useState('');
   const [validationFormError, setValidationFormError] = useState<ErrorsForm>({ name: '' });
+  const { categories, isLoadingCategories } = useCategories();
+  const [Categories, setCategories] = useState<Category[]>();
+  const [searchTerm, setSearchTerm] = useState<string>('');
+
+  const CategoriesMutate = useMutation(GetCategories, {
+    onSuccess: (data: Category[]) => {
+      setCategories(data);
+    },
+  });
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -58,7 +70,8 @@ export const ModalCategory = (props: ModalCategoriaProps) => {
   const categoryMutation = useMutation(CreateCategory, {
     onSettled: (data: any) => {
       if (data) {
-        toast.success('Categoria criada!');
+        toast.success('Classe criada!');
+        queryClient.invalidateQueries('categories');
         handleSucessCreate();
       } else {
         toast.error(data && data.message ? data.message : 'Algum erro ocorreu!');
@@ -69,7 +82,7 @@ export const ModalCategory = (props: ModalCategoriaProps) => {
   const categoryEditMutation = useMutation(EditCategory, {
     onSettled: (data: any) => {
       if (data) {
-        toast.success('Categoria atualizada!');
+        toast.success('Classe atualizada!');
         setNomeCat('');
         queryClient.invalidateQueries('categories');
         handleClose();
@@ -148,6 +161,32 @@ export const ModalCategory = (props: ModalCategoriaProps) => {
     }
   };
 
+  const removeDiacritics = (str: string): string => {
+    return str.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+  };
+
+  const filteredCat = !isLoadingCategories
+    ? categories?.filter((cat: Category) => {
+        const catName = removeDiacritics(cat.name.toLowerCase());
+        const search = removeDiacritics(searchTerm.toLowerCase());
+        return catName.includes(search);
+      })
+    : [];
+
+  const sortedCategories = filteredCat?.sort((a: Category, b: Category) => {
+    const nameA = removeDiacritics(a.name.toLowerCase());
+    const nameB = removeDiacritics(b.name.toLowerCase());
+    return nameA.localeCompare(nameB);
+  });
+
+  const sortedAndFilteredCategories = sortedCategories?.sort((a: Category, b: Category) => {
+    return a.name.localeCompare(b.name);
+  });
+
+  const Categorias = sortedAndFilteredCategories?.map((cat: Category) => {
+    return cat.name;
+  });
+
   return (
     <>
       <S.ModalBackdrop>
@@ -164,17 +203,28 @@ export const ModalCategory = (props: ModalCategoriaProps) => {
 
                 <S.FormCriar onSubmit={onSubmitCreate}>
                   <S.InputText
-                    placeholder="Nome da categoria..."
+                    placeholder="Nome da classe..."
                     onChange={(e) => setName(e.currentTarget.value)}
                     value={name}
                     name="name"
                     className="name"
                   />
+                  {Categorias?.includes(name) && (
+                    <p style={{ color: theme.colors['red/400'] }}>Já existe uma classe com este nome.</p>
+                  )}
+
+                  {name.length < 3 && (
+                    <p style={{ color: theme.colors['red/400'] }}>O nome da classe precisa ter ao menos 3 caracteres.</p>
+                  )}
                   {validationFormError.name && <ErrorMessage>{validationFormError.name}</ErrorMessage>}
                   {categoryMutation.isLoading ? (
                     <S.Criar type="submit" disabled>
                       <ReactLoading type="cylon" color="white" height={30} width={30} />
                     </S.Criar>
+                  ) : Categorias?.includes(name) || name.length < 3 ? (
+                    <S.CriarDesativado type="submit" disabled>
+                      Criar categoria
+                    </S.CriarDesativado>
                   ) : (
                     <S.Criar type="submit">Criar categoria</S.Criar>
                   )}
@@ -194,20 +244,24 @@ export const ModalCategory = (props: ModalCategoriaProps) => {
                 </S.NameClose>
                 <S.FormCriar onSubmit={onSubmitEditar}>
                   <S.InputText
-                    placeholder="Nome da categoria..."
+                    placeholder="Nome da classe..."
                     onChange={(e) => setNomeCat(e.currentTarget.value)}
                     value={nomeCat}
                   />
-                  {props.nomeCat === nomeCat && <p style={{color: theme.colors['red/400']}}>Por favor escolha um nome diferente do atual</p>}
+                  {Categorias?.includes(nomeCat) && (
+                    <p style={{ color: theme.colors['red/400'] }}>Já existe uma classe com este nome.</p>
+                  )}
 
-                  {nomeCat.length < 3 && <p style={{color: theme.colors['red/400']}}>O nome precisa ter ao menos 3 caracteres</p>}
+                  {nomeCat.length < 3 && (
+                    <p style={{ color: theme.colors['red/400'] }}>O nome da classe precisa ter ao menos 3 caracteres.</p>
+                  )}
 
                   {validationFormError.name && <ErrorMessage>{validationFormError.name}</ErrorMessage>}
                   {categoryEditMutation.isLoading ? (
                     <S.Criar type="submit" disabled>
                       <ReactLoading type="cylon" color="white" height={30} width={30} />
                     </S.Criar>
-                  ) : props.nomeCat === nomeCat ||  nomeCat.length < 3 ? (
+                  ) : Categorias?.includes(nomeCat) || nomeCat.length < 3 ? (
                     <S.CriarDesativado type="submit" disabled>
                       Editar categoria
                     </S.CriarDesativado>

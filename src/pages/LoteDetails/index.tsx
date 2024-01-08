@@ -472,7 +472,10 @@ export const LoteDetails = () => {
                 {specificStatus === 1 &&
                   me != undefined &&
                   assigners != undefined &&
-                  operadorEstaNoLote(assigners.map(user => user.id), me?.id) === true && (
+                  operadorEstaNoLote(
+                    assigners.map((user) => user.id),
+                    me?.id,
+                  ) === true && (
                     <S.ConcluirButton
                       onClick={(e) => {
                         e.preventDefault();

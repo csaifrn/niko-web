@@ -9,7 +9,7 @@ export type ResponseAddSettle = Batche;
 
 export interface ParamsDeleteSettle {
   id: string;
-  settlement_project_category_id: string[];
+  settlement_project_category_ids: string[];
 }
 
 export interface ResponseDeleteSettle {

@@ -117,7 +117,7 @@ const NameClose = styled.div`
 `;
 
 export const Titulo = styled.h2`
-  color: ${({ theme }) => theme.colors['white']};;
+  color: ${({ theme }) => theme.colors['white']};
 `;
 
 export const PendDivBlack = styled.div`
@@ -309,6 +309,7 @@ export const ConcluirLoteButton = styled.button`
   cursor: pointer;
   height: 44px;
   display: flex;
+  justify-content: center;
   gap: 0.5em;
   width: 100%;
   padding: 1em;

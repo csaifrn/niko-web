@@ -86,6 +86,7 @@ export const CloseFaseStatus = styled.div`
 
 export const FaseStatus = styled.div`
   display: flex;
+  justify-content: center;
   gap: 16px;
 `;
 

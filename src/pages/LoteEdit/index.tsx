@@ -15,7 +15,7 @@ import theme from '../../global/theme';
 import { SairSemSalvarModal } from '../../components/SairSemSalvarModal';
 import { ResponseSettle } from '../../api/services/settlement/query-settlement/get.interface';
 import { QuerySettles } from '../../api/services/settlement/query-settlement';
-import { DeleteBatcheSettle, PostBatcheSettle } from '../../api/services/batches/patch-settle';
+import { DeleteBatcheSettle, PatchBatcheSettle, PostBatcheSettle } from '../../api/services/batches/patch-settle';
 
 interface Option {
   value: string;
@@ -110,7 +110,19 @@ const LoteEdit = () => {
   });
 
   const mutateSettle = useMutation(PostBatcheSettle, {
-    onSuccess: (data) => {},
+    onSuccess: () => {},
+    onError: (err: ApiError) => {
+      toast.error(err.response?.data.message ? err.response?.data.message : 'Erro na execução');
+    },
+    onSettled: () => {
+      navigate(`/Lote/${id}`);
+    },
+  });
+
+  const mutateSettleAll = useMutation(PatchBatcheSettle, {
+    onSuccess: () => {
+      console.log('Deu bom');
+    },
     onError: (err: ApiError) => {
       toast.error(err.response?.data.message ? err.response?.data.message : 'Erro na execução');
     },
@@ -120,7 +132,7 @@ const LoteEdit = () => {
   });
 
   const mutateDeleteSettle = useMutation(DeleteBatcheSettle, {
-    onSuccess: (data) => {},
+    onSuccess: () => {},
     onError: (err: ApiError) => {
       toast.error(err.response?.data.message ? err.response?.data.message : 'Erro na execução');
     },
@@ -163,43 +175,36 @@ const LoteEdit = () => {
         digital_files_count,
         physical_files_count,
       });
+      
+      const newSettle = selectedOptions.filter(
+        (settleSelected) => !categories.some((settle) => settle.id === settleSelected.value),
+      );
+      const deleteSettle = categories.filter(
+        (settle) => !selectedOptions.some((settleSelected) => settleSelected.value === settle.id),
+      );
 
-      const deleteSettle = categories.filter((categ) => {
-        console.log('selectedOptions', selectedOptions);
-        const cat = selectedOptions.map((settle) => {
-          if (settle.value === categ.id) {
-            return true;
-          }
-        });
-        if (cat.filter((cat) => cat === undefined).length === cat.length) {
-          return categ;
-        }
-      });
-      if (deleteSettle.length > 0) {
+      const newIds = newSettle.map((settle) => settle.value);
+      const deleteIds = deleteSettle.map((settle) => settle.id);
+
+      if (deleteSettle.length > 0 && newSettle.length === 0) {
         mutateDeleteSettle.mutate({
           id,
-          settlement_project_category_id: [...deleteSettle.map((cat) => cat.id)],
+          settlement_project_category_ids: deleteIds,
         });
-      }
-
-      const newSattle = selectedOptions.filter((settle) => {
-        const cat = categories.map((cate) => {
-          if (cate.id === settle.value) {
-            return true;
-          }
-        });
-        if (cat.filter((cat) => cat === undefined).length === cat.length) {
-          return settle;
-        }
-      });
-      if (newSattle.length > 0) {
-        await mutateSettle.mutate({
+      } else if (newSettle.length > 0 && deleteSettle.length === 0) {
+        mutateSettle.mutate({
           id,
-          settlementProjectCategories: [...newSattle.map((sattle) => sattle.value)],
+          settlementProjectCategories: newIds,
+        });
+      } else if (newSettle.length > 0 && deleteSettle.length > 0) {
+        mutateSettleAll.mutate({
+          id,
+          settlementProjectCategories: newIds,
+          settlement_project_category_ids: deleteIds,
         });
       }
       try {
-        await Promise.all([mutateSettle, mutateDeleteSettle]);
+        await Promise.all([mutateSettle, mutateDeleteSettle, mutateSettleAll]);
       } catch (error) {
         toast.error('Aconteceu um erro na mudança de categorias!');
       }
@@ -340,7 +345,7 @@ const LoteEdit = () => {
                 classNamePrefix="react-select"
                 onInputChange={setUserInput}
                 inputValue={userInput}
-                onChange={(e: any, action: any) => setSelectedOptions(e)}
+                onChange={(e: any) => setSelectedOptions(e)}
                 options={options}
                 value={selectedOptions}
                 isLoading={false}

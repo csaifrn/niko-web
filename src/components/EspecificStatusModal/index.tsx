@@ -440,13 +440,19 @@ export const EspecifcModal = (props: EspecifModalProps) => {
             )}
 
             <S.RecusedAvancar>
+
+              {/* Cancelar */}
+              <S.Recused onClick={handleClose}>
+                <S.Texto>Cancelar</S.Texto>
+              </S.Recused>
+
               {/* Botão de excluir lote */}
               {props.button === 'Excluir lote' && (
-                <S.PegarLoteButton onClick={() => ExcluirLote()}>
+                <S.ExcluirLoteButton onClick={() => ExcluirLote()}>
                   <Trash size={20} weight="fill" />
                   {/* {props.button === 'Marcar como concluído' && <img src='/finished-icon.svg' />} */}
                   <S.Texto>{props.button}</S.Texto>
-                </S.PegarLoteButton>
+                </S.ExcluirLoteButton>
               )}
 
               {props.button === 'Pegar lote' && (
@@ -469,10 +475,6 @@ export const EspecifcModal = (props: EspecifModalProps) => {
                   )}
                 </S.ConcluirLoteButton>
               )}
-
-              <S.Recused onClick={handleClose}>
-                <S.Texto>Cancelar</S.Texto>
-              </S.Recused>
             </S.RecusedAvancar>
           </S.ModalContent>
         </S.ModalArea>

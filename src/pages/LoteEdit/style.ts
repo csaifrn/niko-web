@@ -345,11 +345,51 @@ export const SalvarEditButton = styled.button`
   }
 `;
 
-export const Switch = styled.input`
-  width: 43.2px;
-  height: 24px;
-  /* Inside auto layout */
-  flex: none;
-  order: 1;
-  flex-grow: 0;
+export const Prioridade = styled.div`
+  display: flex;
+  gap: 16px;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+`;
+
+export const SwitchButton = styled.label`
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+`;
+
+export const Slider = styled.span`
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: ${({ theme }) => theme.colors['gray/500']};
+  border-radius: 34px;
+  cursor: pointer;
+
+  &:before {
+    position: absolute;
+    content: '';
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    border-radius: 50%;
+    transition: 0.4s;
+  }
+`;
+
+export const Input = styled.input.attrs({ type: 'checkbox' })`
+  display: none;
+  &:checked + ${Slider} {
+    background-color: ${({ theme }) => theme.colors['green/400']};
+  }
+
+  &:checked + ${Slider}:before {
+    transform: translateX(26px);
+  }
 `;

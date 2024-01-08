@@ -192,7 +192,7 @@ const Recused = styled.button`
   height: 44px;
   border-radius: 5px;
   padding: 0 16px;
-  background-color: rgb(207, 34, 34);
+  background-color: ${({ theme }) => theme.colors['gray/700']};
   border: none;
   cursor: pointer;
   color: ${({ theme }) => theme.colors['gray/700']};
@@ -201,10 +201,10 @@ const Recused = styled.button`
   align-items: center;
   justify-content: center;
   &:hover {
-    filter: brightness(0.9);
+    background-color: ${({ theme }) => theme.colors['gray/900']};
   }
   &:active {
-    filter: brightness(0.9);
+    background-color: ${({ theme }) => theme.colors['gray/900']};
     transform: translateY(-5%) translateX(2%);
   }
 `;
@@ -268,17 +268,40 @@ export const PegarLoteButton = styled.button`
   width: 100%;
   padding: 1em;
   align-items: center;
+  justify-content: center;
   border-radius: 5px;
-  background-color: ${({ theme }) => theme.colors['gray/700']};
+  background-color: ${({ theme }) => theme.colors['gray/900']};
   border: none;
   color: ${({ theme }) => theme.colors['white']};
   font-family: 'Rubik';
   &:hover {
-    background-color: ${({ theme }) => theme.colors['gray/900']};
+    background-color: ${({ theme }) => theme.colors['gray/700']};
   }
   &:active {
-    background-color: ${({ theme }) => theme.colors['gray/900']};
+    background-color: ${({ theme }) => theme.colors['gray/700']};
     transform: translateY(-5%) translateX(2%);
+  }
+`;
+
+export const ExcluirLoteButton = styled.button`
+  cursor: pointer;
+  height: 44px;
+  display: flex;
+  gap: 0.5em;
+  width: 100%;
+  padding: 1em;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+  background-color: ${({ theme }) => theme.colors['red/700']};
+  border: none;
+  color: ${({ theme }) => theme.colors['white']};
+  font-family: 'Rubik';
+  &:hover {
+    filter: brightness(0.9);
+  }
+  &:active {
+    filter: brightness(0.9);
   }
 `;
 

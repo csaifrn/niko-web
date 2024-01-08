@@ -32,7 +32,7 @@ export const Wrapper = styled.div`
   @media screen and (min-width: 767px) {
     margin: 10em 0em 0em 0em;
   }
-  margin: 8em 2em 0em 2em;
+  margin: 9em 2em 0em 2em;
   width: 100%;
   overflow: hidden;
   min-height: 550px;

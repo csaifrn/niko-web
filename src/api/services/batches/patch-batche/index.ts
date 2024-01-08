@@ -18,12 +18,14 @@ export const PatchBatchePriority = async ({ id, priority }: PatchBatcheParams): 
 export const PatchBatcheEdit = async ({
   id,
   title,
+  priority,
   physical_files_count,
   digital_files_count,
   storage_location,
 }: PatchBatcheParams): Promise<PatchResponseEditBatch> => {
   const Batche = await axiosInstance.patch<PatchResponseEditBatch>(`/Batches/${id}`, {
     title,
+    priority,
     digital_files_count,
     physical_files_count,
     storage_location,

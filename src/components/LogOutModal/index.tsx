@@ -55,7 +55,7 @@ export const LogOutModal = (props: SairSemSalvarModalProps) => {
             <S.NameClose>
               <h2>Deseja sair do Niko? Você terá que fazer login novamente</h2>
             </S.NameClose>
-            <S.Recused onClick={handleClose}>Não, não quero.</S.Recused>
+            <S.Recused onClick={handleClose}>Cancelar</S.Recused>
             <S.Delete
               onClick={() => {
                 handleSignOut();

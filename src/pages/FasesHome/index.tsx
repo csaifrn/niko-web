@@ -1,10 +1,9 @@
-import { Main, FasePage, CardFaseMaisTooltip, TitleFase } from './styles';
+import { Main, FasePage, TitleFase, CardFaseMaisTitulo } from './styles';
 import { CardFase } from '../../components/Card';
 import MenuCoord from '../../components/MenuCoord';
 import Menu from '../../components/Menu';
 import { Link, useParams } from 'react-router-dom';
 import theme from '../../global/theme';
-import { Tooltip } from 'react-tooltip';
 
 const Home = () => {
   const { id } = useParams();
@@ -14,7 +13,6 @@ const Home = () => {
       <Menu area={`/Fase/${id}`} id_projeto={id}></Menu>
       <MenuCoord />
       <Main>
-        
         {/* <CardFaseMaisTooltip className="CardRecepcaoTooltip">
           <Link to={`Board/Recebidos`} style={{ textDecoration: 'none' }}>
             <CardFase
@@ -32,8 +30,8 @@ const Home = () => {
           />
         </CardFaseMaisTooltip> */}
 
-        <CardFaseMaisTooltip className="CardPreparoTooltip">
-          {/* <TitleFase>Preparo</TitleFase> */}
+        <CardFaseMaisTitulo>
+          <TitleFase>Preparo</TitleFase>
           <Link to={`Board/Preparo`} style={{ textDecoration: 'none' }}>
             <CardFase
               fase={0}
@@ -42,15 +40,10 @@ const Home = () => {
               srcImgIcon="/IconsClean.svg"
             />
           </Link>
-          <Tooltip
-            children={<p style={{ fontSize: '12px', fontFamily: 'Rubik' }}>Preparo</p>}
-            anchorSelect=".CardPreparoTooltip"
-            place="top"
-          />
-        </CardFaseMaisTooltip>
+        </CardFaseMaisTitulo>
 
-        <CardFaseMaisTooltip className="CardCatalogacaoTooltip" style={{ height: '100%' }}>
-          {/* <TitleFase>Catalogação</TitleFase> */}
+        <CardFaseMaisTitulo style={{ height: '100%' }}>
+          <TitleFase>Catalogação</TitleFase>
           <Link to={`Board/Catalogação`} style={{ textDecoration: 'none' }}>
             <CardFase
               fase={1}
@@ -59,15 +52,10 @@ const Home = () => {
               srcImgIcon="/IconsBookmark.svg"
             />
           </Link>
-          <Tooltip
-            children={<p style={{ fontSize: '12px', fontFamily: 'Rubik' }}>Catalogação</p>}
-            anchorSelect=".CardCatalogacaoTooltip"
-            place="top"
-          />
-        </CardFaseMaisTooltip>
+        </CardFaseMaisTitulo>
 
-        <CardFaseMaisTooltip className="CardDigitalizacaoTooltip">
-          {/* <TitleFase>Digitalização</TitleFase> */}
+        <CardFaseMaisTitulo>
+          <TitleFase>Digitalização</TitleFase>
           <Link to={`Board/Digitalização`} style={{ textDecoration: 'none' }}>
             <CardFase
               fase={2}
@@ -76,15 +64,10 @@ const Home = () => {
               srcImgIcon="/IconsScanner.svg"
             />
           </Link>
-          <Tooltip
-            children={<p style={{ fontSize: '12px', fontFamily: 'Rubik' }}>Digitalização</p>}
-            anchorSelect=".CardDigitalizacaoTooltip"
-            place="top"
-          />
-        </CardFaseMaisTooltip>
+        </CardFaseMaisTitulo>
 
-        <CardFaseMaisTooltip className="CardUploadTooltip">
-          {/* <TitleFase>Upload</TitleFase> */}
+        <CardFaseMaisTitulo>
+          <TitleFase>Upload</TitleFase>
           <Link to={`Board/Upload`} style={{ textDecoration: 'none' }}>
             <CardFase
               fase={3}
@@ -93,15 +76,10 @@ const Home = () => {
               srcImgIcon="/IconsUpload.svg"
             />
           </Link>
-          <Tooltip
-            children={<p style={{ fontSize: '12px', fontFamily: 'Rubik' }}>Upload</p>}
-            anchorSelect=".CardUploadTooltip"
-            place="top"
-          />
-        </CardFaseMaisTooltip>
+        </CardFaseMaisTitulo>
 
-        <CardFaseMaisTooltip className="CardArquivTooltip">
-          {/* <TitleFase>Arquivamento</TitleFase> */}
+        <CardFaseMaisTitulo>
+          <TitleFase>Arquivamento</TitleFase>
           <Link to={`Board/Arquivamento`} style={{ textDecoration: 'none' }}>
             <CardFase
               fase={4}
@@ -110,12 +88,7 @@ const Home = () => {
               srcImgIcon="/IconsArquivamento.svg"
             />
           </Link>
-          <Tooltip
-            children={<p style={{ fontSize: '12px', fontFamily: 'Rubik' }}>Arquivamento</p>}
-            anchorSelect=".CardArquivTooltip"
-            place="top"
-          />
-        </CardFaseMaisTooltip>
+        </CardFaseMaisTitulo>
       </Main>
     </FasePage>
   );

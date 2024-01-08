@@ -10,7 +10,7 @@ import { ApiError } from '../../api/services/authentication/signIn/signIn.interf
 import { GetBatche } from '../../api/services/batches/get-batche';
 import Splash from '../Splash';
 import { validationPatch, validationSearch } from './validation';
-import { PatchBatcheEdit } from '../../api/services/batches/patch-batche';
+import { PatchBatcheEdit, PatchBatchePriority } from '../../api/services/batches/patch-batche';
 import theme from '../../global/theme';
 import { SairSemSalvarModal } from '../../components/SairSemSalvarModal';
 import { ResponseSettle } from '../../api/services/settlement/query-settlement/get.interface';
@@ -21,6 +21,12 @@ interface Option {
   value: string;
   label: string;
 }
+
+// interface Prioridade {
+//   id: string;
+//   prioridade: boolean;
+//   priorityOnChange: (e: boolean) => void;
+// }
 
 const LoteEdit = () => {
   const navigate = useNavigate();
@@ -34,6 +40,32 @@ const LoteEdit = () => {
   const [userInput, setUserInput] = useState('');
   const [options, setOptions] = useState<Option[]>([]);
   const [selectedOptions, setSelectedOptions] = useState<Option[]>([]);
+  const [priority, setPriority] = useState(false);
+
+  const Priority = useMutation(PatchBatchePriority, {
+    onSuccess: (data) => {
+      toast.success(`Prioridade ${data.priority ? 'foi ativada' : 'foi desativada'}!`);
+    },
+    onError: (error: ApiError) => {
+      toast.error(error.response!.data.message);
+    },
+  });
+
+  const handlePrioridadeCheck = () => {
+    if (priority && id) {
+      setPriority(false);
+      Priority.mutate({
+        id,
+        priority: false,
+      });
+    } else if(id) {
+      setPriority(true);
+      Priority.mutate({
+        id,
+        priority: true,
+      });
+    }
+  };
 
   const mutateQueryCategories = useMutation(QuerySettles, {
     onSuccess: (data: ResponseSettle) => {
@@ -50,11 +82,15 @@ const LoteEdit = () => {
         toast.error(error.response.data.message);
       }
     },
+    onSettled: () => {
+      navigate(`/Lote/${id}`);
+    },
   });
 
   const beforeBatch = useMutation(GetBatche, {
     onSuccess: (data: Batche) => {
       setTitle(data.title);
+      setPriority(data.priority)
       setCategories(data.settlement_project_categories);
       setPhysical_files_count(data.physical_files_count);
       setDigital_files_count(data.digital_files_count);
@@ -135,9 +171,11 @@ const LoteEdit = () => {
       patchBatch.mutate({
         id,
         title,
+        priority,
         digital_files_count,
         physical_files_count,
       });
+      
       const newSettle = selectedOptions.filter(
         (settleSelected) => !categories.some((settle) => settle.id === settleSelected.value),
       );
@@ -166,7 +204,7 @@ const LoteEdit = () => {
         });
       }
       try {
-        await Promise.all([mutateSettle, mutateDeleteSettle]);
+        await Promise.all([mutateSettle, mutateDeleteSettle, mutateSettleAll]);
       } catch (error) {
         toast.error('Aconteceu um erro na mudança de categorias!');
       }
@@ -247,6 +285,16 @@ const LoteEdit = () => {
 
             <h2>Título</h2>
             <S.NameInput type="text" value={title} onChange={(e) => setTitle(e.currentTarget.value)} />
+
+            {/* PRIORIDADE */}
+            <S.Prioridade>
+              <h2>Prioridade</h2>
+
+              <S.SwitchButton>
+                <S.Input checked={priority} onChange={(e) => setPriority(!priority)} />
+                <S.Slider />
+              </S.SwitchButton>
+            </S.Prioridade>
 
             {/* ARQUIVOS */}
             <S.Arquivos>

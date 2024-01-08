@@ -5,12 +5,10 @@ export const BlockAssigner = styled.div`
   overflow: hidden;
   height: 2em;
   padding: 0 0 0 0.5em;
-
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 0.5em;
-
   border-radius: 3px;
 `;
 

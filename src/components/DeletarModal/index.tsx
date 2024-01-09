@@ -6,7 +6,7 @@ import { ApiError } from '../../api/services/authentication/signIn/signIn.interf
 import toast from 'react-hot-toast';
 
 interface DeletarModalProps {
-  id: string;
+  id?: string;
   title: string;
   close: () => void;
   deleteFunction?: () => void;

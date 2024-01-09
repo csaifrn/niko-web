@@ -24,7 +24,7 @@ const removeDiacritics = (str: string): string => {
   return str.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
 };
 
-const Categoria = () => {
+const Classes = () => {
   const { id } = useParams();
   const [searchTerm, setSearchTerm] = useState<string>('');
   const [open, setOpen] = useState<boolean>(false);
@@ -66,7 +66,7 @@ const Categoria = () => {
   return (
     <>
       <div style={{ display: 'flex', justifyContent: 'center' }}>
-        <Menu area={`/Categoria/${id}`} id_projeto={id}></Menu>
+        <Menu area={`/Classes/${id}`} id_projeto={id}></Menu>
         <MenuCoord />
         <S.CardsArea>
           <ButtonGreen onClick={() => setOpen(!open)}>Criar classe</ButtonGreen>
@@ -84,4 +84,5 @@ const Categoria = () => {
   );
 };
 
-export default Categoria;
+export default Classes
+

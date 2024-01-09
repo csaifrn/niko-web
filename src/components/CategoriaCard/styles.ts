@@ -115,28 +115,33 @@ const Icon = styled.img`
   width: 18px;
 `;
 
-export const ButtonEdit = styled.button`
+export const ClassTitle = styled.p`
+  font-size: 16px;
+  @media screen and (max-width: 767px){
+    font-size: 12px;
+  }
+`;
+
+export const ButtonArea = styled.button`
   background-color: transparent;
   cursor: pointer;
-  //position: relative;
   padding: 8px;
   display: flex;
   justify-content: center;
   align-items: center;
   transition: all 300ms;
   border-radius: 3px;
+  border: none;
   :hover {
     background-color: ${({ theme }) => theme.colors['gray/400']};
   }
-  /* :hover div {
-    visibility: visible;
-    opacity: 1;
-    display: block;
-  } */
-  
-  border: none;
 `;
 
+export const ClasseCardButtons = styled.div`
+  display: flex;
+  gap: 8px;
+
+`;
 
 const TotalFase = styled.p`
   color: white;

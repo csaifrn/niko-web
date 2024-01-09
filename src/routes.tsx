@@ -18,7 +18,7 @@ const Catalogacao = lazy(() => import('./pages/FasesEspecificsPages/Catalogacao'
 const Digitalizacao = lazy(() => import('./pages/FasesEspecificsPages/Digitalizacao'));
 const Upload = lazy(() => import('./pages/FasesEspecificsPages/Upload'));
 const Arquivamento = lazy(() => import('./pages/FasesEspecificsPages/Arquivamento'));
-const Categorias = lazy(() => import('./pages/Coordenador/Categoria'));
+const Classes = lazy(() => import('./pages/Coordenador/Classes'));
 const OperadoresPage = lazy(() => import('./pages/Coordenador/Operador'));
 const Perfil = lazy(() => import('./pages/Perfil'));
 const Cadastro = lazy(() => import('./pages/Cadastro'));
@@ -57,7 +57,7 @@ const Rotas = () => {
         <Route path="Fase/:id/Board/Catalogação" element={<Catalogacao />} />
         <Route path="Fase/:id/Board/Digitalização" element={<Digitalizacao />} />
         <Route path="/Operadores/:id" element={<OperadoresPage />} />
-        <Route path="/Categorias/:id" element={<Categorias />} />
+        <Route path="/Classes/:id" element={<Classes />}/>
         <Route path="Fase/:id/Board/Upload" element={<Upload />} />
         <Route path={`/Lote/:id`} element={<LoteDetails />} />
         <Route path={`/Lote/:id/Edit`} element={<LoteEdit  />} />

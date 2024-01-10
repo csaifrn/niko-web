@@ -9,7 +9,7 @@ interface ButtonProps {
   data: any;
 }
 
-export const ButtonCSV = ({ children, name, data }: ButtonProps) => {
+export const ButtonCSV = ({ children, data }: ButtonProps) => {
   const [modalCSV, setModalCSV] = useState(false);
 
   return (

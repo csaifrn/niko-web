@@ -53,18 +53,18 @@ export const MenuCoord = () => {
       
       {/* Página de categorias */}
       {user?.role === UserRole.MANAGER && (
-        <S.link to={`/Categorias/${id}`}>
+        <S.link to={`/Classes/${id}`}>
           <S.MenuImg
             src={
-              pathname === `/Categorias/${id}`
+              pathname === `/Classes/${id}`
                 ? '/IconMenu/TagSimple/FillIcon.svg'
                 : '/IconMenu/TagSimple/RegularIcon.svg'
             }
           />
-          {pathname === `/Categorias/${id}` && (
+          {pathname === `/Classes/${id}` && (
             <S.textIcon style={{ color: theme.colors['orange/400'] }}>Classes</S.textIcon>
           )}
-          {pathname !== `/Categorias/${id}` && <S.textIcon>Classes</S.textIcon>}
+          {pathname !== `/Classes/${id}` && <S.textIcon>Classes</S.textIcon>}
         </S.link>
       )}
     </S.MenuArea>

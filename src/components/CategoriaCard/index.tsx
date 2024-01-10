@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import * as S from './styles';
 import { DeletarModal } from '../DeletarModal';
 import { Tag } from '../../api/services/tags/get-tags/get.interface';
-import { PencilSimple } from '@phosphor-icons/react';
+import { PencilSimple, Trash } from '@phosphor-icons/react';
 import theme from '../../global/theme';
 import { Tooltip } from 'react-tooltip';
 import { ModalCategory } from '../ModalCategory';
@@ -60,20 +60,34 @@ const CategoriaCard = (Categoria: Tag) => {
         <S.CardA>
           <S.CategoriaClick>
             <S.CabecarioCategoria>
-              <p>{categoria.name}</p>
-              <S.ButtonEdit className="EditarTooltip">
-                <PencilSimple
-                  onClick={() => setOpen(!openModal)}
-                  size={24}
-                  weight="fill"
-                  color={theme.colors['white']}
-                />
-                <Tooltip
-                  children={<p style={{ fontSize: '12px', fontFamily: 'Rubik' }}>Editar categoria</p>}
-                  anchorSelect=".EditarTooltip"
-                  place="bottom"
-                />
-              </S.ButtonEdit>
+              <S.ClassTitle>{categoria.name}</S.ClassTitle>
+              <S.ClasseCardButtons>
+                {/* Botão de Editar Categoria */}
+                <S.ButtonArea className="EditarTooltip">
+                  <PencilSimple
+                    onClick={() => setOpen(!openModal)}
+                    size={24}
+                    weight="fill"
+                    color={theme.colors['white']}
+                  />
+                  <Tooltip
+                    children={<p style={{ fontSize: '12px', fontFamily: 'Rubik' }}>Editar classe</p>}
+                    anchorSelect=".EditarTooltip"
+                    place="bottom"
+                  />
+                </S.ButtonArea>
+
+                {/* Botão de Excluir Categoria */}
+                <S.ButtonArea className="ExcluirTooltip">
+                  <Trash onClick={() => setModal(!modal)} size={24} weight="fill" color={theme.colors['white']} />
+                  <Tooltip
+                    children={<p style={{ fontSize: '12px', fontFamily: 'Rubik' }}>Excluir classe</p>}
+                    anchorSelect=".ExcluirTooltip"
+                    place="bottom"
+                  />
+                </S.ButtonArea>
+              </S.ClasseCardButtons>
+
               {prioridade && (
                 <S.Prioridade>
                   <p>Prioridade</p>
@@ -115,7 +129,7 @@ const CategoriaCard = (Categoria: Tag) => {
           refetch={() => CategoriesMutate.mutate()}
         />
       )}
-      {modal && <DeletarModal title={'Deletar Categoria?'} close={handleClose}></DeletarModal>}
+      {modal && <DeletarModal id ={categoria.id} title={`Deseja excluir a classe ${categoria.name}?`} close={handleClose}></DeletarModal>}
     </>
   );
 };

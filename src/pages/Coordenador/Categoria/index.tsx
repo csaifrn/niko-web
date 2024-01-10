@@ -73,9 +73,7 @@ const Categoria = () => {
         <S.CardsArea>
           <div style={{ display: 'flex', gap: '1em' }}>
             <ButtonGreen onClick={() => setOpen(!open)}>Criar classe</ButtonGreen>
-            <ButtonCSV data={categories} name="Data">
-              Baixar CSV: Classes
-            </ButtonCSV>
+            <ButtonCSV data={categories}>Baixar CSV: Classes</ButtonCSV>
           </div>
 
           <Search searchTerm={searchTerm} handleSearchChange={handleSearchChange} />

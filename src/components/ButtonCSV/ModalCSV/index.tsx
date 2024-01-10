@@ -11,7 +11,6 @@ interface Props {
   close: () => void;
   refetch?: () => void;
   data: any;
-  name: string;
 }
 
 interface Option {

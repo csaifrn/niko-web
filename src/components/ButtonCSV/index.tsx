@@ -5,7 +5,6 @@ import { ModalCSV } from './ModalCSV';
 
 interface ButtonProps {
   children: ReactNode;
-  name: string;
   name_column?: string;
   data: any;
 }
@@ -16,7 +15,7 @@ export const ButtonCSV = ({ children, name, data }: ButtonProps) => {
   return (
     <>
       <ButtonGray onClick={() => setModalCSV(true)}>{children}</ButtonGray>
-      {modalCSV && <ModalCSV data={data} name={name} close={() => setModalCSV(!modalCSV)} />}
+      {modalCSV && <ModalCSV data={data} close={() => setModalCSV(!modalCSV)} />}
     </>
   );
 };

@@ -36,7 +36,7 @@ export const ModalCSV = (props: Props) => {
       label: attribute === 'name' ? 'Nome' : attribute === 'created_at' ? 'Criado em' : 'Identificador',
     }));
 
-  const [selectedOptions, setSelectedOptions] = useState<Option[]>(options);
+  const [selectedOptions, setSelectedOptions] = useState<Option[]>([]);
   const [validationErrors, setValidationErrors] = useState<ValidationErrors>({});
 
   const validationSchema = Yup.object().shape({
@@ -54,6 +54,8 @@ export const ModalCSV = (props: Props) => {
         if (value === 'created_at' && item[value]) {
           selectedItem[label] = format(new Date(item[value]), "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
         } else if (value === 'name') {
+          selectedItem[label] = item[value];
+        } else if (value === 'id') {
           selectedItem[label] = item[value];
         }
       });

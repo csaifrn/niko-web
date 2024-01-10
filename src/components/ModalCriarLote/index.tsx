@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect } from 'react';
 import * as S from './styles';
 import { ErrorMessage } from '../../pages/Login/styles';
 import { validationLoginSchema, validationSearch } from './validation';
@@ -22,10 +22,9 @@ interface Options {
 }
 
 export const ModalCriarLote = (props: ModalCriarProps) => {
-  const [categoria, setCategoria] = useState<any>(null);
   const [closing, setClosing] = useState(false);
-  const [options, setOptions] = useState<Options[]>([]);
-  const [name, setName] = useState('');
+  const [, setOptions] = useState<Options[]>([]);
+  const [name] = useState('');
   const categorias = useMutation(SeachCategoria, {
     onSuccess: (data: SeachCategoriaResponseBatche) => {
       setOptions([]);

@@ -28,12 +28,24 @@ export const ModalCSV = (props: Props) => {
   const [title, setTitle] = useState('');
   const [userInput, setUserInput] = useState('');
 
-  const attributeNames = Object.keys(props.data[0] || {}); // Assume que há pelo menos um objeto no array de dados
+  const attributeNames = Object.keys(props.data[0] || {});
   const options: Option[] = attributeNames
-    .filter((attribute) => attribute === 'name' || attribute === 'created_at' || attribute === 'id')
+    .filter(
+      (attribute) =>
+        attribute === 'name' || attribute === 'created_at' || attribute === 'id' || attribute === 'updated_at',
+    )
     .map((attribute) => ({
       value: attribute,
-      label: attribute === 'name' ? 'Nome' : attribute === 'created_at' ? 'Criado em' : 'Identificador',
+      label:
+        attribute === 'name'
+          ? 'Nome'
+          : attribute === 'created_at'
+          ? 'Data de criação'
+          : attribute === 'id'
+          ? 'Identificador'
+          : attribute === 'updated_at'
+          ? 'Data de modificação'
+          : '',
     }));
 
   const [selectedOptions, setSelectedOptions] = useState<Option[]>([]);
@@ -52,6 +64,8 @@ export const ModalCSV = (props: Props) => {
         const { value, label } = selectedOption;
 
         if (value === 'created_at' && item[value]) {
+          selectedItem[label] = format(new Date(item[value]), "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
+        } else if (value === 'updated_at') {
           selectedItem[label] = format(new Date(item[value]), "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
         } else if (value === 'name') {
           selectedItem[label] = item[value];

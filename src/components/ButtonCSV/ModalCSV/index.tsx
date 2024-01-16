@@ -27,6 +27,15 @@ export const ModalCSV = (props: Props) => {
   const [closing, setClosing] = useState(false);
   const [title, setTitle] = useState('');
   const [userInput, setUserInput] = useState('');
+  const date = new Date();
+
+  function formatarData(data: Date): string {
+    const dia = String(data.getDate()).padStart(2, '0');
+    const mes = String(data.getMonth() + 1).padStart(2, '0'); // Lembrando que os meses começam do zero
+    const ano = String(data.getFullYear());
+
+    return `${dia}-${mes}-${ano}`;
+  }
 
   const attributeNames = Object.keys(props.data[0] || {});
   const options: Option[] = attributeNames
@@ -84,7 +93,13 @@ export const ModalCSV = (props: Props) => {
 
     const encodedCsv = new TextEncoder().encode(csv); // Codificar como UTF-8
     const csvData = new Blob([encodedCsv], { type: 'text/csv;charset=utf-8;' });
-    FileSaver.saveAs(csvData, `${title}.csv`);
+
+    try {
+      FileSaver.saveAs(csvData, `${title + '-' + formatarData(date)}.csv`);
+      handleClose();
+    } catch (err) {
+      console.warn(err);
+    }
   };
 
   const handleSubmit = async () => {

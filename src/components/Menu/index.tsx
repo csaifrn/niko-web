@@ -120,18 +120,18 @@ export const Menu = (props: MenuProps) => {
               
               {/* Página de categorias */}
               {user?.role === UserRole.MANAGER && (
-                <MenuC.link to={`/Categorias/${id}`}>
+                <MenuC.link to={`/Classes/${id}`}>
                   <MenuC.MenuImg
                     src={
-                      pathname === `/Categorias/${id}`
+                      pathname === `/Classes/${id}`
                         ? '/IconMenu/TagSimple/FillIcon.svg'
                         : '/IconMenu/TagSimple/RegularIcon.svg'
                     }
                   />
-                  {pathname === `/Categorias/${id}` && (
+                  {pathname === `/Classes/${id}` && (
                     <MenuC.textIcon style={{ color: theme.colors['orange/400'] }}>Classes</MenuC.textIcon>
                   )}
-                  {pathname !== `/Categorias/${id}` && <MenuC.textIcon>Classes</MenuC.textIcon>}
+                  {pathname !== `/Classes/${id}` && <MenuC.textIcon>Classes</MenuC.textIcon>}
                 </MenuC.link>
               )}
             </S.MenuDesk>

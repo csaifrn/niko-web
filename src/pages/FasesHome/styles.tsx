@@ -15,7 +15,7 @@ export const FasePage = styled.div`
   height: 80vh;
   display: flex;
   justify-content: center;
-  margin-bottom: 18em;
+  margin-bottom: 22em;
   @media screen and (min-width: 767px) {
     margin-bottom: 18em;
   }

@@ -45,22 +45,23 @@ const Rotas = () => {
         {/* Páginas que precisam de token */}
         <Route path="/Perfil/:id" element={<Perfil />} />
         <Route path="Painel/:id" element={<Painel />} />
-        {/* <Route path="/Projetos" element={<Projetos />} /> */}
         <Route path="/CriarProjeto" element={<CreateProjeto />} />
-        <Route path="/Fase/:id" element={<FasesHome />} />
+        <Route path="/Fase" element={<FasesHome />} />
+        <Route path="Fase/Board/Arquivamento" element={<Arquivamento />} />
+        <Route path="Fase/Board/Preparo" element={<Preparo />} />
+        <Route path="Fase/Board/Catalogação" element={<Catalogacao />} />
+        <Route path="Fase/Board/Digitalização" element={<Digitalizacao />} />
+        <Route path="/Operadores" element={<OperadoresPage />} />
+        <Route path="/Classes" element={<Classes />} />
+        <Route path="Fase/Board/Upload" element={<Upload />} />
+        <Route path={`/Lote/:id`} element={<LoteDetails />} />
+        <Route path={`/Lote/:id/Edit`} element={<LoteEdit />} />
+
+        {/* <Route path="/Projetos" element={<Projetos />} /> */}
+        {/* <Route path="Fase/Board/Recebidos" element={<Recepcao />} /> */}
         {/* <Route path="/Atividades/:id" element={<AtividadesHome />} />
         <Route path={`/Atividades/:id/CriarAtividade`} element={<AtividadeCreate />} />
         <Route path={`/Atividades/:id/Edit/:iday/:idatv`} element={<AtividadeEdit />} /> */}
-        <Route path="Fase/:id/Board/Arquivamento" element={<Arquivamento />} />
-        {/* <Route path="Fase/:id/Board/Recebidos" element={<Recepcao />} /> */}
-        <Route path="Fase/:id/Board/Preparo" element={<Preparo />} />
-        <Route path="Fase/:id/Board/Catalogação" element={<Catalogacao />} />
-        <Route path="Fase/:id/Board/Digitalização" element={<Digitalizacao />} />
-        <Route path="/Operadores/:id" element={<OperadoresPage />} />
-        <Route path="/Classes/:id" element={<Classes />}/>
-        <Route path="Fase/:id/Board/Upload" element={<Upload />} />
-        <Route path={`/Lote/:id`} element={<LoteDetails />} />
-        <Route path={`/Lote/:id/Edit`} element={<LoteEdit  />} />
       </Routes>
     </Suspense>
   );

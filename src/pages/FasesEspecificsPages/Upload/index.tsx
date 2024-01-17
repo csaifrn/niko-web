@@ -11,7 +11,7 @@ const Upload = () => {
   const { id } = useParams();
   return (
     <>
-      <Menu area={`/Fase/${id}/Board/Upload`} id_projeto={id}></Menu>
+      <Menu area={`/Fase/Board/Upload`} id_projeto={id}></Menu>
       <MenuCoord />
       <Style.Wrapper>
         <Board main_status={3} />

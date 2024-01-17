@@ -11,7 +11,7 @@ export const Empty = (props: EmptyProps) => {
       <S.Title>Está página parece vazia! Tente vasculhar outro lugar.</S.Title>
       <S.Text>{props.error !== null ? props.error : 'Página vazia.'}</S.Text>
       <S.Container>
-        <S.LinkHomePage href="/Projetos">Voltar a homepage</S.LinkHomePage>
+        <S.LinkHomePage href="/Fase">Voltar a homepage</S.LinkHomePage>
       </S.Container>
     </S.Wrapper>
   );

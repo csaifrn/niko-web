@@ -68,7 +68,7 @@ const Classes = () => {
   return (
     <>
       <div style={{ display: 'flex', justifyContent: 'center' }}>
-        <Menu area={`/Classes/${id}`} id_projeto={id}></Menu>
+        <Menu area={`/Classes`} id_projeto={id}></Menu>
         <MenuCoord />
         <S.CardsArea>
           <div style={{ display: 'flex', gap: '1em' }}>
@@ -90,5 +90,4 @@ const Classes = () => {
   );
 };
 
-export default Classes
-
+export default Classes;

@@ -47,7 +47,7 @@ export const BlockAssigner = ({ assigner, setAssigners }: PropsBlockAssigner) =>
           <S.NameAssigner>{assigner.name}</S.NameAssigner>
         } */}
         <S.NameAssigner>{assigner.name}</S.NameAssigner>
-        {user?.role === UserRole.OPERATOR && (
+        {user?.role === UserRole.MANAGER && (
           <S.DeleteAssigner onClick={() => setModal(!modal)}>
             <X size={14} weight="bold" />
           </S.DeleteAssigner>

@@ -6,7 +6,6 @@ import Search from '../../../components/Search';
 import Menu from '../../../components/Menu';
 import MenuCoord from '../../../components/MenuCoord';
 import { useParams } from 'react-router';
-import { Membros } from '../../../data/ProjetoData';
 import { Operador } from '../../../api/services/users/ListUsers/users.interface';
 import { useMutation } from 'react-query';
 import { GetOperadores } from '../../../api/services/users/ListUsers';
@@ -21,7 +20,6 @@ const removeDiacritics = (str: string): string => {
 };
 
 const OperadoresPage = () => {
-
   const [searchTerm, setSearchTerm] = useState<string>('');
 
   const { id } = useParams();
@@ -69,10 +67,10 @@ const OperadoresPage = () => {
   return (
     <>
       <div style={{ display: 'flex', justifyContent: 'center' }}>
-        <Menu area={`/Operadores/${id}`} id_projeto={id}></Menu>
+        <Menu area={`/Operadores`} id_projeto={id}></Menu>
         <MenuCoord />
         <S.CardsArea>
-          <h1 style={{color: 'white' , fontFamily: 'Rubik'}}>  Membros </h1>
+          <h1 style={{ color: 'white', fontFamily: 'Rubik' }}> Membros </h1>
           <Search searchTerm={searchTerm} handleSearchChange={handleSearchChange} />
 
           {sortedAndFilteredUsers.map((user: Operador) => (

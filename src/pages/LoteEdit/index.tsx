@@ -58,7 +58,7 @@ const LoteEdit = () => {
         id,
         priority: false,
       });
-    } else if(id) {
+    } else if (id) {
       setPriority(true);
       Priority.mutate({
         id,
@@ -90,7 +90,7 @@ const LoteEdit = () => {
   const beforeBatch = useMutation(GetBatche, {
     onSuccess: (data: Batche) => {
       setTitle(data.title);
-      setPriority(data.priority)
+      setPriority(data.priority);
       setCategories(data.settlement_project_categories);
       setPhysical_files_count(data.physical_files_count);
       setDigital_files_count(data.digital_files_count);
@@ -175,7 +175,7 @@ const LoteEdit = () => {
         digital_files_count,
         physical_files_count,
       });
-      
+
       const newSettle = selectedOptions.filter(
         (settleSelected) => !categories.some((settle) => settle.id === settleSelected.value),
       );
@@ -250,7 +250,7 @@ const LoteEdit = () => {
   } else {
     return (
       <div style={{ display: 'flex', justifyContent: 'center' }}>
-        <Menu area={`/Painel/${id}`} id_projeto={id} />
+        <Menu area={`/Painel`} id_projeto={id} />
         <MenuCoord />
 
         <S.EditLoteArea>

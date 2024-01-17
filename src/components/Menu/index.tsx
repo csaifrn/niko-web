@@ -2,8 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import MenuBurger from '../MenuBurger';
 import * as S from './styles';
 import * as MenuC from '../MenuCoord/styles';
-import { Link, useNavigate, useParams } from 'react-router-dom';
-import { User } from '@phosphor-icons/react';
+import { Link } from 'react-router-dom';
 import { SharedState } from '../../context/SharedContext';
 import { LogOutModal } from '../LogOutModal';
 import theme from '../../global/theme';
@@ -16,32 +15,16 @@ interface MenuProps {
 
 export const Menu = (props: MenuProps) => {
   const { user, setUser } = SharedState();
-  const { id } = useParams();
   const pathname = window.location.pathname;
   const [open, setOpen] = useState(false);
-
-  const navigate = useNavigate();
   const dropDownRef = useRef(null);
   const [DropDown, setDropDown] = useState(false);
   const [sair, setSair] = useState(false);
-
-  const handleSair = () => {
-    setSair(!sair);
-  };
-
-  const handleClickButton = () => {
-    setOpen(!open);
-  };
 
   const handleClickOutside = (event: any) => {
     if (dropDownRef.current && !(dropDownRef.current as HTMLElement).contains(event.target as Node)) {
       setDropDown(false);
     }
-  };
-
-  const handleSignOut = () => {
-    localStorage.removeItem('token');
-    setUser(null);
   };
 
   useEffect(() => {
@@ -55,97 +38,85 @@ export const Menu = (props: MenuProps) => {
   return (
     <S.MenuWrapper>
       <S.MenuArea>
-        {props.id_projeto && (
-          <S.ContainerA>
-            {/* <S.ButtonBurger open={open} onClick={handleClickButton}>
+        <S.ContainerA>
+          {/* <S.ButtonBurger open={open} onClick={handleClickButton}>
               <S.MenuImg src="/menu.svg" />
             </S.ButtonBurger> */}
 
-            <S.LinkLogo to={`/Fase/${id}`}>
-              <S.MenuImg src="/Logo_Niko.svg" />
-            </S.LinkLogo>
+          <S.LinkLogo to={`/Fase`}>
+            <S.MenuImg src="/Logo_Niko.svg" />
+          </S.LinkLogo>
 
-            {open && props.id_projeto != undefined && (
-              <MenuBurger area={props.area} id_projeto={props.id_projeto} onClose={() => setOpen(false)} />
-            )}
+          {open && <MenuBurger area={props.area} onClose={() => setOpen(false)} />}
 
-            <S.MenuDesk>
-              {/* <MenuC.link to={`/Painel/${id}`}>
+          <S.MenuDesk>
+            {/* <MenuC.link to={`/Painel`}>
                 <MenuC.MenuImg
                   src={
-                    pathname === `/Painel/${id}`
+                    pathname === `/Painel`
                       ? '/IconMenu/ChartDonut/FillIcon.svg'
                       : '/IconMenu/ChartDonut/RegularIcon.svg'
                   }
                 />
-                {pathname === `/Painel/${id}` && (
+                {pathname === `/Painel` && (
                   <MenuC.textIcon style={{ color: theme.colors['orange/400'] }}>Painel</MenuC.textIcon>
                 )}
-                {pathname !== `/Painel/${id}` && <MenuC.textIcon>Painel</MenuC.textIcon>}
+                {pathname !== `/Painel` && <MenuC.textIcon>Painel</MenuC.textIcon>}
               </MenuC.link> */}
 
-              {/* <MenuC.link to={`/Atividades/${id}`}>
+            {/* <MenuC.link to={`/Atividades`}>
                 <MenuC.MenuImg
                   src={
-                    pathname === `/Atividades/${id}` ? '/IconMenu/Activity/Fill.svg' : '/IconMenu/Activity/Regular.svg'
+                    pathname === `/Atividades` ? '/IconMenu/Activity/Fill.svg' : '/IconMenu/Activity/Regular.svg'
                   }
                 />
-                {pathname === `/Atividades/${id}` && (
+                {pathname === `/Atividades` && (
                   <MenuC.textIcon style={{ color: theme.colors['orange/400'] }}>Atividades</MenuC.textIcon>
                 )}
-                {pathname !== `/Atividades/${id}` && <MenuC.textIcon>Atividades</MenuC.textIcon>}
+                {pathname !== `/Atividades` && <MenuC.textIcon>Atividades</MenuC.textIcon>}
               </MenuC.link> */}
 
-              <MenuC.link to={`/Fase/${id}`}>
+            <MenuC.link to={`/Fase`}>
+              <MenuC.MenuImg
+                src={
+                  pathname === `/Fase` || pathname.search('Board') >= 0 || pathname.search('Lote') >= 0
+                    ? '/IconMenu/SquaresFour/FillIcon.svg'
+                    : '/IconMenu/SquaresFour/RegularIcon.svg'
+                }
+              />
+              {pathname === `/Fase` && (
+                <MenuC.textIcon style={{ color: theme.colors['orange/400'] }}>Fases</MenuC.textIcon>
+              )}
+              {pathname.search('Board') >= 0 && (
+                <MenuC.textIcon style={{ color: theme.colors['orange/400'] }}>Fases</MenuC.textIcon>
+              )}
+              {pathname.search('Lote') >= 0 && (
+                <MenuC.textIcon style={{ color: theme.colors['orange/400'] }}>Fases</MenuC.textIcon>
+              )}
+              {pathname !== `/Fase` && pathname.search('Board') < 0 && pathname.search('Lote') < 0 && (
+                <MenuC.textIcon>Fases</MenuC.textIcon>
+              )}
+            </MenuC.link>
+
+            {/* Página de categorias */}
+            {user?.role === UserRole.MANAGER && (
+              <MenuC.link to={`/Classes`}>
                 <MenuC.MenuImg
                   src={
-                    pathname === `/Fase/${id}` || pathname.search('Board') >= 0 || pathname.search('Lote') >= 0
-                      ? '/IconMenu/SquaresFour/FillIcon.svg'
-                      : '/IconMenu/SquaresFour/RegularIcon.svg'
+                    pathname === `/Classes` ? '/IconMenu/TagSimple/FillIcon.svg' : '/IconMenu/TagSimple/RegularIcon.svg'
                   }
                 />
-                {pathname === `/Fase/${id}` && (
-                  <MenuC.textIcon style={{ color: theme.colors['orange/400'] }}>Fases</MenuC.textIcon>
+                {pathname === `/Classes` && (
+                  <MenuC.textIcon style={{ color: theme.colors['orange/400'] }}>Classes</MenuC.textIcon>
                 )}
-                {pathname.search('Board') >= 0 && (
-                  <MenuC.textIcon style={{ color: theme.colors['orange/400'] }}>Fases</MenuC.textIcon>
-                )}
-                {pathname.search('Lote') >= 0 && (
-                  <MenuC.textIcon style={{ color: theme.colors['orange/400'] }}>Fases</MenuC.textIcon>
-                )}
-                {pathname !== `/Fase/${id}` && pathname.search('Board') < 0 && pathname.search('Lote') < 0 && (
-                  <MenuC.textIcon>Fases</MenuC.textIcon>
-                )}
+                {pathname !== `/Classes` && <MenuC.textIcon>Classes</MenuC.textIcon>}
               </MenuC.link>
-              
-              {/* Página de categorias */}
-              {user?.role === UserRole.MANAGER && (
-                <MenuC.link to={`/Classes/${id}`}>
-                  <MenuC.MenuImg
-                    src={
-                      pathname === `/Classes/${id}`
-                        ? '/IconMenu/TagSimple/FillIcon.svg'
-                        : '/IconMenu/TagSimple/RegularIcon.svg'
-                    }
-                  />
-                  {pathname === `/Classes/${id}` && (
-                    <MenuC.textIcon style={{ color: theme.colors['orange/400'] }}>Classes</MenuC.textIcon>
-                  )}
-                  {pathname !== `/Classes/${id}` && <MenuC.textIcon>Classes</MenuC.textIcon>}
-                </MenuC.link>
-              )}
-            </S.MenuDesk>
-          </S.ContainerA>
-        )}
-
-        {props.id_projeto == undefined && (
-          <S.LinkLogo to={`/Projetos`}>
-            <S.MenuImg src="/Logo_Niko.svg" />
-          </S.LinkLogo>
-        )}
+            )}
+          </S.MenuDesk>
+        </S.ContainerA>
 
         <S.ContainerLogo>
-          <Link to={props.id_projeto ? `/Fase/${id}` : '/Projetos'}>
+          <Link to={'/Fase'}>
             <S.MenuImg src="/Logo_Niko.svg" />
           </Link>
         </S.ContainerLogo>

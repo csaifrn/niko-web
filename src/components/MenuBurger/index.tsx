@@ -4,7 +4,6 @@ import * as S from './styles';
 
 interface MenuBurgerProps {
   area: string;
-  id_projeto: string;
   onClose: () => void;
 }
 
@@ -55,7 +54,7 @@ const MenuBurger = (props: MenuBurgerProps) => {
       </S.FecharMenu>
       <S.StyledMenu open={true} id="menu">
         {/* <LinkMenuBurger path="/Projetos" nome="Projetos" area={props.area} /> */}
-        <LinkMenuBurger path={`/Operadores/${props.id_projeto}`} nome="Membros" area={props.area} />
+        <LinkMenuBurger path={`/Operadores`} nome="Membros" area={props.area} />
       </S.StyledMenu>
     </S.areaClick>
   );

@@ -20,7 +20,7 @@ export const DeleteAssigner = styled.button`
   background-color: ${({ theme }) => theme.colors['gray/50']};
   color: ${({ theme }) => theme.colors['gray/700']};
 
-  transition: 0.5s all;
+  transition: 0.2s all;
 
   height: 2em;
   padding: 0 0.5em;
@@ -32,6 +32,7 @@ export const DeleteAssigner = styled.button`
   justify-content: center;
 
   &:hover {
+    color: ${({ theme }) => theme.colors['white']};
     background-color: ${({ theme }) => theme.colors['red/500']};
   }
   &:active {

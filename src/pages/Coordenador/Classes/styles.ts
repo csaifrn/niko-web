@@ -27,6 +27,10 @@ export const ButtonGray = styled.button`
   font-family: Rubik;
   background-color: ${({ theme }) => theme.colors['gray/500']};
   cursor: pointer;
+  &:disabled {
+    background-color: ${({ theme }) => theme.colors['gray/600']};
+    color: ${({ theme }) => theme.colors['gray/150']};
+  }
   &:hover {
     background-color: ${({ theme }) => theme.colors['gray/400']};
   }

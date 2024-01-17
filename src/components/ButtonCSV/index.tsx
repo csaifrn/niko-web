@@ -1,11 +1,9 @@
 import { ReactNode, useState } from 'react';
-import { ButtonGray } from '../../pages/Coordenador/Categoria/styles';
-
 import { ModalCSV } from './ModalCSV';
+import { ButtonGray } from '../../pages/Coordenador/Classes/styles';
 
 interface ButtonProps {
   children: ReactNode;
-  name_column?: string;
   data: any;
 }
 
@@ -14,7 +12,9 @@ export const ButtonCSV = ({ children, data }: ButtonProps) => {
 
   return (
     <>
-      <ButtonGray onClick={() => setModalCSV(true)}>{children}</ButtonGray>
+      <ButtonGray disabled={!data} onClick={() => setModalCSV(true)}>
+        {data ? children : 'Não é possivel fazer o CSV'}
+      </ButtonGray>
       {modalCSV && <ModalCSV data={data} close={() => setModalCSV(!modalCSV)} />}
     </>
   );

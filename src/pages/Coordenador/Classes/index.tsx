@@ -13,6 +13,8 @@ import { Category } from '../../../api/services/batches/get-batche/get.interface
 import { GetCategories } from '../../../api/services/settlement/get-categories';
 import { useCategories } from '../../../hooks/useCategories';
 
+import { ButtonCSV } from '../../../components/ButtonCSV';
+
 type Categoria = {
   id: number;
   name: string;
@@ -29,7 +31,7 @@ const Classes = () => {
   const [searchTerm, setSearchTerm] = useState<string>('');
   const [open, setOpen] = useState<boolean>(false);
   const { categories, isLoadingCategories } = useCategories();
-  const [Categories, setCategories] = useState<Category[]>();
+  const [, setCategories] = useState<Category[]>();
 
   const CategoriesMutate = useMutation(GetCategories, {
     onSuccess: (data: Category[]) => {
@@ -69,7 +71,11 @@ const Classes = () => {
         <Menu area={`/Classes/${id}`} id_projeto={id}></Menu>
         <MenuCoord />
         <S.CardsArea>
-          <ButtonGreen onClick={() => setOpen(!open)}>Criar classe</ButtonGreen>
+          <div style={{ display: 'flex', gap: '1em' }}>
+            <ButtonGreen onClick={() => setOpen(!open)}>Criar classe</ButtonGreen>
+            <ButtonCSV data={categories}>Baixar CSV: Classes</ButtonCSV>
+          </div>
+
           <Search searchTerm={searchTerm} handleSearchChange={handleSearchChange} />
 
           {sortedAndFilteredCategories?.map((tag: Tag) => (

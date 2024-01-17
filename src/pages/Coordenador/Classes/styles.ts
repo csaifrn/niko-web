@@ -9,8 +9,37 @@ const CardsArea = styled.div`
   padding: 9em 2em;
   gap: 16px;
   max-width: 1140px;
-  @media screen and (min-width: 767px){
+  @media screen and (min-width: 767px) {
     padding: 10em 0em 2em 0em;
+  }
+`;
+
+export const ButtonGray = styled.button`
+  border: none;
+  color: ${({ theme }) => theme.colors['white']};
+  border-radius: 5px;
+  width: fit-content;
+  height: 44px;
+  width: 13%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: Rubik;
+  background-color: ${({ theme }) => theme.colors['gray/500']};
+  cursor: pointer;
+  &:disabled {
+    background-color: ${({ theme }) => theme.colors['gray/600']};
+    color: ${({ theme }) => theme.colors['gray/150']};
+  }
+  &:hover {
+    background-color: ${({ theme }) => theme.colors['gray/400']};
+  }
+  &:active {
+    background-color: ${({ theme }) => theme.colors['gray/600']};
+    transform: translateY(-5%) translateX(2%);
+  }
+  @media screen and (max-width: 767px) {
+    width: 100%;
   }
 `;
 

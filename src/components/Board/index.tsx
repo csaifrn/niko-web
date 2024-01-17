@@ -1,7 +1,6 @@
 import { ReactNode, useEffect, useState } from 'react';
 import * as S from './styles';
 import Lote from '../Lote';
-import Users from '../../data/UserData';
 import { BoardChanger } from '../BoardChanger';
 import { useMutation } from 'react-query';
 import { QueryBatche } from '../../api/services/batches/query-batches';
@@ -15,23 +14,19 @@ import { ModalCriarLote } from '../ModalCriarLote';
 import { EspecifcModal } from '../EspecificStatusModal';
 import { Link } from 'react-router-dom';
 import { GetResponseBatche } from '../../api/services/batches/query-batches/get.interface';
-import { ArrowCircleLeft, CheckCircle, HandWaving } from '@phosphor-icons/react';
-import { SharedState } from '../../context/SharedContext';
+import { CheckCircle, HandWaving } from '@phosphor-icons/react';
 import { useMe } from '../../hooks/useMe';
-
 
 interface BoardProps {
   main_status: number;
   children?: ReactNode;
 }
 
-
 export const Board = (props: BoardProps) => {
-  const { user, setUser } = SharedState();
   const { me } = useMe();
 
-
   const [batchesDispo, setBatchesDispo] = useState<GetResponseBatche[]>([]);
+
   const [batchesAnda, setBatchesAnda] = useState<GetResponseBatche[]>([]);
   const [batchesConc, setBatchesConc] = useState<GetResponseBatche[]>([]);
   const [titleModal, setTitleModal] = useState({ button: 'pegar lote', title: 'Deseja pegar o lote?' });
@@ -40,13 +35,11 @@ export const Board = (props: BoardProps) => {
   const [openCriarModal, setOpenCriarModal] = useState<boolean>(false);
   const [openEspecifModal, setOpenEspecifModal] = useState<boolean>(false);
 
-
   const operadorEstaNoLote = (obj: any, OperadorId: string) => {
     if (me != undefined) {
       return Object.values(obj).includes(OperadorId);
     }
   };
-
 
   const mutateBatchesQuery = useMutation(QueryBatche, {
     onSuccess: (data: GetResponseBatche[]) => {
@@ -61,7 +54,6 @@ export const Board = (props: BoardProps) => {
     },
   });
 
-
   const mutateBatchesConc = useMutation(QueryBatche, {
     onSuccess: (data: GetResponseBatche[]) => {
       setBatchesConc(data.filter((batche) => batche.specific_status === 0));
@@ -73,7 +65,6 @@ export const Board = (props: BoardProps) => {
   useEffect(() => {
     refecth();
   }, []);
-
 
   const refecth = () => {
     mutateBatchesQuery.mutate({
@@ -89,7 +80,6 @@ export const Board = (props: BoardProps) => {
     <>
       <BoardChanger />
 
-
       {/* Botão de Criar lote(só aparece no preparo) */}
       {props.main_status === 0 && (
         <S.divChildren style={{ padding: '2em' }}>
@@ -102,7 +92,6 @@ export const Board = (props: BoardProps) => {
           </Btn>
         </S.divChildren>
       )}
-
 
       {batchesDispo.length <= 0 && batchesAnda.length <= 0 && batchesConc.length <= 0 ? (
         <S.WrapperEmpty>
@@ -131,7 +120,6 @@ export const Board = (props: BoardProps) => {
                   </S.WrapperEmptyKanban>
                 )}
 
-
                 {/* Disponíveis */}
                 {batchesDispo.map(
                   (batche) =>
@@ -143,7 +131,6 @@ export const Board = (props: BoardProps) => {
                           categories={batche.settlement_project_categories}
                           pendencia={batche.pending_batch_observations}
                           assigners={batche.assigned_users}
-
 
                           //envolvidos={batche.envolvidos}
                         >
@@ -157,7 +144,6 @@ export const Board = (props: BoardProps) => {
                           >
                             <HandWaving size={20} weight="fill" alt="icone de mão acenando" /> Pegar lote
                           </S.BlackButton>
-
 
                           {/* {user?.role === 'MANAGER' && (
                             <S.BlackButton
@@ -209,7 +195,10 @@ export const Board = (props: BoardProps) => {
                         >
                           {me != undefined &&
                             batche.assignedUsers != undefined &&
-                            operadorEstaNoLote(batche.assignedUsers.map(user => user.id), me?.id) === true && (
+                            operadorEstaNoLote(
+                              batche.assignedUsers.map((user) => user.id),
+                              me?.id,
+                            ) === true && (
                               <S.ConcluirButton
                                 onClick={(e) => {
                                   e.preventDefault();
@@ -308,6 +297,5 @@ export const Board = (props: BoardProps) => {
     </>
   );
 };
-
 
 export default Board;

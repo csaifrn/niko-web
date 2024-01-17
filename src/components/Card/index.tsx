@@ -34,7 +34,9 @@ export const CardFase = ({ ...props }: CardProps) => {
       setBatchesAnda(data.filter((batche) => batche.specific_status === 1));
     },
     onError: (err: ApiError) => {
-      toast.error(err.message);
+      if (props.fase == 0) {
+        toast.error(err.message);
+      }
     },
   });
 

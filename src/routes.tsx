@@ -43,17 +43,18 @@ const Rotas = () => {
         <Route path="*" element={<Erro404 />} />
 
         {/* Páginas que precisam de token */}
-        <Route path="/Perfil/:id" element={<Perfil />} />
-        <Route path="Painel/:id" element={<Painel />} />
+        <Route path="/Perfil" element={<Perfil />} />
+        <Route path="/Painel" element={<Painel />} />
         <Route path="/CriarProjeto" element={<CreateProjeto />} />
-        <Route path="/Fase" element={<FasesHome />} />
-        <Route path="Fase/Board/Arquivamento" element={<Arquivamento />} />
-        <Route path="Fase/Board/Preparo" element={<Preparo />} />
-        <Route path="Fase/Board/Catalogação" element={<Catalogacao />} />
-        <Route path="Fase/Board/Digitalização" element={<Digitalizacao />} />
+        <Route path="/Fases" element={<FasesHome />} />
+        <Route path="/Fases/Board/Preparo" element={<Preparo />} />
+        <Route path="/Fases/Board/Catalogação" element={<Catalogacao />} />
+        <Route path="/Fases/Board/Digitalização" element={<Digitalizacao />} />
+        <Route path="Fases/Board/Upload" element={<Upload />} />
+        <Route path="/Fases/Board/Arquivamento" element={<Arquivamento />} />
         <Route path="/Operadores" element={<OperadoresPage />} />
         <Route path="/Classes" element={<Classes />} />
-        <Route path="Fase/Board/Upload" element={<Upload />} />
+
         <Route path={`/Lote/:id`} element={<LoteDetails />} />
         <Route path={`/Lote/:id/Edit`} element={<LoteEdit />} />
 

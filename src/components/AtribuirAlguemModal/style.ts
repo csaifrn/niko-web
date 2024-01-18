@@ -82,9 +82,8 @@ export const ButtonGreen = styled.button`
   align-items: center;
   justify-content: center;
   padding: 16px 0px 16px 0px;
-  width: 150px;
-  height: 44px;
-  font-family: Rubik;
+  width: 100%;
+  font-family: 'Rubik';
   background-color: ${({ theme }) => theme.colors['green/400']};
   cursor: pointer;
   &:hover {
@@ -93,9 +92,6 @@ export const ButtonGreen = styled.button`
   &:active {
     background-color: ${({ theme }) => theme.colors['green/600']};
     transform: translateY(-5%) translateX(2%);
-  }
-  @media screen and (max-width: 767px) {
-    width: 100%;
   }
 `;
 

@@ -228,7 +228,11 @@ export const Board = (props: BoardProps) => {
           {batchesConc.length >= 0 && (
             <S.kanban>
               <S.divTitulo>
-                <h2 style={{ color: theme.colors.white }}>Concluídos</h2>
+                {props.main_status == 4 ? (
+                  <h2 style={{ color: theme.colors.white }}>Arquivados</h2>
+                ) : (
+                  <h2 style={{ color: theme.colors.white }}>Concluídos</h2>
+                )}
                 <h2
                   style={{
                     color: theme.colors['green/500'],

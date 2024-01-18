@@ -112,7 +112,6 @@ export const EspecifcModal = (props: EspecifModalProps) => {
 
   const mutateSettle2 = useMutation(PostBatcheSettle, {
     onSuccess: () => {
-      console.log('Deu bom');
     },
     onError: (err: ApiError) => {
       toast.error(err.response?.data.message ? err.response?.data.message : 'Erro na execução');
@@ -121,7 +120,6 @@ export const EspecifcModal = (props: EspecifModalProps) => {
 
   const mutateSettleAll = useMutation(PatchBatcheSettle, {
     onSuccess: () => {
-      console.log('Deu bom');
       nextFase();
     },
     onError: (err: ApiError) => {
@@ -138,7 +136,7 @@ export const EspecifcModal = (props: EspecifModalProps) => {
 
   const DeleteBatch = useMutation(DeleteBatche, {
     onSuccess: () => {
-      navigate(`/Fase/:id/Board/Preparo`);
+      navigate(`/Fases/Board/Preparo`);
       toast.success('Lote excluído com sucesso!');
       console.log('Lote excluído com sucesso!');
     },
@@ -374,7 +372,7 @@ export const EspecifcModal = (props: EspecifModalProps) => {
             <S.NameClose>
               <S.Titulo> {props.title}</S.Titulo>
             </S.NameClose>
-            {props.batche.main_status === 1 && props.batche.specific_status == 1 && (
+            {props.batche.main_status === 1 && props.batche.specific_status == 1 && props.button !== 'Excluir lote' && (
               <S.CatalogacaoArea>
                 <h3 style={{ color: 'white' }}>Adicionar categorias</h3>
                 {!NoCategories && (
@@ -421,7 +419,7 @@ export const EspecifcModal = (props: EspecifModalProps) => {
               </>
             )}
 
-            {props.batche.main_status === 2 && props.batche.specific_status == 1 && (
+            {props.batche.main_status === 2 && props.batche.specific_status == 1 && props.button !== 'Excluir lote' && (
               <>
                 <h2 style={{ color: 'white' }}>Arquivos Digitais</h2>
                 <S.ArquivosInput

@@ -37,7 +37,7 @@ const Recebidos = () => {
 
   return (
     <div style={{ display: 'flex', justifyContent: 'center' }}>
-      <Menu area={`/Fase/Board/Recebidos`} id_projeto={id}></Menu>
+      <Menu area={`/Fases/Board/Recebidos`} id_projeto={id}></Menu>
       <MenuCoord />
 
       <S.RecepcaoPage>

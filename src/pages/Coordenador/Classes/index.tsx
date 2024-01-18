@@ -7,12 +7,10 @@ import MenuCoord from '../../../components/MenuCoord';
 import { useParams } from 'react-router-dom';
 import { useMutation } from 'react-query';
 import { Tag } from '../../../api/services/tags/get-tags/get.interface';
-import { ButtonGreen } from '../../../components/AtribuirAlguemModal/style';
 import { ModalCategory } from '../../../components/ModalCategory';
 import { Category } from '../../../api/services/batches/get-batche/get.interface';
 import { GetCategories } from '../../../api/services/settlement/get-categories';
 import { useCategories } from '../../../hooks/useCategories';
-
 import { ButtonCSV } from '../../../components/ButtonCSV';
 
 type Categoria = {
@@ -71,11 +69,8 @@ const Classes = () => {
         <Menu area={`/Classes`} id_projeto={id}></Menu>
         <MenuCoord />
         <S.CardsArea>
-          <div style={{ display: 'flex', gap: '1em' }}>
-            <ButtonGreen onClick={() => setOpen(!open)}>Criar classe</ButtonGreen>
-            <ButtonCSV data={categories}>Baixar CSV: Classes</ButtonCSV>
-          </div>
-
+          <S.ButtonCriarClasse onClick={() => setOpen(!open)}>Criar classe</S.ButtonCriarClasse>
+          <ButtonCSV data={categories}>Baixar CSV: Classes</ButtonCSV>
           <Search searchTerm={searchTerm} handleSearchChange={handleSearchChange} />
 
           {sortedAndFilteredCategories?.map((tag: Tag) => (

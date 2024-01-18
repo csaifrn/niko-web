@@ -26,7 +26,7 @@ export const BoardChanger = () => {
 
         <S.Change>
           {/* RECEPÇÃO */}
-          {/* <Link to={`/Fase/Board/Recebidos`}>
+          {/* <Link to={`/Fases/Board/Recebidos`}>
             <S.IconBarra>
               {url.search('Recebidos') <= -1 && <S.LinkImgEscura src="/icon-medium/Recepção.svg" />}
               {url.search('Recebidos') > -1 && (
@@ -40,7 +40,7 @@ export const BoardChanger = () => {
 
           {/* PREPARO(não selecionado)*/}
           {url.search('Preparo') <= -1 && (
-            <Link to={`/Fase/Board/Preparo`} className="PreparoTooltip">
+            <Link to={`/Fases/Board/Preparo`} className="PreparoTooltip">
               <S.LinkImgEscura src="/icon-medium/Preparo.svg" />
               <Tooltip
                 children={<p style={{ fontSize: '12px', fontFamily: 'Rubik' }}>Preparo</p>}
@@ -52,7 +52,7 @@ export const BoardChanger = () => {
 
           {/* PREPARO(selecionado)*/}
           {url.search('Preparo') > -1 && (
-            <S.IconBarra to={`/Fase/Board/Preparo`}>
+            <S.IconBarra to={`/Fases/Board/Preparo`}>
               <S.LinkImg src="/icon-medium/Preparo.svg" />
               <S.Barra color={theme.colors['orange/400']}></S.Barra>
             </S.IconBarra>
@@ -60,7 +60,7 @@ export const BoardChanger = () => {
 
           {/* CATALOGAÇÃO(não selecionado)*/}
           {url.search('Cataloga%C3%A7%C3%A3o') <= -1 && (
-            <Link to={`/Fase/Board/Catalogação`} className="CatalogaçãoTooltip">
+            <Link to={`/Fases/Board/Catalogação`} className="CatalogaçãoTooltip">
               <S.LinkImgEscura src="/icon-medium/Catalogação.svg" />
               <Tooltip
                 children={<p style={{ fontSize: '12px', fontFamily: 'Rubik' }}>Catalogação</p>}
@@ -72,7 +72,7 @@ export const BoardChanger = () => {
 
           {/* CATALOGAÇÃO(selecionado)*/}
           {url.search('Cataloga%C3%A7%C3%A3o') > -1 && (
-            <S.IconBarra to={`/Fase/Board/Catalogação`}>
+            <S.IconBarra to={`/Fases/Board/Catalogação`}>
               <S.LinkImg src="/icon-medium/Catalogação.svg" />
               <S.Barra color="#F3CC00"></S.Barra>
             </S.IconBarra>
@@ -80,7 +80,7 @@ export const BoardChanger = () => {
 
           {/* DIGITALIZAÇÃO(não selecionado)*/}
           {url.search('Digitaliza%C3%A7%C3%A3o') <= -1 && (
-            <Link to={`/Fase/Board/Digitalização`} className="DigitalizaçãoTooltip">
+            <Link to={`/Fases/Board/Digitalização`} className="DigitalizaçãoTooltip">
               <S.LinkImgEscura src="/icon-medium/Digitalização.svg" />
               <Tooltip
                 children={<p style={{ fontSize: '12px', fontFamily: 'Rubik' }}>Digitalização</p>}
@@ -92,7 +92,7 @@ export const BoardChanger = () => {
 
           {/* DIGITALIZAÇÃO(selecionado)*/}
           {url.search('Digitaliza%C3%A7%C3%A3o') > -1 && (
-            <S.IconBarra to={`/Fase/Board/Digitalização`}>
+            <S.IconBarra to={`/Fases/Board/Digitalização`}>
               <S.LinkImg src="/icon-medium/Digitalização.svg" />
               <S.Barra color="#2D94F3"></S.Barra>
             </S.IconBarra>
@@ -100,7 +100,7 @@ export const BoardChanger = () => {
 
           {/* UPLOAD(não selecionado)*/}
           {url.search('Upload') <= -1 && (
-            <Link to={`/Fase/Board/Upload`} className="UploadTooltip">
+            <Link to={`/Fases/Board/Upload`} className="UploadTooltip">
               <S.LinkImgEscura src="/icon-medium/Upload.svg" />
               <Tooltip
                 children={<p style={{ fontSize: '12px', fontFamily: 'Rubik' }}>Upload</p>}
@@ -112,7 +112,7 @@ export const BoardChanger = () => {
 
           {/* UPLOAD(selecionado)*/}
           {url.search('Upload') > -1 && (
-            <S.IconBarra to={`/Fase/Board/Upload`}>
+            <S.IconBarra to={`/Fases/Board/Upload`}>
               <S.LinkImg src="/icon-medium/Upload.svg" />
               <S.Barra color={theme.colors['purple/600']}></S.Barra>
             </S.IconBarra>
@@ -120,7 +120,7 @@ export const BoardChanger = () => {
 
           {/* ARQUIVAMENTO(não selecionado)*/}
           {url.search('Arquivamento') <= -1 && (
-            <Link to={`/Fase/Board/Arquivamento`} className="ArquivamentoTooltip">
+            <Link to={`/Fases/Board/Arquivamento`} className="ArquivamentoTooltip">
               <S.LinkImgEscura src="/icon-medium/Arquivamento.svg" />
               <Tooltip
                 children={<p style={{ fontSize: '12px', fontFamily: 'Rubik' }}>Arquivamento</p>}
@@ -132,7 +132,7 @@ export const BoardChanger = () => {
 
           {/* ARQUIVAMENTO(selecionado)*/}
           {url.search('Arquivamento') > -1 && (
-            <S.IconBarra to={`/Fase/Board/Arquivamento`}>
+            <S.IconBarra to={`/Fases/Board/Arquivamento`}>
               <S.LinkImg src="/icon-medium/Arquivamento.svg" />
               <S.Barra color={theme.colors['green/400']}></S.Barra>
             </S.IconBarra>

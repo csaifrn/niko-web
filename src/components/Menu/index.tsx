@@ -43,14 +43,16 @@ export const Menu = (props: MenuProps) => {
               <S.MenuImg src="/menu.svg" />
             </S.ButtonBurger> */}
 
-          <S.LinkLogo to={`/Fase`}>
+          <S.LinkLogo to={`/Fases`}>
             <S.MenuImg src="/Logo_Niko.svg" />
           </S.LinkLogo>
 
           {open && <MenuBurger area={props.area} onClose={() => setOpen(false)} />}
 
           <S.MenuDesk>
-            {/* <MenuC.link to={`/Painel`}>
+            {/* PAINEL */}
+            {user?.role === UserRole.MANAGER && (
+              <MenuC.link to={`/Painel`}>
                 <MenuC.MenuImg
                   src={
                     pathname === `/Painel`
@@ -62,8 +64,10 @@ export const Menu = (props: MenuProps) => {
                   <MenuC.textIcon style={{ color: theme.colors['orange/400'] }}>Painel</MenuC.textIcon>
                 )}
                 {pathname !== `/Painel` && <MenuC.textIcon>Painel</MenuC.textIcon>}
-              </MenuC.link> */}
+              </MenuC.link>
+            )}
 
+            {/* ATIVIDADES*/}
             {/* <MenuC.link to={`/Atividades`}>
                 <MenuC.MenuImg
                   src={
@@ -76,15 +80,16 @@ export const Menu = (props: MenuProps) => {
                 {pathname !== `/Atividades` && <MenuC.textIcon>Atividades</MenuC.textIcon>}
               </MenuC.link> */}
 
-            <MenuC.link to={`/Fase`}>
+            {/* FASES - HOME */}
+            <MenuC.link to={`/Fases`}>
               <MenuC.MenuImg
                 src={
-                  pathname === `/Fase` || pathname.search('Board') >= 0 || pathname.search('Lote') >= 0
+                  pathname === `/Fases` || pathname.search('Board') >= 0 || pathname.search('Lote') >= 0
                     ? '/IconMenu/SquaresFour/FillIcon.svg'
                     : '/IconMenu/SquaresFour/RegularIcon.svg'
                 }
               />
-              {pathname === `/Fase` && (
+              {pathname === `/Fases` && (
                 <MenuC.textIcon style={{ color: theme.colors['orange/400'] }}>Fases</MenuC.textIcon>
               )}
               {pathname.search('Board') >= 0 && (
@@ -93,12 +98,12 @@ export const Menu = (props: MenuProps) => {
               {pathname.search('Lote') >= 0 && (
                 <MenuC.textIcon style={{ color: theme.colors['orange/400'] }}>Fases</MenuC.textIcon>
               )}
-              {pathname !== `/Fase` && pathname.search('Board') < 0 && pathname.search('Lote') < 0 && (
+              {pathname !== `/Fases` && pathname.search('Board') < 0 && pathname.search('Lote') < 0 && (
                 <MenuC.textIcon>Fases</MenuC.textIcon>
               )}
             </MenuC.link>
 
-            {/* Página de categorias */}
+            {/* CLASSES */}
             {user?.role === UserRole.MANAGER && (
               <MenuC.link to={`/Classes`}>
                 <MenuC.MenuImg
@@ -115,8 +120,14 @@ export const Menu = (props: MenuProps) => {
           </S.MenuDesk>
         </S.ContainerA>
 
+        {/* {props.id_projeto == undefined && (
+          <S.LinkLogo to={`/Projetos`}>
+            <S.MenuImg src="/Logo_Niko.svg" />
+          </S.LinkLogo>
+        )} */}
+
         <S.ContainerLogo>
-          <Link to={'/Fase'}>
+          <Link to={'/Fases'}>
             <S.MenuImg src="/Logo_Niko.svg" />
           </Link>
         </S.ContainerLogo>
@@ -188,7 +199,7 @@ export const Menu = (props: MenuProps) => {
             </div>
 
             <Link
-              to={'/Perfil/:id'}
+              to={'/Perfil'}
               style={{
                 color: theme.colors.white,
                 padding: '12px 16px',

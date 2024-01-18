@@ -10,7 +10,7 @@ const Home = () => {
 
   return (
     <FasePage>
-      <Menu area={`/Fase`} id_projeto={id}></Menu>
+      <Menu area={`/Fases`} id_projeto={id}></Menu>
       <MenuCoord />
       <Main>
         {/* <CardFaseMaisTooltip className="CardRecepcaoTooltip">

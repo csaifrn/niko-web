@@ -28,6 +28,7 @@ import { SharedState } from '../../context/SharedContext';
 import { Tooltip } from 'react-tooltip';
 import { UserRole } from '../../utils/userRole.enum';
 import { useMe } from '../../hooks/useMe';
+import { BlockClass } from '../../components/BatchBlocks/BlockClass';
 
 interface Option {
   label: string;
@@ -192,7 +193,7 @@ export const LoteDetails = () => {
     return (
       <>
         <div style={{ display: 'flex', justifyContent: 'center' }}>
-          <Menu area={`/Painel/${id}`} id_projeto={id}></Menu>
+          <Menu area={`/Painel`} id_projeto={id}></Menu>
           <MenuCoord />
           <S.areaClick>
             <S.CloseFaseStatus>
@@ -230,10 +231,7 @@ export const LoteDetails = () => {
               </S.FaseStatus>
 
               {/* BOTÃO DE FECHAR */}
-              <S.Exit
-                onClick={() => navigate(`/Fase/${id}/Board/${optionsFases[status].label}`)}
-                className="FecharTooltip"
-              >
+              <S.Exit onClick={() => navigate(`/Fases/Board/${optionsFases[status].label}`)} className="FecharTooltip">
                 <img src="/close.svg" alt="" height={18} width={18} />
                 <Tooltip
                   children={<p style={{ fontSize: '12px', fontFamily: 'Rubik' }}>Fechar página</p>}
@@ -289,7 +287,11 @@ export const LoteDetails = () => {
 
                     {/* CATEGORIAS */}
                     {task?.settlement_project_categories.map((cat) => {
-                      return <S.BlockGrayBorder key={cat.id}>{cat.name}</S.BlockGrayBorder>;
+                      return (
+                        <BlockClass refetch={refetch} key={cat.id} idBatche={task.id} idClass={cat.id}>
+                          {cat.name}
+                        </BlockClass>
+                      );
                     })}
                   </S.DetalhesLote>
                 )}

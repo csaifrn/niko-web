@@ -7,11 +7,11 @@ import MenuCoord from '../../../components/MenuCoord';
 import { useParams } from 'react-router-dom';
 import { useMutation } from 'react-query';
 import { Tag } from '../../../api/services/tags/get-tags/get.interface';
-import { ButtonGreen } from '../../../components/AtribuirAlguemModal/style';
 import { ModalCategory } from '../../../components/ModalCategory';
 import { Category } from '../../../api/services/batches/get-batche/get.interface';
 import { GetCategories } from '../../../api/services/settlement/get-categories';
 import { useCategories } from '../../../hooks/useCategories';
+import { ButtonCSV } from '../../../components/ButtonCSV';
 
 type Categoria = {
   id: number;
@@ -29,7 +29,7 @@ const Classes = () => {
   const [searchTerm, setSearchTerm] = useState<string>('');
   const [open, setOpen] = useState<boolean>(false);
   const { categories, isLoadingCategories } = useCategories();
-  const [Categories, setCategories] = useState<Category[]>();
+  const [, setCategories] = useState<Category[]>();
 
   const CategoriesMutate = useMutation(GetCategories, {
     onSuccess: (data: Category[]) => {
@@ -66,10 +66,11 @@ const Classes = () => {
   return (
     <>
       <div style={{ display: 'flex', justifyContent: 'center' }}>
-        <Menu area={`/Classes/${id}`} id_projeto={id}></Menu>
+        <Menu area={`/Classes`} id_projeto={id}></Menu>
         <MenuCoord />
         <S.CardsArea>
           <S.ButtonCriarClasse onClick={() => setOpen(!open)}>Criar classe</S.ButtonCriarClasse>
+          <ButtonCSV data={categories}>Baixar CSV: Classes</ButtonCSV>
           <Search searchTerm={searchTerm} handleSearchChange={handleSearchChange} />
 
           {sortedAndFilteredCategories?.map((tag: Tag) => (
@@ -84,5 +85,4 @@ const Classes = () => {
   );
 };
 
-export default Classes
-
+export default Classes;

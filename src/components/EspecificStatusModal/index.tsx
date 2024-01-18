@@ -112,7 +112,6 @@ export const EspecifcModal = (props: EspecifModalProps) => {
 
   const mutateSettle2 = useMutation(PostBatcheSettle, {
     onSuccess: () => {
-      console.log('Deu bom');
     },
     onError: (err: ApiError) => {
       toast.error(err.response?.data.message ? err.response?.data.message : 'Erro na execução');
@@ -121,7 +120,6 @@ export const EspecifcModal = (props: EspecifModalProps) => {
 
   const mutateSettleAll = useMutation(PatchBatcheSettle, {
     onSuccess: () => {
-      console.log('Deu bom');
       nextFase();
     },
     onError: (err: ApiError) => {
@@ -138,7 +136,7 @@ export const EspecifcModal = (props: EspecifModalProps) => {
 
   const DeleteBatch = useMutation(DeleteBatche, {
     onSuccess: () => {
-      navigate(`/Fase/:id/Board/Preparo`);
+      navigate(`/Fases/Board/Preparo`);
       toast.success('Lote excluído com sucesso!');
       console.log('Lote excluído com sucesso!');
     },

@@ -43,24 +43,26 @@ const Rotas = () => {
         <Route path="*" element={<Erro404 />} />
 
         {/* Páginas que precisam de token */}
-        <Route path="/Perfil/:id" element={<Perfil />} />
-        <Route path="Painel/:id" element={<Painel />} />
-        {/* <Route path="/Projetos" element={<Projetos />} /> */}
+        <Route path="/Perfil" element={<Perfil />} />
+        <Route path="/Painel" element={<Painel />} />
         <Route path="/CriarProjeto" element={<CreateProjeto />} />
-        <Route path="/Fase/:id" element={<FasesHome />} />
+        <Route path="/Fases" element={<FasesHome />} />
+        <Route path="/Fases/Board/Preparo" element={<Preparo />} />
+        <Route path="/Fases/Board/Catalogação" element={<Catalogacao />} />
+        <Route path="/Fases/Board/Digitalização" element={<Digitalizacao />} />
+        <Route path="Fases/Board/Upload" element={<Upload />} />
+        <Route path="/Fases/Board/Arquivamento" element={<Arquivamento />} />
+        <Route path="/Operadores" element={<OperadoresPage />} />
+        <Route path="/Classes" element={<Classes />} />
+
+        <Route path={`/Lote/:id`} element={<LoteDetails />} />
+        <Route path={`/Lote/:id/Edit`} element={<LoteEdit />} />
+
+        {/* <Route path="/Projetos" element={<Projetos />} /> */}
+        {/* <Route path="Fase/Board/Recebidos" element={<Recepcao />} /> */}
         {/* <Route path="/Atividades/:id" element={<AtividadesHome />} />
         <Route path={`/Atividades/:id/CriarAtividade`} element={<AtividadeCreate />} />
         <Route path={`/Atividades/:id/Edit/:iday/:idatv`} element={<AtividadeEdit />} /> */}
-        <Route path="Fase/:id/Board/Arquivamento" element={<Arquivamento />} />
-        {/* <Route path="Fase/:id/Board/Recebidos" element={<Recepcao />} /> */}
-        <Route path="Fase/:id/Board/Preparo" element={<Preparo />} />
-        <Route path="Fase/:id/Board/Catalogação" element={<Catalogacao />} />
-        <Route path="Fase/:id/Board/Digitalização" element={<Digitalizacao />} />
-        <Route path="/Operadores/:id" element={<OperadoresPage />} />
-        <Route path="/Classes/:id" element={<Classes />}/>
-        <Route path="Fase/:id/Board/Upload" element={<Upload />} />
-        <Route path={`/Lote/:id`} element={<LoteDetails />} />
-        <Route path={`/Lote/:id/Edit`} element={<LoteEdit  />} />
       </Routes>
     </Suspense>
   );

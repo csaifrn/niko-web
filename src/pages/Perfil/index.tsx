@@ -38,7 +38,7 @@ const Perfil = () => {
         setUser(attUser);
         toast.success(`Dados alterados com sucesso!`);
         refetch();
-        navigate('/Fase/:id');
+        navigate('/Fases');
       }
     },
     onError: (error: ApiError) => {
@@ -91,7 +91,7 @@ const Perfil = () => {
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-      <Menu area={`/Perfil/${id}`} id_projeto={id}></Menu>
+      <Menu area={`/Perfil`} id_projeto={id}></Menu>
       <MenuCoord />
       <S.Wrapper>
         <S.Title>Perfil</S.Title>

@@ -15,7 +15,7 @@ const Preparo = () => {
 
   return (
     <div style={{ display: 'flex', justifyContent: 'center' }}>
-      <Menu area={`/Fase/${id}/Board/Preparo`} id_projeto={id}></Menu>
+      <Menu area={`/Fases/Board/Preparo`} id_projeto={id}></Menu>
       <MenuCoord />
       <S.Wrapper>
         <Board main_status={0}>

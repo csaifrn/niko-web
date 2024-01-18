@@ -1,7 +1,6 @@
 import { ReactNode, useEffect, useState } from 'react';
 import * as S from './styles';
 import Lote from '../Lote';
-import Users from '../../data/UserData';
 import { BoardChanger } from '../BoardChanger';
 import { useMutation } from 'react-query';
 import { QueryBatche } from '../../api/services/batches/query-batches';
@@ -15,8 +14,7 @@ import { ModalCriarLote } from '../ModalCriarLote';
 import { EspecifcModal } from '../EspecificStatusModal';
 import { Link } from 'react-router-dom';
 import { GetResponseBatche } from '../../api/services/batches/query-batches/get.interface';
-import { ArrowCircleLeft, CheckCircle, HandWaving } from '@phosphor-icons/react';
-import { SharedState } from '../../context/SharedContext';
+import { CheckCircle, HandWaving } from '@phosphor-icons/react';
 import { useMe } from '../../hooks/useMe';
 
 interface BoardProps {
@@ -25,10 +23,10 @@ interface BoardProps {
 }
 
 export const Board = (props: BoardProps) => {
-  const { user, setUser } = SharedState();
   const { me } = useMe();
 
   const [batchesDispo, setBatchesDispo] = useState<GetResponseBatche[]>([]);
+
   const [batchesAnda, setBatchesAnda] = useState<GetResponseBatche[]>([]);
   const [batchesConc, setBatchesConc] = useState<GetResponseBatche[]>([]);
   const [titleModal, setTitleModal] = useState({ button: 'pegar lote', title: 'Deseja pegar o lote?' });

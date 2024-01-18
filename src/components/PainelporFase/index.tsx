@@ -175,7 +175,7 @@ export const PainelPorFase = () => {
         {/* RECEPÇÃO */}
         {/* <S.DivRemessasRecepcao>
           <S.ContainerDataFaseRecepcao>
-            <Link to={`/Fase/${id}/Board/Recebidos`} className="RecepTooltip">
+            <Link to={`/Fases/Board/Recebidos`} className="RecepTooltip">
               <S.CardFaseColorful style={{ backgroundColor: theme.colors['red/300'] }}>
                 <img src="/icon-big/IconOpenFile.svg" />
               </S.CardFaseColorful>
@@ -229,7 +229,7 @@ export const PainelPorFase = () => {
             <S.FasesDoMeio>
               {/* PREPARO */}
               <S.ContainerDataFase>
-                <Link to={`/Fase/${id}/Board/Preparo`} className="PreparoTooltip">
+                <Link to={`/Fases/Board/Preparo`} className="PreparoTooltip">
                   <S.CardFaseColorful style={{ backgroundColor: theme.colors['orange/400'] }}>
                     <img src="/icon-big/IconClean.svg" />
                   </S.CardFaseColorful>
@@ -267,7 +267,7 @@ export const PainelPorFase = () => {
 
               {/* CATALOGAÇÃO */}
               <S.ContainerDataFase>
-                <Link to={`/Fase/${id}/Board/Catalogação`} className="CatalogTooltip">
+                <Link to={`/Fases/Board/Catalogação`} className="CatalogTooltip">
                   <S.CardFaseColorful style={{ backgroundColor: theme.colors['yellow/500'] }}>
                     <img src="/icon-big/IconBookMark.svg" />
                   </S.CardFaseColorful>
@@ -305,7 +305,7 @@ export const PainelPorFase = () => {
 
               {/* DIGITALIZAÇÃO */}
               <S.ContainerDataFase>
-                <Link to={`/Fase/${id}/Board/Digitalização`} className="DigitalTooltip">
+                <Link to={`/Fases/Board/Digitalização`} className="DigitalTooltip">
                   <S.CardFaseColorful style={{ backgroundColor: theme.colors['blue/400'] }}>
                     <img src="/icon-big/IconScanner.svg" />
                   </S.CardFaseColorful>
@@ -343,7 +343,7 @@ export const PainelPorFase = () => {
 
               {/* UPLOAD */}
               <S.ContainerDataFase>
-                <Link to={`/Fase/${id}/Board/Upload`} className="UploadTooltip">
+                <Link to={`/Fases/Board/Upload`} className="UploadTooltip">
                   <S.CardFaseColorful style={{ backgroundColor: theme.colors['purple/600'] }}>
                     <img src="/icon-big/IconUpload.svg" />
                   </S.CardFaseColorful>
@@ -381,7 +381,7 @@ export const PainelPorFase = () => {
 
               {/* ARQUIVAMENTO */}
               <S.ContainerDataFase>
-                <Link to={`/Fase/${id}/Board/Arquivamento`} className="ArquivTooltip">
+                <Link to={`/Fases/Board/Arquivamento`} className="ArquivTooltip">
                   <S.CardFaseColorful style={{ backgroundColor: theme.colors['green/400'] }}>
                     <img src="/icon-big/IconCheckFile.svg" />
                   </S.CardFaseColorful>

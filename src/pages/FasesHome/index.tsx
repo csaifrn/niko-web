@@ -10,14 +10,14 @@ const Home = () => {
 
   return (
     <FasePage>
-      <Menu area={`/Fase/${id}`} id_projeto={id}></Menu>
+      <Menu area={`/Fases`} id_projeto={id}></Menu>
       <MenuCoord />
       <Main>
         {/* <CardFaseMaisTooltip className="CardRecepcaoTooltip">
           <Link to={`Board/Recebidos`} style={{ textDecoration: 'none' }}>
             <CardFase
               fase={-1}
-              //link={`${id}/Board/Recebidos`}
+              //link={`Board/Recebidos`}
               color={theme.colors['red/300']}
               srcImgIcon="/IconsFolder.svg"
             />
@@ -35,7 +35,7 @@ const Home = () => {
           <Link to={`Board/Preparo`} style={{ textDecoration: 'none' }}>
             <CardFase
               fase={0}
-              //link={`${id}/Board/Preparo`}
+              //link={`Board/Preparo`}
               color={theme.colors['orange/400']}
               srcImgIcon="/IconsClean.svg"
             />
@@ -47,7 +47,7 @@ const Home = () => {
           <Link to={`Board/Catalogação`} style={{ textDecoration: 'none' }}>
             <CardFase
               fase={1}
-              //link={`${id}/Board/Catalogação`}
+              //link={`Board/Catalogação`}
               color={theme.colors['yellow/500']}
               srcImgIcon="/IconsBookmark.svg"
             />
@@ -59,7 +59,7 @@ const Home = () => {
           <Link to={`Board/Digitalização`} style={{ textDecoration: 'none' }}>
             <CardFase
               fase={2}
-              //link={`${id}/Board/Digitalização`}
+              //link={`Board/Digitalização`}
               color={theme.colors['blue/400']}
               srcImgIcon="/IconsScanner.svg"
             />
@@ -71,7 +71,7 @@ const Home = () => {
           <Link to={`Board/Upload`} style={{ textDecoration: 'none' }}>
             <CardFase
               fase={3}
-              //link={`${id}/Board/Upload`}
+              //link={`Board/Upload`}
               color={theme.colors['purple/600']}
               srcImgIcon="/IconsUpload.svg"
             />
@@ -83,7 +83,7 @@ const Home = () => {
           <Link to={`Board/Arquivamento`} style={{ textDecoration: 'none' }}>
             <CardFase
               fase={4}
-              //link={`${id}/Board/Arquivamento`}
+              //link={`Board/Arquivamento`}
               color={theme.colors['green/400']}
               srcImgIcon="/IconsArquivamento.svg"
             />

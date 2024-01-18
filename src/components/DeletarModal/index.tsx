@@ -73,7 +73,17 @@ export const DeletarModal = (props: DeletarModalProps) => {
               <h2>{props.title}</h2>
             </S.NameClose>
             <S.Recused onClick={close}>Cancelar</S.Recused>
-            <S.Delete onClick={ExcluirClasse}>Excluir</S.Delete>
+            <S.Delete
+              onClick={() => {
+                if (props.id) {
+                  ExcluirClasse();
+                } else {
+                  handleClose();
+                }
+              }}
+            >
+              Excluir
+            </S.Delete>
           </S.ModalContent>
         </S.ModalArea>
       </S.ModalBackdrop>

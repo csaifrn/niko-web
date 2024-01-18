@@ -10,7 +10,7 @@ const Catalogacao = () => {
   const { id } = useParams();
   return (
     <>
-      <Menu area={`/Fase/${id}/Board/Catalogacao`} id_projeto={id}></Menu>
+      <Menu area={`s/Board/Catalogacao`} id_projeto={id}></Menu>
       <MenuCoord />
       <Style.Wrapper>
         <Board main_status={1} />

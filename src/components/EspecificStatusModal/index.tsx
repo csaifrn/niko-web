@@ -374,7 +374,7 @@ export const EspecifcModal = (props: EspecifModalProps) => {
             <S.NameClose>
               <S.Titulo> {props.title}</S.Titulo>
             </S.NameClose>
-            {props.batche.main_status === 1 && props.batche.specific_status == 1 && (
+            {props.batche.main_status === 1 && props.batche.specific_status == 1 && props.button !== 'Excluir lote' && (
               <S.CatalogacaoArea>
                 <h3 style={{ color: 'white' }}>Adicionar categorias</h3>
                 {!NoCategories && (
@@ -421,7 +421,7 @@ export const EspecifcModal = (props: EspecifModalProps) => {
               </>
             )}
 
-            {props.batche.main_status === 2 && props.batche.specific_status == 1 && (
+            {props.batche.main_status === 2 && props.batche.specific_status == 1 && props.button !== 'Excluir lote' && (
               <>
                 <h2 style={{ color: 'white' }}>Arquivos Digitais</h2>
                 <S.ArquivosInput

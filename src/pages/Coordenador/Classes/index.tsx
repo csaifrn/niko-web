@@ -69,7 +69,7 @@ const Classes = () => {
         <Menu area={`/Classes/${id}`} id_projeto={id}></Menu>
         <MenuCoord />
         <S.CardsArea>
-          <ButtonGreen onClick={() => setOpen(!open)}>Criar classe</ButtonGreen>
+          <S.ButtonCriarClasse onClick={() => setOpen(!open)}>Criar classe</S.ButtonCriarClasse>
           <Search searchTerm={searchTerm} handleSearchChange={handleSearchChange} />
 
           {sortedAndFilteredCategories?.map((tag: Tag) => (

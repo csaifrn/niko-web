@@ -70,7 +70,8 @@ export const Menu = (props: MenuProps) => {
             )}
 
             <S.MenuDesk>
-              {/* <MenuC.link to={`/Painel/${id}`}>
+              {/* PAINEL */}
+              <MenuC.link to={`/Painel/${id}`}>
                 <MenuC.MenuImg
                   src={
                     pathname === `/Painel/${id}`
@@ -82,8 +83,9 @@ export const Menu = (props: MenuProps) => {
                   <MenuC.textIcon style={{ color: theme.colors['orange/400'] }}>Painel</MenuC.textIcon>
                 )}
                 {pathname !== `/Painel/${id}` && <MenuC.textIcon>Painel</MenuC.textIcon>}
-              </MenuC.link> */}
+              </MenuC.link>
 
+              {/* ATIVIDADES*/}
               {/* <MenuC.link to={`/Atividades/${id}`}>
                 <MenuC.MenuImg
                   src={
@@ -96,6 +98,7 @@ export const Menu = (props: MenuProps) => {
                 {pathname !== `/Atividades/${id}` && <MenuC.textIcon>Atividades</MenuC.textIcon>}
               </MenuC.link> */}
 
+              {/* FASES - HOME */}
               <MenuC.link to={`/Fase/${id}`}>
                 <MenuC.MenuImg
                   src={
@@ -118,7 +121,7 @@ export const Menu = (props: MenuProps) => {
                 )}
               </MenuC.link>
               
-              {/* Página de categorias */}
+              {/* CLASSES */}
               {user?.role === UserRole.MANAGER && (
                 <MenuC.link to={`/Classes/${id}`}>
                   <MenuC.MenuImg

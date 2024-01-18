@@ -14,6 +14,30 @@ const CardsArea = styled.div`
   }
 `;
 
+export const ButtonCriarClasse = styled.button`
+  border: none;
+  color: ${({ theme }) => theme.colors['gray/900']};
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px 0px 16px 0px;
+  width: 150px;
+  font-family: 'Rubik';
+  background-color: ${({ theme }) => theme.colors['green/400']};
+  cursor: pointer;
+  &:hover {
+    background-color: ${({ theme }) => theme.colors['green/600']};
+  }
+  &:active {
+    background-color: ${({ theme }) => theme.colors['green/600']};
+    transform: translateY(-5%) translateX(2%);
+  }
+  @media screen and (max-width: 767px) {
+    width: 100%;
+  }
+`;
+
 const SearchDiv = styled.div`
   ${media.greaterThan('large')`
     width: 24.4%;

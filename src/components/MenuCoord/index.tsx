@@ -15,7 +15,7 @@ export const MenuCoord = () => {
   const pathname = window.location.pathname;
   return (
     <S.MenuArea>
-      {/* <S.link to={`/Painel/${id}`}>
+      <S.link to={`/Painel/${id}`}>
         <S.MenuImg
           src={
             pathname === `/Painel/${id}` ? '/IconMenu/ChartDonut/FillIcon.svg' : '/IconMenu/ChartDonut/RegularIcon.svg'
@@ -23,7 +23,8 @@ export const MenuCoord = () => {
         />
         {pathname === `/Painel/${id}` && <S.textIcon style={{ color: theme.colors['orange/400'] }}>Painel</S.textIcon>}
         {pathname !== `/Painel/${id}` && <S.textIcon>Painel</S.textIcon>}
-      </S.link> */}
+      </S.link>
+      
       {/* 
       <S.link to={`/Atividades/${id}`}>
         <S.MenuImg

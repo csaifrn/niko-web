@@ -28,7 +28,7 @@ const Login = () => {
     onSuccess: (data: SignInResponse) => {
       localStorage.setItem('token', data.token);
       setUser(jwtDecode(data.token));
-      navigate('/Fase/1');
+      navigate('/Fase');
     },
     onError: (error: ApiError) => {
       setResponseError(error.response?.data.message || 'Um erro inesperado ocorreu.');
@@ -75,7 +75,7 @@ const Login = () => {
 
   useEffect(() => {
     if (user) {
-      navigate('/Fase/1');
+      navigate('/Fase');
     }
   }, []);
 

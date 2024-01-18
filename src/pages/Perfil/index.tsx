@@ -38,15 +38,13 @@ const Perfil = () => {
         setUser(attUser);
         toast.success(`Dados alterados com sucesso!`);
         refetch();
-        navigate('/Fase/:id');
+        navigate('/Fase');
       }
     },
     onError: (error: ApiError) => {
       setResponseError(error.response?.data.message || 'Um erro inesperado ocorreu.');
     },
   });
-
-  console.log('loggedUsed', loggedUsed);
 
   const validateForm = async (name: string, email: string): Promise<boolean> => {
     try {

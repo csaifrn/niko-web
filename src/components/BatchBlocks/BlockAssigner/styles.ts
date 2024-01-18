@@ -17,7 +17,8 @@ export const NameAssigner = styled.p`
 `;
 
 export const DeleteAssigner = styled.button`
-  background-color: ${({ theme }) => theme.colors['gray/50']};
+  background-color: transparent;
+
   color: ${({ theme }) => theme.colors['gray/700']};
 
   transition: 0.2s all;

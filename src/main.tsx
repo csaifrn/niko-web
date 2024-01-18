@@ -25,8 +25,6 @@ createRoot(document.getElementById('root') as HTMLElement).render(
             reverseOrder={true}
             containerStyle={{
               zIndex: '1000',
-              borderRadius: '5px',
-              color: theme.colors.white,
               fontFamily: 'Rubik',
             }}
           />

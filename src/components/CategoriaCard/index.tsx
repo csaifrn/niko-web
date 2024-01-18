@@ -9,6 +9,8 @@ import { ModalCategory } from '../ModalCategory';
 import { Category } from '../../api/services/batches/get-batche/get.interface';
 import { useMutation } from 'react-query';
 import { GetCategories } from '../../api/services/settlement/get-categories';
+import { SharedState } from '../../context/SharedContext';
+import { UserRole } from '../../utils/userRole.enum';
 
 const CategoriaCard = (Categoria: Tag) => {
   const categoria = Categoria;
@@ -20,6 +22,7 @@ const CategoriaCard = (Categoria: Tag) => {
   const [prioridade, setPrioridade] = useState(false);
   const [openModal, setOpen] = useState<boolean>(false);
   const [Categories, setCategories] = useState<Category[]>();
+  const { user } = SharedState();
 
   const handlePrioridade = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
@@ -61,32 +64,34 @@ const CategoriaCard = (Categoria: Tag) => {
           <S.CategoriaClick>
             <S.CabecarioCategoria>
               <S.ClassTitle>{categoria.name}</S.ClassTitle>
-              <S.ClasseCardButtons>
-                {/* Botão de Editar Categoria */}
-                <S.ButtonArea className="EditarTooltip">
-                  <PencilSimple
-                    onClick={() => setOpen(!openModal)}
-                    size={24}
-                    weight="fill"
-                    color={theme.colors['white']}
-                  />
-                  <Tooltip
-                    children={<p style={{ fontSize: '12px', fontFamily: 'Rubik' }}>Editar classe</p>}
-                    anchorSelect=".EditarTooltip"
-                    place="bottom"
-                  />
-                </S.ButtonArea>
+              {user?.role === UserRole.MANAGER && (
+                <S.ClasseCardButtons>
+                  {/* Botão de Editar Categoria */}
+                  <S.ButtonArea className="EditarTooltip">
+                    <PencilSimple
+                      onClick={() => setOpen(!openModal)}
+                      size={24}
+                      weight="fill"
+                      color={theme.colors['white']}
+                    />
+                    <Tooltip
+                      children={<p style={{ fontSize: '12px', fontFamily: 'Rubik' }}>Editar classe</p>}
+                      anchorSelect=".EditarTooltip"
+                      place="bottom"
+                    />
+                  </S.ButtonArea>
 
-                {/* Botão de Excluir Categoria */}
-                <S.ButtonArea className="ExcluirTooltip">
-                  <Trash onClick={() => setModal(!modal)} size={24} weight="fill" color={theme.colors['white']} />
-                  <Tooltip
-                    children={<p style={{ fontSize: '12px', fontFamily: 'Rubik' }}>Excluir classe</p>}
-                    anchorSelect=".ExcluirTooltip"
-                    place="bottom"
-                  />
-                </S.ButtonArea>
-              </S.ClasseCardButtons>
+                  {/* Botão de Excluir Categoria */}
+                  <S.ButtonArea className="ExcluirTooltip">
+                    <Trash onClick={() => setModal(!modal)} size={24} weight="fill" color={theme.colors['white']} />
+                    <Tooltip
+                      children={<p style={{ fontSize: '12px', fontFamily: 'Rubik' }}>Excluir classe</p>}
+                      anchorSelect=".ExcluirTooltip"
+                      place="bottom"
+                    />
+                  </S.ButtonArea>
+                </S.ClasseCardButtons>
+              )}
 
               {prioridade && (
                 <S.Prioridade>
@@ -129,7 +134,13 @@ const CategoriaCard = (Categoria: Tag) => {
           refetch={() => CategoriesMutate.mutate()}
         />
       )}
-      {modal && <DeletarModal id ={categoria.id} title={`Deseja excluir a classe ${categoria.name}?`} close={handleClose}></DeletarModal>}
+      {modal && (
+        <DeletarModal
+          id={categoria.id}
+          title={`Deseja excluir a classe ${categoria.name}?`}
+          close={handleClose}
+        ></DeletarModal>
+      )}
     </>
   );
 };

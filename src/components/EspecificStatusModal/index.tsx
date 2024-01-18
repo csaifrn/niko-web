@@ -160,14 +160,6 @@ export const EspecifcModal = (props: EspecifModalProps) => {
         id: props.batche.id,
       });
       toast.success('Fase atualizada!');
-      if (props.batche.assigned_users) {
-        props.batche.assigned_users.map((ass) => {
-          mutateDeleteAssigner.mutate({
-            batch_id: props.batche.id,
-            assignment_user_id: ass.id,
-          });
-        });
-      }
     },
     onError: (err: ApiError) => {
       toast.error(err.response?.data.message ? err.response?.data.message : 'Erro na execução');
@@ -188,9 +180,6 @@ export const EspecifcModal = (props: EspecifModalProps) => {
 
   const mutateDeleteAssigner = useMutation(DeleteAssigner, {
     onSuccess: () => {},
-    onError: (err: ApiError) => {
-      toast.error(err.response?.data.message ? err.response?.data.message : 'Erro na execução');
-    },
   });
 
   const mutateStorage = useMutation(PatchBatcheEdit, {
@@ -440,7 +429,6 @@ export const EspecifcModal = (props: EspecifModalProps) => {
             )}
 
             <S.RecusedAvancar>
-
               {/* Cancelar */}
               <S.Recused onClick={handleClose}>
                 <S.Texto>Cancelar</S.Texto>

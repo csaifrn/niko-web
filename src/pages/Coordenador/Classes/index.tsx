@@ -14,6 +14,8 @@ import { GetCategories } from '../../../api/services/settlement/get-categories';
 import { useCategories } from '../../../hooks/useCategories';
 
 import { ButtonCSV } from '../../../components/ButtonCSV';
+import { SharedState } from '../../../context/SharedContext';
+import { UserRole } from '../../../utils/userRole.enum';
 
 type Categoria = {
   id: number;
@@ -32,6 +34,7 @@ const Classes = () => {
   const [open, setOpen] = useState<boolean>(false);
   const { categories, isLoadingCategories } = useCategories();
   const [, setCategories] = useState<Category[]>();
+  const { user } = SharedState();
 
   const CategoriesMutate = useMutation(GetCategories, {
     onSuccess: (data: Category[]) => {
@@ -71,10 +74,12 @@ const Classes = () => {
         <Menu area={`/Classes`} id_projeto={id}></Menu>
         <MenuCoord />
         <S.CardsArea>
-          <div style={{ display: 'flex', gap: '1em' }}>
-            <ButtonGreen onClick={() => setOpen(!open)}>Criar classe</ButtonGreen>
-            <ButtonCSV data={categories}>Baixar CSV: Classes</ButtonCSV>
-          </div>
+          {user?.role === UserRole.MANAGER && (
+            <div style={{ display: 'flex', gap: '1em' }}>
+              <ButtonGreen onClick={() => setOpen(!open)}>Criar classe</ButtonGreen>
+              <ButtonCSV data={categories}>Baixar CSV: Classes</ButtonCSV>
+            </div>
+          )}
 
           <Search searchTerm={searchTerm} handleSearchChange={handleSearchChange} />
 

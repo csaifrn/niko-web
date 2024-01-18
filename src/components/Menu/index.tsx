@@ -7,6 +7,9 @@ import { SharedState } from '../../context/SharedContext';
 import { LogOutModal } from '../LogOutModal';
 import theme from '../../global/theme';
 import { UserRole } from '../../utils/userRole.enum';
+import { MyBatches } from '../MyBatchesModal';
+import { ArchiveBox, PencilSimple, Person, SignOut } from '@phosphor-icons/react';
+import { IconUser } from '../Icon';
 
 interface MenuProps {
   area: string;
@@ -20,6 +23,7 @@ export const Menu = (props: MenuProps) => {
   const dropDownRef = useRef(null);
   const [DropDown, setDropDown] = useState(false);
   const [sair, setSair] = useState(false);
+  const [openMy, setOpenMy] = useState(false);
 
   const handleClickOutside = (event: any) => {
     if (dropDownRef.current && !(dropDownRef.current as HTMLElement).contains(event.target as Node)) {
@@ -36,21 +40,22 @@ export const Menu = (props: MenuProps) => {
   }, []);
 
   return (
-    <S.MenuWrapper>
-      <S.MenuArea>
-        <S.ContainerA>
-          {/* <S.ButtonBurger open={open} onClick={handleClickButton}>
+    <>
+      <S.MenuWrapper>
+        <S.MenuArea>
+          <S.ContainerA>
+            {/* <S.ButtonBurger open={open} onClick={handleClickButton}>
               <S.MenuImg src="/menu.svg" />
             </S.ButtonBurger> */}
 
-          <S.LinkLogo to={`/Fase`}>
-            <S.MenuImg src="/Logo_Niko.svg" />
-          </S.LinkLogo>
+            <S.LinkLogo to={`/Fase`}>
+              <S.MenuImg src="/Logo_Niko.svg" />
+            </S.LinkLogo>
 
-          {open && <MenuBurger area={props.area} onClose={() => setOpen(false)} />}
+            {open && <MenuBurger area={props.area} onClose={() => setOpen(false)} />}
 
-          <S.MenuDesk>
-            {/* <MenuC.link to={`/Painel`}>
+            <S.MenuDesk>
+              {/* <MenuC.link to={`/Painel`}>
                 <MenuC.MenuImg
                   src={
                     pathname === `/Painel`
@@ -64,7 +69,7 @@ export const Menu = (props: MenuProps) => {
                 {pathname !== `/Painel` && <MenuC.textIcon>Painel</MenuC.textIcon>}
               </MenuC.link> */}
 
-            {/* <MenuC.link to={`/Atividades`}>
+              {/* <MenuC.link to={`/Atividades`}>
                 <MenuC.MenuImg
                   src={
                     pathname === `/Atividades` ? '/IconMenu/Activity/Fill.svg' : '/IconMenu/Activity/Regular.svg'
@@ -76,60 +81,62 @@ export const Menu = (props: MenuProps) => {
                 {pathname !== `/Atividades` && <MenuC.textIcon>Atividades</MenuC.textIcon>}
               </MenuC.link> */}
 
-            <MenuC.link to={`/Fase`}>
-              <MenuC.MenuImg
-                src={
-                  pathname === `/Fase` || pathname.search('Board') >= 0 || pathname.search('Lote') >= 0
-                    ? '/IconMenu/SquaresFour/FillIcon.svg'
-                    : '/IconMenu/SquaresFour/RegularIcon.svg'
-                }
-              />
-              {pathname === `/Fase` && (
-                <MenuC.textIcon style={{ color: theme.colors['orange/400'] }}>Fases</MenuC.textIcon>
-              )}
-              {pathname.search('Board') >= 0 && (
-                <MenuC.textIcon style={{ color: theme.colors['orange/400'] }}>Fases</MenuC.textIcon>
-              )}
-              {pathname.search('Lote') >= 0 && (
-                <MenuC.textIcon style={{ color: theme.colors['orange/400'] }}>Fases</MenuC.textIcon>
-              )}
-              {pathname !== `/Fase` && pathname.search('Board') < 0 && pathname.search('Lote') < 0 && (
-                <MenuC.textIcon>Fases</MenuC.textIcon>
-              )}
-            </MenuC.link>
-
-            {/* Página de categorias */}
-            {user?.role === UserRole.MANAGER && (
-              <MenuC.link to={`/Classes`}>
+              <MenuC.link to={`/Fase`}>
                 <MenuC.MenuImg
                   src={
-                    pathname === `/Classes` ? '/IconMenu/TagSimple/FillIcon.svg' : '/IconMenu/TagSimple/RegularIcon.svg'
+                    pathname === `/Fase` || pathname.search('Board') >= 0 || pathname.search('Lote') >= 0
+                      ? '/IconMenu/SquaresFour/FillIcon.svg'
+                      : '/IconMenu/SquaresFour/RegularIcon.svg'
                   }
                 />
-                {pathname === `/Classes` && (
-                  <MenuC.textIcon style={{ color: theme.colors['orange/400'] }}>Classes</MenuC.textIcon>
+                {pathname === `/Fase` && (
+                  <MenuC.textIcon style={{ color: theme.colors['orange/400'] }}>Fases</MenuC.textIcon>
                 )}
-                {pathname !== `/Classes` && <MenuC.textIcon>Classes</MenuC.textIcon>}
+                {pathname.search('Board') >= 0 && (
+                  <MenuC.textIcon style={{ color: theme.colors['orange/400'] }}>Fases</MenuC.textIcon>
+                )}
+                {pathname.search('Lote') >= 0 && (
+                  <MenuC.textIcon style={{ color: theme.colors['orange/400'] }}>Fases</MenuC.textIcon>
+                )}
+                {pathname !== `/Fase` && pathname.search('Board') < 0 && pathname.search('Lote') < 0 && (
+                  <MenuC.textIcon>Fases</MenuC.textIcon>
+                )}
               </MenuC.link>
-            )}
-          </S.MenuDesk>
-        </S.ContainerA>
 
-        <S.ContainerLogo>
-          <Link to={'/Fase'}>
-            <S.MenuImg src="/Logo_Niko.svg" />
-          </Link>
-        </S.ContainerLogo>
+              {/* Página de categorias */}
+              {user?.role === UserRole.MANAGER && (
+                <MenuC.link to={`/Classes`}>
+                  <MenuC.MenuImg
+                    src={
+                      pathname === `/Classes`
+                        ? '/IconMenu/TagSimple/FillIcon.svg'
+                        : '/IconMenu/TagSimple/RegularIcon.svg'
+                    }
+                  />
+                  {pathname === `/Classes` && (
+                    <MenuC.textIcon style={{ color: theme.colors['orange/400'] }}>Classes</MenuC.textIcon>
+                  )}
+                  {pathname !== `/Classes` && <MenuC.textIcon>Classes</MenuC.textIcon>}
+                </MenuC.link>
+              )}
+            </S.MenuDesk>
+          </S.ContainerA>
 
-        {/* <S.MenuLupaMobile src="/Lupa.svg" /> */}
-        {/* <S.InputSearch>
+          <S.ContainerLogo>
+            <Link to={'/Fase'}>
+              <S.MenuImg src="/Logo_Niko.svg" />
+            </Link>
+          </S.ContainerLogo>
+
+          {/* <S.MenuLupaMobile src="/Lupa.svg" /> */}
+          {/* <S.InputSearch>
           <p>Em desenvolvimento..</p>
           <S.MenuLupa src="/Lupa.svg" />
         </S.InputSearch> */}
 
-        <div style={{ position: 'relative' }} ref={dropDownRef}>
-          {/* Icone de usuário - opção 1 */}
-          {/* <User
+          <div style={{ position: 'relative' }} ref={dropDownRef}>
+            {/* Icone de usuário - opção 1 */}
+            {/* <User
               size={44}
               color={theme.colors.white}
               style={{ borderRadius: '100%', padding: '8px', cursor: 'pointer' }}
@@ -139,98 +146,130 @@ export const Menu = (props: MenuProps) => {
               }}
             /> */}
 
-          {/* Icone de usuário - opção 2 */}
-          <S.User
-            src="/Account.svg"
-            alt="ícone circular de foto do usuário"
-            onClick={() => {
-              setDropDown(!DropDown);
-            }}
-          />
+            {/* Icone de usuário - opção 2 */}
+            <S.User
+              src="/Account.svg"
+              alt="ícone circular de foto do usuário"
+              onClick={() => {
+                setDropDown(!DropDown);
+              }}
+            />
 
-          {/* Menu do usuário */}
-          <div
-            style={{
-              display: `${DropDown ? 'block' : 'none'}`,
-              borderRadius: '5px',
-              position: 'absolute',
-              right: '0',
-              backgroundColor: '#393E4B',
-              minWidth: '170px',
-              boxShadow: '0px 8px 16px 0px rgba(0,0,0,0.2)',
-              zIndex: '1',
-              color: '#fff',
-              fontFamily: 'Rubik',
-            }}
-          >
-            {/* Nome e foto do usuário */}
+            {/* Menu do usuário */}
             <div
               style={{
-                display: 'flex',
-                gap: '8px',
-                alignItems: 'center',
-                justifyContent: 'flex-start',
-                borderBottom: 'solid 1px #4a5565',
-                padding: '12px 16px',
+                display: `${DropDown ? 'block' : 'none'}`,
+                borderRadius: '5px',
+                position: 'absolute',
+                right: '0',
+                backgroundColor: '#393E4B',
+                minWidth: '170px',
+                boxShadow: '0px 8px 16px 0px rgba(0,0,0,0.2)',
+                zIndex: '1',
+                color: '#fff',
+                fontFamily: 'Rubik',
               }}
             >
-              <img src="/Account.svg" alt="ícone de foto do usuário" style={{ width: '32px', height: '32px' }} />
-              <p
+              {/* Nome e foto do usuário */}
+              <div
                 style={{
-                  color: '#fff',
-                  fontFamily: 'Rubik',
-                  textDecoration: 'none',
-                  display: 'block',
+                  display: 'flex',
+                  gap: '12px',
+                  alignItems: 'center',
+                  justifyContent: 'flex-start',
+                  borderBottom: 'solid 1px #4a5565',
+                  padding: '12px 16px',
                 }}
               >
-                {user?.name}
-              </p>
+                {user && <IconUser name={user?.name} id={user?.sub} fontSize={9} size={20} />}
+                <p
+                  style={{
+                    color: '#fff',
+                    fontFamily: 'Rubik',
+                    textDecoration: 'none',
+                    display: 'block',
+                  }}
+                >
+                  {user?.name}
+                </p>
+              </div>
+
+              <Link
+                to={'/Perfil/:id'}
+                style={{
+                  color: theme.colors.white,
+                  padding: '12px 16px',
+                  fontFamily: 'Rubik',
+                  textDecoration: 'none',
+                  display: 'flex',
+                  textAlign: 'left',
+                  alignItems: 'center',
+                  cursor: 'pointer',
+                  gap: '12px',
+                }}
+              >
+                <Person weight="fill" size={20} color={theme.colors['white']} />
+                <S.TextLink>Perfil</S.TextLink>
+              </Link>
+              {/* <button
+                onClick={() => {
+                  setOpenMy(!openMy);
+                }}
+                style={{
+                  color: theme.colors.white,
+                  backgroundColor: 'transparent',
+                  width: '100%',
+                  border: 'none',
+                  padding: '12px 16px',
+                  fontFamily: 'Rubik',
+                  fontSize: '12',
+                  textDecoration: 'none',
+                  display: 'flex',
+                  textAlign: 'left',
+                  alignItems: 'center',
+                  cursor: 'pointer',
+                  gap: '8px',
+                }}
+              >
+                <ArchiveBox size={24} color={theme.colors.white} />
+                <S.TextLink>Meus Lotes</S.TextLink>
+              </button> */}
+              <button
+                onClick={() => {
+                  setSair(!sair);
+                }}
+                style={{
+                  color: theme.colors.white,
+                  backgroundColor: 'transparent',
+                  width: '100%',
+                  border: 'none',
+                  padding: '12px 16px',
+                  fontFamily: 'Rubik',
+                  fontSize: '12',
+                  textDecoration: 'none',
+                  display: 'flex',
+                  textAlign: 'left',
+                  alignItems: 'center',
+                  cursor: 'pointer',
+                  gap: '12px',
+                }}
+              >
+                <SignOut size={20} color={theme.colors.white} />
+                <S.TextLink>Sair</S.TextLink>
+              </button>
             </div>
-
-            <Link
-              to={'/Perfil/:id'}
-              style={{
-                color: theme.colors.white,
-                padding: '12px 16px',
-                fontFamily: 'Rubik',
-                textDecoration: 'none',
-                display: 'block',
-              }}
-            >
-              <S.TextLink>Perfil</S.TextLink>
-            </Link>
-
-            <button
-              onClick={() => {
-                setSair(!sair);
-              }}
-              style={{
-                color: theme.colors.white,
-                backgroundColor: 'transparent',
-                width: '100%',
-                border: 'none',
-                padding: '12px 16px',
-                fontFamily: 'Rubik',
-                fontSize: '12',
-                textDecoration: 'none',
-                display: 'block',
-                textAlign: 'left',
-                cursor: 'pointer',
-              }}
-            >
-              <S.TextLink>Sair</S.TextLink>{' '}
-            </button>
           </div>
-        </div>
-      </S.MenuArea>
-      {sair && (
-        <LogOutModal
-          close={() => {
-            setSair(!sair);
-          }}
-        />
-      )}
-    </S.MenuWrapper>
+        </S.MenuArea>
+        {sair && (
+          <LogOutModal
+            close={() => {
+              setSair(!sair);
+            }}
+          />
+        )}
+      </S.MenuWrapper>
+      {openMy && <MyBatches close={() => setOpenMy(false)} />}
+    </>
   );
 };
 

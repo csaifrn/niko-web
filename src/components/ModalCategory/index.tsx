@@ -33,7 +33,7 @@ export const ModalCategory = (props: ModalCategoriaProps) => {
   const [Categories, setCategories] = useState<Category[]>();
   const [searchTerm, setSearchTerm] = useState<string>('');
 
-  const CategoriesMutate = useMutation(GetCategories, {
+  const categoriesMutate = useMutation(GetCategories, {
     onSuccess: (data: Category[]) => {
       setCategories(data);
     },
@@ -187,6 +187,8 @@ export const ModalCategory = (props: ModalCategoriaProps) => {
     return cat.name;
   });
 
+  console.warn('teste');
+
   return (
     <>
       <S.ModalBackdrop>
@@ -214,7 +216,9 @@ export const ModalCategory = (props: ModalCategoriaProps) => {
                   )}
 
                   {name.length < 3 && (
-                    <p style={{ color: theme.colors['red/400'] }}>O nome da classe precisa ter ao menos 3 caracteres.</p>
+                    <p style={{ color: theme.colors['red/400'] }}>
+                      O nome da classe precisa ter ao menos 3 caracteres.
+                    </p>
                   )}
                   {validationFormError.name && <ErrorMessage>{validationFormError.name}</ErrorMessage>}
                   {categoryMutation.isLoading ? (
@@ -253,7 +257,9 @@ export const ModalCategory = (props: ModalCategoriaProps) => {
                   )}
 
                   {nomeCat.length < 3 && (
-                    <p style={{ color: theme.colors['red/400'] }}>O nome da classe precisa ter ao menos 3 caracteres.</p>
+                    <p style={{ color: theme.colors['red/400'] }}>
+                      O nome da classe precisa ter ao menos 3 caracteres.
+                    </p>
                   )}
 
                   {validationFormError.name && <ErrorMessage>{validationFormError.name}</ErrorMessage>}

@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import media from 'styled-media-query';
 
 const CardsArea = styled.div`
   display: flex;
@@ -86,6 +85,23 @@ export const ButtonGray = styled.button`
   }
   @media screen and (max-width: 767px) {
     width: 100%;
+  }
+`;
+
+export const LoadingSpinner = styled.div`
+  animation: is-rotating 1s infinite;
+  border: 2px solid ${({ theme }) => theme.colors.mediumGrey};
+  border-radius: 50%;
+  border-top-color: ${({ theme }) => theme.colors.jvrisAqua};
+  height: 2rem;
+  width: 2rem;
+  margin: auto;
+  margin-top: 2rem;
+
+  @keyframes is-rotating {
+    to {
+      transform: rotate(1turn);
+    }
   }
 `;
 

@@ -9,12 +9,13 @@ import { useMutation } from 'react-query';
 import { ModalCategory } from '../../../components/ModalCategory';
 import { GetCategories } from '../../../api/services/settlement/get-categories';
 import { useCategories } from '../../../hooks/useCategories';
-import { ButtonCSV } from '../../../components/ButtonCSV';
+import { CSVButton } from '../../../components/CSVButton';
 
 const Classes = () => {
   const { id } = useParams();
-  const [searchTerm, setSearchTerm] = useState<string>('');
-  const [open, setOpen] = useState<boolean>(false);
+  const [searchTerm, setSearchTerm] = useState('');
+  const [open, setOpen] = useState(false);
+  const [openModalCategory, setOpenModalCategoty] = useState(false);
   const { categories, isLoadingCategories } = useCategories();
 
   const categoriesMutate = useMutation(GetCategories);
@@ -23,27 +24,118 @@ const Classes = () => {
     setSearchTerm(event.target.value.toLowerCase());
   };
 
-  console.log(isLoadingCategories);
-
   return (
-    <>
-      <div style={{ display: 'flex', justifyContent: 'center' }}>
-        <Menu area={`/Classes`} id_projeto={id}></Menu>
-        <MenuCoord />
-        <S.CardsArea>
-          <S.ButtonCriarClasse onClick={() => setOpen(!open)}>Criar classe</S.ButtonCriarClasse>
-          <ButtonCSV data={categories}>Baixar CSV: Classes</ButtonCSV>
-          <Search searchTerm={searchTerm} handleSearchChange={handleSearchChange} />
+    <div style={{ display: 'flex', justifyContent: 'center' }}>
+      <Menu area={`/Classes`} id_projeto={id}></Menu>
+      <MenuCoord />
+      <S.CardsArea>
+        <S.ButtonCriarClasse onClick={() => setOpen(!open)}>Criar classe</S.ButtonCriarClasse>
+        {!isLoadingCategories && categories ? (
+          <CSVButton
+            columns={[
+              {
+                key: 'name',
+                name: 'Lote',
+              },
+              {
+                key: 'batch_count',
+                name: 'Quantidade total lotes',
+              },
+              {
+                key: 'preparation_batch_count',
+                name: 'Total em fase de preparação',
+              },
+              {
+                key: 'preparation_available',
+                name: 'Lotes disponíveis em fase de preparação',
+              },
+              {
+                key: 'preparation_in_progress',
+                name: 'Lotes em progresso em fase de preparação',
+              },
+              {
+                key: 'preparation_done',
+                name: 'Lotes concluídos em fase de preparação',
+              },
+              {
+                key: 'cataloguing_batch_count',
+                name: 'Total em fase de catalogação',
+              },
+              {
+                key: 'cataloguing_available',
+                name: 'Lotes disponíveis em fase de catalogação',
+              },
+              {
+                key: 'cataloguing_in_progress',
+                name: 'Lotes em progresso em fase de catalogação',
+              },
+              {
+                key: 'cataloguing_done',
+                name: 'Lotes concluídos em fase de catalogação',
+              },
+              {
+                key: 'digitization_scanning_batch_count',
+                name: 'Total em fase de digitalização e escaneamento',
+              },
+              {
+                key: 'digitization_scanning_available',
+                name: 'Lotes disponíveis em fase de digitalização e escaneamento',
+              },
+              {
+                key: 'digitization_scanning_in_progress',
+                name: 'Lotes em progresso em fase de digitalização e escaneamento',
+              },
+              {
+                key: 'digitization_scanning_done',
+                name: 'Lotes concluídos fase de digitalização e escaneamento',
+              },
+              {
+                key: 'upload_batch_count',
+                name: 'Total em fase de upload',
+              },
+              {
+                key: 'upload_available',
+                name: 'Lotes disponiveis em fase de upload',
+              },
+              {
+                key: 'upload_in_progress',
+                name: 'Lotes em progresso em fase de upload',
+              },
+              {
+                key: 'upload_done',
+                name: 'Lotes concluídos em fase de upload',
+              },
+              {
+                key: 'created_at',
+                name: 'Data de cadastro',
+                formatToDate: true,
+              },
+              {
+                key: 'updated_at',
+                name: 'Data de última atualização',
+                formatToDate: true,
+              },
+            ]}
+            fileName="projetos-de-assentamento"
+            data={categories}
+          />
+        ) : (
+          <S.LoadingSpinner />
+        )}
+        <Search searchTerm={searchTerm} handleSearchChange={handleSearchChange} />
 
-          {categories?.map(
-            (c) => c.name.toLowerCase().includes(searchTerm) && <CategoriaCard key={c.id} id={c.id} name={c.name} />,
-          )}
-        </S.CardsArea>
-      </div>
-      {open && (
-        <ModalCategory title={'Criar classe'} close={() => setOpen(!open)} refetch={() => categoriesMutate.mutate()} />
+        {categories?.map(
+          (c) => c.name.toLowerCase().includes(searchTerm) && <CategoriaCard key={c.id} id={c.id} name={c.name} />,
+        )}
+      </S.CardsArea>
+      {openModalCategory && (
+        <ModalCategory
+          title={'Criar classe'}
+          close={() => setOpenModalCategoty(!open)}
+          refetch={() => categoriesMutate.mutate()}
+        />
       )}
-    </>
+    </div>
   );
 };
 

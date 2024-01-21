@@ -23,7 +23,10 @@ const CategoriaCard = (categoria: CategoriaCardProps) => {
         <S.CardA>
           <S.CategoriaClick>
             <S.CabecarioCategoria>
-              <S.ClassTitle>{categoria.name}</S.ClassTitle>
+              <S.ContainerTitle>
+                <S.ClassTitle>{categoria.name}</S.ClassTitle>
+                <S.ClassSubTitle>Quantidade total de lotes: {categoria.count_batches}</S.ClassSubTitle>
+              </S.ContainerTitle>
               <S.ClasseCardButtons>
                 <S.ButtonArea className="EditarTooltip">
                   <PencilSimple

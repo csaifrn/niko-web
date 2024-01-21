@@ -118,7 +118,10 @@ const Classes = () => {
         <Search searchTerm={searchTerm} handleSearchChange={handleSearchChange} />
 
         {categories?.map(
-          (c) => c.name.toLowerCase().includes(searchTerm) && <CategoriaCard key={c.id} id={c.id} name={c.name} />,
+          (c) =>
+            c.name.toLowerCase().includes(searchTerm) && (
+              <CategoriaCard key={c.id} id={c.id} name={c.name} count_batches={c.batch_count} />
+            ),
         )}
       </S.CardsArea>
     </div>

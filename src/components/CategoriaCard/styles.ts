@@ -115,11 +115,25 @@ const Icon = styled.img`
   width: 18px;
 `;
 
+export const ContainerTitle = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
 export const ClassTitle = styled.p`
   font-size: 16px;
-  @media screen and (max-width: 767px){
+  @media screen and (max-width: 767px) {
     font-size: 12px;
   }
+`;
+
+export const ClassSubTitle = styled.span`
+  margin-top: 0.2rem;
+  font-size: 12px;
+  @media screen and (max-width: 767px) {
+    font-size: 8px;
+  }
+  color: ${({ theme }) => theme.colors['yellow/300']};
 `;
 
 export const ButtonArea = styled.button`
@@ -140,7 +154,6 @@ export const ButtonArea = styled.button`
 export const ClasseCardButtons = styled.div`
   display: flex;
   gap: 8px;
-
 `;
 
 const TotalFase = styled.p`

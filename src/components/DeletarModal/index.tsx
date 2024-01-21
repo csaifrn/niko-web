@@ -8,7 +8,7 @@ import toast from 'react-hot-toast';
 interface DeletarModalProps {
   id?: string;
   title: string;
-  close: () => void;
+  close: (open: boolean) => void;
   deleteFunction?: () => void;
 }
 

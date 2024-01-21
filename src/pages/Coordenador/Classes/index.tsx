@@ -5,9 +5,6 @@ import CategoriaCard from '../../../components/CategoriaCard';
 import Menu from '../../../components/Menu';
 import MenuCoord from '../../../components/MenuCoord';
 import { useParams } from 'react-router-dom';
-import { useMutation } from 'react-query';
-import { ModalCategory } from '../../../components/ModalCategory';
-import { GetCategories } from '../../../api/services/settlement/get-categories';
 import { useCategories } from '../../../hooks/useCategories';
 import { CSVButton } from '../../../components/CSVButton';
 
@@ -15,11 +12,7 @@ const Classes = () => {
   const { id } = useParams();
   const [searchTerm, setSearchTerm] = useState('');
   const [open, setOpen] = useState(false);
-  const [openModalCategory, setOpenModalCategoty] = useState(false);
   const { categories, isLoadingCategories } = useCategories();
-
-  const categoriesMutate = useMutation(GetCategories);
-
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
     setSearchTerm(event.target.value.toLowerCase());
   };
@@ -128,13 +121,6 @@ const Classes = () => {
           (c) => c.name.toLowerCase().includes(searchTerm) && <CategoriaCard key={c.id} id={c.id} name={c.name} />,
         )}
       </S.CardsArea>
-      {openModalCategory && (
-        <ModalCategory
-          title={'Criar classe'}
-          close={() => setOpenModalCategoty(!open)}
-          refetch={() => categoriesMutate.mutate()}
-        />
-      )}
     </div>
   );
 };

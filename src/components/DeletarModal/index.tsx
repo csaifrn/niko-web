@@ -8,7 +8,7 @@ import toast from 'react-hot-toast';
 interface DeletarModalProps {
   id?: string;
   title: string;
-  close: (open: boolean) => void;
+  close: () => void;
   deleteFunction?: () => void;
 }
 
@@ -50,7 +50,6 @@ export const DeletarModal = (props: DeletarModalProps) => {
     onSuccess: () => {
       handleClose();
       toast.success('Classe excluída com sucesso!');
-      console.log('Classe excluída com sucesso!');
       queryClient.invalidateQueries('categories');
     },
     onError: (err: ApiError) => {
@@ -65,29 +64,27 @@ export const DeletarModal = (props: DeletarModalProps) => {
   };
 
   return (
-    <>
-      <S.ModalBackdrop>
-        <S.ModalArea id="modal-scaling">
-          <S.ModalContent>
-            <S.NameClose>
-              <h2>{props.title}</h2>
-            </S.NameClose>
-            <S.Recused onClick={close}>Cancelar</S.Recused>
-            <S.Delete
-              onClick={() => {
-                if (props.id) {
-                  ExcluirClasse();
-                } else {
-                  handleClose();
-                }
-              }}
-            >
-              Excluir
-            </S.Delete>
-          </S.ModalContent>
-        </S.ModalArea>
-      </S.ModalBackdrop>
-    </>
+    <S.ModalBackdrop>
+      <S.ModalArea id="modal-scaling">
+        <S.ModalContent>
+          <S.NameClose>
+            <h2>{props.title}</h2>
+          </S.NameClose>
+          <S.Recused onClick={close}>Cancelar</S.Recused>
+          <S.Delete
+            onClick={() => {
+              if (props.id) {
+                ExcluirClasse();
+              } else {
+                handleClose();
+              }
+            }}
+          >
+            Excluir
+          </S.Delete>
+        </S.ModalContent>
+      </S.ModalArea>
+    </S.ModalBackdrop>
   );
 };
 

@@ -4,23 +4,14 @@ import { ErrorMessage } from '../../pages/Login/styles';
 import { validationCreateCatSchema } from './validation';
 import { useMutation, useQueryClient } from 'react-query';
 import * as Yup from 'yup';
-import { ErrorsForm } from './criar.interface';
+import { ErrorsForm, ModalCategoriaProps } from './criar.interface';
 import ReactLoading from 'react-loading';
 import toast from 'react-hot-toast';
 import { CreateCategory } from '../../api/services/categoria/create-category';
 import { EditCategory } from '../../api/services/categoria/edit-category';
 import theme from '../../global/theme';
-import { GetCategories } from '../../api/services/settlement/get-categories';
 import { Category } from '../../api/services/batches/get-batche/get.interface';
 import { useCategories } from '../../hooks/useCategories';
-
-interface ModalCategoriaProps {
-  id?: string;
-  nomeCat?: string;
-  title: string;
-  close: () => void;
-  refetch: () => void;
-}
 
 export const ModalCategory = (props: ModalCategoriaProps) => {
   const queryClient = useQueryClient();
@@ -30,14 +21,7 @@ export const ModalCategory = (props: ModalCategoriaProps) => {
   const [responseError] = useState('');
   const [validationFormError, setValidationFormError] = useState<ErrorsForm>({ name: '' });
   const { categories, isLoadingCategories } = useCategories();
-  const [Categories, setCategories] = useState<Category[]>();
   const [searchTerm, setSearchTerm] = useState<string>('');
-
-  const categoriesMutate = useMutation(GetCategories, {
-    onSuccess: (data: Category[]) => {
-      setCategories(data);
-    },
-  });
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -54,9 +38,7 @@ export const ModalCategory = (props: ModalCategoriaProps) => {
 
   const handleSucessCreate = () => {
     setName('');
-    if (props.refetch) {
-      props.refetch();
-    }
+    queryClient.invalidateQueries('categories');
     handleClose();
   };
 

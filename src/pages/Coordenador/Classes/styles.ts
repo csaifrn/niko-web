@@ -13,6 +13,17 @@ const CardsArea = styled.div`
   }
 `;
 
+
+export const CriarAndCsvDiv = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  @media screen and (min-width: 767px) {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+`;
+
 export const ButtonCriarClasse = styled.button`
   border: none;
   color: ${({ theme }) => theme.colors['gray/900']};
@@ -25,6 +36,7 @@ export const ButtonCriarClasse = styled.button`
   font-family: 'Rubik';
   background-color: ${({ theme }) => theme.colors['green/400']};
   cursor: pointer;
+  transition: all 500ms;
   &:hover {
     background-color: ${({ theme }) => theme.colors['green/600']};
   }
@@ -34,6 +46,23 @@ export const ButtonCriarClasse = styled.button`
   }
   @media screen and (max-width: 767px) {
     width: 100%;
+  }
+`;
+
+export const QuantClassesDiv = styled.div`
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+  @media screen and (min-width: 767px) {
+  }
+`;
+
+export const QuantClassesText = styled.h1`
+  display: flex;
+  gap: 16px;
+  font-family: 'Rubik';
+  color: ${({ theme }) => theme.colors['white']};
+  @media screen and (min-width: 767px) {
   }
 `;
 

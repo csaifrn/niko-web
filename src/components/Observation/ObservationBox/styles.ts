@@ -109,19 +109,3 @@ export const ButtonEdit = styled.button`
   width: 24px;
   border: none;
 `;
-
-export const ToolTip = styled.div`
-  background-color: ${({ theme }) => theme.colors['gray/300']};
-  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 8px;
-  color: white;
-  border-radius: 3px;
-  position: absolute;
-  top: calc(100% + 8px);
-  left: 0;
-  display: none;
-  font-family: 'Rubik';
-`;

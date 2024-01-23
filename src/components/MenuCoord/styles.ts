@@ -45,6 +45,7 @@ const link = styled(Link)`
   font-family: 'Rubik';
   border-radius: 5px;
   padding: 5px;
+  transition: all 500ms;
   &:hover {
     background-color: ${({ theme }) => theme.colors['gray/500']};
   }

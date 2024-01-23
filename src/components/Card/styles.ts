@@ -14,8 +14,9 @@ const CardContainer = styled.div`
   font-family: 'Rubik';
   font-size: 16px;
   cursor: pointer;
+  transition: all 500ms;
   &:hover {
-    filter: brightness(0.9);
+    filter: brightness(0.8);
   }
   border-radius: 14px;
   border: 1px solid #4A5565;

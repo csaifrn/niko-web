@@ -478,11 +478,12 @@ export const PegarLote = styled.button`
   font-family: 'Rubik';
   color: ${({ theme }) => theme.colors['white']};
   cursor: pointer;
+  transition: all 500ms;
   &:hover {
-    filter: brightness(0.9);
+    filter: brightness(0.8);
   }
   &:active {
-    filter: brightness(0.9);
+    filter: brightness(0.8);
   }
 `;
 
@@ -494,11 +495,12 @@ export const ConcluirButton = styled.button`
   font-family: 'Rubik';
   color: ${({ theme }) => theme.colors['gray/700']};
   cursor: pointer;
+  transition: all 500ms;
   &:hover {
-    filter: brightness(0.9);
+    filter: brightness(0.8);
   }
   &:active {
-    filter: brightness(0.9);
+    filter: brightness(0.8);
   }
 `;
 
@@ -514,12 +516,13 @@ export const Botao = styled.button`
   border: none;
   font-family: 'Rubik';
   color: ${({ theme }) => theme.colors.white};
+  transition: all 500ms;
   cursor: pointer;
   &:hover {
-    filter: brightness(0.9);
+    filter: brightness(0.8);
   }
   &:active {
-    filter: brightness(0.9);
+    filter: brightness(0.8);
   }
 `;
 
@@ -536,11 +539,12 @@ export const BotaoDeletarLote = styled.button`
   font-family: 'Rubik';
   color: ${({ theme }) => theme.colors.white};
   cursor: pointer;
+  transition: all 500ms;
   &:hover {
-    filter: brightness(0.9);
+    filter: brightness(0.8);
   }
   &:active {
-    filter: brightness(0.9);
+    filter: brightness(0.8);
   }
 `;
 
@@ -571,11 +575,12 @@ export const VoltarAvancar = styled.button`
   border-radius: 5px 0px 0px 5px;
   border: none;
   font-family: 'Rubik';
+  transition: all 500ms;
   &:hover {
-    filter: brightness(0.9);
+    filter: brightness(0.8);
   }
   &:active {
-    filter: brightness(0.9);
+    filter: brightness(0.8);
   }
   &:disabled {
     cursor: not-allowed;

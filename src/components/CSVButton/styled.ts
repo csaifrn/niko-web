@@ -12,9 +12,12 @@ export const Wrapper = styled.div`
   background-color: white;
   transition: all 500ms;
   height: fit-content;
-
+  font-family: 'Rubik';
   &:hover {
-    background-color: ${({ theme }) => theme.colors.softGreenDark};
+    filter: brightness(0.9)
+  }
+  @media screen and (max-width: 767px){
+    width: 100%;
   }
 `;
 

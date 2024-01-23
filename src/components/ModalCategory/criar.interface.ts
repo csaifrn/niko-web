@@ -7,4 +7,5 @@ export interface ModalCategoriaProps {
   nomeCat?: string;
   title: string;
   close: () => void;
+  refetch?: () => void
 }

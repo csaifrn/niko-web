@@ -4,6 +4,7 @@ import { saveAs } from 'file-saver';
 import * as S from './styled';
 import { formatFileNameWithCurrentDate } from '../../utils/formatFileNameWithCurrentDate.util';
 import { formatDate } from '../../utils/formatDateToCustomTable.util';
+import { Tooltip } from 'react-tooltip';
 
 export const CSVButton = ({ fileName, columns, data }: CSVButtonProps) => {
   const formatOptions = (key: string, value: any) => {
@@ -41,8 +42,11 @@ export const CSVButton = ({ fileName, columns, data }: CSVButtonProps) => {
   };
 
   return (
-    <S.Wrapper onClick={exportToCSV}>
+    <S.Wrapper onClick={exportToCSV} className="CSVTooltip">
       <S.Icon alt="Exportar para CSV" />
+      <Tooltip anchorSelect={'.CSVTooltip'} place="top">
+        Exportar para CSV
+      </Tooltip>
     </S.Wrapper>
   );
 };

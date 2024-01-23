@@ -10,6 +10,7 @@ const Lote = styled.div`
   height: 100%;
   min-width: 230px;
   filter: drop-shadow(0px 4px 1px rgba(0, 0, 0, 0.25));
+  transition: all 500ms;
   &:hover {
     background-color: ${({ theme }) => theme.colors['gray/400']};
   }

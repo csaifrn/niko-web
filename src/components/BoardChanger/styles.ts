@@ -36,6 +36,7 @@ export const IconBarra = styled(Link)`
 
 export const LinkImgEscura = styled.img`
   filter: brightness(0.6);
+  transition: all 500ms;
   &:hover {
     filter: brightness(0.9);
   }
@@ -45,6 +46,7 @@ export const LinkImgEscura = styled.img`
 `;
 
 export const LinkImg = styled.img`
+  transition: all 500ms;
   &:hover {
     filter: brightness(0.9);
   }

@@ -63,8 +63,9 @@ export const BotaoFiltrar = styled.button`
 
   border: none;
   padding: 8px;
-  cursor: pointer;
   width: 4em;
+  cursor: pointer;
+  transition: all 500ms;
   &:hover {
     background-color: ${({ theme }) => theme.colors['orange/500']};
   }
@@ -250,8 +251,9 @@ export const CardFaseColorful = styled.div`
   width: 100%;
   height: 100%;
   &:hover {
-    filter: brightness(0.9);
+    filter: brightness(0.8);
   }
+  transition: all 500ms;
   cursor: pointer;
 `;
 

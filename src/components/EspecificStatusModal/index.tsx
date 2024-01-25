@@ -333,6 +333,7 @@ export const EspecifcModal = (props: EspecifModalProps) => {
         mutateStorage.mutate({
           id: props.batche.id,
           storage_location: shelfNumber,
+          
         });
       }
     } else if (props.batche.main_status === 2 && props.batche.specific_status === 1) {

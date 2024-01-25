@@ -16,6 +16,8 @@ import { Link } from 'react-router-dom';
 import { GetResponseBatche } from '../../api/services/batches/query-batches/get.interface';
 import { CheckCircle, HandWaving } from '@phosphor-icons/react';
 import { useMe } from '../../hooks/useMe';
+import { Estante } from '../../pages/LoteDetails/styles';
+import { Tooltip } from 'react-tooltip';
 
 interface BoardProps {
   main_status: number;
@@ -266,6 +268,28 @@ export const Board = (props: BoardProps) => {
                           )}
                           {batche.main_status === 3 && (
                             <img src="/icon-small/Upload.svg" alt="" style={{ width: '32px', height: '32px' }} />
+                          )}
+                          {batche.main_status === 4 && batche.specific_status === 0 && (
+                            <img src="/icon-small/Arquivamento.svg" alt="" style={{ width: '32px', height: '32px' }} />
+                          )}
+                          {batche.main_status === 4 && batche.specific_status === 2 && (
+                            <Estante
+                              className="ShelfTooltip"
+                              style={{
+                                backgroundColor: theme.colors['gray/700'],
+                                height: '100%',
+                                width: '60px',
+                              }}
+                            >
+                              {batche.shelf_number}
+                              <Tooltip
+                                children={
+                                  <p style={{ fontSize: '12px', fontFamily: 'Rubik' }}>Número de arquivamento</p>
+                                }
+                                anchorSelect=".ShelfTooltip"
+                                place="bottom"
+                              />
+                            </Estante>
                           )}
                         </Lote>
                       </Link>

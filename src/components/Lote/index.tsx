@@ -91,7 +91,7 @@ const Lote = ({ assigners, categories, children, pendencia, value, priority }: P
                         <S.BlackBlock
                           data-tooltip-id={`my-tooltip-multiline-${random}`}
                           key={member.id}
-                          style={{ borderRadius: '100%', width: '2em', paddingRight: '2px' }}
+                          style={{ borderRadius: '100%', width: '2em', paddingRight: '2px' , border: 'none' }}
                         >
                           <p>+{index}</p>
                           <Tooltip

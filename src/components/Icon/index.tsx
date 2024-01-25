@@ -22,7 +22,7 @@ export const IconUser = ({ name, id }: AssignedUser) => {
   const random = generateUUID();
 
   return (
-    <BlackBlock style={{ borderRadius: '100%', width: '2em' }} className={`my-tooltip-${random}`}>
+    <BlackBlock style={{ borderRadius: '100%', width: '2em' , border: 'none'}} className={`my-tooltip-${random}`}>
       <p style={{ padding: '0 0.5em' }}>{IconInitials}</p>
       <Tooltip anchorSelect={`.my-tooltip-${random}`} children={<p>{name}</p>} place="top" />
     </BlackBlock>

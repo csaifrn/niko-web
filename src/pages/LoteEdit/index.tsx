@@ -41,6 +41,7 @@ const LoteEdit = () => {
   const [options, setOptions] = useState<Option[]>([]);
   const [selectedOptions, setSelectedOptions] = useState<Option[]>([]);
   const [priority, setPriority] = useState(false);
+  const [storageLocation, setStorageLocation] = useState<string>('');
 
   const Priority = useMutation(PatchBatchePriority, {
     onSuccess: (data) => {
@@ -95,6 +96,7 @@ const LoteEdit = () => {
       setPhysical_files_count(data.physical_files_count);
       setDigital_files_count(data.digital_files_count);
       setFaseAtual(data.main_status);
+      setStorageLocation(data.storage_location);
       setSelectedOptions([
         ...data.settlement_project_categories.map((cat) => ({
           value: cat.id,
@@ -174,6 +176,7 @@ const LoteEdit = () => {
         priority,
         digital_files_count,
         physical_files_count,
+        storage_location: storageLocation
       });
 
       const newSettle = selectedOptions.filter(
@@ -295,6 +298,17 @@ const LoteEdit = () => {
                 <S.Slider />
               </S.SwitchButton>
             </S.Prioridade>
+
+            {faseAtual === 4 && (
+              <>
+                <h2>Estante</h2>
+                <S.NameInput
+                  type="text"
+                  value={storageLocation}
+                  onChange={(e) => setStorageLocation(e.currentTarget.value)}
+                />
+              </>
+            )}
 
             {/* ARQUIVOS */}
             <S.Arquivos>

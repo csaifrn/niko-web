@@ -79,7 +79,9 @@ export const LoteDetails = () => {
   const handleAvancar = () => {
     setAvancar(!avancar);
 
-    console.log(option?.value);
+    if (option?.value === 5) {
+      option.value = 3;
+    }
 
     if ((option?.value && id) || (option?.value === 0 && id)) {
       mutateEspecific.mutate({
@@ -181,6 +183,7 @@ export const LoteDetails = () => {
   //   )
   // }
 
+  console.log(option?.value);
   useEffect(() => {
     CheckIdForGetBatch();
   }, []);
@@ -310,8 +313,21 @@ export const LoteDetails = () => {
                   </S.DetalhesLote>
                 )}
 
-              {/* ARQUIVOS */}
+              {/* DADOS DO ARQUIVAMENTO + ARQUIVOS*/}
               <S.DetalhesLote>
+                {/* N° de arquivamento */}
+                {task?.shelf_number !== null && (
+                  <S.Estante className="ShelfTooltip">
+                    {task?.shelf_number}
+                    <Tooltip
+                      children={<p style={{ fontSize: '12px', fontFamily: 'Rubik' }}>Número de arquivamento</p>}
+                      anchorSelect=".ShelfTooltip"
+                      place="bottom"
+                    />
+                  </S.Estante>
+                )}
+
+                {/* Estante */}
                 {task?.storage_location !== null && (
                   <S.Estante className="LocationTooltip">
                     {task?.storage_location}
@@ -409,42 +425,6 @@ export const LoteDetails = () => {
 
               {/* BOTÕES PRINCIPAIS */}
               <S.Botoes>
-                {user?.role === UserRole.MANAGER && (
-                  <S.BotaoMudarFase>
-                    {/* BOTÃO DE AVANÇAR FASE*/}
-
-                    <S.VoltarAvancar
-                      disabled={status === option?.value}
-                      onClick={handleAvancar}
-                      style={{ cursor: 'pointer' }}
-                    >
-                      {(option?.value && option?.value < status) || (option?.value === 0 && option?.value < status) ? (
-                        <img src={'/voltar.svg'} alt="ícone circular com uma seta para a esquerda ao centro" />
-                      ) : option?.value === status ? (
-                        <XCircle size={18} />
-                      ) : (
-                        <img src={'/avancar.svg'} alt="ícone circular com uma seta para a direita ao centro" />
-                      )}
-                      {option?.value && option?.value < status ? (
-                        <p style={{ color: theme.colors.white }}>Voltar fase</p>
-                      ) : option?.value === status ? (
-                        <p style={{ color: theme.colors.white }}>Fase atual</p>
-                      ) : (
-                        <p style={{ color: theme.colors.white }}>Avançar fase</p>
-                      )}
-                    </S.VoltarAvancar>
-
-                    {/* BOTÃO DE ESCOLHER FASE PARA AVANÇAR*/}
-                    <S.EscolherFaseSelect
-                      options={optionsFases}
-                      onChange={(o: any) => setOption(o)}
-                      value={option}
-                      className="react-select-container"
-                      classNamePrefix="react-select"
-                      placeholder="Escolher fase"
-                    />
-                  </S.BotaoMudarFase>
-                )}
                 {/* PEGAR LOTE */}
                 {specificStatus === 0 && (
                   <S.PegarLote
@@ -503,6 +483,50 @@ export const LoteDetails = () => {
                     </S.ConcluirButton>
                   )}
 
+                {/* BOTÃO DE AVANÇAR/VOLTAR FASE*/}
+                {user?.role === UserRole.MANAGER && (
+                  <S.BotaoMudarFase>
+                    <S.VoltarAvancar
+                      disabled={status === option?.value}
+                      onClick={handleAvancar}
+                      style={{ cursor: 'pointer' }}
+                    >
+                      {/* Ícone */}
+                      {(option?.value && option?.value < status) ||
+                      (option?.value === 0 && option?.value < status) ||
+                      option?.value === 5 ? (
+                        <img src={'/voltar.svg'} alt="ícone circular com uma seta para a esquerda ao centro" />
+                      ) : option?.value === status ? (
+                        <XCircle size={18} />
+                      ) : (
+                        <img src={'/avancar.svg'} alt="ícone circular com uma seta para a direita ao centro" />
+                      )}
+
+                      {/* Mensagem */}
+                      {(option?.value && option?.value < status) ||
+                      (option?.value === 0 && option?.value < status) ||
+                      option?.value === 5 ? (
+                        <p style={{ color: theme.colors.white }}>Voltar fase</p>
+                      ) : option?.value === status ? (
+                        <p style={{ color: theme.colors.white }}>Fase atual</p>
+                      ) : (
+                        <p style={{ color: theme.colors.white }}>Avançar fase</p>
+                      )}
+                    </S.VoltarAvancar>
+
+                    {/* BOTÃO DE ESCOLHER FASE PARA AVANÇAR/VOLTAR*/}
+                    <S.EscolherFaseSelect
+                      options={optionsFases}
+                      onChange={(o: any) => setOption(o)}
+                      value={option != undefined && option.value == 5 ? { label: 'Upload', value: 3 } : option}
+                      className="react-select-container"
+                      classNamePrefix="react-select"
+                      placeholder="Escolher fase"
+                    />
+                  </S.BotaoMudarFase>
+                )}
+
+                {/* Atribuir à alguém */}
                 {user?.role === UserRole.MANAGER && (
                   <S.Botao onClick={handleAtribuirAlguem}>
                     <img src={`/AddUser.svg`} alt="botão para atribuir lote a algum operador " />
@@ -510,6 +534,7 @@ export const LoteDetails = () => {
                   </S.Botao>
                 )}
 
+                {/* Excluir Lote */}
                 {user?.role === UserRole.MANAGER && (
                   <S.BotaoDeletarLote
                     onClick={(e) => {

@@ -50,7 +50,7 @@ export const LoteDetalhes = styled.div`
 
 const LoteNumAvisos = styled.div`
   display: flex;
-  gap: 2em;
+  gap: 8px;
   justify-content: space-between;
   align-items: center;
   align-left {
@@ -95,12 +95,15 @@ export const ToolText = styled.p`
 `;
 
 const BlackBlock = styled.div`
-  height: 24px;
+  height: auto;
   width: auto;
+  padding-top: 5px;
+  padding-bottom: 5px;
   background-color: ${({ theme }) => theme.colors['gray/700']};
   display: flex;
   justify-content: center;
   align-items: center;
+  border: ${({ theme }) => theme.colors['gray/300']} solid 2px;
   p {
     color: 'white';
     margin-bottom: '0';
@@ -111,6 +114,7 @@ const BlackBlock = styled.div`
     display: block;
   }
 `;
+
 
 const fotoEnv = styled.img`
   width: 32px;

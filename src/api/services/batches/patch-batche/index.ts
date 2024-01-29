@@ -5,6 +5,7 @@ import {
   PatchResponseEditBatch,
   PatchShelfNumberParams,
   PatchShelfNumberResponse,
+  PatchBatcheClassParams,
 } from './patch.interface';
 
 export const PatchBatchePriority = async ({ id, priority }: PatchBatcheParams): Promise<PatchResponseBatche> => {
@@ -23,6 +24,27 @@ export const PatchBatcheEdit = async ({
   digital_files_count,
   storage_location,
 }: PatchBatcheParams): Promise<PatchResponseEditBatch> => {
+  const Batche = await axiosInstance.patch<PatchResponseEditBatch>(`/Batches/${id}`, {
+    title,
+    priority,
+    digital_files_count,
+    physical_files_count,
+    storage_location,
+  });
+
+  return Batche.data;
+};
+
+export const PatchBatcheClassEdit = async ({
+  id,
+  title,
+  priority,
+  physical_files_count,
+  digital_files_count,
+  storage_location,
+  newIds,
+  deletedIds,
+}: PatchBatcheClassParams): Promise<PatchResponseEditBatch> => {
   const Batche = await axiosInstance.patch<PatchResponseEditBatch>(`/Batches/${id}`, {
     title,
     priority,

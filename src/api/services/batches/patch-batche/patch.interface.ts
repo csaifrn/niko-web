@@ -7,6 +7,17 @@ export interface PatchBatcheParams {
   storage_location?: string;
 }
 
+export interface PatchBatcheClassParams {
+  id: string;
+  title?: string;
+  digital_files_count?: number;
+  physical_files_count?: number;
+  priority?: boolean;
+  storage_location?: string;
+  newIds: string[];
+  deletedIds: string[];
+}
+
 export interface PatchResponseBatche {
   id: string;
   priority: boolean;

@@ -10,20 +10,21 @@ import { PatchBatcheMainStatus } from '../../api/services/batches/patch-status';
 import { CheckCircle, HandWaving, Trash } from '@phosphor-icons/react';
 import { SharedState } from '../../context/SharedContext';
 import { CustomSelect } from '../AtribuirAlguemModal/style';
-import { QuerySettles } from '../../api/services/settlement/query-settlement';
-import { ResponseSettle } from '../../api/services/settlement/query-settlement/get.interface';
+import { QueryClasses } from '../../api/services/class/query-classes';
+import { ResponseClasses } from '../../api/services/class/query-classes/get.interface';
 import { DeleteBatcheSettle, PatchBatcheSettle, PostBatcheSettle } from '../../api/services/batches/patch-settle';
-import { DeleteAssigner } from '../../api/services/batches/assigners/delete-assigners';
+import { DeleteAssigner, DeleteAssigners } from '../../api/services/batches/assigners/delete-assigners';
 
 import { ErrorMessage } from '../../pages/Login/styles';
 import { InputText } from '../ModalCriarLote/styles';
-import { validationDigital, validationShelfSchema } from './validation';
-import { PatchBatcheEdit } from '../../api/services/batches/patch-batche';
+import { validationDigital, validationFisical, validationShelfSchema } from './validation';
+import { PatchBatcheClassEdit, PatchBatcheEdit } from '../../api/services/batches/patch-batche';
 import { ErrorsForm } from './criar.interface';
 import * as Yup from 'yup';
 import { DeleteBatche } from '../../api/services/batches/delete-batche';
 import { useNavigate } from 'react-router';
 import ReactLoading from 'react-loading';
+import { PostAssigners, PostAssignersMe } from '../../api/services/batches/assigners/post-assigners';
 
 interface EspecifModalProps {
   close: () => void;
@@ -49,20 +50,26 @@ export const EspecifcModal = (props: EspecifModalProps) => {
   const [shelfNumber, setShelfNumber] = useState('');
   const [userInput, setUserInput] = useState('');
   const [options, setOptions] = useState<Option[]>([]);
+  const [newIds, setNewIds] = useState<string[]>([]);
+  const [deletedIds, setDeletedIds] = useState<string[]>([]);
+
   const [validationFormError, setValidationFormError] = useState<ErrorsForm>({
     shelf_number: '',
     digital_files_count: '',
+    fisical_files_count: '',
   });
-  const [selectedOptions, setSelectedOptions] = useState<Option[]>([
-    ...props.batche.settlement_project_categories.map((cat) => ({
-      value: cat.id,
-      label: cat.name,
-    })),
-  ]);
+  const [selectedOptions, setSelectedOptions] = useState<Option[]>(
+    props.batche.class_projects
+      ? props.batche.class_projects.map((cat) => ({
+          value: cat.id,
+          label: cat.name,
+        }))
+      : [],
+  );
   const [digital_files_count, setDigital_files_count] = useState<number>(0);
+  const [fisical_files_count, setFisical_files_count] = useState<number>(0);
 
   useEffect(() => {
-    // Ao renderizar o modal, aplicar um escalonamento gradual para exibi-lo
     const timer = setTimeout(() => {
       const modal = document.getElementById('modal-scaling');
       if (closing === false && modal) {
@@ -92,7 +99,39 @@ export const EspecifcModal = (props: EspecifModalProps) => {
     }, 300);
   };
 
-  const mutatePatchBatch = useMutation(PatchBatcheEdit, {});
+  const settle = (deleteSettle: string[], newSettle: string[]) => {
+    console.log(deleteSettle, newSettle);
+    if (deleteSettle.length > 0 && newSettle.length === 0) {
+      mutateDeleteSettle.mutate({
+        id: props.batche.id,
+        settlement_project_category_ids: deleteSettle,
+      });
+    } else if (newSettle.length > 0 && deleteSettle.length === 0) {
+      mutateSettle2.mutate({
+        id: props.batche.id,
+        settlementProjectCategories: newSettle,
+      });
+    } else if (newSettle.length > 0 && deleteSettle.length > 0) {
+      mutateSettleAll.mutate({
+        id: props.batche.id,
+        settlementProjectCategories: newSettle,
+        settlement_project_category_ids: deleteSettle,
+      });
+    } else {
+      nextFase();
+    }
+  };
+  const mutatePatchBatch = useMutation(PatchBatcheEdit, {
+    onSuccess: () => {
+      nextFase();
+    },
+  });
+
+  const mutatePatchBatchCat = useMutation(PatchBatcheClassEdit, {
+    onSuccess: (_, variables) => {
+      settle(variables.deletedIds, variables.newIds);
+    },
+  });
 
   const mutateEspecific = useMutation(PatchBatcheSpecifStatus, {
     onSuccess: () => {},
@@ -112,7 +151,7 @@ export const EspecifcModal = (props: EspecifModalProps) => {
 
   const mutateSettle2 = useMutation(PostBatcheSettle, {
     onSuccess: () => {
-      console.log('Deu bom');
+      nextFase();
     },
     onError: (err: ApiError) => {
       toast.error(err.response?.data.message ? err.response?.data.message : 'Erro na execução');
@@ -121,7 +160,6 @@ export const EspecifcModal = (props: EspecifModalProps) => {
 
   const mutateSettleAll = useMutation(PatchBatcheSettle, {
     onSuccess: () => {
-      console.log('Deu bom');
       nextFase();
     },
     onError: (err: ApiError) => {
@@ -138,7 +176,7 @@ export const EspecifcModal = (props: EspecifModalProps) => {
 
   const DeleteBatch = useMutation(DeleteBatche, {
     onSuccess: () => {
-      navigate(`/Fase/:id/Board/Preparo`);
+      navigate(`/Fase/Board/Preparo`);
       toast.success('Lote excluído com sucesso!');
       console.log('Lote excluído com sucesso!');
     },
@@ -159,6 +197,12 @@ export const EspecifcModal = (props: EspecifModalProps) => {
         specific_status: 0,
         id: props.batche.id,
       });
+      if (props.batche.assigned_users) {
+        mutateDeleteAssigner.mutate({
+          batch_id: props.batche.id,
+          assignment_user_ids: props.batche.assigned_users.map((u) => u.id),
+        });
+      }
       toast.success('Fase atualizada!');
     },
     onError: (err: ApiError) => {
@@ -166,20 +210,32 @@ export const EspecifcModal = (props: EspecifModalProps) => {
     },
   });
 
-  const mutateQueryCategories = useMutation(QuerySettles, {
-    onSuccess: (data: ResponseSettle) => {
-      setOptions([...data.categories.map((settle) => ({ value: settle.id, label: settle.name }))]);
+  const mutateQueryCategories = useMutation(QueryClasses, {
+    onSuccess: (data: ResponseClasses) => {
+      setOptions([...data.classes.map((newLocal) => ({ value: newLocal.id, label: newLocal.name }))]);
     },
     onError: (err: ApiError) => {
       toast.error(err.response?.data.message ? err.response?.data.message : 'Erro na execução');
     },
   });
 
-  //forbiden - only manager can mutateAssigner (error: Forbiden)
-  //solutions - api does the assignation to the batche or he opens this operation
+  const mutateAssigner = useMutation(PostAssignersMe, {
+    onSuccess: () => {
+      mutateEspecific.mutate({
+        specific_status: 1,
+        id: props.batche.id,
+      });
+    },
+    onError: (err: ApiError) => {
+      toast.error(err.response?.data.message ? err.response?.data.message : 'Erro na execução');
+    },
+  });
 
-  const mutateDeleteAssigner = useMutation(DeleteAssigner, {
+  const mutateDeleteAssigner = useMutation(DeleteAssigners, {
     onSuccess: () => {},
+    onError: (err: ApiError) => {
+      toast.error(err.response?.data.message ? err.response?.data.message : 'Erro na execução');
+    },
   });
 
   const mutateStorage = useMutation(PatchBatcheEdit, {
@@ -200,13 +256,6 @@ export const EspecifcModal = (props: EspecifModalProps) => {
       handleCloseRefecht();
     } else {
       const specific_status = props.batche.specific_status + 1 === 2 ? 0 : 1;
-      if (specific_status === 1) {
-        mutateEspecific.mutate({
-          specific_status,
-          id: props.batche.id,
-        });
-      }
-
       if (specific_status === 0) {
         try {
           mutateStatus.mutate({
@@ -217,6 +266,9 @@ export const EspecifcModal = (props: EspecifModalProps) => {
           console.warn(err);
         }
       } else if (user.user?.sub && specific_status === 1) {
+        mutateAssigner.mutate({
+          batch_id: props.batche.id,
+        });
         toast.success('Status atualizado!');
       }
       handleCloseRefecht();
@@ -228,6 +280,30 @@ export const EspecifcModal = (props: EspecifModalProps) => {
       await validationDigital.validate(
         {
           digital_files_count,
+        },
+        {
+          abortEarly: false,
+        },
+      );
+    } catch (error) {
+      if (error instanceof Yup.ValidationError) {
+        const validationErrors = error.inner.reduce<ErrorsForm>((errors, err) => {
+          errors[err.path as keyof ErrorsForm] = err.message;
+          return errors;
+        }, {});
+        setValidationFormError(validationErrors);
+      }
+      return false;
+    }
+    setValidationFormError({});
+    return true;
+  };
+
+  const validateFisical = async (): Promise<boolean> => {
+    try {
+      await validationFisical.validate(
+        {
+          fisical_files_count,
         },
         {
           abortEarly: false,
@@ -277,44 +353,46 @@ export const EspecifcModal = (props: EspecifModalProps) => {
       if (NoCategories) {
         nextFase();
       } else {
-        if (props.batche.settlement_project_categories.length > 0 && selectedOptions.length > 0) {
+        const validateFisi = await validateFisical();
+        if (!validateFisi) {
+          setButtonOff(false);
+        } else if (
+          props.batche.class_projects &&
+          props.batche.class_projects.length > 0 &&
+          selectedOptions.length > 0 &&
+          validateFisi
+        ) {
+          console.log('Opa');
           const newSettle = selectedOptions.filter(
-            (settleSelected) =>
-              !props.batche.settlement_project_categories.some((settle) => settle.id === settleSelected.value),
+            (settleSelected) => !props.batche.class_projects.some((settle) => settle.id === settleSelected.value),
           );
-          const deleteSettle = props.batche.settlement_project_categories.filter(
+          const deleteSettle = props.batche.class_projects.filter(
             (settle) => !selectedOptions.some((settleSelected) => settleSelected.value === settle.id),
           );
 
-          const newIds = newSettle.map((settle) => settle.value);
-          const deleteIds = deleteSettle.map((settle) => settle.id);
-
-          if (deleteSettle.length > 0 && newSettle.length === 0) {
-            mutateDeleteSettle.mutate({
-              id: props.batche.id,
-              settlement_project_category_ids: deleteIds,
-            });
-          } else if (newSettle.length > 0 && deleteSettle.length === 0) {
-            mutateSettle2.mutate({
-              id: props.batche.id,
-              settlementProjectCategories: newIds,
-            });
-          } else if (newSettle.length > 0 && deleteSettle.length > 0) {
-            mutateSettleAll.mutate({
-              id: props.batche.id,
-              settlementProjectCategories: newIds,
-              settlement_project_category_ids: deleteIds,
-            });
-          }
-
-          nextFase();
-        } else if (selectedOptions.length > 0 && props.batche.settlement_project_categories.length <= 0) {
-          mutateSettle.mutate({
+          mutatePatchBatchCat.mutate({
             id: props.batche.id,
-            settlementProjectCategories: [...selectedOptions.map((settle) => settle.value)],
+            physical_files_count: fisical_files_count,
+            newIds: newSettle.map((settle) => settle.value),
+            deletedIds: deleteSettle.map((settle) => settle.id),
+          });
+        } else if (
+          props.batche.class_projects &&
+          selectedOptions.length > 0 &&
+          props.batche.class_projects.length <= 0 &&
+          validateFisi
+        ) {
+          console.log('Opa');
+
+          mutatePatchBatchCat.mutate({
+            id: props.batche.id,
+            physical_files_count: fisical_files_count,
+            newIds: selectedOptions.map((opt) => opt.value),
+            deletedIds: [],
           });
         } else {
           setError('Adicione alguma categoria para avançar para a próxima fase.');
+          setButtonOff(false);
         }
       }
     } else if (props.batche.main_status === 4 && props.batche.specific_status === 1) {
@@ -333,7 +411,6 @@ export const EspecifcModal = (props: EspecifModalProps) => {
           id: props.batche.id,
           digital_files_count,
         });
-        nextFase();
       }
     } else {
       nextFase();
@@ -367,29 +444,45 @@ export const EspecifcModal = (props: EspecifModalProps) => {
               <S.CatalogacaoArea>
                 <h3 style={{ color: 'white' }}>Adicionar categorias</h3>
                 {!NoCategories && (
-                  <CustomSelect
-                    isMulti
-                    // eslint-disable-next-line jsx-a11y/no-autofocus
-                    autoFocus
-                    placeholder={'Digite no mínimo 3 caracteres...'}
-                    name="colors"
-                    className="react-select-container"
-                    classNamePrefix="react-select"
-                    onInputChange={setUserInput}
-                    inputValue={userInput}
-                    onChange={(e: any, action: any) => {
-                      // eslint-disable-next-line no-constant-condition
-                      if ((action.action = 'remove-value')) {
-                        onRemove(action.removedValue);
-                      }
+                  <>
+                    <h2 style={{ color: 'white' }}>Arquivos Físicos</h2>
+                    <S.ArquivosInput
+                      style={{ backgroundColor: theme.colors['gray/700'] }}
+                      type="number"
+                      name="Arquivos Físicos"
+                      placeholder={``}
+                      onChange={(e) => setFisical_files_count(Number(e.currentTarget.value))}
+                      value={fisical_files_count}
+                      min={1}
+                    ></S.ArquivosInput>
+                    {validationFormError.fisical_files_count && (
+                      <ErrorMessage>{validationFormError.fisical_files_count}</ErrorMessage>
+                    )}
 
-                      setSelectedOptions(e);
-                    }}
-                    options={options}
-                    value={selectedOptions}
-                    isLoading={mutateQueryCategories.isLoading}
-                    required
-                  />
+                    <CustomSelect
+                      isMulti
+                      // eslint-disable-next-line jsx-a11y/no-autofocus
+                      autoFocus
+                      placeholder={'Digite no mínimo 3 caracteres...'}
+                      name="colors"
+                      className="react-select-container"
+                      classNamePrefix="react-select"
+                      onInputChange={setUserInput}
+                      inputValue={userInput}
+                      onChange={(e: any, action: any) => {
+                        // eslint-disable-next-line no-constant-condition
+                        if ((action.action = 'remove-value')) {
+                          onRemove(action.removedValue);
+                        }
+
+                        setSelectedOptions(e);
+                      }}
+                      options={options}
+                      value={selectedOptions}
+                      isLoading={mutateQueryCategories.isLoading}
+                      required
+                    />
+                  </>
                 )}
                 {/* <S.ButtonNoCategory onClick={() => setNoCategories(!NoCategories)}>
                   {NoCategories ? 'Adicionar' : 'Não adicionar'}
@@ -429,6 +522,22 @@ export const EspecifcModal = (props: EspecifModalProps) => {
             )}
 
             <S.RecusedAvancar>
+              {props.batche.main_status >= 2 &&
+                props.batche.specific_status === 1 &&
+                props.batche.class_projects.length === 0 && (
+                  <S.Warn>
+                    Vai ser impossivel atualizar a fase, pois é necessário adicionar categorias. Edite na página de
+                    lote.
+                  </S.Warn>
+                )}
+              {props.batche.main_status >= 3 &&
+                props.batche.specific_status === 1 &&
+                props.batche.digital_files_count === 0 && (
+                  <S.Warn>
+                    Vai ser impossivel atualizar a fase, pois é necessário adicionar arquivos digitais. Edite na página
+                    de lote.
+                  </S.Warn>
+                )}
               {/* Cancelar */}
               <S.Recused onClick={handleClose}>
                 <S.Texto>Cancelar</S.Texto>

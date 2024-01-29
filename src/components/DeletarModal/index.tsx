@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import * as S from './style';
-import { DeleteCategory } from '../../api/services/categoria/delete-category';
+import { DeleteClass } from '../../api/services/class/delete-class';
 import { useMutation, useQueryClient } from 'react-query';
 import { ApiError } from '../../api/services/authentication/signIn/signIn.interface';
 import toast from 'react-hot-toast';
@@ -46,7 +46,7 @@ export const DeletarModal = (props: DeletarModalProps) => {
 
   const queryClient = useQueryClient();
 
-  const DeleteClass = useMutation(DeleteCategory, {
+  const Delete = useMutation(DeleteClass, {
     onSuccess: () => {
       handleClose();
       toast.success('Classe excluída com sucesso!');
@@ -59,7 +59,7 @@ export const DeletarModal = (props: DeletarModalProps) => {
   });
 
   const ExcluirClasse = () => {
-    DeleteClass.mutate({
+    Delete.mutate({
       id: props.id,
     });
   };

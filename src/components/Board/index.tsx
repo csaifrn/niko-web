@@ -126,7 +126,7 @@ export const Board = (props: BoardProps) => {
                         <Lote
                           value={`${batche.title}`}
                           priority={batche.priority}
-                          categories={batche.settlement_project_categories}
+                          categories={batche.class_projects}
                           pendencia={batche.pending_batch_observations}
                           assigners={batche.assigned_users}
 
@@ -186,7 +186,7 @@ export const Board = (props: BoardProps) => {
                         <Lote
                           value={`${batche.title}`}
                           priority={batche.priority}
-                          categories={batche.settlement_project_categories}
+                          categories={batche.class_projects}
                           pendencia={batche.pending_batch_observations}
                           assigners={batche.assignedUsers}
                           //envolvidos={batche.envolvidos}
@@ -248,7 +248,7 @@ export const Board = (props: BoardProps) => {
                         <Lote
                           value={`${batche.title}`}
                           priority={batche.priority}
-                          categories={batche.settlement_project_categories}
+                          categories={batche.class_projects}
                           pendencia={batche.pending_batch_observations}
                           assigners={batche.assigned_users}
                         >

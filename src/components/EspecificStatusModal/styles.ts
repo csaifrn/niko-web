@@ -305,6 +305,12 @@ export const ExcluirLoteButton = styled.button`
   }
 `;
 
+export const Warn = styled.div`
+  background-color: ${({ theme }) => theme.colors['yellow/500']};
+  padding: 16px;
+  border-radius: 5px;
+`;
+
 export const ConcluirLoteButton = styled.button`
   cursor: pointer;
   height: 44px;

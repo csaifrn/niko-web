@@ -10,7 +10,7 @@ import { Tag } from '../../../api/services/tags/get-tags/get.interface';
 import { ButtonGreen } from '../../../components/AtribuirAlguemModal/style';
 import { ModalCategory } from '../../../components/ModalCategory';
 import { Category } from '../../../api/services/batches/get-batche/get.interface';
-import { GetCategories } from '../../../api/services/settlement/get-categories';
+import { GetCategories } from '../../../api/services/class/get-classes';
 import { useCategories } from '../../../hooks/useCategories';
 
 import { ButtonCSV } from '../../../components/ButtonCSV';

@@ -147,18 +147,21 @@ export const Menu = (props: MenuProps) => {
             /> */}
 
             {/* Icone de usuário - opção 2 */}
-            <S.User
-              src="/Account.svg"
-              alt="ícone circular de foto do usuário"
+            <S.ButtonIcon
               onClick={() => {
                 setDropDown(!DropDown);
               }}
-            />
+            >
+              {user && (
+                <IconUser name={user?.name} fontSize={16} size={46} color={theme.colors['orange/500']} tooloff={true} />
+              )}
+            </S.ButtonIcon>
 
             {/* Menu do usuário */}
             <div
               style={{
                 display: `${DropDown ? 'block' : 'none'}`,
+                marginTop: '8px',
                 borderRadius: '5px',
                 position: 'absolute',
                 right: '0',
@@ -181,7 +184,7 @@ export const Menu = (props: MenuProps) => {
                   padding: '12px 16px',
                 }}
               >
-                {user && <IconUser name={user?.name} id={user?.sub} fontSize={9} size={20} />}
+                {user && <IconUser name={user?.name} fontSize={9} size={20} />}
                 <p
                   style={{
                     color: '#fff',

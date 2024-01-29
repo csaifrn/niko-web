@@ -7,10 +7,10 @@ import * as Yup from 'yup';
 import { ErrorsForm } from './criar.interface';
 import ReactLoading from 'react-loading';
 import toast from 'react-hot-toast';
-import { CreateCategory } from '../../api/services/categoria/create-category';
-import { EditCategory } from '../../api/services/categoria/edit-category';
+import { CreateClass } from '../../api/services/class/create-class';
+import { EditClass } from '../../api/services/class/edit-class';
 import theme from '../../global/theme';
-import { GetCategories } from '../../api/services/settlement/get-categories';
+import { GetCategories } from '../../api/services/class/get-classes';
 import { Category } from '../../api/services/batches/get-batche/get.interface';
 import { useCategories } from '../../hooks/useCategories';
 
@@ -67,7 +67,7 @@ export const ModalCategory = (props: ModalCategoriaProps) => {
     }, 300);
   };
 
-  const categoryMutation = useMutation(CreateCategory, {
+  const categoryMutation = useMutation(CreateClass, {
     onSettled: (data: any) => {
       if (data) {
         toast.success('Classe criada!');
@@ -79,7 +79,7 @@ export const ModalCategory = (props: ModalCategoriaProps) => {
     },
   });
 
-  const categoryEditMutation = useMutation(EditCategory, {
+  const categoryEditMutation = useMutation(EditClass, {
     onSettled: (data: any) => {
       if (data) {
         toast.success('Classe atualizada!');
@@ -214,7 +214,9 @@ export const ModalCategory = (props: ModalCategoriaProps) => {
                   )}
 
                   {name.length < 3 && (
-                    <p style={{ color: theme.colors['red/400'] }}>O nome da classe precisa ter ao menos 3 caracteres.</p>
+                    <p style={{ color: theme.colors['red/400'] }}>
+                      O nome da classe precisa ter ao menos 3 caracteres.
+                    </p>
                   )}
                   {validationFormError.name && <ErrorMessage>{validationFormError.name}</ErrorMessage>}
                   {categoryMutation.isLoading ? (
@@ -253,7 +255,9 @@ export const ModalCategory = (props: ModalCategoriaProps) => {
                   )}
 
                   {nomeCat.length < 3 && (
-                    <p style={{ color: theme.colors['red/400'] }}>O nome da classe precisa ter ao menos 3 caracteres.</p>
+                    <p style={{ color: theme.colors['red/400'] }}>
+                      O nome da classe precisa ter ao menos 3 caracteres.
+                    </p>
                   )}
 
                   {validationFormError.name && <ErrorMessage>{validationFormError.name}</ErrorMessage>}

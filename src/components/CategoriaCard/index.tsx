@@ -8,7 +8,7 @@ import { Tooltip } from 'react-tooltip';
 import { ModalCategory } from '../ModalCategory';
 import { Category } from '../../api/services/batches/get-batche/get.interface';
 import { useMutation } from 'react-query';
-import { GetCategories } from '../../api/services/settlement/get-categories';
+import { GetCategories } from '../../api/services/class/get-classes';
 import { SharedState } from '../../context/SharedContext';
 import { UserRole } from '../../utils/userRole.enum';
 

@@ -113,6 +113,7 @@ export const LoteDetails = () => {
 
   const beforeTask = useMutation(GetBatche, {
     onSuccess: (data: Batche) => {
+      console.log(data);
       setTask(data);
       setObservations(data.observations);
       setPriority(data.priority);
@@ -271,81 +272,78 @@ export const LoteDetails = () => {
               {/* PRIORIDADE + CATEGORIAS */}
 
               {/* QUANDO HÁ CATEGORIAS */}
-              {task?.settlement_project_categories.length != undefined &&
-                task?.settlement_project_categories.length > 0 && (
-                  <S.DetalhesLote>
-                    <S.SubDetalhes>
-                      {/* PRIORIORIDADE(SE TIVER) */}
-                      {priority === true && (
-                        <S.PrioridadeDiv>
-                          <S.PrioridadeTag>
-                            <p>Prioridade</p>
-                          </S.PrioridadeTag>
-                        </S.PrioridadeDiv>
-                      )}
+              {task?.class_projects && task?.class_projects.length > 0 && (
+                <S.DetalhesLote>
+                  <S.SubDetalhes>
+                    {/* PRIORIORIDADE(SE TIVER) */}
+                    {priority === true && (
+                      <S.PrioridadeDiv>
+                        <S.PrioridadeTag>
+                          <p>Prioridade</p>
+                        </S.PrioridadeTag>
+                      </S.PrioridadeDiv>
+                    )}
 
-                      {/* ESTANTE */}
-                      {task?.storage_location !== null && (
-                        <S.Estante className="LocationTooltip">
-                          {task?.storage_location}
-                          <Tooltip
-                            children={<p style={{ fontSize: '12px', fontFamily: 'Rubik' }}>Estante</p>}
-                            anchorSelect=".LocationTooltip"
-                            place="bottom"
-                          />
-                        </S.Estante>
-                      )}
-
-                      {/* FÍSICOS */}
-                      <S.ArquivFisicos className="ArquivFisTooltip">
-                        <img src={`/arquivos_fisicos.svg`} alt="arquivos fisicos" />
-                        {task?.physical_files_count}
+                    {/* ESTANTE */}
+                    {task?.storage_location !== null && (
+                      <S.Estante className="LocationTooltip">
+                        {task?.storage_location}
                         <Tooltip
-                          children={<p style={{ fontSize: '12px', fontFamily: 'Rubik' }}>Arquivos físicos</p>}
-                          anchorSelect=".ArquivFisTooltip"
+                          children={<p style={{ fontSize: '12px', fontFamily: 'Rubik' }}>Estante</p>}
+                          anchorSelect=".LocationTooltip"
                           place="bottom"
                         />
-                      </S.ArquivFisicos>
+                      </S.Estante>
+                    )}
 
-                      {/* DIGITAIS(QUANDO HOUVER) */}
-                      {optionsFases[status].label != 'Preparo' && optionsFases[status].label != 'Catalogação' && (
-                        <S.ArquivDigitais className="ArquivDigTooltip">
-                          <img src={`/arquivos_digitais.svg`} alt="arquivos digitais" />
-                          {task?.digital_files_count}
-                          <Tooltip
-                            children={<p style={{ fontSize: '12px', fontFamily: 'Rubik' }}>Arquivos digitais</p>}
-                            anchorSelect=".ArquivDigTooltip"
-                            place="bottom"
-                          />
-                        </S.ArquivDigitais>
-                      )}
-                    </S.SubDetalhes>
-                    <S.SubDetalhes>
-                      {/* CATEGORIAS */}
-                      {task?.settlement_project_categories.map((cat) => {
-                        return (
-                          <BlockClass refetch={refetch} key={cat.id} idBatche={task.id} idClass={cat.id}>
-                            {cat.name}
-                          </BlockClass>
-                        );
-                      })}
-                    </S.SubDetalhes>
-                  </S.DetalhesLote>
-                )}
+                    {/* FÍSICOS */}
+                    <S.ArquivFisicos className="ArquivFisTooltip">
+                      <img src={`/arquivos_fisicos.svg`} alt="arquivos fisicos" />
+                      {task?.physical_files_count}
+                      <Tooltip
+                        children={<p style={{ fontSize: '12px', fontFamily: 'Rubik' }}>Arquivos físicos</p>}
+                        anchorSelect=".ArquivFisTooltip"
+                        place="bottom"
+                      />
+                    </S.ArquivFisicos>
+
+                    {/* DIGITAIS(QUANDO HOUVER) */}
+                    {optionsFases[status].label != 'Preparo' && optionsFases[status].label != 'Catalogação' && (
+                      <S.ArquivDigitais className="ArquivDigTooltip">
+                        <img src={`/arquivos_digitais.svg`} alt="arquivos digitais" />
+                        {task?.digital_files_count}
+                        <Tooltip
+                          children={<p style={{ fontSize: '12px', fontFamily: 'Rubik' }}>Arquivos digitais</p>}
+                          anchorSelect=".ArquivDigTooltip"
+                          place="bottom"
+                        />
+                      </S.ArquivDigitais>
+                    )}
+                  </S.SubDetalhes>
+                  <S.SubDetalhes>
+                    {/* CATEGORIAS */}
+                    {task?.class_projects.map((cat) => {
+                      return (
+                        <BlockClass refetch={refetch} key={cat.id} idBatche={task.id} idClass={cat.id}>
+                          {cat.name}
+                        </BlockClass>
+                      );
+                    })}
+                  </S.SubDetalhes>
+                </S.DetalhesLote>
+              )}
 
               {/* QUANDO NÃO HÁ CATEGORIAS */}
-              {task?.settlement_project_categories.length != undefined &&
-                task?.settlement_project_categories.length === 0 &&
-                priority === true && (
-                  <S.DetalhesLote>
-                    {/* PRIORIORIDADE(SE TIVER) */}
-                    <S.PrioridadeDiv>
-                      <S.PrioridadeTag>
-                        <p>Prioridade</p>
-                      </S.PrioridadeTag>
-                    </S.PrioridadeDiv>
-                  </S.DetalhesLote>
-                )}
+              {task?.class_projects && task?.class_projects.length === 0 && priority === true && (
+                <S.DetalhesLote>
+                  {/* PRIORIORIDADE(SE TIVER) */}
+                  <S.PrioridadeDiv>
+                    <S.PrioridadeTag>
+                      <p>Prioridade</p>
+                    </S.PrioridadeTag>
+                  </S.PrioridadeDiv>
+                </S.DetalhesLote>
+              )}
 
               {/* ARQUIVOS */}
 
@@ -588,14 +586,6 @@ export const LoteDetails = () => {
             )} */}
           </S.areaClick>
         </div>
-        {/* {pend && <ModalResolverPendencia pendencia={pendencia} close={() => setPend(!pend)}></ModalResolverPendencia>}
-
-    {pend && <ModalResolverPendencia pendencia={pendencia} close={() => setPend(!pend)}></ModalResolverPendencia>}
-    {modal && (
-      <AtribuirAlguemModal user={usuarios} setUser={setUsuarios} close={handleAtribuirAlguem}></AtribuirAlguemModal>
-    )}
-    {voltar && <VoltarModal close={handleVoltar}></VoltarModal>}
-    {avancar && <AvancarModal close={handleAvancar}></AvancarModal>}*/}
         {observacao && (
           <CreateObservationModal
             id={observationId}

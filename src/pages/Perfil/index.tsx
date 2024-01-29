@@ -38,7 +38,7 @@ const Perfil = () => {
         setUser(attUser);
         toast.success(`Dados alterados com sucesso!`);
         refetch();
-        navigate('/Fase');
+        navigate('/Fases');
       }
     },
     onError: (error: ApiError) => {

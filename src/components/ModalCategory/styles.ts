@@ -100,7 +100,7 @@ export const Criar = styled.button`
 export const CriarDesativado = styled.button`
   height: 44px;
   border-radius: 5px;
-  background-color: #25753B;
+  background-color: #25753b;
   border: none;
   color: white;
   display: flex;

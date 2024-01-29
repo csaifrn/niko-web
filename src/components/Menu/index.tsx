@@ -8,7 +8,7 @@ import { LogOutModal } from '../LogOutModal';
 import theme from '../../global/theme';
 import { UserRole } from '../../utils/userRole.enum';
 import { MyBatches } from '../MyBatchesModal';
-import { ArchiveBox, PencilSimple, Person, SignOut } from '@phosphor-icons/react';
+import { Person, SignOut } from '@phosphor-icons/react';
 import { IconUser } from '../Icon';
 
 interface MenuProps {
@@ -17,7 +17,7 @@ interface MenuProps {
 }
 
 export const Menu = (props: MenuProps) => {
-  const { user, setUser } = SharedState();
+  const { user } = SharedState();
   const pathname = window.location.pathname;
   const [open, setOpen] = useState(false);
   const dropDownRef = useRef(null);
@@ -48,7 +48,7 @@ export const Menu = (props: MenuProps) => {
               <S.MenuImg src="/menu.svg" />
             </S.ButtonBurger> */}
 
-            <S.LinkLogo to={`/Fase`}>
+            <S.LinkLogo to={`/Fases`}>
               <S.MenuImg src="/Logo_Niko.svg" />
             </S.LinkLogo>
 
@@ -67,7 +67,8 @@ export const Menu = (props: MenuProps) => {
                   <MenuC.textIcon style={{ color: theme.colors['orange/400'] }}>Painel</MenuC.textIcon>
                 )}
                 {pathname !== `/Painel` && <MenuC.textIcon>Painel</MenuC.textIcon>}
-              </MenuC.link> */}
+              </MenuC.link>
+            )}
 
               {/* <MenuC.link to={`/Atividades`}>
                 <MenuC.MenuImg
@@ -81,7 +82,7 @@ export const Menu = (props: MenuProps) => {
                 {pathname !== `/Atividades` && <MenuC.textIcon>Atividades</MenuC.textIcon>}
               </MenuC.link> */}
 
-              <MenuC.link to={`/Fase`}>
+              <MenuC.link to={`/Fases`}>
                 <MenuC.MenuImg
                   src={
                     pathname === `/Fase` || pathname.search('Board') >= 0 || pathname.search('Lote') >= 0
@@ -123,7 +124,7 @@ export const Menu = (props: MenuProps) => {
           </S.ContainerA>
 
           <S.ContainerLogo>
-            <Link to={'/Fase'}>
+            <Link to={'/Fases'}>
               <S.MenuImg src="/Logo_Niko.svg" />
             </Link>
           </S.ContainerLogo>

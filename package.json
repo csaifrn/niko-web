@@ -10,13 +10,14 @@
     "lint": "eslint . --ext .ts,.tsx"
   },
   "dependencies": {
-    "@json2csv/plainjs": "^7.0.4",
+    "@json2csv/plainjs": "^7.0.1",
     "@phosphor-icons/react": "^2.0.10",
     "axios": "^1.4.0",
     "date-fns": "^3.2.0",
     "file-saver": "^2.0.5",
     "firebase": "^9.16.0",
     "moment": "^2.29.4",
+    "phosphor-react": "^1.4.1",
     "react": "^18.2.0",
     "react-auth-kit": "^2.12.2",
     "react-dom": "^18.2.0",

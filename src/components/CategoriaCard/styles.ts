@@ -19,7 +19,7 @@ const CardArea = styled.div`
   border-radius: 5px;
   overflow: hidden;
 `;
-const CardA = styled.div`
+export const CardClick = styled.div`
   display: flex;
   flex-direction: column;
   padding: 1.5em 2em;
@@ -27,6 +27,11 @@ const CardA = styled.div`
   gap: 2em;
   font-family: 'Rubik';
   border-radius: 5px;
+  cursor: pointer;
+  transition: all 500ms;
+  &:hover {
+    background-color: ${({ theme }) => theme.colors['gray/450']};
+  }
 `;
 
 const dataUser = styled.div`
@@ -107,7 +112,7 @@ const CabecarioCategoria = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 24px;
+  height: 32px;
 `;
 
 const Icon = styled.img`
@@ -115,11 +120,28 @@ const Icon = styled.img`
   width: 18px;
 `;
 
+export const ContainerTitle = styled.div`
+  display: flex;
+  gap: 16px;
+  flex-direction: row;
+  align-items: center;
+  flex-wrap: wrap;
+`;
+
 export const ClassTitle = styled.p`
   font-size: 16px;
-  @media screen and (max-width: 767px){
-    font-size: 12px;
+  @media screen and (max-width: 767px) {
+    font-size: 14px;
   }
+`;
+
+export const ClassSubTitle = styled.p`
+  font-size: 16px;
+
+  @media screen and (max-width: 767px) {
+    font-size: 14px;
+  }
+  color: ${({ theme }) => theme.colors['white']};
 `;
 
 export const ButtonArea = styled.button`
@@ -132,15 +154,15 @@ export const ButtonArea = styled.button`
   transition: all 300ms;
   border-radius: 3px;
   border: none;
+  transition: all 500ms;
   :hover {
-    background-color: ${({ theme }) => theme.colors['gray/400']};
+    background-color: ${({ theme }) => theme.colors['gray/500']};
   }
 `;
 
 export const ClasseCardButtons = styled.div`
   display: flex;
   gap: 8px;
-
 `;
 
 const TotalFase = styled.p`
@@ -268,7 +290,6 @@ export {
   PerecentageFase,
   Fase,
   ButtonAtribuir,
-  CardA,
   CategoriaClick,
   CabecarioCategoria,
   Prioridade,

@@ -29,27 +29,28 @@ export const FiltrarTitulo = styled.h2``;
 
 export const EscolherDatas = styled.div`
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   gap: 16px;
-  @media (min-width: 767px) {
-    flex-direction: row;
-  }
 `;
 
 export const DataInicial = styled.div`
   display: flex;
   gap: 8px;
   align-items: center;
-`;
-
-export const DataInvalidaMessage = styled.p`
-  color: ${({ theme }) => theme.colors['red/700']};
+  @media (max-width: 767px) {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 `;
 
 export const DataFinal = styled.div`
   display: flex;
   gap: 8px;
   align-items: center;
+  @media (max-width: 767px) {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 `;
 
 export const DataText = styled.h3``;
@@ -62,8 +63,9 @@ export const BotaoFiltrar = styled.button`
 
   border: none;
   padding: 8px;
-  cursor: pointer;
   width: 4em;
+  cursor: pointer;
+  transition: all 500ms;
   &:hover {
     background-color: ${({ theme }) => theme.colors['orange/500']};
   }
@@ -148,7 +150,7 @@ export const ContainerDataFase = styled.div`
   color: ${({ theme }) => theme.colors.white};
   display: grid;
   grid-template-columns: 1fr 3fr;
-  height: 100%;
+  height: 5em;
   width: 100%;
   @media (min-width: 767px) {
     grid-template-columns: 1fr 4fr;
@@ -249,8 +251,9 @@ export const CardFaseColorful = styled.div`
   width: 100%;
   height: 100%;
   &:hover {
-    filter: brightness(0.9);
+    filter: brightness(0.8);
   }
+  transition: all 500ms;
   cursor: pointer;
 `;
 

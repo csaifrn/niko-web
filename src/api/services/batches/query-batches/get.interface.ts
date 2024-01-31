@@ -1,6 +1,6 @@
 import { AssignedUser, Batche } from './../get-batche/get.interface';
 export interface GetBatcheParams {
-  status: number;
+  status?: number;
 }
 
 export interface GetResponseBatche extends Batche {

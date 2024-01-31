@@ -118,6 +118,15 @@ const ContainerA = styled.div`
   align-items: center;
 `;
 
+export const ButtonIcon = styled.button`
+  background-color: transparent;
+  border: none;
+  border-radius: 100%;
+  :hover {
+    filter: brightness(1.2);
+  }
+`;
+
 export const ContainerLogo = styled.div`
   width: 74px;
   display: flex;
@@ -139,7 +148,7 @@ export const User = styled.img`
   }
 `;
 
-export { MenuImg, MenuArea,  ButtonBurger, StyledMenu, ContainerA };
+export { MenuImg, MenuArea, ButtonBurger, StyledMenu, ContainerA };
 
 export const MenuDesk = styled.div`
   display: none;
@@ -179,4 +188,3 @@ export const TextLink = styled.p`
     filter: brightness(0.9);
   }
 `;
-

@@ -79,8 +79,6 @@ export const LoteDetails = () => {
   const handleAvancar = () => {
     setAvancar(!avancar);
 
-    console.log(option?.value);
-
     if ((option?.value && id) || (option?.value === 0 && id)) {
       mutateEspecific.mutate({
         id,
@@ -115,6 +113,7 @@ export const LoteDetails = () => {
 
   const beforeTask = useMutation(GetBatche, {
     onSuccess: (data: Batche) => {
+      console.log(data);
       setTask(data);
       setObservations(data.observations);
       setPriority(data.priority);
@@ -262,20 +261,20 @@ export const LoteDetails = () => {
 
               {/* DADOS DA CRIAÇÃO DO LOTE */}
               <S.DadosCriacaoLoteDiv>
-                <S.BlockGray>
+                <div style={{ color: theme.colors['gray/150'] }}>
                   Criado por {task?.created_by.name} em{' '}
                   {createDate?.toLocaleString('pt-br', {
                     timeZone: 'America/Sao_paulo',
                   })}
-                </S.BlockGray>
+                </div>
               </S.DadosCriacaoLoteDiv>
 
               {/* PRIORIDADE + CATEGORIAS */}
 
               {/* QUANDO HÁ CATEGORIAS */}
-              {task?.settlement_project_categories.length != undefined &&
-                task?.settlement_project_categories.length > 0 && (
-                  <S.DetalhesLote style={{ display: 'flex', gap: '8px', flexWrap: 'wrap', flexDirection: 'row' }}>
+              {task?.class_projects && task?.class_projects.length > 0 && (
+                <S.DetalhesLote>
+                  <S.SubDetalhes>
                     {/* PRIORIORIDADE(SE TIVER) */}
                     {priority === true && (
                       <S.PrioridadeDiv>
@@ -285,85 +284,83 @@ export const LoteDetails = () => {
                       </S.PrioridadeDiv>
                     )}
 
+                    {/* ESTANTE */}
+                    {task?.storage_location !== null && (
+                      <S.Estante className="LocationTooltip">
+                        {task?.storage_location}
+                        <Tooltip
+                          children={<p style={{ fontSize: '12px', fontFamily: 'Rubik' }}>Estante</p>}
+                          anchorSelect=".LocationTooltip"
+                          place="bottom"
+                        />
+                      </S.Estante>
+                    )}
+
+                    {/* FÍSICOS */}
+                    <S.ArquivFisicos className="ArquivFisTooltip">
+                      <img src={`/arquivos_fisicos.svg`} alt="arquivos fisicos" />
+                      {task?.physical_files_count}
+                      <Tooltip
+                        children={<p style={{ fontSize: '12px', fontFamily: 'Rubik' }}>Arquivos físicos</p>}
+                        anchorSelect=".ArquivFisTooltip"
+                        place="bottom"
+                      />
+                    </S.ArquivFisicos>
+
+                    {/* DIGITAIS(QUANDO HOUVER) */}
+                    {optionsFases[status].label != 'Preparo' && optionsFases[status].label != 'Catalogação' && (
+                      <S.ArquivDigitais className="ArquivDigTooltip">
+                        <img src={`/arquivos_digitais.svg`} alt="arquivos digitais" />
+                        {task?.digital_files_count}
+                        <Tooltip
+                          children={<p style={{ fontSize: '12px', fontFamily: 'Rubik' }}>Arquivos digitais</p>}
+                          anchorSelect=".ArquivDigTooltip"
+                          place="bottom"
+                        />
+                      </S.ArquivDigitais>
+                    )}
+                  </S.SubDetalhes>
+                  <S.SubDetalhes>
                     {/* CATEGORIAS */}
-                    {task?.settlement_project_categories.map((cat) => {
+                    {task?.class_projects.map((cat) => {
                       return (
                         <BlockClass refetch={refetch} key={cat.id} idBatche={task.id} idClass={cat.id}>
                           {cat.name}
                         </BlockClass>
                       );
                     })}
-                  </S.DetalhesLote>
-                )}
+                  </S.SubDetalhes>
+                </S.DetalhesLote>
+              )}
 
               {/* QUANDO NÃO HÁ CATEGORIAS */}
-              {task?.settlement_project_categories.length != undefined &&
-                task?.settlement_project_categories.length === 0 &&
-                priority === true && (
-                  <S.DetalhesLote>
-                    {/* PRIORIORIDADE(SE TIVER) */}
-                    <S.PrioridadeDiv>
-                      <S.PrioridadeTag>
-                        <p>Prioridade</p>
-                      </S.PrioridadeTag>
-                    </S.PrioridadeDiv>
-                  </S.DetalhesLote>
-                )}
+              {task?.class_projects && task?.class_projects.length === 0 && priority === true && (
+                <S.DetalhesLote>
+                  {/* PRIORIORIDADE(SE TIVER) */}
+                  <S.PrioridadeDiv>
+                    <S.PrioridadeTag>
+                      <p>Prioridade</p>
+                    </S.PrioridadeTag>
+                  </S.PrioridadeDiv>
+                </S.DetalhesLote>
+              )}
 
               {/* ARQUIVOS */}
-              <S.DetalhesLote>
-                {task?.storage_location !== null && (
-                  <S.Estante className="LocationTooltip">
-                    {task?.storage_location}
-                    <Tooltip
-                      children={<p style={{ fontSize: '12px', fontFamily: 'Rubik' }}>Estante</p>}
-                      anchorSelect=".LocationTooltip"
-                      place="bottom"
-                    />
-                  </S.Estante>
-                )}
-
-                {/* FÍSICOS */}
-
-                <S.ArquivFisicos className="ArquivFisTooltip">
-                  <img src={`/arquivos_fisicos.svg`} alt="arquivos fisicos" />
-                  {task?.physical_files_count}
-                  <Tooltip
-                    children={<p style={{ fontSize: '12px', fontFamily: 'Rubik' }}>Arquivos físicos</p>}
-                    anchorSelect=".ArquivFisTooltip"
-                    place="bottom"
-                  />
-                </S.ArquivFisicos>
-
-                {/* DIGITAIS(QUANDO HOUVER) */}
-                {optionsFases[status].label != 'Preparo' && optionsFases[status].label != 'Catalogação' && (
-                  <S.ArquivDigitais className="ArquivDigTooltip">
-                    <img src={`/arquivos_digitais.svg`} alt="arquivos digitais" />
-                    {task?.digital_files_count}
-                    <Tooltip
-                      children={<p style={{ fontSize: '12px', fontFamily: 'Rubik' }}>Arquivos digitais</p>}
-                      anchorSelect=".ArquivDigTooltip"
-                      place="bottom"
-                    />
-                  </S.ArquivDigitais>
-                )}
-              </S.DetalhesLote>
 
               {/* OPERADORES ATRIBUÍDOS AO LOTE */}
               {assigners.length > 0 && (
                 <React.Fragment>
-                  <h2>Atribuídos</h2>
-                  <S.DetalhesLote>
+                  <S.SubDetalhes>
                     {assigners &&
                       assigners.map((assigned) => (
                         <BlockAssigner key={assigned.id} assigner={assigned} setAssigners={setAssigners} />
                       ))}
-                  </S.DetalhesLote>
+                  </S.SubDetalhes>
                 </React.Fragment>
               )}
             </S.LoteInfos>
 
-            <S.ObservacaoBotoes>
+            <S.ObservacaoBotoes role={user?.role}>
               {/* OBSERVAÇÕES */}
               <S.Observações>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
@@ -408,7 +405,7 @@ export const LoteDetails = () => {
               </S.Observações>
 
               {/* BOTÕES PRINCIPAIS */}
-              <S.Botoes>
+              <S.Botoes role={user?.role}>
                 {user?.role === UserRole.MANAGER && (
                   <S.BotaoMudarFase>
                     {/* BOTÃO DE AVANÇAR FASE*/}
@@ -589,14 +586,6 @@ export const LoteDetails = () => {
             )} */}
           </S.areaClick>
         </div>
-        {/* {pend && <ModalResolverPendencia pendencia={pendencia} close={() => setPend(!pend)}></ModalResolverPendencia>}
-
-    {pend && <ModalResolverPendencia pendencia={pendencia} close={() => setPend(!pend)}></ModalResolverPendencia>}
-    {modal && (
-      <AtribuirAlguemModal user={usuarios} setUser={setUsuarios} close={handleAtribuirAlguem}></AtribuirAlguemModal>
-    )}
-    {voltar && <VoltarModal close={handleVoltar}></VoltarModal>}
-    {avancar && <AvancarModal close={handleAvancar}></AvancarModal>}*/}
         {observacao && (
           <CreateObservationModal
             id={observationId}

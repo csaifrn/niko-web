@@ -1,9 +1,18 @@
 import { Tooltip } from 'react-tooltip';
-import { BlackBlock } from '../Lote/styles';
 import { AssignedUser } from '../../api/services/batches/get-batche/get.interface';
 import { generateUUID } from '../../utils/generateUUID.util';
+import styled from 'styled-components';
+import theme from '../../global/theme';
 
-export const IconUser = ({ name, id }: AssignedUser) => {
+interface Props {
+  name: string;
+  fontSize?: number;
+  size?: number;
+  color?: string;
+  tooloff?: boolean;
+}
+
+export const IconUser = ({ name, size = 24, fontSize = 12, color, tooloff = false }: Props) => {
   function getInitials(name: string): string {
     const nameParts = name.split(' ');
     let initials = '';
@@ -22,9 +31,30 @@ export const IconUser = ({ name, id }: AssignedUser) => {
   const random = generateUUID();
 
   return (
-    <BlackBlock style={{ borderRadius: '100%', width: '2em' }} className={`my-tooltip-${random}`}>
-      <p style={{ padding: '0 0.5em' }}>{IconInitials}</p>
-      <Tooltip anchorSelect={`.my-tooltip-${random}`} children={<p>{name}</p>} place="top" />
+    <BlackBlock
+      style={{
+        borderRadius: '100%',
+        width: `${size}px`,
+        height: `${size}px`,
+        padding: '0',
+        backgroundColor: `${color ? color : theme.colors['gray/700']}`,
+      }}
+      className={`my-tooltip-${random}`}
+    >
+      <p style={{ fontSize: `${fontSize}px`, fontWeight: `${fontSize <= 12 ? 'normal' : 'bold'}` }}>{IconInitials}</p>
+      {!tooloff && <Tooltip anchorSelect={`.my-tooltip-${random}`} children={<p>{name}</p>} place="top" />}
     </BlackBlock>
   );
 };
+
+const BlackBlock = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  :hover div {
+    visibility: visible;
+    opacity: 1;
+    display: block;
+  }
+`;

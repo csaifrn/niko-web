@@ -10,14 +10,14 @@ import { CSVButton } from '../../../components/CSVButton';
 import { ModalCategory } from '../../../components/ModalCategory';
 import { useMutation } from 'react-query';
 import { Category } from '../../../api/services/batches/get-batche/get.interface';
-import { GetCategories } from '../../../api/services/settlement/get-categories';
+import { GetCategories } from '../../../api/services/class/get-classes';
 import theme from '../../../global/theme';
 
 const Classes = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [open, setOpen] = useState(false);
-  const {categories, isLoadingCategories , refetch } = useCategories();
-  const [,setCategories] = useState<Category[]>();
+  const { categories, isLoadingCategories, refetch } = useCategories();
+  const [, setCategories] = useState<Category[]>();
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
     setSearchTerm(event.target.value.toLowerCase());
   };
@@ -33,9 +33,8 @@ const Classes = () => {
   }, []);
 
   useEffect(() => {
-    refetch()
+    refetch();
   }, []);
-
 
   return (
     <div style={{ display: 'flex', justifyContent: 'center' }}>

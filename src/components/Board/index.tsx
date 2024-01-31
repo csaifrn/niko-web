@@ -14,7 +14,7 @@ import { ModalCriarLote } from '../ModalCriarLote';
 import { EspecifcModal } from '../EspecificStatusModal';
 import { Link } from 'react-router-dom';
 import { GetResponseBatche } from '../../api/services/batches/query-batches/get.interface';
-import { CheckCircle, HandWaving } from '@phosphor-icons/react';
+import { CheckCircle, HandWaving, Person } from '@phosphor-icons/react';
 import { useMe } from '../../hooks/useMe';
 
 interface BoardProps {
@@ -58,9 +58,7 @@ export const Board = (props: BoardProps) => {
     onSuccess: (data: GetResponseBatche[]) => {
       setBatchesConc(data.filter((batche) => batche.specific_status === 0));
     },
-    onError: (err: ApiError) => {
-      toast.error(err.message);
-    },
+    onError: (err: ApiError) => {},
   });
   useEffect(() => {
     refecth();
@@ -128,7 +126,7 @@ export const Board = (props: BoardProps) => {
                         <Lote
                           value={`${batche.title}`}
                           priority={batche.priority}
-                          categories={batche.settlement_project_categories}
+                          categories={batche.class_projects}
                           pendencia={batche.pending_batch_observations}
                           assigners={batche.assigned_users}
 
@@ -188,7 +186,7 @@ export const Board = (props: BoardProps) => {
                         <Lote
                           value={`${batche.title}`}
                           priority={batche.priority}
-                          categories={batche.settlement_project_categories}
+                          categories={batche.class_projects}
                           pendencia={batche.pending_batch_observations}
                           assigners={batche.assignedUsers}
                           //envolvidos={batche.envolvidos}
@@ -254,7 +252,7 @@ export const Board = (props: BoardProps) => {
                         <Lote
                           value={`${batche.title}`}
                           priority={batche.priority}
-                          categories={batche.settlement_project_categories}
+                          categories={batche.class_projects}
                           pendencia={batche.pending_batch_observations}
                           assigners={batche.assigned_users}
                         >

@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const BlockGrayBorder = styled.div`
   background-color: ${({ theme }) => theme.colors['gray/500']};
-  border: ${({ theme }) => theme.colors['gray/300']} solid 2px;
+  border: solid 1px ${({ theme }) => theme.colors['gray/200']};
   height: 2em;
   padding: 0.5em 0 0.5em 0.5em;
   display: flex;
@@ -14,8 +14,9 @@ export const BlockGrayBorder = styled.div`
 
 export const Button = styled.button`
   transition: all 200ms;
-  height: 1.5em;
-  width: 2em;
+  height: 22px;
+  border-radius: 0px 2px 2px 0px;
+  padding: 0 0.5em;
   border-style: outset;
   background-color: transparent;
   border: none;

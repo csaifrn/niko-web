@@ -13,8 +13,8 @@ import { validationPatch, validationSearch } from './validation';
 import { PatchBatcheEdit, PatchBatchePriority } from '../../api/services/batches/patch-batche';
 import theme from '../../global/theme';
 import { SairSemSalvarModal } from '../../components/SairSemSalvarModal';
-import { ResponseSettle } from '../../api/services/settlement/query-settlement/get.interface';
-import { QuerySettles } from '../../api/services/settlement/query-settlement';
+import { ResponseClasses } from '../../api/services/class/query-classes/get.interface';
+import { QueryClasses } from '../../api/services/class/query-classes';
 import { DeleteBatcheSettle, PatchBatcheSettle, PostBatcheSettle } from '../../api/services/batches/patch-settle';
 
 interface Option {
@@ -67,9 +67,9 @@ const LoteEdit = () => {
     }
   };
 
-  const mutateQueryCategories = useMutation(QuerySettles, {
-    onSuccess: (data: ResponseSettle) => {
-      setOptions([...data.categories.map((settle) => ({ value: settle.id, label: settle.name }))]);
+  const mutateQueryClasses = useMutation(QueryClasses, {
+    onSuccess: (data: ResponseClasses) => {
+      setOptions(data.classes.map((newLocal) => ({ label: newLocal.name, value: newLocal.id })));
     },
   });
 
@@ -91,12 +91,12 @@ const LoteEdit = () => {
     onSuccess: (data: Batche) => {
       setTitle(data.title);
       setPriority(data.priority);
-      setCategories(data.settlement_project_categories);
+      setCategories(data.class_projects);
       setPhysical_files_count(data.physical_files_count);
       setDigital_files_count(data.digital_files_count);
       setFaseAtual(data.main_status);
       setSelectedOptions([
-        ...data.settlement_project_categories.map((cat) => ({
+        ...data.class_projects.map((cat) => ({
           value: cat.id,
           label: cat.name,
         })),
@@ -155,7 +155,7 @@ const LoteEdit = () => {
     const serchcategory = async () => {
       const valid = await validateSearch();
       if (valid) {
-        mutateQueryCategories.mutate({
+        mutateQueryClasses.mutate({
           name: userInput,
         });
       }

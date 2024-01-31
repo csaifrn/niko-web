@@ -1,10 +1,10 @@
 import { Category } from '../../batches/get-batche/get.interface';
 
-export interface QuerySettle {
+export interface QueryClass {
   name: string;
 }
 
-export interface ResponseSettle {
+export interface ResponseClasses {
   searchedText: string;
-  categories: Category[];
+  classes: Category[];
 }

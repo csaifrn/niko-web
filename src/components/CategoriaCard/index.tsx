@@ -40,8 +40,8 @@ const CategoriaCard = (categoria: CategoriaCardProps) => {
             <S.ContainerTitle>
               <S.ClassTitle>{categoria.name}</S.ClassTitle>
               <Circle size={8} weight="fill" />
-              <S.ContainerTitle style={{gap: '8px'}}>
-                <S.ClassSubTitle style={{ color: theme.colors['green/500'] , fontWeight: 'bold'}}>
+              <S.ContainerTitle style={{ gap: '8px' }}>
+                <S.ClassSubTitle style={{ color: theme.colors['green/500'], fontWeight: 'bold' }}>
                   {categoria.count_batches}
                 </S.ClassSubTitle>
                 <S.ClassSubTitle>lotes</S.ClassSubTitle>

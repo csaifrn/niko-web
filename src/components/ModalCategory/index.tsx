@@ -7,8 +7,8 @@ import * as Yup from 'yup';
 import { ErrorsForm, ModalCategoriaProps } from './criar.interface';
 import ReactLoading from 'react-loading';
 import toast from 'react-hot-toast';
-import { CreateCategory } from '../../api/services/categoria/create-category';
-import { EditCategory } from '../../api/services/categoria/edit-category';
+import { CreateClass } from '../../api/services/class/create-class';
+import { EditClass } from '../../api/services/class/edit-class';
 import theme from '../../global/theme';
 import { Category } from '../../api/services/batches/get-batche/get.interface';
 import { useCategories } from '../../hooks/useCategories';
@@ -49,7 +49,7 @@ export const ModalCategory = (props: ModalCategoriaProps) => {
     }, 300);
   };
 
-  const categoryMutation = useMutation(CreateCategory, {
+  const categoryMutation = useMutation(CreateClass, {
     onSettled: (data: any) => {
       if (data) {
         toast.success('Classe criada!');
@@ -61,7 +61,7 @@ export const ModalCategory = (props: ModalCategoriaProps) => {
     },
   });
 
-  const categoryEditMutation = useMutation(EditCategory, {
+  const categoryEditMutation = useMutation(EditClass, {
     onSettled: (data: any) => {
       if (data) {
         toast.success('Classe atualizada!');

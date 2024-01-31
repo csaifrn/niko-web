@@ -3,6 +3,10 @@ export interface PostAssignersParams {
   assignment_users_ids: string[];
 }
 
+export interface PostAssignersParamsMe {
+  batch_id: string;
+}
+
 export interface PostResponseAssigners {
   id: string;
   title: string;

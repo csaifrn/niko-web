@@ -15,7 +15,7 @@ export interface GetResponseBatche {
   created_at: string;
   updated_at: string;
   created_by: CreatedBy;
-  category: Category;
+  class_projects: Category[];
   assigned_users: AssignedUser[];
   observations: Observation[];
   pending_batch_observations: {};
@@ -34,7 +34,7 @@ export interface Batche {
   updated_at: string;
   created_by: CreatedBy;
   storage_location: string;
-  settlement_project_categories: Category[];
+  class_projects: Category[];
   assigned_users: AssignedUser[];
   tags: any[];
   observations: Observation[];

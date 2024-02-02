@@ -23,20 +23,26 @@ export const BoardChanger = () => {
             ? 'Upload'
             : 'Arquivamento'}
         </S.Title>
-
         <S.Change>
           {/* RECEPÇÃO */}
-          {/* <Link to={`/Fases/Board/Recebidos`}>
-            <S.IconBarra>
-              {url.search('Recebidos') <= -1 && <S.LinkImgEscura src="/icon-medium/Recepção.svg" />}
-              {url.search('Recebidos') > -1 && (
-                <>
-                  <S.LinkImg src="/icon-medium/Recepção.svg" />
-                  <S.Barra color={theme.colors['red/500']}></S.Barra>
-                </>
-              )}
-            </S.IconBarra>
-          </Link> */}
+
+          {url.search('Recebidos') <= -1 && (
+            <Link to={`/Fases/Board/Recebidos`} className="RecebidosTooltip">
+              <S.LinkImgEscura src="/icon-medium/Recepção.svg" />
+              <Tooltip
+                children={<p style={{ fontSize: '12px', fontFamily: 'Rubik' }}>Recebidos</p>}
+                anchorSelect=".RecebidosTooltip"
+                place="bottom"
+              />
+            </Link>
+          )}
+
+          {url.search('Recebidos') > -1 && (
+            <Link to={`/Fases/Board/Recebidos`} className="RecebidosTooltip">
+              <S.LinkImg src="/icon-medium/Recepção.svg" />
+              <S.Barra color={theme.colors['red/500']}></S.Barra>
+            </Link>
+          )}
 
           {/* PREPARO(não selecionado)*/}
           {url.search('Preparo') <= -1 && (

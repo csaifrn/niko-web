@@ -18,6 +18,7 @@ export const Change = styled.nav`
   padding: 0 2em;
   display: flex;
   gap: 1em;
+
   //margin-bottom: 1em;
 `;
 
@@ -64,6 +65,20 @@ export const Barra = styled.div<BarraL>`
   width: 100%;
   height: 0.5em;
   border-radius: 10px;
+`;
+
+export const BarraLinksDiv = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+export const BarraDiv = styled.div`
+  width: 100%;
+  display: grid;
+  padding: 0 2em;
+  gap: 1em;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
 `;
 
 export const Title = styled.h1`

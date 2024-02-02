@@ -111,6 +111,10 @@ export const InputObservation = styled.textarea`
   background-color: ${({ theme }) => theme.colors['gray/700']}; /* ${({ theme }) => theme.colors['gray/700']}; */
   color: ${({ theme }) => theme.colors['gray/50']};
   font: inherit;
+
+  :focus {
+    outline: solid white 2px;
+  }
 `;
 
 export const ButtonBlack = styled.button`

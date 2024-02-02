@@ -43,7 +43,6 @@ export const LoteDetails = () => {
   const [priority, setPriority] = useState<boolean>(false);
   const [observacao, setObservacao] = useState(false);
   const [delete_modal, setDeleteModal] = useState(false);
-  const [config_modal, setConfigModal] = useState(false);
   const [avancar, setAvancar] = useState(false);
   const [voltar, setVoltar] = useState(false);
   const [observation, setObservation] = useState<Observation>();
@@ -66,10 +65,6 @@ export const LoteDetails = () => {
     if (me != undefined) {
       return Object.values(obj).includes(OperadorId);
     }
-  };
-
-  const handleConfig = () => {
-    setConfigModal(!config_modal);
   };
 
   const handleVoltar = () => {
@@ -183,7 +178,6 @@ export const LoteDetails = () => {
   //   )
   // }
 
-  console.log(option?.value);
   useEffect(() => {
     CheckIdForGetBatch();
   }, []);
@@ -276,8 +270,8 @@ export const LoteDetails = () => {
               {/* PRIORIDADE + CATEGORIAS */}
 
               {/* QUANDO HÁ CATEGORIAS */}
-              {task?.settlement_project_categories.length != undefined &&
-                task?.settlement_project_categories.length > 0 && (
+              {task?.class_projects.length != undefined &&
+                task?.class_projects.length > 0 && (
                   <S.DetalhesLote style={{ display: 'flex', gap: '8px', flexWrap: 'wrap', flexDirection: 'row' }}>
                     {/* PRIORIORIDADE(SE TIVER) */}
                     {priority === true && (
@@ -289,7 +283,7 @@ export const LoteDetails = () => {
                     )}
 
                     {/* CATEGORIAS */}
-                    {task?.settlement_project_categories.map((cat) => {
+                    {task?.class_projects.map((cat) => {
                       return (
                         <BlockClass refetch={refetch} key={cat.id} idBatche={task.id} idClass={cat.id}>
                           {cat.name}
@@ -300,8 +294,8 @@ export const LoteDetails = () => {
                 )}
 
               {/* QUANDO NÃO HÁ CATEGORIAS */}
-              {task?.settlement_project_categories.length != undefined &&
-                task?.settlement_project_categories.length === 0 &&
+              {task?.class_projects.length != undefined &&
+                task?.class_projects.length === 0 &&
                 priority === true && (
                   <S.DetalhesLote>
                     {/* PRIORIORIDADE(SE TIVER) */}

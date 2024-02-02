@@ -8,8 +8,8 @@ import * as Yup from 'yup';
 import { ErrorsForm } from './criar.interface';
 import ReactLoading from 'react-loading';
 import toast from 'react-hot-toast';
-import { SeachCategoria } from '../../api/services/categoria/get-category';
-import { SeachCategoriaResponseBatche } from '../../api/services/categoria/get-category/get.interface';
+import { SeachCategoria } from '../../api/services/categoria/get-class';
+import { SeachCategoriaResponseBatche } from '../../api/services/categoria/get-class/get.interface';
 
 interface ModalCriarProps {
   close: () => void;

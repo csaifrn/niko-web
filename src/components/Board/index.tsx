@@ -130,7 +130,7 @@ export const Board = (props: BoardProps) => {
                         <Lote
                           value={`${batche.title}`}
                           priority={batche.priority}
-                          categories={batche.settlement_project_categories}
+                          categories={batche.class_projects}
                           pendencia={batche.pending_batch_observations}
                           assigners={batche.assigned_users}
 
@@ -190,7 +190,7 @@ export const Board = (props: BoardProps) => {
                         <Lote
                           value={`${batche.title}`}
                           priority={batche.priority}
-                          categories={batche.settlement_project_categories}
+                          categories={batche.class_projects}
                           pendencia={batche.pending_batch_observations}
                           assigners={batche.assignedUsers}
                           //envolvidos={batche.envolvidos}
@@ -243,7 +243,7 @@ export const Board = (props: BoardProps) => {
                   {batchesConc.length}
                 </h2>
               </S.divTitulo>
-              <S.kanbanSectionContent>
+              <S.kanbanSContentConcluidos>
                 {batchesConc.length === 0 && (
                   <S.WrapperEmptyKanban>
                     <Empty.Title>Está lista está vazia</Empty.Title>
@@ -256,7 +256,7 @@ export const Board = (props: BoardProps) => {
                         <Lote
                           value={`${batche.title}`}
                           priority={batche.priority}
-                          categories={batche.settlement_project_categories}
+                          categories={batche.class_projects}
                           pendencia={batche.pending_batch_observations}
                           assigners={batche.assigned_users}
                         >
@@ -272,30 +272,49 @@ export const Board = (props: BoardProps) => {
                           {batche.main_status === 4 && batche.specific_status === 0 && (
                             <img src="/icon-small/Arquivamento.svg" alt="" style={{ width: '32px', height: '32px' }} />
                           )}
+                          {/* N° de arquivamento */}
                           {batche.main_status === 4 && batche.specific_status === 2 && (
-                            <Estante
-                              className="ShelfTooltip"
-                              style={{
-                                backgroundColor: theme.colors['gray/700'],
-                                height: '100%',
-                                width: '60px',
-                              }}
-                            >
-                              {batche.shelf_number}
-                              <Tooltip
-                                children={
-                                  <p style={{ fontSize: '12px', fontFamily: 'Rubik' }}>Número de arquivamento</p>
-                                }
-                                anchorSelect=".ShelfTooltip"
-                                place="bottom"
-                              />
-                            </Estante>
+                            <S.divTitulo style={{gap: '8px'}}>
+                              {/* N° de arquivamento */}
+                              <Estante
+                                className="ShelfTooltip"
+                                style={{
+                                  backgroundColor: theme.colors['gray/700'],
+      
+                                }}
+                              >
+                                {batche.shelf_number}
+                                <Tooltip
+                                  children={
+                                    <p style={{ fontSize: '12px', fontFamily: 'Rubik' }}>Número de arquivamento</p>
+                                  }
+                                  anchorSelect=".ShelfTooltip"
+                                  place="bottom"
+                                />
+                              </Estante>
+                              
+                              {/* Estante */}
+                              <Estante
+                                className="StorageTooltip"
+                                style={{
+                                  backgroundColor: theme.colors['gray/700'],
+                  
+                                }}
+                              >
+                                {batche.storage_location}
+                                <Tooltip
+                                  children={<p style={{ fontSize: '12px', fontFamily: 'Rubik' }}>Estante</p>}
+                                  anchorSelect=".StorageTooltip"
+                                  place="bottom"
+                                />
+                              </Estante>
+                            </S.divTitulo>
                           )}
                         </Lote>
                       </Link>
                     ),
                 )}
-              </S.kanbanSectionContent>
+              </S.kanbanSContentConcluidos>
             </S.kanban>
           )}
         </S.FaseKanbanPage>

@@ -1,7 +1,7 @@
 import * as S from './styles';
 import React, { ReactNode } from 'react';
 import { generateUUID } from '../../utils/generateUUID.util';
-import { AssignedUser, Category } from '../../api/services/batches/get-batche/get.interface';
+import { AssignedUser, Class } from '../../api/services/batches/get-batche/get.interface';
 import { User, UserCircle, Warning } from '@phosphor-icons/react';
 import { Tooltip } from 'react-tooltip';
 import { IconUser } from '../Icon';
@@ -11,7 +11,7 @@ interface PropsLote {
   value: string;
   priority: boolean;
 
-  categories: Category[];
+  categories: Class[];
   assigners: AssignedUser[];
 
   children: ReactNode;
@@ -49,7 +49,7 @@ const Lote = ({ assigners, categories, children, pendencia, value, priority }: P
               {/* Categorias do Lote */}
               <S.Categoria>
                 {categories &&
-                  categories.map((cat: Category, index: number) => {
+                  categories.map((cat: Class, index: number) => {
                     if (index === 0) {
                       return (
                         <React.Fragment key={cat.id}>
@@ -69,7 +69,7 @@ const Lote = ({ assigners, categories, children, pendencia, value, priority }: P
                           <p>+{index}</p>
                           <Tooltip
                             id={`my-tooltip-multiline-${random}`}
-                            children={categories.slice(1).map((cat: Category) => {
+                            children={categories.slice(1).map((cat: Class) => {
                               return <S.ToolText key={random}>{cat.name}</S.ToolText>;
                             })}
                             place="top"

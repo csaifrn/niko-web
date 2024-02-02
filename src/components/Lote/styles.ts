@@ -95,8 +95,9 @@ export const ToolText = styled.p`
 `;
 
 const BlackBlock = styled.div`
-  height: auto;
+  height: 24px;
   width: auto;
+  max-width: 129px;
   padding-top: 5px;
   padding-bottom: 5px;
   background-color: ${({ theme }) => theme.colors['gray/700']};

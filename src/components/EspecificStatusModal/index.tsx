@@ -10,8 +10,8 @@ import { PatchBatcheMainStatus } from '../../api/services/batches/patch-status';
 import { CheckCircle, HandWaving, Trash } from '@phosphor-icons/react';
 import { SharedState } from '../../context/SharedContext';
 import { CustomSelect } from '../AtribuirAlguemModal/style';
-import { QuerySettles } from '../../api/services/settlement/query-settlement';
-import { ResponseSettle } from '../../api/services/settlement/query-settlement/get.interface';
+import { QuerySettles } from '../../api/services/settlement/query-class';
+import { ResponseSettle } from '../../api/services/settlement/query-class/get.interface';
 import { DeleteBatcheSettle, PatchBatcheSettle, PostBatcheSettle } from '../../api/services/batches/patch-settle';
 import { DeleteAssigner } from '../../api/services/batches/assigners/delete-assigners';
 
@@ -46,15 +46,15 @@ export const EspecifcModal = (props: EspecifModalProps) => {
   const [buttonOff, setButtonOff] = useState(false);
   const [NoCategories] = useState(false);
   const [error, setError] = useState('');
-  const [shelfNumber, setShelfNumber] = useState('');
+  const [shelfNumber, setShelfNumber] = useState<string>(props.batche.storage_location);
   const [userInput, setUserInput] = useState('');
   const [options, setOptions] = useState<Option[]>([]);
   const [validationFormError, setValidationFormError] = useState<ErrorsForm>({
-    shelf_number: '',
+    storage_location: '',
     digital_files_count: '',
   });
   const [selectedOptions, setSelectedOptions] = useState<Option[]>([
-    ...props.batche.settlement_project_categories.map((cat) => ({
+    ...props.batche.class_projects.map((cat) => ({
       value: cat.id,
       label: cat.name,
     })),
@@ -111,8 +111,7 @@ export const EspecifcModal = (props: EspecifModalProps) => {
   });
 
   const mutateSettle2 = useMutation(PostBatcheSettle, {
-    onSuccess: () => {
-    },
+    onSuccess: () => {},
     onError: (err: ApiError) => {
       toast.error(err.response?.data.message ? err.response?.data.message : 'Erro na execução');
     },
@@ -174,7 +173,7 @@ export const EspecifcModal = (props: EspecifModalProps) => {
 
   const mutateQueryCategories = useMutation(QuerySettles, {
     onSuccess: (data: ResponseSettle) => {
-      setOptions([...data.categories.map((settle) => ({ value: settle.id, label: settle.name }))]);
+      setOptions([...data.classes.map((settle) => ({ value: settle.id, label: settle.name }))]);
     },
     onError: (err: ApiError) => {
       toast.error(err.response?.data.message ? err.response?.data.message : 'Erro na execução');
@@ -260,7 +259,7 @@ export const EspecifcModal = (props: EspecifModalProps) => {
     try {
       await validationShelfSchema.validate(
         {
-          shelf_number: shelfNumber,
+          storage_location: shelfNumber,
         },
         {
           abortEarly: false,
@@ -286,12 +285,11 @@ export const EspecifcModal = (props: EspecifModalProps) => {
       if (NoCategories) {
         nextFase();
       } else {
-        if (props.batche.settlement_project_categories.length > 0 && selectedOptions.length > 0) {
+        if (props.batche.class_projects.length > 0 && selectedOptions.length > 0) {
           const newSettle = selectedOptions.filter(
-            (settleSelected) =>
-              !props.batche.settlement_project_categories.some((settle) => settle.id === settleSelected.value),
+            (settleSelected) => !props.batche.class_projects.some((settle) => settle.id === settleSelected.value),
           );
-          const deleteSettle = props.batche.settlement_project_categories.filter(
+          const deleteSettle = props.batche.class_projects.filter(
             (settle) => !selectedOptions.some((settleSelected) => settleSelected.value === settle.id),
           );
 
@@ -301,26 +299,26 @@ export const EspecifcModal = (props: EspecifModalProps) => {
           if (deleteSettle.length > 0 && newSettle.length === 0) {
             mutateDeleteSettle.mutate({
               id: props.batche.id,
-              settlement_project_category_ids: deleteIds,
+              class_projects_ids: deleteIds,
             });
           } else if (newSettle.length > 0 && deleteSettle.length === 0) {
             mutateSettle2.mutate({
               id: props.batche.id,
-              settlementProjectCategories: newIds,
+              class_projects_ids: newIds,
             });
           } else if (newSettle.length > 0 && deleteSettle.length > 0) {
             mutateSettleAll.mutate({
               id: props.batche.id,
-              settlementProjectCategories: newIds,
-              settlement_project_category_ids: deleteIds,
+              class_projects_ids: newIds,
+              class_projects_deleted_ids: deleteIds,
             });
           }
 
           nextFase();
-        } else if (selectedOptions.length > 0 && props.batche.settlement_project_categories.length <= 0) {
+        } else if (selectedOptions.length > 0 && props.batche.class_projects.length <= 0) {
           mutateSettle.mutate({
             id: props.batche.id,
-            settlementProjectCategories: [...selectedOptions.map((settle) => settle.value)],
+            class_projects_ids: [...selectedOptions.map((settle) => settle.value)],
           });
         } else {
           setError('Adicione alguma categoria para avançar para a próxima fase.');
@@ -333,7 +331,6 @@ export const EspecifcModal = (props: EspecifModalProps) => {
         mutateStorage.mutate({
           id: props.batche.id,
           storage_location: shelfNumber,
-          
         });
       }
     } else if (props.batche.main_status === 2 && props.batche.specific_status === 1) {
@@ -416,7 +413,7 @@ export const EspecifcModal = (props: EspecifModalProps) => {
                   value={shelfNumber}
                   onChange={(e) => setShelfNumber(e.currentTarget.value)}
                 />
-                {validationFormError.shelf_number && <ErrorMessage>{validationFormError.shelf_number}</ErrorMessage>}
+                {validationFormError.storage_location && <ErrorMessage>{validationFormError.storage_location}</ErrorMessage>}
               </>
             )}
 
@@ -439,7 +436,6 @@ export const EspecifcModal = (props: EspecifModalProps) => {
             )}
 
             <S.RecusedAvancar>
-
               {/* Cancelar */}
               <S.Recused onClick={handleClose}>
                 <S.Texto>Cancelar</S.Texto>

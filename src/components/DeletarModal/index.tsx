@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import * as S from './style';
-import { DeleteCategory } from '../../api/services/categoria/delete-category';
+import { DeleteCategory } from '../../api/services/categoria/delete-class';
 import { useMutation, useQueryClient } from 'react-query';
 import { ApiError } from '../../api/services/authentication/signIn/signIn.interface';
 import toast from 'react-hot-toast';

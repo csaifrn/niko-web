@@ -2,7 +2,7 @@ import { FormEvent, useEffect, useState } from 'react';
 import * as S from './style';
 import Menu from '../../components/Menu';
 import MenuCoord from '../../components/MenuCoord';
-import { Batche, Category } from '../../api/services/batches/get-batche/get.interface';
+import { Batche, Class } from '../../api/services/batches/get-batche/get.interface';
 import { useNavigate, useParams } from 'react-router-dom';
 import toast from 'react-hot-toast';
 import { useMutation } from 'react-query';
@@ -13,8 +13,8 @@ import { validationPatch, validationSearch } from './validation';
 import { PatchBatcheEdit, PatchBatchePriority } from '../../api/services/batches/patch-batche';
 import theme from '../../global/theme';
 import { SairSemSalvarModal } from '../../components/SairSemSalvarModal';
-import { ResponseSettle } from '../../api/services/settlement/query-settlement/get.interface';
-import { QuerySettles } from '../../api/services/settlement/query-settlement';
+import { ResponseSettle } from '../../api/services/settlement/query-class/get.interface';
+import { QuerySettles } from '../../api/services/settlement/query-class';
 import { DeleteBatcheSettle, PatchBatcheSettle, PostBatcheSettle } from '../../api/services/batches/patch-settle';
 
 interface Option {
@@ -31,7 +31,7 @@ interface Option {
 const LoteEdit = () => {
   const navigate = useNavigate();
   const { id } = useParams();
-  const [categories, setCategories] = useState<Category[]>([]);
+  const [categories, setCategories] = useState<Class[]>([]);
   const [title, setTitle] = useState<string>('');
   const [physical_files_count, setPhysical_files_count] = useState<number>(0);
   const [digital_files_count, setDigital_files_count] = useState<number>(0);
@@ -68,9 +68,33 @@ const LoteEdit = () => {
     }
   };
 
+  //Pega as informações do lote
+  const beforeBatch = useMutation(GetBatche, {
+    onSuccess: (data: Batche) => {
+      setTitle(data.title);
+      setPriority(data.priority);
+      setCategories(data.class_projects);
+      setPhysical_files_count(data.physical_files_count);
+      setDigital_files_count(data.digital_files_count);
+      setFaseAtual(data.main_status);
+      setStorageLocation(data.storage_location);
+      setSelectedOptions([
+        ...data.class_projects.map((cat) => ({
+          value: cat.id,
+          label: cat.name,
+        })),
+      ]);
+    },
+    onError: (error: ApiError) => {
+      if (error.response) {
+        toast.error(error.response.data.message);
+      }
+    },
+  });
+
   const mutateQueryCategories = useMutation(QuerySettles, {
     onSuccess: (data: ResponseSettle) => {
-      setOptions([...data.categories.map((settle) => ({ value: settle.id, label: settle.name }))]);
+      setOptions([...data.classes.map((settle) => ({ value: settle.id, label: settle.name }))]);
     },
   });
 
@@ -85,29 +109,6 @@ const LoteEdit = () => {
     },
     onSettled: () => {
       navigate(`/Lote/${id}`);
-    },
-  });
-
-  const beforeBatch = useMutation(GetBatche, {
-    onSuccess: (data: Batche) => {
-      setTitle(data.title);
-      setPriority(data.priority);
-      setCategories(data.settlement_project_categories);
-      setPhysical_files_count(data.physical_files_count);
-      setDigital_files_count(data.digital_files_count);
-      setFaseAtual(data.main_status);
-      setStorageLocation(data.storage_location);
-      setSelectedOptions([
-        ...data.settlement_project_categories.map((cat) => ({
-          value: cat.id,
-          label: cat.name,
-        })),
-      ]);
-    },
-    onError: (error: ApiError) => {
-      if (error.response) {
-        toast.error(error.response.data.message);
-      }
     },
   });
 
@@ -176,7 +177,7 @@ const LoteEdit = () => {
         priority,
         digital_files_count,
         physical_files_count,
-        storage_location: storageLocation
+        storage_location: storageLocation,
       });
 
       const newSettle = selectedOptions.filter(
@@ -192,18 +193,18 @@ const LoteEdit = () => {
       if (deleteSettle.length > 0 && newSettle.length === 0) {
         mutateDeleteSettle.mutate({
           id,
-          settlement_project_category_ids: deleteIds,
+          class_projects_ids: deleteIds,
         });
       } else if (newSettle.length > 0 && deleteSettle.length === 0) {
         mutateSettle.mutate({
           id,
-          settlementProjectCategories: newIds,
+          class_projects_ids: newIds,
         });
       } else if (newSettle.length > 0 && deleteSettle.length > 0) {
         mutateSettleAll.mutate({
           id,
-          settlementProjectCategories: newIds,
-          settlement_project_category_ids: deleteIds,
+          class_projects_ids: newIds,
+          class_projects_deleted_ids: deleteIds,
         });
       }
       try {
@@ -347,7 +348,9 @@ const LoteEdit = () => {
                 )}
               </S.ArquivosDiv>
             </S.Arquivos>
-            <h2>Categorias</h2>
+
+            {/* Alterar CLASSES */}
+            <h2>Classes</h2>
             <S.SelectDiv>
               <S.CustomSelect
                 isMulti

@@ -39,7 +39,7 @@ export const BlockClass = ({ children, idClass, idBatche, refetch }: Props) => {
           deleteFunction={() => {
             mutateClasses.mutate({
               id: idBatche,
-              settlement_project_category_ids: [idClass],
+              class_projects_ids: [idClass],
             });
           }}
           title="Deseja retirar essa classe?"

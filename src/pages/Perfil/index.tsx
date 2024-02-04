@@ -46,8 +46,6 @@ const Perfil = () => {
     },
   });
 
-  console.log('loggedUsed', loggedUsed);
-
   const validateForm = async (name: string, email: string): Promise<boolean> => {
     try {
       await validationPerfilSchema.validate(

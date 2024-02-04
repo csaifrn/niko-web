@@ -1,5 +1,5 @@
 import { useQuery } from 'react-query';
-import { GetCategories } from '../api/services/settlement/get-categories';
+import { GetCategories } from '../api/services/class/get-classes';
 
 export const useCategories = () => {
   const {

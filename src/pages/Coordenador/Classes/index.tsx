@@ -10,8 +10,8 @@ import { CSVButton } from '../../../components/CSVButton';
 import { ModalCategory } from '../../../components/ModalCategory';
 import { useMutation } from 'react-query';
 import { Class } from '../../../api/services/batches/get-batche/get.interface';
-import { GetCategories } from '../../../api/services/settlement/get-categories';
 import theme from '../../../global/theme';
+import { GetCategories } from '../../../api/services/class/get-classes';
 
 const Classes = () => {
   const [searchTerm, setSearchTerm] = useState('');

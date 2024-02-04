@@ -14,7 +14,7 @@ import { ModalCriarLote } from '../ModalCriarLote';
 import { EspecifcModal } from '../EspecificStatusModal';
 import { Link } from 'react-router-dom';
 import { GetResponseBatche } from '../../api/services/batches/query-batches/get.interface';
-import { CheckCircle, HandWaving } from '@phosphor-icons/react';
+import { CheckCircle, HandWaving, Person } from '@phosphor-icons/react';
 import { useMe } from '../../hooks/useMe';
 import { Estante } from '../../pages/LoteDetails/styles';
 import { Tooltip } from 'react-tooltip';
@@ -60,9 +60,7 @@ export const Board = (props: BoardProps) => {
     onSuccess: (data: GetResponseBatche[]) => {
       setBatchesConc(data.filter((batche) => batche.specific_status === 0));
     },
-    onError: (err: ApiError) => {
-      toast.error(err.message);
-    },
+    onError: (err: ApiError) => {},
   });
   useEffect(() => {
     refecth();

@@ -13,8 +13,8 @@ import { validationPatch, validationSearch } from './validation';
 import { PatchBatcheEdit, PatchBatchePriority } from '../../api/services/batches/patch-batche';
 import theme from '../../global/theme';
 import { SairSemSalvarModal } from '../../components/SairSemSalvarModal';
-import { ResponseSettle } from '../../api/services/settlement/query-class/get.interface';
-import { QuerySettles } from '../../api/services/settlement/query-class';
+import { ResponseClasses } from '../../api/services/class/query-classes/get.interface';
+import { QueryClasses } from '../../api/services/class/query-classes';
 import { DeleteBatcheSettle, PatchBatcheSettle, PostBatcheSettle } from '../../api/services/batches/patch-settle';
 
 interface Option {
@@ -68,33 +68,9 @@ const LoteEdit = () => {
     }
   };
 
-  //Pega as informações do lote
-  const beforeBatch = useMutation(GetBatche, {
-    onSuccess: (data: Batche) => {
-      setTitle(data.title);
-      setPriority(data.priority);
-      setCategories(data.class_projects);
-      setPhysical_files_count(data.physical_files_count);
-      setDigital_files_count(data.digital_files_count);
-      setFaseAtual(data.main_status);
-      setStorageLocation(data.storage_location);
-      setSelectedOptions([
-        ...data.class_projects.map((cat) => ({
-          value: cat.id,
-          label: cat.name,
-        })),
-      ]);
-    },
-    onError: (error: ApiError) => {
-      if (error.response) {
-        toast.error(error.response.data.message);
-      }
-    },
-  });
-
-  const mutateQueryCategories = useMutation(QuerySettles, {
-    onSuccess: (data: ResponseSettle) => {
-      setOptions([...data.classes.map((settle) => ({ value: settle.id, label: settle.name }))]);
+  const mutateQueryClasses = useMutation(QueryClasses, {
+    onSuccess: (data: ResponseClasses) => {
+      setOptions(data.classes.map((newLocal) => ({ label: newLocal.name, value: newLocal.id })));
     },
   });
 
@@ -109,6 +85,29 @@ const LoteEdit = () => {
     },
     onSettled: () => {
       navigate(`/Lote/${id}`);
+    },
+  });
+
+  const beforeBatch = useMutation(GetBatche, {
+    onSuccess: (data: Batche) => {
+      setTitle(data.title);
+      setPriority(data.priority);
+      setStorageLocation(data.storage_location)
+      setCategories(data.class_projects);
+      setPhysical_files_count(data.physical_files_count);
+      setDigital_files_count(data.digital_files_count);
+      setFaseAtual(data.main_status);
+      setSelectedOptions([
+        ...data.class_projects.map((cat) => ({
+          value: cat.id,
+          label: cat.name,
+        })),
+      ]);
+    },
+    onError: (error: ApiError) => {
+      if (error.response) {
+        toast.error(error.response.data.message);
+      }
     },
   });
 
@@ -158,7 +157,7 @@ const LoteEdit = () => {
     const serchcategory = async () => {
       const valid = await validateSearch();
       if (valid) {
-        mutateQueryCategories.mutate({
+        mutateQueryClasses.mutate({
           name: userInput,
         });
       }

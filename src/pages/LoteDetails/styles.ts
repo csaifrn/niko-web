@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import media from 'styled-media-query';
 import Select from 'react-select';
+import { UserRole } from '../../utils/userRole.enum';
 
 export const BotaoCriarObservacao = styled.button`
   border-radius: 100%;
@@ -123,8 +124,7 @@ export const LoteInfos = styled.div`
 
 export const LoteTitleEdit = styled.div`
   display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
+  gap: 1em;
 `;
 
 export const EditConfig = styled.div`
@@ -170,6 +170,11 @@ export const Config = styled.button`
 `;
 
 export const DetalhesLote = styled.div`
+  display: flex;
+  gap: 24px;
+`;
+
+export const SubDetalhes = styled.div`
   display: flex;
   gap: 8px;
 `;
@@ -321,7 +326,7 @@ export const TituloFaseAtual = styled.h2``;
 export const Status = styled.div`
   display: flex;
   align-items: center;
-  width: fit-content;
+  height: 32px;
   background-color: ${({ theme }) => theme.colors['gray/500']};
   padding: 0px 6px 0px 6px;
   border-radius: 3px;
@@ -333,14 +338,27 @@ export const Envolvidos = styled.div`
   gap: 0px;
 `;
 
-export const ObservacaoBotoes = styled.div`
+interface Props {
+  role: string | undefined;
+}
+
+export const ObservacaoBotoes = styled.div<Props>`
   display: flex;
   flex-direction: column;
   gap: 16px;
-  grid-template-columns: repeat(auto-fit, minmax(21rem, 1fr));
   @media screen and (min-width: 767px) {
     display: grid;
-    grid-template-columns: 2fr 1fr;
+    grid-template-columns: ${({ role }) => (role === UserRole.OPERATOR ? '1fr' : '2fr 1fr')};
+  }
+`;
+
+export const Botoes = styled.div<Props>`
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  grid-row-start: ${({ role }) => (role === UserRole.OPERATOR ? '1' : '0')};
+  @media screen and (min-width: 767px) {
+    gap: 27px;
   }
 `;
 
@@ -457,15 +475,6 @@ export const BotaoResolverPend = styled.button`
   &:active {
     background-color: ${({ theme }) => theme.colors['yellow/200']};
     transform: translateY(-5%) translateX(2%);
-  }
-`;
-
-export const Botoes = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  @media screen and (min-width: 767px) {
-    gap: 27px;
   }
 `;
 

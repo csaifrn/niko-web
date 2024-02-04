@@ -5,6 +5,7 @@ import { Observation } from '../../../api/services/batches/get-batche/get.interf
 import theme from '../../../global/theme';
 import { SharedState } from '../../../context/SharedContext';
 import { Tooltip } from 'react-tooltip';
+import { UserRole } from '../../../utils/userRole.enum';
 
 export interface PropsObservation {
   observation: Observation;
@@ -75,7 +76,7 @@ export const BoxObservation = ({
 
       {/* Botões de editar e excluir observação */}
       {/* <h2>{observation.isPending}</h2> */}
-      {observation.created_by.user_id === user?.sub && (
+      {observation.created_by.user_id === user?.sub ? (
         <S.DivButtons>
           <S.ButtonEdit onClick={handleClickEdit} className="EditarTooltip">
             <PencilSimple size={18} weight="fill" color={theme.colors['white']} />
@@ -85,16 +86,29 @@ export const BoxObservation = ({
               place="bottom"
             />
           </S.ButtonEdit>
-          
+
           <S.ButtonDelete onClick={handleClickDelete} className="ExcluirTooltip">
             <Trash size={18} color="#f5f5f5" weight="fill" />
             <Tooltip
-              children={<p style={{ fontSize: '12px' , fontFamily: 'Rubik' }}>Excluir observação</p>}
+              children={<p style={{ fontSize: '12px', fontFamily: 'Rubik' }}>Excluir observação</p>}
               anchorSelect=".ExcluirTooltip"
               place="bottom"
             />
           </S.ButtonDelete>
         </S.DivButtons>
+      ) : (
+        user?.role === UserRole.MANAGER && (
+          <S.DivButtons>
+            <S.ButtonDelete onClick={handleClickDelete} className="ExcluirTooltip">
+              <Trash size={18} color="#f5f5f5" weight="fill" />
+              <Tooltip
+                children={<p style={{ fontSize: '12px', fontFamily: 'Rubik' }}>Excluir observação</p>}
+                anchorSelect=".ExcluirTooltip"
+                place="bottom"
+              />
+            </S.ButtonDelete>
+          </S.DivButtons>
+        )
       )}
     </S.ObsDivBlack>
   );

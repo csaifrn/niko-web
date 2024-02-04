@@ -18,6 +18,7 @@ const Catalogacao = lazy(() => import('./pages/FasesEspecificsPages/Catalogacao'
 const Digitalizacao = lazy(() => import('./pages/FasesEspecificsPages/Digitalizacao'));
 const Upload = lazy(() => import('./pages/FasesEspecificsPages/Upload'));
 const Arquivamento = lazy(() => import('./pages/FasesEspecificsPages/Arquivamento'));
+const Reception = lazy(() => import('./pages/FasesEspecificsPages/Recepção'));
 const Classes = lazy(() => import('./pages/Coordenador/Classes'));
 const OperadoresPage = lazy(() => import('./pages/Coordenador/Operador'));
 const Perfil = lazy(() => import('./pages/Perfil'));
@@ -52,6 +53,7 @@ const Rotas = () => {
         <Route path="/Fases/Board/Digitalização" element={<Digitalizacao />} />
         <Route path="Fases/Board/Upload" element={<Upload />} />
         <Route path="/Fases/Board/Arquivamento" element={<Arquivamento />} />
+        <Route path="/Fases/Board/Recebidos" element={<Reception />} />
         <Route path="/Operadores" element={<OperadoresPage />} />
         <Route path="/Classes" element={<Classes />} />
 

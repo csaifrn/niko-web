@@ -26,6 +26,9 @@
     background-color: #000;
     border-radius: 20px;
   }
+  scrollbar-color: #2d303b transparent;
+  scrollbar-width: thin;
+  scrollbar-gutter: none;
 }
 body {
   font-size: 12px;

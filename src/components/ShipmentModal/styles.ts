@@ -1,20 +1,20 @@
 import styled from 'styled-components';
 
 export const ModalArea = styled.div`
+  width: 80vw;
+  max-width: 400px;
+  background-color: ${({ theme }) => theme.colors['gray/500']};
+  border-radius: 5px;
   display: flex;
   flex-direction: column;
-  align-items: center;
   padding: 2em;
-  gap: 1em;
-  font-family: 'Rubik';
+  gap: 2em;
+  transform: scale(0);
+  transition: transform 0.3s ease-in-out;
   color: white;
-  position: fixed;
-  width: auto;
-  background-color: ${({ theme }) => theme.colors['gray/500']};
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  font-family: 'Rubik';
   border-radius: 5px;
-  scroll-behavior: auto;
-  scrollbar-width: thin;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 `;
 
 export const ModalContent = styled.div`
@@ -51,8 +51,9 @@ export const LocalDiv = styled.div`
 
 export const Local = styled.input`
   height: 44px;
-  padding: 0 2em;
+  padding: 0 1em;
   border-radius: 5px;
+
   color: white;
   border: none;
   font-family: 'Rubik';
@@ -99,13 +100,13 @@ export const AtribuirButton = styled.button`
 export const ModalBackdrop = styled.div`
   position: fixed;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
   width: 100%;
   height: 100%;
   top: 0;
   left: 0;
   z-index: 100;
-  background-color: rgba(25, 28, 36, 0.5);
+  background-color: rgba(25, 28, 36, 0.7);
+  transition: transform 1s;
 `;

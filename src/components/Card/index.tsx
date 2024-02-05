@@ -48,7 +48,7 @@ export const CardFase = ({ ...props }: CardProps) => {
 
   return (
     <>
-      {props.fase != -1 && (
+      {props.fase != -2 && (
         <CardContainer>
           <FigureIconCard backgroundColor={props.color}>
             <ImgIconCard src={props.srcImgIcon}></ImgIconCard>

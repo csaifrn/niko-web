@@ -333,7 +333,11 @@ export const Board = (props: BoardProps) => {
           </S.FaseKanbanPage>
         )}
         {atribuirModal && (
-          <AtribuirAlguemModal close={() => setAtribuirModal(false)} assigners={batche_data?.assigned_users} />
+          <AtribuirAlguemModal
+            close={() => setAtribuirModal(false)}
+            assigners={batche_data?.assigned_users}
+            refetch={() => refecth()}
+          />
         )}
         {openCriarModal && (
           <ModalCriarLote

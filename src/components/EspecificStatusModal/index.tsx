@@ -47,7 +47,9 @@ export const EspecifcModal = (props: EspecifModalProps) => {
   const [buttonOff, setButtonOff] = useState(false);
   const [NoCategories] = useState(false);
   const [error, setError] = useState('');
-  const [shelfNumber, setShelfNumber] = useState<string>(props.batche.storage_location);
+  const [storageLocation, setstorageLocation] = useState<string>(
+    props.batche.storage_location ? props.batche.storage_location : '',
+  );
   const [userInput, setUserInput] = useState('');
   const [options, setOptions] = useState<Option[]>([]);
   const [newIds, setNewIds] = useState<string[]>([]);
@@ -133,22 +135,6 @@ export const EspecifcModal = (props: EspecifModalProps) => {
     },
   });
 
-  const mutateEspecific = useMutation(PatchBatcheSpecifStatus, {
-    onSuccess: () => {},
-    onError: (err: ApiError) => {
-      toast.error(err.response?.data.message ? err.response?.data.message : 'Erro na execução');
-    },
-  });
-
-  const mutateSettle = useMutation(PostBatcheSettle, {
-    onSuccess: () => {
-      nextFase();
-    },
-    onError: (err: ApiError) => {
-      toast.error(err.response?.data.message ? err.response?.data.message : 'Erro na execução');
-    },
-  });
-
   const mutateSettle2 = useMutation(PostBatcheSettle, {
     onSuccess: () => {
       nextFase();
@@ -190,6 +176,13 @@ export const EspecifcModal = (props: EspecifModalProps) => {
       id: props.batche.id,
     });
   };
+
+  const mutateEspecific = useMutation(PatchBatcheSpecifStatus, {
+    onSuccess: () => {},
+    onError: (err: ApiError) => {
+      toast.error(err.response?.data.message ? err.response?.data.message : 'Erro na execução');
+    },
+  });
 
   const mutateStatus = useMutation(PatchBatcheMainStatus, {
     onSuccess: () => {
@@ -254,6 +247,7 @@ export const EspecifcModal = (props: EspecifModalProps) => {
         id: props.batche.id,
       });
       handleCloseRefecht();
+      toast.success('Lote arquivado com sucesso!');
     } else {
       const specific_status = props.batche.specific_status + 1 === 2 ? 0 : 1;
       if (specific_status === 0) {
@@ -327,7 +321,7 @@ export const EspecifcModal = (props: EspecifModalProps) => {
     try {
       await validationShelfSchema.validate(
         {
-          storage_location: shelfNumber,
+          storage_location: storageLocation,
         },
         {
           abortEarly: false,
@@ -401,7 +395,7 @@ export const EspecifcModal = (props: EspecifModalProps) => {
       if (isValid) {
         mutateStorage.mutate({
           id: props.batche.id,
-          storage_location: shelfNumber,
+          storage_location: storageLocation,
         });
       }
     } else if (props.batche.main_status === 2 && props.batche.specific_status === 1) {
@@ -438,7 +432,11 @@ export const EspecifcModal = (props: EspecifModalProps) => {
         <S.ModalArea id="modal-scaling">
           <S.ModalContent>
             <S.NameClose>
-              <S.Titulo> {props.title}</S.Titulo>
+              {props.batche.main_status == 4 ? (
+                <S.Titulo> Deseja arquivar o {props.batche.title}? </S.Titulo>
+              ) : (
+                <S.Titulo> {props.title}</S.Titulo>
+              )}
             </S.NameClose>
             {props.batche.main_status === 1 && props.batche.specific_status == 1 && props.button !== 'Excluir lote' && (
               <S.CatalogacaoArea>
@@ -495,8 +493,8 @@ export const EspecifcModal = (props: EspecifModalProps) => {
                 <h2 style={{ color: 'white' }}>Estante</h2>
                 <InputText
                   placeholder="Estante..."
-                  value={shelfNumber}
-                  onChange={(e) => setShelfNumber(e.currentTarget.value)}
+                  value={storageLocation}
+                  onChange={(e) => setstorageLocation(e.currentTarget.value)}
                 />
                 {validationFormError.storage_location && (
                   <ErrorMessage>{validationFormError.storage_location}</ErrorMessage>

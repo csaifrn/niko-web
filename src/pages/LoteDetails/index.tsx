@@ -28,6 +28,7 @@ import { Tooltip } from 'react-tooltip';
 import { UserRole } from '../../utils/userRole.enum';
 import { useMe } from '../../hooks/useMe';
 import { BlockClass } from '../../components/BatchBlocks/BlockClass';
+import { User } from 'phosphor-react';
 
 interface Option {
   label: string;

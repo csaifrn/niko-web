@@ -15,6 +15,8 @@ import { Link } from 'react-router-dom';
 import { GetResponseBatche } from '../../api/services/batches/query-batches/get.interface';
 import { CheckCircle, HandWaving } from '@phosphor-icons/react';
 import { useMe } from '../../hooks/useMe';
+import { Estante } from '../../pages/LoteDetails/styles';
+import { Tooltip } from 'react-tooltip';
 import Loading from 'react-loading';
 import * as Empty from '../EmptyPage/styles';
 
@@ -231,6 +233,7 @@ export const Board = (props: BoardProps) => {
                 </S.kanbanSectionContent>
               </S.kanban>
             )}
+
             {batchesConc.length >= 0 && (
               <S.kanban>
                 <S.divTitulo>
@@ -247,7 +250,7 @@ export const Board = (props: BoardProps) => {
                     {batchesConc.length}
                   </h2>
                 </S.divTitulo>
-                <S.kanbanSectionContent>
+                <S.kanbanSContentConcluidos>
                   {batchesConc.length === 0 && (
                     <S.WrapperEmptyKanban>
                       <Empty.Title>Está lista está vazia</Empty.Title>
@@ -277,17 +280,64 @@ export const Board = (props: BoardProps) => {
                             {batche.main_status === 3 && (
                               <img src="/icon-small/Upload.svg" alt="" style={{ width: '32px', height: '32px' }} />
                             )}
+                            {batche.main_status === 4 && batche.specific_status === 0 && (
+                              <img
+                                src="/icon-small/Arquivamento.svg"
+                                alt=""
+                                style={{ width: '32px', height: '32px' }}
+                              />
+                            )}
+                            {/* N° de arquivamento */}
+                            {batche.main_status === 4 && batche.specific_status === 2 && (
+                              <S.divTitulo style={{ gap: '8px' }}>
+                                {/* N° de arquivamento */}
+                                <Estante
+                                  className="ShelfTooltip"
+                                  style={{
+                                    backgroundColor: theme.colors['gray/700'],
+                                  }}
+                                >
+                                  {batche.shelf_number}
+                                  <Tooltip
+                                    children={
+                                      <p style={{ fontSize: '12px', fontFamily: 'Rubik' }}>Número de arquivamento</p>
+                                    }
+                                    anchorSelect=".ShelfTooltip"
+                                    place="bottom"
+                                  />
+                                </Estante>
+
+                                {/* Estante */}
+                                <Estante
+                                  className="StorageTooltip"
+                                  style={{
+                                    backgroundColor: theme.colors['gray/700'],
+                                  }}
+                                >
+                                  {batche.storage_location}
+                                  <Tooltip
+                                    children={<p style={{ fontSize: '12px', fontFamily: 'Rubik' }}>Estante</p>}
+                                    anchorSelect=".StorageTooltip"
+                                    place="bottom"
+                                  />
+                                </Estante>
+                              </S.divTitulo>
+                            )}
                           </Lote>
                         </Link>
                       ),
                   )}
-                </S.kanbanSectionContent>
+                </S.kanbanSContentConcluidos>
               </S.kanban>
             )}
           </S.FaseKanbanPage>
         )}
         {atribuirModal && (
-          <AtribuirAlguemModal close={() => setAtribuirModal(false)} assigners={batche_data?.assigned_users} />
+          <AtribuirAlguemModal
+            close={() => setAtribuirModal(false)}
+            assigners={batche_data?.assigned_users}
+            refetch={() => refecth()}
+          />
         )}
         {openCriarModal && (
           <ModalCriarLote

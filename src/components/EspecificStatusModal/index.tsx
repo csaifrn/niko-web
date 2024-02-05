@@ -47,14 +47,16 @@ export const EspecifcModal = (props: EspecifModalProps) => {
   const [buttonOff, setButtonOff] = useState(false);
   const [NoCategories] = useState(false);
   const [error, setError] = useState('');
-  const [shelfNumber, setShelfNumber] = useState('');
+  const [storageLocation, setstorageLocation] = useState<string>(
+    props.batche.storage_location ? props.batche.storage_location : '',
+  );
   const [userInput, setUserInput] = useState('');
   const [options, setOptions] = useState<Option[]>([]);
   const [newIds, setNewIds] = useState<string[]>([]);
   const [deletedIds, setDeletedIds] = useState<string[]>([]);
 
   const [validationFormError, setValidationFormError] = useState<ErrorsForm>({
-    shelf_number: '',
+    storage_location: '',
     digital_files_count: '',
     fisical_files_count: '',
   });
@@ -66,8 +68,8 @@ export const EspecifcModal = (props: EspecifModalProps) => {
         }))
       : [],
   );
-  const [digital_files_count, setDigital_files_count] = useState<number>(0);
-  const [fisical_files_count, setFisical_files_count] = useState<number>(0);
+  const [digital_files_count, setDigital_files_count] = useState<number>(props.batche.digital_files_count);
+  const [fisical_files_count, setFisical_files_count] = useState<number>(props.batche.physical_files_count);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -104,18 +106,18 @@ export const EspecifcModal = (props: EspecifModalProps) => {
     if (deleteSettle.length > 0 && newSettle.length === 0) {
       mutateDeleteSettle.mutate({
         id: props.batche.id,
-        settlement_project_category_ids: deleteSettle,
+        class_projects_ids: deleteSettle,
       });
     } else if (newSettle.length > 0 && deleteSettle.length === 0) {
       mutateSettle2.mutate({
         id: props.batche.id,
-        settlementProjectCategories: newSettle,
+        class_projects_ids: newSettle,
       });
     } else if (newSettle.length > 0 && deleteSettle.length > 0) {
       mutateSettleAll.mutate({
         id: props.batche.id,
-        settlementProjectCategories: newSettle,
-        settlement_project_category_ids: deleteSettle,
+        class_projects_ids: newSettle,
+        class_projects_deleted_ids: deleteSettle,
       });
     } else {
       nextFase();
@@ -130,22 +132,6 @@ export const EspecifcModal = (props: EspecifModalProps) => {
   const mutatePatchBatchCat = useMutation(PatchBatcheClassEdit, {
     onSuccess: (_, variables) => {
       settle(variables.deletedIds, variables.newIds);
-    },
-  });
-
-  const mutateEspecific = useMutation(PatchBatcheSpecifStatus, {
-    onSuccess: () => {},
-    onError: (err: ApiError) => {
-      toast.error(err.response?.data.message ? err.response?.data.message : 'Erro na execução');
-    },
-  });
-
-  const mutateSettle = useMutation(PostBatcheSettle, {
-    onSuccess: () => {
-      nextFase();
-    },
-    onError: (err: ApiError) => {
-      toast.error(err.response?.data.message ? err.response?.data.message : 'Erro na execução');
     },
   });
 
@@ -176,7 +162,7 @@ export const EspecifcModal = (props: EspecifModalProps) => {
 
   const DeleteBatch = useMutation(DeleteBatche, {
     onSuccess: () => {
-      navigate(`/Fase/Board/Preparo`);
+      navigate(-1);
       toast.success('Lote excluído com sucesso!');
       console.log('Lote excluído com sucesso!');
     },
@@ -190,6 +176,13 @@ export const EspecifcModal = (props: EspecifModalProps) => {
       id: props.batche.id,
     });
   };
+
+  const mutateEspecific = useMutation(PatchBatcheSpecifStatus, {
+    onSuccess: () => {},
+    onError: (err: ApiError) => {
+      toast.error(err.response?.data.message ? err.response?.data.message : 'Erro na execução');
+    },
+  });
 
   const mutateStatus = useMutation(PatchBatcheMainStatus, {
     onSuccess: () => {
@@ -254,6 +247,7 @@ export const EspecifcModal = (props: EspecifModalProps) => {
         id: props.batche.id,
       });
       handleCloseRefecht();
+      toast.success('Lote arquivado com sucesso!');
     } else {
       const specific_status = props.batche.specific_status + 1 === 2 ? 0 : 1;
       if (specific_status === 0) {
@@ -327,7 +321,7 @@ export const EspecifcModal = (props: EspecifModalProps) => {
     try {
       await validationShelfSchema.validate(
         {
-          shelf_number: shelfNumber,
+          storage_location: storageLocation,
         },
         {
           abortEarly: false,
@@ -401,7 +395,7 @@ export const EspecifcModal = (props: EspecifModalProps) => {
       if (isValid) {
         mutateStorage.mutate({
           id: props.batche.id,
-          storage_location: shelfNumber,
+          storage_location: storageLocation,
         });
       }
     } else if (props.batche.main_status === 2 && props.batche.specific_status === 1) {
@@ -438,11 +432,14 @@ export const EspecifcModal = (props: EspecifModalProps) => {
         <S.ModalArea id="modal-scaling">
           <S.ModalContent>
             <S.NameClose>
-              <S.Titulo> {props.title}</S.Titulo>
+              {props.batche.main_status == 4 ? (
+                <S.Titulo> Deseja arquivar o {props.batche.title}? </S.Titulo>
+              ) : (
+                <S.Titulo> {props.title}</S.Titulo>
+              )}
             </S.NameClose>
             {props.batche.main_status === 1 && props.batche.specific_status == 1 && props.button !== 'Excluir lote' && (
               <S.CatalogacaoArea>
-                <h3 style={{ color: 'white' }}>Adicionar categorias</h3>
                 {!NoCategories && (
                   <>
                     <h2 style={{ color: 'white' }}>Arquivos Físicos</h2>
@@ -458,7 +455,7 @@ export const EspecifcModal = (props: EspecifModalProps) => {
                     {validationFormError.fisical_files_count && (
                       <ErrorMessage>{validationFormError.fisical_files_count}</ErrorMessage>
                     )}
-
+                    <h2 style={{ color: 'white' }}>Classes</h2>
                     <CustomSelect
                       isMulti
                       // eslint-disable-next-line jsx-a11y/no-autofocus
@@ -496,10 +493,12 @@ export const EspecifcModal = (props: EspecifModalProps) => {
                 <h2 style={{ color: 'white' }}>Estante</h2>
                 <InputText
                   placeholder="Estante..."
-                  value={shelfNumber}
-                  onChange={(e) => setShelfNumber(e.currentTarget.value)}
+                  value={storageLocation}
+                  onChange={(e) => setstorageLocation(e.currentTarget.value)}
                 />
-                {validationFormError.shelf_number && <ErrorMessage>{validationFormError.shelf_number}</ErrorMessage>}
+                {validationFormError.storage_location && (
+                  <ErrorMessage>{validationFormError.storage_location}</ErrorMessage>
+                )}
               </>
             )}
 
@@ -526,15 +525,14 @@ export const EspecifcModal = (props: EspecifModalProps) => {
                 props.batche.specific_status === 1 &&
                 props.batche.class_projects.length === 0 && (
                   <S.Warn>
-                    Vai ser impossivel atualizar a fase, pois é necessário adicionar categorias. Edite na página de
-                    lote.
+                    Não será possível atualizar a fase, pois é necessário adicionar classes. Edite na página de lote.
                   </S.Warn>
                 )}
               {props.batche.main_status >= 3 &&
                 props.batche.specific_status === 1 &&
                 props.batche.digital_files_count === 0 && (
                   <S.Warn>
-                    Vai ser impossivel atualizar a fase, pois é necessário adicionar arquivos digitais. Edite na página
+                    Não será possível atualizar a fase, pois é necessário adicionar arquivos digitais. Edite na página
                     de lote.
                   </S.Warn>
                 )}
@@ -551,7 +549,7 @@ export const EspecifcModal = (props: EspecifModalProps) => {
                   <S.Texto>{props.button}</S.Texto>
                 </S.ExcluirLoteButton>
               )}
-
+              {/* BOTÃO DE PEGAR LOTE */}
               {props.button === 'Pegar lote' && (
                 <S.PegarLoteButton disabled={buttonOff} onClick={handlePegar}>
                   {buttonOff && <ReactLoading type="cylon" color="white" height={100} width={100} />}
@@ -560,7 +558,7 @@ export const EspecifcModal = (props: EspecifModalProps) => {
                   <S.Texto>{props.button}</S.Texto>
                 </S.PegarLoteButton>
               )}
-
+              {/* BOTÃO DE MARCAR LOTE COMO CONCLUÍDO */}
               {props.button === 'Marcar como concluído' && (
                 <S.ConcluirLoteButton disabled={buttonOff} onClick={handlePegar}>
                   {buttonOff && <ReactLoading type="cylon" color="white" height={100} width={100} />}

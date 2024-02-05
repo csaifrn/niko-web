@@ -9,21 +9,40 @@ import { DeletarModal } from '../../DeletarModal';
 import { useState } from 'react';
 import { SharedState } from '../../../context/SharedContext';
 import { UserRole } from '../../../utils/userRole.enum';
+import { PatchBatcheSpecifStatus } from '../../../api/services/batches/patch-status-specific';
+import { ApiError } from '../../../api/services/authentication/signIn/signIn.interface';
 
 interface PropsBlockAssigner {
   assigner: AssignedUser;
   setAssigners: React.Dispatch<React.SetStateAction<AssignedUser[]>>;
+  BatcheAssigners: AssignedUser[];
+  refetch: () => void;
 }
 
-export const BlockAssigner = ({ assigner, setAssigners }: PropsBlockAssigner) => {
+export const BlockAssigner = ({ assigner, setAssigners, BatcheAssigners, refetch }: PropsBlockAssigner) => {
   const { id } = useParams();
   const { user, setUser } = SharedState();
   const [modal, setModal] = useState(false);
+
+  const mutateEspecific = useMutation(PatchBatcheSpecifStatus, {
+    onSuccess: () => {
+      refetch();
+    },
+    onError: (err: ApiError) => {
+      toast.error(err.response?.data.message ? err.response?.data.message : 'Erro na execução');
+    },
+  });
 
   const removeAssigner = useMutation(DeleteAssigner, {
     onSuccess: () => {
       toast.success(`Você removeu ${assigner.name} do lote.`);
       setAssigners((ass) => ass.filter((a) => a.id != assigner.id));
+      if (id && BatcheAssigners.filter((a) => a.id != assigner.id).length == 0) {
+        mutateEspecific.mutate({
+          specific_status: 0,
+          id: id,
+        });
+      }
     },
   });
 

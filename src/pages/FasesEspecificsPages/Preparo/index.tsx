@@ -15,15 +15,7 @@ const Preparo = () => {
       <Menu area={`/Fases/Board/Preparo`} id_projeto={id}></Menu>
       <MenuCoord />
       <S.Wrapper>
-        <Board main_status={0}>
-          <S.Btn
-            onClick={() => {
-              setOpenCriarModal(!openCriarModal);
-            }}
-          >
-            <p>Criar Lote</p>
-          </S.Btn>
-        </Board>
+        <Board main_status={0}></Board>
       </S.Wrapper>
       {openCriarModal && <ModalCriarLote close={() => setOpenCriarModal(!openCriarModal)} />}
     </div>

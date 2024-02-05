@@ -28,24 +28,22 @@ export const DeleteBatcheSettle = async ({
 interface Params {
   id: string;
   class_projects_ids: string[];
-  class_projects_deleted_ids: string[]
+  settlementProjectCategories: string[];
 }
 
 export const PatchBatcheSettle = async ({
   id,
   class_projects_ids,
-  class_projects_deleted_ids
+  settlementProjectCategories,
 }: Params): Promise<[ResponseStatus, ResponseAddSettle]> => {
   const dataOld = await axiosInstance.delete<ResponseStatus>(`/batches/${id}/class-project`, {
     data: {
       class_projects_ids,
-      class_projects_deleted_ids
     },
   });
 
   const dataNew = await axiosInstance.post<ResponseAddSettle>(`/batches/${id}/class-project`, {
-    class_projects_ids,
-    class_projects_deleted_ids
+    settlementProjectCategories,
   });
 
   return [dataOld.data, dataNew.data];

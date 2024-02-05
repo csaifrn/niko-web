@@ -188,8 +188,7 @@ export const Protocolo = styled.div`
 `;
 
 export const Estante = styled.div`
-  height: 2em;
-  width: 3.5em;
+  padding: 3.5px 8px;
   display: flex;
   align-items: center;
   justify-content: center;

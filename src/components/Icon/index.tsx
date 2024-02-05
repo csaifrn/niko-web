@@ -41,7 +41,7 @@ export const IconUser = ({ name, size = 24, fontSize = 12, color, tooloff = fals
       }}
       className={`my-tooltip-${random}`}
     >
-      <p style={{ fontSize: `${fontSize}px`, fontWeight: `${fontSize <= 12 ? 'normal' : 'bold'}` }}>{IconInitials}</p>
+      <p style={{ fontSize: `${fontSize}px`, color: theme.colors['white'] , fontFamily: 'Rubik'  }}>{IconInitials}</p>
       {!tooloff && <Tooltip anchorSelect={`.my-tooltip-${random}`} children={<p>{name}</p>} place="top" />}
     </BlackBlock>
   );

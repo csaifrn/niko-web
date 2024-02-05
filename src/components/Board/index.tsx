@@ -279,129 +279,136 @@ export const Board = (props: BoardProps) => {
                             {batche.main_status === 3 && (
                               <img src="/icon-small/Upload.svg" alt="" style={{ width: '32px', height: '32px' }} />
                             )}
-                        </Lote>
-                      </Link>
-                    ),
-                )}
-              </S.kanbanSectionContent>
-            </S.kanban>
-          )}
-          {batchesConc.length >= 0 && (
-            <S.kanban>
-              <S.divTitulo>
-                {props.main_status == 4 ? (
-                  <h2 style={{ color: theme.colors.white }}>Arquivados</h2>
-                ) : (
-                  <h2 style={{ color: theme.colors.white }}>Concluídos</h2>
-                )}
-                <h2
-                  style={{
-                    color: theme.colors['green/500'],
-                  }}
-                >
-                  {batchesConc.length}
-                </h2>
-              </S.divTitulo>
-              <S.kanbanSContentConcluidos>
-                {batchesConc.length === 0 && (
-                  <S.WrapperEmptyKanban>
-                    <Empty.Title>Está lista está vazia</Empty.Title>
-                  </S.WrapperEmptyKanban>
-                )}
-                {batchesConc.map(
-                  (batche) =>
-                    batche && (
-                      <Link to={`/Lote/${batche.id}`} key={batche.id} style={{ textDecoration: 'none' }}>
-                        <Lote
-                          value={`${batche.title}`}
-                          priority={batche.priority}
-                          categories={batche.class_projects}
-                          pendencia={batche.pending_batch_observations}
-                          assigners={batche.assigned_users}
-                        >
-                          {batche.main_status === 1 && (
-                            <img src="/icon-small/Catalogação.svg" alt="" style={{ width: '32px', height: '32px' }} />
-                          )}
-                          {batche.main_status === 2 && (
-                            <img src="/icon-small/Digitalização.svg" alt="" style={{ width: '32px', height: '32px' }} />
-                          )}
-                          {batche.main_status === 3 && (
-                            <img src="/icon-small/Upload.svg" alt="" style={{ width: '32px', height: '32px' }} />
-                          )}
-                          {batche.main_status === 4 && batche.specific_status === 0 && (
-                            <img src="/icon-small/Arquivamento.svg" alt="" style={{ width: '32px', height: '32px' }} />
-                          )}
-                          {/* N° de arquivamento */}
-                          {batche.main_status === 4 && batche.specific_status === 2 && (
-                            <S.divTitulo style={{gap: '8px'}}>
-                              {/* N° de arquivamento */}
-                              <Estante
-                                className="ShelfTooltip"
-                                style={{
-                                  backgroundColor: theme.colors['gray/700'],
-      
-                                }}
-                              >
-                                {batche.shelf_number}
-                                <Tooltip
-                                  children={
-                                    <p style={{ fontSize: '12px', fontFamily: 'Rubik' }}>Número de arquivamento</p>
-                                  }
-                                  anchorSelect=".ShelfTooltip"
-                                  place="bottom"
-                                />
-                              </Estante>
-                              
-                              {/* Estante */}
-                              <Estante
-                                className="StorageTooltip"
-                                style={{
-                                  backgroundColor: theme.colors['gray/700'],
-                  
-                                }}
-                              >
-                                {batche.storage_location}
-                                <Tooltip
-                                  children={<p style={{ fontSize: '12px', fontFamily: 'Rubik' }}>Estante</p>}
-                                  anchorSelect=".StorageTooltip"
-                                  place="bottom"
-                                />
-                              </Estante>
-                            </S.divTitulo>
-                          )}
-                        </Lote>
-                      </Link>
-                    ),
-                )}
-              </S.kanbanSContentConcluidos>
-            </S.kanban>
-          )}
-        </S.FaseKanbanPage>
-      )}
-      {atribuirModal && (
-        <AtribuirAlguemModal close={() => setAtribuirModal(false)} assigners={batche_data?.assigned_users} />
-      )}
-      {openCriarModal && (
-        <ModalCriarLote
-          close={() => setOpenCriarModal(!openCriarModal)}
-          refetch={() =>
-            mutateBatchesQuery.mutate({
-              status: props.main_status,
-            })
-          }
-        />
-      )}
-      {openEspecifModal && batche_data && (
-        <EspecifcModal
-          close={() => setOpenEspecifModal(!openEspecifModal)}
-          batche={batche_data}
-          title={titleModal.title}
-          button={titleModal.button}
-          refetch={refecth}
-        />
-      )}
-    </>
-  );
+                          </Lote>
+                        </Link>
+                      ),
+                  )}
+                </S.kanbanSectionContent>
+              </S.kanban>
+            )}
+            {batchesConc.length >= 0 && (
+              <S.kanban>
+                <S.divTitulo>
+                  {props.main_status == 4 ? (
+                    <h2 style={{ color: theme.colors.white }}>Arquivados</h2>
+                  ) : (
+                    <h2 style={{ color: theme.colors.white }}>Concluídos</h2>
+                  )}
+                  <h2
+                    style={{
+                      color: theme.colors['green/500'],
+                    }}
+                  >
+                    {batchesConc.length}
+                  </h2>
+                </S.divTitulo>
+                <S.kanbanSContentConcluidos>
+                  {batchesConc.length === 0 && (
+                    <S.WrapperEmptyKanban>
+                      <Empty.Title>Está lista está vazia</Empty.Title>
+                    </S.WrapperEmptyKanban>
+                  )}
+                  {batchesConc.map(
+                    (batche) =>
+                      batche && (
+                        <Link to={`/Lote/${batche.id}`} key={batche.id} style={{ textDecoration: 'none' }}>
+                          <Lote
+                            value={`${batche.title}`}
+                            priority={batche.priority}
+                            categories={batche.class_projects}
+                            pendencia={batche.pending_batch_observations}
+                            assigners={batche.assigned_users}
+                          >
+                            {batche.main_status === 1 && (
+                              <img src="/icon-small/Catalogação.svg" alt="" style={{ width: '32px', height: '32px' }} />
+                            )}
+                            {batche.main_status === 2 && (
+                              <img
+                                src="/icon-small/Digitalização.svg"
+                                alt=""
+                                style={{ width: '32px', height: '32px' }}
+                              />
+                            )}
+                            {batche.main_status === 3 && (
+                              <img src="/icon-small/Upload.svg" alt="" style={{ width: '32px', height: '32px' }} />
+                            )}
+                            {batche.main_status === 4 && batche.specific_status === 0 && (
+                              <img
+                                src="/icon-small/Arquivamento.svg"
+                                alt=""
+                                style={{ width: '32px', height: '32px' }}
+                              />
+                            )}
+                            {/* N° de arquivamento */}
+                            {batche.main_status === 4 && batche.specific_status === 2 && (
+                              <S.divTitulo style={{ gap: '8px' }}>
+                                {/* N° de arquivamento */}
+                                <Estante
+                                  className="ShelfTooltip"
+                                  style={{
+                                    backgroundColor: theme.colors['gray/700'],
+                                  }}
+                                >
+                                  {batche.shelf_number}
+                                  <Tooltip
+                                    children={
+                                      <p style={{ fontSize: '12px', fontFamily: 'Rubik' }}>Número de arquivamento</p>
+                                    }
+                                    anchorSelect=".ShelfTooltip"
+                                    place="bottom"
+                                  />
+                                </Estante>
+
+                                {/* Estante */}
+                                <Estante
+                                  className="StorageTooltip"
+                                  style={{
+                                    backgroundColor: theme.colors['gray/700'],
+                                  }}
+                                >
+                                  {batche.storage_location}
+                                  <Tooltip
+                                    children={<p style={{ fontSize: '12px', fontFamily: 'Rubik' }}>Estante</p>}
+                                    anchorSelect=".StorageTooltip"
+                                    place="bottom"
+                                  />
+                                </Estante>
+                              </S.divTitulo>
+                            )}
+                          </Lote>
+                        </Link>
+                      ),
+                  )}
+                </S.kanbanSContentConcluidos>
+              </S.kanban>
+            )}
+          </S.FaseKanbanPage>
+        )}
+        {atribuirModal && (
+          <AtribuirAlguemModal close={() => setAtribuirModal(false)} assigners={batche_data?.assigned_users} />
+        )}
+        {openCriarModal && (
+          <ModalCriarLote
+            close={() => setOpenCriarModal(!openCriarModal)}
+            refetch={() =>
+              mutateBatchesQuery.mutate({
+                status: props.main_status,
+              })
+            }
+          />
+        )}
+        {openEspecifModal && batche_data && (
+          <EspecifcModal
+            close={() => setOpenEspecifModal(!openEspecifModal)}
+            batche={batche_data}
+            title={titleModal.title}
+            button={titleModal.button}
+            refetch={refecth}
+          />
+        )}
+      </>
+    );
+  }
 };
 
 export default Board;

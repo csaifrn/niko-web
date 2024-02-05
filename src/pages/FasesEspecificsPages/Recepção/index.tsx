@@ -47,6 +47,7 @@ const Recebidos = () => {
     }
   };
 
+  console.log(user);
   return (
     <div style={{ display: 'flex', justifyContent: 'center' }}>
       <Menu area={`/Fases/Board/Recebidos`} id_projeto={id}></Menu>
@@ -87,6 +88,58 @@ const Recebidos = () => {
                     </h2>
                   </div>
 
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                    {Shipment.received_at != undefined && (
+                      <p
+                        style={{
+                          color: theme.colors['gray/50'],
+                        }}
+                      >
+                        {new Date(Shipment.received_at).toLocaleString('pt-br', {
+                          timeZone: 'America/Sao_paulo',
+                          dateStyle: 'long',
+                        })}
+                      </p>
+                    )}
+                    <div>
+                      <DivButtons>
+                        {Shipment.user_id === user?.sub && (
+                          <ButtonEdit
+                            onClick={() => {
+                              setShipment(Shipment);
+                              setOpenCriarModal(!openCriarModal);
+                            }}
+                            className="EditarTooltipR"
+                          >
+                            <PencilSimple size={18} weight="fill" color={theme.colors['white']} />
+                            <Tooltip
+                              children={<p style={{ fontSize: '12px', fontFamily: 'Rubik' }}>Editar Remessa</p>}
+                              anchorSelect=".EditarTooltipR"
+                              place="bottom"
+                            />
+                          </ButtonEdit>
+                        )}
+
+                        {user?.role === UserRole.MANAGER && (
+                          <ButtonDelete
+                            onClick={() => {
+                              setShipment(Shipment);
+                              setDeleted(!deleted);
+                            }}
+                            className="ExcluirTooltipR"
+                          >
+                            <Trash size={18} color="#f5f5f5" weight="fill" />
+                            <Tooltip
+                              children={<p style={{ fontSize: '12px', fontFamily: 'Rubik' }}>Excluir Remessa</p>}
+                              anchorSelect=".ExcluirTooltipR"
+                              place="bottom"
+                            />
+                          </ButtonDelete>
+                        )}
+                      </DivButtons>
+                    </div>
+                  </div>
+
                   {Shipment.description && (
                     <div
                       style={{
@@ -116,58 +169,6 @@ const Recebidos = () => {
                       </div>
                     </div>
                   )}
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                    {Shipment.received_at != undefined && (
-                      <p
-                        style={{
-                          color: theme.colors['gray/50'],
-                        }}
-                      >
-                        {new Date(Shipment.received_at).toLocaleString('pt-br', {
-                          timeZone: 'America/Sao_paulo',
-                          dateStyle: 'long',
-                        })}
-                      </p>
-                    )}
-                    <div>
-                      <DivButtons>
-                        {user?.role === UserRole.MANAGER ||
-                          (Shipment.user_id === user?.sub && (
-                            <ButtonEdit
-                              onClick={() => {
-                                setShipment(Shipment);
-                                setOpenCriarModal(!openCriarModal);
-                              }}
-                              className="EditarTooltipR"
-                            >
-                              <PencilSimple size={18} weight="fill" color={theme.colors['white']} />
-                              <Tooltip
-                                children={<p style={{ fontSize: '12px', fontFamily: 'Rubik' }}>Editar Remessa</p>}
-                                anchorSelect=".EditarTooltipR"
-                                place="bottom"
-                              />
-                            </ButtonEdit>
-                          ))}
-
-                        {user?.role === UserRole.MANAGER && (
-                          <ButtonDelete
-                            onClick={() => {
-                              setShipment(Shipment);
-                              setDeleted(!deleted);
-                            }}
-                            className="ExcluirTooltipR"
-                          >
-                            <Trash size={18} color="#f5f5f5" weight="fill" />
-                            <Tooltip
-                              children={<p style={{ fontSize: '12px', fontFamily: 'Rubik' }}>Excluir Remessa</p>}
-                              anchorSelect=".ExcluirTooltipR"
-                              place="bottom"
-                            />
-                          </ButtonDelete>
-                        )}
-                      </DivButtons>
-                    </div>
-                  </div>
                 </S.RemessaCardCinzaClaro>
               );
             })}

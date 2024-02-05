@@ -233,59 +233,7 @@ export const Board = (props: BoardProps) => {
                 </S.kanbanSectionContent>
               </S.kanban>
             )}
-            {batchesConc.length >= 0 && (
-              <S.kanban>
-                <S.divTitulo>
-                  {props.main_status == 4 ? (
-                    <h2 style={{ color: theme.colors.white }}>Arquivados</h2>
-                  ) : (
-                    <h2 style={{ color: theme.colors.white }}>Concluídos</h2>
-                  )}
-                  <h2
-                    style={{
-                      color: theme.colors['green/500'],
-                    }}
-                  >
-                    {batchesConc.length}
-                  </h2>
-                </S.divTitulo>
-                <S.kanbanSectionContent>
-                  {batchesConc.length === 0 && (
-                    <S.WrapperEmptyKanban>
-                      <Empty.Title>Está lista está vazia</Empty.Title>
-                    </S.WrapperEmptyKanban>
-                  )}
-                  {batchesConc.map(
-                    (batche) =>
-                      batche && (
-                        <Link to={`/Lote/${batche.id}`} key={batche.id} style={{ textDecoration: 'none' }}>
-                          <Lote
-                            value={`${batche.title}`}
-                            priority={batche.priority}
-                            categories={batche.class_projects}
-                            pendencia={batche.pending_batch_observations}
-                            assigners={batche.assigned_users}
-                          >
-                            {batche.main_status === 1 && (
-                              <img src="/icon-small/Catalogação.svg" alt="" style={{ width: '32px', height: '32px' }} />
-                            )}
-                            {batche.main_status === 2 && (
-                              <img
-                                src="/icon-small/Digitalização.svg"
-                                alt=""
-                                style={{ width: '32px', height: '32px' }}
-                              />
-                            )}
-                            {batche.main_status === 3 && (
-                              <img src="/icon-small/Upload.svg" alt="" style={{ width: '32px', height: '32px' }} />
-                            )}
-                          </Lote>
-                        </Link>
-                      ),
-                  )}
-                </S.kanbanSectionContent>
-              </S.kanban>
-            )}
+
             {batchesConc.length >= 0 && (
               <S.kanban>
                 <S.divTitulo>

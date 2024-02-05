@@ -11,16 +11,18 @@ import { ApiError } from '../../api/services/authentication/signIn/signIn.interf
 import { useParams } from 'react-router-dom';
 import { DeleteAssigner } from '../../api/services/batches/assigners/delete-assigners';
 import { PostResponseAssigners } from '../../api/services/batches/assigners/post-assigners/post.interface';
-
 import ReactLoading from 'react-loading';
 import { ErrorMessage } from '../../pages/Login/styles';
-import theme from '../../global/theme';
 import { MultiValue } from 'react-select';
+import { PatchBatcheSpecifStatus } from '../../api/services/batches/patch-status-specific';
 
 export interface AtribuirAlguemModalProps {
   close: () => void;
   assigners: AssignedUser[] | undefined;
   setAssigners?: React.Dispatch<React.SetStateAction<AssignedUser[]>>;
+  specificStatus?: number;
+  batcheId?: string | undefined;
+  refetch: () => void;
 }
 
 interface Options {
@@ -35,31 +37,18 @@ export const AtribuirAlguemModal = (props: AtribuirAlguemModalProps) => {
   const [options, setOptions] = useState<MultiValue<Options | null>>([]);
   const [presentAssigners, setPresentAssigners] = useState<AssignedUser[]>(props.assigners ? props.assigners : []);
   const [userRemoved, setUserRemoved] = useState<string>('');
+  const [fase, setFase] = useState(props.specificStatus ? props.specificStatus : 0);
   const [optionsSelected, setOptionsSelected] = useState<MultiValue<Options | null>>(
     props.assigners ? props.assigners.map((e) => ({ value: e.id, label: e.name })) : [],
   );
   const [userInput, setUserinput] = useState<string>('');
 
-  useEffect(() => {
-    // Ao renderizar o modal, aplicar um escalonamento gradual para exibi-lo
-    const timer = setTimeout(() => {
-      const modal = document.getElementById('modal-scaling');
-      if (closing === false && modal) {
-        modal.style.transform = 'scale(1)';
-      } else if (modal && closing) {
-        modal.style.transform = 'scale(0)';
-      }
-    }, 10);
-
-    return () => clearTimeout(timer);
-  }, [closing]);
-
-  const handleClose = () => {
-    setClosing(true);
-    setTimeout(() => {
-      props.close();
-    }, 300);
-  };
+  const mutateEspecific = useMutation(PatchBatcheSpecifStatus, {
+    onSuccess: () => {},
+    onError: (err: ApiError) => {
+      toast.error(err.response?.data.message ? err.response?.data.message : 'Erro na execução');
+    },
+  });
 
   const validateSearch = async (): Promise<boolean> => {
     try {
@@ -103,31 +92,25 @@ export const AtribuirAlguemModal = (props: AtribuirAlguemModalProps) => {
     onSuccess: () => {
       toast.success(`Você removeu este responsável do lote.`);
       setPresentAssigners((assigner) => [...assigner.filter((a) => a.id != userRemoved)]);
+      if (props.batcheId && presentAssigners.filter((a) => a.id != userRemoved).length == 0) {
+        mutateEspecific.mutate({
+          specific_status: 0,
+          id: props.batcheId,
+        });
+      }
     },
   });
-
-  useEffect(() => {
-    if (props.setAssigners) {
-      props.setAssigners(presentAssigners ? presentAssigners : []);
-    }
-  }, [presentAssigners]);
-
-  useEffect(() => {
-    onChange();
-  }, [userInput]);
-
-  useEffect(() => {
-    if (userRemoved && id) {
-      removeAssigner.mutate({
-        batch_id: id,
-        assignment_user_id: userRemoved,
-      });
-    }
-  }, [userRemoved]);
 
   const onRemove = (e: Options | null | undefined) => {
     if (e && presentAssigners.map((a) => a.id === e?.value)) {
       setUserRemoved(e?.value ? e.value : '');
+      if (presentAssigners.length == 0 && props.batcheId) {
+        mutateEspecific.mutate({
+          specific_status: 0,
+          id: props.batcheId,
+        });
+      }
+      console.log(presentAssigners);
     }
   };
 
@@ -156,11 +139,15 @@ export const AtribuirAlguemModal = (props: AtribuirAlguemModalProps) => {
       })
       .filter((value) => value !== undefined); // Filtrar valores undefined
 
-    if (newAssigner.length > 0 && newAssigner.length + presentAssigners.length <= 5 && id) {
+    if (newAssigner.length > 0 && newAssigner.length + presentAssigners.length <= 5 && id && props.batcheId) {
       setErrorInput('');
       assignMutate.mutate({
         batch_id: id,
         assignment_users_ids: newAssigner as string[],
+      });
+      mutateEspecific.mutate({
+        specific_status: 1,
+        id: props.batcheId,
       });
     }
     if (newAssigner.length === 0) {
@@ -179,6 +166,47 @@ export const AtribuirAlguemModal = (props: AtribuirAlguemModalProps) => {
       setErrorInput('O número máximo de usuários é 5.');
     }
   };
+
+  const handleClose = () => {
+    setClosing(true);
+    setTimeout(() => {
+      props.close();
+      props.refetch();
+    }, 300);
+  };
+
+  useEffect(() => {
+    // Ao renderizar o modal, aplicar um escalonamento gradual para exibi-lo
+    const timer = setTimeout(() => {
+      const modal = document.getElementById('modal-scaling');
+      if (closing === false && modal) {
+        modal.style.transform = 'scale(1)';
+      } else if (modal && closing) {
+        modal.style.transform = 'scale(0)';
+      }
+    }, 10);
+
+    return () => clearTimeout(timer);
+  }, [closing]);
+
+  useEffect(() => {
+    if (props.setAssigners) {
+      props.setAssigners(presentAssigners ? presentAssigners : []);
+    }
+  }, [presentAssigners]);
+
+  useEffect(() => {
+    onChange();
+  }, [userInput]);
+
+  useEffect(() => {
+    if (userRemoved && id) {
+      removeAssigner.mutate({
+        batch_id: id,
+        assignment_user_id: userRemoved,
+      });
+    }
+  }, [userRemoved]);
 
   return (
     <>

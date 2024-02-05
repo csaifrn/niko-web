@@ -51,12 +51,26 @@ const Lote = ({ assigners, categories, children, pendencia, value, priority }: P
                 {categories &&
                   categories.map((cat: Class, index: number) => {
                     if (index === 0) {
+                      const randomClass = generateUUID();
                       return (
-                        <React.Fragment key={cat.id}>
-                          <S.BlackBlock style={{ borderRadius: '3px' }}>
-                            <p style={{ padding: '0 0.5em' }}>{cat.name}</p>
+                        <div key={cat.id}>
+                          <S.BlackBlock
+                            style={{ borderRadius: '3px' }}
+                            className={`my-tooltip-multiline-${randomClass}`}
+                          >
+                            <p style={{ padding: '0 0.5em' }}>
+                              {cat.name.substring(0, 15)}
+                              {cat.name.length > 14 ? '...' : ''}
+                            </p>
+                            {cat.name.length > 14 && (
+                              <Tooltip
+                                anchorSelect={`.my-tooltip-multiline-${randomClass}`}
+                                children={<p>{cat.name}</p>}
+                                place="top"
+                              />
+                            )}
                           </S.BlackBlock>
-                        </React.Fragment>
+                        </div>
                       );
                     } else if (index + 1 == categories.length) {
                       const random = generateUUID();
@@ -91,7 +105,7 @@ const Lote = ({ assigners, categories, children, pendencia, value, priority }: P
                         <S.BlackBlock
                           data-tooltip-id={`my-tooltip-multiline-${random}`}
                           key={member.id}
-                          style={{ borderRadius: '100%', width: '2em', paddingRight: '2px' , border: 'none' }}
+                          style={{ borderRadius: '100%', width: '2em', paddingRight: '2px', border: 'none' }}
                         >
                           <p>+{index}</p>
                           <Tooltip

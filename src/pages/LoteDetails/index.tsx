@@ -6,7 +6,6 @@ import FaseData from '../../data/FaseData';
 import Splash from '../Splash';
 import toast from 'react-hot-toast';
 import { useParams, useNavigate, Link } from 'react-router-dom';
-import { ConfigModal } from '../../components/ConfigModal';
 import { useMutation } from 'react-query';
 import { GetBatche } from '../../api/services/batches/get-batche';
 import { AssignedUser, Batche, Observation } from '../../api/services/batches/get-batche/get.interface';
@@ -341,13 +340,19 @@ export const LoteDetails = () => {
                 </S.SubDetalhes>
               </S.DetalhesLote>
 
-              {/* OPERADORES ATRIBUÍDOS AO LOTE */}
+              {/* USUÁRIOS ATRIBUÍDOS AO LOTE */}
               {assigners.length > 0 && (
                 <React.Fragment>
                   <S.SubDetalhes>
                     {assigners &&
                       assigners.map((assigned) => (
-                        <BlockAssigner key={assigned.id} assigner={assigned} setAssigners={setAssigners} />
+                        <BlockAssigner
+                          key={assigned.id}
+                          assigner={assigned}
+                          setAssigners={setAssigners}
+                          BatcheAssigners={assigners}
+                          refetch={() => refetch()}
+                        />
                       ))}
                   </S.SubDetalhes>
                 </React.Fragment>
@@ -400,43 +405,6 @@ export const LoteDetails = () => {
 
               {/* BOTÕES PRINCIPAIS */}
               <S.Botoes role={user?.role}>
-                {/* Tá repetido o de avançar/voltar */}
-                {/* {user?.role === UserRole.MANAGER && (
-                  <S.BotaoMudarFase>
-                    
-
-                    <S.VoltarAvancar
-                      disabled={status === option?.value}
-                      onClick={handleAvancar}
-                      style={{ cursor: 'pointer' }}
-                    >
-                      {(option?.value && option?.value < status) || (option?.value === 0 && option?.value < status) ? (
-                        <img src={'/voltar.svg'} alt="ícone circular com uma seta para a esquerda ao centro" />
-                      ) : option?.value === status ? (
-                        <XCircle size={18} />
-                      ) : (
-                        <img src={'/avancar.svg'} alt="ícone circular com uma seta para a direita ao centro" />
-                      )}
-                      {option?.value && option?.value < status ? (
-                        <p style={{ color: theme.colors.white }}>Voltar fase</p>
-                      ) : option?.value === status ? (
-                        <p style={{ color: theme.colors.white }}>Fase atual</p>
-                      ) : (
-                        <p style={{ color: theme.colors.white }}>Avançar fase</p>
-                      )}
-                    </S.VoltarAvancar>
-
-              
-                    <S.EscolherFaseSelect
-                      options={optionsFases}
-                      onChange={(o: any) => setOption(o)}
-                      value={option}
-                      className="react-select-container"
-                      classNamePrefix="react-select"
-                      placeholder="Escolher fase"
-                    />
-                  </S.BotaoMudarFase>
-                )} */}
                 {/* PEGAR LOTE */}
                 {specificStatus === 0 && (
                   <S.PegarLote
@@ -495,7 +463,7 @@ export const LoteDetails = () => {
                     </S.ConcluirButton>
                   )}
 
-                {/* BOTÃO DE AVANÇAR/VOLTAR FASE*/}
+                {/* BOTÃO DE AVANÇAR/VOLTAR FASE(COORDENADOR)*/}
                 {user?.role === UserRole.MANAGER && (
                   <S.BotaoMudarFase>
                     <S.VoltarAvancar
@@ -538,7 +506,7 @@ export const LoteDetails = () => {
                   </S.BotaoMudarFase>
                 )}
 
-                {/* Atribuir à alguém */}
+                {/* ATRIBUIR ALGUÉM(COORDENADOR)*/}
                 {user?.role === UserRole.MANAGER && (
                   <S.Botao onClick={handleAtribuirAlguem}>
                     <img src={`/AddUser.svg`} alt="botão para atribuir lote a algum operador " />
@@ -546,7 +514,7 @@ export const LoteDetails = () => {
                   </S.Botao>
                 )}
 
-                {/* Excluir Lote */}
+                {/* EXCLUIR LOTE(COORDENADOR) */}
                 {user?.role === UserRole.MANAGER && (
                   <S.BotaoDeletarLote
                     onClick={(e) => {
@@ -669,7 +637,14 @@ export const LoteDetails = () => {
           />
         )}
         {atribuir_modal && (
-          <AtribuirAlguemModal setAssigners={setAssigners} assigners={assigners} close={handleAtribuirAlguem} />
+          <AtribuirAlguemModal
+            setAssigners={setAssigners}
+            assigners={assigners}
+            close={handleAtribuirAlguem}
+            specificStatus={task?.specific_status}
+            batcheId={task?.id}
+            refetch={() => refetch()}
+          />
         )}
         {openEspecifModal && (
           <EspecifcModal

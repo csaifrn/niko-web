@@ -30,7 +30,7 @@ export const BoardChanger = () => {
             <Link to={`/Fases/Board/Recebidos`} className="RecebidosTooltip">
               <S.LinkImgEscura src="/icon-medium/Recepção.svg" />
               <Tooltip
-                children={<p style={{ fontSize: '12px', fontFamily: 'Rubik' }}>Recebidos</p>}
+                children={<p style={{ fontSize: '12px', fontFamily: 'Rubik' }}>Recepção</p>}
                 anchorSelect=".RecebidosTooltip"
                 place="bottom"
               />

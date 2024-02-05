@@ -10,7 +10,6 @@ export const Btn = styled.button`
   background-color: ${({ theme }) => theme.colors['green/400']};
   border-radius: 5px;
   border: none;
-  font-weight: bold;
   cursor: pointer;
   &:hover {
     background-color: ${({ theme }) => theme.colors['green/600']};

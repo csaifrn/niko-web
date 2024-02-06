@@ -29,6 +29,7 @@ import { Tooltip } from 'react-tooltip';
 import { UserRole } from '../../utils/userRole.enum';
 import { useMe } from '../../hooks/useMe';
 import { BlockClass } from '../../components/BatchBlocks/BlockClass';
+import { ClassModal } from '../../components/ClassModal';
 
 interface Option {
   label: string;
@@ -47,6 +48,7 @@ export const LoteDetails = () => {
   const [avancar, setAvancar] = useState(false);
   const [voltar, setVoltar] = useState(false);
   const [observation, setObservation] = useState<Observation>();
+  const [modalClass, setModalClass] = useState<boolean>(false);
   const [observationId, setObservationId] = useState<string>();
   const [edit_modal, setEditModal] = useState<boolean>(false);
   const [atribuir_modal, setAtribuirModal] = useState<boolean>(false);
@@ -113,7 +115,6 @@ export const LoteDetails = () => {
 
   const beforeTask = useMutation(GetBatche, {
     onSuccess: (data: Batche) => {
-      console.log(data);
       setTask(data);
       setObservations(data.observations);
       setPriority(data.priority);
@@ -272,7 +273,7 @@ export const LoteDetails = () => {
               {/* PRIORIDADE + CATEGORIAS */}
 
               {/* QUANDO HÁ CATEGORIAS */}
-              {task?.class_projects && task?.class_projects.length > 0 && (
+              {task?.class_projects && task?.class_projects.length >= 0 && (
                 <S.DetalhesLote>
                   <S.SubDetalhes>
                     {/* PRIORIORIDADE(SE TIVER) */}
@@ -321,6 +322,19 @@ export const LoteDetails = () => {
                     )}
                   </S.SubDetalhes>
                   <S.SubDetalhes>
+                    <S.ButtonAddClass
+                      onClick={() => {
+                        setModalClass(!modalClass);
+                      }}
+                      className="AddClass"
+                    >
+                      <Tooltip
+                        children={<p style={{ fontSize: '12px', fontFamily: 'Rubik' }}>Adicionar Classe(s)</p>}
+                        anchorSelect=".AddClass"
+                        place="bottom"
+                      />
+                      <img src="/adicionar.svg" alt="botão redondo com símbolo + para criar observação" />
+                    </S.ButtonAddClass>
                     {/* CATEGORIAS */}
                     {task?.class_projects.map((cat) => {
                       return (
@@ -330,18 +344,6 @@ export const LoteDetails = () => {
                       );
                     })}
                   </S.SubDetalhes>
-                </S.DetalhesLote>
-              )}
-
-              {/* QUANDO NÃO HÁ CATEGORIAS */}
-              {task?.class_projects && task?.class_projects.length === 0 && priority === true && (
-                <S.DetalhesLote>
-                  {/* PRIORIORIDADE(SE TIVER) */}
-                  <S.PrioridadeDiv>
-                    <S.PrioridadeTag>
-                      <p>Prioridade</p>
-                    </S.PrioridadeTag>
-                  </S.PrioridadeDiv>
                 </S.DetalhesLote>
               )}
 
@@ -648,6 +650,13 @@ export const LoteDetails = () => {
             title={titleModal.title}
             button={titleModal.button}
             FaseAtual={optionsFases[status].label}
+          />
+        )}
+        {modalClass && (
+          <ClassModal
+            refetch={refetch}
+            class_projects={task?.class_projects ? task?.class_projects : []}
+            close={() => setModalClass(false)}
           />
         )}
       </>

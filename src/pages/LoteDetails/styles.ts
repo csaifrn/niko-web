@@ -27,6 +27,29 @@ export const BotaoCriarObservacao = styled.button`
   }
 `;
 
+export const ButtonAddClass = styled.button`
+  border-radius: 100%;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+  position: relative;
+  :hover div {
+    visibility: visible;
+    opacity: 1;
+    display: block;
+  }
+  &:hover {
+    background-color: ${({ theme }) => theme.colors['gray/400']};
+  }
+  &:active {
+    background-color: ${({ theme }) => theme.colors['gray/400']};
+    transform: translateY(-5%) translateX(2%);
+  }
+`;
+
 export const areaClick = styled.div`
   color: white;
   //padding: 2em;

@@ -62,8 +62,7 @@ export const ShipmentModal = (props: EditModalProps) => {
 
       handleClose();
     },
-    onError: (error) => {
-    },
+    onError: (error) => {},
   });
 
   const mutateShipmentEdit = useMutation(EditShipment, {
@@ -177,7 +176,7 @@ export const ShipmentModal = (props: EditModalProps) => {
           <form action="">
             <S.ModalContent id="modal-content">
               <S.NameClose>
-                <h2>Criar remessa</h2>
+                <h2>{props.shipment ? 'Editar remessa' : 'Criar remessa'}</h2>
                 <Exit type="button" onClick={handleClose}>
                   <img src="/close.svg" alt="" height={24} width={24} />
                 </Exit>

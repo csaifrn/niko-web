@@ -3,7 +3,7 @@ import * as S from './style';
 import { useMutation } from 'react-query';
 import { ApiError } from '../../api/services/authentication/signIn/signIn.interface';
 import toast from 'react-hot-toast';
-import { Category } from '../../api/services/batches/get-batche/get.interface';
+import { Class } from '../../api/services/batches/get-batche/get.interface';
 import { QueryClasses } from '../../api/services/class/query-classes';
 import { ResponseClasses } from '../../api/services/class/query-classes/get.interface';
 import { AtribuirButton, CustomSelect } from '../AtribuirAlguemModal/style';
@@ -11,7 +11,7 @@ import { PostBatcheSettle, PatchBatcheSettle, DeleteBatcheSettle } from '../../a
 import { useParams } from 'react-router-dom';
 
 interface ClassModalProps {
-  class_projects: Category[];
+  class_projects: Class[];
   close: () => void;
   refetch: () => void;
 }
@@ -45,7 +45,9 @@ export const ClassModal = (props: ClassModalProps) => {
   });
 
   const mutateSettle = useMutation(PostBatcheSettle, {
-    onSuccess: () => {},
+    onSuccess: () => {
+      toast.success('Classes adicionadas!');
+    },
     onError: (err: ApiError) => {
       toast.error(err.response?.data.message ? err.response?.data.message : 'Erro na execução');
     },
@@ -55,7 +57,9 @@ export const ClassModal = (props: ClassModalProps) => {
   });
 
   const mutateSettleAll = useMutation(PatchBatcheSettle, {
-    onSuccess: () => {},
+    onSuccess: () => {
+      toast.success('Classes modificadas!');
+    },
     onError: (err: ApiError) => {
       toast.error(err.response?.data.message ? err.response?.data.message : 'Erro na execução');
     },
@@ -65,7 +69,9 @@ export const ClassModal = (props: ClassModalProps) => {
   });
 
   const mutateDeleteSettle = useMutation(DeleteBatcheSettle, {
-    onSuccess: () => {},
+    onSuccess: () => {
+      toast.success('Classes retiradas!');
+    },
     onError: (err: ApiError) => {
       toast.error(err.response?.data.message ? err.response?.data.message : 'Erro na execução');
     },
@@ -90,18 +96,18 @@ export const ClassModal = (props: ClassModalProps) => {
     if (deleteSettle.length > 0 && newSettle.length === 0 && id) {
       mutateDeleteSettle.mutate({
         id,
-        settlement_project_category_ids: deleteIds,
+        class_projects_ids: deleteIds,
       });
     } else if (newSettle.length > 0 && deleteSettle.length === 0 && id) {
       mutateSettle.mutate({
         id,
-        settlementProjectCategories: newIds,
+        class_projects_ids: newIds,
       });
     } else if (newSettle.length > 0 && deleteSettle.length > 0 && id) {
       mutateSettleAll.mutate({
         id,
-        settlementProjectCategories: newIds,
-        settlement_project_category_ids: deleteIds,
+        class_projects_ids: newIds,
+        class_projects_deleted_ids: deleteIds,
       });
     }
     try {
@@ -118,7 +124,7 @@ export const ClassModal = (props: ClassModalProps) => {
   };
 
   useEffect(() => {
-    if (userInput.length > 3) {
+    if (userInput.length > 2) {
       mutateQueryCategories.mutate({
         name: userInput,
       });
@@ -186,7 +192,7 @@ export const ClassModal = (props: ClassModalProps) => {
             isLoading={mutateQueryCategories.isLoading}
             required
           />
-          <AtribuirButton onClick={(e) => handleSave(e)}>Open</AtribuirButton>
+          <AtribuirButton onClick={(e) => handleSave(e)}>Adicionar</AtribuirButton>
         </S.ModalContent>
       </S.ModalArea>
     </S.ModalBackdrop>

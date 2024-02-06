@@ -120,9 +120,7 @@ const LoteEdit = () => {
   });
 
   const mutateSettleAll = useMutation(PatchBatcheSettle, {
-    onSuccess: () => {
-      console.log('Deu bom');
-    },
+    onSuccess: () => {},
     onError: (err: ApiError) => {
       toast.error(err.response?.data.message ? err.response?.data.message : 'Erro na execução');
     },

@@ -39,7 +39,6 @@ export const MyBatches = (props: MyBatchesProps) => {
 
   const mutateBatches = useMutation(QueryBatche, {
     onSuccess: (data: GetResponseBatche[]) => {
-      console.log(data);
     },
   });
 

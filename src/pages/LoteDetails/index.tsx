@@ -28,7 +28,7 @@ import { Tooltip } from 'react-tooltip';
 import { UserRole } from '../../utils/userRole.enum';
 import { useMe } from '../../hooks/useMe';
 import { BlockClass } from '../../components/BatchBlocks/BlockClass';
-import { User } from 'phosphor-react';
+import { ClassModal } from '../../components/ClassModal';
 
 interface Option {
   label: string;
@@ -46,6 +46,7 @@ export const LoteDetails = () => {
   const [avancar, setAvancar] = useState(false);
   const [voltar, setVoltar] = useState(false);
   const [observation, setObservation] = useState<Observation>();
+  const [modalClass, setModalClass] = useState<boolean>(false);
   const [observationId, setObservationId] = useState<string>();
   const [edit_modal, setEditModal] = useState<boolean>(false);
   const [atribuir_modal, setAtribuirModal] = useState<boolean>(false);
@@ -267,9 +268,9 @@ export const LoteDetails = () => {
                 </div>
               </S.DadosCriacaoLoteDiv>
 
-              {/* PRIORIDADE + CATEGORIAS */}
+              {/* PRIORIDADE + CLASSES */}
 
-              {/* QUANDO HÁ CATEGORIAS */}
+              {/* QUANDO HÁ CLASSES */}
 
               <S.DetalhesLote>
                 <S.SubDetalhes>
@@ -329,8 +330,9 @@ export const LoteDetails = () => {
                     </S.ArquivDigitais>
                   )}
                 </S.SubDetalhes>
+
+                {/* CLASSES */}
                 <S.SubDetalhes>
-                  {/* CATEGORIAS */}
                   {task?.class_projects.map((cat) => {
                     return (
                       <BlockClass refetch={refetch} key={cat.id} idBatche={task.id} idClass={cat.id}>
@@ -338,6 +340,19 @@ export const LoteDetails = () => {
                       </BlockClass>
                     );
                   })}
+                  <S.ButtonAddClass
+                    onClick={() => {
+                      setModalClass(!modalClass);
+                    }}
+                    className="AddClass"
+                  >
+                    <Tooltip
+                      children={<p style={{ fontSize: '12px', fontFamily: 'Rubik' }}>Adicionar Classe(s)</p>}
+                      anchorSelect=".AddClass"
+                      place="bottom"
+                    />
+                    <img src="/adicionar.svg" alt="botão redondo com símbolo + para criar observação" />
+                  </S.ButtonAddClass>
                 </S.SubDetalhes>
               </S.DetalhesLote>
 
@@ -664,6 +679,13 @@ export const LoteDetails = () => {
             title={titleModal.title}
             button={titleModal.button}
             FaseAtual={optionsFases[status].label}
+          />
+        )}
+        {modalClass && (
+          <ClassModal
+            refetch={refetch}
+            class_projects={task?.class_projects ? task?.class_projects : []}
+            close={() => setModalClass(false)}
           />
         )}
       </>

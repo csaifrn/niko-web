@@ -57,7 +57,6 @@ export const PainelPorFase = () => {
     onSuccess: (data) => {
       setLotes(data.batches);
       setQuantLotes(data.batches_count);
-      //console.log(data);
     },
   });
 

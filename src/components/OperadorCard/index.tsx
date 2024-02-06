@@ -76,7 +76,6 @@ const OperadorCard = (user: any) => {
             upload={1}
             arquivados={23}
             percentageCallback={() => {
-              console.log();
             }}
           />
         </S.Footer> */}

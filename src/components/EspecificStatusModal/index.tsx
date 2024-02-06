@@ -100,7 +100,6 @@ export const EspecifcModal = (props: EspecifModalProps) => {
   };
 
   const settle = (deleteSettle: string[], newSettle: string[]) => {
-    console.log(deleteSettle, newSettle);
     if (deleteSettle.length > 0 && newSettle.length === 0) {
       mutateDeleteSettle.mutate({
         id: props.batche.id,
@@ -178,7 +177,6 @@ export const EspecifcModal = (props: EspecifModalProps) => {
     onSuccess: () => {
       navigate(`/Fase/Board/Preparo`);
       toast.success('Lote excluído com sucesso!');
-      console.log('Lote excluído com sucesso!');
     },
     onError: (err: ApiError) => {
       toast.error(err.response?.data.message ? err.response?.data.message : 'Erro na execução');
@@ -362,7 +360,6 @@ export const EspecifcModal = (props: EspecifModalProps) => {
           selectedOptions.length > 0 &&
           validateFisi
         ) {
-          console.log('Opa');
           const newSettle = selectedOptions.filter(
             (settleSelected) => !props.batche.class_projects.some((settle) => settle.id === settleSelected.value),
           );
@@ -382,7 +379,6 @@ export const EspecifcModal = (props: EspecifModalProps) => {
           props.batche.class_projects.length <= 0 &&
           validateFisi
         ) {
-          console.log('Opa');
 
           mutatePatchBatchCat.mutate({
             id: props.batche.id,

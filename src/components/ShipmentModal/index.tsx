@@ -63,7 +63,6 @@ export const ShipmentModal = (props: EditModalProps) => {
       handleClose();
     },
     onError: (error) => {
-      console.log(error);
     },
   });
 

@@ -59,7 +59,6 @@ export const ShipmentModal = (props: EditModalProps) => {
     onSuccess: (data) => {
       toast.success(`Remessa "${data.title}" criada!`);
       props.refech();
-
       handleClose();
     },
     onError: (error) => {},

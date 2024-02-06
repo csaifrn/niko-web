@@ -61,7 +61,7 @@ const Recebidos = () => {
             setOpenCriarModal(!openCriarModal);
           }}
         >
-          <p>Adicionar Remessa</p>
+          <p>Criar remessa</p>
         </AtribuirButton>
 
         <S.RemessasMain>
@@ -193,7 +193,7 @@ const Recebidos = () => {
             setShipment(null);
             setDeleted(false);
           }}
-          title="Deseja deletar essa remessa?"
+          title="Deseja excluir essa remessa?"
           deleteFunction={handleDelete}
         />
       )}

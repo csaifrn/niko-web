@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import * as S from './styles';
 import Search from '../../../components/Search';
-import CategoriaCard from '../../../components/CategoriaCard';
+import CategoriaCard from '../../../components/ClassCard';
 import Menu from '../../../components/Menu';
 import MenuCoord from '../../../components/MenuCoord';
 import { useParams } from 'react-router-dom';

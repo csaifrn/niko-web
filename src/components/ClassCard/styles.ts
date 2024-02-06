@@ -141,7 +141,7 @@ export const ClassSubTitle = styled.p`
   @media screen and (max-width: 767px) {
     font-size: 14px;
   }
-  color: ${({ theme }) => theme.colors['white']};
+  color: ${({ theme }) => theme.colors['gray/50']};
 `;
 
 export const ButtonArea = styled.button`

@@ -4,8 +4,6 @@ import MenuCoord from '../../components/MenuCoord';
 import Menu from '../../components/Menu';
 import { Link, useParams } from 'react-router-dom';
 import theme from '../../global/theme';
-import { MyBatches } from '../../components/MyBatchesModal';
-import { useState } from 'react';
 
 const Home = () => {
   const { id } = useParams();
@@ -16,12 +14,15 @@ const Home = () => {
         <Menu area={`/Fase`} id_projeto={id}></Menu>
         <MenuCoord />
         <Main>
+          {/* RECEPÇÃO */}
           <CardFaseMaisTitulo className="CardRecepcaoTooltip">
             <TitleFase>Recepção</TitleFase>
             <Link to={`Board/Recebidos`} style={{ textDecoration: 'none' }}>
               <CardFase fase={-1} color={theme.colors['red/300']} srcImgIcon="/IconsFolder.svg" />
             </Link>
           </CardFaseMaisTitulo>
+
+          {/* PREPARO */}
           <CardFaseMaisTitulo>
             <TitleFase>Preparo</TitleFase>
             <Link to={`Board/Preparo`} style={{ textDecoration: 'none' }}>
@@ -33,6 +34,8 @@ const Home = () => {
               />
             </Link>
           </CardFaseMaisTitulo>
+
+          {/* CATALOGAÇÃO */}
           <CardFaseMaisTitulo style={{ height: '100%' }}>
             <TitleFase>Catalogação</TitleFase>
             <Link to={`Board/Catalogação`} style={{ textDecoration: 'none' }}>
@@ -44,6 +47,8 @@ const Home = () => {
               />
             </Link>
           </CardFaseMaisTitulo>
+
+          {/* DIGITALIZAÇÃO */}
           <CardFaseMaisTitulo>
             <TitleFase>Digitalização</TitleFase>
             <Link to={`Board/Digitalização`} style={{ textDecoration: 'none' }}>
@@ -55,6 +60,8 @@ const Home = () => {
               />
             </Link>
           </CardFaseMaisTitulo>
+
+          {/* UPLOAD */}
           <CardFaseMaisTitulo>
             <TitleFase>Upload</TitleFase>
             <Link to={`Board/Upload`} style={{ textDecoration: 'none' }}>
@@ -66,6 +73,8 @@ const Home = () => {
               />
             </Link>
           </CardFaseMaisTitulo>
+
+          {/* ARQUIVAMENTO */}
           <CardFaseMaisTitulo>
             <TitleFase>Arquivamento</TitleFase>
             <Link to={`Board/Arquivamento`} style={{ textDecoration: 'none' }}>

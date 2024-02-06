@@ -68,10 +68,6 @@ export const LoteDetails = () => {
     }
   };
 
-  const handleVoltar = () => {
-    setVoltar(!voltar);
-  };
-
   const handleAvancar = () => {
     setAvancar(!avancar);
 
@@ -170,14 +166,6 @@ export const LoteDetails = () => {
       navigate(-1);
     }
   };
-
-  // const handleStatus = () => {
-  //   if(assigners.length === 0){
-  //     setSpecificStatus(0)
-  //   }else(
-  //     setSpecificStatus(1)
-  //   )
-  // }
 
   useEffect(() => {
     CheckIdForGetBatch();

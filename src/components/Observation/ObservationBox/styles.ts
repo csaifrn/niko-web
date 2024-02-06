@@ -34,7 +34,7 @@ export const DivObservation = styled.div`
   display: grid;
   align-items: center;
   //gap: 16px;
-  grid-template-columns: 1fr 15fr;
+  grid-template-columns: 1fr 20fr;
   @media screen and (max-width: 767px) {
     gap: 16px;
   }

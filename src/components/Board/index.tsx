@@ -13,12 +13,14 @@ import { ModalCriarLote } from '../ModalCriarLote';
 import { EspecifcModal } from '../EspecificStatusModal';
 import { Link } from 'react-router-dom';
 import { GetResponseBatche } from '../../api/services/batches/query-batches/get.interface';
-import { CheckCircle, HandWaving } from '@phosphor-icons/react';
+import { CheckCircle, HandWaving, UserCirclePlus } from '@phosphor-icons/react';
 import { useMe } from '../../hooks/useMe';
 import { Estante } from '../../pages/LoteDetails/styles';
 import { Tooltip } from 'react-tooltip';
 import Loading from 'react-loading';
 import * as Empty from '../EmptyPage/styles';
+import { SharedState } from '../../context/SharedContext';
+import { AssignedUser } from '../../api/services/batches/get-batche/get.interface';
 
 interface BoardProps {
   main_status: number;
@@ -27,9 +29,8 @@ interface BoardProps {
 
 export const Board = (props: BoardProps) => {
   const { me } = useMe();
-
+  const { user } = SharedState();
   const [batchesDispo, setBatchesDispo] = useState<GetResponseBatche[]>([]);
-
   const [batchesAnda, setBatchesAnda] = useState<GetResponseBatche[]>([]);
   const [batchesConc, setBatchesConc] = useState<GetResponseBatche[]>([]);
   const [titleModal, setTitleModal] = useState({ button: 'pegar lote', title: 'Deseja pegar o lote?' });
@@ -37,6 +38,7 @@ export const Board = (props: BoardProps) => {
   const [atribuirModal, setAtribuirModal] = useState<boolean>(false);
   const [openCriarModal, setOpenCriarModal] = useState<boolean>(false);
   const [openEspecifModal, setOpenEspecifModal] = useState<boolean>(false);
+  const [assigners, setAssigners] = useState<AssignedUser[]>();
 
   const operadorEstaNoLote = (obj: any, OperadorId: string) => {
     if (me != undefined) {
@@ -63,9 +65,6 @@ export const Board = (props: BoardProps) => {
     },
     onError: (err: ApiError) => {},
   });
-  useEffect(() => {
-    refecth();
-  }, []);
 
   const refecth = () => {
     mutateBatchesQuery.mutate({
@@ -77,6 +76,11 @@ export const Board = (props: BoardProps) => {
       });
     }
   };
+
+  useEffect(() => {
+    refecth();
+  }, []);
+
   if (mutateBatchesConc.isLoading || mutateBatchesQuery.isLoading) {
     return (
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '100%', height: '80vh' }}>
@@ -127,8 +131,7 @@ export const Board = (props: BoardProps) => {
                       <Empty.Title>Está lista está vazia</Empty.Title>
                     </S.WrapperEmptyKanban>
                   )}
-
-                  {/* Disponíveis */}
+                  {/* DISPONÍVEIS */}
                   {batchesDispo.map(
                     (batche) =>
                       batche && (
@@ -139,31 +142,29 @@ export const Board = (props: BoardProps) => {
                             categories={batche.class_projects}
                             pendencia={batche.pending_batch_observations}
                             assigners={batche.assigned_users}
-
-                            //envolvidos={batche.envolvidos}
                           >
-                            <S.BlackButton
-                              onClick={(e) => {
-                                e.preventDefault();
-                                setOpenEspecifModal(!openEspecifModal);
-                                setTitleModal({ button: 'Pegar lote', title: `Deseja pegar o ${batche.title}?` });
-                                setBatche(batche);
-                              }}
-                            >
-                              <HandWaving size={20} weight="fill" alt="icone de mão acenando" /> Pegar lote
-                            </S.BlackButton>
-
-                            {/* {user?.role === 'MANAGER' && (
-                            <S.BlackButton
-                              onClick={(e) => {
-                                e.preventDefault();
-                                setAtribuirModal(!atribuirModal);
-                                setBatche(batche);
-                              }}
-                            >
-                              <ArrowCircleLeft weight="fill" size={24} /> Atribuir lote
-                            </S.BlackButton>
-                          )} */}
+                            {user?.role == 'MANAGER' ? (
+                              <S.BlackButton
+                                onClick={(e) => {
+                                  e.preventDefault();
+                                  setAtribuirModal(!atribuirModal);
+                                  setBatche(batche);
+                                }}
+                              >
+                                <UserCirclePlus size={22} weight="fill" /> Atribuir à alguém
+                              </S.BlackButton>
+                            ) : (
+                              <S.BlackButton
+                                onClick={(e) => {
+                                  e.preventDefault();
+                                  setOpenEspecifModal(!openEspecifModal);
+                                  setTitleModal({ button: 'Pegar lote', title: `Deseja pegar o ${batche.title}?` });
+                                  setBatche(batche);
+                                }}
+                              >
+                                <HandWaving size={20} weight="fill" alt="icone de mão acenando" /> Pegar lote
+                              </S.BlackButton>
+                            )}
                           </Lote>
                         </Link>
                       ),
@@ -171,6 +172,7 @@ export const Board = (props: BoardProps) => {
                 </S.kanbanSectionContent>
               </S.kanban>
             )}
+            {/* EM ANDAMENTO */}
             {batchesAnda.length >= 0 && (
               <S.kanban>
                 <S.divTitulo>
@@ -199,8 +201,8 @@ export const Board = (props: BoardProps) => {
                             categories={batche.class_projects}
                             pendencia={batche.pending_batch_observations}
                             assigners={batche.assignedUsers}
-                            //envolvidos={batche.envolvidos}
                           >
+                            {/* MARCAR COMO CONCLUÍDO */}
                             {me != undefined &&
                               batche.assignedUsers != undefined &&
                               operadorEstaNoLote(
@@ -226,6 +228,25 @@ export const Board = (props: BoardProps) => {
                                   <p>Marcar como concluído</p>
                                 </S.ConcluirButton>
                               )}
+
+                            {/* ATRIBUIR À ALGUÉM(QUANDO O COORDENADOR N ESTIVER NO LOTE) */}
+                            {me != undefined &&
+                              batche.assignedUsers != undefined &&
+                              user?.role == 'MANAGER' &&
+                              operadorEstaNoLote(
+                                batche.assignedUsers.map((user) => user.id),
+                                me?.id,
+                              ) === false && (
+                                <S.BlackButton
+                                  onClick={(e) => {
+                                    e.preventDefault();
+                                    setAtribuirModal(!atribuirModal);
+                                    setBatche(batche);
+                                  }}
+                                >
+                                  <UserCirclePlus size={22} weight="fill" /> Atribuir à alguém
+                                </S.BlackButton>
+                              )}
                           </Lote>
                         </Link>
                       ),
@@ -233,7 +254,7 @@ export const Board = (props: BoardProps) => {
                 </S.kanbanSectionContent>
               </S.kanban>
             )}
-
+            {/* CONCLUÍDOS */}
             {batchesConc.length >= 0 && (
               <S.kanban>
                 <S.divTitulo>
@@ -332,11 +353,15 @@ export const Board = (props: BoardProps) => {
             )}
           </S.FaseKanbanPage>
         )}
+        {/* MODAIS */}
         {atribuirModal && (
           <AtribuirAlguemModal
-            close={() => setAtribuirModal(false)}
-            assigners={batche_data?.assigned_users}
+            close={() => setAtribuirModal(!atribuirModal)}
             refetch={() => refecth()}
+            batcheId={batche_data?.id}
+            specificStatus={batche_data?.specific_status}
+            assigners={batche_data?.assignedUsers}
+            setAssigners={() => setAssigners}
           />
         )}
         {openCriarModal && (

@@ -11,7 +11,7 @@ import toast from 'react-hot-toast';
 
 interface ModalCriarProps {
   close: () => void;
-  refetch?: () => void;
+  refetch: () => void;
 }
 
 export const ModalCriarLote = (props: ModalCriarProps) => {
@@ -38,25 +38,24 @@ export const ModalCriarLote = (props: ModalCriarProps) => {
 
   const handleSucess = () => {
     setTitle('');
-    if (props.refetch) {
-      props.refetch();
-    }
-
     handleClose();
   };
 
   const handleClose = () => {
     setClosing(true);
     setTimeout(() => {
+      props.refetch();
       props.close();
     }, 300);
   };
 
   const batcheMutation = useMutation(CreateBatche, {
+    onSuccess: () => {
+      toast.success('Lote Criado!');
+    },
     onSettled: (data: any) => {
       if (data) {
-        toast.success('Lote Criado!');
-        handleSucess();
+        handleClose();
       } else {
         toast.error(data && data.massege ? data.message : 'Algum erro ocorreu!');
       }

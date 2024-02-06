@@ -195,11 +195,15 @@ export const Config = styled.button`
 export const DetalhesLote = styled.div`
   display: flex;
   gap: 24px;
+  @media screen and (max-width: 767px) {
+    flex-direction: column;
+  }
 `;
 
 export const SubDetalhes = styled.div`
   display: flex;
   gap: 8px;
+  flex-wrap: wrap;
 `;
 
 export const Protocolo = styled.div`
@@ -382,6 +386,7 @@ export const Botoes = styled.div<Props>`
   grid-row-start: ${({ role }) => (role === UserRole.OPERATOR ? '1' : '0')};
   @media screen and (min-width: 767px) {
     gap: 27px;
+    width: 346px;
   }
 `;
 

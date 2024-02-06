@@ -7,22 +7,39 @@ const DataUser = styled.div`
   font-family: 'Rubik';
   justify-content: space-between;
   gap: 3em;
-  padding: 2em;
+  width: 100%;
   @media screen and (min-width: 767px) {
-    justify-content: start;
+    justify-content: flex-start;
     gap: 2em;
+    width: auto;
+  }
+`;
+
+export const ClassesData = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 2em;
+  @media screen and (max-width: 767px) {
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 16px;
   }
 `;
 
 export const StatusDiv = styled.div`
   font-family: 'Rubik';
-  padding: 2em 2em 0 2em;
   display: flex;
   gap: 2em;
   align-items: flex-end;
   flex-wrap: wrap;
   @media screen and (max-width: 767px) {
-    justify-content: center;
+  }
+`;
+
+export const IconDiv = styled.div`
+  @media screen and (max-width: 767px) {
   }
 `;
 

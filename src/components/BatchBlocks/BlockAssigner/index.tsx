@@ -76,7 +76,7 @@ export const BlockAssigner = ({ assigner, setAssigners, BatcheAssigners, refetch
       {modal && (
         <DeletarModal
           close={() => setModal(!modal)}
-          title={`Deseja tirar ${assigner.name} desse lote?`}
+          title={`Deseja remover ${assigner.name} desse lote?`}
           deleteFunction={Remove}
         />
       )}

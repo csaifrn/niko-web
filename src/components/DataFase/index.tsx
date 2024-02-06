@@ -3,6 +3,7 @@ import * as S from './styles';
 import theme from '../../global/theme';
 import { Link } from 'react-router-dom';
 import { Tooltip } from 'react-tooltip';
+import { CheckCircle, Circle, Pause } from 'phosphor-react';
 
 interface IDataFaseProps {
   available_batches_count: number;
@@ -36,59 +37,8 @@ export const DataFase = (Props: IDataFaseProps) => {
   }, [Props, calPercentageNumber]);
 
   return (
-    <>
-      {/* Status */}
-      <S.StatusDiv>
-        {/* Lotes disponíveis */}
-        {Props.available_batches_count == 0 && (
-          <S.StatusEspecificDiv>
-            <S.StatusText style={{ color: theme.colors['white'] }}>Nenhum</S.StatusText>
-            <S.StatusText style={{ color: theme.colors['white'] }}>disponível</S.StatusText>
-          </S.StatusEspecificDiv>
-        )}
-        {Props.available_batches_count == 1 && (
-          <S.StatusEspecificDiv>
-            <S.StatusText style={{ color: theme.colors['green/500'] }}>{Props.available_batches_count}</S.StatusText>
-            <S.StatusText style={{ color: theme.colors['white'] }}>disponível</S.StatusText>
-          </S.StatusEspecificDiv>
-        )}
-        {Props.available_batches_count > 1 && (
-          <S.StatusEspecificDiv>
-            <S.StatusText style={{ color: theme.colors['green/500'] }}>{Props.available_batches_count}</S.StatusText>
-            <S.StatusText style={{ color: theme.colors['white'] }}>disponíveis</S.StatusText>
-          </S.StatusEspecificDiv>
-        )}
-
-        {/* Lotes em andamento */}
-        {Props.in_progress_batches_count == 0 && <h2>Nenhum em andamento</h2>}
-        {Props.in_progress_batches_count >= 1 && (
-          <S.StatusEspecificDiv>
-            <S.StatusText>{Props.in_progress_batches_count}</S.StatusText>
-            <S.StatusText style={{ color: theme.colors['white'] }}>em andamento</S.StatusText>
-          </S.StatusEspecificDiv>
-        )}
-
-        {/* Lotes arquivados */}
-        {Props.archiving_done_batches_count == 0 && <h2>Nenhum foi arquivado</h2>}
-        {Props.archiving_done_batches_count == 1 && (
-          <S.StatusEspecificDiv>
-            <S.StatusText style={{ color: theme.colors['green/500'] }}>
-              {Props.archiving_done_batches_count}
-            </S.StatusText>
-            <S.StatusText style={{ color: theme.colors['white'] }}>arquivado</S.StatusText>
-          </S.StatusEspecificDiv>
-        )}
-        {Props.archiving_done_batches_count > 1 && (
-          <S.StatusEspecificDiv>
-            <S.StatusText style={{ color: theme.colors['green/500'] }}>
-              {Props.archiving_done_batches_count}
-            </S.StatusText>
-            <S.StatusText style={{ color: theme.colors['white'] }}>arquivados</S.StatusText>
-          </S.StatusEspecificDiv>
-        )}
-      </S.StatusDiv>
-
-      {/* Fases */}
+    <S.ClassesData>
+      {/* FASES */}
       <S.DataUser>
         <S.SideUser>
           {/* Recepção */}
@@ -194,6 +144,89 @@ export const DataFase = (Props: IDataFaseProps) => {
           </S.Fase>
         </S.SideUser>
       </S.DataUser>
-    </>
+
+      {/* STATUS */}
+      <S.StatusDiv style={{}}>
+        {/* Lotes DISPONÍVEIS */}
+
+        <S.StatusDiv style={{ padding: '0', alignItems: 'flex-start', gap: '8px' }}>
+          <S.IconDiv className="AvailableTooltip">
+            <Circle size={20} weight="fill" style={{ color: theme.colors['green/500'] }} />
+            {/* <Tooltip children={<p>Lotes disponíveis</p>} anchorSelect=".AvailableTooltip"></Tooltip> */}
+          </S.IconDiv>
+          <h2>Disponíveis</h2>
+          <S.StatusText style={{ color: theme.colors['green/500'] }}>{Props.available_batches_count}</S.StatusText>
+        </S.StatusDiv>
+
+        {/* {Props.available_batches_count == 0 && (
+          <S.StatusEspecificDiv>
+            <S.StatusText style={{ color: theme.colors['white'] }}>Nenhum</S.StatusText>
+            <S.StatusText style={{ color: theme.colors['white'] }}>disponível</S.StatusText>
+          </S.StatusEspecificDiv>
+        )}
+        {Props.available_batches_count == 1 && (
+          <S.StatusEspecificDiv>
+            <S.StatusText style={{ color: theme.colors['green/500'] }}>{Props.available_batches_count}</S.StatusText>
+            <S.StatusText style={{ color: theme.colors['white'] }}>disponível</S.StatusText>
+          </S.StatusEspecificDiv>
+        )}
+        {Props.available_batches_count > 1 && (
+          <S.StatusEspecificDiv>
+            <S.StatusText style={{ color: theme.colors['green/500'] }}>{Props.available_batches_count}</S.StatusText>
+            <S.StatusText style={{ color: theme.colors['white'] }}>disponíveis</S.StatusText>
+          </S.StatusEspecificDiv>
+        )} */}
+
+        {/* Lotes EM ANDAMENTO */}
+
+        <S.StatusDiv style={{ padding: '0', alignItems: 'flex-start', gap: '8px' }}>
+          <S.IconDiv className="InProgressTooltip">
+            <Pause size={20} weight="fill" />
+            {/* <Tooltip children={<p>Lotes em andamento</p>} anchorSelect=".InProgressTooltip"></Tooltip> */}
+          </S.IconDiv>
+          <h2>Em andamento</h2>
+
+          <S.StatusText>{Props.in_progress_batches_count}</S.StatusText>
+        </S.StatusDiv>
+
+        {/* {Props.in_progress_batches_count == 0 && <h2>Nenhum em andamento</h2>}
+        {Props.in_progress_batches_count >= 1 && (
+          <S.StatusEspecificDiv>
+            <S.StatusText>{Props.in_progress_batches_count}</S.StatusText>
+            <S.StatusText style={{ color: theme.colors['white'] }}>em andamento</S.StatusText>
+          </S.StatusEspecificDiv>
+        )} */}
+
+        {/* Lotes ARQUIVADOS */}
+
+        <S.StatusDiv style={{ padding: '0', alignItems: 'flex-start', gap: '8px' }}>
+          <S.IconDiv className="ArchivingTooltip">
+            <CheckCircle size={20} weight="fill" />
+            {/* <Tooltip children={<p>Lotes arquivados</p>} anchorSelect=".ArchivingTooltip"></Tooltip> */}
+          </S.IconDiv>
+          <h2>Arquivados</h2>
+
+          <S.StatusText style={{ color: theme.colors['green/500'] }}>{Props.archiving_done_batches_count}</S.StatusText>
+        </S.StatusDiv>
+
+        {/* {Props.archiving_done_batches_count == 0 && <h2>Nenhum foi arquivado</h2>}
+        {Props.archiving_done_batches_count == 1 && (
+          <S.StatusEspecificDiv>
+            <S.StatusText style={{ color: theme.colors['green/500'] }}>
+              {Props.archiving_done_batches_count}
+            </S.StatusText>
+            <S.StatusText style={{ color: theme.colors['white'] }}>arquivado</S.StatusText>
+          </S.StatusEspecificDiv>
+        )}
+        {Props.archiving_done_batches_count > 1 && (
+          <S.StatusEspecificDiv>
+            <S.StatusText style={{ color: theme.colors['green/500'] }}>
+              {Props.archiving_done_batches_count}
+            </S.StatusText>
+            <S.StatusText style={{ color: theme.colors['white'] }}>arquivados</S.StatusText>
+          </S.StatusEspecificDiv>
+        )} */}
+      </S.StatusDiv>
+    </S.ClassesData>
   );
 };

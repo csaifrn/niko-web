@@ -209,10 +209,10 @@ export const ModalCategory = (props: ModalCategoriaProps) => {
                     </S.Criar>
                   ) : Categorias?.includes(name) || name.length < 3 ? (
                     <S.CriarDesativado type="submit" disabled>
-                      Criar categoria
+                      Criar classe
                     </S.CriarDesativado>
                   ) : (
-                    <S.Criar type="submit">Criar categoria</S.Criar>
+                    <S.Criar type="submit">Criar classe</S.Criar>
                   )}
                   {responseError && <ErrorMessage>{responseError}</ErrorMessage>}
                 </S.FormCriar>
@@ -251,10 +251,10 @@ export const ModalCategory = (props: ModalCategoriaProps) => {
                     </S.Criar>
                   ) : Categorias?.includes(nomeCat) || nomeCat.length < 3 ? (
                     <S.CriarDesativado type="submit" disabled>
-                      Editar categoria
+                      Editar classe
                     </S.CriarDesativado>
                   ) : (
-                    <S.Criar type="submit">Editar categoria</S.Criar>
+                    <S.Criar type="submit">Editar classe</S.Criar>
                   )}
                   {responseError && <ErrorMessage>{responseError}</ErrorMessage>}
                 </S.FormCriar>

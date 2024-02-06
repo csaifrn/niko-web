@@ -268,9 +268,9 @@ export const LoteDetails = () => {
                 </div>
               </S.DadosCriacaoLoteDiv>
 
-              {/* PRIORIDADE + CATEGORIAS */}
+              {/* PRIORIDADE + CLASSES */}
 
-              {/* QUANDO HÁ CATEGORIAS */}
+              {/* QUANDO HÁ CLASSES */}
 
               <S.DetalhesLote>
                 <S.SubDetalhes>
@@ -330,7 +330,16 @@ export const LoteDetails = () => {
                     </S.ArquivDigitais>
                   )}
                 </S.SubDetalhes>
+
+                {/* CLASSES */}
                 <S.SubDetalhes>
+                  {task?.class_projects.map((cat) => {
+                    return (
+                      <BlockClass refetch={refetch} key={cat.id} idBatche={task.id} idClass={cat.id}>
+                        {cat.name}
+                      </BlockClass>
+                    );
+                  })}
                   <S.ButtonAddClass
                     onClick={() => {
                       setModalClass(!modalClass);
@@ -344,14 +353,6 @@ export const LoteDetails = () => {
                     />
                     <img src="/adicionar.svg" alt="botão redondo com símbolo + para criar observação" />
                   </S.ButtonAddClass>
-                  {/* CATEGORIAS */}
-                  {task?.class_projects.map((cat) => {
-                    return (
-                      <BlockClass refetch={refetch} key={cat.id} idBatche={task.id} idClass={cat.id}>
-                        {cat.name}
-                      </BlockClass>
-                    );
-                  })}
                 </S.SubDetalhes>
               </S.DetalhesLote>
 

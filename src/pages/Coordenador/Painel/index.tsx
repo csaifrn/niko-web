@@ -3,7 +3,6 @@ import Menu from '../../../components/Menu';
 import MenuCoord from '../../../components/MenuCoord';
 import { PainelPorFase } from '../../../components/PainelporFase';
 import { PendenciaCoord } from '../../../components/PendenciasCoord';
-import { ValoresGerais } from '../../../components/ValoresGerais';
 import * as S from './styles';
 
 const Painel = () => {

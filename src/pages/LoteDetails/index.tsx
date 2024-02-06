@@ -6,7 +6,6 @@ import FaseData from '../../data/FaseData';
 import Splash from '../Splash';
 import toast from 'react-hot-toast';
 import { useParams, useNavigate, Link } from 'react-router-dom';
-import { ConfigModal } from '../../components/ConfigModal';
 import { useMutation } from 'react-query';
 import { GetBatche } from '../../api/services/batches/get-batche';
 import { AssignedUser, Batche, Observation } from '../../api/services/batches/get-batche/get.interface';
@@ -44,7 +43,6 @@ export const LoteDetails = () => {
   const [priority, setPriority] = useState<boolean>(false);
   const [observacao, setObservacao] = useState(false);
   const [delete_modal, setDeleteModal] = useState(false);
-  const [config_modal, setConfigModal] = useState(false);
   const [avancar, setAvancar] = useState(false);
   const [voltar, setVoltar] = useState(false);
   const [observation, setObservation] = useState<Observation>();
@@ -70,16 +68,16 @@ export const LoteDetails = () => {
     }
   };
 
-  const handleConfig = () => {
-    setConfigModal(!config_modal);
-  };
-
   const handleVoltar = () => {
     setVoltar(!voltar);
   };
 
   const handleAvancar = () => {
     setAvancar(!avancar);
+
+    if (option?.value === 5) {
+      option.value = 3;
+    }
 
     if ((option?.value && id) || (option?.value === 0 && id)) {
       mutateEspecific.mutate({
@@ -273,89 +271,103 @@ export const LoteDetails = () => {
               {/* PRIORIDADE + CATEGORIAS */}
 
               {/* QUANDO HÁ CATEGORIAS */}
-              {task?.class_projects && task?.class_projects.length >= 0 && (
-                <S.DetalhesLote>
-                  <S.SubDetalhes>
-                    {/* PRIORIORIDADE(SE TIVER) */}
-                    {priority === true && (
-                      <S.PrioridadeDiv>
-                        <S.PrioridadeTag>
-                          <p>Prioridade</p>
-                        </S.PrioridadeTag>
-                      </S.PrioridadeDiv>
-                    )}
 
-                    {/* ESTANTE */}
-                    {task?.storage_location !== null && (
-                      <S.Estante className="LocationTooltip">
-                        {task?.storage_location}
-                        <Tooltip
-                          children={<p style={{ fontSize: '12px', fontFamily: 'Rubik' }}>Estante</p>}
-                          anchorSelect=".LocationTooltip"
-                          place="bottom"
-                        />
-                      </S.Estante>
-                    )}
+              <S.DetalhesLote>
+                <S.SubDetalhes>
+                  {/* PRIORIORIDADE(SE TIVER) */}
+                  {priority === true && (
+                    <S.PrioridadeDiv>
+                      <S.PrioridadeTag>
+                        <p>Prioridade</p>
+                      </S.PrioridadeTag>
+                    </S.PrioridadeDiv>
+                  )}
 
-                    {/* FÍSICOS */}
-                    <S.ArquivFisicos className="ArquivFisTooltip">
-                      <img src={`/arquivos_fisicos.svg`} alt="arquivos fisicos" />
-                      {task?.physical_files_count}
+                  {task?.shelf_number && (
+                    <S.Estante className="ShelfTooltip">
+                      {task?.shelf_number}
                       <Tooltip
-                        children={<p style={{ fontSize: '12px', fontFamily: 'Rubik' }}>Arquivos físicos</p>}
-                        anchorSelect=".ArquivFisTooltip"
+                        children={<p style={{ fontSize: '12px', fontFamily: 'Rubik' }}>Número de arquivamento</p>}
+                        anchorSelect=".ShelfTooltip"
                         place="bottom"
                       />
-                    </S.ArquivFisicos>
+                    </S.Estante>
+                  )}
 
-                    {/* DIGITAIS(QUANDO HOUVER) */}
-                    {optionsFases[status].label != 'Preparo' && optionsFases[status].label != 'Catalogação' && (
-                      <S.ArquivDigitais className="ArquivDigTooltip">
-                        <img src={`/arquivos_digitais.svg`} alt="arquivos digitais" />
-                        {task?.digital_files_count}
-                        <Tooltip
-                          children={<p style={{ fontSize: '12px', fontFamily: 'Rubik' }}>Arquivos digitais</p>}
-                          anchorSelect=".ArquivDigTooltip"
-                          place="bottom"
-                        />
-                      </S.ArquivDigitais>
-                    )}
-                  </S.SubDetalhes>
-                  <S.SubDetalhes>
-                    <S.ButtonAddClass
-                      onClick={() => {
-                        setModalClass(!modalClass);
-                      }}
-                      className="AddClass"
-                    >
+                  {/* ESTANTE */}
+                  {task?.storage_location && (
+                    <S.Estante className="LocationTooltip">
+                      {task?.storage_location}
                       <Tooltip
-                        children={<p style={{ fontSize: '12px', fontFamily: 'Rubik' }}>Adicionar Classe(s)</p>}
-                        anchorSelect=".AddClass"
+                        children={<p style={{ fontSize: '12px', fontFamily: 'Rubik' }}>Estante</p>}
+                        anchorSelect=".LocationTooltip"
                         place="bottom"
                       />
-                      <img src="/adicionar.svg" alt="botão redondo com símbolo + para criar observação" />
-                    </S.ButtonAddClass>
-                    {/* CATEGORIAS */}
-                    {task?.class_projects.map((cat) => {
-                      return (
-                        <BlockClass refetch={refetch} key={cat.id} idBatche={task.id} idClass={cat.id}>
-                          {cat.name}
-                        </BlockClass>
-                      );
-                    })}
-                  </S.SubDetalhes>
-                </S.DetalhesLote>
-              )}
+                    </S.Estante>
+                  )}
 
-              {/* ARQUIVOS */}
+                  {/* FÍSICOS */}
+                  <S.ArquivFisicos className="ArquivFisTooltip">
+                    <img src={`/arquivos_fisicos.svg`} alt="arquivos fisicos" />
+                    {task?.physical_files_count}
+                    <Tooltip
+                      children={<p style={{ fontSize: '12px', fontFamily: 'Rubik' }}>Arquivos físicos</p>}
+                      anchorSelect=".ArquivFisTooltip"
+                      place="bottom"
+                    />
+                  </S.ArquivFisicos>
 
-              {/* OPERADORES ATRIBUÍDOS AO LOTE */}
+                  {/* DIGITAIS(QUANDO HOUVER) */}
+                  {optionsFases[status].label != 'Preparo' && optionsFases[status].label != 'Catalogação' && (
+                    <S.ArquivDigitais className="ArquivDigTooltip">
+                      <img src={`/arquivos_digitais.svg`} alt="arquivos digitais" />
+                      {task?.digital_files_count}
+                      <Tooltip
+                        children={<p style={{ fontSize: '12px', fontFamily: 'Rubik' }}>Arquivos digitais</p>}
+                        anchorSelect=".ArquivDigTooltip"
+                        place="bottom"
+                      />
+                    </S.ArquivDigitais>
+                  )}
+                </S.SubDetalhes>
+                <S.SubDetalhes>
+                  <S.ButtonAddClass
+                    onClick={() => {
+                      setModalClass(!modalClass);
+                    }}
+                    className="AddClass"
+                  >
+                    <Tooltip
+                      children={<p style={{ fontSize: '12px', fontFamily: 'Rubik' }}>Adicionar Classe(s)</p>}
+                      anchorSelect=".AddClass"
+                      place="bottom"
+                    />
+                    <img src="/adicionar.svg" alt="botão redondo com símbolo + para criar observação" />
+                  </S.ButtonAddClass>
+                  {/* CATEGORIAS */}
+                  {task?.class_projects.map((cat) => {
+                    return (
+                      <BlockClass refetch={refetch} key={cat.id} idBatche={task.id} idClass={cat.id}>
+                        {cat.name}
+                      </BlockClass>
+                    );
+                  })}
+                </S.SubDetalhes>
+              </S.DetalhesLote>
+
+              {/* USUÁRIOS ATRIBUÍDOS AO LOTE */}
               {assigners.length > 0 && (
                 <React.Fragment>
                   <S.SubDetalhes>
                     {assigners &&
                       assigners.map((assigned) => (
-                        <BlockAssigner key={assigned.id} assigner={assigned} setAssigners={setAssigners} />
+                        <BlockAssigner
+                          key={assigned.id}
+                          assigner={assigned}
+                          setAssigners={setAssigners}
+                          BatcheAssigners={assigners}
+                          refetch={() => refetch()}
+                        />
                       ))}
                   </S.SubDetalhes>
                 </React.Fragment>
@@ -408,42 +420,6 @@ export const LoteDetails = () => {
 
               {/* BOTÕES PRINCIPAIS */}
               <S.Botoes role={user?.role}>
-                {user?.role === UserRole.MANAGER && (
-                  <S.BotaoMudarFase>
-                    {/* BOTÃO DE AVANÇAR FASE*/}
-
-                    <S.VoltarAvancar
-                      disabled={status === option?.value}
-                      onClick={handleAvancar}
-                      style={{ cursor: 'pointer' }}
-                    >
-                      {(option?.value && option?.value < status) || (option?.value === 0 && option?.value < status) ? (
-                        <img src={'/voltar.svg'} alt="ícone circular com uma seta para a esquerda ao centro" />
-                      ) : option?.value === status ? (
-                        <XCircle size={18} />
-                      ) : (
-                        <img src={'/avancar.svg'} alt="ícone circular com uma seta para a direita ao centro" />
-                      )}
-                      {option?.value && option?.value < status ? (
-                        <p style={{ color: theme.colors.white }}>Voltar fase</p>
-                      ) : option?.value === status ? (
-                        <p style={{ color: theme.colors.white }}>Fase atual</p>
-                      ) : (
-                        <p style={{ color: theme.colors.white }}>Avançar fase</p>
-                      )}
-                    </S.VoltarAvancar>
-
-                    {/* BOTÃO DE ESCOLHER FASE PARA AVANÇAR*/}
-                    <S.EscolherFaseSelect
-                      options={optionsFases}
-                      onChange={(o: any) => setOption(o)}
-                      value={option}
-                      className="react-select-container"
-                      classNamePrefix="react-select"
-                      placeholder="Escolher fase"
-                    />
-                  </S.BotaoMudarFase>
-                )}
                 {/* PEGAR LOTE */}
                 {specificStatus === 0 && (
                   <S.PegarLote
@@ -502,6 +478,50 @@ export const LoteDetails = () => {
                     </S.ConcluirButton>
                   )}
 
+                {/* BOTÃO DE AVANÇAR/VOLTAR FASE(COORDENADOR)*/}
+                {user?.role === UserRole.MANAGER && (
+                  <S.BotaoMudarFase>
+                    <S.VoltarAvancar
+                      disabled={status === option?.value}
+                      onClick={handleAvancar}
+                      style={{ cursor: 'pointer' }}
+                    >
+                      {/* Ícone */}
+                      {(option?.value && option?.value < status) ||
+                      (option?.value === 0 && option?.value < status) ||
+                      option?.value === 5 ? (
+                        <img src={'/voltar.svg'} alt="ícone circular com uma seta para a esquerda ao centro" />
+                      ) : option?.value === status ? (
+                        <XCircle size={18} />
+                      ) : (
+                        <img src={'/avancar.svg'} alt="ícone circular com uma seta para a direita ao centro" />
+                      )}
+
+                      {/* Mensagem */}
+                      {(option?.value && option?.value < status) ||
+                      (option?.value === 0 && option?.value < status) ||
+                      option?.value === 5 ? (
+                        <p style={{ color: theme.colors.white }}>Voltar fase</p>
+                      ) : option?.value === status ? (
+                        <p style={{ color: theme.colors.white }}>Fase atual</p>
+                      ) : (
+                        <p style={{ color: theme.colors.white }}>Avançar fase</p>
+                      )}
+                    </S.VoltarAvancar>
+
+                    {/* BOTÃO DE ESCOLHER FASE PARA AVANÇAR/VOLTAR*/}
+                    <S.EscolherFaseSelect
+                      options={optionsFases}
+                      onChange={(o: any) => setOption(o)}
+                      value={option != undefined && option.value == 5 ? { label: 'Upload', value: 3 } : option}
+                      className="react-select-container"
+                      classNamePrefix="react-select"
+                      placeholder="Escolher fase"
+                    />
+                  </S.BotaoMudarFase>
+                )}
+
+                {/* ATRIBUIR ALGUÉM(COORDENADOR)*/}
                 {user?.role === UserRole.MANAGER && (
                   <S.Botao onClick={handleAtribuirAlguem}>
                     <img src={`/AddUser.svg`} alt="botão para atribuir lote a algum operador " />
@@ -509,6 +529,7 @@ export const LoteDetails = () => {
                   </S.Botao>
                 )}
 
+                {/* EXCLUIR LOTE(COORDENADOR) */}
                 {user?.role === UserRole.MANAGER && (
                   <S.BotaoDeletarLote
                     onClick={(e) => {
@@ -631,7 +652,14 @@ export const LoteDetails = () => {
           />
         )}
         {atribuir_modal && (
-          <AtribuirAlguemModal setAssigners={setAssigners} assigners={assigners} close={handleAtribuirAlguem} />
+          <AtribuirAlguemModal
+            setAssigners={setAssigners}
+            assigners={assigners}
+            close={handleAtribuirAlguem}
+            specificStatus={task?.specific_status}
+            batcheId={task?.id}
+            refetch={() => refetch()}
+          />
         )}
         {openEspecifModal && (
           <EspecifcModal

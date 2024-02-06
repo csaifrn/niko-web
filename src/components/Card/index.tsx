@@ -69,11 +69,11 @@ export const CardFase = ({ ...props }: CardProps) => {
             <TextBoxCard>
               <DataStrongCard>
                 <NumberCard backgroundColor={theme.colors['green/400']}>{batchesDispo.length}</NumberCard>
-                <NomeEtapa>DISPONÍVEIS</NomeEtapa>
+                {batchesDispo.length === 1 ? <NomeEtapa>DISPONÍVEL</NomeEtapa> : <NomeEtapa>DISPONÍVEIS</NomeEtapa>}
               </DataStrongCard>
               <DataStrongCard>
                 <NumberCard backgroundColor={theme.colors['yellow/300']}>{batchesAnda.length}</NumberCard>
-                <NomeEtapa>ANDAMENTO</NomeEtapa>
+                <NomeEtapa>EM ANDAMENTO</NomeEtapa>
               </DataStrongCard>
 
               {/* <DataStrongCard>
@@ -87,7 +87,7 @@ export const CardFase = ({ ...props }: CardProps) => {
             <TextBoxCard>
               <DataStrongCard>
                 <NumberCard backgroundColor={theme.colors['green/400']}>{batchesDispo.length}</NumberCard>
-                <NomeEtapa>DISPONÍVEIS</NomeEtapa>
+                {batchesDispo.length === 1 ? <NomeEtapa>DISPONÍVEL</NomeEtapa> : <NomeEtapa>DISPONÍVEIS</NomeEtapa>}
               </DataStrongCard>
 
               <DataStrongCard>
@@ -106,7 +106,7 @@ export const CardFase = ({ ...props }: CardProps) => {
             <TextBoxCard>
               <DataStrongCard>
                 <NumberCard backgroundColor={theme.colors['green/400']}>{batchesDispo.length}</NumberCard>
-                <NomeEtapa>DISPONÍVEIS</NomeEtapa>
+                {batchesDispo.length === 1 ? <NomeEtapa>DISPONÍVEL</NomeEtapa> : <NomeEtapa>DISPONÍVEIS</NomeEtapa>}
               </DataStrongCard>
 
               <DataStrongCard>
@@ -125,7 +125,7 @@ export const CardFase = ({ ...props }: CardProps) => {
             <TextBoxCard>
               <DataStrongCard>
                 <NumberCard backgroundColor={theme.colors['green/400']}>{batchesDispo.length}</NumberCard>
-                <NomeEtapa>DISPONÍVEIS</NomeEtapa>
+                {batchesDispo.length === 1 ? <NomeEtapa>DISPONÍVEL</NomeEtapa> : <NomeEtapa>DISPONÍVEIS</NomeEtapa>}
               </DataStrongCard>
 
               <DataStrongCard>
@@ -144,7 +144,7 @@ export const CardFase = ({ ...props }: CardProps) => {
             <TextBoxCard>
               <DataStrongCard>
                 <NumberCard backgroundColor={theme.colors['green/400']}>{batchesDispo.length}</NumberCard>
-                <NomeEtapa>DISPONÍVEIS</NomeEtapa>
+                {batchesDispo.length === 1 ? <NomeEtapa>DISPONÍVEL</NomeEtapa> : <NomeEtapa>DISPONÍVEIS</NomeEtapa>}
               </DataStrongCard>
             </TextBoxCard>
           )}

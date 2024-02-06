@@ -128,7 +128,7 @@ export const PainelPorFase = () => {
     <S.Wrapper>
       <S.ContainerData>
         <S.FiltrarPorPeriodo>
-          <S.FiltrarTitulo> Filtrar lotes por período: </S.FiltrarTitulo>
+          <S.FiltrarTitulo> Filtrar lotes criados por período: </S.FiltrarTitulo>
 
           <S.EscolherDatas>
             <S.DataInicial>

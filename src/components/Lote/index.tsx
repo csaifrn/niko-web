@@ -1,7 +1,7 @@
 import * as S from './styles';
 import React, { ReactNode } from 'react';
 import { generateUUID } from '../../utils/generateUUID.util';
-import { AssignedUser, Category } from '../../api/services/batches/get-batche/get.interface';
+import { AssignedUser, Class } from '../../api/services/batches/get-batche/get.interface';
 import { User, UserCircle, Warning } from '@phosphor-icons/react';
 import { Tooltip } from 'react-tooltip';
 import { IconUser } from '../Icon';
@@ -11,7 +11,7 @@ interface PropsLote {
   value: string;
   priority: boolean;
 
-  categories: Category[];
+  categories: Class[];
   assigners: AssignedUser[];
 
   children: ReactNode;
@@ -49,14 +49,28 @@ const Lote = ({ assigners, categories, children, pendencia, value, priority }: P
               {/* Categorias do Lote */}
               <S.Categoria>
                 {categories &&
-                  categories.map((cat: Category, index: number) => {
+                  categories.map((cat: Class, index: number) => {
                     if (index === 0) {
+                      const randomClass = generateUUID();
                       return (
-                        <React.Fragment key={cat.id}>
-                          <S.BlackBlock style={{ borderRadius: '3px' }}>
-                            <p style={{ padding: '0 0.5em' }}>{cat.name}</p>
+                        <div key={cat.id}>
+                          <S.BlackBlock
+                            style={{ borderRadius: '3px' }}
+                            className={`my-tooltip-multiline-${randomClass}`}
+                          >
+                            <p style={{ padding: '0 0.5em' }}>
+                              {cat.name.substring(0, 15)}
+                              {cat.name.length > 14 ? '...' : ''}
+                            </p>
+                            {cat.name.length > 14 && (
+                              <Tooltip
+                                anchorSelect={`.my-tooltip-multiline-${randomClass}`}
+                                children={<p>{cat.name}</p>}
+                                place="top"
+                              />
+                            )}
                           </S.BlackBlock>
-                        </React.Fragment>
+                        </div>
                       );
                     } else if (index + 1 == categories.length) {
                       const random = generateUUID();
@@ -69,7 +83,7 @@ const Lote = ({ assigners, categories, children, pendencia, value, priority }: P
                           <p>+{index}</p>
                           <Tooltip
                             id={`my-tooltip-multiline-${random}`}
-                            children={categories.slice(1).map((cat: Category) => {
+                            children={categories.slice(1).map((cat: Class) => {
                               return <S.ToolText key={random}>{cat.name}</S.ToolText>;
                             })}
                             place="top"
@@ -91,7 +105,7 @@ const Lote = ({ assigners, categories, children, pendencia, value, priority }: P
                         <S.BlackBlock
                           data-tooltip-id={`my-tooltip-multiline-${random}`}
                           key={member.id}
-                          style={{ borderRadius: '100%', width: '2em', paddingRight: '2px' }}
+                          style={{ borderRadius: '100%', width: '2em', paddingRight: '2px', border: 'none' }}
                         >
                           <p>+{index}</p>
                           <Tooltip

@@ -2,7 +2,7 @@ import { FormEvent, useEffect, useState } from 'react';
 import * as S from './style';
 import Menu from '../../components/Menu';
 import MenuCoord from '../../components/MenuCoord';
-import { Batche, Category } from '../../api/services/batches/get-batche/get.interface';
+import { Batche, Class } from '../../api/services/batches/get-batche/get.interface';
 import { useNavigate, useParams } from 'react-router-dom';
 import toast from 'react-hot-toast';
 import { useMutation } from 'react-query';
@@ -31,7 +31,7 @@ interface Option {
 const LoteEdit = () => {
   const navigate = useNavigate();
   const { id } = useParams();
-  const [categories, setCategories] = useState<Category[]>([]);
+  const [categories, setCategories] = useState<Class[]>([]);
   const [title, setTitle] = useState<string>('');
   const [physical_files_count, setPhysical_files_count] = useState<number>(0);
   const [digital_files_count, setDigital_files_count] = useState<number>(0);
@@ -41,6 +41,7 @@ const LoteEdit = () => {
   const [options, setOptions] = useState<Option[]>([]);
   const [selectedOptions, setSelectedOptions] = useState<Option[]>([]);
   const [priority, setPriority] = useState(false);
+  const [storageLocation, setStorageLocation] = useState<string>('');
 
   const Priority = useMutation(PatchBatchePriority, {
     onSuccess: (data) => {
@@ -91,6 +92,7 @@ const LoteEdit = () => {
     onSuccess: (data: Batche) => {
       setTitle(data.title);
       setPriority(data.priority);
+      setStorageLocation(data.storage_location)
       setCategories(data.class_projects);
       setPhysical_files_count(data.physical_files_count);
       setDigital_files_count(data.digital_files_count);
@@ -172,6 +174,7 @@ const LoteEdit = () => {
         priority,
         digital_files_count,
         physical_files_count,
+        storage_location: storageLocation,
       });
 
       const newSettle = selectedOptions.filter(
@@ -187,18 +190,18 @@ const LoteEdit = () => {
       if (deleteSettle.length > 0 && newSettle.length === 0) {
         mutateDeleteSettle.mutate({
           id,
-          settlement_project_category_ids: deleteIds,
+          class_projects_ids: deleteIds,
         });
       } else if (newSettle.length > 0 && deleteSettle.length === 0) {
         mutateSettle.mutate({
           id,
-          settlementProjectCategories: newIds,
+          class_projects_ids: newIds,
         });
       } else if (newSettle.length > 0 && deleteSettle.length > 0) {
         mutateSettleAll.mutate({
           id,
-          settlementProjectCategories: newIds,
-          settlement_project_category_ids: deleteIds,
+          class_projects_ids: newIds,
+          class_projects_deleted_ids: deleteIds,
         });
       }
       try {
@@ -294,6 +297,17 @@ const LoteEdit = () => {
               </S.SwitchButton>
             </S.Prioridade>
 
+            {faseAtual === 4 && (
+              <>
+                <h2>Estante</h2>
+                <S.NameInput
+                  type="text"
+                  value={storageLocation}
+                  onChange={(e) => setStorageLocation(e.currentTarget.value)}
+                />
+              </>
+            )}
+
             {/* ARQUIVOS */}
             <S.Arquivos>
               <h2>Arquivos</h2>
@@ -331,7 +345,9 @@ const LoteEdit = () => {
                 )}
               </S.ArquivosDiv>
             </S.Arquivos>
-            <h2>Categorias</h2>
+
+            {/* Alterar CLASSES */}
+            <h2>Classes</h2>
             <S.SelectDiv>
               <S.CustomSelect
                 isMulti

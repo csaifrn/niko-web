@@ -10,7 +10,7 @@ import toast from 'react-hot-toast';
 import { CreateClass } from '../../api/services/class/create-class';
 import { EditClass } from '../../api/services/class/edit-class';
 import theme from '../../global/theme';
-import { Category } from '../../api/services/batches/get-batche/get.interface';
+import { Class } from '../../api/services/batches/get-batche/get.interface';
 import { useCategories } from '../../hooks/useCategories';
 
 export const ModalCategory = (props: ModalCategoriaProps) => {
@@ -148,24 +148,24 @@ export const ModalCategory = (props: ModalCategoriaProps) => {
   };
 
   const filteredCat = !isLoadingCategories
-    ? categories?.filter((cat: Category) => {
+    ? categories?.filter((cat: Class) => {
         const catName = removeDiacritics(cat.name.toLowerCase());
         const search = removeDiacritics(searchTerm.toLowerCase());
         return catName.includes(search);
       })
     : [];
 
-  const sortedCategories = filteredCat?.sort((a: Category, b: Category) => {
+  const sortedCategories = filteredCat?.sort((a: Class, b: Class) => {
     const nameA = removeDiacritics(a.name.toLowerCase());
     const nameB = removeDiacritics(b.name.toLowerCase());
     return nameA.localeCompare(nameB);
   });
 
-  const sortedAndFilteredCategories = sortedCategories?.sort((a: Category, b: Category) => {
+  const sortedAndFilteredCategories = sortedCategories?.sort((a: Class, b: Class) => {
     return a.name.localeCompare(b.name);
   });
 
-  const Categorias = sortedAndFilteredCategories?.map((cat: Category) => {
+  const Categorias = sortedAndFilteredCategories?.map((cat: Class) => {
     return cat.name;
   });
 

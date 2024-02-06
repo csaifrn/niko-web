@@ -76,7 +76,49 @@ const kanbanSectionContent = styled.div`
   overflow-y: auto;
   scroll-behavior: auto;
   scrollbar-width: thin;
-  height: 165px;
+  height: auto;
+  width: 100%;
+  padding: 1em;
+  background-color: ${({ theme }) => theme.colors['gray/700']};
+  border-radius: 5px;
+
+  &::-webkit-scrollbar {
+    width: 0.5em;
+    height: 0.5em;
+  }
+
+  // O caminho (barra de progresso) da barra de rolagem
+  &::-webkit-scrollbar-track {
+    background-color: transparent;
+  }
+
+  // A barra arrastável de rolagem
+  &::-webkit-scrollbar-thumb {
+    background-color: ${({ theme }) => theme.colors['gray/400']};
+    border-radius: 20px;
+  }
+
+  @media screen and (min-width: 767px) {
+    flex-direction: column;
+    max-width: 300px;
+    height: 60vh;
+    width: 100%;
+    overflow-y: scroll;
+    overflow-x: auto;
+  }
+`;
+
+export const kanbanSContentConcluidos = styled.div`
+  display: flex;
+  overflow: auto;
+  flex-direction: row;
+  gap: 1em;
+  color: ${({ theme }) => theme.colors.white};
+  overflow-x: scroll;
+  overflow-y: auto;
+  scroll-behavior: auto;
+  scrollbar-width: thin;
+  height: auto;
   width: 100%;
   padding: 1em;
   background-color: ${({ theme }) => theme.colors['gray/700']};

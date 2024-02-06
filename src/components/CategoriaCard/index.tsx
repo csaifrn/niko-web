@@ -38,15 +38,37 @@ const CategoriaCard = (categoria: CategoriaCardProps) => {
         <S.CardClick onClick={open}>
           <S.CabecarioCategoria>
             <S.ContainerTitle>
+              {/* Nome da classe */}
               <S.ClassTitle>{categoria.name}</S.ClassTitle>
+
               <Circle size={8} weight="fill" />
-              <S.ContainerTitle style={{ gap: '8px' }}>
-                <S.ClassSubTitle style={{ color: theme.colors['green/500'], fontWeight: 'bold' }}>
-                  {categoria.count_batches}
-                </S.ClassSubTitle>
-                <S.ClassSubTitle>lotes</S.ClassSubTitle>
-              </S.ContainerTitle>
+
+              {/* Quando não há nenhum lote na classe */}
+              {Number(categoria.count_batches) === 0 && (
+                <S.ContainerTitle style={{ gap: '8px' }}>
+                  <S.ClassSubTitle>nenhum lote</S.ClassSubTitle>
+                </S.ContainerTitle>
+              )}
+
+              {/* Quando há 1 lote na classe */}
+              {Number(categoria.count_batches) === 1 && (
+                <S.ContainerTitle style={{ gap: '8px' }}>
+                  <S.ClassSubTitle style={{ color: theme.colors['green/500'], fontWeight: 'bold' }}>1</S.ClassSubTitle>
+                  <S.ClassSubTitle>lote</S.ClassSubTitle>
+                </S.ContainerTitle>
+              )}
+
+              {/* Quanda há vários lotes nqclasse */}
+              {Number(categoria.count_batches) > 1 && (
+                <S.ContainerTitle style={{ gap: '8px' }}>
+                  <S.ClassSubTitle style={{ color: theme.colors['green/500'], fontWeight: 'bold' }}>
+                    {categoria.count_batches}
+                  </S.ClassSubTitle>
+                  <S.ClassSubTitle>lotes</S.ClassSubTitle>
+                </S.ContainerTitle>
+              )}
             </S.ContainerTitle>
+
             <S.ClasseCardButtons>
               <S.ButtonArea className="EditarTooltip">
                 <PencilSimple

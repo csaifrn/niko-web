@@ -136,26 +136,16 @@ export const Menu = (props: MenuProps) => {
           <S.MenuLupa src="/Lupa.svg" />
         </S.InputSearch> */}
 
+          {/* USUÁRIO */}
           <div style={{ position: 'relative' }} ref={dropDownRef}>
-            {/* Icone de usuário - opção 1 */}
-            {/* <User
-              size={44}
-              color={theme.colors.white}
-              style={{ borderRadius: '100%', padding: '8px', cursor: 'pointer' }}
-              weight="fill"
-              onClick={() => {
-                setDropDown(!DropDown);
-              }}
-            /> */}
-
-            {/* Icone de usuário - opção 2 */}
+            {/* Icone de usuário*/}
             <S.ButtonIcon
               onClick={() => {
                 setDropDown(!DropDown);
               }}
             >
               {user && (
-                <IconUser name={user?.name} fontSize={16} size={46} color={theme.colors['orange/500']} tooloff={true} />
+                <IconUser name={user?.name} fontSize={23} size={46} color={theme.colors['gray/500']} tooloff={true} />
               )}
             </S.ButtonIcon>
 

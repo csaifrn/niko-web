@@ -386,7 +386,7 @@ export const Botoes = styled.div<Props>`
   grid-row-start: ${({ role }) => (role === UserRole.OPERATOR ? '1' : '0')};
   @media screen and (min-width: 767px) {
     gap: 27px;
-    width: 346px;
+    max-width: ${({ role }) => (role === UserRole.OPERATOR ? '210px' : '100%')};
   }
 `;
 

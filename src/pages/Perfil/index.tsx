@@ -24,8 +24,6 @@ const Perfil = () => {
   const { id } = useParams();
   const { me, isLoadingMe, refetch } = useMe();
   const { setUser, user: loggedUsed } = SharedState();
-  const [modal, setModal] = useState(false);
-  const [url] = useState<string>(user.url);
   const [responseError, setResponseError] = useState('');
   const [validationFormError, setValidationFormError] = useState<ErrorsForm>({ name: '', email: '' });
   const navigate = useNavigate();
@@ -108,10 +106,21 @@ const Perfil = () => {
             {!isLoadingMe ? <S.InputText defaultValue={me?.name} /> : '... Carregando'}
             <S.ErrorMessage>{validationFormError.name}</S.ErrorMessage>
           </S.FieldContainer>
+
           <S.FieldContainer>
             <S.LabelField>Email</S.LabelField>
             {!isLoadingMe ? <S.InputText type="email" defaultValue={me?.email} /> : '... Carregando'}
             <S.ErrorMessage>{validationFormError.email}</S.ErrorMessage>
+          </S.FieldContainer>
+
+          <S.FieldContainer>
+            <S.LabelField>Papel</S.LabelField>
+            {!isLoadingMe ? (
+              <S.InputText disabled defaultValue={loggedUsed?.role === 'MANAGER' ? 'Coordenador' : 'Operador'} />
+            ) : (
+              '... Carregando'
+            )}
+            <S.ErrorMessage>{validationFormError.name}</S.ErrorMessage>
           </S.FieldContainer>
           <S.Button>Salvar</S.Button>
           <S.ErrorMessage>{responseError}</S.ErrorMessage>

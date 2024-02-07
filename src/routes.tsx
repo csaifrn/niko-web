@@ -20,7 +20,7 @@ const Upload = lazy(() => import('./pages/FasesEspecificsPages/Upload'));
 const Arquivamento = lazy(() => import('./pages/FasesEspecificsPages/Arquivamento'));
 const Reception = lazy(() => import('./pages/FasesEspecificsPages/Recepção'));
 const Classes = lazy(() => import('./pages/Coordenador/Classes'));
-const OperadoresPage = lazy(() => import('./pages/Coordenador/Operador'));
+const UsuariosPage = lazy(() => import('./pages/Usuarios'));
 const Perfil = lazy(() => import('./pages/Perfil'));
 const Cadastro = lazy(() => import('./pages/Cadastro'));
 const RecuperarSenha = lazy(() => import('./pages/Recuperar'));
@@ -54,9 +54,8 @@ const Rotas = () => {
         <Route path="Fases/Board/Upload" element={<Upload />} />
         <Route path="/Fases/Board/Arquivamento" element={<Arquivamento />} />
         <Route path="/Fases/Board/Recebidos" element={<Reception />} />
-        <Route path="/Operadores" element={<OperadoresPage />} />
+        <Route path="/Usuarios" element={<UsuariosPage />} />
         <Route path="/Classes" element={<Classes />} />
-
         <Route path={`/Lote/:id`} element={<LoteDetails />} />
         <Route path={`/Lote/:id/Edit`} element={<LoteEdit />} />
 

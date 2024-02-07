@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react';
-import OperadorCard from '../../../components/OperadorCard';
-import Users from '../../../data/UserData';
+import OperadorCard from '../../components/OperadorCard';
+import Users from '../../data/UserData';
 import * as S from './styles';
-import Search from '../../../components/Search';
-import Menu from '../../../components/Menu';
-import MenuCoord from '../../../components/MenuCoord';
+import Search from '../../components/Search';
+import Menu from '../../components/Menu';
+import MenuCoord from '../../components/MenuCoord';
 import { useParams } from 'react-router';
-import { Operador } from '../../../api/services/users/ListUsers/users.interface';
+import { Operador } from '../../api/services/users/ListUsers/users.interface';
 import { useMutation } from 'react-query';
-import { GetOperadores } from '../../../api/services/users/ListUsers';
+import { GetOperadores } from '../../api/services/users/ListUsers';
 
 interface OperadorProps {
   id: string;
@@ -19,7 +19,7 @@ const removeDiacritics = (str: string): string => {
   return str.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
 };
 
-const OperadoresPage = () => {
+const UsuariosPage = () => {
   const [searchTerm, setSearchTerm] = useState<string>('');
 
   const { id } = useParams();
@@ -82,4 +82,4 @@ const OperadoresPage = () => {
   );
 };
 
-export default OperadoresPage;
+export default UsuariosPage;

@@ -4,11 +4,9 @@ import MenuCoord from '../../../components/MenuCoord';
 import Menu from '../../../components/Menu';
 import { useParams } from 'react-router-dom';
 import * as S from './styles';
-import { ModalCriarLote } from '../../../components/ModalCriarLote';
 
 const Preparo = () => {
   const { id } = useParams();
-  const [openCriarModal, setOpenCriarModal] = useState(false);
 
   return (
     <div style={{ display: 'flex', justifyContent: 'center' }}>
@@ -17,7 +15,6 @@ const Preparo = () => {
       <S.Wrapper>
         <Board main_status={0}></Board>
       </S.Wrapper>
-      {openCriarModal && <ModalCriarLote close={() => setOpenCriarModal(!openCriarModal)} />}
     </div>
   );
 };

@@ -1,7 +1,7 @@
 import theme from '../../global/theme';
 import { useState, useEffect } from 'react';
 import toast from 'react-hot-toast';
-import { useMutation } from 'react-query';
+import { useMutation, useQuery } from 'react-query';
 import { ApiError } from '../../api/services/authentication/signIn/signIn.interface';
 import { QueryBatche } from '../../api/services/batches/query-batches';
 import {
@@ -14,12 +14,11 @@ import {
   NomeEtapa,
 } from './styles';
 import { GetResponseBatche } from '../../api/services/batches/query-batches/get.interface';
+import { ListShipments } from '../../api/services/shipments/list-shipments';
 
 interface CardProps {
   color: string;
   srcImgIcon: string;
-  //link: string;
-
   fase: number;
 }
 
@@ -27,6 +26,8 @@ interface CardProps {
 export const CardFase = ({ ...props }: CardProps) => {
   const [batchesDispo, setBatchesDispo] = useState<GetResponseBatche[]>([]);
   const [batchesAnda, setBatchesAnda] = useState<GetResponseBatche[]>([]);
+
+  const { data, refetch } = useQuery('Shipments', ListShipments);
 
   const mutateBatchesQuery = useMutation(QueryBatche, {
     onSuccess: (data: GetResponseBatche[]) => {
@@ -46,6 +47,8 @@ export const CardFase = ({ ...props }: CardProps) => {
     });
   }, []);
 
+  console.log(data);
+
   return (
     <>
       {props.fase != -2 && (
@@ -55,16 +58,20 @@ export const CardFase = ({ ...props }: CardProps) => {
           </FigureIconCard>
 
           {/* RECEPÇÃO */}
-          {/* {props.fase == -1 && (
-        <TextBoxCard>
-          <DataStrongCard>
-            <NumberCard backgroundColor={theme.colors['green/400']}>{0}</NumberCard>
-            <NomeEtapa>REMESSAS RECEBIDAS</NomeEtapa>
-          </DataStrongCard>
-        </TextBoxCard>
-      )} */}
-          {/* PREPARO */}
+          {props.fase == -1 && (
+            <TextBoxCard>
+              <DataStrongCard>
+                <NumberCard backgroundColor={theme.colors['green/400']}>{data?.length}</NumberCard>
+                {data?.length === 1 ? (
+                  <NomeEtapa>REMESSA RECEBIDA</NomeEtapa>
+                ) : (
+                  <NomeEtapa>REMESSAS RECEBIDAS</NomeEtapa>
+                )}
+              </DataStrongCard>
+            </TextBoxCard>
+          )}
 
+          {/* PREPARO */}
           {props.fase == 0 && (
             <TextBoxCard>
               <DataStrongCard>
@@ -75,11 +82,6 @@ export const CardFase = ({ ...props }: CardProps) => {
                 <NumberCard backgroundColor={theme.colors['yellow/300']}>{batchesAnda.length}</NumberCard>
                 <NomeEtapa>EM ANDAMENTO</NomeEtapa>
               </DataStrongCard>
-
-              {/* <DataStrongCard>
-            <NumberCard backgroundColor={theme.colors.["red/300"]}>{batchesConc.length}</NumberCard>
-            <NomeEtapa>EM PAUSA</NomeEtapa>
-          </DataStrongCard> */}
             </TextBoxCard>
           )}
           {/* CATALOGAÇÃO */}
@@ -94,11 +96,6 @@ export const CardFase = ({ ...props }: CardProps) => {
                 <NumberCard backgroundColor={theme.colors['yellow/300']}>{batchesAnda.length}</NumberCard>
                 <NomeEtapa>ANDAMENTO</NomeEtapa>
               </DataStrongCard>
-
-              {/* <DataStrongCard>
-              <NumberCard backgroundColor={theme.colors.["red/300"]}>{batchesConc.length}</NumberCard>
-              <NomeEtapa>EM PAUSA</NomeEtapa>
-            </DataStrongCard> */}
             </TextBoxCard>
           )}
           {/* DIGITALIZAÇÃO */}
@@ -113,11 +110,6 @@ export const CardFase = ({ ...props }: CardProps) => {
                 <NumberCard backgroundColor={theme.colors['yellow/300']}>{batchesAnda.length}</NumberCard>
                 <NomeEtapa>ANDAMENTO</NomeEtapa>
               </DataStrongCard>
-
-              {/* <DataStrongCard>
-              <NumberCard backgroundColor={theme.colors.["red/300"]}>{batchesConc.length}</NumberCard>
-              <NomeEtapa>EM PAUSA</NomeEtapa>
-            </DataStrongCard> */}
             </TextBoxCard>
           )}
           {/* UPLOAD */}
@@ -132,11 +124,6 @@ export const CardFase = ({ ...props }: CardProps) => {
                 <NumberCard backgroundColor={theme.colors['yellow/300']}>{batchesAnda.length}</NumberCard>
                 <NomeEtapa>ANDAMENTO</NomeEtapa>
               </DataStrongCard>
-
-              {/* <DataStrongCard>
-              <NumberCard backgroundColor={theme.colors.["red/300"]}>{batchesConc.length}</NumberCard>
-              <NomeEtapa>EM PAUSA</NomeEtapa>
-            </DataStrongCard> */}
             </TextBoxCard>
           )}
           {/* ARQUIVAMENTO */}

@@ -5,7 +5,7 @@ const Erro404 = () => {
     <S.Wrapper>
       <S.NotFoundImg src="/404.svg" alt="Imagem com código de erro 404. Pagína não encontrada. " height={'50%'} />
       <S.ContainerImg>
-        <S.LinkHomePage href="/Painel/:id" style={{ color: 'white', textDecoration: 'none' }}>
+        <S.LinkHomePage href="/Fases" style={{ color: 'white', textDecoration: 'none' }}>
           Voltar a homepage
         </S.LinkHomePage>
       </S.ContainerImg>

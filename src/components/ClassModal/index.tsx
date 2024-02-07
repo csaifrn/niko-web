@@ -123,6 +123,21 @@ export const ClassModal = (props: ClassModalProps) => {
     }
   };
 
+  const handleClose = () => {
+    setClosing(true);
+    setTimeout(() => {
+      props.close();
+      props.refetch();
+    }, 300);
+  };
+
+  const close = () => {
+    setClosing(true);
+    setTimeout(() => {
+      props.close();
+    }, 300);
+  };
+
   useEffect(() => {
     if (userInput.length > 2) {
       mutateQueryCategories.mutate({
@@ -143,21 +158,6 @@ export const ClassModal = (props: ClassModalProps) => {
     }, 10);
     return () => clearTimeout(timer);
   }, [closing]);
-
-  const handleClose = () => {
-    setClosing(true);
-    setTimeout(() => {
-      props.close();
-      props.refetch();
-    }, 300);
-  };
-
-  const close = () => {
-    setClosing(true);
-    setTimeout(() => {
-      props.close();
-    }, 300);
-  };
 
   return (
     <S.ModalBackdrop>

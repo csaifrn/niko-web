@@ -42,7 +42,7 @@ export const BlockClass = ({ children, idClass, idBatche, refetch }: Props) => {
               class_projects_ids: [idClass],
             });
           }}
-          title="Deseja retirar essa classe?"
+          title="Deseja remover essa classe?"
           close={() => setOpen(false)}
         />
       )}

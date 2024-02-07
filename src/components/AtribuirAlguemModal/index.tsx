@@ -37,7 +37,6 @@ export const AtribuirAlguemModal = (props: AtribuirAlguemModalProps) => {
   const [options, setOptions] = useState<MultiValue<Options | null>>([]);
   const [presentAssigners, setPresentAssigners] = useState<AssignedUser[]>(props.assigners ? props.assigners : []);
   const [userRemoved, setUserRemoved] = useState<string>('');
-  const [fase, setFase] = useState(props.specificStatus ? props.specificStatus : 0);
   const [optionsSelected, setOptionsSelected] = useState<MultiValue<Options | null>>(
     props.assigners ? props.assigners.map((e) => ({ value: e.id, label: e.name })) : [],
   );
@@ -110,7 +109,6 @@ export const AtribuirAlguemModal = (props: AtribuirAlguemModalProps) => {
           id: props.batcheId,
         });
       }
-      console.log(presentAssigners);
     }
   };
 
@@ -139,10 +137,10 @@ export const AtribuirAlguemModal = (props: AtribuirAlguemModalProps) => {
       })
       .filter((value) => value !== undefined); // Filtrar valores undefined
 
-    if (newAssigner.length > 0 && newAssigner.length + presentAssigners.length <= 5 && id && props.batcheId) {
+    if (newAssigner.length > 0 && newAssigner.length + presentAssigners.length <= 5 && props.batcheId) {
       setErrorInput('');
       assignMutate.mutate({
-        batch_id: id,
+        batch_id: props.batcheId,
         assignment_users_ids: newAssigner as string[],
       });
       mutateEspecific.mutate({

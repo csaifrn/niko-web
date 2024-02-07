@@ -71,6 +71,7 @@ export const BoxObservation = ({
             />
           </S.DivPendenciaTooltip>
         )}
+        {/* Texto da observação */}
         <p>{observation.observation}</p>
       </S.DivObservation>
 

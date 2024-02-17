@@ -17,16 +17,19 @@ import { Input, Slider, SwitchButton } from '../Observation/Observation-modal-up
 export const ClassModal = (props: ModalCategoriaProps) => {
   const queryClient = useQueryClient();
   const [closing, setClosing] = useState(false);
-  const [name, setName] = useState<string>('');
-  const [nomeCat, setNomeCat] = useState<string>(props.nomeCat ? props.nomeCat : '');
+  const [nameClassCreate, setNameClassCreate] = useState<string>('');
+  const [nomeCatInput, setNomeCat] = useState<string>(props.nomeCat ? props.nomeCat : '');
   const [priority, setPriority] = useState<boolean>(props.priority ? props.priority : false);
   const [responseError] = useState('');
   const [validationFormError, setValidationFormError] = useState<ErrorsForm>({ name: '' });
   const { categories, isLoadingCategories } = useCategories();
   const [searchTerm, setSearchTerm] = useState<string>('');
 
+  const ultimoCaractereCreate = nameClassCreate[nameClassCreate.length - 1];
+  const ultimoCaractere = nomeCatInput[nomeCatInput.length - 1];
+
   const handleSucessCreate = () => {
-    setName('');
+    setNameClassCreate('');
     queryClient.invalidateQueries('categories');
     handleClose();
   };
@@ -57,9 +60,10 @@ export const ClassModal = (props: ModalCategoriaProps) => {
         setNomeCat('');
         queryClient.invalidateQueries('categories');
         handleClose();
-      } else {
-        toast.error(data && data.message ? data.message : 'Algum erro ocorreu!');
       }
+      // else {
+      //   toast.error(data && data.message ? data.message : 'Ops esse nome de classe já está em uso!');
+      // }
     },
   });
 
@@ -67,7 +71,7 @@ export const ClassModal = (props: ModalCategoriaProps) => {
     try {
       await validationCreateCatSchema.validate(
         {
-          name,
+          nameClassCreate,
         },
         {
           abortEarly: false,
@@ -91,7 +95,7 @@ export const ClassModal = (props: ModalCategoriaProps) => {
     try {
       await validationCreateCatSchema.validate(
         {
-          name: nomeCat,
+          name: nomeCatInput,
         },
         {
           abortEarly: false,
@@ -116,7 +120,7 @@ export const ClassModal = (props: ModalCategoriaProps) => {
     const isValid = await validateFormCreate();
     if (isValid) {
       categoryMutation.mutate({
-        name,
+        name: nameClassCreate,
       });
     }
   };
@@ -127,7 +131,13 @@ export const ClassModal = (props: ModalCategoriaProps) => {
     if (isValid) {
       categoryEditMutation.mutate({
         id: props.id,
-        name: nomeCat,
+        name: nomeCatInput,
+        priority: priority,
+      });
+    }
+    if (nomeCatInput == props.nomeCat) {
+      categoryEditMutation.mutate({
+        id: props.id,
         priority: priority,
       });
     }
@@ -176,8 +186,6 @@ export const ClassModal = (props: ModalCategoriaProps) => {
     return () => clearTimeout(timer);
   }, [closing]);
 
-  console.log(priority);
-
   return (
     <>
       <S.ModalBackdrop>
@@ -196,26 +204,36 @@ export const ClassModal = (props: ModalCategoriaProps) => {
                 <S.FormCriar onSubmit={onSubmitCreate}>
                   <S.InputText
                     placeholder="Nome da classe..."
-                    onChange={(e) => setName(e.currentTarget.value)}
-                    value={name}
+                    onChange={(e) => setNameClassCreate(e.currentTarget.value)}
+                    value={nameClassCreate}
                     name="name"
                     className="name"
                   />
-                  {Categorias?.includes(name) && (
+                  {Categorias?.includes(nameClassCreate) && (
                     <p style={{ color: theme.colors['red/400'] }}>Já existe uma classe com este nome.</p>
                   )}
 
-                  {name.length < 3 && (
+                  {nameClassCreate.length < 3 && categoryMutation.isSuccess == false && (
                     <p style={{ color: theme.colors['red/400'] }}>
                       O nome da classe precisa ter ao menos 3 caracteres.
                     </p>
                   )}
+
+                  {/* Mensagem de erro */}
+                  {ultimoCaractereCreate == ' ' && (
+                    <p style={{ color: theme.colors['red/400'] }}>
+                      O nome da classe não pode terminar com espaço(s) em branco
+                    </p>
+                  )}
+
                   {validationFormError.name && <ErrorMessage>{validationFormError.name}</ErrorMessage>}
                   {categoryMutation.isLoading ? (
                     <S.Criar type="submit" disabled>
                       <ReactLoading type="cylon" color="white" height={30} width={30} />
                     </S.Criar>
-                  ) : Categorias?.includes(name) || name.length < 3 ? (
+                  ) : Categorias?.includes(nameClassCreate) ||
+                    nameClassCreate.length < 3 ||
+                    ultimoCaractereCreate == ' ' ? (
                     <S.CriarDesativado type="submit" disabled>
                       Criar classe
                     </S.CriarDesativado>
@@ -240,18 +258,25 @@ export const ClassModal = (props: ModalCategoriaProps) => {
                   <S.InputText
                     placeholder="Nome da classe..."
                     onChange={(e) => setNomeCat(e.currentTarget.value)}
-                    value={nomeCat}
+                    value={nomeCatInput}
                   />
 
                   {/* Mensagem de erro */}
-                  {Categorias?.includes(nomeCat) && (
+                  {Categorias?.includes(nomeCatInput) && nomeCatInput != props.nomeCat && (
                     <p style={{ color: theme.colors['red/400'] }}>Já existe uma classe com este nome.</p>
                   )}
 
                   {/* Mensagem de erro */}
-                  {nomeCat.length < 3 && (
+                  {nomeCatInput.length < 3 && categoryEditMutation.isSuccess == false && (
                     <p style={{ color: theme.colors['red/400'] }}>
                       O nome da classe precisa ter ao menos 3 caracteres.
+                    </p>
+                  )}
+
+                  {/* Mensagem de erro */}
+                  {ultimoCaractere == ' ' && (
+                    <p style={{ color: theme.colors['red/400'] }}>
+                      O nome da classe não pode terminar com espaço(s) em branco
                     </p>
                   )}
 
@@ -269,7 +294,9 @@ export const ClassModal = (props: ModalCategoriaProps) => {
                     <S.Criar type="submit" disabled>
                       <ReactLoading type="cylon" color="white" height={30} width={30} />
                     </S.Criar>
-                  ) : Categorias?.includes(nomeCat) || nomeCat.length < 3 ? (
+                  ) : (Categorias?.includes(nomeCatInput) && nomeCatInput != props.nomeCat) ||
+                    nomeCatInput.length < 3 ||
+                    ultimoCaractere == ' ' ? (
                     <S.CriarDesativado type="submit" disabled>
                       Editar classe
                     </S.CriarDesativado>

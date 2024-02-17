@@ -5,6 +5,7 @@ export interface ErrorsForm {
 export interface ModalCategoriaProps {
   id?: string;
   nomeCat?: string;
+  priority?: boolean;
   title: string;
   close: () => void;
   refetch?: () => void

@@ -1,6 +1,7 @@
-export interface CategoriaCardProps {
+export interface ClassProps {
   id: string;
   name: string;
+  priority: boolean;
   count_batches: string;
   available_batches_count: number;
   in_progress_batches_count: number;

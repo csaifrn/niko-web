@@ -64,7 +64,7 @@ export const PendPrioridade = styled.div`
   gap: 16px;
 `;
 
-const Prioridade = styled.div`
+export const Prioridade = styled.div`
   height: 24px;
   background-color: ${({ theme }) => theme.colors['red/700']};
   border-radius: 3px;
@@ -159,7 +159,7 @@ export const AtribuirButton = styled.button`
   font-family: 'Rubik';
 `;
 
-export { Lote, LoteArea, LoteNumAvisos, Prioridade, Envolvido, Categoria, BlackBlock, fotoEnv, LoteEdit, Btn };
+export { Lote, LoteArea, LoteNumAvisos, Envolvido, Categoria, BlackBlock, fotoEnv, LoteEdit, Btn };
 
 export const PendNumberIconBlack = styled.div`
   display: flex;

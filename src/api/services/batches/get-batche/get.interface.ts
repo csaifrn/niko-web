@@ -1,3 +1,5 @@
+import { Photo } from '../../users/me/me.interface';
+
 export interface GetBatcheParams {
   id: string;
 }
@@ -58,6 +60,7 @@ export interface CreatedBy {
 export interface AssignedUser {
   id: string;
   name: string;
+  photo: undefined | Photo;
 }
 
 export interface Observation {

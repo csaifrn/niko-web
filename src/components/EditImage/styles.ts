@@ -1,13 +1,15 @@
 import styled from 'styled-components';
 
 const ModalArea = styled.div`
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  padding: 2em;
+  max-width: 400px;
   background-color: ${({ theme }) => theme.colors['gray/500']};
-  align-items: center;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  padding: 2em;
+  gap: 2em;
+  transform: scale(0);
+  transition: transform 0.3s ease-in-out;
   color: white;
   font-family: 'Rubik';
   border-radius: 5px;
@@ -16,8 +18,47 @@ const ModalArea = styled.div`
 
 const ModalContent = styled.div`
   display: flex;
-  gap: 1em;
+  gap: 2em;
   flex-direction: column;
+  align-items: center;
+`;
+
+export const ImgAvatar = styled.img`
+  border-radius: 100%;
+  padding: 8px;
+  width: 256px;
+  height: 256px;
+  object-fit: cover;
+`;
+
+export const Label = styled.label`
+  display: flex;
+  width: 256px;
+  height: 256px;
+  cursor: pointer;
+  border: dashed 1px ${({ theme }) => theme.colors.white};
+  border-radius: 100%;
+  align-items: center;
+  justify-content: center;
+  background: rgba(57, 62, 75, 0.5);
+  overflow: hidden;
+
+  & :hover {
+    filter: brightness(0.8);
+    transition: 0.3s all;
+  }
+
+  :hover div {
+    opacity: 1;
+  }
+`;
+
+export const LabelHover = styled.div`
+  z-index: 1;
+  position: absolute;
+  color: white;
+  opacity: 0;
+  transition: all 0.3s;
 `;
 
 export const Title = styled.h2`
@@ -30,11 +71,16 @@ export const ButtonDiv = styled.div`
 `;
 
 export const ButtonCheck = styled.button`
+  padding: 0 8px;
+  display: flex;
+  gap: 4px;
+  align-items: center;
   margin-top: 1em;
   height: 44px;
-  width: 44px;
   color: white;
   background-color: ${({ theme }) => theme.colors['green/400']};
+  color: ${({ theme }) => theme.colors['gray/700']};
+
   border: none;
   border-radius: 5px;
   font-family: 'Rubik';
@@ -50,21 +96,24 @@ export const ButtonCheck = styled.button`
 `;
 
 export const ButtonX = styled.button`
+  padding: 0 8px;
+  display: flex;
+  gap: 1em;
+  align-items: center;
   margin-top: 1em;
   height: 44px;
-  width: 44px;
   color: white;
-  background-color: ${({ theme }) => theme.colors['red/500']};
+  background-color: ${({ theme }) => theme.colors['gray/700']};
   border: none;
   border-radius: 5px;
   font-family: 'Rubik';
   transition: background-color 500ms;
   &:hover {
-    background-color: ${({ theme }) => theme.colors['red/500']};
+    background-color: ${({ theme }) => theme.colors['gray/600']};
   }
 
   &:active {
-    background-color: ${({ theme }) => theme.colors['red/500']};
+    background-color: ${({ theme }) => theme.colors['gray/800']};
     transform: translateY(-5%) translateX(2%);
   }
 `;
@@ -112,12 +161,15 @@ const Delete = styled.button`
 
 const ModalBackdrop = styled.div`
   position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 100%;
   height: 100%;
   top: 0;
   left: 0;
   z-index: 100;
-  background-color: rgba(25, 28, 36, 0.5);
+  background-color: rgba(25, 28, 36, 0.7);
+  transition: transform 1s;
 `;
-
 export { ModalArea, ModalContent, NameClose, ChooseLote, Lote, Recused, Delete, ModalBackdrop };

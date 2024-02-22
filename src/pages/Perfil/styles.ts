@@ -12,7 +12,7 @@ export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   gap: 2em;
-  @media screen and (max-width: 767px){
+  @media screen and (max-width: 767px) {
     padding: 2em;
     margin-top: 7em;
     margin-bottom: 6em;
@@ -27,8 +27,8 @@ export const Form = styled.form`
 `;
 
 export const ImgUser = styled.img`
-  height: 128px;
-  width: 128px;
+  height: 256px;
+  width: 256px;
   border-radius: 100%;
   background-color: ${({ theme }) => theme.colors['gray/700']};
   object-fit: cover;
@@ -47,6 +47,29 @@ export const EditImg = styled.button`
   display: flex;
   position: absolute;
   left: 95px;
+  bottom: 0px;
+  justify-content: center;
+  align-items: center;
+  transition: background-color 500ms;
+  background-color: ${({ theme }) => theme.colors['gray/500']};
+  border-radius: 5px;
+  &:hover {
+    background-color: ${({ theme }) => theme.colors['gray/700']};
+  }
+
+  &:active {
+    background-color: ${({ theme }) => theme.colors['gray/700']};
+    transform: translateY(-5%) translateX(2%);
+  }
+`;
+
+export const DeleteImg = styled.button`
+  border: none;
+  height: 32px;
+  width: 32px;
+  display: flex;
+  position: absolute;
+  left: 135px;
   bottom: 0px;
   justify-content: center;
   align-items: center;

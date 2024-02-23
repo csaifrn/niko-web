@@ -98,7 +98,7 @@ const Lote = ({ assigners, categories, children, pendencia, value, priority }: P
                 {assigners &&
                   assigners.map((member, index: number) => {
                     if (index < 1) {
-                      return <IconUser name={member.name} key={member.id} />;
+                      return <IconUser name={member.name} key={member.id} photo={member.photo} />;
                     } else if (index <= 2 && assigners.length === index + 1) {
                       const random = generateUUID();
                       return (

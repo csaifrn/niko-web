@@ -1,3 +1,5 @@
+import { Photo } from '../../../users/me/me.interface';
+
 export interface PostAssignersParams {
   batch_id: string;
   assignment_users_ids: string[];
@@ -35,6 +37,7 @@ export interface Category {
 export interface AssignedUser {
   id: string;
   name: string;
+  photo: undefined | Photo;
 }
 
 export interface Observation {

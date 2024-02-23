@@ -17,11 +17,16 @@ import toast from 'react-hot-toast';
 import { useNavigate, useParams } from 'react-router-dom';
 import { IconUserBig } from '../../components/IconBig';
 import MenuCoord from '../../components/MenuCoord';
-
-const user = Users[0];
+import { Trash } from 'phosphor-react';
+import { DeletarModal } from '../../components/DeletarModal';
+import { DeletePhoto } from '../../api/services/users/photo/delete-photo';
+import { IconUser } from '../../components/Icon';
 
 const Perfil = () => {
   const { id } = useParams();
+  const [modal, setModal] = useState(false);
+  const [deleteModal, setDeleteModal] = useState(false);
+
   const { me, isLoadingMe, refetch } = useMe();
   const { setUser, user: loggedUsed } = SharedState();
   const [responseError, setResponseError] = useState('');
@@ -85,6 +90,19 @@ const Perfil = () => {
     }
   };
 
+  const mutateDelete = useMutation(DeletePhoto, {
+    onSuccess: (data) => {
+      toast.success('Avatar deletado!');
+      refetch();
+    },
+  });
+
+  const handleDelete = () => {
+    if (me?.photo) {
+      mutateDelete.mutate();
+    }
+  };
+
   return (
     <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
       <Menu area={`/Perfil`} id_projeto={id}></Menu>
@@ -92,12 +110,14 @@ const Perfil = () => {
       <S.Wrapper>
         <S.Title>Perfil</S.Title>
         <S.ContainerImg>
-          {me?.name != undefined && <IconUserBig name={me?.name} id="1" />}
+          {me?.name && <IconUser name={me?.name} size={256} tooloff fontSize={56} photo={me?.photo} />}
 
-          {/* <S.ImgUser src={url}></S.ImgUser>
           <S.EditImg type="button" onClick={() => setModal(!modal)}>
             <PencilSimple size={24} weight="fill" color={theme.colors.white} />
-          </S.EditImg> */}
+          </S.EditImg>
+          <S.DeleteImg type="button" onClick={() => setDeleteModal(!deleteModal)}>
+            <Trash size={24} weight="fill" color={theme.colors.white} />
+          </S.DeleteImg>
         </S.ContainerImg>
 
         <S.Form onSubmit={onSubmit}>
@@ -138,7 +158,10 @@ const Perfil = () => {
           />
         </S.DataFase> */}
       </S.Wrapper>
-      {/* {modal && <EditImage close={() => setModal(!modal)} title="Mudar foto" url={url} />} */}
+      {modal && <EditImage close={() => setModal(!modal)} title="Mudar avatar" photo={me?.photo} />}
+      {deleteModal && (
+        <DeletarModal close={() => setDeleteModal(!deleteModal)} title="Deletar Avatar" deleteFunction={handleDelete} />
+      )}
     </div>
   );
 };

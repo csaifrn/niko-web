@@ -10,6 +10,7 @@ import { UserRole } from '../../utils/userRole.enum';
 import { MyBatches } from '../MyBatchesModal';
 import { Person, SignOut } from '@phosphor-icons/react';
 import { IconUser } from '../Icon';
+import { useMe } from '../../hooks/useMe';
 
 interface MenuProps {
   area: string;
@@ -18,6 +19,7 @@ interface MenuProps {
 
 export const Menu = (props: MenuProps) => {
   const { user } = SharedState();
+  const { me } = useMe();
   const pathname = window.location.pathname;
   const [open, setOpen] = useState(false);
   const dropDownRef = useRef(null);
@@ -144,8 +146,15 @@ export const Menu = (props: MenuProps) => {
                 setDropDown(!DropDown);
               }}
             >
-              {user && (
-                <IconUser name={user?.name} fontSize={23} size={46} color={theme.colors['gray/500']} tooloff={true} />
+              {me && (
+                <IconUser
+                  name={me.name}
+                  fontSize={23}
+                  size={46}
+                  color={theme.colors['gray/500']}
+                  tooloff={true}
+                  photo={me?.photo}
+                />
               )}
             </S.ButtonIcon>
 
@@ -176,7 +185,7 @@ export const Menu = (props: MenuProps) => {
                   padding: '12px 16px',
                 }}
               >
-                {user && <IconUser name={user?.name} fontSize={9} size={20} />}
+                {me && <IconUser name={me?.name} fontSize={9} size={20} photo={me?.photo} />}
                 <p
                   style={{
                     color: '#fff',
@@ -185,7 +194,7 @@ export const Menu = (props: MenuProps) => {
                     display: 'block',
                   }}
                 >
-                  {user?.name}
+                  {me?.name}
                 </p>
               </div>
 

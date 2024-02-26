@@ -1,8 +1,8 @@
 import * as S from './styles';
-import React, { ReactNode } from 'react';
+import { ReactNode } from 'react';
 import { generateUUID } from '../../utils/generateUUID.util';
 import { AssignedUser, Class } from '../../api/services/batches/get-batche/get.interface';
-import { User, UserCircle, Warning } from '@phosphor-icons/react';
+import { Warning } from '@phosphor-icons/react';
 import { Tooltip } from 'react-tooltip';
 import { IconUser } from '../Icon';
 

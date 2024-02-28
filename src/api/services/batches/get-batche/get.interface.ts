@@ -37,7 +37,7 @@ export interface Batche {
   created_by: CreatedBy;
   storage_location: string;
   class_projects: Class[];
-  assigned_users: AssignedUser[];
+  assigned_users: BatcheAssignedUser[];
   tags: any[];
   observations: Observation[];
 }
@@ -50,6 +50,7 @@ export interface CreatedBy {
 export interface Class {
   id: string;
   name: string;
+  priority: boolean;
 }
 
 export interface CreatedBy {
@@ -61,6 +62,12 @@ export interface AssignedUser {
   id: string;
   name: string;
   photo: undefined | Photo;
+}
+
+export interface BatcheAssignedUser {
+  id: string;
+  name: string;
+  photo: undefined | string;
 }
 
 export interface Observation {

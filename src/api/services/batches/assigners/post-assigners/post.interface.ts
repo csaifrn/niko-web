@@ -1,4 +1,5 @@
 import { Photo } from '../../../users/me/me.interface';
+import { BatcheAssignedUser } from '../../get-batche/get.interface';
 
 export interface PostAssignersParams {
   batch_id: string;
@@ -20,7 +21,7 @@ export interface PostResponseAssigners {
   updated_at: string;
   created_by: CreatedBy;
   category: Category;
-  assignedUsers: AssignedUser[];
+  assignedUsers: BatcheAssignedUser[];
   observations: Observation[];
 }
 

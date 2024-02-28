@@ -1,5 +1,4 @@
 import { Tooltip } from 'react-tooltip';
-import { AssignedUser } from '../../api/services/batches/get-batche/get.interface';
 import { generateUUID } from '../../utils/generateUUID.util';
 import styled from 'styled-components';
 import theme from '../../global/theme';

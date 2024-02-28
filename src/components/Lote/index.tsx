@@ -2,22 +2,23 @@ import * as S from './styles';
 import React, { ReactNode } from 'react';
 import { generateUUID } from '../../utils/generateUUID.util';
 import { AssignedUser, Class } from '../../api/services/batches/get-batche/get.interface';
-import { User, UserCircle, Warning } from '@phosphor-icons/react';
+import { Circle, User, UserCircle, Warning } from '@phosphor-icons/react';
 import { Tooltip } from 'react-tooltip';
 import { IconUser } from '../Icon';
+import theme from '../../global/theme';
+import { PriorityIcon } from '../BatchBlocks/BlockClass/styles';
 
 interface PropsLote {
   pendencia: number;
   value: string;
   priority: boolean;
-
   categories: Class[];
   assigners: AssignedUser[];
-
   children: ReactNode;
 }
 
 const Lote = ({ assigners, categories, children, pendencia, value, priority }: PropsLote) => {
+  console.log(categories);
   const random = generateUUID();
   return (
     <>
@@ -32,7 +33,7 @@ const Lote = ({ assigners, categories, children, pendencia, value, priority }: P
                 {pendencia > 0 && (
                   <S.PendNumberIconBlack>
                     <Warning data-tooltip-id={`my-tooltip-${random}`} size={18} color="#f7df4c" weight="fill" />
-                    <Tooltip id={`my-tooltip-${random}`} children={<p>Pendências</p>} place="top" />
+                    <Tooltip id={`my-tooltip-${random}`} children={<p>Esse lote possui pendências</p>} place="bottom" />
                     <h2>{pendencia}</h2>
                   </S.PendNumberIconBlack>
                 )}
@@ -58,6 +59,19 @@ const Lote = ({ assigners, categories, children, pendencia, value, priority }: P
                             style={{ borderRadius: '3px' }}
                             className={`my-tooltip-multiline-${randomClass}`}
                           >
+                            {/* Ícone de prioridade */}
+                            {cat.priority == true && (
+                              <PriorityIcon className="Redcircle" style={{width: '12px' , height: '12px'}}>
+                                <Circle size={12} color={theme.colors['red/700']} weight="fill" style={{marginLeft: '4px'}} />
+                                <Tooltip
+                                  children={<p>Essa classe é prioridade</p>}
+                                  anchorSelect=".Redcircle"
+                                  place="bottom"
+                                ></Tooltip>
+                              </PriorityIcon>
+                            )}
+
+                            {/* Nome da classe */}
                             <p style={{ padding: '0 0.5em' }}>
                               {cat.name.substring(0, 15)}
                               {cat.name.length > 14 ? '...' : ''}
@@ -93,6 +107,7 @@ const Lote = ({ assigners, categories, children, pendencia, value, priority }: P
                     }
                   })}
               </S.Categoria>
+
               {/* Operadores do Lote */}
               <S.Envolvido style={{ display: 'flex', marginLeft: '10px' }}>
                 {assigners &&

@@ -35,3 +35,40 @@ body {
   background-color: #090e09;
   position: relative;
 }
+
+/* reacttour */
+
+.reactour__helper {
+  background-color: #5c6170 !important;
+  color: white !important;
+  font-family: 'Rubik';
+  padding: 2em !important;
+  width: 40vw;
+  border: none !important;
+}
+
+.reactour__helper button {
+  color: white !important;
+}
+
+.reactour__helper button:hover {
+  color: rgb(172, 172, 172) !important;
+}
+
+.reactour__close {
+  color: white !important;
+  top: 15px !important;
+  right: 15px !important;
+}
+
+.reactour__close:hover {
+  color: #191c24 !important;
+}
+
+[data-tut='right-arrow'] {
+  color: white !important;
+}
+
+[data-tut='left-arrow'] {
+  color: white !important;
+}

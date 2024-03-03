@@ -96,6 +96,7 @@ export const Board = (props: BoardProps) => {
         {props.main_status === 0 && (
           <S.divChildren style={{ padding: '2em' }}>
             <Btn
+              className="first-step"
               onClick={() => {
                 setOpenCriarModal(!openCriarModal);
               }}
@@ -112,7 +113,7 @@ export const Board = (props: BoardProps) => {
             <Empty.Text>{'Página vazia.'}</Empty.Text>
           </S.WrapperEmpty>
         ) : (
-          <S.FaseKanbanPage>
+          <S.FaseKanbanPage className="second-step">
             {batchesDispo.length >= 0 && (
               <S.kanban>
                 <S.divTitulo>

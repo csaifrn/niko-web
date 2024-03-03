@@ -41,3 +41,17 @@ export const Wrapper = styled.div`
   flex-direction: column;
   justify-content: center;
 `;
+
+export const ButtonJump = styled.button`
+  align-self: flex-start;
+  display: flex;
+  gap: 0.5em;
+  padding: 5px 10px;
+  background-color: ${({ theme }) => theme.colors['gray/700']};
+  border: none;
+  border-radius: 3px;
+
+  &:hover {
+    background-color: ${({ theme }) => theme.colors['gray/900']};
+  }
+`;

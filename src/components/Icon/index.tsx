@@ -10,10 +10,10 @@ interface Props {
   size?: number;
   color?: string;
   tooloff?: boolean;
-  photo?: Photo | undefined;
+  photo?: Photo | null;
 }
 
-export const IconUser = ({ name, size = 24, fontSize = 12, color, tooloff = false, photo }: Props) => {
+export const IconUser = ({ name, size = 32, fontSize = 12, color, tooloff = false, photo }: Props) => {
   function getInitials(name: string): string {
     const nameParts = name.split(' ');
     let initials = '';

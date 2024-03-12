@@ -1,7 +1,7 @@
 import * as S from './styles';
-import React, { ReactNode } from 'react';
+import { ReactNode } from 'react';
 import { generateUUID } from '../../utils/generateUUID.util';
-import { AssignedUser, Class } from '../../api/services/batches/get-batche/get.interface';
+import {BatcheAssignedUser, Class } from '../../api/services/batches/get-batche/get.interface';
 import { Circle, User, UserCircle, Warning } from '@phosphor-icons/react';
 import { Tooltip } from 'react-tooltip';
 import { IconUser } from '../Icon';
@@ -13,12 +13,12 @@ interface PropsLote {
   value: string;
   priority: boolean;
   categories: Class[];
-  assigners: AssignedUser[];
+  assigners?: BatcheAssignedUser[];
   children: ReactNode;
 }
 
 const Lote = ({ assigners, categories, children, pendencia, value, priority }: PropsLote) => {
-  console.log(categories);
+
   const random = generateUUID();
   return (
     <>
@@ -125,7 +125,7 @@ const Lote = ({ assigners, categories, children, pendencia, value, priority }: P
                           <p>+{index}</p>
                           <Tooltip
                             id={`my-tooltip-multiline-${random}`}
-                            children={assigners.slice(1).map((cat: AssignedUser) => {
+                            children={assigners.slice(1).map((cat: BatcheAssignedUser) => {
                               return <S.ToolText key={cat.id}>{cat.name}</S.ToolText>;
                             })}
                             place="top"

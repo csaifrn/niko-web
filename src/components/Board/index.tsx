@@ -81,6 +81,8 @@ export const Board = (props: BoardProps) => {
     refecth();
   }, []);
 
+  console.log(batchesAnda);
+
   if (mutateBatchesConc.isLoading || mutateBatchesQuery.isLoading) {
     return (
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '100%', height: '80vh' }}>
@@ -141,7 +143,6 @@ export const Board = (props: BoardProps) => {
                             priority={batche.priority}
                             categories={batche.class_projects}
                             pendencia={batche.pending_batch_observations}
-                            assigners={batche.assigned_users}
                           >
                             {user?.role == 'MANAGER' ? (
                               <S.BlackButton
@@ -286,7 +287,6 @@ export const Board = (props: BoardProps) => {
                             priority={batche.priority}
                             categories={batche.class_projects}
                             pendencia={batche.pending_batch_observations}
-                            assigners={batche.assigned_users}
                           >
                             {batche.main_status === 1 && (
                               <img src="/icon-small/Catalogação.svg" alt="" style={{ width: '32px', height: '32px' }} />

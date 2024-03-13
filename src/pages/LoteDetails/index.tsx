@@ -8,7 +8,12 @@ import toast from 'react-hot-toast';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import { useMutation } from 'react-query';
 import { GetBatche } from '../../api/services/batches/get-batche';
-import { AssignedUser, Batche, BatcheAssignedUser, Observation } from '../../api/services/batches/get-batche/get.interface';
+import {
+  AssignedUser,
+  Batche,
+  BatcheAssignedUser,
+  Observation,
+} from '../../api/services/batches/get-batche/get.interface';
 import { ApiError } from '../../api/services/authentication/signIn/signIn.interface';
 import { Empty } from '../../components/EmptyPage';
 import { CreateObservationModal } from '../../components/Observation/Observation-modal-create';
@@ -170,8 +175,6 @@ export const LoteDetails = () => {
   useEffect(() => {
     CheckIdForGetBatch();
   }, []);
-
-  console.log(task);
 
   if (beforeTask.isLoading) {
     return <Splash />;

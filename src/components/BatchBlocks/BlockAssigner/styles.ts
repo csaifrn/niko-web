@@ -52,8 +52,4 @@ export const DeleteAssigner = styled.button`
     color: ${({ theme }) => theme.colors['white']};
     background-color: ${({ theme }) => theme.colors['red/500']};
   }
-  &:active {
-    background-color: ${({ theme }) => theme.colors['red/700']};
-    transform: translateY(-5%) translateX(2%);
-  }
 `;

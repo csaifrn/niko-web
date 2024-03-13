@@ -13,7 +13,7 @@ interface Props {
   photo?: Photo | undefined;
 }
 
-export const IconUser = ({ name, size = 32, fontSize = 12, color, tooloff = false, photo }: Props) => {
+export const IconUser = ({ name, size = 32, fontSize = 16, color, tooloff = false, photo }: Props) => {
   function getInitials(name: string): string {
     const nameParts = name.split(' ');
     let initials = '';

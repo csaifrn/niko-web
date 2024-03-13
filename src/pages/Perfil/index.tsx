@@ -110,7 +110,7 @@ const Perfil = () => {
       <S.Wrapper>
         <S.Title>Perfil</S.Title>
         <S.ContainerImg>
-          {me?.name && <IconUser name={me?.name} size={256} tooloff fontSize={56} photo={me?.photo} />}
+          {me?.name && <IconUser name={me?.name} size={256} tooloff fontSize={128} photo={me?.photo} />}
 
           <S.EditImg type="button" onClick={() => setModal(!modal)}>
             <PencilSimple size={24} weight="fill" color={theme.colors.white} />

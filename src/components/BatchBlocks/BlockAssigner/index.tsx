@@ -45,6 +45,9 @@ export const BlockAssigner = ({ assigner, setAssigners, BatcheAssigners, refetch
         });
       }
     },
+    onError: (err: ApiError) => {
+      toast.error(err.response?.data.message ? err.response?.data.message : 'Não foi possível remover esse usuário do lote');
+    },
   });
 
   const Remove = () => {
@@ -72,7 +75,6 @@ export const BlockAssigner = ({ assigner, setAssigners, BatcheAssigners, refetch
 
   const IconInitials = getInitials(assigner.name);
 
-  // style={{ padding: user?.role === UserRole.MANAGER ? '0 0 0 0.5em' : '1.5em' }}
   return (
     <>
       <S.BlockAssigner>
@@ -107,18 +109,22 @@ export const BlockAssigner = ({ assigner, setAssigners, BatcheAssigners, refetch
           )}
         </S.ConteudoBlockAssigner>
 
-        {user?.role === UserRole.MANAGER ||
-          (user?.name == assigner.name && (
-            <S.DeleteAssigner onClick={() => setModal(!modal)}>
-              <X size={14} weight="bold" />
-            </S.DeleteAssigner>
-          ))}
+        {user?.role == UserRole.MANAGER || user?.name == assigner.name ? (
+          <S.DeleteAssigner onClick={() => setModal(!modal)}>
+            <X size={14} weight="bold" />
+          </S.DeleteAssigner>
+        ) : (
+          ''
+        )}
       </S.BlockAssigner>
 
       {modal && (
         <DeletarModal
           close={() => setModal(!modal)}
-          title={`Deseja remover ${assigner.name} desse lote?`}
+          title={
+            assigner.name == user?.name ? 'Deseja sair desse lote?' : `Deseja remover ${assigner.name} desse lote?`
+          }
+          redButtonTitle={assigner.name == user?.name ? 'Sair' : 'Remover'}
           deleteFunction={Remove}
         />
       )}

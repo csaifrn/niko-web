@@ -58,7 +58,8 @@ export const BlockClass = (props: Props) => {
               class_projects_ids: [props.idClass],
             });
           }}
-          title="Deseja remover essa classe?"
+          title="Deseja remover essa classe do lote?"
+          redButtonTitle='Remover'
           close={() => setOpen(false)}
         />
       )}

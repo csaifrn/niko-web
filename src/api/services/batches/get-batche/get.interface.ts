@@ -50,7 +50,7 @@ export interface CreatedBy {
 export interface Class {
   id: string;
   name: string;
-  priority: boolean;
+  priority?: boolean;
 }
 
 export interface CreatedBy {
@@ -61,13 +61,13 @@ export interface CreatedBy {
 export interface AssignedUser {
   id: string;
   name: string;
-  photo: undefined | Photo;
+  photo: string | null;
 }
 
 export interface BatcheAssignedUser {
   id: string;
   name: string;
-  photo: Photo | null;
+  photo: string | undefined;
 }
 
 export interface Observation {

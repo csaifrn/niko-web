@@ -169,8 +169,6 @@ export const ModalCategory = (props: ModalCategoriaProps) => {
     return cat.name;
   });
 
-  console.warn('teste');
-
   return (
     <>
       <S.ModalBackdrop>

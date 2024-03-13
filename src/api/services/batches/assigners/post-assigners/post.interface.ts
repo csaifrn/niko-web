@@ -38,7 +38,7 @@ export interface Category {
 export interface AssignedUser {
   id: string;
   name: string;
-  photo: undefined | Photo;
+  photo: Photo | null;
 }
 
 export interface Observation {

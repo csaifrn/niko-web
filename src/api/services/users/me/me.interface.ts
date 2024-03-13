@@ -7,7 +7,7 @@ export interface GetMeResponse {
 }
 
 export interface Photo {
-  id?: string;
+  id?: string ;
   url: string;
   fileName?: string;
   contentType?: string;

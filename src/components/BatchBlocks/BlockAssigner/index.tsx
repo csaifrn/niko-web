@@ -11,7 +11,6 @@ import { SharedState } from '../../../context/SharedContext';
 import { UserRole } from '../../../utils/userRole.enum';
 import { PatchBatcheSpecifStatus } from '../../../api/services/batches/patch-status-specific';
 import { ApiError } from '../../../api/services/authentication/signIn/signIn.interface';
-import { IconUser } from '../../Icon';
 import theme from '../../../global/theme';
 
 interface PropsBlockAssigner {
@@ -73,7 +72,6 @@ export const BlockAssigner = ({ assigner, setAssigners, BatcheAssigners, refetch
 
   const IconInitials = getInitials(assigner.name);
 
-  console.log(assigner);
   // style={{ padding: user?.role === UserRole.MANAGER ? '0 0 0 0.5em' : '1.5em' }}
   return (
     <>

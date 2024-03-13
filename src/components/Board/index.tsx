@@ -81,8 +81,6 @@ export const Board = (props: BoardProps) => {
     refecth();
   }, []);
 
-  console.log(batchesAnda);
-
   if (mutateBatchesConc.isLoading || mutateBatchesQuery.isLoading) {
     return (
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '100%', height: '80vh' }}>

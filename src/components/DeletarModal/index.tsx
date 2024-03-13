@@ -8,6 +8,7 @@ import toast from 'react-hot-toast';
 interface DeletarModalProps {
   id?: string;
   title: string;
+  redButtonTitle?: string;
   close: () => void;
   deleteFunction?: () => void;
 }
@@ -80,7 +81,7 @@ export const DeletarModal = (props: DeletarModalProps) => {
               }
             }}
           >
-            Excluir
+            {props.redButtonTitle != undefined ?  props.redButtonTitle : 'Excluir'}
           </S.Delete>
         </S.ModalContent>
       </S.ModalArea>

@@ -8,7 +8,12 @@ import toast from 'react-hot-toast';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import { useMutation } from 'react-query';
 import { GetBatche } from '../../api/services/batches/get-batche';
-import { AssignedUser, Batche, Observation } from '../../api/services/batches/get-batche/get.interface';
+import {
+  AssignedUser,
+  Batche,
+  BatcheAssignedUser,
+  Observation,
+} from '../../api/services/batches/get-batche/get.interface';
 import { ApiError } from '../../api/services/authentication/signIn/signIn.interface';
 import { Empty } from '../../components/EmptyPage';
 import { CreateObservationModal } from '../../components/Observation/Observation-modal-create';
@@ -19,7 +24,7 @@ import { DeleteObservation } from '../../api/services/batches/observation/delete
 import { AtribuirAlguemModal } from '../../components/AtribuirAlguemModal';
 import { BlockAssigner } from '../../components/BatchBlocks/BlockAssigner';
 import { PatchBatcheMainStatus } from '../../api/services/batches/patch-status';
-import { CheckCircle, Circle, HandWaving, Pause, X, XCircle } from '@phosphor-icons/react';
+import { CheckCircle, Circle, HandWaving, Pause, XCircle } from '@phosphor-icons/react';
 import theme from '../../global/theme';
 import { PatchBatcheSpecifStatus } from '../../api/services/batches/patch-status-specific';
 import { EspecifcModal } from '../../components/EspecificStatusModal';
@@ -51,7 +56,7 @@ export const LoteDetails = () => {
   const [edit_modal, setEditModal] = useState<boolean>(false);
   const [atribuir_modal, setAtribuirModal] = useState<boolean>(false);
   const [createDate, setCreateDate] = useState<Date>();
-  const [assigners, setAssigners] = useState<AssignedUser[]>([]);
+  const [assigners, setAssigners] = useState<BatcheAssignedUser[]>([]);
   const [status, setStatus] = useState<number>(0);
   const [specificStatus, setSpecificStatus] = useState<number>(0);
   const [openEspecifModal, setOpenEspecifModal] = useState<boolean>(false);
@@ -185,7 +190,7 @@ export const LoteDetails = () => {
             <S.CloseFaseStatus>
               <S.FaseStatus>
                 {/* FASE ATUAL DO LOTE */}
-                <S.IconTooltipFase className="FaseAtualTooltip">
+                <Link to={`/Fases/Board/${optionsFases[status].label}`} className="FaseAtualTooltip">
                   <S.Icons src={`/icon-medium/${optionsFases[status].label}.svg`} />
 
                   <Tooltip
@@ -193,7 +198,7 @@ export const LoteDetails = () => {
                     anchorSelect=".FaseAtualTooltip"
                     place="bottom"
                   />
-                </S.IconTooltipFase>
+                </Link>
 
                 {/* STATUS DO LOTE */}
                 {specificStatus === 0 && (
@@ -295,7 +300,7 @@ export const LoteDetails = () => {
                   )}
 
                   {/* FÍSICOS */}
-                  <S.ArquivFisicos className="ArquivFisTooltip">
+                  <S.ArquivosTag className="ArquivFisTooltip">
                     <img src={`/arquivos_fisicos.svg`} alt="arquivos fisicos" />
                     {task?.physical_files_count}
                     <Tooltip
@@ -303,11 +308,11 @@ export const LoteDetails = () => {
                       anchorSelect=".ArquivFisTooltip"
                       place="bottom"
                     />
-                  </S.ArquivFisicos>
+                  </S.ArquivosTag>
 
                   {/* DIGITAIS(QUANDO HOUVER) */}
                   {optionsFases[status].label != 'Preparo' && optionsFases[status].label != 'Catalogação' && (
-                    <S.ArquivDigitais className="ArquivDigTooltip">
+                    <S.ArquivosTag className="ArquivDigTooltip">
                       <img src={`/arquivos_digitais.svg`} alt="arquivos digitais" />
                       {task?.digital_files_count}
                       <Tooltip
@@ -315,7 +320,7 @@ export const LoteDetails = () => {
                         anchorSelect=".ArquivDigTooltip"
                         place="bottom"
                       />
-                    </S.ArquivDigitais>
+                    </S.ArquivosTag>
                   )}
                 </S.SubDetalhes>
 
@@ -323,9 +328,14 @@ export const LoteDetails = () => {
                 <S.SubDetalhes>
                   {task?.class_projects.map((cat) => {
                     return (
-                      <BlockClass refetch={refetch} key={cat.id} idBatche={task.id} idClass={cat.id}>
-                        {cat.name}
-                      </BlockClass>
+                      <BlockClass
+                        refetch={refetch}
+                        key={cat.id}
+                        idBatche={task.id}
+                        idClass={cat.id}
+                        className={cat.name}
+                        priority={cat.priority}
+                      />
                     );
                   })}
                   <S.ButtonAddClass
@@ -339,7 +349,12 @@ export const LoteDetails = () => {
                       anchorSelect=".AddClass"
                       place="bottom"
                     />
-                    <img src="/adicionar.svg" alt="botão redondo com símbolo + para criar observação" />
+                    <img
+                      src="/adicionar.svg"
+                      alt="botão redondo com símbolo + para criar observação"
+                      width={'20px'}
+                      height={'20px'}
+                    />
                   </S.ButtonAddClass>
                 </S.SubDetalhes>
               </S.DetalhesLote>

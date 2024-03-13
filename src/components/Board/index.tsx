@@ -141,7 +141,6 @@ export const Board = (props: BoardProps) => {
                             priority={batche.priority}
                             categories={batche.class_projects}
                             pendencia={batche.pending_batch_observations}
-                            assigners={batche.assigned_users}
                           >
                             {user?.role == 'MANAGER' ? (
                               <S.BlackButton
@@ -286,7 +285,6 @@ export const Board = (props: BoardProps) => {
                             priority={batche.priority}
                             categories={batche.class_projects}
                             pendencia={batche.pending_batch_observations}
-                            assigners={batche.assigned_users}
                           >
                             {batche.main_status === 1 && (
                               <img src="/icon-small/Catalogação.svg" alt="" style={{ width: '32px', height: '32px' }} />

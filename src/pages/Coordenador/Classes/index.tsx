@@ -4,7 +4,6 @@ import Search from '../../../components/Search';
 import ClassCard from '../../../components/ClassCard';
 import Menu from '../../../components/Menu';
 import MenuCoord from '../../../components/MenuCoord';
-import { useParams } from 'react-router-dom';
 import { useCategories } from '../../../hooks/useCategories';
 import { CSVButton } from '../../../components/CSVButton';
 import { ClassModal} from '../../../components/ClassModal';

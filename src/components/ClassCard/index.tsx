@@ -4,11 +4,12 @@ import { DeletarModal } from '../DeletarModal';
 import { Circle, PencilSimple, Trash } from '@phosphor-icons/react';
 import theme from '../../global/theme';
 import { Tooltip } from 'react-tooltip';
-import { ModalCategory } from '../ModalCategory';
-import { CategoriaCardProps } from './categoria-card.interface';
+import { ClassModal } from '../ClassModal';
+import { ClassProps } from './categoria-card.interface';
 import { DataFase } from '../DataFase';
+import { Prioridade } from '../Lote/styles';
 
-const CategoriaCard = (categoria: CategoriaCardProps) => {
+const ClassCard = (categoria: ClassProps) => {
   const [accodionHeight, setAccodionHeight] = useState(0);
   const [expanded, setExpanded] = useState(false);
   const [modal, setModal] = useState(false);
@@ -67,6 +68,15 @@ const CategoriaCard = (categoria: CategoriaCardProps) => {
                   <S.ClassSubTitle>lotes</S.ClassSubTitle>
                 </S.ContainerTitle>
               )}
+
+              {categoria.priority === true && (
+                <>
+                  <Circle size={8} weight="fill" />
+                  <Prioridade style={{ height: '28px' }}>
+                    <p style={{ fontSize: '14px' }}>Prioridade</p>
+                  </Prioridade>
+                </>
+              )}
             </S.ContainerTitle>
 
             <S.ClasseCardButtons>
@@ -113,10 +123,11 @@ const CategoriaCard = (categoria: CategoriaCardProps) => {
         </S.Footer>
       </S.totalArea>
       {openModal && (
-        <ModalCategory
+        <ClassModal
           id={categoria.id}
           title={'Editar classe'}
           nomeCat={categoria.name}
+          priority={categoria.priority}
           close={() => setOpen(!openModal)}
         />
       )}
@@ -127,4 +138,4 @@ const CategoriaCard = (categoria: CategoriaCardProps) => {
   );
 };
 
-export default CategoriaCard;
+export default ClassCard;

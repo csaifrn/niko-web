@@ -33,7 +33,7 @@ import { Tooltip } from 'react-tooltip';
 import { UserRole } from '../../utils/userRole.enum';
 import { useMe } from '../../hooks/useMe';
 import { BlockClass } from '../../components/BatchBlocks/BlockClass';
-import { ClassModal } from '../../components/ClassModal';
+import { ClassModalAdd } from '../../components/ClassModalAdd';
 
 interface Option {
   label: string;
@@ -685,7 +685,7 @@ export const LoteDetails = () => {
           />
         )}
         {modalClass && (
-          <ClassModal
+          <ClassModalAdd
             refetch={refetch}
             class_projects={task?.class_projects ? task?.class_projects : []}
             close={() => setModalClass(false)}

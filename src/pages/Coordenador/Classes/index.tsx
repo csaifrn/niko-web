@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import * as S from './styles';
 import Search from '../../../components/Search';
-import CategoriaCard from '../../../components/ClassCard';
+import ClassCard from '../../../components/ClassCard';
 import Menu from '../../../components/Menu';
 import MenuCoord from '../../../components/MenuCoord';
 import { useCategories } from '../../../hooks/useCategories';
 import { CSVButton } from '../../../components/CSVButton';
-import { ModalCategory } from '../../../components/ModalCategory';
+import { ClassModal} from '../../../components/ClassModal';
 import { useMutation } from 'react-query';
 import { Class } from '../../../api/services/batches/get-batche/get.interface';
 import theme from '../../../global/theme';
@@ -47,7 +47,7 @@ const Classes = () => {
               columns={[
                 {
                   key: 'name',
-                  name: 'Lote',
+                  name: 'Classe',
                 },
                 {
                   key: 'batch_count',
@@ -173,10 +173,11 @@ const Classes = () => {
           categories?.map(
             (c) =>
               c.name.toLowerCase().includes(searchTerm) && (
-                <CategoriaCard
+                <ClassCard
                   key={c.id}
                   id={c.id}
                   name={c.name}
+                  priority={c.priority}
                   count_batches={c.batch_count}
                   available_batches_count={
                     Number(c.preparation_available) +
@@ -204,7 +205,7 @@ const Classes = () => {
         )}
       </S.CardsArea>
       {open && (
-        <ModalCategory title={'Criar classe'} close={() => setOpen(!open)} refetch={() => CategoriesMutate.mutate()} />
+        <ClassModal title={'Criar classe'} close={() => setOpen(!open)} refetch={() => CategoriesMutate.mutate()} />
       )}
     </div>
   );

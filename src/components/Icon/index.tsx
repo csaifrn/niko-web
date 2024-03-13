@@ -10,7 +10,7 @@ interface Props {
   size?: number;
   color?: string;
   tooloff?: boolean;
-  photo?: Photo | null;
+  photo?: Photo | undefined;
 }
 
 export const IconUser = ({ name, size = 32, fontSize = 12, color, tooloff = false, photo }: Props) => {

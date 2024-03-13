@@ -12,7 +12,7 @@ interface Props {
   idClass: string;
   idBatche: string;
   className: string;
-  priority: boolean;
+  priority?: boolean;
   refetch: () => void;
 }
 

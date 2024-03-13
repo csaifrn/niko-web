@@ -2,7 +2,7 @@ import * as S from './styles';
 import { ReactNode } from 'react';
 import { generateUUID } from '../../utils/generateUUID.util';
 import {BatcheAssignedUser, Class } from '../../api/services/batches/get-batche/get.interface';
-import { Circle, User, UserCircle, Warning } from '@phosphor-icons/react';
+import { Circle, Warning } from '@phosphor-icons/react';
 import { Tooltip } from 'react-tooltip';
 import { IconUser } from '../Icon';
 import theme from '../../global/theme';

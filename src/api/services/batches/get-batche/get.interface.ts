@@ -67,7 +67,7 @@ export interface AssignedUser {
 export interface BatcheAssignedUser {
   id: string;
   name: string;
-  photo: string | undefined;
+  photo: any;
 }
 
 export interface Observation {

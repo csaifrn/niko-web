@@ -27,7 +27,6 @@ export const CSVButton = ({ fileName, columns, data }: CSVButtonProps) => {
       });
       const parser = new Parser({
         delimiter: ',',
-        quote: '',
         withBOM: true,
       });
 

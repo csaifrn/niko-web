@@ -163,7 +163,7 @@ export const ClassModalAdd = (props: ClassModalProps) => {
           <S.NameClose>
             <h2>Adicionar classes</h2>
             <S.Exit type="button" onClick={close}>
-              <img src="/close.svg" alt="" height={24} width={24} />
+              <img src="/buttonclose.svg" alt="" height={24} width={24} />
             </S.Exit>
           </S.NameClose>
           <CustomSelect

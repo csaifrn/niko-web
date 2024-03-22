@@ -28,7 +28,7 @@ export const ObservationModal = (props: DeletarModalProps) => {
   const [closing, setClosing] = useState(false);
   const [obs, setObs] = useState<string>(props.observation ? props.observation : '');
   const [responseError, setResponseError] = useState('');
-  const [isPending, setIsPending] = useState<boolean| undefined>(props.pendencia);
+  const [isPending, setIsPending] = useState<boolean | undefined>(props.pendencia);
   const [validationFormError, setValidationFormError] = useState<ErrorsForm>({ observation: '' });
   const [value, setValue] = useState<string>('');
   const textareaRef = useRef<HTMLTextAreaElement | null>(null);
@@ -91,7 +91,6 @@ export const ObservationModal = (props: DeletarModalProps) => {
       });
 
       handleClose();
-
     },
     onError: (error: ApiError) => {
       if (error.response) {
@@ -163,7 +162,7 @@ export const ObservationModal = (props: DeletarModalProps) => {
             <S.NameClose>
               <h2>{props.title}</h2>
               <S.Exit type="button" onClick={handleClose}>
-                <img src="/close.svg" alt="" height={24} width={24} />
+                <img src="/buttonclose.svg" alt="" height={24} width={24} />
               </S.Exit>
             </S.NameClose>
 

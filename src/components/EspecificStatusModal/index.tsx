@@ -122,19 +122,19 @@ export const EspecifcModal = (props: EspecifModalProps) => {
     }
   };
   const mutatePatchBatch = useMutation(PatchBatcheEdit, {
-    onSuccess: () => {
+    onSettled: () => {
       nextFase();
     },
   });
 
   const mutatePatchBatchCat = useMutation(PatchBatcheClassEdit, {
-    onSuccess: (_, variables) => {
-      settle(variables.deletedIds, variables.newIds);
+    onSettled: (_, __, variables) => {
+      settle(variables.deletedIds ? variables.deletedIds : [], variables.newIds ? variables.newIds : []);
     },
   });
 
   const mutateSettle2 = useMutation(PostBatcheSettle, {
-    onSuccess: () => {
+    onSettled: () => {
       nextFase();
     },
     onError: (err: ApiError) => {
@@ -143,7 +143,7 @@ export const EspecifcModal = (props: EspecifModalProps) => {
   });
 
   const mutateSettleAll = useMutation(PatchBatcheSettle, {
-    onSuccess: () => {
+    onSettled: () => {
       nextFase();
     },
     onError: (err: ApiError) => {
@@ -152,14 +152,14 @@ export const EspecifcModal = (props: EspecifModalProps) => {
   });
 
   const mutateDeleteSettle = useMutation(DeleteBatcheSettle, {
-    onSuccess: () => {},
+    onSettled: () => {},
     onError: (err: ApiError) => {
       toast.error(err.response?.data.message ? err.response?.data.message : 'Erro na execução');
     },
   });
 
   const DeleteBatch = useMutation(DeleteBatche, {
-    onSuccess: () => {
+    onSettled: () => {
       navigate(-1);
       toast.success('Lote excluído com sucesso!');
     },
@@ -175,14 +175,16 @@ export const EspecifcModal = (props: EspecifModalProps) => {
   };
 
   const mutateEspecific = useMutation(PatchBatcheSpecifStatus, {
-    onSuccess: () => {},
+    onSettled: () => {
+      handleCloseRefecht();
+    },
     onError: (err: ApiError) => {
       toast.error(err.response?.data.message ? err.response?.data.message : 'Erro na execução');
     },
   });
 
   const mutateStatus = useMutation(PatchBatcheMainStatus, {
-    onSuccess: () => {
+    onSettled: () => {
       mutateEspecific.mutate({
         specific_status: 0,
         id: props.batche.id,
@@ -201,7 +203,7 @@ export const EspecifcModal = (props: EspecifModalProps) => {
   });
 
   const mutateQueryCategories = useMutation(QueryClasses, {
-    onSuccess: (data: Class[]) => {
+    onSuccess: (data) => {
       setOptions([...data.map((newLocal) => ({ value: newLocal.id, label: newLocal.name }))]);
     },
     onError: (err: ApiError) => {
@@ -210,7 +212,7 @@ export const EspecifcModal = (props: EspecifModalProps) => {
   });
 
   const mutateAssigner = useMutation(PostAssignersMe, {
-    onSuccess: () => {
+    onSettled: () => {
       mutateEspecific.mutate({
         specific_status: 1,
         id: props.batche.id,
@@ -222,14 +224,14 @@ export const EspecifcModal = (props: EspecifModalProps) => {
   });
 
   const mutateDeleteAssigner = useMutation(DeleteAssigners, {
-    onSuccess: () => {},
+    onSettled: () => {},
     onError: (err: ApiError) => {
       toast.error(err.response?.data.message ? err.response?.data.message : 'Erro na execução');
     },
   });
 
   const mutateStorage = useMutation(PatchBatcheEdit, {
-    onSuccess: () => {
+    onSettled: () => {
       nextFase();
     },
     onError: (err: ApiError) => {
@@ -243,7 +245,6 @@ export const EspecifcModal = (props: EspecifModalProps) => {
         specific_status: props.batche.specific_status + 1,
         id: props.batche.id,
       });
-      handleCloseRefecht();
       toast.success('Lote arquivado com sucesso!');
     } else {
       const specific_status = props.batche.specific_status + 1 === 2 ? 0 : 1;
@@ -262,7 +263,6 @@ export const EspecifcModal = (props: EspecifModalProps) => {
         });
         toast.success('Status atualizado!');
       }
-      handleCloseRefecht();
     }
   };
 

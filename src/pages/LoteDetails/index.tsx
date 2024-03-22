@@ -218,7 +218,7 @@ export const LoteDetails = () => {
 
               {/* BOTÃO DE FECHAR */}
               <S.Exit onClick={() => navigate(`/Fases/Board/${optionsFases[status].label}`)} className="FecharTooltip">
-                <img src="/close.svg" alt="" height={18} width={18} />
+                <img src="/buttonclose.svg" alt="" height={18} width={18} />
                 <Tooltip
                   children={<p style={{ fontSize: '12px', fontFamily: 'Rubik' }}>Fechar página</p>}
                   anchorSelect=".FecharTooltip"

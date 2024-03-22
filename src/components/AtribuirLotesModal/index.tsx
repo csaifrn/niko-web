@@ -93,7 +93,7 @@ export const AtribuirModal = (props: AtribuirModalProps) => {
 
               <button onClick={handleClose} style={{ width: 'auto', backgroundColor: 'transparent', border: 'none' }}>
                 <img
-                  src="/close.svg"
+                  src="/buttonclose.svg"
                   alt=""
                   height={24}
                   width={24}
@@ -113,7 +113,9 @@ export const AtribuirModal = (props: AtribuirModalProps) => {
                   key={lote.id}
                   onClick={() => handleLoteClick(lote.id)}
                   style={{
-                    backgroundColor: selectedLotes.includes(lote.id) ? theme.colors['gray/900'] : theme.colors['gray/600'],
+                    backgroundColor: selectedLotes.includes(lote.id)
+                      ? theme.colors['gray/900']
+                      : theme.colors['gray/600'],
                   }}
                 >
                   <p

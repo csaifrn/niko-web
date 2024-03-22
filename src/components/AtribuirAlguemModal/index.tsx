@@ -222,7 +222,7 @@ export const AtribuirAlguemModal = (props: AtribuirAlguemModalProps) => {
               <h2>Atribuir para</h2>
 
               <S.Exit type="button" onClick={handleCloseExit}>
-                <img src="/close.svg" alt="" height={24} width={24} />
+                <img src="/buttonclose.svg" alt="" height={24} width={24} />
               </S.Exit>
             </S.NameClose>
             <S.CustomSelect

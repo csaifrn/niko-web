@@ -6,7 +6,6 @@ import { validationLoginSchema } from './validation';
 import * as Yup from 'yup';
 import { ErrorsForm } from './modalresolver.interface';
 
-
 //import { Pend } from '../PendenciasCoord';
 
 interface ModalPendencia {
@@ -86,18 +85,15 @@ export const ModalResolverPendencia = (props: ModalPendencia) => {
       <S.Wrapper id="modal-scaling">
         <S.ContainerDataDependencias onSubmit={handleSave}>
           <S.ContainerData>
-
             <S.ContainerNumber>
               <S.QtdLotes>Resolver Pêndencia</S.QtdLotes>
 
               <S.Exit type="button" onClick={handleClose}>
-                <img src="/close.svg" alt="" height={24} width={24} />
+                <img src="/buttonclose.svg" alt="" height={24} width={24} />
               </S.Exit>
-
             </S.ContainerNumber>
 
             <S.DataAcao>
-
               {props.pendencia.fase_final && props.pendencia.fase_final.length > 0 ? (
                 <S.DataAcao>
                   <S.ContainerImg src={`/icon-medium/${props.pendencia.fase_atual}.svg`} />
@@ -129,7 +125,7 @@ export const ModalResolverPendencia = (props: ModalPendencia) => {
                       weight="fill"
                       color={selected === 'ok' ? theme.colors['green/400'] : theme.colors['gray/700']}
                       onClick={() => selectedA('ok')}
-                      style={{ transition: 'all 0.2s' , cursor: 'pointer'}}
+                      style={{ transition: 'all 0.2s', cursor: 'pointer' }}
                     />
                   </S.LabelRadio>
                   <S.LabelRadio>
@@ -145,7 +141,7 @@ export const ModalResolverPendencia = (props: ModalPendencia) => {
                       weight="fill"
                       color={selected === 'x' ? theme.colors['red/500'] : theme.colors['gray/700']}
                       onClick={() => selectedA('x')}
-                      style={{ transition: 'all 0.2s' , cursor: 'pointer'}}
+                      style={{ transition: 'all 0.2s', cursor: 'pointer' }}
                     />
                   </S.LabelRadio>
                 </S.DataOkX>
@@ -158,7 +154,7 @@ export const ModalResolverPendencia = (props: ModalPendencia) => {
                 <S.DataFaseTxt>{props.pendencia.comment}</S.DataFaseTxt>
               </S.PendIconText>
             </S.TextComment>
-            
+
             <S.ErrorMessage>{validationFormError.comment}</S.ErrorMessage>
             <S.TextAlerta placeholder="Comentário" id="comment" name="comment" maxLength={100} />
             <S.ErrorMessage>{validationFormError.decision}</S.ErrorMessage>

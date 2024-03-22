@@ -13,7 +13,6 @@ interface ConfigModalProps {
 }
 
 export const ConfigModal = (props: ConfigModalProps) => {
-
   const [Pchecked, setPChecked] = useState(props.prioridade);
   const Priority = useMutation(PatchBatchePriority, {
     onSuccess: (data) => {
@@ -23,7 +22,6 @@ export const ConfigModal = (props: ConfigModalProps) => {
       toast.error(error.response!.data.message);
     },
   });
-
 
   const handlePrioridadeCheck = () => {
     if (Pchecked) {
@@ -75,11 +73,10 @@ export const ConfigModal = (props: ConfigModalProps) => {
       <S.ModalBackdrop>
         <S.ModalArea id="modal-scaling">
           <S.ModalContent id="modal-content">
-
             <S.NameClose>
               <h2>Configurações</h2>
               <S.Exit type="button" onClick={handleClose}>
-                <img src="/close.svg" alt="" height={24} width={24} />
+                <img src="/buttonclose.svg" alt="" height={24} width={24} />
               </S.Exit>
             </S.NameClose>
 
@@ -92,17 +89,13 @@ export const ConfigModal = (props: ConfigModalProps) => {
             </S.Compartilhamento> */}
 
             <S.Prioridade>
-
               <p>Prioridade</p>
-              
-              <S.SwitchButton>
 
+              <S.SwitchButton>
                 <S.Input checked={Pchecked} onChange={handlePrioridadeCheck} />
                 <S.Slider />
               </S.SwitchButton>
-
             </S.Prioridade>
-
           </S.ModalContent>
         </S.ModalArea>
       </S.ModalBackdrop>

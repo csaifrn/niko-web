@@ -175,7 +175,9 @@ export const EspecifcModal = (props: EspecifModalProps) => {
   };
 
   const mutateEspecific = useMutation(PatchBatcheSpecifStatus, {
-    onSettled: () => {},
+    onSettled: () => {
+      handleCloseRefecht();
+    },
     onError: (err: ApiError) => {
       toast.error(err.response?.data.message ? err.response?.data.message : 'Erro na execução');
     },
@@ -243,7 +245,6 @@ export const EspecifcModal = (props: EspecifModalProps) => {
         specific_status: props.batche.specific_status + 1,
         id: props.batche.id,
       });
-      handleCloseRefecht();
       toast.success('Lote arquivado com sucesso!');
     } else {
       const specific_status = props.batche.specific_status + 1 === 2 ? 0 : 1;
@@ -262,7 +263,6 @@ export const EspecifcModal = (props: EspecifModalProps) => {
         });
         toast.success('Status atualizado!');
       }
-      handleCloseRefecht();
     }
   };
 

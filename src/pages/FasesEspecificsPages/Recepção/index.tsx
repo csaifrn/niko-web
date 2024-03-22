@@ -47,7 +47,6 @@ const Recebidos = () => {
     }
   };
 
-  console.log(user);
   return (
     <div style={{ display: 'flex', justifyContent: 'center' }}>
       <Menu area={`/Fases/Board/Recebidos`} id_projeto={id}></Menu>

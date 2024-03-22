@@ -47,8 +47,6 @@ export const CardFase = ({ ...props }: CardProps) => {
     });
   }, []);
 
-  console.log(data);
-
   return (
     <>
       {props.fase != -2 && (

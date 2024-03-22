@@ -173,6 +173,13 @@ export const AtribuirAlguemModal = (props: AtribuirAlguemModalProps) => {
     }, 300);
   };
 
+  const handleCloseExit = () => {
+    setClosing(true);
+    setTimeout(() => {
+      props.close();
+    }, 300);
+  };
+
   useEffect(() => {
     // Ao renderizar o modal, aplicar um escalonamento gradual para exibi-lo
     const timer = setTimeout(() => {
@@ -214,7 +221,7 @@ export const AtribuirAlguemModal = (props: AtribuirAlguemModalProps) => {
             <S.NameClose>
               <h2>Atribuir para</h2>
 
-              <S.Exit type="button" onClick={handleClose}>
+              <S.Exit type="button" onClick={handleCloseExit}>
                 <img src="/close.svg" alt="" height={24} width={24} />
               </S.Exit>
             </S.NameClose>

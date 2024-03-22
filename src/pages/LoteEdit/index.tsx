@@ -13,7 +13,6 @@ import { validationPatch, validationSearch } from './validation';
 import { PatchBatcheEdit, PatchBatchePriority } from '../../api/services/batches/patch-batche';
 import theme from '../../global/theme';
 import { SairSemSalvarModal } from '../../components/SairSemSalvarModal';
-import { ResponseClasses } from '../../api/services/class/query-classes/get.interface';
 import { QueryClasses } from '../../api/services/class/query-classes';
 import { DeleteBatcheSettle, PatchBatcheSettle, PostBatcheSettle } from '../../api/services/batches/patch-settle';
 
@@ -69,8 +68,8 @@ const LoteEdit = () => {
   };
 
   const mutateQueryClasses = useMutation(QueryClasses, {
-    onSuccess: (data: ResponseClasses) => {
-      setOptions(data.classes.map((newLocal) => ({ label: newLocal.name, value: newLocal.id })));
+    onSuccess: (data: Class[]) => {
+      setOptions(data.map((newLocal) => ({ label: newLocal.name, value: newLocal.id })));
     },
   });
 
@@ -92,7 +91,7 @@ const LoteEdit = () => {
     onSuccess: (data: Batche) => {
       setTitle(data.title);
       setPriority(data.priority);
-      setStorageLocation(data.storage_location)
+      setStorageLocation(data.storage_location);
       setCategories(data.class_projects);
       setPhysical_files_count(data.physical_files_count);
       setDigital_files_count(data.digital_files_count);
@@ -152,16 +151,10 @@ const LoteEdit = () => {
   }, []);
 
   useEffect(() => {
-    const serchcategory = async () => {
-      const valid = await validateSearch();
-      if (valid) {
-        mutateQueryClasses.mutate({
-          name: userInput,
-        });
-      }
-    };
-    serchcategory();
-  }, [userInput]);
+    mutateQueryClasses.mutate({
+      name: userInput,
+    });
+  }, []);
 
   const handleSave = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();

@@ -1,12 +1,9 @@
 import axiosInstance from '../../../axiosInstance';
-import { QueryClass, ResponseClasses } from './get.interface';
+import { Class } from '../../batches/get-batche/get.interface';
+import { QueryClass } from './get.interface';
 
-export const QueryClasses = async ({ name }: QueryClass): Promise<ResponseClasses> => {
-  const Classes = await axiosInstance.get<ResponseClasses>(`/class-projects/autocomplete?`, {
-    params: {
-      name,
-    },
-  });
+export const QueryClasses = async ({ name }: QueryClass): Promise<Class[]> => {
+  const Classes = await axiosInstance.get<Class[]>(`/class-projects`);
 
   return Classes.data;
 };

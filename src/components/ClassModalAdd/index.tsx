@@ -5,7 +5,6 @@ import { ApiError } from '../../api/services/authentication/signIn/signIn.interf
 import toast from 'react-hot-toast';
 import { Class } from '../../api/services/batches/get-batche/get.interface';
 import { QueryClasses } from '../../api/services/class/query-classes';
-import { ResponseClasses } from '../../api/services/class/query-classes/get.interface';
 import { AtribuirButton, CustomSelect } from '../AtribuirAlguemModal/style';
 import { PostBatcheSettle, PatchBatcheSettle, DeleteBatcheSettle } from '../../api/services/batches/patch-settle';
 import { useParams } from 'react-router-dom';
@@ -36,8 +35,8 @@ export const ClassModalAdd = (props: ClassModalProps) => {
   );
 
   const mutateQueryCategories = useMutation(QueryClasses, {
-    onSuccess: (data: ResponseClasses) => {
-      setOptions([...data.classes.map((newLocal) => ({ value: newLocal.id, label: newLocal.name }))]);
+    onSuccess: (data: Class[]) => {
+      setOptions([...data.map((newLocal) => ({ value: newLocal.id, label: newLocal.name }))]);
     },
     onError: (err: ApiError) => {
       toast.error(err.response?.data.message ? err.response?.data.message : 'Erro na execução');
@@ -139,12 +138,10 @@ export const ClassModalAdd = (props: ClassModalProps) => {
   };
 
   useEffect(() => {
-    if (userInput.length > 2) {
-      mutateQueryCategories.mutate({
-        name: userInput,
-      });
-    }
-  }, [userInput]);
+    mutateQueryCategories.mutate({
+      name: userInput,
+    });
+  }, []);
 
   useEffect(() => {
     // Ao renderizar o modal, aplicar um escalonamento gradual para exibi-lo

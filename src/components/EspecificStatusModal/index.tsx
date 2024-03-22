@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import * as S from './styles';
-import { Batche } from '../../api/services/batches/get-batche/get.interface';
+import { Batche, Class } from '../../api/services/batches/get-batche/get.interface';
 import { useMutation } from 'react-query';
 import { PatchBatcheSpecifStatus } from '../../api/services/batches/patch-status-specific';
 import toast from 'react-hot-toast';
@@ -11,7 +11,6 @@ import { CheckCircle, HandWaving, Trash } from '@phosphor-icons/react';
 import { SharedState } from '../../context/SharedContext';
 import { CustomSelect } from '../AtribuirAlguemModal/style';
 import { QueryClasses } from '../../api/services/class/query-classes';
-import { ResponseClasses } from '../../api/services/class/query-classes/get.interface';
 import { DeleteBatcheSettle, PatchBatcheSettle, PostBatcheSettle } from '../../api/services/batches/patch-settle';
 import { DeleteAssigner, DeleteAssigners } from '../../api/services/batches/assigners/delete-assigners';
 
@@ -202,8 +201,8 @@ export const EspecifcModal = (props: EspecifModalProps) => {
   });
 
   const mutateQueryCategories = useMutation(QueryClasses, {
-    onSuccess: (data: ResponseClasses) => {
-      setOptions([...data.classes.map((newLocal) => ({ value: newLocal.id, label: newLocal.name }))]);
+    onSuccess: (data: Class[]) => {
+      setOptions([...data.map((newLocal) => ({ value: newLocal.id, label: newLocal.name }))]);
     },
     onError: (err: ApiError) => {
       toast.error(err.response?.data.message ? err.response?.data.message : 'Erro na execução');
@@ -373,7 +372,6 @@ export const EspecifcModal = (props: EspecifModalProps) => {
           props.batche.class_projects.length <= 0 &&
           validateFisi
         ) {
-
           mutatePatchBatchCat.mutate({
             id: props.batche.id,
             physical_files_count: fisical_files_count,
@@ -409,12 +407,10 @@ export const EspecifcModal = (props: EspecifModalProps) => {
   };
 
   useEffect(() => {
-    if (userInput.length >= 3) {
-      mutateQueryCategories.mutate({
-        name: userInput,
-      });
-    }
-  }, [userInput]);
+    mutateQueryCategories.mutate({
+      name: userInput,
+    });
+  }, []);
 
   const onRemove = (e: any) => {
     if (e) {

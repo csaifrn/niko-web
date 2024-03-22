@@ -80,7 +80,6 @@ export const RemessaCardCinzaClaro = styled.div`
   display: flex;
   flex-direction: column;
   gap: 1em;
-  height: 100%;
   width: 100%;
 `;
 

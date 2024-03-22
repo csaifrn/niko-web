@@ -197,7 +197,7 @@ export const ClassModal = (props: ModalCategoriaProps) => {
                 <S.NameClose>
                   <h2>{props.title}</h2>
                   <S.Exit type="button" onClick={handleClose}>
-                    <img src="/close.svg" alt="" height={18} width={18} />
+                    <img src="/buttonclose.svg" alt="" height={18} width={18} />
                   </S.Exit>
                 </S.NameClose>
 
@@ -251,7 +251,7 @@ export const ClassModal = (props: ModalCategoriaProps) => {
                 <S.NameClose>
                   <h2>{props.title}</h2>
                   <S.Exit type="button" onClick={handleClose}>
-                    <img src="/close.svg" alt="" height={18} width={18} />
+                    <img src="/buttonclose.svg" alt="" height={18} width={18} />
                   </S.Exit>
                 </S.NameClose>
                 <S.FormCriar onSubmit={onSubmitEditar}>

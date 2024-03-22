@@ -39,7 +39,7 @@ export const CreateModal = (props: EditModalProps) => {
               <h2>Criar Caixa</h2>
               <button onClick={props.close} style={{ width: 'auto', backgroundColor: 'transparent', border: 'none' }}>
                 <img
-                  src="/close.svg"
+                  src="/buttonclose.svg"
                   alt=""
                   height={18}
                   width={18}

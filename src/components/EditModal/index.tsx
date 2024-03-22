@@ -94,7 +94,7 @@ export const EditPage = () => {
           <h1>Editar Lote {task.numero}</h1>
           <S.CloseDiv>
             <S.Exit onClick={() => navigate(-1)}>
-              <img src="/close.svg" alt="" height={18} width={18} />
+              <img src="/buttonclose.svg" alt="" height={18} width={18} />
             </S.Exit>
           </S.CloseDiv>
         </S.NameClose>

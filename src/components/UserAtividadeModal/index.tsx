@@ -117,12 +117,11 @@ export const UserModalAtividade = (props: UserModalAtividadeProps) => {
     <>
       <S.ModalBackdrop>
         <S.ModalAreaCard id="modal-scaling">
-
           <S.ModalContent id="modal-content">
             <S.NameClose>
               <h2>Atribuir usuários à atividade</h2>
               <S.Exit onClick={handleClose}>
-                <img src="/close.svg" alt="" height={24} width={24} />
+                <img src="/buttonclose.svg" alt="" height={24} width={24} />
               </S.Exit>
             </S.NameClose>
 

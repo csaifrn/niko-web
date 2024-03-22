@@ -63,7 +63,7 @@ export const EditProjetoModal = (props: EditProjetoModalProps) => {
             <S.NameClose>
               <h1>Foto</h1>
               <S.Exit type="button" onClick={handleClose}>
-                <img src="/close.svg" alt="" height={24} width={24} />
+                <img src="/buttonclose.svg" alt="" height={24} width={24} />
               </S.Exit>
             </S.NameClose>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '2em' }}>
@@ -81,8 +81,6 @@ export const EditProjetoModal = (props: EditProjetoModalProps) => {
                   overflow: 'hidden',
                 }}
               >
-                
-                
                 {url != '' && (
                   <img
                     src={url}

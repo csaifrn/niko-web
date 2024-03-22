@@ -46,7 +46,7 @@ export const CreateObservationModal = (props: DeletarModalProps) => {
   // });
 
   const handlePend = () => {
-    setIsPending(!isPending)
+    setIsPending(!isPending);
     // if (isPending && props.id) {
     //   setIsPending(false);
     //   //props.priorityOnChange(false);
@@ -60,7 +60,7 @@ export const CreateObservationModal = (props: DeletarModalProps) => {
     //     id: props.id,
     //   });
     // }
-  }
+  };
 
   const onChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
     setValue(event.target.value);
@@ -131,7 +131,7 @@ export const CreateObservationModal = (props: DeletarModalProps) => {
       ObservationMutate.mutate({
         id: id!,
         observation: observation.trim(),
-        is_pending: isPending
+        is_pending: isPending,
       });
     }
   };
@@ -152,7 +152,7 @@ export const CreateObservationModal = (props: DeletarModalProps) => {
             <S.NameClose>
               <h2>{props.title}</h2>
               <S.Exit type="button" onClick={handleClose}>
-                <img src="/close.svg" alt="" height={24} width={24} />
+                <img src="/buttonclose.svg" alt="" height={24} width={24} />
               </S.Exit>
             </S.NameClose>
 
@@ -179,7 +179,7 @@ export const CreateObservationModal = (props: DeletarModalProps) => {
             <h3>Pendência?</h3>
 
             <S.SwitchButton>
-              <S.Input checked={isPending} onChange={handlePend}/>
+              <S.Input checked={isPending} onChange={handlePend} />
               <S.Slider />
             </S.SwitchButton>
 

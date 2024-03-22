@@ -177,7 +177,7 @@ export const ShipmentModal = (props: EditModalProps) => {
               <S.NameClose>
                 <h2>{props.shipment ? 'Editar remessa' : 'Criar remessa'}</h2>
                 <Exit type="button" onClick={handleClose}>
-                  <img src="/close.svg" alt="" height={24} width={24} />
+                  <img src="/buttonclose.svg" alt="" height={24} width={24} />
                 </Exit>
               </S.NameClose>
 

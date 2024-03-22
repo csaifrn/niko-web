@@ -136,7 +136,7 @@ export const AtribuirLoteModal = (props: AtribuirModalAtividadeProps) => {
             <S.NameClose>
               <h2>Atribuir Lote</h2>
               <S.Exit type="button" onClick={handleClose}>
-                <img src="/close.svg" alt="" height={24} width={24} />
+                <img src="/buttonclose.svg" alt="" height={24} width={24} />
               </S.Exit>
             </S.NameClose>
 

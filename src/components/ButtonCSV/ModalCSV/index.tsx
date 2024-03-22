@@ -155,7 +155,7 @@ export const ModalCSV = (props: Props) => {
             <S.NameClose>
               <h2>Baixar CSV</h2>
               <S.Exit type="button" onClick={handleClose}>
-                <img src="/close.svg" alt="" height={18} width={18} />
+                <img src="/buttonclose.svg" alt="" height={18} width={18} />
               </S.Exit>
             </S.NameClose>
             <S.FormCriar>

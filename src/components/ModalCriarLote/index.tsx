@@ -104,7 +104,7 @@ export const ModalCriarLote = (props: ModalCriarProps) => {
             <S.NameClose>
               <h2>Criar Lote</h2>
               <S.Exit type="button" onClick={handleClose}>
-                <img src="/close.svg" alt="" height={18} width={18} />
+                <img src="/buttonclose.svg" alt="" height={18} width={18} />
               </S.Exit>
             </S.NameClose>
 

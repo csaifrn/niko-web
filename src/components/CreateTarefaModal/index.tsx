@@ -77,7 +77,7 @@ export const CreateTarefaAtividade = (props: CreateAtividadeProps) => {
               <h2>Tarefas</h2>
 
               <S.Exit onClick={handleClose}>
-                <img src="/close.svg" alt="" height={24} width={24} />
+                <img src="/buttonclose.svg" alt="" height={24} width={24} />
               </S.Exit>
             </S.NameClose>
             <Search searchTerm={searchTerm} handleSearchChange={handleSearchChange} />
@@ -88,7 +88,9 @@ export const CreateTarefaAtividade = (props: CreateAtividadeProps) => {
                     key={categ.id}
                     onClick={() => handleLoteClick(categ)}
                     style={{
-                      backgroundColor: tarefasFase.includes(categ) ? theme.colors['gray/900'] : theme.colors['gray/600'],
+                      backgroundColor: tarefasFase.includes(categ)
+                        ? theme.colors['gray/900']
+                        : theme.colors['gray/600'],
                     }}
                   >
                     <img src={`${categ.icone}`} alt="" />

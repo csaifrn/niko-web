@@ -149,7 +149,7 @@ export const MembrosModal = (props: MembrosModalProps) => {
             <S.NameClose>
               <h1>{props.nome_projeto}</h1>
               <S.Exit type="button" onClick={handleClose}>
-                <img src="/close.svg" alt="" height={24} width={24} />
+                <img src="/buttonclose.svg" alt="" height={24} width={24} />
               </S.Exit>
             </S.NameClose>
 

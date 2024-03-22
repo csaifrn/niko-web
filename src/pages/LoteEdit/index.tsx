@@ -252,7 +252,7 @@ const LoteEdit = () => {
             <h1>Editar {title}</h1>
 
             <S.Exit onClick={() => setModalSairSemSalvar(!modalSairSemSalvar)}>
-              <img src="/close.svg" alt="" height={18} width={18} />
+              <img src="/buttonclose.svg" alt="" height={18} width={18} />
             </S.Exit>
           </S.CloseDiv>
 

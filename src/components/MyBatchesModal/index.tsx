@@ -38,8 +38,7 @@ export const MyBatches = (props: MyBatchesProps) => {
   };
 
   const mutateBatches = useMutation(QueryBatche, {
-    onSuccess: (data: GetResponseBatche[]) => {
-    },
+    onSuccess: (data: GetResponseBatche[]) => {},
   });
 
   useEffect(() => {
@@ -54,7 +53,7 @@ export const MyBatches = (props: MyBatchesProps) => {
             <S.NameClose>
               <h2>Lotes atribuídos para mim</h2>
               <S.Exit type="button" onClick={handleClose}>
-                <img src="/close.svg" alt="" height={24} width={24} />
+                <img src="/buttonclose.svg" alt="" height={24} width={24} />
               </S.Exit>
             </S.NameClose>
           </S.ModalContent>

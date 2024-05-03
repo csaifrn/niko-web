@@ -102,6 +102,7 @@ const BlackBlock = styled.div`
   padding-bottom: 5px;
   background-color: ${({ theme }) => theme.colors['gray/700']};
   display: flex;
+  gap: 4px;
   justify-content: center;
   align-items: center;
   border: ${({ theme }) => theme.colors['gray/300']} solid 2px;

@@ -31,3 +31,13 @@ export const Button = styled.button`
     transform: translateY(-5%) translateX(2%);
   }
 `;
+
+export const ConteudoClassTag = styled.div`
+  display: flex;
+  gap: 8px;
+`;
+
+export const PriorityIcon = styled.div`
+  height: 15px;
+  width: 15px;
+`;

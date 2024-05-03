@@ -1,5 +1,4 @@
 import { Tooltip } from 'react-tooltip';
-import { AssignedUser } from '../../api/services/batches/get-batche/get.interface';
 import { generateUUID } from '../../utils/generateUUID.util';
 import styled from 'styled-components';
 import theme from '../../global/theme';
@@ -14,7 +13,7 @@ interface Props {
   photo?: Photo | undefined;
 }
 
-export const IconUser = ({ name, size = 24, fontSize = 12, color, tooloff = false, photo }: Props) => {
+export const IconUser = ({ name, size = 32, fontSize = 16, color, tooloff = false, photo }: Props) => {
   function getInitials(name: string): string {
     const nameParts = name.split(' ');
     let initials = '';

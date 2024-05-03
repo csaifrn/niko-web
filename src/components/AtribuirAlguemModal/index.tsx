@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import * as S from './style';
-import { AssignedUser } from '../../api/services/batches/get-batche/get.interface';
+import { AssignedUser, BatcheAssignedUser } from '../../api/services/batches/get-batche/get.interface';
 import { validationSearch } from './validation';
 import toast from 'react-hot-toast';
 import { SearchUserResponseBatche } from '../../api/services/batches/assigners/get-user-autocomplete/get.interface';
@@ -18,8 +18,8 @@ import { PatchBatcheSpecifStatus } from '../../api/services/batches/patch-status
 
 export interface AtribuirAlguemModalProps {
   close: () => void;
-  assigners: AssignedUser[] | undefined;
-  setAssigners?: React.Dispatch<React.SetStateAction<AssignedUser[]>>;
+  assigners: BatcheAssignedUser[] | undefined;
+  setAssigners?: React.Dispatch<React.SetStateAction<BatcheAssignedUser[]>>;
   specificStatus?: number;
   batcheId?: string | undefined;
   refetch: () => void;
@@ -35,7 +35,7 @@ export const AtribuirAlguemModal = (props: AtribuirAlguemModalProps) => {
   const [closing, setClosing] = useState(false);
   const [errorInput, setErrorInput] = useState('');
   const [options, setOptions] = useState<MultiValue<Options | null>>([]);
-  const [presentAssigners, setPresentAssigners] = useState<AssignedUser[]>(props.assigners ? props.assigners : []);
+  const [presentAssigners, setPresentAssigners] = useState<BatcheAssignedUser[]>(props.assigners ? props.assigners : []);
   const [userRemoved, setUserRemoved] = useState<string>('');
   const [optionsSelected, setOptionsSelected] = useState<MultiValue<Options | null>>(
     props.assigners ? props.assigners.map((e) => ({ value: e.id, label: e.name })) : [],

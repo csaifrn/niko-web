@@ -35,7 +35,6 @@ export const ButtonAddClass = styled.button`
   justify-content: center;
   align-items: center;
   background-color: transparent;
-  position: relative;
   :hover div {
     visibility: visible;
     opacity: 1;
@@ -47,6 +46,9 @@ export const ButtonAddClass = styled.button`
   &:active {
     background-color: ${({ theme }) => theme.colors['gray/400']};
     transform: translateY(-5%) translateX(2%);
+  }
+  @media screen and (min-width: 767px) {
+    padding: 5.5px;
   }
 `;
 
@@ -94,7 +96,11 @@ export const Teste = styled.h1`
   color: white;
 `;
 
-export const Icons = styled.img``;
+export const Icons = styled.img`
+  &:hover {
+    filter: brightness(0.8);
+  }
+`;
 
 export const EnvolvAtual = styled.img``;
 
@@ -172,26 +178,6 @@ export const Edit = styled.div`
   }
 `;
 
-export const Config = styled.button`
-  height: 2em;
-  width: 2em;
-  border-radius: 3px;
-  margin-bottom: 0.5em;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border: none;
-  cursor: pointer;
-  background-color: ${({ theme }) => theme.colors['gray/500']};
-  &:hover {
-    background-color: ${({ theme }) => theme.colors['gray/400']};
-  }
-  &:active {
-    background-color: ${({ theme }) => theme.colors['gray/400']};
-    transform: translateY(-5%) translateX(2%);
-  }
-`;
-
 export const DetalhesLote = styled.div`
   display: flex;
   gap: 24px;
@@ -202,6 +188,7 @@ export const DetalhesLote = styled.div`
 
 export const SubDetalhes = styled.div`
   display: flex;
+  align-items: center;
   gap: 8px;
   flex-wrap: wrap;
 `;
@@ -223,33 +210,17 @@ export const Estante = styled.div`
   border-radius: 3px;
 `;
 
-export const ArquivFisicos = styled.div`
+export const ArquivosTag = styled.div`
   background-color: ${({ theme }) => theme.colors['gray/500']};
+  /* height: 2em;
+  width: 4em; */
   height: 2em;
-  width: 4em;
+  padding: 0 0.5em;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 0.5em;
   border-radius: 3px;
-  position: relative;
-  :hover div {
-    visibility: visible;
-    opacity: 1;
-    display: block;
-  }
-`;
-
-export const ArquivDigitais = styled.div`
-  background-color: ${({ theme }) => theme.colors['gray/500']};
-  height: 2em;
-  width: 4em;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5em;
-  border-radius: 3px;
-  position: relative;
   :hover div {
     visibility: visible;
     opacity: 1;
